@@ -16,9 +16,9 @@
         "index": 47
       },
       "end": {
-        "line": 175,
+        "line": 248,
         "column": 3,
-        "index": 4065
+        "index": 6239
       }
     },
     "jsdoc": {
@@ -212,20 +212,37 @@
       },
       "name": "finished",
       "type": "qx.event.type.Data"
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1448
+        },
+        "end": {
+          "line": 73,
+          "column": 34,
+          "index": 1478
+        }
+      },
+      "jsdoc": {},
+      "name": "refresh",
+      "type": "qx.event.type.Event"
     }
   },
   "members": {
     "__request": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 82,
           "column": 4,
-          "index": 1507
+          "index": 1624
         },
         "end": {
-          "line": 80,
+          "line": 82,
           "column": 19,
-          "index": 1522
+          "index": 1639
         }
       },
       "type": "variable",
@@ -234,14 +251,14 @@
     "_parseInt": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 84,
           "column": 4,
-          "index": 1529
+          "index": 1646
         },
         "end": {
-          "line": 87,
+          "line": 89,
           "column": 5,
-          "index": 1652
+          "index": 1769
         }
       },
       "type": "function",
@@ -250,14 +267,14 @@
     "_applyRequestData": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 91,
           "column": 4,
-          "index": 1659
+          "index": 1776
         },
         "end": {
-          "line": 98,
+          "line": 100,
           "column": 5,
-          "index": 1953
+          "index": 2070
         }
       },
       "type": "function",
@@ -269,17 +286,33 @@
         "limit"
       ]
     },
+    "getRequestData": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2077
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 2520
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
     "_initRequest": {
       "location": {
         "start": {
-          "line": 100,
+          "line": 120,
           "column": 4,
-          "index": 1960
+          "index": 2527
         },
         "end": {
-          "line": 132,
+          "line": 147,
           "column": 5,
-          "index": 2979
+          "index": 3407
         }
       },
       "type": "function",
@@ -288,14 +321,14 @@
     "__updateModel": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 149,
           "column": 4,
-          "index": 2986
+          "index": 3414
         },
         "end": {
-          "line": 146,
+          "line": 166,
           "column": 5,
-          "index": 3480
+          "index": 4132
         }
       },
       "type": "function",
@@ -304,14 +337,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 168,
           "column": 4,
-          "index": 3487
+          "index": 4139
         },
         "end": {
-          "line": 156,
+          "line": 176,
           "column": 5,
-          "index": 3666
+          "index": 4318
         }
       },
       "type": "function",
@@ -322,17 +355,67 @@
         "cv.io.listmodel.IListModel"
       ]
     },
+    "handleEvent": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4325
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 5840
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.io.listmodel.IListModel",
+      "appearsIn": [
+        "cv.io.listmodel.IListModel"
+      ],
+      "jsdoc": {
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}"
+          },
+          {
+            "name": "@param",
+            "body": "data {object} contains a map of all \"data-\" prefixed attributes of the event source, contains at least data.action",
+            "paramName": "data",
+            "description": " contains a map of all \"data-\" prefixed attributes of the event source, contains at least data.action",
+            "type": "object"
+          },
+          {
+            "name": "@param",
+            "body": "model {object} model of the clicked list item",
+            "paramName": "model",
+            "description": " model of the clicked list item",
+            "type": "object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean} if the event has been handled",
+            "type": "boolean",
+            "description": " if the event has been handled"
+          }
+        ]
+      }
+    },
     "_sendWithPromise": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 231,
           "column": 4,
-          "index": 3673
+          "index": 5847
         },
         "end": {
-          "line": 169,
+          "line": 242,
           "column": 5,
-          "index": 3988
+          "index": 6162
         }
       },
       "type": "function",
@@ -3983,14 +4066,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 172,
+        "line": 245,
         "column": 2,
-        "index": 3997
+        "index": 6171
       },
       "end": {
-        "line": 174,
+        "line": 247,
         "column": 3,
-        "index": 4061
+        "index": 6235
       }
     }
   },

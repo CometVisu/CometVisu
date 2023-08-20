@@ -14,9 +14,9 @@
         "index": 849
       },
       "end": {
-        "line": 236,
+        "line": 275,
         "column": 3,
-        "index": 6658
+        "index": 7573
       }
     },
     "jsdoc": {
@@ -73,9 +73,9 @@
           "index": 1095
         },
         "end": {
-          "line": 61,
+          "line": 62,
           "column": 5,
-          "index": 1831
+          "index": 1880
         }
       },
       "type": "function",
@@ -84,14 +84,14 @@
     "_onPageChanged": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 68,
           "column": 4,
-          "index": 1961
+          "index": 2010
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 5,
-          "index": 2319
+          "index": 2368
         }
       },
       "jsdoc": {
@@ -114,15 +114,67 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 80,
           "column": 4,
-          "index": 2326
+          "index": 2375
         },
         "end": {
-          "line": 100,
+          "line": 101,
           "column": 5,
-          "index": 3001
+          "index": 3050
         }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "confirm": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3391
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3916
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          },
+          {
+            "name": "@description",
+            "body": "<p>Show a confirm message the call the callback with the information if\n this message has been confirmed or not,</p>"
+          }
+        ],
+        "@callback": [
+          {
+            "name": "@callback",
+            "body": "confirmationCallback"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "confirmed {boolean}"
+          },
+          {
+            "name": "@param",
+            "body": "title {string}"
+          },
+          {
+            "name": "@param",
+            "body": "message {string}"
+          },
+          {
+            "name": "@param",
+            "body": "callback {confirmationCallback}"
+          }
+        ]
       },
       "type": "function",
       "access": "public"
@@ -130,14 +182,14 @@
     "showPopup": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 148,
           "column": 4,
-          "index": 3270
+          "index": 4185
         },
         "end": {
-          "line": 116,
+          "line": 155,
           "column": 5,
-          "index": 3469
+          "index": 4384
         }
       },
       "jsdoc": {
@@ -178,14 +230,14 @@
     "removePopup": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 161,
           "column": 4,
-          "index": 3581
+          "index": 4496
         },
         "end": {
-          "line": 128,
+          "line": 167,
           "column": 5,
-          "index": 3740
+          "index": 4655
         }
       },
       "jsdoc": {
@@ -211,14 +263,14 @@
     "addPopup": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 173,
           "column": 4,
-          "index": 3848
+          "index": 4763
         },
         "end": {
-          "line": 137,
+          "line": 176,
           "column": 5,
-          "index": 3976
+          "index": 4891
         }
       },
       "jsdoc": {
@@ -244,14 +296,14 @@
     "getPopup": {
       "location": {
         "start": {
-          "line": 144,
+          "line": 183,
           "column": 4,
-          "index": 4101
+          "index": 5016
         },
         "end": {
-          "line": 150,
+          "line": 189,
           "column": 5,
-          "index": 4263
+          "index": 5178
         }
       },
       "jsdoc": {
@@ -285,14 +337,14 @@
     "placementStrategy": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 203,
           "column": 4,
-          "index": 4683
+          "index": 5598
         },
         "end": {
-          "line": 229,
+          "line": 268,
           "column": 5,
-          "index": 6521
+          "index": 7436
         }
       },
       "jsdoc": {
@@ -336,14 +388,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 232,
+        "line": 271,
         "column": 2,
-        "index": 6530
+        "index": 7445
       },
       "end": {
-        "line": 235,
+        "line": 274,
         "column": 3,
-        "index": 6654
+        "index": 7569
       }
     }
   },

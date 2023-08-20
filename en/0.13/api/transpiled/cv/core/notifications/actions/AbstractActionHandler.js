@@ -6,6 +6,7 @@
         "require": true
       },
       "qx.core.Object": {
+        "construct": true,
         "require": true
       }
     }
@@ -40,6 +41,15 @@
     extend: qx.core.Object,
     type: 'abstract',
     /*
+    ***********************************************
+      CONSTRUCTOR
+    ***********************************************
+    */
+    construct: function construct(type) {
+      qx.core.Object.constructor.call(this);
+      this._type = type;
+    },
+    /*
     ******************************************************
       PROPERTIES
     ******************************************************
@@ -65,9 +75,17 @@
     */
     events: {
       close: 'qx.event.type.Event'
+    },
+    /*
+    ***********************************************
+      MEMBERS
+    ***********************************************
+    */
+    members: {
+      _type: null
     }
   });
   cv.core.notifications.actions.AbstractActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractActionHandler.js.map?dt=1691935389431
+//# sourceMappingURL=AbstractActionHandler.js.map?dt=1692560680355

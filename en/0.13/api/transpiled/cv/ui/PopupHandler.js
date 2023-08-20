@@ -49,6 +49,7 @@
         this.addPopup(new cv.ui.Popup('info'));
         this.addPopup(new cv.ui.Popup('warning'));
         this.addPopup(new cv.ui.Popup('error'));
+        this.addPopup(new cv.ui.Popup('confirm'));
 
         // register to topics
         cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
@@ -104,6 +105,38 @@
             popup.close();
           }
         }
+      },
+      /**
+       * @callback confirmationCallback
+       * @param confirmed {boolean}
+       */
+      /**
+       * Show a confirm message the call the callback with the information if
+       * this message has been confirmed or not,
+       * @param title {string}
+       * @param message {string}
+       * @param callback {confirmationCallback}
+       */
+      confirm: function confirm(title, message, callback) {
+        var popupConfig = {
+          title: title,
+          content: message,
+          closable: true,
+          actions: {
+            decline: [{
+              action: function action() {
+                callback(false);
+              }
+            }],
+            confirm: [{
+              action: function action() {
+                callback(true);
+              }
+            }]
+          },
+          type: 'confirmation'
+        };
+        this.showPopup('confirm', popupConfig);
       },
       /**
        * Show a popup of type "type". The attributes is an type dependent object
@@ -234,4 +267,4 @@
   cv.ui.PopupHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PopupHandler.js.map?dt=1691935452924
+//# sourceMappingURL=PopupHandler.js.map?dt=1692560743584

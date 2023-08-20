@@ -166,4 +166,4 @@
   qx.ui.window.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1691935449899
+//# sourceMappingURL=Manager.js.map?dt=1692560740519

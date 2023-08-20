@@ -16,9 +16,9 @@
         "index": 961
       },
       "end": {
-        "line": 261,
+        "line": 265,
         "column": 3,
-        "index": 6955
+        "index": 7034
       }
     },
     "jsdoc": {
@@ -458,9 +458,9 @@
           "index": 5443
         },
         "end": {
-          "line": 221,
+          "line": 225,
           "column": 5,
-          "index": 6270
+          "index": 6349
         }
       },
       "type": "function",
@@ -500,14 +500,14 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 223,
+          "line": 227,
           "column": 4,
-          "index": 6277
+          "index": 6356
         },
         "end": {
-          "line": 225,
+          "line": 229,
           "column": 5,
-          "index": 6318
+          "index": 6397
         }
       },
       "type": "function",
@@ -530,14 +530,14 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 227,
+          "line": 231,
           "column": 4,
-          "index": 6325
+          "index": 6404
         },
         "end": {
-          "line": 229,
+          "line": 233,
           "column": 5,
-          "index": 6362
+          "index": 6441
         }
       },
       "type": "function",
@@ -560,14 +560,14 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 235,
           "column": 4,
-          "index": 6369
+          "index": 6448
         },
         "end": {
-          "line": 231,
+          "line": 235,
           "column": 21,
-          "index": 6386
+          "index": 6465
         }
       },
       "type": "function",
@@ -588,14 +588,14 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 233,
+          "line": 237,
           "column": 4,
-          "index": 6393
+          "index": 6472
         },
         "end": {
-          "line": 233,
+          "line": 237,
           "column": 18,
-          "index": 6407
+          "index": 6486
         }
       },
       "type": "function",
@@ -608,14 +608,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 235,
+          "line": 239,
           "column": 4,
-          "index": 6414
+          "index": 6493
         },
         "end": {
-          "line": 235,
+          "line": 239,
           "column": 19,
-          "index": 6429
+          "index": 6508
         }
       },
       "type": "function",
@@ -638,14 +638,14 @@
     "record": {
       "location": {
         "start": {
-          "line": 236,
+          "line": 240,
           "column": 4,
-          "index": 6435
+          "index": 6514
         },
         "end": {
-          "line": 236,
+          "line": 240,
           "column": 25,
-          "index": 6456
+          "index": 6535
         }
       },
       "type": "function",
@@ -676,14 +676,14 @@
     "showError": {
       "location": {
         "start": {
-          "line": 237,
+          "line": 241,
           "column": 4,
-          "index": 6462
+          "index": 6541
         },
         "end": {
-          "line": 237,
+          "line": 241,
           "column": 37,
-          "index": 6495
+          "index": 6574
         }
       },
       "type": "function",
@@ -720,14 +720,14 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 244,
           "column": 4,
-          "index": 6542
+          "index": 6621
         },
         "end": {
-          "line": 240,
+          "line": 244,
           "column": 37,
-          "index": 6575
+          "index": 6654
         }
       },
       "jsdoc": {},
@@ -741,14 +741,14 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 242,
+          "line": 246,
           "column": 4,
-          "index": 6582
+          "index": 6661
         },
         "end": {
-          "line": 244,
+          "line": 248,
           "column": 5,
-          "index": 6640
+          "index": 6719
         }
       },
       "type": "function",
@@ -771,14 +771,14 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 245,
+          "line": 249,
           "column": 4,
-          "index": 6646
+          "index": 6725
         },
         "end": {
-          "line": 247,
+          "line": 251,
           "column": 5,
-          "index": 6696
+          "index": 6775
         }
       },
       "type": "function",
@@ -799,14 +799,14 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 248,
+          "line": 252,
           "column": 4,
-          "index": 6702
+          "index": 6781
         },
         "end": {
-          "line": 250,
+          "line": 254,
           "column": 5,
-          "index": 6747
+          "index": 6826
         }
       },
       "type": "function",
@@ -835,14 +835,14 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 251,
+          "line": 255,
           "column": 4,
-          "index": 6753
+          "index": 6832
         },
         "end": {
-          "line": 253,
+          "line": 257,
           "column": 5,
-          "index": 6800
+          "index": 6879
         }
       },
       "type": "function",
@@ -873,14 +873,14 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 254,
+          "line": 258,
           "column": 4,
-          "index": 6806
+          "index": 6885
         },
         "end": {
-          "line": 256,
+          "line": 260,
           "column": 5,
-          "index": 6873
+          "index": 6952
         }
       },
       "type": "function",
@@ -908,14 +908,14 @@
     "getProviderData": {
       "location": {
         "start": {
-          "line": 257,
+          "line": 261,
           "column": 4,
-          "index": 6879
+          "index": 6958
         },
         "end": {
-          "line": 259,
+          "line": 263,
           "column": 5,
-          "index": 6947
+          "index": 7026
         }
       },
       "type": "function",

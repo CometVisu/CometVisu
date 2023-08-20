@@ -48,6 +48,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     /*
     ***********************************************
+      EVENTS
+    ***********************************************
+    */
+    events: {
+      // this event is sent when the model itself wants to trigger a list refresh.
+      refresh: 'qx.event.type.Event'
+    },
+    /*
+    ***********************************************
       STATICS
     ***********************************************
     */
@@ -223,6 +232,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }, _callee2, null, [[8, 15]]);
         }))();
+      },
+      handleEvent: function handleEvent() {
+        return false;
       }
     },
     defer: function defer(clazz) {
@@ -232,4 +244,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.io.listmodel.FritzCallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FritzCallList.js.map?dt=1691935389726
+//# sourceMappingURL=FritzCallList.js.map?dt=1692560680735

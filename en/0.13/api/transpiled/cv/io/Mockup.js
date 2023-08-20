@@ -226,7 +226,11 @@
         if (name === 'charts' && map && map.src) {
           if (map.src.startsWith('generator:')) {
             // the generator also might need the start/end values
-            return basePath + map.src + '?start=' + map.start + '&end=' + map.end;
+            var path = basePath + map.src + '?';
+            for (var key in map) {
+              path += "&".concat(key, "=").concat(map[key]);
+            }
+            return path;
           }
           return basePath + map.src;
         }
@@ -268,4 +272,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1691935452263
+//# sourceMappingURL=Mockup.js.map?dt=1692560742908

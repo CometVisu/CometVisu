@@ -52,9 +52,9 @@
       CONSTRUCTOR
     ******************************************************
     */
-    construct: function construct(props) {
+    construct: function construct(props, type) {
       cv.core.notifications.actions.AbstractActionHandler.constructor.call(this);
-      this.set(props);
+      this.set(props, type);
     },
     /*
     ******************************************************
@@ -107,4 +107,4 @@
   cv.core.notifications.actions.Option.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Option.js.map?dt=1691935389515
+//# sourceMappingURL=Option.js.map?dt=1692560680493

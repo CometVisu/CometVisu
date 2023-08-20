@@ -1,8 +1,4 @@
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
@@ -56,15 +52,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return this._isInline;
       },
       _init: function _init() {
-        var resourceUrl = this.getUrl();
-        if (resourceUrl) {
-          var parts = resourceUrl.pathname.substring(1).split('/');
-          var bucket = resourceUrl.hostname;
+        var config = this.getConfig();
+        if (config) {
+          var parts = config.path.substring(1).split('/');
+          var bucket = config.name;
           var options = {
             method: 'POST',
             'config-section': 'influx',
             searchParams: {
-              org: resourceUrl.username
+              org: config.authority
             }
           };
           // for inline bucket the query template is defined in the config and is provided externally
@@ -74,34 +70,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var queryParts = ["from(bucket:\"".concat(bucket, "\")"), '|> range($$RANGE$$)', "|> filter(fn: (r) => r._measurement == \"".concat(measurement, "\" and r._field == \"").concat(field, "\")")];
             var additional = {};
             var allowedAg = ['fn', 'every', 'column', 'createEmpty', 'location', 'offset', 'period', 'timeDst', 'timeSrc'];
-            var _iterator = _createForOfIteratorHelper(resourceUrl.searchParams),
-              _step;
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var _step$value = _slicedToArray(_step.value, 2),
-                  _key = _step$value[0],
-                  value = _step$value[1];
-                if (_key.startsWith('ag-')) {
-                  if (allowedAg.includes(_key.substring(3))) {
-                    if (!Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
-                      additional.aggregateWindow = {};
-                    }
-                    additional.aggregateWindow[_key.substring(3)] = value;
-                  } else {
-                    this.error("skipping invalid aggregationWindow parameter ".concat(_key.substring(3)));
+            for (var key in config.params) {
+              if (key.startsWith('ag-')) {
+                if (allowedAg.includes(key.substring(3))) {
+                  if (!Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
+                    additional.aggregateWindow = {};
                   }
+                  additional.aggregateWindow[key.substring(3)] = config.params[key];
+                } else {
+                  this.error("skipping invalid aggregationWindow parameter ".concat(key.substring(3)));
                 }
               }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
             }
             if (Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
               if (Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
                 var _parts = [];
-                for (var key in additional.aggregateWindow) {
-                  _parts.push("".concat(key, ": ").concat(additional.aggregateWindow[key]));
+                for (var _key in additional.aggregateWindow) {
+                  _parts.push("".concat(_key, ": ").concat(additional.aggregateWindow[_key]));
                 }
                 // use default
                 if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
@@ -117,7 +102,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             this._isInline = true;
           }
           this._baseRequestConfig = {
-            url: resourceUrl.toString(),
+            url: this._url,
             proxy: true,
             options: options
           };
@@ -182,11 +167,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var value;
         var lineEntries;
         var date;
-        var _iterator2 = _createForOfIteratorHelper(lines),
-          _step2;
+        var _iterator = _createForOfIteratorHelper(lines),
+          _step;
         try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var line = _step2.value;
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var line = _step.value;
             lineEntries = line.split(',');
             if (lineEntries[valueIndex]) {
               value = parseFloat(lineEntries[valueIndex]);
@@ -195,9 +180,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           }
         } catch (err) {
-          _iterator2.e(err);
+          _iterator.e(err);
         } finally {
-          _iterator2.f();
+          _iterator.f();
         }
         return res;
       }
@@ -206,4 +191,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.io.timeseries.FluxSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FluxSource.js.map?dt=1691935456179
+//# sourceMappingURL=FluxSource.js.map?dt=1692560746862

@@ -145,7 +145,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           element.classList.remove(oldValue);
         }
         if (value) {
-          element.classList.add(value);
+          if (value.startsWith('#') || value.startsWith('rgb')) {
+            element.style.color = value;
+          } else {
+            element.classList.add(value);
+          }
         }
       }
     },
@@ -172,4 +176,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1691935401928
+//# sourceMappingURL=Icon.js.map?dt=1692560692850

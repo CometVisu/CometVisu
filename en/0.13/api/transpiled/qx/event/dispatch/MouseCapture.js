@@ -257,4 +257,4 @@
   qx.event.dispatch.MouseCapture.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MouseCapture.js.map?dt=1691935418859
+//# sourceMappingURL=MouseCapture.js.map?dt=1692560709819

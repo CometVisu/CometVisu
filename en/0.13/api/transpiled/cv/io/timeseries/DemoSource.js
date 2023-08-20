@@ -45,19 +45,21 @@
       _src: null,
       _init: function _init() {
         this._client = cv.io.BackendConnections.getClientByType('mockup');
-        this._src = this.getRawUrl().split('://').pop().replace('@', ':');
+        this._src = this._url.split('://').pop().replace('@', ':');
         this._baseRequestConfig = {
           url: '',
           proxy: false,
           options: {}
         };
       },
-      getRequestConfig: function getRequestConfig(start, end) {
+      getRequestConfig: function getRequestConfig(start, end, series, offset) {
         var config = this._baseRequestConfig;
         config.url = this._client.getResourcePath('charts', {
           src: this._src,
           start: start,
-          end: end
+          end: end,
+          series: series,
+          offset: offset
         });
         return config;
       },
@@ -69,4 +71,4 @@
   cv.io.timeseries.DemoSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DemoSource.js.map?dt=1691935456278
+//# sourceMappingURL=DemoSource.js.map?dt=1692560747162

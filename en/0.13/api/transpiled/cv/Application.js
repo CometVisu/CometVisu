@@ -846,7 +846,12 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
                     // we have to replace the cached design scripts styles to load
                     styles = [];
                     cv.Config.configSettings.stylesToLoad.forEach(function (style) {
-                      styles.push(style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign));
+                      if (typeof style === 'string') {
+                        styles.push(style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign));
+                      } else if (_typeof(style) === 'object' && style.uri) {
+                        style.uri = style.uri.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign);
+                        styles.push(style);
+                      }
                     }, _this5);
                     _this5.loadStyles(styles);
                     scripts = [];
@@ -1043,6 +1048,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
         var _this7 = this;
         if (cv.Config.testMode === true) {
           this.setManagerChecked(true);
+          this.setServerHasPhpSupport(true);
         } else {
           var isOpenHab = this.isServedByOpenhab();
           var url = isOpenHab ? cv.io.rest.Client.getBaseUrl() + '/environment' : cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
@@ -1051,16 +1057,24 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
             method: 'GET',
             accept: 'application/json'
           });
+          var failedCheck = function failedCheck(errorText, disableReason) {
+            _this7.setServerHasPhpSupport(false);
+            _this7.error(errorText);
+            _this7.setManagerDisabled(true);
+            _this7.setManagerDisabledReason(disableReason);
+            _this7.setManagerChecked(true);
+          };
           xhr.addListenerOnce('success', function (e) {
             var req = e.getTarget();
             var env = req.getResponse();
-            if (typeof env === 'string' && env.startsWith('<?php')) {
-              // no php support
-              _this7.setServerHasPhpSupport(false);
-              _this7.error('Disabling manager due to missing PHP support.');
-              _this7.setManagerDisabled(true);
-              _this7.setManagerDisabledReason(qx.locale.Manager.tr('Your server does not support PHP'));
-              _this7.setManagerChecked(true);
+            if (_typeof(env) !== 'object') {
+              if (typeof env === 'string' && env.startsWith('<?php')) {
+                // no php support
+                failedCheck(qx.locale.Manager.tr('Disabling manager due to missing PHP support.'), qx.locale.Manager.tr('Your server does not support PHP.'));
+              } else {
+                // generic php error
+                failedCheck(qx.locale.Manager.tr('Disabling manager due to failed PHP request querying the environment.'), qx.locale.Manager.tr('Failed PHP request querying the environment.'));
+              }
             } else {
               // is this is served by native openHAB server, we do not have native PHP support, only the basic
               // rest api is available, but nothing else that needs PHP (like some plugin backend code)
@@ -1108,7 +1122,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
             }
           });
           xhr.addListener('statusError', function (e) {
-            _this7.setManagerChecked(true);
+            failedCheck(qx.locale.Manager.tr('Disabling manager due to failed PHP request querying the environment.'), qx.locale.Manager.tr('Failed PHP request querying the environment.'));
           });
           xhr.send();
         }
@@ -1161,4 +1175,4 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1691935388862
+//# sourceMappingURL=Application.js.map?dt=1692560679752

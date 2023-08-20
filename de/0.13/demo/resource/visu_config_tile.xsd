@@ -136,6 +136,7 @@
           </xsd:annotation>
           <xsd:simpleType>
             <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="small" />
               <xsd:enumeration value="large" />
               <xsd:enumeration value="x-large" />
               <xsd:enumeration value="xx-large" />

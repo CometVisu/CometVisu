@@ -94,7 +94,7 @@
           qx.log.Logger.error(this, 'no action handler registered for \'%1\' action type', type);
           return null;
         }
-        var actionHandler = new this.__P_3_0[type](config);
+        var actionHandler = new this.__P_3_0[type](config, type);
         return actionHandler.getDomElement();
       }
     }
@@ -102,4 +102,4 @@
   cv.core.notifications.ActionRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ActionRegistry.js.map?dt=1691935388982
+//# sourceMappingURL=ActionRegistry.js.map?dt=1692560679870

@@ -50,8 +50,8 @@
           options: {},
           proxy: false
         };
-        var resourceUrl = this.getUrl();
-        if (!resourceUrl) {
+        var resourceConf = this.getConfig();
+        if (!resourceConf) {
           return config;
         }
         if (!this._baseRequestConfig) {
@@ -64,15 +64,11 @@
               this._backendUrl = client.getBackendUrl();
             }
           }
-          // we need the item name case-sensitive (and upper case letters get lost be the url parser)
-          var itemName = this.getRawUrl().split('://').pop();
-          if (resourceUrl.username) {
-            itemName = itemName.split('@').pop();
-          }
+          var itemName = resourceConf.name;
           var baseUrl = this._backendUrl + 'persistence/items/' + itemName;
           var _params = [];
-          if (resourceUrl.username) {
-            _params.push('serviceId=' + resourceUrl.username);
+          if (resourceConf.authority) {
+            _params.push('serviceId=' + resourceConf.authority);
           }
           this._baseRequestConfig = {
             baseUrl: baseUrl,
@@ -132,4 +128,4 @@
   cv.io.timeseries.OpenhabPersistenceSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenhabPersistenceSource.js.map?dt=1691935456210
+//# sourceMappingURL=OpenhabPersistenceSource.js.map?dt=1692560746922

@@ -243,7 +243,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           // initialize internal class instance that implements cv.io.listmodel.IListModel
           var Clazz = cv.io.listmodel.Registry.get(model.getAttribute('class'));
           if (Clazz) {
-            var modelInstance = new Clazz();
+            var modelInstance = this._modelInstance = new Clazz();
+            modelInstance.addListener('refresh', function () {
+              return _this.refresh();
+            });
             if (model.hasAttribute('parameters')) {
               var props = {};
               var _iterator2 = _createForOfIteratorHelper(model.getAttribute('parameters').split(',')),
@@ -335,6 +338,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             this.setRefresh(parseInt(element.getAttribute('refresh')));
           }
         }
+        this._element.addEventListener('click', function (ev) {
+          var templateRoot = ev.target;
+          var data = {};
+          var collectData = function collectData(elem) {
+            if (elem) {
+              for (var i = 0; i < elem.attributes.length; i++) {
+                var attrib = elem.attributes[i];
+                if (attrib.name.startsWith('data-')) {
+                  data[attrib.name.substring(5)] = attrib.value;
+                }
+              }
+            }
+          };
+          collectData(templateRoot);
+          var level = 0;
+          var model = templateRoot.$$model;
+          while (templateRoot && (!model || !data.action) && level <= 5) {
+            templateRoot = templateRoot.parentElement;
+            if (templateRoot === _this._element) {
+              break;
+            }
+            if (templateRoot) {
+              if (!model && templateRoot.$$model) {
+                model = templateRoot.$$model;
+              }
+              if (!data.action && templateRoot.hasAttribute('data-action')) {
+                collectData(templateRoot);
+              }
+            }
+            level++;
+          }
+          if (data.action && _this._modelInstance && _this._modelInstance.handleEvent(ev, data, model)) {
+            ev.stopPropagation();
+          }
+        });
       },
       onStateUpdate: function onStateUpdate(ev) {
         if (ev.detail.target === 'refresh') {
@@ -359,7 +397,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       refresh: function refresh() {
         var _this2 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-          var element, template, newModel, target, whenEmptyTemplate, emptyModel, emptyElem, itemTemplate, i, elem, getValue;
+          var element, template, newModel, target, whenEmptyTemplate, emptyModel, emptyElem, child, i, itemTemplate, _i2, elem, getValue;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -420,7 +458,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               case 30:
                 _this2.debug('refreshing with new model length', newModel.length);
                 if (!(Array.isArray(newModel) || newModel instanceof qx.data.Array)) {
-                  _context3.next = 54;
+                  _context3.next = 55;
                   break;
                 }
                 if (typeof _this2._filterModel === 'function') {
@@ -436,30 +474,36 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   _context3.next = 45;
                   break;
                 }
-                whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
+                whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]'); // remove old entries
+                while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
+                  target.removeChild(target.firstElementChild);
+                }
                 if (!(whenEmptyTemplate && !target.querySelector(':scope > .empty-model'))) {
                   _context3.next = 43;
                   break;
-                }
-                while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
-                  target.removeChild(target.firstElementChild);
                 }
                 emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);
                 emptyModel.classList.add('empty-model');
                 target.appendChild(emptyModel);
                 return _context3.abrupt("return");
               case 43:
-                _context3.next = 47;
+                _context3.next = 48;
                 break;
               case 45:
                 emptyElem = target.querySelector(':scope > .empty-model');
                 if (emptyElem) {
                   emptyElem.remove();
                 }
-              case 47:
+                for (i = target.children.length - 1; i >= 0; i--) {
+                  child = target.children[i];
+                  if (child.hasAttribute('data-row') && parseInt(child.getAttribute('data-row')) >= newModel.length) {
+                    target.removeChild(child);
+                  }
+                }
+              case 48:
                 itemTemplate = document.createElement('template'); // remove entries we do not need anymore
-                for (i = newModel.length; i < _this2._model.length; i++) {
-                  elem = target.querySelector(":scope > [data-row=\"".concat(i, "\"]"));
+                for (_i2 = newModel.length; _i2 < _this2._model.length; _i2++) {
+                  elem = target.querySelector(":scope > [data-row=\"".concat(_i2, "\"]"));
                   if (elem) {
                     elem.remove();
                   }
@@ -533,23 +577,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     // update existing
                     elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;
                     elem.setAttribute('data-row', '' + i);
+                    _this2._initElement(elem, entry);
                   } else {
                     // append new child
                     itemTemplate.content.firstElementChild.setAttribute('data-row', '' + i);
-                    target.appendChild(itemTemplate.content.cloneNode(true));
+                    elem = itemTemplate.content.cloneNode(true);
+                    _this2._initElement(elem.firstElementChild, entry);
+                    target.appendChild(elem);
                   }
                 });
                 _this2._model = newModel;
-                _context3.next = 55;
+                _context3.next = 56;
                 break;
-              case 54:
-                _this2.error('model must be an array', newModel);
               case 55:
+                _this2.error('model must be an array', newModel);
+              case 56:
               case "end":
                 return _context3.stop();
             }
           }, _callee3, null, [[5, 11]]);
         }))();
+      },
+      _initElement: function _initElement(elem, entry) {
+        elem.$$model = entry;
       }
     },
     /*
@@ -581,4 +631,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1691935402239
+//# sourceMappingURL=List.js.map?dt=1692560693156

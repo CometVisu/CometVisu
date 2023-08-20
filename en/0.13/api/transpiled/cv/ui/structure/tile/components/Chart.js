@@ -177,7 +177,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       currentSeries: {
         check: ['hour', 'day', 'week', 'month', 'year'],
         init: 'day',
-        apply: "__P_75_0"
+        apply: '_applyCurrentSeries'
       },
       currentPeriod: {
         check: 'Number',
@@ -603,6 +603,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
         this.__P_75_9();
       },
+      _applyCurrentSeries: function _applyCurrentSeries(series) {
+        var currentSelection = this.getHeader('.popup.series > cv-option[selected="selected"]');
+        var alreadySelected = false;
+        if (currentSelection) {
+          if (currentSelection.getAttribute('key') !== series) {
+            currentSelection.removeAttribute('selected');
+          } else {
+            alreadySelected = true;
+          }
+        }
+        if (!alreadySelected) {
+          var newSelection = this.getHeader(".popup.series > cv-option[key=\"".concat(series, "\"]"));
+          if (newSelection) {
+            newSelection.setAttribute('selected', 'selected');
+          }
+        }
+        this.__P_75_0();
+      },
       __P_75_0: function __P_75_0() {
         var series = this.getCurrentSeries();
         var currentPeriod = this.getCurrentPeriod();
@@ -660,7 +678,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var startTs = Math.round(periodStart.getTime() / 1000);
         var endTs = Math.round(end.getTime() / 1000);
         if (this._element.getAttribute('background') === 'true' || !this._element.hasAttribute('selection')) {
-          // when have no nagivation, we can just use the old relative time range now - interval
+          // when have no navigation, we can just use the old relative time range now - interval
           startTs = endTs - interval;
         }
         this.setStartTime(startTs);
@@ -1714,4 +1732,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1691935401776
+//# sourceMappingURL=Chart.js.map?dt=1692560692719

@@ -14,9 +14,9 @@
         "index": 917
       },
       "end": {
-        "line": 60,
+        "line": 79,
         "column": 3,
-        "index": 1588
+        "index": 1933
       }
     },
     "jsdoc": {
@@ -44,18 +44,33 @@
   "isAbstract": true,
   "isStatic": false,
   "isSingleton": false,
+  "construct": {
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 1165
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1222
+      }
+    },
+    "jsdoc": {}
+  },
   "properties": {
     "needsConfirmation": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 46,
           "column": 4,
-          "index": 1196
+          "index": 1384
         },
         "end": {
-          "line": 39,
+          "line": 49,
           "column": 5,
-          "index": 1264
+          "index": 1452
         }
       },
       "name": "needsConfirmation",
@@ -67,14 +82,14 @@
     "deleteMessageAfterExecution": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 51,
           "column": 4,
-          "index": 1271
+          "index": 1459
         },
         "end": {
-          "line": 44,
+          "line": 54,
           "column": 5,
-          "index": 1349
+          "index": 1537
         }
       },
       "name": "deleteMessageAfterExecution",
@@ -86,14 +101,14 @@
     "style": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 56,
           "column": 4,
-          "index": 1356
+          "index": 1544
         },
         "end": {
-          "line": 49,
+          "line": 59,
           "column": 5,
-          "index": 1408
+          "index": 1596
         }
       },
       "name": "style",
@@ -139,14 +154,14 @@
     "close": {
       "location": {
         "start": {
-          "line": 58,
+          "line": 68,
           "column": 4,
-          "index": 1552
+          "index": 1740
         },
         "end": {
-          "line": 58,
+          "line": 68,
           "column": 32,
-          "index": 1580
+          "index": 1768
         }
       },
       "name": "close",
@@ -154,6 +169,22 @@
     }
   },
   "members": {
+    "_type": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1914
+        },
+        "end": {
+          "line": 77,
+          "column": 15,
+          "index": 1925
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
     "bind": {
       "type": "function",
       "name": "bind",
@@ -3712,6 +3743,7 @@
     }
   },
   "descendants": [
+    "cv.core.notifications.actions.Confirm",
     "cv.core.notifications.actions.Link",
     "cv.core.notifications.actions.Option",
     "cv.core.notifications.actions.OptionGroup"

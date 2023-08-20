@@ -14,9 +14,9 @@
         "index": 44
       },
       "end": {
-        "line": 25,
+        "line": 44,
         "column": 3,
-        "index": 482
+        "index": 1096
       }
     },
     "jsdoc": {
@@ -48,22 +48,85 @@
       "check": "qx.data.Array"
     }
   },
+  "events": {
+    "refresh": {
+      "type": "event",
+      "name": "refresh",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
+      "jsdoc": {}
+    }
+  },
   "members": {
     "refresh": {
       "location": {
         "start": {
-          "line": 23,
+          "line": 33,
           "column": 4,
-          "index": 456
+          "index": 711
         },
         "end": {
-          "line": 23,
+          "line": 33,
           "column": 22,
-          "index": 474
+          "index": 729
         }
       },
       "type": "function",
       "async": true,
+      "access": "public"
+    },
+    "handleEvent": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1057
+        },
+        "end": {
+          "line": 42,
+          "column": 35,
+          "index": 1088
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>handles event from the list</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}"
+          },
+          {
+            "name": "@param",
+            "body": "data {object} contains a map of all \"data-\" prefixed attributes of the event source, contains at least data.action",
+            "paramName": "data",
+            "description": " contains a map of all \"data-\" prefixed attributes of the event source, contains at least data.action",
+            "type": "object"
+          },
+          {
+            "name": "@param",
+            "body": "model {object} model of the clicked list item",
+            "paramName": "model",
+            "description": " model of the clicked list item",
+            "type": "object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean} if the event has been handled",
+            "type": "boolean",
+            "description": " if the event has been handled"
+          }
+        ]
+      },
+      "type": "function",
       "access": "public"
     },
     "getModel": {

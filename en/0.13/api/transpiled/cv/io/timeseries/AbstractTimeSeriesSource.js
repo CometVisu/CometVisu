@@ -1,3 +1,9 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -45,16 +51,16 @@
     */
     construct: function construct(resource) {
       qx.core.Object.constructor.call(this);
-      this.initRawUrl(resource);
-      try {
-        // in browser only http(s) URLs can be parsed
-        var url = new URL('http://' + resource.split('://').pop());
-        this.initUrl(url);
-      } catch (e) {
-        this.error('invalid url ' + resource + ' this source will not be usable!');
-        this.initUrl(null);
-      }
+      this.initConfig(resource);
       this.init();
+    },
+    /*
+    ***********************************************
+      STATICS
+    ***********************************************
+    */
+    statics: {
+      urlRegex: /^(flux|openhab|rrd|demo):\/\/(\w+)?@?([^\/]+)(\/[^?]*)\??(.*)/
     },
     /*
     ***********************************************
@@ -62,13 +68,8 @@
     ***********************************************
     */
     properties: {
-      url: {
-        check: 'URL',
-        deferredInit: true,
-        nullable: true
-      },
-      rawUrl: {
-        check: 'String',
+      config: {
+        transform: '_parseResourceUrl',
         deferredInit: true,
         nullable: true
       }
@@ -80,11 +81,34 @@
     */
     members: {
       _initialized: null,
+      _url: null,
       init: function init() {
         if (!this._initialized) {
           this._init();
           this._initialized = true;
         }
+      },
+      _parseResourceUrl: function _parseResourceUrl(url) {
+        var match = cv.io.timeseries.AbstractTimeSeriesSource.urlRegex.exec(url);
+        this._url = url;
+        if (match) {
+          return {
+            type: match[1],
+            authority: match[2],
+            name: match[3],
+            path: match[4],
+            params: match[5] ? match[5].split('&').reduce(function (map, entry) {
+              var _entry$split = entry.split('='),
+                _entry$split2 = _slicedToArray(_entry$split, 2),
+                key = _entry$split2[0],
+                value = _entry$split2[1];
+              map[key] = value;
+              return map;
+            }, {}) : {}
+          };
+        }
+        this.error('invalid url ' + url + ' this source will not be usable!');
+        return null;
       },
       _init: function _init() {},
       _applySeries: function _applySeries() {},
@@ -165,4 +189,4 @@
   cv.io.timeseries.AbstractTimeSeriesSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1691935457853
+//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1692560748842

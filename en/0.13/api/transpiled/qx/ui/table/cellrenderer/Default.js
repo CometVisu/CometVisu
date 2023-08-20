@@ -143,4 +143,4 @@
   qx.ui.table.cellrenderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1691935443504
+//# sourceMappingURL=Default.js.map?dt=1692560734596

@@ -255,6 +255,34 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (options) {
             var end = Date.now();
             var start = Date.now();
+            var resolution = 60000;
+            var dynamicResolution = !Object.prototype.hasOwnProperty.call(generator, 'resolution');
+            if (dynamicResolution) {
+              switch (options.series) {
+                case 'hour':
+                  // every minute
+                  resolution = 60000;
+                  break;
+                case 'day':
+                  // every hour
+                  resolution = 3600000;
+                  break;
+                case 'week':
+                  // every 6hs
+                  resolution = 21600000;
+                  break;
+                case 'month':
+                  // daily
+                  resolution = 86400000;
+                  break;
+                case 'year':
+                  // monthly
+                  resolution = 2592000000;
+                  break;
+              }
+            } else {
+              resolution = generator.resolution;
+            }
             if (options.start) {
               if (/^\d{10}$/.test(options.start)) {
                 // timestamp without millis
@@ -265,7 +293,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 start = new Date(parseInt(options.start)).getTime();
                 end = new Date(parseInt(options.end)).getTime();
               } else {
-                var match = /end-(\d+)(hour|day|month)/.exec(options.start);
+                var match = /end-(\d+)(hour|day|week|month|year)/.exec(options.start);
                 if (match) {
                   var interval = 0;
                   switch (match[2]) {
@@ -275,9 +303,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     case 'day':
                       interval = 86400000;
                       break;
+                    case 'week':
+                      interval = 86400006;
+                      break;
                     case 'month':
                       // this is not really precise, but good enough to fake some data
                       interval = 2592000000;
+                      break;
+                    case 'year':
+                      interval = 31536000000;
                       break;
                   }
                   start -= parseInt(match[1]) * interval;
@@ -285,7 +319,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }
             }
             var val = 0;
-            for (var i = start; i <= end; i += generator.resolution) {
+            for (var i = start; i <= end; i += resolution) {
               val = generator.targetValue + (Math.random() - 0.5) * generator.deviation * 2;
               data.push([i, val]);
             }
@@ -572,4 +606,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.data.Simulation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Simulation.js.map?dt=1691935457161
+//# sourceMappingURL=Simulation.js.map?dt=1692560748106

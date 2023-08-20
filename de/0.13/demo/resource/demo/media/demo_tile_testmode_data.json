@@ -173,8 +173,7 @@
       "address": "1/4/25",
       "targetValue": 200,
       "deviation": 20,
-      "interval": 2000,
-      "resolution": 60000
+      "interval": 2000
     }
   },
   "simulations": {

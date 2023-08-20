@@ -433,6 +433,44 @@ nicht benutzt werden.</p>
 <span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
 </div>
+<p>Dieses Modell unterstützt auch einige weitere Features des RssLog-Plugins: Mapping und das Bestätigen oder Löschen eines
+Eintrags.</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-rsslogplugin-list-features.png" src="../../../_images/cv-rsslogplugin-list-features.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
+<span class="nt">&lt;cv-meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;StateConfirm&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;&lt;cv-icon</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#A00000&quot;</span><span class="nt">&gt;</span>knxuf-info_warning<span class="nt">&lt;/cv-icon&gt;&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;&lt;cv-icon</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#00A000&quot;</span><span class="nt">&gt;</span>knxuf-info_ack<span class="nt">&lt;/cv-icon&gt;&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+...
+<span class="nt">&lt;cv-widget&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;120&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;RssLog&quot;</span><span class="w"> </span><span class="na">parameters=</span><span class="s">&quot;limit=10&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;template&gt;</span>
+<span class="w">                </span><span class="nt">&lt;li</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;display: flex; align-items: center; gap: 8px;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">data-action=</span><span class="s">&quot;toggle-state&quot;</span><span class="nt">&gt;</span>${mappedState}<span class="nt">&lt;/div&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;flex: 1&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;font-weight: bold&quot;</span><span class="nt">&gt;</span>${title}<span class="nt">&lt;/div&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;color: #999; display: flex; align-items: center;&quot;</span><span class="nt">&gt;</span>${content}<span class="nt">&lt;/div&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">data-action=</span><span class="s">&quot;delete&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;small&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;rgb(255 86 86)&quot;</span><span class="nt">&gt;</span>ri-close-line<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/li&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-list&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<p>Um einen Eintrag bestätigen oder löschen zu können muss das Element, welches diese Aktion bei einem Klick auslösen soll
+mit dem Attribute <code class="docutils literal notranslate"><span class="pre">data-action</span></code> versehen werden. Die Werte dieses Attributs bestimmen die Aktion die ausgelöst werden soll.
+Momentan sind folgende Werte möglich: <code class="docutils literal notranslate"><span class="pre">toggle-state</span></code> (bestätigen) und <code class="docutils literal notranslate"><span class="pre">delete</span></code> (löschen).</p>
+<p>Das Löschen eines Eintrags muss vom Benutzer immer zusätzlich in einem Popup bestätigt werden. Die Bestätigungsabfrage kann man
+deaktivieren durch folgendes Attribut <code class="docutils literal notranslate"><span class="pre">data-no-confirm=&quot;true&quot;</span></code>.</p>
+<p>Sofern der Eintrag mit einem Mapping angelegt wurde, kann dieser mit <code class="docutils literal notranslate"><span class="pre">${mappedState}</span></code> im Template benutzt werden.</p>
 </section>
 <section id="erlaubte-attribute">
 <h3>Erlaubte Attribute<a class="headerlink" href="#erlaubte-attribute" title="Link zu dieser Überschrift">¶</a></h3>
