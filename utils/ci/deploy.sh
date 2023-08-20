@@ -60,6 +60,13 @@ if [ ! -d "out/de/$VERSION_PATH" ]; then
 fi;
 
 if [[ "$GENERATE_DOCS" -eq 1 ]]; then
+
+  # we need a source-build to generate screenshots
+  qx compile -t=source -f=false
+  echo "generate API screenshots"
+  ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=source
+
+  
   # Run our creation script
   echo "generating german manual to extract screenshot examples"
   ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
