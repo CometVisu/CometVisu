@@ -61,12 +61,6 @@ fi;
 
 if [[ "$GENERATE_DOCS" -eq 1 ]]; then
 
-  # we need a source-build to generate screenshots
-  qx compile -t=source -f=false
-  echo "generate API screenshots"
-  grunt screenshots --subDir=build --browserName=chrome --target=source
-
-
   # Run our creation script
   echo "generating german manual to extract screenshot examples"
   ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
@@ -93,7 +87,7 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
       # we need a source-build to generate screenshots
       qx compile -t=source -f=false
       echo "generate API screenshots"
-      ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=source
+      grunt screenshots --subDir=build --browserName=chrome --target=source
       BUILD_CV=0
 
       # move generated screenshots to the api viewer
@@ -112,7 +106,7 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
   fi
 
   echo "generating english manual, including screenshot generation for all languages"
-  ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t source --target-version=${VERSION_PATH}
+  ${CV} doc --doc-type manual -c -f -l en -t source --target-version=${VERSION_PATH}
   echo "generating german manual again with existing screenshots"
   ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
