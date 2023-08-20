@@ -11,12 +11,14 @@ fi
 curl --silent --show-error --location --remote-name https://github.com/SeleniumHQ/selenium/raw/trunk/common/manager/linux/selenium-manager
 chmod +x selenium-manager
 ./selenium-manager --version
-if [[ -z "$DELETE_INSTALLED_WEBDRIVER" ]]; then
+if [[ -z "${DELETE_INSTALLED_WEBDRIVER}" ]]; then
   echo "Deleting existing webdrivers"
-  ls -la /usr/local/bin/chromedriver
-  ls -la /usr/bin/chromedriver
-  rm -f /usr/local/bin/chromedriver
-  rm -f /usr/bin/chromedriver
+  if [[ -f "/usr/local/bin/chromedriver" ]]; then
+    rm -f /usr/local/bin/chromedriver
+  fi
+  if [[ -f "/usr/bin/chromedriver" ]]; then
+    rm -f /usr/bin/chromedriver
+  fi
 fi
 
 if [ $CV_BROWSER = Firefox ]; then
