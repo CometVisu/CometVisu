@@ -42,7 +42,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   ***********************************************
   */
   statics: {
-    urlRegex: /^(flux|openhab|rrd|demo):\/\/(\w+)?@?([^\/]+)(\/[^?]*)\??(.*)/
+    urlRegex: /^(flux|openhab|rrd|demo):\/\/(\w+)?@?([^\/]+)(\/[^?]*)?\??(.*)/
   },
 
   /*

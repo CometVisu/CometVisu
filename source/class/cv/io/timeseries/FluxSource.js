@@ -40,7 +40,6 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
     _init() {
       const config = this.getConfig();
       if (config) {
-        const parts = config.path.substring(1).split('/');
         const bucket = config.name;
         const options = {
           method: 'POST',
@@ -51,6 +50,7 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
         };
         // for inline bucket the query template is defined in the config and is provided externally
         if (bucket !== 'inline') {
+          const parts = config.path.substring(1).split('/');
           const measurement = parts.shift();
           const field = parts.shift() || 'value';
           const queryParts = [
