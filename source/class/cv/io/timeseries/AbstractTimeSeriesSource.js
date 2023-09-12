@@ -42,7 +42,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   ***********************************************
   */
   statics: {
-    urlRegex: /^(flux|openhab|rrd|demo):\/\/(\w+)?@?([^\/]+)(\/[^?]*)?\??(.*)/
+    urlRegex: /^(flux|openhab|rrd|demo):\/\/((\w+)@)?([^\/]+)(\/[^?]*)?\??(.*)/
   },
 
   /*
@@ -80,10 +80,10 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
       if (match) {
         return {
           type: match[1],
-          authority: match[2],
-          name: match[3],
-          path: match[4],
-          params: match[5] ? match[5].split('&').reduce((map, entry) => {
+          authority: match[3],
+          name: match[4],
+          path: match[5],
+          params: match[6] ? match[6].split('&').reduce((map, entry) => {
             const [key, value] = entry.split('=');
             map[key] = value;
             return map;
