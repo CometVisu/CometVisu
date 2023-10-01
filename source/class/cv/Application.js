@@ -290,6 +290,10 @@ qx.Class.define('cv.Application', {
       }
     },
 
+    isReady() {
+      return this.__appReady;
+    },
+
     _applyManagerChecked(value) {
       if (value && cv.Config.loadManager) {
         this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
