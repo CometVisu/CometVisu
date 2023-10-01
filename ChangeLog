@@ -1,5 +1,11 @@
 ## Change Log
 
+0.12.5
+======
+
+- [#1370](https://github.com/CometVisu/CometVisu/pull/1370) Make slide work after Android device rotation. (@ChristianMayer)
+- [#1363](https://github.com/CometVisu/CometVisu/pull/1363) entries in cv.Config.configSettings.stylesToLoad  can be objects {urlo… (@peuter)
+
 0.12.4
 ======
 
@@ -865,7 +871,7 @@ acc8c18 Thu, 15 Jan 2015 15:40:50 +0000 Fix for enableAddressQueue parameter, wh
 - new feature: posibility to remember last page for next startup
 - better support for Android to add visu to the start screen. This includes
   better icons to follow the latest Android style
-- diagram plugin: add attribute "resolution" to rrd definitions to allow custom 
+- diagram plugin: add attribute "resolution" to rrd definitions to allow custom
   resolution values
 - diagram plugin: allow custom start, end and resolution parameters
 - diagram plugin: allow offset for single RRDs
@@ -882,7 +888,7 @@ acc8c18 Thu, 15 Jan 2015 15:40:50 +0000 Fix for enableAddressQueue parameter, wh
 - updated icons
 - rsslog: mysql backend
 - basic support for KNX DPT 24.001
-- feature request #95: Formula and mapping can be combined 
+- feature request #95: Formula and mapping can be combined
 - diagram plugin: Added attribute "zoomYAxis" to enable/disable zooming on Y
   axis, by default it is disabled
 - little bug fixes
@@ -913,9 +919,9 @@ Due to the new loading system it might be that custom scripts must be modfied!
 - Improvements and feature enhancements to the gauge plugin
 - diagram plugin: new attribute timeformat for formatting x-axis
 - diagram plugin: order of rrd-series must be deterministic
-- group widget: renamed attribute pagejumpTarget to target to unify naming of 
+- group widget: renamed attribute pagejumpTarget to target to unify naming of
   pagejumps
-  
+
 0.8.1
 =====
 
@@ -962,7 +968,7 @@ Basically the same as the 0.8.0-RC5
 
 - Bug fixes:
   - #79: right alignment for toggle, switch, trigger and diagram_info
-  - The page behaved differently under SVN version and release version due to 
+  - The page behaved differently under SVN version and release version due to
     different loading times of the CSS
   - editor missed base type for some attributes
   - sticking buttons (e.g. in the trigger widget) at least under Android 4.3
@@ -1051,9 +1057,9 @@ Basically the same as the 0.8.0-RC5
   diagram, multiple axis, labels
 - updated jQuery to 1.8.2
 - updated jQuery UI to 1.8.16
-- attribute "variant" for address is now a select-list on a per-widget-basis; 
+- attribute "variant" for address is now a select-list on a per-widget-basis;
   will no longer be displayed when not available (declutter UI)
-- Bug fix: numbers between -1 and 0 didn't show a negative sign when the format 
+- Bug fix: numbers between -1 and 0 didn't show a negative sign when the format
   string was used.
 - Bug fix for #3468526: Initial read is repeated after COMET Timeout
 - cometvisu-client: Force full reload before index might overflow during long
@@ -1065,7 +1071,7 @@ Basically the same as the 0.8.0-RC5
   * initial support for automatic documentation generation (using YUIdoc)
   * switch from big structure_pure.js to one file per widget
   * switch from big structure_pure.js to one file per widget - part 2
-  * initial makefile that can reducde the multiple source files (e.g. for the 
+  * initial makefile that can reducde the multiple source files (e.g. for the
     widgets) into one to speed up network loading
   * create "release" directory for concatenated and (in future) minimized
     version
@@ -1074,12 +1080,12 @@ Basically the same as the 0.8.0-RC5
 - Highly improved display of config file XML errors
 - enable and disable pages via classes and not via individual style-attribute
   anymore - this allows designs to react to it
-- Added tools to automatically modify a SVG that is used as a backdrop in 2D 
+- Added tools to automatically modify a SVG that is used as a backdrop in 2D
   pages:
   Pipe-O-Matic and Flow-O-Matic
 - New new custom event "scrolltopage" is called at the end of each page scroll
 - Additional attributes in pages element:
-  * max_mobile_screen_width: defines the maximum screen width where the 
+  * max_mobile_screen_width: defines the maximum screen width where the
     mobile.css is used
   * scroll_speed: defines the page scrolling speed (setting to 0 disables
     scrolling)
@@ -1095,13 +1101,13 @@ Basically the same as the 0.8.0-RC5
   longtime clicks
 - improved performance for initial page loading by postponing the diagram
   data retrieval
-- improved performance for initial page loading by using offline application 
+- improved performance for initial page loading by using offline application
   caching
 - more reliable caching prevention by adding forceReload=true on the URL
-- new possibility to enable a simple status-update-queue, which loads the 
-  startpage items status first and then all other items status, can be enabled 
+- new possibility to enable a simple status-update-queue, which loads the
+  startpage items status first and then all other items status, can be enabled
   via URL-Parameter ?enableQueue=1
-- Implemented feature request #3203398: Make area for actions in 
+- Implemented feature request #3203398: Make area for actions in
   switch/page-widgets bigger by using the new attribute bind_click_to_widget
 - show a waring alert if the user is using an unsupported browser
 - Implement feature request #3575661: "Screensaver Mode: Back to Home or
@@ -1110,7 +1116,7 @@ Basically the same as the 0.8.0-RC5
 0.6.2
 =====
 
-This is a bug fix release to address bug 3465482 
+This is a bug fix release to address bug 3465482
 ("Format string: wrong result for negative numbers above -1")
 
 0.6.1
@@ -1151,7 +1157,7 @@ The public beta release!
 - New Feature: add link to show help (SF Wiki) in the editor
 - Add encode function for DPT16 (= 14 byte text)
 - Fix Bug: avoid overflow in infotrigger
-- Fix Bug in video element: remove "refresh" and add the more 
+- Fix Bug in video element: remove "refresh" and add the more
   sensible "autoplay"
 - New Feature: Add favicon - edit in red, svn in black and release in sodium
 
@@ -1171,7 +1177,7 @@ The public beta release!
 - Fix Bug #3370929: "Missing text in top line"
 - Fix Bug #3204682: "Caching on web server"
 - Fix Bug #3427309: "GA list unsorted in editor (transform_knx, get_adreesses)"
-- Fix Usability: add a button movement "animation" to the triggers so that a 
+- Fix Usability: add a button movement "animation" to the triggers so that a
   user has immediate feedback
 - Whitespace clean up (DON'T USE TABS IN THE CODE!)
 
@@ -1187,7 +1193,7 @@ Config changes:
 - Update flot to version 0.7 to have a better fix for bug 3175343
 - Refinement of the "pure" design
 - added frameborder and background to iframe
-- Plugins RSS and Yahoo-weather 
+- Plugins RSS and Yahoo-weather
 - Add gweather (Google)-Plugin, withdraw zweather
 - Fix Bug #3376682
 - Add DPT16 to transform_knx
