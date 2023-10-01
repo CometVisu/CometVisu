@@ -36,13 +36,15 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     super(props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
 
-    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
-      'changePageSizeInvalid',
-      () => {
-        this.__invalidateScreensize();
-      }
-    );
-
+    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
+      // Quick fix for issue https://github.com/CometVisu/CometVisu/issues/1369
+      // make sure that the `__invalidateScreensize` is delayed so that
+      // reading the available spaces is valid.
+      // Just to be sure, wait for two frames
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(this.__invalidateScreensize.bind(this));
+      });
+    });
     this.__lastBusValue = {};
   },
   /*
