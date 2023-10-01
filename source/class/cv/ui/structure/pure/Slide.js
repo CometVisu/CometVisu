@@ -1,7 +1,7 @@
-/* Slide.js 
- * 
+/* Slide.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +37,13 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     this.base(arguments, props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
     this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
-      this.__invalidateScreensize();
+      // Quick fix for issue https://github.com/CometVisu/CometVisu/issues/1369
+      // make sure that the `__invalidateScreensize` is delayed so that
+      // reading the available spaces is valid.
+      // Just to be sure, wait for two frames
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(this.__invalidateScreensize.bind(this));
+      });
     });
     this.__lastBusValue = {};
   },
