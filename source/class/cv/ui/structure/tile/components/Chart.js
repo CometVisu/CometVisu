@@ -415,7 +415,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this.__config = {
         x: d => d.time, // given d in data, returns the (temporal) x-value
         y: d => +d.value, // given d in data, returns the (quantitative) y-value
-        z: d => d.src, // given d in data, returns the (categorical) z-value
+        z: d => d.key, // given d in data, returns the (categorical) z-value
         color: d => d && this._dataSetConfigs[d].color, // stroke color of line, as a constant or a function of *z*
         title: d => cv.util.String.sprintf(format, d.value), // given d in data, returns the title text
         curve: d3.curveLinear, // method of interpolation between points
@@ -665,11 +665,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           }
           const type = ts.src.split('://')[0].toLowerCase();
           ts.type = type;
+          let key = ts.src;
           switch (type) {
             case 'flux':
               ts.source = new cv.io.timeseries.FluxSource(ts.src);
               if (ts.source.isInline()) {
-                ts.source.setQueryTemplate(dataSet.textContent.trim());
+                const fluxQuery = dataSet.textContent.trim()
+                key = cv.ConfigCache.hashCode(fluxQuery).toString();
+                ts.source.setQueryTemplate(fluxQuery);
               }
               break;
 
@@ -689,7 +692,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               this.error('unknown chart data source type ' + type);
               break;
           }
-          this._dataSetConfigs[ts.src] = ts;
+          ts.key = key;
+          this._dataSetConfigs[key] = ts;
         }
       }
 
@@ -753,6 +757,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           const mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
           for (let [time, value] of tsdata) {
             chartData.push({
+              key: entry.ts.key,
               src: entry.ts.src,
               time: mins > 0
                 ? Math.round(time / mins) * mins : time,
@@ -930,7 +935,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         } else {
           X.push(data.time);
           Y.push(data.value);
-          Z.push(data.src);
+          Z.push(data.key);
           O.push(data);
           T.push(config.title === undefined ? data.src : config.title === null ? null : config.title(data));
 
