@@ -54,7 +54,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       defs.appendChild(arrowPath);
       const vertArrowPath = document.createElementNS(ns, 'path');
       vertArrowPath.setAttribute('id', 'v-arrow-path');
-      vertArrowPath.setAttribute('d', 'M 0 0 L 10 0 L 5 10 z');
+      vertArrowPath.setAttribute('d', 'M 0 10 L 10 10 L 5 0 z');
       defs.appendChild(vertArrowPath);
 
       const arrow = document.createElementNS(ns, 'marker');
@@ -62,8 +62,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       arrow.setAttribute('viewBox', '0 0 10 10');
       arrow.setAttribute('refX', '10');
       arrow.setAttribute('refY', '5');
-      arrow.setAttribute('markerWidth', '6');
-      arrow.setAttribute('markerHeight', '6');
+      arrow.setAttribute('markerWidth', '5');
+      arrow.setAttribute('markerHeight', '5');
       arrow.setAttribute('fill', 'var(--borderColor)');
       arrow.setAttribute('orient', 'auto-start-reverse');
       let use = document.createElementNS(ns, 'use');
@@ -71,18 +71,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       arrow.appendChild(use);
       defs.appendChild(arrow);
 
-      const vertArrow = document.createElementNS(ns, 'marker');
+      const vertArrow = arrow.cloneNode(true);
       vertArrow.setAttribute('id', 'vertical-arrow');
-      vertArrow.setAttribute('viewBox', '0 0 10 10');
-      vertArrow.setAttribute('refX', '5');
-      vertArrow.setAttribute('refY', '10');
-      vertArrow.setAttribute('markerWidth', '6');
-      vertArrow.setAttribute('markerHeight', '6');
-      vertArrow.setAttribute('fill', 'var(--borderColor)');
-      vertArrow.setAttribute('orient', 'auto-start-reverse');
-      use = document.createElementNS(ns, 'use');
-      use.setAttribute('href', '#v-arrow-path');
-      vertArrow.appendChild(use);
+      vertArrow.setAttribute('orient', '270');
       defs.appendChild(vertArrow);
 
       svg.appendChild(defs);
@@ -95,8 +86,21 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       let hasConsumers = false;
 
       const valueRadius = 28;
-      const houseSize = 64;
+      let houseSize = 24;
+      if (this._element.getAttribute('size') === '2x2') {
+        houseSize = 64;
+      }
       const connects = [];
+
+      const appendConnection = (source, target, id, widget) => {
+        this._connect(source, target, id, true);
+        widget.addListener('changeStyleClass', ev => {
+          this._copyStyleClass(id, ev.getData(), ev.getOldData());
+        });
+        this._copyStyleClass(id, widget.getStyleClass());
+        this._handleDirectionChanges(id, widget.getValue());
+        connects.push([source, target, id]);
+      }
 
       // centered house icon
       const house = document.createElementNS(ns, "foreignObject");
@@ -119,8 +123,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
         valueElement.setAttribute('x', `calc(50% - ${valueRadius}px)`);
         hasPv = true;
         this._element.appendChild(valueElement);
-        connects.push([valueElement._instance.getSvg(), house, '#pv-connection', valueElement._instance]);
-
+        appendConnection(valueElement._instance.getSvg(), house, '#pv-connection', valueElement._instance);
         valueElement._instance.addListener('changeValue', this._onPvPowerValueChanged, this);
       }
 
@@ -134,11 +137,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
         valueElement.setAttribute('x', `8px`);
         hasBattery = true;
         this._element.appendChild(valueElement);
-        connects.push([valueElement._instance.getSvg(), house, '#battery-connection', valueElement._instance]);
-
+        appendConnection(valueElement._instance.getSvg(), house, '#battery-connection', valueElement._instance);
         valueElement._instance.addListener('changeValue', this._onBatteryPowerValueChanged, this);
 
-        // listen to
+        // update icon to show state of charge
         const socAddress = Array.from(batAddresses).find(a => a.getAttribute('type') === 'soc');
         if (socAddress) {
           socAddress.addEventListener('stateUpdate', ev => {
@@ -157,18 +159,13 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
         valueElement.setAttribute('x', `calc(100% - ${valueRadius*2 + 8}px)`);
         hasGrid = true;
         this._element.appendChild(valueElement);
-        connects.push([house, valueElement._instance.getSvg(), '#grid-connection', valueElement._instance]);
-
+        appendConnection(house, valueElement._instance.getSvg(), '#grid-connection', valueElement._instance);
         valueElement._instance.addListener('changeValue', this._onGridPowerValueChanged, this);
-        valueElement._instance.addListener('changeStyleClass', ev => {
-          this._copyStyleClass('#grid-connection', ev.getData(), ev.getOldData());
-        });
       }
 
       setTimeout(() => {
-        for (const [source, target, id, widget] of connects) {
-          this._connect(svg, source, target, id);
-          this._copyStyleClass(id, widget.getStyleClass());
+        for (const [source, target, id, ] of connects) {
+          this._connect(source, target, id);
         }
       }, 1000);
 
@@ -197,14 +194,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
     },
 
     _onPvPowerValueChanged(ev) {
-      this._handleDirectionChanges('#pv-connection', ev.getData(), true, 'vertical-arrow');
+      this._handleDirectionChanges('#pv-connection', ev.getData(), true, 'arrow');
     },
 
     _handleDirectionChanges(connectionId, value, inverse = false, arrowId = 'arrow') {
       const connection = this.SVG.querySelector(connectionId);
       if (connection) {
+        value = Math.round(value);
         const markerId = this.__getMarkerId(arrowId, this.__styleClasses[connectionId]);
-
         if ((value < 0 && !inverse) || (inverse && value > 0)) {
           connection.setAttribute('marker-end', `url(#${markerId})`);
           connection.removeAttribute('marker-start');
@@ -236,8 +233,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       return arrowId;
     },
 
-    _connect(svg, source, target, id) {
-      let path = svg.querySelector(id);
+    _connect(source, target, id, init = false) {
+      let path = this.SVG.querySelector(id);
       if (!path) {
         path = document.createElementNS(this._ns, 'path');
         path.setAttribute('id', id.substring(1));
@@ -245,6 +242,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
         path.setAttribute('fill', 'transparent');
         path.setAttribute('stroke-width', '2');
         path.setAttribute('class', 'connection');
+        this.SVG.appendChild(path);
+      }
+      if (init) {
+        return;
       }
       let sourceCoord = {
         x: source.x.baseVal.value,
@@ -276,7 +277,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
         endY = targetCoord.y + targetCoord.height / 2;
       }
 
-      svg.appendChild(path);
       this.drawPath(path, startX, startY, endX, endY);
     },
 
