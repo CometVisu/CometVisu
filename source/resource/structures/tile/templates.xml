@@ -19,6 +19,48 @@
             <entry value="0">inactive</entry>
             <entry range-min="1">active</entry>
         </cv-styling>
+        <cv-mapping name="tile-kilo-watts">
+            <formula><![CDATA[
+                let unit = 'W';
+                let value = Math.round(x);
+                if (x > 1000000) {
+                   value = x / 1000000.0
+                   unit = 'MW';
+                } else if (x > 1000) {
+                   value = x / 1000.0
+                   unit = 'kW';
+                }
+                y = value + ' ' + unit;
+            ]]></formula>
+        </cv-mapping>
+        <cv-mapping name="tile-kilo-watt-hours">
+            <formula><![CDATA[
+                let unit = 'Wh';
+                let value = Math.round(x);
+                if (x > 1000000) {
+                   value = x / 1000000.0
+                   unit = 'MWh';
+                } else if (x > 1000) {
+                   value = x / 1000.0
+                   unit = 'kWh';
+                }
+                y = value + ' ' + unit;
+            ]]></formula>
+        </cv-mapping>
+        <cv-styling name="tile-grid-power">
+            <entry range-min="-100000" range-max="-10">grid-inject</entry>
+            <entry range-min="-9" range-max="9">disabled</entry>
+            <entry range-min="10" range-max="100000">grid-consume</entry>
+        </cv-styling>
+        <cv-styling name="tile-pv-power">
+            <entry range-min="-9" range-max="0">disabled</entry>
+            <entry range-min="1" range-max="100000">pv-inject</entry>
+        </cv-styling>
+        <cv-styling name="tile-battery-power">
+            <entry range-min="-100000" range-max="-10">battery-inject</entry>
+            <entry range-min="-9" range-max="9">disabled</entry>
+            <entry range-min="10" range-max="100000">battery-consume</entry>
+        </cv-styling>
     </cv-meta>
     <template id="switch">
         <header>

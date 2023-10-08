@@ -32,13 +32,15 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   properties: {
     value: {
       apply: '_applyValue',
-      init: null
+      init: null,
+      event: 'changeValue'
     },
 
     styleClass: {
       check: 'String',
       nullable: true,
-      apply: '_applyStyleClass'
+      apply: '_applyStyleClass',
+      event: 'changeStyleClass'
     },
 
     enabled: {
@@ -242,7 +244,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         this._updateValue(mappedValue, value);
         if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
           let styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
-
           this.setStyleClass(styleClass);
         }
       }
@@ -259,7 +260,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           classes.replace(oldValue, value);
         } else {
           classes.add(value);
-          classes.remove(oldValue);
         }
       } else if (value) {
         classes.add(value);

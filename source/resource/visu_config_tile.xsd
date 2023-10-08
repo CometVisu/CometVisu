@@ -602,6 +602,7 @@
       <xsd:element name="cv-rtc" type="cv-rtc"/>
       <xsd:element name="cv-widget-pair" type="cv-widget-pair"/>
       <xsd:element name="cv-media-player" type="cv-media-player"/>
+      <xsd:element name="cv-energy" type="cv-energy"/>
     </xsd:choice>
   </xsd:group>
 
@@ -1823,6 +1824,48 @@
     <xsd:attribute ref="zero-based" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-energy">
+    <xsd:sequence>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="entity" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="pv" />
+                    <xsd:enumeration value="battery" />
+                    <xsd:enumeration value="grid" />
+                    <xsd:enumeration value="consumer" />
+                    <xsd:enumeration value="charger" />
+                    <xsd:enumeration value="heatpump" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+              <xsd:attribute name="type">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="power" />
+                    <xsd:enumeration value="energy" />
+                    <xsd:enumeration value="soc" />
+                    <xsd:enumeration value="error" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+              <xsd:attribute name="scope" default="total">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="total" />
+                    <xsd:enumeration value="today" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
   <!--
   #####################################################################################################################
   # END: template based type (of templates that the structure has build in)

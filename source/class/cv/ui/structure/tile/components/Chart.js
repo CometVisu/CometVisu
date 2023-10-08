@@ -1605,6 +1605,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
      * @private
      */
     __opacifyColor(color, opacity) {
+      if (color.startsWith('var(')) {
+        color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length-1));
+      }
       if (color.startsWith('rgb(')) {
         return 'rgba(' + color.substring(4, color.length-1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
       } else if (color.startsWith('#') && color.length === 7) {

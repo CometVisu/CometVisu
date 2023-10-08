@@ -43,6 +43,19 @@ $tileColumns: 3;
     --rippleBackgroundColor: rgba(255, 255, 255, 0.1);
 
     --headerShadow: 0px 4px 6px 2px rgba(var(--baseShadowColor-r), var(--baseShadowColor-g), var(--baseShadowColor-b), 0.5);
+
+    /* Energy management */
+    --gridInjectColor: #009999;
+    --gridConsumeColor: #f2495c;
+    --batteryInjectColor: #004d99;
+    --batteryConsumeColor: #007399;
+    --pvColor: #ffff99;
+    --powerConsumeColor: #f2495c;
+
+    --gasColor: rgb(255, 203, 125);
+    --waterColor: #719aff;
+
+    --powerProductionColor: #ff9900;
 }
 
 [data-theme="light"] {
@@ -68,7 +81,6 @@ $tileColumns: 3;
 }
 
 @import url("fonts/remixicon.css");
-@import url("../../icons/fonts/knx-uf-iconset.css");
 
 @mixin fullscreen-popup {
     width: 90vw;
@@ -1948,6 +1960,93 @@ body {
                     content: ""
                 }
             }
+        }
+    }
+
+    svg {
+        path.connection, defs > marker.connection {
+            &.grid-inject {
+                stroke: var(--gridInjectColor);
+                fill: var(--gridInjectColor);
+            }
+
+            &.grid-consume {
+                stroke: var(--gridConsumeColor);
+                fill: var(--gridConsumeColor);
+            }
+
+            &.battery-inject {
+                stroke: var(--batteryInjectColor);
+                fill: var(--batteryInjectColor);
+            }
+
+            &.battery-consume {
+                stroke: var(--batteryConsumeColor);
+                fill: var(--batteryConsumeColor);
+            }
+
+            &.pv-inject {
+                stroke: var(--pvColor);
+                fill: var(--pvColor);
+            }
+        }
+        .svg-value {
+            circle {
+                &.bg {
+                    stroke: var(--borderColor);
+                }
+
+                &.bar {
+                    stroke: var(--primaryColor);
+                }
+            }
+
+            &.grid-inject:not(.shows-progress) circle.bg {
+                stroke: var(--gridInjectColor);
+            }
+
+            &.grid-consume:not(.shows-progress) circle.bg {
+                stroke: var(--gridConsumeColor);
+            }
+
+            &.battery-inject:not(.shows-progress) circle.bg {
+                stroke: var(--batteryInjectColor);
+            }
+
+            &.battery-consume:not(.shows-progress) circle.bg {
+                stroke: var(--batteryConsumeColor);
+            }
+
+            &.pv-inject:not(.shows-progress) circle.bg {
+                stroke: var(--pvColor);
+            }
+
+            text {
+                &.scroll {
+                    transform: translateX(100%);
+                    animation: my-animation 15s linear infinite;
+
+                    @keyframes my-animation {
+                        from {
+                            transform: translateX(100%);
+                        }
+                        to {
+                            transform: translateX(-100%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    cv-energy {
+        @include tile-common;
+        width: calc(var(--tileCellWidth) * #{$tileColumns});
+        height: calc(var(--tileCellHeight) * #{$tileRows});
+
+        > svg {
+            width: 100%;
+            height: 100%;
         }
     }
 }
