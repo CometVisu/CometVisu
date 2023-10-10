@@ -24,10 +24,10 @@
                 let unit = 'W';
                 let value = Math.round(x);
                 if (x > 1000000) {
-                   value = x / 1000000.0
+                   value = Math.round(x / 100000.0) * 10.0;
                    unit = 'MW';
                 } else if (x > 1000) {
-                   value = x / 1000.0
+                   value = Math.round(x / 100.0) * 10.0;
                    unit = 'kW';
                 }
                 y = value + ' ' + unit;
@@ -38,10 +38,10 @@
                 let unit = 'Wh';
                 let value = Math.round(x);
                 if (x > 1000000) {
-                   value = x / 1000000.0
+                   value = Math.round(x / 100000.0) * 10.0;
                    unit = 'MWh';
                 } else if (x > 1000) {
-                   value = x / 1000.0
+                   value = Math.round(x / 100.0) * 10.0;
                    unit = 'kWh';
                 }
                 y = value + ' ' + unit;
@@ -57,9 +57,9 @@
             <entry range-min="0.6" range-max="100000">pv-inject</entry>
         </cv-styling>
         <cv-styling name="tile-battery-power">
-            <entry range-min="-100000" range-max="-10">battery-inject</entry>
-            <entry range-min="-9" range-max="9">disabled</entry>
-            <entry range-min="10" range-max="100000">battery-consume</entry>
+            <entry range-min="-100000" range-max="-2">battery-inject</entry>
+            <entry range-min="-1" range-max="1">disabled</entry>
+            <entry range-min="2" range-max="100000">battery-consume</entry>
         </cv-styling>
     </cv-meta>
     <template id="switch">

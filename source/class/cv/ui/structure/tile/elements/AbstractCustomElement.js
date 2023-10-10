@@ -122,6 +122,7 @@ class QxConnector extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
+    name = qx.lang.String.camelCase(name);
     if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
       this._instance.set(name, newValue);
     }

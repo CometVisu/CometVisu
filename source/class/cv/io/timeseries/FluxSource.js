@@ -141,7 +141,7 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
         // get aggregation from series
         config.options.requestData += `\n  |> aggregateWindow(every: ${this._getAgWindowEveryForSeries(series)}, fn: mean)`;
       }
-      config.url += `&h=${cv.ConfigCache.hashCode(config.options.requestData)}`
+      config.url += `&h=${cv.ConfigCache.hashCode(config.options.requestData)}`;
       return config;
     },
 

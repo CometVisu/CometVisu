@@ -36,6 +36,17 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       check: 'String',
       nullable: true,
       apply: '_applyIcon'
+    },
+
+    x: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyToSvg'
+    },
+    y: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyToSvg'
     }
   },
 
@@ -48,7 +59,9 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     _target: null,
     _svg: null,
     __normalizedRadius: null,
-    __radius: null,
+    _radius: null,
+    _iconSize: null,
+    _iconPosition: null,
 
     getSvg() {
       return this._svg;
@@ -58,7 +71,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       super._init();
       const element = this._element;
       const style = document.querySelector(':root').style;
-      const radius = (this.__radius =
+      const radius = (this._radius =
         element.getAttribute('radius') || (parseInt(style.getPropertyValue('--tileCellWidth')) || 56) / 2);
       const strokeWidth = element.getAttribute('stroke') || 3;
       const normalizedRadius = (this.__normalizedRadius = radius - strokeWidth / 2);
@@ -67,6 +80,12 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
         // check if the parent component provides an own svg element that we can use as target
         parent = element.parentElement._instance.SVG;
       }
+
+      this._iconSize = Math.round(this._radius / 1.5) + 'px';
+      this._iconPosition = {
+        x: '50%',
+        y: '30%'
+      };
 
       const ns = 'http://www.w3.org/2000/svg';
 
@@ -150,7 +169,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
           bar.setAttribute('cy', '50%');
           bar.setAttribute('pathLength', '100');
           bar.setAttribute('stroke-dashoffset', '25');
-          bar.setAttribute('stroke-dasharray', `0 100`);
+          bar.setAttribute('stroke-dasharray', '0 100');
           if (this._element.hasAttribute('foreground-color')) {
             bar.style.stroke = this._element.getAttribute('foreground-color');
           }
@@ -165,6 +184,12 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       }
     },
 
+    _applyToSvg(val, oldVal, name) {
+      if (this._svg) {
+        this._svg.setAttribute(name, val);
+      }
+    },
+
     _applyIcon(iconName) {
       if (!this._target) {
         return;
@@ -176,10 +201,10 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
           icon.setAttribute('class', 'icon');
           icon.setAttribute('text-anchor', 'middle');
           icon.setAttribute('alignment-baseline', 'central');
-          icon.setAttribute('x', '50%');
-          icon.setAttribute('y', '30%');
+          icon.setAttribute('x', this._iconPosition.x);
+          icon.setAttribute('y', this._iconPosition.y);
           icon.setAttribute('fill', 'var(--primaryText)');
-          icon.style.fontSize = Math.round(this.__radius / 1.5) + 'px';
+          icon.style.fontSize = this._iconSize;
 
           this._target.appendChild(icon);
         }
@@ -189,11 +214,11 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
         // css declarations of the icon fonts do not work in SVG text elements, we need to convert the charCode
         if (['knxuf', 'ri'].includes(iconSet)) {
           setTimeout(() => {
-            const styles = window.getComputedStyle(icon, ':before')
+            const styles = window.getComputedStyle(icon, ':before');
             if (styles) {
               const content = styles['content'];
               icon.textContent = String.fromCharCode(content.charCodeAt(1));
-              icon.classList.replace(iconName, iconSet + "-");
+              icon.classList.replace(iconName, iconSet + '-');
             }
           }, 50);
         }
@@ -206,7 +231,12 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       if (this.isConnected()) {
         let valueInRange = value - this.getMin();
         let percent = Math.max(0, Math.min(100, (100 / (this.getMax() - this.getMin())) * valueInRange));
-        this._element.setAttribute('title', percent + '%');
+        let title = this._target.querySelector(':scope > title');
+        if (!title) {
+          title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+          this._target.appendChild(title);
+        }
+        title.textContent = percent + '%';
 
         const valueElement = this._target.querySelector('circle.bar');
         valueElement.setAttribute('stroke-dasharray', `${percent} ${100 - percent}`);
@@ -255,7 +285,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'svg-value',
       class extends QxConnector {
-        static observedAttributes = ['icon'];
+        static observedAttributes = ['icon', 'x', 'y'];
         constructor() {
           super(QxClass);
         }

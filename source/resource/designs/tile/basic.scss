@@ -1964,7 +1964,7 @@ body {
     }
 
     svg {
-        path.connection, defs > marker.connection {
+        defs > marker.connection {
             &.grid-inject {
                 stroke: var(--gridInjectColor);
                 fill: var(--gridInjectColor);
@@ -1988,6 +1988,38 @@ body {
             &.pv-inject {
                 stroke: var(--pvColor);
                 fill: var(--pvColor);
+            }
+
+            &.disabled {
+                stroke: var(--borderColor);
+                fill: var(--borderColor);
+            }
+        }
+
+        path.connection {
+            &.grid-inject {
+                stroke: var(--gridInjectColor);
+            }
+
+            &.grid-consume {
+                stroke: var(--gridConsumeColor);
+            }
+
+            &.battery-inject {
+                stroke: var(--batteryInjectColor);
+            }
+
+            &.battery-consume {
+                stroke: var(--batteryConsumeColor);
+            }
+
+            &.pv-inject {
+                stroke: var(--pvColor);
+            }
+
+            &.disabled {
+                stroke: var(--borderColor);
+                fill: var(--borderColor);
             }
         }
         .svg-value {

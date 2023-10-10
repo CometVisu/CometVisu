@@ -670,7 +670,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             case 'flux':
               ts.source = new cv.io.timeseries.FluxSource(ts.src);
               if (ts.source.isInline()) {
-                const fluxQuery = dataSet.textContent.trim()
+                const fluxQuery = dataSet.textContent.trim();
                 key = cv.ConfigCache.hashCode(fluxQuery).toString();
                 ts.source.setQueryTemplate(fluxQuery);
               }

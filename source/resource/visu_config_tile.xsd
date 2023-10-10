@@ -1824,24 +1824,12 @@
     <xsd:attribute ref="zero-based" />
   </xsd:complexType>
 
-  <xsd:complexType name="cv-energy">
+  <xsd:complexType name="cv-energy-entity">
     <xsd:sequence>
       <xsd:element name="cv-address" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>
             <xsd:extension base="address">
-              <xsd:attribute name="entity" use="required">
-                <xsd:simpleType>
-                  <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="pv" />
-                    <xsd:enumeration value="battery" />
-                    <xsd:enumeration value="grid" />
-                    <xsd:enumeration value="consumer" />
-                    <xsd:enumeration value="charger" />
-                    <xsd:enumeration value="heatpump" />
-                  </xsd:restriction>
-                </xsd:simpleType>
-              </xsd:attribute>
               <xsd:attribute name="type">
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
@@ -1864,6 +1852,37 @@
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:string"/>
+    <xsd:attribute name="type">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="pv" />
+            <xsd:enumeration value="battery" />
+            <xsd:enumeration value="grid" />
+            <xsd:enumeration value="consumer" />
+            <xsd:enumeration value="charger" />
+            <xsd:enumeration value="heatpump" />
+            <xsd:enumeration value="house" />
+          </xsd:restriction>
+        </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="connect-to" type="xsd:string"/>
+    <xsd:attribute name="connection-points">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <!-- allow everything except the reserved 'system' -->
+          <xsd:pattern value="auto|(top|right|bottom|left|auto)-(top|right|bottom|left|auto)"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="cell" type="xsd:integer"/>
+    <xsd:attribute name="icon" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-energy">
+    <xsd:sequence>
+      <xsd:element name="cv-energy-entity" type="cv-energy-entity" maxOccurs="unbounded" />
     </xsd:sequence>
   </xsd:complexType>
   <!--
