@@ -84,7 +84,7 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.6.1",
+    "@qooxdoo/framework": "^7.6.2",
     "@sentry/browser": "^7.60.1",
     "@sentry/tracing": "^7.60.1",
     "crc-32": "^1.2.2",
