@@ -60,13 +60,14 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
      * @param val {variant}
      * @param store {Map<string, variant>?} optional stored values from other addresses
      * @param params {Array<variant>?} optional array of parameters for the mapping
+     * @param emptyWhenNoMatch{Boolean}
      * @return {string|*|string}
      */
-    mapValue(val, store, params) {
+    mapValue(val, store, params, emptyWhenNoMatch = false) {
       if (Object.prototype.hasOwnProperty.call(this.__cache, val)) {
         return this.__cache[val];
       }
-      let mappedValue = '' + val;
+      let mappedValue = emptyWhenNoMatch ? '' : '' + val;
       const exactMatch = this._element.querySelector(':scope > entry[value="' + val + '"]');
 
       let type = this._element.hasAttribute('type') ? this._element.getAttribute('type') : 'string';
