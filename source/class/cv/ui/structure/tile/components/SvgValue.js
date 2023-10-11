@@ -245,13 +245,10 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
 
     _applyStyleClass(value, oldValue) {
       const classes = this._target.classList;
-      if (oldValue) {
-        if (classes.contains(oldValue)) {
-          classes.replace(oldValue, value);
-        } else {
-          classes.add(value);
-        }
-      } else if (value) {
+      if (oldValue && classes.contains(oldValue)) {
+        classes.remove(oldValue);
+      }
+      if (value) {
         classes.add(value);
       }
     },
