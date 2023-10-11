@@ -328,14 +328,18 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         const id = `${arrowId}-${styleClass}`;
         // check if we have a marker with this ID
         const root = this.getRoot();
-        let marker = root.querySelector(`#${id}`);
-        if (!marker) {
-          const baseMarker = root.querySelector(`#${arrowId}`);
-          const newMarker = baseMarker.cloneNode(true);
-          newMarker.removeAttribute('fill');
-          newMarker.setAttribute('class', 'connection ' + styleClass);
-          newMarker.setAttribute('id', id);
-          root.querySelector('defs').appendChild(newMarker);
+        try {
+          let marker = root.querySelector(`#${id}`);
+          if (!marker) {
+            const baseMarker = root.querySelector(`#${arrowId}`);
+            const newMarker = baseMarker.cloneNode(true);
+            newMarker.removeAttribute('fill');
+            newMarker.setAttribute('class', 'connection ' + styleClass);
+            newMarker.setAttribute('id', id);
+            root.querySelector('defs').appendChild(newMarker);
+          }
+        } catch (e) {
+          this.log.error('error getting arrow:', e.errorMessage);
         }
         return id;
       }
