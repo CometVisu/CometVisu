@@ -31,6 +31,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   construct(source, target) {
     super();
     this._updatePosition = this.__updatePosition.bind(this);
+    this._debouncedUpdatePosition = qx.util.Function.debounce(this._updatePosition, 50);
+    this._sourceObserver = new MutationObserver(this._onMutation.bind(this));
+    this._targetObserver = new MutationObserver(this._onMutation.bind(this));
     this.setSource(source);
     this.setTarget(target);
   },
@@ -41,7 +44,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   ***********************************************
   */
   statics: {
-    C: 0
+    C: 0,
   },
 
   /*
@@ -56,12 +59,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     },
     source: {
       check: 'SVGGraphicsElement',
-      apply: '_init',
-      nullable: true
+      apply: '_applySource',
+      nullable: true,
     },
     target: {
       check: 'SVGGraphicsElement',
-      apply: '_init',
+      apply: '_applyTarget',
       nullable: true
     },
     root: {
@@ -106,6 +109,34 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   */
   members: {
     _path: null,
+    /**
+     * @type {MutationObserver}
+     */
+    _sourceObserver: null,
+    /**
+     * @type {MutationObserver}
+     */
+    _targetObserver: null,
+
+    _applySource(value, oldValue) {
+      if (oldValue) {
+        this._sourceObserver.disconnect();
+      }
+      if (value) {
+        this._init();
+        this._sourceObserver.observe(value, {attributes: true});
+      }
+    },
+
+    _applyTarget(value, oldValue) {
+      if (oldValue) {
+        this._targetObserver.disconnect();
+      }
+      if (value) {
+        this._init();
+        this._targetObserver.observe(value, {attributes: true});
+      }
+    },
 
     _init() {
       const source = this.getSource();
@@ -169,13 +200,21 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
       }
     },
 
+    _onMutation(records, observer) {
+      for (const mutation of records) {
+        if (mutation.type === 'attributes' && (mutation.attributeName === 'x' || mutation.attributeName === 'y')) {
+          this._debouncedUpdatePosition();
+        }
+      }
+    },
+
     __updatePosition() {
       const source = this.getSource();
       const target = this.getTarget();
 
       if (source && target && this._path) {
-        let sourceCoord = this.getBBox(source);
-        let targetCoord = this.getBBox(target);
+        let sourceCoord = cv.util.Svg.getBBox(source);
+        let targetCoord = cv.util.Svg.getBBox(target);
 
         let startX = 0;
         let startY = 0;
@@ -346,44 +385,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
       return arrowId;
     },
 
-    getBBox(element) {
-      const bbox = { x: 0, y: 0, cx: 0, cy: 0, width: 0, height: 0 };
-      const svg = element.ownerSVGElement;
-      if (svg) {
-        const r = element.getBBox();
-        const p = svg.createSVGPoint();
-        const matrix = svg.getScreenCTM().inverse().multiply(element.getScreenCTM());
-        p.x = r.x;
-        p.y = r.y;
-        const a = p.matrixTransform(matrix);
-
-        p.x = r.x + r.width;
-        p.y = r.y;
-        const b = p.matrixTransform(matrix);
-
-        p.x = r.x + r.width;
-        p.y = r.y + r.height;
-        const c = p.matrixTransform(matrix);
-
-        p.x = r.x;
-        p.y = r.y + r.height;
-        const d = p.matrixTransform(matrix);
-
-        const minX = Math.min(a.x, b.x, c.x, d.x);
-        const maxX = Math.max(a.x, b.x, c.x, d.x);
-        const minY = Math.min(a.y, b.y, c.y, d.y);
-        const maxY = Math.max(a.y, b.y, c.y, d.y);
-
-        bbox.x = minX;
-        bbox.y = minY;
-        bbox.width = maxX - minX;
-        bbox.height = maxY - minY;
-        bbox.cx = minX + bbox.width / 2;
-        bbox.cy = minY + bbox.height / 2;
-      }
-      return bbox;
-    },
-
     _validateConnectionPoint(value) {
       if (!['top', 'right', 'bottom', 'left', 'auto'].includes(value)) {
         throw new qx.core.ValidationError(
@@ -451,5 +452,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   */
   destruct() {
     this._path = null;
+    this._sourceObserver.disconnect();
+    this._sourceObserver = null;
+    this._targetObserver.disconnect();
+    this._targetObserver = null;
   }
 });

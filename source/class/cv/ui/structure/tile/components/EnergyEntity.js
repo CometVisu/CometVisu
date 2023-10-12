@@ -3,7 +3,6 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
   extend: cv.ui.structure.tile.components.SvgValue,
-
   /*
   ***********************************************
     PROPERTIES
@@ -16,10 +15,17 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
       apply: '_applyType'
     },
 
-    cell: {
+    row: {
       check: 'Number',
       init: 0,
-      apply: '_applyCell',
+      apply: '_applyPosition',
+      transform: '_parseInt'
+    },
+
+    column: {
+      check: 'Number',
+      init: 0,
+      apply: '_applyPosition',
       transform: '_parseInt'
     },
 
@@ -110,7 +116,7 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
           icon.style.fontSize = this._iconSize;
         }
       }
-      this._applyCell(this.getCell());
+      this._applyPosition();
       window.requestAnimationFrame(() => {
         this._applyConnectTo(this.getConnectTo());
       });
@@ -149,25 +155,9 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
       }
     },
 
-    _applyCell(value) {
-      if (value > 0 && this._radius !== null) {
-        value--; //start at 0
-        const column = value % 3;
-        const row = Math.floor(value / 3);
-        if (row === 0) {
-          this._element.setAttribute('y', '4px');
-        } else if (row === 1) {
-          this._element.setAttribute('y', `calc(50% - ${this._radius}px)`);
-        } else if (row === 2) {
-          this._element.setAttribute('y', `calc(100% - ${this._radius*2 + 8}px)`);
-        }
-        if (column === 0) {
-          this._element.setAttribute('x', '8px');
-        } else if (column === 1) {
-          this._element.setAttribute('x', `calc(50% - ${this._radius}px)`);
-        } else if (column === 2) {
-          this._element.setAttribute('x', `calc(100% - ${this._radius*2 + 8}px)`);
-        }
+    _applyPosition() {
+      if (this._parentGridLayout && this._svg) {
+        this._parentGridLayout.layout(this._svg, this.getRow(), this.getColumn());
       }
     },
 
@@ -227,7 +217,7 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'energy-entity',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'type', 'cell', 'x', 'y', 'foreground-color', 'connect-to', 'connection-points'];
+        static observedAttributes = ['icon', 'type', 'row', 'column', 'x', 'y', 'foreground-color', 'connect-to', 'connection-points'];
         constructor() {
           super(QxClass);
         }

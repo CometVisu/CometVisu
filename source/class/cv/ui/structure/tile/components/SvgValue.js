@@ -47,6 +47,18 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       check: 'String',
       nullable: true,
       apply: '_applyToSvg'
+    },
+
+    radius: {
+      check: 'Number',
+      init: 28,
+      apply: '_applyRadius'
+    },
+
+    stroke: {
+      check: 'Number',
+      init: 3,
+      apply: '_applyStroke'
     }
   },
 
@@ -62,6 +74,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     _radius: null,
     _iconSize: null,
     _iconPosition: null,
+    _parentGridLayout: null,
 
     getSvg() {
       return this._svg;
@@ -70,18 +83,32 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     _init() {
       super._init();
       const element = this._element;
-      const style = document.querySelector(':root').style;
-      const radius = (this._radius =
-        element.getAttribute('radius') || (parseInt(style.getPropertyValue('--tileCellWidth')) || 56) / 2);
-      const strokeWidth = element.getAttribute('stroke') || 3;
-      const normalizedRadius = (this.__normalizedRadius = radius - strokeWidth / 2);
+      //const style = document.querySelector(':root').style;
+      /*const radius = (this._radius =
+        element.getAttribute('radius') || (parseInt(style.getPropertyValue('--tileCellWidth')) || 56) / 2);*/
+      const radius = this.getRadius();
+      const strokeWidth = this.getStroke();
+      //const normalizedRadius = (this.__normalizedRadius = radius - strokeWidth / 2);
       let parent = element;
-      if (element.parentElement.nodeName.toLowerCase().startsWith('cv-') && element.parentElement._instance) {
-        // check if the parent component provides an own svg element that we can use as target
-        parent = element.parentElement._instance.SVG;
+      let parentInstance = null;
+      let p = element.parentElement;
+      while (p && !parentInstance) {
+        if (p.nodeName.toLowerCase().startsWith('cv-') && p._instance && qx.Class.hasOwnMixin(p._instance.constructor, cv.ui.structure.tile.components.svg.MSvgGrid) ) {
+          parentInstance = p._instance;
+          parent = parentInstance.SVG;
+        } else if (p.nodeName.toLowerCase() === 'cv-page') {
+          // do not look outside the page
+          break;
+        } else {
+          p = p.parentElement;
+        }
+      }
+      this._parentGridLayout = parentInstance;
+      if (this._parentGridLayout) {
+        this._debouncedUpdateRadius = qx.util.Function.debounce(this._updateRadius.bind(this), 10);
+        this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRadius, this);
       }
 
-      this._iconSize = Math.round(this._radius / 1.5) + 'px';
       this._iconPosition = {
         x: '50%',
         y: '30%'
@@ -108,10 +135,15 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       svg.appendChild(group);
       this._target = group;
 
+      this._applyRadius(radius);
+
+
       if (!element.hasAttribute('no-background')) {
         const bg = document.createElementNS(ns, 'circle');
         bg.classList.add('bg');
-        bg.setAttribute('r', '' +normalizedRadius);
+        if (this.__normalizedRadius) {
+          bg.setAttribute('r', '' + this.__normalizedRadius);
+        }
         bg.setAttribute('cx', '50%');
         bg.setAttribute('cy', '50%');
         if (element.hasAttribute('background-color')) {
@@ -149,6 +181,54 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       value.setAttribute('fill', 'var(--primaryText)');
       value.style.fontSize = '11px';
       this._target.appendChild(value);
+    },
+
+    _updateRadius() {
+      if (this._parentGridLayout) {
+        const newRadius = Math.floor((Math.min(this._parentGridLayout.getCellWidth(), this._parentGridLayout.getCellHeight()) - this._parentGridLayout.getSpacing()) / 2);
+        if (this.getRadius() !== newRadius) {
+          console.log(newRadius);
+          this._element.setAttribute('radius', '' + newRadius);
+        }
+      }
+    },
+
+    _applyRadius(radius) {
+      this._updateNormalizedRadius();
+      this._iconSize = Math.round(radius / 1.5) + 'px';
+      const icon = this._target.querySelector('text.icon');
+      if (icon) {
+        icon.style.fontSize = this._iconSize;
+      }
+      if (this._svg) {
+        this._svg.setAttribute('height', '' + (radius * 2));
+        this._svg.setAttribute('width', '' + (radius * 2));
+      }
+    },
+
+    _applyStroke(stroke) {
+      this._updateNormalizedRadius();
+      if (this._target) {
+        this._target.setAttribute('stroke-width', stroke);
+      }
+    },
+
+    _updateNormalizedRadius() {
+      if (this._target) {
+        const newValue = this.getRadius() - this.getStroke() / 2;
+        if (this.__normalizedRadius !== newValue) {
+          this.__normalizedRadius = newValue;
+          const bg = this._target.querySelector('circle.bg');
+          if (bg) {
+            bg.setAttribute('r', '' + this.__normalizedRadius);
+          }
+
+          const bar = this._target.querySelector('circle.bar');
+          if (bar) {
+            bar.setAttribute('r', '' + this.__normalizedRadius);
+          }
+        }
+      }
     },
 
     _updateValue(mappedValue, value) {
@@ -282,7 +362,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'svg-value',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'x', 'y'];
+        static observedAttributes = ['icon', 'x', 'y', 'radius', 'stroke'];
         constructor() {
           super(QxClass);
         }

@@ -1876,7 +1876,8 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-    <xsd:attribute name="cell" type="xsd:integer"/>
+    <xsd:attribute name="row" type="xsd:integer"/>
+    <xsd:attribute name="column" type="xsd:integer"/>
     <xsd:attribute name="icon" type="xsd:string"/>
   </xsd:complexType>
 
@@ -1884,6 +1885,23 @@
     <xsd:sequence>
       <xsd:element name="cv-energy-entity" type="cv-energy-entity" maxOccurs="unbounded" />
     </xsd:sequence>
+    <xsd:attribute name="view-box">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Viewbox of the grid (start-column start-row columns rows).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Viewbox des Grids (start-column start-row columns rows).</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:pattern value="\d+ \d+ \d+ \d+"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="pan" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">If only a part of the energy-grid is shown, this flag activates scrolling inside the grid.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wenn über die ViewBox nur ein Teil des Energiemanagements angezeigt wird, kann man mit pan das Scrollen innerhalb aktivieren.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
   <!--
   #####################################################################################################################
