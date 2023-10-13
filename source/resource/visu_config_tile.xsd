@@ -1879,6 +1879,8 @@
     <xsd:attribute name="row" type="xsd:integer"/>
     <xsd:attribute name="column" type="xsd:integer"/>
     <xsd:attribute name="icon" type="xsd:string"/>
+    <xsd:attribute name="styling" ref="styling"/>
+    <xsd:attribute name="mapping" ref="mapping"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-energy">
@@ -1902,6 +1904,12 @@
         <xsd:documentation xml:lang="de">Wenn über die ViewBox nur ein Teil des Energiemanagements angezeigt wird, kann man mit pan das Scrollen innerhalb aktivieren.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="rows" type="xsd:integer"/>
+    <xsd:attribute name="columns" type="xsd:integer"/>
+    <xsd:attribute name="cell-width" type="xsd:integer"/>
+    <xsd:attribute name="cell-height" type="xsd:integer"/>
+    <xsd:attribute name="outer-padding" type="xsd:integer"/>
+    <xsd:attribute name="spacing" type="xsd:integer"/>
   </xsd:complexType>
   <!--
   #####################################################################################################################

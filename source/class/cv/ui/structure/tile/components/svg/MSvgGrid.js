@@ -43,42 +43,48 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
       check: 'Number',
       init: 3,
       event: 'changeRows',
-      apply: '_invalidateLayout'
+      apply: '_invalidateLayout',
+      transform: '__toInt'
     },
 
     columns: {
       check: 'Number',
       init: 3,
       event: 'changeColumns',
-      apply: '_invalidateLayout'
+      apply: '_invalidateLayout',
+      transform: '__toInt'
     },
 
     outerPadding: {
       check: 'Number',
       event: 'changeOuterPadding',
       init: 4,
-      apply: '_invalidateLayout'
+      apply: '_invalidateLayout',
+      transform: '__toInt'
     },
 
     spacing: {
       check: 'Number',
       init: 4,
       event: 'changeSpacing',
-      apply: '_invalidateLayout'
+      apply: '_invalidateLayout',
+      transform: '__toInt'
     },
 
     cellWidth: {
       check: 'Number',
       init: 56,
       apply: '_invalidateLayout',
-      event: 'changeSize'
+      event: 'changeSize',
+      transform: '__toInt'
     },
 
     cellHeight: {
       check: 'Number',
       init: 56,
       apply: '_invalidateLayout',
-      event: 'changeSize'
+      event: 'changeSize',
+      transform: '__toInt'
     },
 
     viewBox: {
@@ -96,6 +102,13 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
   members: {
     _cells: null,
     _isLayoutValid: null,
+
+    __toInt(value) {
+      if (typeof value === 'string') {
+        return parseInt(value);
+      }
+      return value;
+    },
 
     _invalidateLayout() {
       this._isLayoutValid = false;

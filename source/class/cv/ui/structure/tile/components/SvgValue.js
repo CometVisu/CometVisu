@@ -187,7 +187,6 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       if (this._parentGridLayout) {
         const newRadius = Math.floor((Math.min(this._parentGridLayout.getCellWidth(), this._parentGridLayout.getCellHeight()) - this._parentGridLayout.getSpacing()) / 2);
         if (this.getRadius() !== newRadius) {
-          console.log(newRadius);
           this._element.setAttribute('radius', '' + newRadius);
         }
       }
@@ -195,10 +194,18 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
 
     _applyRadius(radius) {
       this._updateNormalizedRadius();
-      this._iconSize = Math.round(radius / 1.5) + 'px';
-      const icon = this._target.querySelector('text.icon');
+      this._iconSize = Math.round(radius / 1.5);
+      const icon = this._target.querySelector('cv-icon');
       if (icon) {
-        icon.style.fontSize = this._iconSize;
+        icon.style.fontSize = this._iconSize + 'px';
+      }
+      const iconContainer = this._target.querySelector('foreignObject.icon-container');
+      if (iconContainer) {
+        const halfSize = this._iconSize;
+        iconContainer.setAttribute('x', `calc(${this._iconPosition.x} - ${halfSize}px)`);
+        iconContainer.setAttribute('y', `calc(${this._iconPosition.y} - ${halfSize}px)`);
+        iconContainer.setAttribute('width', this._iconSize + 'px');
+        iconContainer.setAttribute('height', this._iconSize + 'px');
       }
       if (this._svg) {
         this._svg.setAttribute('height', '' + (radius * 2));
@@ -274,33 +281,23 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       if (!this._target) {
         return;
       }
-      let icon = this._target.querySelector('text.icon');
+      let icon = this._target.querySelector('cv-icon');
       if (iconName) {
         if (!icon) {
-          icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          icon.setAttribute('class', 'icon');
-          icon.setAttribute('text-anchor', 'middle');
-          icon.setAttribute('alignment-baseline', 'central');
-          icon.setAttribute('x', this._iconPosition.x);
-          icon.setAttribute('y', this._iconPosition.y);
-          icon.setAttribute('fill', 'var(--primaryText)');
-          icon.style.fontSize = this._iconSize;
+          const fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+          fo.setAttribute('class', 'icon-container');
+          const halfSize = this._iconSize / 2;
+          fo.setAttribute('x', `calc(${this._iconPosition.x} - ${halfSize}px)`);
+          fo.setAttribute('y', `calc(${this._iconPosition.y} - ${halfSize}px)`);
+          fo.setAttribute('width', this._iconSize + 'px');
+          fo.setAttribute('height', this._iconSize + 'px');
+          fo.style.textAlign = 'center';
 
-          this._target.appendChild(icon);
-        }
-        const iconSet = iconName.split('-')[0];
-        icon.classList.add(iconName);
-
-        // css declarations of the icon fonts do not work in SVG text elements, we need to convert the charCode
-        if (['knxuf', 'ri'].includes(iconSet)) {
-          setTimeout(() => {
-            const styles = window.getComputedStyle(icon, ':before');
-            if (styles) {
-              const content = styles['content'];
-              icon.textContent = String.fromCharCode(content.charCodeAt(1));
-              icon.classList.replace(iconName, iconSet + '-');
-            }
-          }, 50);
+          icon = document.createElement('cv-icon');
+          icon.classList.add(iconName);
+          icon.style.fontSize = this._iconSize + 'px';
+          fo.appendChild(icon);
+          this._target.appendChild(fo);
         }
       } else if (icon) {
         this._target.remove(icon);

@@ -106,14 +106,14 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
         for (const elem of this._svg.querySelectorAll('circle, text:not(.icon)')) {
           elem.remove();
         }
-        this._iconSize = '32px';
+        this._iconSize = 32;
         this._iconPosition = {
           x: '50%',
           y: '50%'
         };
         const icon = this._svg.querySelector('text.icon');
         if (icon) {
-          icon.style.fontSize = this._iconSize;
+          icon.style.fontSize = this._iconSize + 'px';
         }
       }
       this._applyPosition();

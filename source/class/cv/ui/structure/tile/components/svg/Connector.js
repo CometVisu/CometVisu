@@ -45,6 +45,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   */
   statics: {
     C: 0,
+    // see https://caniuse.com/mdn-svg_attributes_presentation_fill_context-fill
+    supportsContext: qx.core.Environment.get('browser.name').includes('firefox')
   },
 
   /*
@@ -98,7 +100,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
 
     inverted: {
       check: 'Boolean',
-      init: false
+      init: false,
+      apply: '_applyShowDirection'
     }
   },
 
@@ -186,6 +189,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         this.setId(id);
         if (!path) {
           path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path._instance = this;
           path.setAttribute('id', id);
           path.setAttribute('stroke', 'var(--borderColor)');
           path.setAttribute('fill', 'transparent');
@@ -289,9 +293,10 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
 
         // make sure that we always draw the path from left to right
         if (startX > endX) {
-          this.drawPath(this._path, endX, endY, startX, startY);
           this.setInverted(true);
+          this.drawPath(this._path, endX, endY, startX, startY);
         } else {
+          this.setInverted(false);
           this.drawPath(this._path, startX, startY, endX, endY);
         }
       }
@@ -340,7 +345,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
       }
     },
 
-    _applyShowDirection(value) {
+    _applyShowDirection() {
+      const value = this.getShowDirection();
       let markerId = '';
       if (value === 'none') {
         this._path.removeAttribute('marker-start');
@@ -361,8 +367,11 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     },
 
     __getMarkerId() {
-      const styleClass = this.getStyleClass();
       const arrowId = 'arrow';
+      if (cv.ui.structure.tile.components.svg.Connector.supportsContext) {
+        return arrowId;
+      }
+      const styleClass = this.getStyleClass();
       if (styleClass) {
         const id = `${arrowId}-${styleClass}`;
         // check if we have a marker with this ID
@@ -409,14 +418,14 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         arrowPath.setAttribute('d', 'M 0 0 L 10 5 L 0 10 z');
         defs.appendChild(arrowPath);
       }
-
+/*
       let vertArrowPath = defs.querySelector('#v-arrow-path');
       if (!vertArrowPath) {
         vertArrowPath = document.createElementNS(ns, 'path');
         vertArrowPath.setAttribute('id', 'v-arrow-path');
         vertArrowPath.setAttribute('d', 'M 0 10 L 10 10 L 5 0 z');
         defs.appendChild(vertArrowPath);
-      }
+      }*/
 
       let arrow = defs.querySelector('#arrow');
       if (!arrow) {
@@ -427,7 +436,13 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         arrow.setAttribute('refY', '5');
         arrow.setAttribute('markerWidth', '5');
         arrow.setAttribute('markerHeight', '5');
-        arrow.setAttribute('fill', 'var(--borderColor)');
+        arrow.setAttribute('markerUnits', 'strokeWidth');
+        if (cv.ui.structure.tile.components.svg.Connector.supportsContext) {
+          arrow.setAttribute('fill', 'context-fill');
+          arrow.setAttribute('stroke', 'context-stroke');
+        } else {
+          arrow.setAttribute('fill', 'var(--borderColor)');
+        }
         arrow.setAttribute('orient', 'auto-start-reverse');
         let use = document.createElementNS(ns, 'use');
         use.setAttribute('href', '#h-arrow-path');
@@ -435,13 +450,13 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         defs.appendChild(arrow);
       }
 
-      let vertArrow = defs.querySelector('#vertical-arrow');
+      /*let vertArrow = defs.querySelector('#vertical-arrow');
       if (!vertArrow) {
         const vertArrow = arrow.cloneNode(true);
         vertArrow.setAttribute('id', 'vertical-arrow');
         vertArrow.setAttribute('orient', '270');
         defs.appendChild(vertArrow);
-      }
+      }*/
     }
   },
 

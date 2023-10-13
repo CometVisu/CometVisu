@@ -77,17 +77,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       this._dragPoint = this._dragPoint.matrixTransform(CTM);
       this.SVG.viewBox.baseVal.x -= this._dragPoint.x - this._startPoint.x;
       this.SVG.viewBox.baseVal.y -= this._dragPoint.y - this._startPoint.y;
-      const bbox = this.SVG.getBBox();
-      if (this.SVG.viewBox.baseVal.x < 0) {
-        this.SVG.viewBox.baseVal.x = 0;
-      } else if ((bbox.width - (this.SVG.viewBox.baseVal.x + this.SVG.viewBox.baseVal.width)) < -10) {
-        this.SVG.viewBox.baseVal.x = bbox.width - this.SVG.viewBox.baseVal.width + 10;
-      }
-      if (this.SVG.viewBox.baseVal.y < 0) {
-        this.SVG.viewBox.baseVal.y = 0;
-      } else if ((bbox.height - (this.SVG.viewBox.baseVal.y + this.SVG.viewBox.baseVal.height)) < -10) {
-        this.SVG.viewBox.baseVal.y = bbox.height - this.SVG.viewBox.baseVal.height + 10;
-      }
     },
 
     _startDrag(ev) {
@@ -117,14 +106,19 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
           if (typeof this.endDrag !== 'function') {
             this.endDrag = this._endDrag.bind(this);
           }
+          if (typeof this.resetDrag !== 'function') {
+            this.resetDrag = this._updateViewBox.bind(this);
+          }
 
           this._element.addEventListener('pointerdown', this.startDrag);
           this._element.addEventListener('pointerup', this.endDrag);
           this._element.addEventListener('pointerleave', this.endDrag);
+          this._element.addEventListener('dblclick', this.resetDrag);
         } else {
           this._element.removeEventListener('pointerdown', this.startDrag);
           this._element.removeEventListener('pointerup', this.endDrag);
           this._element.removeEventListener('pointerleave', this.endDrag);
+          this._element.removeEventListener('dblclick', this.resetDrag);
         }
       }
     },
@@ -137,7 +131,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
           const x = this.getOuterPadding() + this.getCellWidth() * parts[0] + (parts[0] > 1 ? (parts[0]-1) * this.getSpacing() : 0);
           const y = this.getOuterPadding() + this.getCellHeight() * parts[1] + (parts[1] > 1 ? (parts[1]-1) * this.getSpacing() : 0);
           const width = this.getOuterPadding() + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2]-1) * this.getSpacing() : 0);
-          const height = this.getOuterPadding() + this.getCellHeight() * parts[2] + (parts[2] > 1 ? (parts[2]-1) * this.getSpacing() : 0);
+          const height = this.getOuterPadding() + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3]-1) * this.getSpacing() : 0);
           this.SVG.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
         }
       } else {
@@ -149,10 +143,18 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       if (this._element.clientWidth === 0 || this._element.clientHeight === 0) {
         return;
       }
+      let visibleColumns = this.getColumns();
+      let visibleRows = this.getRows();
+      const viewBox = this.getViewBox();
+      if (viewBox) {
+        const box = viewBox.split(' ').map(v => parseInt(v));
+        visibleColumns = box[2];
+        visibleRows = box[3];
+      }
       const padding = this.getOuterPadding() * 2;
       const spacing = this.getSpacing() / 2;
-      const cellWidth = Math.floor((this._element.clientWidth - padding) / this.getColumns() - spacing);
-      const cellHeight = Math.floor((this._element.clientHeight - padding) / this.getRows() - spacing);
+      const cellWidth = Math.floor((this._element.clientWidth - padding) / visibleColumns - spacing);
+      const cellHeight = Math.floor((this._element.clientHeight - padding) / visibleRows - spacing);
       this.debug('cellWidth', cellWidth, 'cellHeight', cellHeight);
       const changed = this.getCellWidth() !== cellWidth || this.getCellHeight() !== cellHeight;
       this.setCellWidth(cellWidth);
@@ -176,7 +178,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'energy',
       class extends QxConnector {
-        static observedAttributes = ['view-box', 'pan'];
+        // @ignore
+        static observedAttributes = ['view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing'];
         constructor() {
           super(QxClass);
         }
