@@ -1964,6 +1964,13 @@ body {
     }
 
     svg {
+        position: relative;
+
+        foreignObject {
+            > * {
+                position: unset;
+            }
+        }
         defs > marker.connection {
             &.grid-inject {
                 stroke: var(--gridInjectColor);

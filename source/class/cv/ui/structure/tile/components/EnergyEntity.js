@@ -283,7 +283,7 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
     },
 
     _applyForegroundColor(value) {
-      const bar = this._svg.querySelector('circle.bar');
+      const bar = this._svg ? this._svg.querySelector('circle.bar') : null;
       if (bar) {
         bar.style.stroke = value;
       }

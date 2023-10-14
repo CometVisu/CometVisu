@@ -210,8 +210,10 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
         const iconContainer = this._target.querySelector('foreignObject.icon-container');
         if (iconContainer) {
           const halfSize = this._iconSize / 2;
-          iconContainer.setAttribute('x', `calc(${this._iconPosition.x} - ${halfSize}px)`);
-          iconContainer.setAttribute('y', `calc(${this._iconPosition.y} - ${halfSize}px)`);
+          const x = radius - halfSize;
+          const y = radius * 0.6 - halfSize;
+          iconContainer.setAttribute('x', `${x}px`);
+          iconContainer.setAttribute('y', `${y}px`);
           iconContainer.setAttribute('width', this._iconSize + 'px');
           iconContainer.setAttribute('height', this._iconSize + 'px');
         }
@@ -296,8 +298,10 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
           const fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
           fo.setAttribute('class', 'icon-container');
           const halfSize = this._iconSize / 2;
-          fo.setAttribute('x', `calc(${this._iconPosition.x} - ${halfSize}px)`);
-          fo.setAttribute('y', `calc(${this._iconPosition.y} - ${halfSize}px)`);
+          const x = this.getRadius() - halfSize;
+          const y = this.getRadius() * 0.6 - halfSize;
+          fo.setAttribute('x', `${x}px`);
+          fo.setAttribute('y', `${y}px`);
           fo.setAttribute('width', this._iconSize + 'px');
           fo.setAttribute('height', this._iconSize + 'px');
           fo.style.textAlign = 'center';
