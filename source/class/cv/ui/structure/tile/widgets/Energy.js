@@ -50,6 +50,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
     SVG: null,
     _dragPoint: null,
     _startPoint: null,
+    _expiredTouchStart: null,
 
     _init() {
       super._init();
@@ -83,7 +84,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       if (typeof this.drag !== 'function') {
         this.drag = this._drag.bind(this);
       }
-      this._element.addEventListener('mousemove', this.drag);
+      this._element.addEventListener('pointermove', this.drag);
 
       const CTM = this.SVG.getScreenCTM().inverse();
       this._dragPoint.x = ev.clientX;
@@ -91,8 +92,26 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       this._startPoint = this._dragPoint.matrixTransform(CTM);
     },
 
-    _endDrag() {
-      this._element.removeEventListener("mousemove", this.drag);
+    _endDrag(ev) {
+      this._element.removeEventListener("pointermove", this.drag);
+    },
+
+    _touchStart(ev) {
+      if (ev.touches.length === 1) {
+        if (!this._expiredTouchStart) {
+          this._expiredTouchStart = ev.timeStamp + 400
+        } else if (ev.timeStamp <= this._expiredTouchStart) {
+          // remove the default of this event ( Zoom )
+          //ev.preventDefault()
+          this.resetDrag();
+          // then reset the variable for other "double Touches" event
+          this._expiredTouchStart = null
+        } else {
+          // if the second touch was expired, make it as it's the first
+          this._expiredTouchStart = ev.timeStamp + 400
+        }
+      }
+      ev.preventDefault();
     },
 
     _applyPan(draggable) {
@@ -109,16 +128,23 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
           if (typeof this.resetDrag !== 'function') {
             this.resetDrag = this._updateViewBox.bind(this);
           }
+          if (typeof this.touchStart !== 'function') {
+            this.touchStart = this._touchStart.bind(this);
+          }
 
           this._element.addEventListener('pointerdown', this.startDrag);
           this._element.addEventListener('pointerup', this.endDrag);
           this._element.addEventListener('pointerleave', this.endDrag);
+          this._element.addEventListener('pointercancel', this.endDrag);
           this._element.addEventListener('dblclick', this.resetDrag);
+          this._element.addEventListener('touchstart', this.touchStart);
         } else {
           this._element.removeEventListener('pointerdown', this.startDrag);
           this._element.removeEventListener('pointerup', this.endDrag);
           this._element.removeEventListener('pointerleave', this.endDrag);
+          this._element.removeEventListener('pointercancel', this.endDrag);
           this._element.removeEventListener('dblclick', this.resetDrag);
+          this._element.removeEventListener('touchstart', this.touchStart);
         }
       }
     },
