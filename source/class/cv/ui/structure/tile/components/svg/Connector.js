@@ -60,12 +60,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
       nullable: true
     },
     source: {
-      check: 'SVGGraphicsElement',
+      check: 'cv.ui.structure.tile.components.EnergyEntity',
       apply: '_applySource',
       nullable: true,
     },
     target: {
-      check: 'SVGGraphicsElement',
+      check: 'cv.ui.structure.tile.components.EnergyEntity',
       apply: '_applyTarget',
       nullable: true
     },
@@ -127,25 +127,28 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
       }
       if (value) {
         this._init();
-        this._sourceObserver.observe(value, {attributes: true});
+        this._sourceObserver.observe(value.getSvg(), {attributes: true});
       }
     },
 
     _applyTarget(value, oldValue) {
+      const source = this.getSource();
       if (oldValue) {
         this._targetObserver.disconnect();
       }
       if (value) {
         this._init();
-        this._targetObserver.observe(value, {attributes: true});
+        this._targetObserver.observe(value.getSvg(), {attributes: true});
       }
     },
 
     _init() {
-      const source = this.getSource();
-      const target = this.getTarget();
+      const sourceEntity = this.getSource();
+      const targetEntity = this.getTarget();
 
-      if (source && target) {
+      if (sourceEntity && targetEntity) {
+        const source = sourceEntity.getSvg();
+        const target = targetEntity.getSvg();
         // find common root
         let sourceRoot = source.ownerSVGElement;
         let targetRoot = target.ownerSVGElement;
@@ -213,10 +216,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     },
 
     __updatePosition() {
-      const source = this.getSource();
-      const target = this.getTarget();
+      const sourceEntity = this.getSource();
+      const targetEntity = this.getTarget();
 
-      if (source && target && this._path) {
+      if (sourceEntity && targetEntity && this._path) {
+        const source = sourceEntity.getSvg();
+        const target = targetEntity.getSvg();
         let sourceCoord = cv.util.Svg.getBBox(source);
         let targetCoord = cv.util.Svg.getBBox(target);
 
@@ -228,22 +233,25 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         let sourceConnectionPoint = this.getSourceConnectionPoint();
         let targetConnectionPoint = this.getTargetConnectionPoint();
         if (sourceConnectionPoint === 'auto' || targetConnectionPoint === 'auto') {
-          if (Math.abs(sourceCoord.x - targetCoord.x) < Math.abs(sourceCoord.y - targetCoord.y)) {
-            // connection mainly on Y axis
-            if (sourceConnectionPoint === 'auto') {
-              sourceConnectionPoint = sourceCoord.y < targetCoord.y ? 'bottom' : 'top';
-            }
-            if (targetConnectionPoint === 'auto') {
-              targetConnectionPoint = sourceCoord.y < targetCoord.y ? 'top' : 'bottom';
-            }
-          } else {
-            // connection mainly on X axis
-            if (sourceConnectionPoint === 'auto') {
-              sourceConnectionPoint = sourceCoord.x < targetCoord.x ? 'right' : 'left';
-            }
-            if (targetConnectionPoint === 'auto') {
-              targetConnectionPoint = sourceCoord.x < targetCoord.x ? 'left' : 'right';
-            }
+          const dx = targetCoord.cx - sourceCoord.cx;
+          const dy = targetCoord.cy - sourceCoord.cy;
+          const l = Math.sqrt(dx**2 + dy**2);
+          const rsl = sourceEntity.getRadius() / l;
+          const rtl = targetEntity.getRadius() / l;
+          const yS = sourceCoord.cy + dy * rsl;
+          const yT = targetCoord.cy - dy * rtl;
+          const xS = sourceCoord.cx + dx * rsl;
+          const xT = targetCoord.cx - dx * rtl;
+
+          this.debug(this.getId(), `(${xS}, ${yS}) -> (${xT}, ${yT})`);
+
+          if (sourceConnectionPoint === 'auto') {
+            startX = xS;
+            startY = yS;
+          }
+          if (targetConnectionPoint === 'auto') {
+            endX = xT;
+            endY = yT;
           }
         }
 
@@ -314,14 +322,16 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         arc1 = 1;
         arc2 = 0;
       }
+      // draw straight line
+      path.setAttribute('d',  `M${startX} ${startY} L ${endX} ${endY}`);
 
-      // 1. move a bit down, 2. arch,  3. move a bit to the right, 4.arch, 5. move down to the end
+      /*// 1. move a bit down, 2. arch,  3. move a bit to the right, 4.arch, 5. move down to the end
       path.setAttribute('d',  'M'  + startX + ' ' + startY +
         ' V' + (startY + delta) +
         ' A' + delta + ' ' +  delta + ' 0 0 ' + arc1 + ' ' + (startX + delta*Math.sign(deltaX)) + ' ' + (startY + 2*delta) +
         ' H' + (endX - delta*Math.sign(deltaX)) +
         ' A' + delta + ' ' +  delta + ' 0 0 ' + arc2 + ' ' + endX + ' ' + (startY + 3*delta) +
-        ' V' + endY);
+        ' V' + endY);*/
     },
 
     _applyRoot(root, oldRoot) {
@@ -355,11 +365,11 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         markerId = this.__getMarkerId();
         this._path.setAttribute('marker-start', `url(#${markerId})`);
         this._path.setAttribute('marker-end', `url(#${markerId})`);
-      } else if (value === 'source' || this.isInverted()) {
+      } else if ((value === 'source' && !this.isInverted()) || (value === 'target' && this.isInverted())) {
         markerId = this.__getMarkerId();
         this._path.setAttribute('marker-start', `url(#${markerId})`);
         this._path.removeAttribute('marker-end');
-      } else if (value === 'target' || this.isInverted()) {
+      } else if ((value === 'target' && !this.isInverted()) || (value === 'source' && this.isInverted())) {
         markerId = this.__getMarkerId();
         this._path.removeAttribute('marker-start');
         this._path.setAttribute('marker-end', `url(#${markerId})`);
@@ -467,6 +477,11 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   */
   destruct() {
     this._path = null;
+    const source = this.getSource();
+    const target = this.getTarget();
+    if (source && target) {
+      target.removeConnection(source);
+    }
     this._sourceObserver.disconnect();
     this._sourceObserver = null;
     this._targetObserver.disconnect();

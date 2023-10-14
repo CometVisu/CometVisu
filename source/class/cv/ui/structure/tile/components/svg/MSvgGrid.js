@@ -118,7 +118,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
     _layoutAll() {
       this.debug('re-layout all items');
       for (const cellId in this._cells) {
-        const position = cellId.split('-').map(i => parseInt(i));
+        const position = cellId.split('-').map(i => parseFloat(i));
         this.layout(this._cells[cellId], position[0], position[1], true);
       }
       this._isLayoutValid = true;
@@ -138,6 +138,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
      * @param row {number} row number (-1 to find next free row)
      * @param column {number} column cumber (-1 to use next free cell)
      * @param replace {boolean} it true replace current item in cell, otherwise the element will not be added when the cell is not empty
+     * @param retries {number} internal value used to limit layout retries for one element. Do not set this externally!
      */
     layout(element, row = -1, column = -1, replace = false, retries = 0) {
       if (row === -1 || column === -1) {
@@ -154,6 +155,14 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
         this.error(`cell ${row}/${column} is not empty`);
         return;
       }
+
+      // remove old positions
+      for (const id of Object.keys(this._cells)) {
+        if (id !== cellId && this._cells[id] === element) {
+          delete this._cells[id];
+        }
+      }
+
       let cx = this.getOuterPadding() + column * this.getSpacing() + column * this.getCellWidth() + this.getCellWidth() / 2;
       let cy = this.getOuterPadding() + row * this.getSpacing() + row * this.getCellHeight() + this.getCellHeight() / 2;
       const bbox = element.getBBox();

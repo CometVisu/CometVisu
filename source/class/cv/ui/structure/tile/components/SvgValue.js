@@ -52,13 +52,15 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     radius: {
       check: 'Number',
       init: 28,
-      apply: '_applyRadius'
+      apply: '_applyRadius',
+      transform: '_toInt'
     },
 
     stroke: {
       check: 'Number',
       init: 3,
-      apply: '_applyStroke'
+      apply: '_applyStroke',
+      transform: '_toInt'
     }
   },
 
@@ -75,20 +77,25 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     _iconSize: null,
     _iconPosition: null,
     _parentGridLayout: null,
+    _fixedRadius: null,
 
     getSvg() {
       return this._svg;
     },
 
+    _toInt(value) {
+      if (typeof value === 'string') {
+        return parseInt(value);
+      }
+      return value;
+    },
+
     _init() {
       super._init();
       const element = this._element;
-      //const style = document.querySelector(':root').style;
-      /*const radius = (this._radius =
-        element.getAttribute('radius') || (parseInt(style.getPropertyValue('--tileCellWidth')) || 56) / 2);*/
+      this._fixedRadius = element.hasAttribute('radius');
       const radius = this.getRadius();
       const strokeWidth = this.getStroke();
-      //const normalizedRadius = (this.__normalizedRadius = radius - strokeWidth / 2);
       let parent = element;
       let parentInstance = null;
       let p = element.parentElement;
@@ -104,7 +111,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
         }
       }
       this._parentGridLayout = parentInstance;
-      if (this._parentGridLayout) {
+      if (this._parentGridLayout && !this._fixedRadius) {
         this._debouncedUpdateRadius = qx.util.Function.debounce(this._updateRadius.bind(this), 10);
         this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRadius, this);
       }
@@ -195,17 +202,19 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
     _applyRadius(radius) {
       this._updateNormalizedRadius();
       this._iconSize = Math.round(radius / 1.5);
-      const icon = this._target.querySelector('cv-icon');
-      if (icon) {
-        icon.style.fontSize = this._iconSize + 'px';
-      }
-      const iconContainer = this._target.querySelector('foreignObject.icon-container');
-      if (iconContainer) {
-        const halfSize = this._iconSize;
-        iconContainer.setAttribute('x', `calc(${this._iconPosition.x} - ${halfSize}px)`);
-        iconContainer.setAttribute('y', `calc(${this._iconPosition.y} - ${halfSize}px)`);
-        iconContainer.setAttribute('width', this._iconSize + 'px');
-        iconContainer.setAttribute('height', this._iconSize + 'px');
+      if (this._target) {
+        const icon = this._target.querySelector('cv-icon');
+        if (icon) {
+          icon.style.fontSize = this._iconSize + 'px';
+        }
+        const iconContainer = this._target.querySelector('foreignObject.icon-container');
+        if (iconContainer) {
+          const halfSize = this._iconSize / 2;
+          iconContainer.setAttribute('x', `calc(${this._iconPosition.x} - ${halfSize}px)`);
+          iconContainer.setAttribute('y', `calc(${this._iconPosition.y} - ${halfSize}px)`);
+          iconContainer.setAttribute('width', this._iconSize + 'px');
+          iconContainer.setAttribute('height', this._iconSize + 'px');
+        }
       }
       if (this._svg) {
         this._svg.setAttribute('height', '' + (radius * 2));

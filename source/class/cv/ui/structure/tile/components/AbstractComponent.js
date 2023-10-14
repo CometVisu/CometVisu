@@ -26,6 +26,16 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct(element) {
+    super(element);
+    this._preMappingHooks = [];
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -81,6 +91,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   members: {
     _writeAddresses: null,
     _headerFooterParent: null,
+    _preMappingHooks: null,
 
     _checkIfWidget() {
       let isWidget = false;
@@ -145,6 +156,10 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           ev.stopPropagation();
         });
       }
+    },
+
+    getElement() {
+      return this._element;
     },
 
     /**
@@ -227,13 +242,37 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       return null;
     },
 
+    /**
+     * Register hook function {Function(value: number) : number} that is called before the mapping gets applied.
+     * It must return a number that is used as a new value for mapping.
+     * @param callback {{(value: number) : number}}
+     * @param context {object}
+     */
+    registerPreMappingHook(callback, context) {
+      const exists = this._preMappingHooks.some(e => e[0] === callback);
+      if (!exists) {
+        this._preMappingHooks.push([callback, context || this]);
+      }
+    },
+
+    /**
+     * Unregister pre-mapping hook
+     * @param callback {{(value: number) : number}}
+     */
+    unregisterPreMappingHook(callback) {
+      this._preMappingHooks = this._preMappingHooks.filter(e => e[0] !== callback);
+    },
+
     // property apply
     _applyValue(value) {
       if (this.isConnected()) {
         this._element.setAttribute('value', value || '');
         let mappedValue = value;
+        for (const hookEntry of this._preMappingHooks) {
+          mappedValue = hookEntry[0].call(hookEntry[1], mappedValue);
+        }
         if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
+          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
         }
         if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
           mappedValue = cv.util.String.sprintf(
