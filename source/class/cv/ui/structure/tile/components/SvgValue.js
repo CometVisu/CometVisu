@@ -83,6 +83,10 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       return this._svg;
     },
 
+    getParentSvg() {
+      return this._svg ? this._svg.ownerSVGElement : null;
+    },
+
     _toInt(value) {
       if (typeof value === 'string') {
         return parseInt(value);

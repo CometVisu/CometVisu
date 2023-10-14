@@ -44,9 +44,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   ***********************************************
   */
   statics: {
-    C: 0,
-    // see https://caniuse.com/mdn-svg_attributes_presentation_fill_context-fill
-    supportsContext: qx.core.Environment.get('browser.name').includes('firefox')
+    C: 0
   },
 
   /*
@@ -215,7 +213,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
       }
     },
 
-    __updatePosition() {
+    __updatePosition(retried = false) {
       const sourceEntity = this.getSource();
       const targetEntity = this.getTarget();
 
@@ -236,6 +234,14 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
           const dx = targetCoord.cx - sourceCoord.cx;
           const dy = targetCoord.cy - sourceCoord.cy;
           const l = Math.sqrt(dx**2 + dy**2);
+          if (l === 0) {
+            if (!retried) {
+              setTimeout(() => {
+                this._updatePosition(true);
+              }, 1000);
+            }
+            return;
+          }
           const rsl = sourceEntity.getRadius() / l;
           const rtl = targetEntity.getRadius() / l;
           const yS = sourceCoord.cy + dy * rsl;
@@ -378,9 +384,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
 
     __getMarkerId() {
       const arrowId = 'arrow';
-      if (cv.ui.structure.tile.components.svg.Connector.supportsContext) {
-        return arrowId;
-      }
       const styleClass = this.getStyleClass();
       if (styleClass) {
         const id = `${arrowId}-${styleClass}`;
