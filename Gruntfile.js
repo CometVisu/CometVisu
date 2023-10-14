@@ -447,6 +447,29 @@ module.exports = function(grunt) {
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
+  // custom task to add the KNX user forum icons to the IconConfig.js:
+  grunt.registerTask('update-kuf-iconconfig', function() {
+    const iconConfigFile = 'source/class/cv/IconConfig.js';
+    const cssFile = 'source/resource/icons/fonts/knx-uf-iconset.css';
+    const cssSource = grunt.file.read(cssFile, { encoding: "utf8" }).toString();
+    const nameRegEx = /\.knxuf-(.*?):before/g;
+    let kufIcons = '';
+    let icon;
+    while( (icon = nameRegEx.exec( cssSource )) !== null ) {
+      // icon id = icon[1]
+      if( kufIcons !== '' ) {
+        kufIcons += ",\n";
+      }
+      kufIcons += "      '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('" + icon[1] + "') } } }";
+    }
+    var start = '// Do not remove this line: Dynamic Icons Start';
+    var end   = '// Do not remove this line: Dynamic Icons End';
+    var iconConfig = grunt.file.read(iconConfigFile, { encoding: "utf8" }).toString();
+    grunt.file.write(iconConfigFile, iconConfig
+      .replace( new RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n      " + end )
+    );
+  });
+
     // Load the plugin tasks
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
@@ -471,7 +494,7 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
 
   // update icon submodule
-  grunt.registerTask('updateicons', ['shell:updateicons']);
+  grunt.registerTask('updateicons', ['shell:updateicons', 'update-kuf-iconconfig']);
 
   grunt.registerTask('default', 'release-build');
 };
