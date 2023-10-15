@@ -37,7 +37,7 @@
         <cv-mapping name="tile-kilo-watt-hours">
             <formula><![CDATA[
                 let unit = 'Wh';
-                let value = Math.round(x);
+                let value = x;
                 const abs = Math.abs(x);
                 if (abs >= 1000000) {
                    value = Math.round(x / 100000.0) / 10.0;

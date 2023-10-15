@@ -234,23 +234,23 @@
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
             <cv-group open="true">
                 <cv-energy>
-                    <cv-energy-entity type="pv" id="inverter-pv" connect-to="house" row="0" column="1">
+                    <cv-power-entity type="pv" id="inverter-pv" connect-to="house" row="0" column="1">
                         <cv-address type="power" transform="DPT:12.001" mode="read">1/4/27</cv-address>
-                    </cv-energy-entity>
-                    <cv-energy-entity type="battery" id="battery" connect-to="house" row="1" column="0">
+                    </cv-power-entity>
+                    <cv-power-entity type="battery" id="battery" connect-to="house" row="1" column="0">
                         <cv-address type="power" transform="DPT:13.001" mode="read">1/4/42</cv-address>
                         <cv-address type="soc" transform="DPT:5.001" mode="read" target="progress">1/4/43</cv-address>
-                    </cv-energy-entity>
-                    <cv-energy-entity type="house" id="house" row="1" column="1"/>
-                    <cv-energy-entity type="grid" id="grid" connect-to="house" row="1" column="2">
+                    </cv-power-entity>
+                    <cv-power-entity type="house" id="house" row="1" column="1"/>
+                    <cv-power-entity type="grid" id="grid" connect-to="house" row="1" column="2">
                         <cv-address type="power" transform="DPT:13.001" mode="read">1/4/25</cv-address>
-                    </cv-energy-entity>
-                    <cv-energy-entity type="charger" id="charger" connect-from="house" row="2" column="0.5">
+                    </cv-power-entity>
+                    <cv-power-entity type="charger" id="charger" connect-from="house" row="2" column="0.5">
                         <cv-address type="power" transform="DPT:12.001" mode="read">1/4/44</cv-address>
-                    </cv-energy-entity>
-                    <cv-energy-entity type="heatpump" id="heatpump" connect-from="house" row="2" column="1.5">
+                    </cv-power-entity>
+                    <cv-power-entity type="heatpump" id="heatpump" connect-from="house" row="2" column="1.5">
                         <cv-address type="power" transform="DPT:12.001" mode="read">1/4/45</cv-address>
-                    </cv-energy-entity>
+                    </cv-power-entity>
                 </cv-energy>
                 <cv-widget-pair allow-column-layout="true">
                     <cv-status-chart format="%d" style="color: #f2495c" y-format="%d W" series="hour" x-format="%H:%M" zero-based="false" >

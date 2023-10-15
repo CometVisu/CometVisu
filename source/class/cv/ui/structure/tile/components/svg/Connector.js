@@ -19,6 +19,9 @@
 
 /**
  * Draws a line between two SVGGraphicsElements.
+ *
+ * @since 2023
+ * @author Tobias Bräutigam
  */
 qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   extend: qx.core.Object,
@@ -58,12 +61,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
       nullable: true
     },
     source: {
-      check: 'cv.ui.structure.tile.components.EnergyEntity',
+      check: 'cv.ui.structure.tile.components.energy.PowerEntity',
       apply: '_applySource',
       nullable: true,
     },
     target: {
-      check: 'cv.ui.structure.tile.components.EnergyEntity',
+      check: 'cv.ui.structure.tile.components.energy.PowerEntity',
       apply: '_applyTarget',
       nullable: true
     },
@@ -450,12 +453,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         arrow.setAttribute('markerWidth', '5');
         arrow.setAttribute('markerHeight', '5');
         arrow.setAttribute('markerUnits', 'strokeWidth');
-        if (cv.ui.structure.tile.components.svg.Connector.supportsContext) {
-          arrow.setAttribute('fill', 'context-fill');
-          arrow.setAttribute('stroke', 'context-stroke');
-        } else {
-          arrow.setAttribute('fill', 'var(--borderColor)');
-        }
+        arrow.setAttribute('fill', 'var(--borderColor)');
         arrow.setAttribute('orient', 'auto-start-reverse');
         let use = document.createElementNS(ns, 'use');
         use.setAttribute('href', '#h-arrow-path');
@@ -480,11 +478,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   */
   destruct() {
     this._path = null;
-    const source = this.getSource();
-    const target = this.getTarget();
-    if (source && target) {
-      target.removeConnection(source);
-    }
     this._sourceObserver.disconnect();
     this._sourceObserver = null;
     this._targetObserver.disconnect();

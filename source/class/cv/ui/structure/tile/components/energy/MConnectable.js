@@ -1,19 +1,39 @@
-/**
- * SvgValue for energy entities.
+/*
+ * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
  */
-qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
-  extend: cv.ui.structure.tile.components.SvgValue,
+
+/**
+ * Mixin for all SVG based components that can be connected to each other.
+ * @since 2023
+ * @author Tobias Bräutigam
+ */
+qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
 
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct(element) {
-    super(element);
+  construct() {
     this._connections = [];
     this._inverseConnections = [];
   },
+
 
   /*
   ***********************************************
@@ -21,26 +41,6 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
   ***********************************************
   */
   properties: {
-    type: {
-      check: ['pv', 'battery', 'grid', 'house', 'charger', 'heatpump', 'consumer'],
-      nullable: true,
-      apply: '_applyType'
-    },
-
-    row: {
-      check: 'Number',
-      init: 0,
-      apply: '_applyPosition',
-      transform: '_parseFloat'
-    },
-
-    column: {
-      check: 'Number',
-      init: 0,
-      apply: '_applyPosition',
-      transform: '_parseFloat'
-    },
-
     connectTo: {
       check: 'String',
       nullable: true,
@@ -59,51 +59,10 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
       apply: '_applyConnectionPoints'
     },
 
-    foregroundColor: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyForegroundColor'
-    },
-
     useConnectionSum: {
       check: 'Boolean',
       init: false,
       apply: '_applyUseConnectionSum'
-    }
-  },
-
-  /*
-  ***********************************************
-    STATICS
-  ***********************************************
-  */
-  statics: {
-    typeSettings: {
-      pv: {
-        icon: 'knxuf-weather_sun',
-        styling: 'tile-pv-power'
-      },
-      battery: {
-        icon: 'knxuf-measure_battery_100',
-        styling: 'tile-battery-power',
-        'foreground-color': 'var(--batteryConsumeColor)'
-      },
-      grid: {
-        icon: 'knxuf-scene_power_grid',
-        styling: 'tile-grid-power'
-      },
-      house: {
-        icon: 'knxuf-control_building_empty'
-      },
-      charger: {
-        icon: 'knxuf-veh_wallbox'
-      },
-      heatpump: {
-        icon: 'knxuf-sani_earth_source_heat_pump'
-      },
-      consumer: {
-        icon: 'knxuf-measure_smart_meter'
-      }
     }
   },
 
@@ -115,72 +74,20 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
   members: {
     _connectorTo: null,
     _connectorFrom: null,
-    _noValue: null,
     _useConnectionsSumAsValue: null,
     /**
-     * @type {Array<cv.ui.structure.tile.components.EnergyEntity>}
+     * @type {Array<cv.ui.structure.tile.components.energy.PowerEntity>}
      */
     _connections: null,
     /**
-     * @type {Array<cv.ui.structure.tile.components.EnergyEntity>}
+     * @type {Array<cv.ui.structure.tile.components.energy.PowerEntity>}
      */
     _inverseConnections: null,
 
-    _parseInt(val) {
-      return parseInt(val);
-    },
-
-    _parseFloat(val) {
-      return parseFloat(val);
-    },
-
-    hasNoValue() {
-      return this._noValue;
-    },
-
-    _init() {
-      super._init();
-      const element = this._element;
-      if (element.hasAttribute('id')) {
-        this._svg.setAttribute('id', element.getAttribute('id'));
-      }
-      if (!element.hasAttribute('mapping')) {
-        element.setAttribute('mapping', 'tile-kilo-watts');
-      }
-      this._noValue = element.querySelectorAll(':scope > cv-address').length === 0;
-      this.setUseConnectionSum(this._noValue && this.getType() === 'house');
-      if (this._noValue && this.getType() !== 'house') {
-        // this has no addresses and therefore no values, we only show the icon then without circle
-        for (const elem of this._svg.querySelectorAll('circle, text:not(.icon)')) {
-          elem.remove();
-        }
-        this._iconSize = 32;
-        this._iconPosition = {
-          x: '50%',
-          y: '50%'
-        };
-        const icon = this._svg.querySelector('text.icon');
-        if (icon) {
-          icon.style.fontSize = this._iconSize + 'px';
-        }
-      }
-      this._applyPosition();
-      window.requestAnimationFrame(() => {
-        this._applyConnectTo(this.getConnectTo());
-        this._applyConnectFrom(this.getConnectFrom());
-      });
-
-      this.addListener('changeValue', this._updateDirection, this);
-    },
-
-    preMappingHook(value) {
-      // we only show positive values here, energy flow is shown via connection direction
-      return Math.abs(value);
-    },
 
     /**
-     * Adds an incoming connection from another EnergyEntity
-     * @param other {cv.ui.structure.tile.components.EnergyEntity} connected from other to this
+     * Adds an incoming connection from another PowerEntity
+     * @param other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this
      */
     addConnection(other) {
       if (!this._connections.includes(other)) {
@@ -192,9 +99,9 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
     },
 
     /**
-     * Adds an incoming inverse connection from another EnergyEntity.
+     * Adds an incoming inverse connection from another PowerEntity.
      * Inverse connection means that the sign of the other entity is flipped for summing all values
-     * @param other {cv.ui.structure.tile.components.EnergyEntity} connected from other to this
+     * @param other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this
      */
     addInverseConnection(other) {
       if (!this._inverseConnections.includes(other)) {
@@ -206,8 +113,8 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
     },
 
     /**
-     * Remove an incoming connection from another EnergyEntity
-     * @param other {cv.ui.structure.tile.components.EnergyEntity}
+     * Remove an incoming connection from another PowerEntity
+     * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
      */
     removeConnection(other) {
       if (this._connections.includes(other)) {
@@ -219,8 +126,8 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
     },
 
     /**
-     * Remove an incoming inverse connection from another EnergyEntity
-     * @param other {cv.ui.structure.tile.components.EnergyEntity}
+     * Remove an incoming inverse connection from another PowerEntity
+     * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
      */
     removeInverseConnection(other) {
       if (this._inverseConnections.includes(other)) {
@@ -273,38 +180,16 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
       }
     },
 
-    _applyType(value) {
-      const settings = cv.ui.structure.tile.components.EnergyEntity.typeSettings[value];
-      if (settings) {
-        for (const attribute in settings) {
-          this._element.setAttribute(attribute, settings[attribute]);
-        }
-      }
-    },
-
-    _applyForegroundColor(value) {
-      const bar = this._svg ? this._svg.querySelector('circle.bar') : null;
-      if (bar) {
-        bar.style.stroke = value;
-      }
-    },
-
-    _applyPosition() {
-      if (this._parentGridLayout && this._svg) {
-        this._parentGridLayout.layout(this._svg, this.getRow(), this.getColumn());
-      }
-    },
-
     _applyConnectTo(targetId) {
       if (this._svg && targetId) {
         const parent = this._element.parentElement
         const target = parent.querySelector('#' + targetId);
-        if (target && target.nodeName.toLowerCase() === 'cv-energy-entity') {
+        if (target && target.nodeName.toLowerCase() === 'cv-power-entity') {
           if (!this._connectorTo) {
             this._connectorTo = this._initConnection(this, target._instance);
             this._applyConnectionPoints(this.getConnectionPoints());
             this._updateDirection();
-            // we are the energy source for the target
+            // we are the power source for the target
             target._instance.addConnection(this);
           } else {
             this._connectorTo.setTarget(target._instance);
@@ -322,12 +207,12 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
       if (this._svg && sourceId) {
         const parent = this._element.parentElement
         const source = parent.querySelector('#' + sourceId);
-        if (source && source.nodeName.toLowerCase() === 'cv-energy-entity') {
+        if (source && source.nodeName.toLowerCase() === 'cv-power-entity') {
           if (!this._connectorFrom) {
             this._connectorFrom = this._initConnection(source._instance, this);
             this._applyConnectionPoints(this.getConnectionPoints());
             this._updateDirection();
-            // we take energy from the target
+            // we take power from the target
             source._instance.addInverseConnection(this);
           } else {
             this._connectorFrom.setSource(source._instance);
@@ -338,8 +223,8 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
 
     /**
      *
-     * @param source {cv.ui.structure.tile.components.EnergyEntity}
-     * @param target {cv.ui.structure.tile.components.EnergyEntity}
+     * @param source {cv.ui.structure.tile.components.energy.PowerEntity}
+     * @param target {cv.ui.structure.tile.components.energy.PowerEntity}
      * @returns {cv.ui.structure.tile.components.svg.Connector}
      * @private
      */
@@ -348,7 +233,7 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
       if (source.hasNoValue()) {
         const targetId = target.getElement().getAttribute('id');
         const parentElement = this._element.parentElement.querySelector('#' + targetId);
-        if (parentElement && parentElement._instance && parentElement._instance instanceof cv.ui.structure.tile.components.EnergyEntity && !parentElement._instance.hasNoValue()) {
+        if (parentElement && parentElement._instance && parentElement._instance instanceof cv.ui.structure.tile.components.energy.PowerEntity && !parentElement._instance.hasNoValue()) {
           // use styleClass from target
           parentElement._instance.bind('styleClass', connector, 'styleClass');
         }
@@ -391,20 +276,13 @@ qx.Class.define('cv.ui.structure.tile.components.EnergyEntity', {
   ***********************************************
   */
   destruct() {
-    this._disposeObjects('_connectorTo', '_connectorFrom');
-    this._connections.clear();
-    this._inverseConnections.clear();
-  },
-
-  defer(QxClass) {
-    customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + 'energy-entity',
-      class extends QxConnector {
-        static observedAttributes = ['icon', 'type', 'stroke', 'radius', 'row', 'column', 'x', 'y', 'foreground-color', 'connect-to', 'connect-from', 'connection-points'];
-        constructor() {
-          super(QxClass);
-        }
-      }
-    );
+    const source = this.getSource();
+    const target = this.getTarget();
+    if (target) {
+      target.removeConnection(this);
+    }
+    if (source) {
+      source.removeInverseConnection(this);
+    }
   }
 });

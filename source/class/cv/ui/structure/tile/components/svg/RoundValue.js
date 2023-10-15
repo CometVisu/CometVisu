@@ -1,9 +1,12 @@
 /**
- * SvgValue shows an element that contains of an icon and a value-text inside
+ * RoundValue shows an element that contains of an icon and a value-text inside
  * a colored circle. The circle can also show a progress value in another color.
+ * @since 2023
+ * @author Tobias Bräutigam
  */
-qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
+qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
   extend: cv.ui.structure.tile.components.Value,
+  include: cv.ui.structure.tile.MStringTransforms,
 
   /*
   ***********************************************
@@ -43,6 +46,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       nullable: true,
       apply: '_applyToSvg'
     },
+
     y: {
       check: 'String',
       nullable: true,
@@ -53,14 +57,14 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       check: 'Number',
       init: 28,
       apply: '_applyRadius',
-      transform: '_toInt'
+      transform: '_parseInt'
     },
 
     stroke: {
       check: 'Number',
       init: 3,
       apply: '_applyStroke',
-      transform: '_toInt'
+      transform: '_parseFloat'
     }
   },
 
@@ -85,13 +89,6 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
 
     getParentSvg() {
       return this._svg ? this._svg.ownerSVGElement : null;
-    },
-
-    _toInt(value) {
-      if (typeof value === 'string') {
-        return parseInt(value);
-      }
-      return value;
     },
 
     _init() {
@@ -140,7 +137,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
       parent.appendChild(svg);
 
       const group = document.createElementNS(ns, 'g');
-      group.classList.add('svg-value');
+      group.classList.add('round-value');
       group.setAttribute('fill', 'transparent');
       group.setAttribute('stroke-width', strokeWidth);
       svg.appendChild(group);
@@ -216,10 +213,10 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
           const halfSize = this._iconSize / 2;
           const x = radius - halfSize;
           const y = radius * 0.6 - halfSize;
-          iconContainer.setAttribute('x', `${x}px`);
-          iconContainer.setAttribute('y', `${y}px`);
-          iconContainer.setAttribute('width', this._iconSize + 'px');
-          iconContainer.setAttribute('height', this._iconSize + 'px');
+          iconContainer.setAttribute('x', `${x}`);
+          iconContainer.setAttribute('y', `${y}`);
+          iconContainer.setAttribute('width', this._iconSize + '');
+          iconContainer.setAttribute('height', this._iconSize + '');
         }
       }
       if (this._svg) {
@@ -304,10 +301,10 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
           const halfSize = this._iconSize / 2;
           const x = this.getRadius() - halfSize;
           const y = this.getRadius() * 0.6 - halfSize;
-          fo.setAttribute('x', `${x}px`);
-          fo.setAttribute('y', `${y}px`);
-          fo.setAttribute('width', this._iconSize + 'px');
-          fo.setAttribute('height', this._iconSize + 'px');
+          fo.setAttribute('x', `${x}`);
+          fo.setAttribute('y', `${y}`);
+          fo.setAttribute('width', this._iconSize + '');
+          fo.setAttribute('height', this._iconSize + '');
           fo.style.textAlign = 'center';
 
           icon = document.createElement('cv-icon');
@@ -374,7 +371,7 @@ qx.Class.define('cv.ui.structure.tile.components.SvgValue', {
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + 'svg-value',
+      cv.ui.structure.tile.Controller.PREFIX + 'svg-round-value',
       class extends QxConnector {
         static observedAttributes = ['icon', 'x', 'y', 'radius', 'stroke'];
         constructor() {

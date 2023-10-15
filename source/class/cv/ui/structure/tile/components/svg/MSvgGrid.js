@@ -19,6 +19,8 @@
 
 /**
  * Mixin for SVG elements that provide a grid layout.
+ * @since 2023
+ * @author Tobias Bräutigam
  */
 qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
 
@@ -177,8 +179,8 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
       let x = cx - bbox.width / 2 - bbox.x;
       let y = cy - bbox.height / 2 - bbox.y;
       this.debug(element.getAttribute('id'), row, column, cx, cy, bbox);
-      element.setAttribute('x', `${x}px`);
-      element.setAttribute('y', `${y}px`);
+      element.setAttribute('x', `${x}`);
+      element.setAttribute('y', `${y}`);
       this._cells[cellId] = element;
     },
 

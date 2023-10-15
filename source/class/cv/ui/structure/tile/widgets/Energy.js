@@ -22,6 +22,8 @@
  *
  * @author Tobias Bräutigam
  * @since 2023
+ *
+ * @ignore(d3.select)
  */
 qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
   extend: cv.ui.structure.tile.widgets.Tile,
@@ -38,6 +40,12 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       init: false,
       transform: '_stringToBool',
       apply: '_applyPan'
+    },
+
+    pagination: {
+      check: ['none', 'horizontal', 'vertical', 'both'],
+      init: 'none',
+      apply: '_applyPagination'
     }
   },
 
@@ -68,6 +76,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       if (this.getPan()) {
         this._applyPan(true);
       }
+      this._applyPagination(this.getPagination());
     },
 
     _drag(ev) {
@@ -149,16 +158,165 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       }
     },
 
+    _applyPagination(value) {
+      const showH = value === 'both' || value === 'horizontal';
+      const showV = value === 'both' || value === 'vertical';
+      const addButtons = [];
+      const removeButtons = [];
+      if (showH) {
+        addButtons.push('left');
+        addButtons.push('right');
+      } else {
+        removeButtons.push('left');
+        removeButtons.push('right');
+      }
+      if (showV) {
+        addButtons.push('top');
+        addButtons.push('bottom');
+      } else {
+        removeButtons.push('top');
+        removeButtons.push('bottom');
+      }
+      for (const dir of addButtons) {
+        let button = this._element.querySelector(`div.pagination.${dir}`);
+        if (!button) {
+          button = document.createElement('div');
+          button.classList.add('pagination', dir);
+          this._element.appendChild(button);
+        }
+      }
+
+      for (const dir of removeButtons) {
+        let button = this._element.querySelector(`div.pagination.${dir}`);
+        if (button) {
+          button.remove();
+        }
+      }
+
+      this._updatePaginationButtons();
+    },
+
+    _enablePaginationButton(button, dir, enabled) {
+      let callback;
+      switch (dir) {
+        case 'left':
+          callback = this._paginateLeft;
+          break;
+
+        case 'right':
+          callback = this._paginateRight;
+          break;
+
+        case 'top':
+          callback = this._paginateTop;
+          break;
+
+        case 'bottom':
+          callback = this._paginateBottom;
+          break;
+      }
+      if (enabled) {
+        button.classList.add('clickable');
+        qx.event.Registration.addListener(button, 'click', callback, this);
+      } else {
+        if (button.classList.contains('clickable')) {
+          button.classList.remove('clickable');
+        }
+        qx.event.Registration.removeListener(button, 'click', callback, this);
+      }
+    },
+
+    _updatePaginationButtons() {
+      let [column, row, width, height] = this.getViewBox().split(' ').map(v => parseInt(v));
+      for (const dir of ['top', 'bottom', 'left', 'right']) {
+        const button = this._element.querySelector(`div.pagination.${dir}`);
+        if (!button) {
+          continue;
+        }
+        switch (dir) {
+          case 'left':
+            this._enablePaginationButton(button, dir, column - width >= 0);
+            break;
+
+          case 'right':
+            this._enablePaginationButton(button, dir, column+width < this.getColumns());
+            break;
+
+          case 'top':
+            this._enablePaginationButton(button, dir, row - height >= 0);
+            break;
+
+          case 'bottom':
+            this._enablePaginationButton(button, dir, row + height < this.getRows());
+            break;
+        }
+      }
+    },
+
+    _paginateLeft() {
+      this._paginate('left');
+    },
+
+    _paginateRight() {
+      this._paginate('right');
+    },
+
+    _paginateTop() {
+      this._paginate('top');
+    },
+
+    _paginateBottom() {
+      this._paginate('bottom');
+    },
+
+    _paginate(direction) {
+      let [column, row, width, height] = this.getViewBox().split(' ').map(v => parseInt(v));
+      switch (direction) {
+        case 'left':
+          if (column - width >= 0) {
+            column -= width;
+          }
+          break;
+
+        case 'right':
+          if (column+width < this.getColumns()) {
+            column += width;
+          }
+          break;
+
+        case 'top':
+          if (row - height >= 0) {
+            row -= height;
+          }
+          break;
+
+        case 'bottom':
+          if (row + height < this.getRows()) {
+            row += height;
+          }
+      }
+      this._element.setAttribute('view-box', `${column} ${row} ${width} ${height}`);
+    },
+
     _updateViewBox() {
       const viewBox = this.getViewBox();
       if (viewBox) {
         const parts = viewBox.split(' ').map(v => parseInt(v));
         if (parts.length === 4) {
+          this._updatePaginationButtons();
           const x = this.getOuterPadding() + this.getCellWidth() * parts[0] + (parts[0] > 1 ? (parts[0]-1) * this.getSpacing() : 0);
           const y = this.getOuterPadding() + this.getCellHeight() * parts[1] + (parts[1] > 1 ? (parts[1]-1) * this.getSpacing() : 0);
           const width = this.getOuterPadding() + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2]-1) * this.getSpacing() : 0);
           const height = this.getOuterPadding() + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3]-1) * this.getSpacing() : 0);
-          this.SVG.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
+
+          if (typeof window.d3 === 'object') {
+            const svg = d3.select(this._element).select('svg');
+            svg.transition()
+              .duration(500)
+              .attr('viewBox', `${x} ${y} ${width} ${height}`)
+          } else {
+            this.SVG.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
+          }
         }
       } else {
         this.SVG.removeAttribute('viewBox');
@@ -205,7 +363,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       cv.ui.structure.tile.Controller.PREFIX + 'energy',
       class extends QxConnector {
         // @ignore
-        static observedAttributes = ['view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing'];
+        static observedAttributes = ['view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination'];
         constructor() {
           super(QxClass);
         }
