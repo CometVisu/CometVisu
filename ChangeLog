@@ -1,5 +1,10 @@
 ## Change Log
 
+0.12.6
+======
+
+- [#1373](https://github.com/CometVisu/CometVisu/pull/1373) Cherry pick of: Fix slider to respect steps (@ChristianMayer)
+
 0.12.5
 ======
 

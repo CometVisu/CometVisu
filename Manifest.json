@@ -16,7 +16,7 @@
         "email": "tbraeutigam at gmail dot com"
       }
     ],
-    "version": "0.12.0-dev",
+    "version": "0.12.6",
     "sourceViewUri": "https://github.com/CometVisu/CometVisu/blob/develop/source/class/%{classFilePath}#L%{lineNumber}"
   },
   "provides": {
