@@ -338,9 +338,6 @@ qx.Class.define('cv.TemplateEngine', {
           }
         });
         loader.addListenerOnce('stylesLoaded', this.generateManifest, this);
-        loader.addListenerOnce('stylesAndScriptsLoaded', () => {
-          cv.ui.structure.pure.layout.ResizeHandler.invalidateScreensize();
-        }, this);
       }
       // load structure-part
       await this.loadParts([cv.Config.getStructure()]);
