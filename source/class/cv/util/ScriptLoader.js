@@ -127,6 +127,7 @@ qx.Class.define('cv.util.ScriptLoader', {
   events: {
     finished: 'qx.event.type.Event',
     stylesLoaded: 'qx.event.type.Event',
+    stylesAndScriptsLoaded: 'qx.event.type.Event',
     designError: 'qx.event.type.Data'
   },
 
@@ -136,6 +137,9 @@ qx.Class.define('cv.util.ScriptLoader', {
   ******************************************************
   */
   members: {
+    __scriptsSetup: false,
+    __stylesSetup: false,
+    __stylesLoaded: true,
     __scriptQueue: null,
     __loaders: null,
     __listener: null,
@@ -145,6 +149,8 @@ qx.Class.define('cv.util.ScriptLoader', {
       const queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
       const suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
       let promises = [];
+      this.__stylesLoaded = false;
+      this.__stylesSetup = true;
       queue.forEach(function (style) {
         let media;
         let src;
@@ -172,7 +178,11 @@ qx.Class.define('cv.util.ScriptLoader', {
       Promise.all(promises)
         .then(() => {
           this.debug('styles have been loaded');
+          this.__stylesLoaded = true;
           this.fireEvent('stylesLoaded');
+          if (this.getFinished() && this.__scriptsSetup && this.__stylesSetup) {
+            this.fireEvent('stylesAndScriptsLoaded');
+          }
         })
         .catch(reason => {
           this.error('error loading styles', reason);
@@ -199,6 +209,7 @@ qx.Class.define('cv.util.ScriptLoader', {
       const realQueue = [];
       let i = 0;
       const l = queue.length;
+      this.__scriptsSetup = true;
       for (; i < l; i++) {
         if (!this.__markedAsLoaded.includes(queue[i])) {
           realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
@@ -292,6 +303,9 @@ qx.Class.define('cv.util.ScriptLoader', {
           this.debug('script loader finished');
           this.fireEvent('finished');
           this.setFinished(true);
+          if (this.__stylesLoaded && this.__scriptsSetup && this.__stylesSetup) {
+            this.fireEvent('stylesAndScriptsLoaded');
+          }
         } else if (!this.__listener) {
           this.debug('script loader waiting for all scripts beeing queued');
 
