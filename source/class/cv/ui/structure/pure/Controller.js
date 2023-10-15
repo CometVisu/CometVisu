@@ -206,6 +206,10 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
      * @param xml {XMLDocument} loaded config file
      */
     createUI(xml) {
+      cv.util.ScriptLoader.getInstance().addListenerOnce('stylesAndScriptsLoaded', () => {
+        cv.ui.structure.pure.layout.ResizeHandler.invalidateScreensize();
+      }, this);
+
       if (!cv.Config.cacheUsed) {
         this.debug('creating pages');
         const page = xml.querySelector('pages > page'); // only one page element allowed...

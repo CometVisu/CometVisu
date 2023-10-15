@@ -329,7 +329,7 @@ qx.Class.define('cv.TemplateEngine', {
             const alternativeStyles = [baseUri + '/basic.css'];
             alternativeStyles.push({
               uri: baseUri + '/mobile.css',
-              media: `screen and (max-width:${cv.Config.maxMobileScreenWidthh}px)`
+              media: `screen and (max-width:${cv.Config.maxMobileScreenWidth}px)`
             });
 
             alternativeStyles.push(baseUri + '/custom.css');
