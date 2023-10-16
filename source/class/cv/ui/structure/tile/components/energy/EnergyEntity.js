@@ -106,9 +106,6 @@ qx.Class.define('cv.ui.structure.tile.components.energy.EnergyEntity', {
       }
       this._autoFormat = !element.hasAttribute('format');
       this._applyUnit(this.getUnit());
-
-      this._applyPosition();
-
       const direction = this.getDirection();
       if (direction !== 'none') {
         this._applyDirection(direction);
@@ -173,7 +170,7 @@ qx.Class.define('cv.ui.structure.tile.components.energy.EnergyEntity', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'energy-entity',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'type', 'row', 'column', 'rowspan', 'colspan', 'direction', 'unit', 'color'];
+        static observedAttributes = ['icon', 'type', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'direction', 'unit', 'color'];
         constructor() {
           super(QxClass);
         }

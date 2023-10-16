@@ -2031,6 +2031,11 @@ body {
 
         .text-value {
             font-size: 12px;
+
+            text.title {
+                font-size: 14px;
+                fill: var(--secondaryColor);
+            }
         }
 
         .round-value {

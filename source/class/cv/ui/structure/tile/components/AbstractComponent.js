@@ -146,6 +146,10 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
             break;
         }
       });
+      if (!hasReadAddress) {
+        // address groups are read-only
+        hasReadAddress = element.querySelectorAll(':scope > cv-address-group').length > 0;
+      }
 
       this._writeAddresses = writeAddresses;
 

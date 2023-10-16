@@ -284,5 +284,9 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
     if (source) {
       source.removeInverseConnection(this);
     }
+
+    this._disposeObjects('_connectorTo', '_connectorFrom');
+    this._connections.clear();
+    this._inverseConnections.clear();
   }
 });

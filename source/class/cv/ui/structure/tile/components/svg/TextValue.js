@@ -7,7 +7,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
   extend: cv.ui.structure.tile.components.Value,
-  include: cv.ui.structure.tile.MStringTransforms,
+  include: cv.ui.structure.tile.components.svg.MGraphicsElement,
 
   /*
   ***********************************************
@@ -21,32 +21,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       apply: '_applyIcon'
     },
 
-    x: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyToSvg'
-    },
-
-    y: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyToSvg'
-    },
-
-    rowspan: {
-      check: 'Number',
-      init: 1,
-      apply: '_updateHeight',
-      transform: '_parseFloat'
-    },
-
-    colspan: {
-      check: 'Number',
-      init: 1,
-      apply: '_updateWidth',
-      transform: '_parseFloat'
-    },
-
     color: {
       check: 'String',
       init: 'var(--primaryText)',
@@ -57,6 +31,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       check: 'String',
       init: 'var(--primaryText)',
       apply: '_applyIconColor'
+    },
+
+    title: {
+      check: 'String',
+      init: '',
+      apply: '_applyTitle'
     }
   },
 
@@ -70,7 +50,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     _svg: null,
     _iconSize: null,
     _iconPosition: null,
-    _parentGridLayout: null,
 
     getSvg() {
       return this._svg;
@@ -83,22 +62,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     _init() {
       super._init();
       const element = this._element;
-      let parent = element;
-      let parentInstance = null;
-      let p = element.parentElement;
-      while (p && !parentInstance) {
-        if (p.nodeName.toLowerCase().startsWith('cv-') && p._instance && qx.Class.hasOwnMixin(p._instance.constructor, cv.ui.structure.tile.components.svg.MSvgGrid) ) {
-          parentInstance = p._instance;
-          parent = parentInstance.SVG;
-        } else if (p.nodeName.toLowerCase() === 'cv-page') {
-          // do not look outside the page
-          break;
-        } else {
-          p = p.parentElement;
-        }
-      }
+      this._findParentGridLayout();
+      const parent = this._parentGridLayout ? this._parentGridLayout.SVG : element;
       this._iconSize = 24;
-      this._parentGridLayout = parentInstance;
 
       const ns = 'http://www.w3.org/2000/svg';
 
@@ -127,6 +93,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
 
       this._updateHeight();
       this._updateWidth();
+
+      this._applyPosition();
+      this._applyTitle(this.getTitle());
     },
 
     _updateValue(mappedValue, value) {
@@ -135,12 +104,35 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       this._debouncedDetectOverflow();
     },
 
+    _applyTitle(title) {
+      if (this._target) {
+        if (title) {
+          let text = this._target.querySelector('text.title');
+          if (!text) {
+            text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', '0');
+            text.setAttribute('y', '16');
+            text.setAttribute('alignment-baseline', 'central');
+            text.classList.add('title');
+            this._target.appendChild(text);
+          }
+          text.textContent = title;
+        } else {
+          let text = this._target.querySelector('text.title');
+          if (text) {
+            text.remove();
+          }
+        }
+      }
+    },
+
     _applyColor(color) {
       if (this._target) {
+        const target = this._target.querySelector('.value');
         if (color) {
-          this._target.setAttribute('fill', color);
+          target.setAttribute('fill', color);
         } else {
-          this._target.removeAttribute('fill');
+          target.removeAttribute('fill');
         }
       }
     },
@@ -149,26 +141,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       const icon = this._target ? this._target.querySelector('cv-icon') : null;
       if (icon) {
         icon.style.color = color || 'inherit';
-      }
-    },
-
-    _applyToSvg(val, oldVal, name) {
-      if (this._svg) {
-        this._svg.setAttribute(name, val);
-      }
-    },
-
-    _updateWidth() {
-      if (this._parentGridLayout) {
-        const width = this._parentGridLayout.getCellWidth() * this.getColspan();
-        this._svg.setAttribute('width', `${width}`);
-      }
-    },
-
-    _updateHeight() {
-      if (this._parentGridLayout) {
-        const height = this._parentGridLayout.getCellHeight() * this.getRowspan();
-        this._svg.setAttribute('height', `${height}`);
       }
     },
 
@@ -241,7 +213,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'svg-text-value',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'x', 'y', 'radius', 'stroke'];
+        static observedAttributes = ['icon', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'radius', 'stroke', 'title'];
         constructor() {
           super(QxClass);
         }

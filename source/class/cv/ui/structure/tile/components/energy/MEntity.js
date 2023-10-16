@@ -24,7 +24,6 @@
  * @author Tobias Bräutigam
  */
 qx.Mixin.define('cv.ui.structure.tile.components.energy.MEntity', {
-  include: cv.ui.structure.tile.MStringTransforms,
 
   /*
   ***********************************************
@@ -36,20 +35,6 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MEntity', {
       check: ['pv', 'battery', 'grid', 'house', 'charger', 'heatpump', 'consumer'],
       nullable: true,
       apply: '_applyType'
-    },
-
-    row: {
-      check: 'Number',
-      init: 0,
-      apply: '_applyPosition',
-      transform: '_parseFloat'
-    },
-
-    column: {
-      check: 'Number',
-      init: 0,
-      apply: '_applyPosition',
-      transform: '_parseFloat'
     },
 
     foregroundColor: {
@@ -81,23 +66,6 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MEntity', {
       if (bar) {
         bar.style.stroke = value;
       }
-    },
-
-    _applyPosition() {
-      if (this._parentGridLayout && this._svg) {
-        this._parentGridLayout.layout(this._svg, this.getRow(), this.getColumn());
-      }
     }
-  },
-
-  /*
-  ***********************************************
-    DESTRUCTOR
-  ***********************************************
-  */
-  destruct() {
-    this._disposeObjects('_connectorTo', '_connectorFrom');
-    this._connections.clear();
-    this._inverseConnections.clear();
   }
 });

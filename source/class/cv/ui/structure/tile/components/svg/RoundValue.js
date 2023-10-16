@@ -6,7 +6,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
   extend: cv.ui.structure.tile.components.Value,
-  include: cv.ui.structure.tile.MStringTransforms,
+  include: cv.ui.structure.tile.components.svg.MGraphicsElement,
 
   /*
   ***********************************************
@@ -41,18 +41,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       apply: '_applyIcon'
     },
 
-    x: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyToSvg'
-    },
-
-    y: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyToSvg'
-    },
-
     radius: {
       check: 'Number',
       init: 28,
@@ -80,7 +68,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
     _radius: null,
     _iconSize: null,
     _iconPosition: null,
-    _parentGridLayout: null,
     _fixedRadius: null,
 
     getSvg() {
@@ -97,26 +84,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       this._fixedRadius = element.hasAttribute('radius');
       const radius = this.getRadius();
       const strokeWidth = this.getStroke();
-      let parent = element;
-      let parentInstance = null;
-      let p = element.parentElement;
-      while (p && !parentInstance) {
-        if (p.nodeName.toLowerCase().startsWith('cv-') && p._instance && qx.Class.hasOwnMixin(p._instance.constructor, cv.ui.structure.tile.components.svg.MSvgGrid) ) {
-          parentInstance = p._instance;
-          parent = parentInstance.SVG;
-        } else if (p.nodeName.toLowerCase() === 'cv-page') {
-          // do not look outside the page
-          break;
-        } else {
-          p = p.parentElement;
-        }
-      }
-      this._parentGridLayout = parentInstance;
+      this._findParentGridLayout();
       if (this._parentGridLayout && !this._fixedRadius) {
         this._debouncedUpdateRadius = qx.util.Function.debounce(this._updateRadius.bind(this), 10);
         this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRadius, this);
       }
-
+      const parent = this._parentGridLayout ? this._parentGridLayout.SVG : element;
       this._iconPosition = {
         x: '50%',
         y: '30%'
@@ -189,6 +162,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       value.setAttribute('fill', 'var(--primaryText)');
       value.style.fontSize = '11px';
       this._target.appendChild(value);
+      this._applyPosition();
     },
 
     _updateRadius() {
@@ -283,12 +257,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       }
     },
 
-    _applyToSvg(val, oldVal, name) {
-      if (this._svg) {
-        this._svg.setAttribute(name, val);
-      }
-    },
-
     _applyIcon(iconName) {
       if (!this._target) {
         return;
@@ -373,7 +341,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'svg-round-value',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'x', 'y', 'radius', 'stroke'];
+        static observedAttributes = ['icon', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'radius', 'stroke'];
         constructor() {
           super(QxClass);
         }

@@ -105,7 +105,6 @@ qx.Class.define('cv.ui.structure.tile.components.energy.PowerEntity', {
           icon.style.fontSize = this._iconSize + 'px';
         }
       }
-      this._applyPosition();
       window.requestAnimationFrame(() => {
         this._applyConnectTo(this.getConnectTo());
         this._applyConnectFrom(this.getConnectFrom());
@@ -119,7 +118,7 @@ qx.Class.define('cv.ui.structure.tile.components.energy.PowerEntity', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'power-entity',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'type', 'stroke', 'radius', 'row', 'column', 'x', 'y', 'foreground-color', 'connect-to', 'connect-from', 'connection-points'];
+        static observedAttributes = ['icon', 'type', 'stroke', 'radius', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'foreground-color', 'connect-to', 'connect-from', 'connection-points'];
         constructor() {
           super(QxClass);
         }
