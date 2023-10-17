@@ -81,6 +81,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
 
     _drag(ev) {
       ev.preventDefault();
+      ev.stopImmediatePropagation();
       const CTM = this.SVG.getScreenCTM().inverse();
       this._dragPoint.x = ev.clientX;
       this._dragPoint.y = ev.clientY;
@@ -89,11 +90,17 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
       this.SVG.viewBox.baseVal.y -= this._dragPoint.y - this._startPoint.y;
     },
 
+    _cancelEvent(ev) {
+      ev.preventDefault();
+      ev.stopImmediatePropagation();
+    },
+
     _startDrag(ev) {
       if (typeof this.drag !== 'function') {
         this.drag = this._drag.bind(this);
       }
       this._element.addEventListener('pointermove', this.drag);
+      this._element.addEventListener('touchmove', this._cancelEvent)
 
       const CTM = this.SVG.getScreenCTM().inverse();
       this._dragPoint.x = ev.clientX;
@@ -103,6 +110,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
 
     _endDrag(ev) {
       this._element.removeEventListener("pointermove", this.drag);
+      this._element.removeEventListener('touchmove', this._cancelEvent)
     },
 
     _touchStart(ev) {

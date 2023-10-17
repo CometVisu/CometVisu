@@ -553,13 +553,13 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       icon.classList.add('ri-loader-4-fill');
       refreshSpinner.append(icon);
       document.body.append(refreshSpinner);
+      const eventSource = document;
 
       const onMove = ev => {
         const touchY = ev.touches[0].clientY;
         const touchDiff = touchY - startY;
-        if (touchDiff > 0 && scrollContainer.scrollTop === 0) {
+        if (touchDiff > 60 && scrollContainer.scrollTop === 0) {
           refreshSpinner.classList.add('visible');
-          ev.preventDefault();
         } else {
           refreshSpinner.classList.remove('visible');
         }
@@ -572,18 +572,18 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         }
       }
       const finish = () => {
-        document.removeEventListener('touchmove', onMove);
-        document.removeEventListener('touchend', onEnd);
-        document.removeEventListener('touchcancel', finish);
+        eventSource.removeEventListener('touchmove', onMove);
+        eventSource.removeEventListener('touchend', onEnd);
+        eventSource.removeEventListener('touchcancel', finish);
       }
-      document.addEventListener('touchstart', ev => {
+      eventSource.addEventListener('touchstart', ev => {
         startY = ev.touches[0].clientY;
         doRefresh = false;
         scrollContainer = document.querySelector('main');
         if (scrollContainer && scrollContainer.scrollTop === 0) {
-          document.addEventListener('touchmove', onMove);
-          document.addEventListener('touchend', onEnd);
-          document.addEventListener('touchcancel', finish);
+          eventSource.addEventListener('touchmove', onMove);
+          eventSource.addEventListener('touchend', onEnd);
+          eventSource.addEventListener('touchcancel', finish);
         }
       });
     }
