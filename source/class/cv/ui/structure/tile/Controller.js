@@ -295,6 +295,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
               }
             });
           }
+
+          this.enablePullToRefresh();
         });
         ajaxRequest.addListener('statusError', e => {
           const status = e.getTarget().getTransport().status;
@@ -373,7 +375,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * Generate the UI code from the config file
      * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
      */
-    createUI(config) {},
+    createUI(config) {
+    },
 
     observeVisibility() {
       // find all pages with an iframe with attribute "data-src" and observe its parent page
@@ -538,6 +541,51 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     _onChangeLocale() {
       this.translate(document.body, false, true);
+    },
+
+    enablePullToRefresh() {
+      let startY = 0;
+      let scrollContainer;
+
+      const refreshSpinner = document.createElement('div');
+      refreshSpinner.classList.add('pull-to-refresh');
+      const icon = document.createElement('i');
+      icon.classList.add('ri-loader-4-fill');
+      refreshSpinner.append(icon);
+      document.body.append(refreshSpinner);
+
+      const onMove = ev => {
+        const touchY = ev.touches[0].clientY;
+        const touchDiff = touchY - startY;
+        if (touchDiff > 0 && scrollContainer.scrollTop === 0) {
+          refreshSpinner.classList.add('visible');
+          ev.preventDefault();
+        } else {
+          refreshSpinner.classList.remove('visible');
+        }
+      }
+      const onEnd = () => {
+        finish();
+        if (refreshSpinner.classList.contains('visible')) {
+          refreshSpinner.classList.remove('visible');
+          location.reload();
+        }
+      }
+      const finish = () => {
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onEnd);
+        document.removeEventListener('touchcancel', finish);
+      }
+      document.addEventListener('touchstart', ev => {
+        startY = ev.touches[0].clientY;
+        doRefresh = false;
+        scrollContainer = document.querySelector('main');
+        if (scrollContainer && scrollContainer.scrollTop === 0) {
+          document.addEventListener('touchmove', onMove);
+          document.addEventListener('touchend', onEnd);
+          document.addEventListener('touchcancel', finish);
+        }
+      });
     }
   },
 
