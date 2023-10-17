@@ -62,7 +62,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
 
     _init() {
       super._init();
-      const svg = this.SVG = document.createElementNS( 'http://www.w3.org/2000/svg', 'svg');
+      const svg = this.SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       this._element.appendChild(svg);
 
       this.setResizeTarget(this._element);
@@ -100,7 +100,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
         this.drag = this._drag.bind(this);
       }
       this._element.addEventListener('pointermove', this.drag);
-      this._element.addEventListener('touchmove', this._cancelEvent)
+      this._element.addEventListener('touchmove', this._cancelEvent);
 
       const CTM = this.SVG.getScreenCTM().inverse();
       this._dragPoint.x = ev.clientX;
@@ -109,23 +109,23 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
     },
 
     _endDrag(ev) {
-      this._element.removeEventListener("pointermove", this.drag);
-      this._element.removeEventListener('touchmove', this._cancelEvent)
+      this._element.removeEventListener('pointermove', this.drag);
+      this._element.removeEventListener('touchmove', this._cancelEvent);
     },
 
     _touchStart(ev) {
       if (ev.touches.length === 1) {
         if (!this._expiredTouchStart) {
-          this._expiredTouchStart = ev.timeStamp + 400
+          this._expiredTouchStart = ev.timeStamp + 400;
         } else if (ev.timeStamp <= this._expiredTouchStart) {
           // remove the default of this event ( Zoom )
           //ev.preventDefault()
           this.resetDrag();
           // then reset the variable for other "double Touches" event
-          this._expiredTouchStart = null
+          this._expiredTouchStart = null;
         } else {
           // if the second touch was expired, make it as it's the first
-          this._expiredTouchStart = ev.timeStamp + 400
+          this._expiredTouchStart = ev.timeStamp + 400;
         }
       }
       ev.preventDefault();
@@ -321,7 +321,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
             const svg = d3.select(this._element).select('svg');
             svg.transition()
               .duration(500)
-              .attr('viewBox', `${x} ${y} ${width} ${height}`)
+              .attr('viewBox', `${x} ${y} ${width} ${height}`);
           } else {
             this.SVG.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
           }

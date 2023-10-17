@@ -563,22 +563,21 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         } else {
           refreshSpinner.classList.remove('visible');
         }
-      }
+      };
       const onEnd = () => {
         finish();
         if (refreshSpinner.classList.contains('visible')) {
           refreshSpinner.classList.remove('visible');
           location.reload();
         }
-      }
+      };
       const finish = () => {
         eventSource.removeEventListener('touchmove', onMove);
         eventSource.removeEventListener('touchend', onEnd);
         eventSource.removeEventListener('touchcancel', finish);
-      }
+      };
       eventSource.addEventListener('touchstart', ev => {
         startY = ev.touches[0].clientY;
-        doRefresh = false;
         scrollContainer = document.querySelector('main');
         if (scrollContainer && scrollContainer.scrollTop === 0) {
           eventSource.addEventListener('touchmove', onMove);
@@ -628,9 +627,9 @@ class TemplatedElement extends HTMLElement {
         const replacementSelector = slot.hasAttribute('replaces') ? slot.getAttribute('replaces') : '';
         const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
-        if (slotContents.length === 0 && slotName === "default") {
+        if (slotContents.length === 0 && slotName === 'default') {
           // add all elements that have no slot to this default slot
-          slotContents = this.querySelectorAll(`:scope > *:not([slot])`);
+          slotContents = this.querySelectorAll(':scope > *:not([slot])');
         }
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {

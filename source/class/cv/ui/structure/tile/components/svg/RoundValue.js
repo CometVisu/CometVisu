@@ -101,7 +101,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       let parentInstance = null;
       let p = element.parentElement;
       while (p && !parentInstance) {
-        if (p.nodeName.toLowerCase().startsWith('cv-') && p._instance && qx.Class.hasOwnMixin(p._instance.constructor, cv.ui.structure.tile.components.svg.MSvgGrid) ) {
+        if (p.nodeName.toLowerCase().startsWith('cv-') && p._instance && qx.Class.hasOwnMixin(p._instance.constructor, cv.ui.structure.tile.components.svg.MSvgGrid)) {
           parentInstance = p._instance;
           parent = parentInstance.SVG;
         } else if (p.nodeName.toLowerCase() === 'cv-page') {

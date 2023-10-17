@@ -77,7 +77,7 @@ qx.Class.define('cv.util.Svg', {
         }
       }
       return bbox;
-    },
+    }
   }
 });
 
