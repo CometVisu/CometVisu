@@ -60,7 +60,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Mapping', {
      * @param val {variant}
      * @param store {Map<string, variant>?} optional stored values from other addresses
      * @param params {Array<variant>?} optional array of parameters for the mapping
-     * @param emptyWhenNoMatch{Boolean}
+     * @param emptyWhenNoMatch {Boolean} return empty string when no mapped value is found, otherwise the value is returned (default)
      * @return {string|*|string}
      */
     mapValue(val, store, params, emptyWhenNoMatch = false) {

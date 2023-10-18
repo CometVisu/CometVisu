@@ -553,37 +553,36 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       icon.classList.add('ri-loader-4-fill');
       refreshSpinner.append(icon);
       document.body.append(refreshSpinner);
+      const eventSource = document;
 
       const onMove = ev => {
         const touchY = ev.touches[0].clientY;
         const touchDiff = touchY - startY;
-        if (touchDiff > 0 && scrollContainer.scrollTop === 0) {
+        if (touchDiff > 60 && scrollContainer.scrollTop === 0) {
           refreshSpinner.classList.add('visible');
-          ev.preventDefault();
         } else {
           refreshSpinner.classList.remove('visible');
         }
-      }
+      };
       const onEnd = () => {
         finish();
         if (refreshSpinner.classList.contains('visible')) {
           refreshSpinner.classList.remove('visible');
           location.reload();
         }
-      }
+      };
       const finish = () => {
-        document.removeEventListener('touchmove', onMove);
-        document.removeEventListener('touchend', onEnd);
-        document.removeEventListener('touchcancel', finish);
-      }
-      document.addEventListener('touchstart', ev => {
+        eventSource.removeEventListener('touchmove', onMove);
+        eventSource.removeEventListener('touchend', onEnd);
+        eventSource.removeEventListener('touchcancel', finish);
+      };
+      eventSource.addEventListener('touchstart', ev => {
         startY = ev.touches[0].clientY;
-        doRefresh = false;
         scrollContainer = document.querySelector('main');
         if (scrollContainer && scrollContainer.scrollTop === 0) {
-          document.addEventListener('touchmove', onMove);
-          document.addEventListener('touchend', onEnd);
-          document.addEventListener('touchcancel', finish);
+          eventSource.addEventListener('touchmove', onMove);
+          eventSource.addEventListener('touchend', onEnd);
+          eventSource.addEventListener('touchcancel', finish);
         }
       });
     }
@@ -628,9 +627,9 @@ class TemplatedElement extends HTMLElement {
         const replacementSelector = slot.hasAttribute('replaces') ? slot.getAttribute('replaces') : '';
         const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
-        if (slotContents.length === 0 && slotName === "default") {
+        if (slotContents.length === 0 && slotName === 'default') {
           // add all elements that have no slot to this default slot
-          slotContents = this.querySelectorAll(`:scope > *:not([slot])`);
+          slotContents = this.querySelectorAll(':scope > *:not([slot])');
         }
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {

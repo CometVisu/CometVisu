@@ -206,7 +206,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       } else {
         this._queuedOverflowDetection = true;
       }
-    },
+    }
   },
 
   defer(QxClass) {

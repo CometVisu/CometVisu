@@ -63,7 +63,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     source: {
       check: 'cv.ui.structure.tile.components.energy.PowerEntity',
       apply: '_applySource',
-      nullable: true,
+      nullable: true
     },
     target: {
       check: 'cv.ui.structure.tile.components.energy.PowerEntity',
@@ -133,7 +133,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     },
 
     _applyTarget(value, oldValue) {
-      const source = this.getSource();
       if (oldValue) {
         this._targetObserver.disconnect();
       }
@@ -320,7 +319,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     },
 
     drawPath(path, startX, startY, endX, endY) {
-      const deltaX = (endX - startX) * 0.15;
+       /* const deltaX = (endX - startX) * 0.15;
       const deltaY = (endY - startY) * 0.15;
       // for further calculations which ever is the shortest distance
       const delta  =  deltaY < Math.abs(deltaX) ? deltaY : Math.abs(deltaX);
@@ -331,16 +330,17 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         arc1 = 1;
         arc2 = 0;
       }
-      // draw straight line
-      path.setAttribute('d',  `M${startX} ${startY} L ${endX} ${endY}`);
 
-      /*// 1. move a bit down, 2. arch,  3. move a bit to the right, 4.arch, 5. move down to the end
+      // 1. move a bit down, 2. arch,  3. move a bit to the right, 4.arch, 5. move down to the end
       path.setAttribute('d',  'M'  + startX + ' ' + startY +
         ' V' + (startY + delta) +
         ' A' + delta + ' ' +  delta + ' 0 0 ' + arc1 + ' ' + (startX + delta*Math.sign(deltaX)) + ' ' + (startY + 2*delta) +
         ' H' + (endX - delta*Math.sign(deltaX)) +
         ' A' + delta + ' ' +  delta + ' 0 0 ' + arc2 + ' ' + endX + ' ' + (startY + 3*delta) +
         ' V' + endY);*/
+
+      // draw straight line
+      path.setAttribute('d',  `M${startX} ${startY} L ${endX} ${endY}`);
     },
 
     _applyRoot(root, oldRoot) {

@@ -182,7 +182,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
 
     _applyConnectTo(targetId) {
       if (this._svg && targetId) {
-        const parent = this._element.parentElement
+        const parent = this._element.parentElement;
         const target = parent.querySelector('#' + targetId);
         if (target && target.nodeName.toLowerCase() === 'cv-power-entity') {
           if (!this._connectorTo) {
@@ -205,7 +205,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
 
     _applyConnectFrom(sourceId) {
       if (this._svg && sourceId) {
-        const parent = this._element.parentElement
+        const parent = this._element.parentElement;
         const source = parent.querySelector('#' + sourceId);
         if (source && source.nodeName.toLowerCase() === 'cv-power-entity') {
           if (!this._connectorFrom) {
