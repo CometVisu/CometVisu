@@ -162,6 +162,11 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       value.setAttribute('fill', 'var(--primaryText)');
       value.style.fontSize = '11px';
       this._target.appendChild(value);
+
+      this._updateHeight();
+      this._updateWidth();
+
+      this._applyPosition();
     },
 
     _updateRadius() {
