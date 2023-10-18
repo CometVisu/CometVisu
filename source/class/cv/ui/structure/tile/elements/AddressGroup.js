@@ -117,9 +117,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
         if (this._values.length > 0) {
           switch (this.getOperator()) {
             case '+':
-              val = this._values.reduce((accumulator, currentValue) => {
-                return accumulator + currentValue;
-              }, val);
+              val = this._values.reduce((accumulator, currentValue) => accumulator + currentValue, val);
               break;
 
             case '-':
@@ -131,9 +129,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
               break;
 
             case '*':
-              val = this._values.reduce((accumulator, currentValue) => {
-                return accumulator * currentValue;
-              }, val);
+              val = this._values.reduce((accumulator, currentValue) => accumulator * currentValue, val);
               break;
 
             case '/':
