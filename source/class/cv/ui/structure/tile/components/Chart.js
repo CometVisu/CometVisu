@@ -497,6 +497,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     refresh() {
       this._loaded = false;
+      this.__updateTimeRange();
       this._loadData();
     },
 
@@ -548,29 +549,24 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         case 'hour':
           interval = 60 * 60;
           periodStart.setHours(periodStart.getHours() - currentPeriod, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setHours(periodStart.getHours() + 1, 0, 0, 0);
-          }
+          end.setHours(periodStart.getHours() + 1, 0, 0, 0);
           break;
 
         case 'day':
           interval = 24 * 60 * 60;
           periodStart.setDate(periodStart.getDate() - currentPeriod);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setDate(periodStart.getDate() + 1);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setDate(periodStart.getDate() + 1);
+          end.setHours(0, 0, 0, 0);
+          console.log(periodStart, end);
           break;
 
         case 'week':
           interval = 7 * 24 * 60 * 60;
           periodStart.setDate(periodStart.getDate() - (periodStart.getDay() || 7) + 1 - 7 * currentPeriod);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setDate(periodStart.getDate() + 7);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setDate(periodStart.getDate() + 7);
+          end.setHours(0, 0, 0, 0);
           break;
 
         case 'month':
@@ -578,10 +574,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           periodStart.setMonth(periodStart.getMonth() - currentPeriod);
           periodStart.setDate(1);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setMonth(periodStart.getMonth() + 1, 1);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setMonth(periodStart.getMonth() + 1, 1);
+          end.setHours(0, 0, 0, 0);
           break;
 
         case 'year':
@@ -589,11 +583,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           periodStart.setFullYear(periodStart.getFullYear() - currentPeriod);
           periodStart.setMonth(0, 1);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setFullYear(periodStart.getFullYear() + 1);
-            end.setMonth(periodStart.getMonth() + 1, 1);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setFullYear(periodStart.getFullYear() + 1);
+          end.setMonth(periodStart.getMonth() + 1, 1);
+          end.setHours(0, 0, 0, 0);
           break;
       }
       let startTs = Math.round(periodStart.getTime()/1000);
@@ -958,19 +950,31 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Compute default domains, and unique the z-domain.
       let xDomain = d3.extent(X);
       let minVal = 0;
-      const zeroBased = !this._element.hasAttribute('zero-based') || this._element.getAttribute('zero-based') === 'true';
-      if (!zeroBased) {
+      let maxVal = 0;
+      if (this._element.hasAttribute('min')) {
+        const min = parseFloat(this._element.getAttribute('min'));
+        if (!isNaN(min)) {
+          minVal = min;
+        }
+      } else {
         minVal = d3.min(Y);
         if (minVal > 1.0) {
           minVal -= 1;
         }
       }
-      let maxVal = d3.max(Y);
-      if (maxVal > 1.0) {
-        // add some inner chart padding
-        maxVal += 1;
+      if (this._element.hasAttribute('max')) {
+        const max = parseFloat(this._element.getAttribute('max'));
+        if (!isNaN(max)) {
+          maxVal = max;
+        }
       } else {
-        maxVal += 0.1;
+        maxVal = d3.max(Y);
+        if (maxVal > 1.0) {
+          // add some inner chart padding
+          maxVal += 1;
+        } else {
+          maxVal += 0.1;
+        }
       }
       const yDomain = [minVal, maxVal];
       const zDomain = new d3.InternSet(Z);
@@ -1209,7 +1213,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._dot = svg.select('g.dot');
 
       // show zero line in grid for non-zero based charts
-      if (!zeroBased) {
+      if (minVal !== 0) {
         let targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
         let yValue = 0.0;
         let data = [0, X.length-1];
