@@ -38,6 +38,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
     if (!element.hasAttribute('id')) {
       element.setAttribute('id', `address-group_${cv.ui.structure.tile.elements.AddressGroup.C++}`);
     }
+    this.debouncedCalc = qx.util.Function.debounce(this._updateCalculation.bind(this), 10);
   },
 
   /*
@@ -77,6 +78,12 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
       check: 'Number',
       init: 1,
       transform: '_parseFloat'
+    },
+
+    valid: {
+      check: 'Boolean',
+      init: true,
+      apply: '_applyValid'
     }
   },
 
@@ -111,6 +118,10 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
       }
     },
 
+    _applyValid(valid) {
+      this._element.setAttribute('data-valid', '' + valid);
+    },
+
     _updateCalculation() {
       if (this.isConnected()) {
         let val = 0;
@@ -141,11 +152,17 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
               break;
           }
         }
-        val *= this.getFactor();
-        if (this.isRound()) {
-          val = Math.round(val);
+        const valid = !isNaN(val) && isFinite(val);
+        this.setValid(valid);
+        if (valid) {
+          val *= this.getFactor();
+          if (this.isRound()) {
+            val = Math.round(val);
+          }
+          this.setValue(val);
+        } else {
+          this.resetValue();
         }
-        this.setValue(val);
       }
     },
 
@@ -153,7 +170,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
       const index = Array.prototype.indexOf.call(this._element.children, ev.detail.source.getElement());
       if (index >= 0) {
         this._values[index] = ev.detail.state;
-        this._updateCalculation();
+        this.debouncedCalc();
       }
     }
   },
