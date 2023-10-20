@@ -42,7 +42,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   properties: {
     value: {
       apply: '_applyValue',
-      init: null,
+      nullable: true,
       event: 'changeValue'
     },
 
@@ -275,14 +275,16 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         for (const hookEntry of this._preMappingHooks) {
           mappedValue = hookEntry[0].call(hookEntry[1], mappedValue);
         }
-        if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
-        }
-        if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
-          mappedValue = cv.util.String.sprintf(
-            this._element.getAttribute('format'),
-            mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
-          );
+        if (mappedValue !== null) {
+          if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
+            mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
+          }
+          if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
+            mappedValue = cv.util.String.sprintf(
+              this._element.getAttribute('format'),
+              mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
+            );
+          }
         }
         this._updateValue(mappedValue, value);
         if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {

@@ -1148,6 +1148,10 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="operator">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Math operator used for calculation.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Mathematischer Operator für Berechnung.</xsd:documentation>
+      </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="+" />
@@ -1157,8 +1161,18 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-    <xsd:attribute name="round" type="xsd:boolean"/>
-    <xsd:attribute name="factor" type="xsd:float"/>
+    <xsd:attribute name="round" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Round the result.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ergebnis runden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="factor" type="xsd:float">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Multiply the result with this value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ergebnis mit diesem Wert multiplizieren.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
   <!--
   #####################################################################################################################
@@ -2057,42 +2071,65 @@
         <xsd:documentation xml:lang="de">Icon festlegen, wird automatisch von Typ festgelegt und kann hiermit überschrieben werden.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="styling" ref="styling"/>
-    <xsd:attribute name="mapping" ref="mapping"/>
-    <xsd:attribute name="format" ref="format"/>
+    <xsd:attribute ref="styling"/>
+    <xsd:attribute ref="mapping"/>
+    <xsd:attribute ref="format"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-svg-round-value">
-    <xsd:complexContent>
-      <xsd:extension base="cv-round-progress">
-        <xsd:sequence>
-          <xsd:element name="cv-address" type="address"/>
-          <xsd:element name="cv-address-group" type="cv-address-group"/>
-        </xsd:sequence>
-        <xsd:attribute name="id" type="xsd:string">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">ID of this element.</xsd:documentation>
-            <xsd:documentation xml:lang="de">ID dieses Elements.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-        <xsd:attribute name="title" type="xsd:string">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Title of this element.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Titel dieses Elements.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-        <xsd:attributeGroup ref="svg-position-attributes"/>
-        <xsd:attribute name="icon" type="xsd:string">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Defines the icon, usually the icon is pre-defined by the type, but can be overridden by this attribute.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Icon festlegen, wird automatisch von Typ festgelegt und kann hiermit überschrieben werden.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-        <xsd:attribute name="styling" ref="styling"/>
-        <xsd:attribute name="mapping" ref="mapping"/>
-        <xsd:attribute name="format" ref="format"/>
-      </xsd:extension>
-    </xsd:complexContent>
+    <xsd:sequence>
+      <xsd:element name="cv-address" type="address"/>
+      <xsd:element name="cv-address-group" type="cv-address-group"/>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID of this element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID dieses Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of this element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel dieses Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="svg-position-attributes"/>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the icon, usually the icon is pre-defined by the type, but can be overridden by this attribute.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon festlegen, wird automatisch von Typ festgelegt und kann hiermit überschrieben werden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="radius" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Radius of the circle.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Radius des Kreises. </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="stroke" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Stroke width of the circle border.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Randbreite des Kreises.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="min"/>
+    <xsd:attribute ref="max"/>
+    <xsd:attribute name="foreground-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the value bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Wertbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="background-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the background bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Hintergrundbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="styling"/>
+    <xsd:attribute ref="mapping"/>
+    <xsd:attribute ref="format"/>
   </xsd:complexType>
 
 

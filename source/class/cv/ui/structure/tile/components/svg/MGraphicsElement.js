@@ -64,8 +64,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
       init: 1,
       apply: '_updateWidth',
       transform: '_parseFloat'
-    },
-
+    }
   },
 
   /*
@@ -80,7 +79,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
       let parentInstance = null;
       let p = this._element.parentElement;
       while (p && !parentInstance) {
-        if (p.nodeName.toLowerCase().startsWith('cv-') && p._instance && qx.Class.hasOwnMixin(p._instance.constructor, cv.ui.structure.tile.components.svg.MSvgGrid) ) {
+        if (p.nodeName.toLowerCase().startsWith('cv-') && p._instance && qx.Class.hasOwnMixin(p._instance.constructor, cv.ui.structure.tile.components.svg.MSvgGrid)) {
           parentInstance = p._instance;
         } else if (p.nodeName.toLowerCase() === 'cv-page') {
           // do not look outside the page
@@ -117,5 +116,5 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
         this._parentGridLayout.layout(this._svg, this.getRow(), this.getColumn());
       }
     }
-  },
+  }
 });
