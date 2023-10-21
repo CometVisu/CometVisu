@@ -369,4 +369,22 @@
             </cv-value>
         </footer>
     </template>
+    <template id="energy">
+        <header>
+            <label class="title">
+                <slot name="title">TITLE</slot>
+            </label>
+            <slot name="header"/>
+        </header>
+        <cv-tile>
+            <cv-menu>
+                <slot name="menu" parent-scope="1"/>
+            </cv-menu>
+            <cv-flow slot-rows="3" slot-columns="6" slot-pan="true" slot-view-box="0 0 6 3" slot-pagination="horizontal">
+                <slot name="default"/>
+            </cv-flow>
+            <slot name="tileAddress">NEEDS ADDRESS</slot>
+        </cv-tile>
+        <footer><slot name="footer"/></footer>
+    </template>
 </templates>

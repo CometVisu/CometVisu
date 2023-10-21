@@ -2092,6 +2092,19 @@ body {
         width: calc(var(--tileCellWidth) * #{$tileColumns});
         height: calc(var(--tileCellHeight) * #{$tileRows});
         position: relative;
+        display: block;
+
+        cv-tile {
+            display: block;
+        }
+    }
+
+    cv-flow {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
 
         > svg {
             width: 100%;

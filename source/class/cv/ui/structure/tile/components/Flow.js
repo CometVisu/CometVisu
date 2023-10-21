@@ -18,15 +18,15 @@
  */
 
 /**
- * Energy management widget.
+ * Flow management widget.
  *
  * @author Tobias Bräutigam
  * @since 2023
  *
  * @ignore(d3.select)
  */
-qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
-  extend: cv.ui.structure.tile.widgets.Tile,
+qx.Class.define('cv.ui.structure.tile.components.Flow', {
+  extend: cv.ui.structure.tile.components.AbstractComponent,
   include: [cv.ui.structure.tile.components.svg.MSvgGrid, cv.ui.structure.tile.MResize],
 
   /*
@@ -368,7 +368,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Energy', {
 
   defer(QxClass) {
     customElements.define(
-      cv.ui.structure.tile.Controller.PREFIX + 'energy',
+      cv.ui.structure.tile.Controller.PREFIX + 'flow',
       class extends QxConnector {
         // @ignore
         static observedAttributes = ['view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination'];

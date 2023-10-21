@@ -618,6 +618,7 @@
       <xsd:element name="cv-list" type="cv-list" />
       <xsd:element name="cv-color" type="cv-color" />
       <xsd:element name="cv-icon" type="cv-icon" />
+      <xsd:element name="cv-flow" type="cv-flow" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
       <xsd:element name="cv-plugin" type="cv-plugin"/>
@@ -1861,6 +1862,13 @@
     <xsd:attribute ref="max" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-energy">
+    <xsd:complexContent>
+    <xsd:extension base="cv-flow">
+    </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
   <!--
   #####################################################################################################################
   # END: template based type (of templates that the structure has build in)
@@ -1958,7 +1966,7 @@
     </xsd:complexContent>
   </xsd:complexType>
 
-  <xsd:complexType name="cv-energy">
+  <xsd:complexType name="cv-flow">
     <xsd:sequence>
       <xsd:element name="cv-power-entity" type="cv-power-entity" maxOccurs="unbounded" />
       <xsd:element name="cv-energy-entity" type="cv-energy-entity" maxOccurs="unbounded" />
