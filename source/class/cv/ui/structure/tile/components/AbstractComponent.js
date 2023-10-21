@@ -42,6 +42,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   properties: {
     value: {
       apply: '_applyValue',
+      init: null,
       nullable: true,
       event: 'changeValue'
     },
