@@ -1,14 +1,20 @@
 .. _tile-element-address-group:
 
-Adress-Gruppen - Rechnen mit Address-Werten
-===========================================
+Address-Gruppen - Rechnen mit Address-Werten
+============================================
 
 .. api-doc:: cv.ui.structure.tile.elements.AddressGroup
 
 Mit einer ``<cv-address-group>`` können Berechnungen mit den numerischen Werte von 
 mehreren ``<cv-address>``-Elementen vorgenommen werden. Mit dem folgenden einfachsten Beispiel 
-werden die beiden Werte der Gruppenaddressen ``1/1/0`` und ``1/1/1`` addiert und der resultierende
+werden die beiden Werte der Gruppenadressen ``1/1/0`` und ``1/1/1`` addiert und der resultierende
 Wert kann dann in einem Widget angezeigt werden.
+
+.. hint::
+
+    Sollte die Berechnung in einem fehlerhaften Ergebnis resultieren (z.B. bei einer Division durch 0),
+    wird ein leeres Ergebnis weitergemeldet. In diesen Fall wird dem ``<cv-address-group>`` das Attribut
+    ``data-valid="false"`` hinzugefügt.
 
 .. code-block:: xml
 
