@@ -263,6 +263,9 @@ oder die Bedienung einer Rolllade (Shutter).
     | .. image:: widgets/_static/cv-widget-pair.png            |  :ref:`tile-widget-pair`                                  |
     |    :width: 150                                           | Ermöglicht es zwei Kacheln in halber Höhe darzustellen    |
     +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-energy.png                 |  :ref:`tile-widget-energy`                                |
+    |    :width: 150                                           | Zeigt Energieflüsse innerhalb eines Hauses an             |
+    +----------------------------------------------------------+-----------------------------------------------------------+
 
 .. toctree::
     :maxdepth: 1
@@ -278,6 +281,7 @@ oder die Bedienung einer Rolllade (Shutter).
     RTC <widgets/rtc>
     Media Player <widgets/media-player>
     Widget-pair <widgets/widget-pair>
+    Energy <widgets/energy>
 
 Eigene Widgets definieren
 =========================
@@ -487,6 +491,7 @@ mehrere Komponenten in einer Kachel.
     List <components/list>
     Chart <components/chart>
     Color <components/color>
+    Flow <components/flow>
 
 
 Sonstiges
