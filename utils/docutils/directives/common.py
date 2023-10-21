@@ -43,6 +43,7 @@ class BaseDirective(Directive):
         self.type_mapping = {
             'boolean': "*true* %s *false*" % _('or'),
             'string': _('string'),
+            'token': _('string'),
             'decimal': _('decimal'),
             'uri': _('uri'),
             'addr': _('addr'),
@@ -64,6 +65,7 @@ class BaseXsdDirective(BaseDirective):
         return 0, 0, self.content_offset, statemachine.StringList(content.splitlines())
 
     def normalize_values(self, values):
+        values = ["\*" if x == "*" else x for x in values]
         if len(values) <= 1:
             res = "*%s*" % ("* %s *" % _("or")).join(values)
         else:
