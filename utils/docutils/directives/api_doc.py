@@ -51,7 +51,7 @@ class ApiDocDirective(Directive):
 
     def init_part_translations(self):
         self.part_translations = {
-            'since': _("Available since version"),
+            'since': _("Available since"),
             'author': _('Author')
         }
 
