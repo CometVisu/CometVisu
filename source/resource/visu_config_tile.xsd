@@ -1865,6 +1865,10 @@
   <xsd:complexType name="cv-energy">
     <xsd:complexContent>
     <xsd:extension base="cv-flow">
+      <xsd:sequence>
+        <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
+        <xsd:element name="cv-svg-round-value" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
+      </xsd:sequence>
     </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -1968,9 +1972,8 @@
 
   <xsd:complexType name="cv-flow">
     <xsd:sequence>
-      <xsd:element name="cv-power-entity" type="cv-power-entity" maxOccurs="unbounded" />
-      <xsd:element name="cv-energy-entity" type="cv-energy-entity" maxOccurs="unbounded" />
-      <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" maxOccurs="unbounded" />
+      <xsd:element name="cv-svg-round-value" type="cv-svg-round-value" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />
     </xsd:sequence>
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attributeGroup ref="appearance-attributes" />
@@ -2057,8 +2060,8 @@
 
   <xsd:complexType name="cv-svg-text-value">
     <xsd:sequence>
-      <xsd:element name="cv-address" type="address"/>
-      <xsd:element name="cv-address-group" type="cv-address-group"/>
+      <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:string">
       <xsd:annotation>
@@ -2086,8 +2089,8 @@
 
   <xsd:complexType name="cv-svg-round-value">
     <xsd:sequence>
-      <xsd:element name="cv-address" type="address"/>
-      <xsd:element name="cv-address-group" type="cv-address-group"/>
+      <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:string">
       <xsd:annotation>
@@ -2306,7 +2309,7 @@
 
   <xsd:simpleType name="color">
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="[a-z]+|#[\da-fA-F]{6}([\da-fA-F]{2})?|rgb\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5])\)?|rgba\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?(1|1.0|0\.[0-9]+)\)?"/>
+      <xsd:pattern value="var\(--.+\)|[a-z]+|#[\da-fA-F]{6}([\da-fA-F]{2})?|rgb\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5])\)?|rgba\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?(1|1.0|0\.[0-9]+)\)?"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -2716,25 +2719,25 @@
         <xsd:documentation xml:lang="de">Position dieses Elements auch der y-Achse.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="row" type="xsd:integer">
+    <xsd:attribute name="row" type="xsd:decimal">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Row this element is placed in.</xsd:documentation>
         <xsd:documentation xml:lang="de">Zeile in der dieses Element platziert wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="column" type="xsd:integer">
+    <xsd:attribute name="column" type="xsd:decimal">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Column this element is placed in.</xsd:documentation>
         <xsd:documentation xml:lang="de">Spalte in der dieses Element platziert wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="rowspan" type="xsd:integer" default="1">
+    <xsd:attribute name="rowspan" type="xsd:decimal" default="1">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Number of rows this element spans</xsd:documentation>
         <xsd:documentation xml:lang="de">Anzahl der Zeilen die dieses Element belegt</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="colspan" type="xsd:integer" default="1">
+    <xsd:attribute name="colspan" type="xsd:decimal" default="1">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Number of columns this element spans</xsd:documentation>
         <xsd:documentation xml:lang="de">Anzahl der Spalten die dieses Element belegt</xsd:documentation>
