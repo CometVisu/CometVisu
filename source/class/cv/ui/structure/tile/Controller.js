@@ -734,7 +734,8 @@ class TemplatedElement extends QxConnector {
       const attributes = this.getAttributeNames();
       attributes.forEach(name => {
         let value = this.getAttribute(name);
-        const targets = content.querySelectorAll('[slot-' + name + ']');
+        const slotAttributeName = `slot-${name}`;
+        const targets = content.querySelectorAll(`[${slotAttributeName}]`);
         let targetName = name;
         // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
         if (name.endsWith('-mapping')) {
@@ -745,15 +746,15 @@ class TemplatedElement extends QxConnector {
           targetName = 'format';
         }
         for (const target of targets) {
-          if (targetName !== name && target.hasAttribute('slot-' + name)) {
-            const targetValue = target.getAttribute('slot-' + name);
+          if (target.hasAttribute(slotAttributeName)) {
+            const targetValue = target.getAttribute(slotAttributeName);
             if (targetValue.startsWith(':')) {
               // this template slot-attribute contains some configuration
               for (const entry of targetValue.substring(1).split(',')) {
                 const [key, value] = entry.split('=');
                 switch (key) {
                   case 'target':
-                    name = value;
+                    targetName = value;
                     break;
                   default:
                     qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
@@ -761,14 +762,9 @@ class TemplatedElement extends QxConnector {
                 }
               }
             }
-            target.setAttribute(name, value);
-
-            target.removeAttribute('slot-' + name);
-          } else {
-            target.setAttribute(targetName, value);
-
-            target.removeAttribute('slot-' + targetName);
           }
+          target.setAttribute(targetName, value);
+          target.removeAttribute(slotAttributeName);
         }
         if (targets.length > 0) {
           this.removeAttribute(name);
@@ -777,6 +773,7 @@ class TemplatedElement extends QxConnector {
       content.querySelectorAll('*').forEach(elem => {
         [...elem.attributes].forEach(attr => {
           if (attr.name.startsWith('slot-')) {
+            let value = attr.value;
             let targetName = attr.name.substring(5);
             // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute
             if (attr.name.endsWith('-mapping') && elem.hasAttribute('slot-mapping')) {
@@ -785,9 +782,27 @@ class TemplatedElement extends QxConnector {
               targetName = 'styling';
             } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
               targetName = 'format';
+            } else if (attr.value.startsWith(':')) {
+              // this template slot-attribute contains some configuration
+              const parts = attr.value.substring(1).split(',');
+              if (!parts[parts.length-1].includes('=')) {
+                // this is the value
+                value = parts.pop();
+              }
+              for (const entry of parts) {
+                const [key, value] = entry.split('=');
+                switch (key) {
+                  case 'target':
+                    targetName = value;
+                    break;
+                  default:
+                    qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
+                    break;
+                }
+              }
             }
-            if (attr.value && !attr.value.startsWith(':')) {
-              elem.setAttribute(targetName, attr.value);
+            if (value) {
+              elem.setAttribute(targetName, value);
             }
             elem.removeAttribute(attr.name);
           }

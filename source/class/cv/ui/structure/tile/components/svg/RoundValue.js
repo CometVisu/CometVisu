@@ -170,8 +170,13 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       // check if we have a sum of multiple addresses, then show the amount
       let sumGroup = element.querySelector(':scope > cv-address-group[operator="+"]');
       if (sumGroup) {
-        const group = sumGroup._instance;
-        group.bind('nonZeroValues', this, 'amount');
+        if (!sumGroup._instance) {
+          window.requestAnimationFrame(() => {
+            sumGroup._instance.bind('nonZeroValues', this, 'amount');
+          });
+        } else {
+          sumGroup._instance.bind('nonZeroValues', this, 'amount');
+        }
       } else {
         this.setAmount(element.querySelectorAll(':scope > cv-address:not([target])').length);
       }

@@ -1866,6 +1866,28 @@
     <xsd:complexContent>
       <xsd:extension base="cv-flow">
         <xsd:sequence>
+          <xsd:element name="cv-address" maxOccurs="unbounded">
+            <xsd:complexType>
+              <xsd:simpleContent>
+                <xsd:extension base="address">
+                  <xsd:attribute name="slot" use="required">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="pv-power" />
+                        <xsd:enumeration value="grid-power" />
+                        <xsd:enumeration value="battery-power" />
+                        <xsd:enumeration value="battery-other" />
+                        <xsd:enumeration value="charger-power" />
+                        <xsd:enumeration value="heatpump-power" />
+                        <xsd:enumeration value="consumer-power" />
+                        <xsd:enumeration value="tileAddress" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:extension>
+              </xsd:simpleContent>
+            </xsd:complexType>
+          </xsd:element>
           <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
           <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>

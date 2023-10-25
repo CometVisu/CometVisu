@@ -27,7 +27,11 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Flow', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: [cv.ui.structure.tile.components.svg.MSvgGrid, cv.ui.structure.tile.MResize],
+  include: [
+    cv.ui.structure.tile.components.svg.MSvgGrid,
+    cv.ui.structure.tile.MResize,
+    cv.ui.structure.tile.MStringTransforms
+  ],
 
   /*
   ***********************************************
@@ -46,6 +50,20 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       check: ['none', 'horizontal', 'vertical', 'both'],
       init: 'none',
       apply: '_applyPagination'
+    },
+
+    centerX: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyCenterX',
+      transform: '_parseBoolean'
+    },
+
+    centerY: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyCenterY',
+      transform: '_parseBoolean'
     }
   },
 
@@ -77,6 +95,40 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         this._applyPan(true);
       }
       this._applyPagination(this.getPagination());
+    },
+
+    _applyCenterX(value) {
+      if (value) {
+        this.__adjustRow(this._element.querySelectorAll(':scope > *[row="0"]'));
+        this.__adjustRow(this._element.querySelectorAll(':scope > *[row="1"]'));
+        this.__adjustRow(this._element.querySelectorAll(':scope > *[row="2"]'));
+      }
+    },
+
+    _applyCenterY(value) {
+      if (value) {
+        this.__adjustColumn(this._element.querySelectorAll(':scope > *[column="0"]'));
+        this.__adjustColumn(this._element.querySelectorAll(':scope > *[column="1"]'));
+        this.__adjustColumn(this._element.querySelectorAll(':scope > *[column="2"]'));
+      }
+    },
+
+    __adjustRow(rowElements) {
+      if (rowElements.length === 1) {
+        rowElements[0].setAttribute('column', '1');
+      } else if (rowElements.length === 2) {
+        rowElements[0].setAttribute('column', '0.5');
+        rowElements[1].setAttribute('column', '1.5');
+      }
+    },
+
+    __adjustColumn(columnElements) {
+      if (columnElements.length === 1) {
+        columnElements[0].setAttribute('row', '1');
+      } else if (columnElements.length === 2) {
+        columnElements[0].setAttribute('row', '0.5');
+        columnElements[1].setAttribute('row', '1.5');
+      }
     },
 
     _drag(ev) {
@@ -371,7 +423,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       cv.ui.structure.tile.Controller.PREFIX + 'flow',
       class extends QxConnector {
         // @ignore
-        static observedAttributes = ['view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination'];
+        static observedAttributes = ['view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination', 'center-x','center-y'];
         constructor() {
           super(QxClass);
         }
