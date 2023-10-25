@@ -1864,12 +1864,12 @@
 
   <xsd:complexType name="cv-energy">
     <xsd:complexContent>
-    <xsd:extension base="cv-flow">
-      <xsd:sequence>
-        <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
-        <xsd:element name="cv-svg-round-value" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
-      </xsd:sequence>
-    </xsd:extension>
+      <xsd:extension base="cv-flow">
+        <xsd:sequence>
+          <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
+          <xsd:element name="cv-energy-value" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
