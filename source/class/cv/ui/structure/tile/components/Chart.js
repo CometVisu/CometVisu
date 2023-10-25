@@ -161,7 +161,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _chartConf: null,
 
     async _init() {
-      this._checkIfWidget();
+      this._checkIfEnvironment();
 
       this._initializing = true;
       const element = this._element;
@@ -558,7 +558,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           periodStart.setHours(0, 0, 0, 0);
           end.setDate(periodStart.getDate() + 1);
           end.setHours(0, 0, 0, 0);
-          console.log(periodStart, end);
           break;
 
         case 'week':

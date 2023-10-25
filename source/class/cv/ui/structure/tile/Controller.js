@@ -323,23 +323,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     /**
-     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
-     * @param xml {XMLDocument}
-     */
-    registerTemplates(xml) {
-      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
-        customElements.define(
-          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
-          class extends TemplatedElement {
-            constructor() {
-              super(template.getAttribute('id'));
-            }
-          }
-        );
-      });
-    },
-
-    /**
      * Pre parsing hook, do everything here that is needed before the real parsing process can start
      * @param xml {XMLDocument}
      */
@@ -585,6 +568,25 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           eventSource.addEventListener('touchcancel', finish);
         }
       });
+    },
+
+
+    /**
+     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
+     * @param xml {XMLDocument}
+     */
+    registerTemplates(xml) {
+      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
+        const Clazz = qx.Class.getByName(`cv.ui.structure.tile.widgets.${qx.lang.String.camelCase(template.getAttribute('id'))}`);
+        customElements.define(
+          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
+          class extends TemplatedElement {
+            constructor() {
+              super(template.getAttribute('id'), Clazz);
+            }
+          }
+        );
+      });
     }
   },
 
@@ -605,9 +607,55 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   }
 });
 
-class TemplatedElement extends HTMLElement {
-  constructor(templateId) {
+
+/* eslint-disable-next-line no-redeclare */
+class QxConnector extends HTMLElement {
+  constructor(QxClass) {
     super();
+    if (QxClass) {
+      if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {
+        this._instance = new QxClass(this);
+      } else {
+        throw Error(QxClass + ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement');
+      }
+    }
+    if (this.hasAttribute('colspan')) {
+      this.classList.add('colspan-' + this.getAttribute('colspan'));
+    }
+    if (this.hasAttribute('rowspan')) {
+      this.classList.add('rowspan-' + this.getAttribute('rowspan'));
+    }
+  }
+
+  getInstance() {
+    return this._instance;
+  }
+
+  connectedCallback() {
+    if (this._instance) {
+      this._instance.setConnected(true);
+    }
+  }
+
+  disconnectedCallback() {
+    if (this._instance) {
+      this._instance.setConnected(false);
+    }
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    name = qx.lang.String.camelCase(name);
+    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
+      this._instance.set(name, newValue);
+    }
+  }
+}
+
+window.QxConnector = QxConnector;
+
+class TemplatedElement extends QxConnector {
+  constructor(templateId, QxClass) {
+    super(QxClass);
     const controller = cv.ui.structure.tile.Controller.getInstance();
     let template = document.getElementById(templateId);
     if (template) {
