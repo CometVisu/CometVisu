@@ -369,7 +369,7 @@
             </cv-value>
         </footer>
     </template>
-    <template id="energy">
+    <template id="energy" slot-size="2x1">
         <header>
             <label class="title">
                 <slot name="title">TITLE</slot>

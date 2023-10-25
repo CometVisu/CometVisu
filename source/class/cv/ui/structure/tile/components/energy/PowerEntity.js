@@ -88,7 +88,7 @@ qx.Class.define('cv.ui.structure.tile.components.energy.PowerEntity', {
       if (!element.hasAttribute('mapping')) {
         element.setAttribute('mapping', 'tile-kilo-watts');
       }
-      this._noValue = element.querySelectorAll(':scope > cv-address').length === 0;
+      this._noValue = element.querySelectorAll(':scope > cv-address, :scope > cv-address-group').length === 0;
       this.setUseConnectionSum(this._noValue && this.getType() === 'house');
       if (this._noValue && this.getType() !== 'house') {
         // this has no addresses and therefore no values, we only show the icon then without circle
@@ -96,10 +96,6 @@ qx.Class.define('cv.ui.structure.tile.components.energy.PowerEntity', {
           elem.remove();
         }
         this._iconSize = 32;
-        this._iconPosition = {
-          x: '50%',
-          y: '50%'
-        };
         const icon = this._svg.querySelector('text.icon');
         if (icon) {
           icon.style.fontSize = this._iconSize + 'px';

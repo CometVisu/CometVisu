@@ -84,6 +84,12 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
       check: 'Boolean',
       init: true,
       apply: '_applyValid'
+    },
+
+    nonZeroValues: {
+      check: 'Number',
+      init: 0,
+      event: 'changeNonZeroValues'
     }
   },
 
@@ -126,6 +132,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
       if (this.isConnected()) {
         let val = 0;
         if (this._values.length > 0) {
+          this.setNonZeroValues(this._values.filter(v => v !== 0).length);
           switch (this.getOperator()) {
             case '+':
               val = this._values.reduce((accumulator, currentValue) => accumulator + currentValue, val);

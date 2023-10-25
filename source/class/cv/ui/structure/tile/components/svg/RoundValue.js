@@ -43,16 +43,22 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
 
     radius: {
       check: 'Number',
-      init: 28,
+      init: 30,
       apply: '_applyRadius',
       transform: '_parseInt'
     },
 
     stroke: {
       check: 'Number',
-      init: 3,
+      init: 2,
       apply: '_applyStroke',
       transform: '_parseFloat'
+    },
+
+    amount: {
+      check: 'Number',
+      init: 0,
+      apply: '_applyAmount'
     }
   },
 
@@ -67,7 +73,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
     __normalizedRadius: null,
     _radius: null,
     _iconSize: null,
-    _iconPosition: null,
+    _iconOffset: null,
     _fixedRadius: null,
 
     getSvg() {
@@ -90,10 +96,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRadius, this);
       }
       const parent = this._parentGridLayout ? this._parentGridLayout.SVG : element;
-      this._iconPosition = {
-        x: '50%',
-        y: '30%'
-      };
 
       const ns = 'http://www.w3.org/2000/svg';
 
@@ -118,7 +120,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
 
       this._applyRadius(radius);
 
-
       if (!element.hasAttribute('no-background')) {
         const bg = document.createElementNS(ns, 'circle');
         bg.classList.add('bg');
@@ -133,7 +134,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         this._target.appendChild(bg);
       }
 
-      this.setShowProgress(element.querySelectorAll(':scope > cv-address[target="progress"]').length > 0);
+      this.setShowProgress(element.querySelectorAll(':scope > cv-address[target="progress"], :scope > cv-address-group[target="progress"]').length > 0);
 
       if (element.hasAttribute('icon')) {
         this._applyIcon(this.getIcon());
@@ -160,11 +161,20 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       value.setAttribute('y', '70%');
       value.setAttribute('class', 'value');
       value.setAttribute('fill', 'var(--primaryText)');
-      value.style.fontSize = '11px';
+      value.style.fontSize = `${this._iconSize-4}px`;
       this._target.appendChild(value);
 
       this._updateHeight();
       this._updateWidth();
+
+      // check if we have a sum of multiple addresses, then show the amount
+      let sumGroup = element.querySelector(':scope > cv-address-group[operator="+"]');
+      if (sumGroup) {
+        const group = sumGroup._instance;
+        group.bind('nonZeroValues', this, 'amount');
+      } else {
+        this.setAmount(element.querySelectorAll(':scope > cv-address:not([target])').length);
+      }
 
       this._applyPosition();
     },
@@ -178,24 +188,78 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       }
     },
 
+    _applyAmount(value) {
+      let amount = this._target.querySelector('text.amount');
+      let updateIconPosition = false;
+      if (value > 1) {
+        // show it
+        if (!amount) {
+          amount = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          amount.setAttribute('text-anchor', 'right');
+          amount.setAttribute('alignment-baseline', 'central');
+          amount.setAttribute('fill', 'var(--primaryText)');
+          amount.classList.add('amount');
+          amount.style.fontSize = `${this._iconSize - 5}px`;
+          this._target.appendChild(amount);
+          this.__updateAmountPosition();
+        }
+        if (this._iconOffset !== 5) {
+          this._iconOffset = 5;
+          updateIconPosition = true;
+        }
+        amount.textContent = value + 'x';
+      } else if (amount) {
+        amount.remove();
+        if (this._iconOffset !== 0) {
+          this._iconOffset = 0;
+          updateIconPosition = true;
+        }
+      }
+      if (updateIconPosition) {
+        this.__updateIconPosition();
+      }
+    },
+
+    __updateAmountPosition() {
+      let amount = this._target.querySelector('text.amount');
+      if (amount) {
+        const radius = this.getRadius();
+        const halfSize = this._iconSize / 2;
+        const x = radius * 0.8 - halfSize;
+        const y = radius * 0.85 - halfSize;
+        amount.setAttribute('x', `${x}`);
+        amount.setAttribute('y', `${y}`);
+      }
+    },
+
+    __updateIconPosition() {
+      const icon = this._target.querySelector('cv-icon');
+      if (icon) {
+        icon.style.fontSize = this._iconSize + 'px';
+      }
+      const iconContainer = this._target.querySelector('foreignObject.icon-container');
+      if (iconContainer) {
+        const radius = this.getRadius();
+        const halfSize = this._iconSize / 2;
+        const x = radius - halfSize + this._iconOffset;
+        const y = radius * 0.6 - halfSize;
+        iconContainer.setAttribute('x', `${x}`);
+        iconContainer.setAttribute('y', `${y}`);
+        iconContainer.setAttribute('width', this._iconSize + '');
+        iconContainer.setAttribute('height', this._iconSize + '');
+      }
+    },
+
     _applyRadius(radius) {
       this._updateNormalizedRadius();
-      this._iconSize = Math.round(radius / 1.5);
+      this._iconSize = Math.round(radius / 2);
       if (this._target) {
-        const icon = this._target.querySelector('cv-icon');
-        if (icon) {
-          icon.style.fontSize = this._iconSize + 'px';
+        this.__updateIconPosition();
+        const value = this._target.querySelector('.value');
+        if (value) {
+          value.style.fontSize = `${this._iconSize - 4}px`;
         }
-        const iconContainer = this._target.querySelector('foreignObject.icon-container');
-        if (iconContainer) {
-          const halfSize = this._iconSize / 2;
-          const x = radius - halfSize;
-          const y = radius * 0.6 - halfSize;
-          iconContainer.setAttribute('x', `${x}`);
-          iconContainer.setAttribute('y', `${y}`);
-          iconContainer.setAttribute('width', this._iconSize + '');
-          iconContainer.setAttribute('height', this._iconSize + '');
-        }
+        this.__updateAmountPosition();
       }
       if (this._svg) {
         this._svg.setAttribute('height', '' + (radius * 2));
@@ -230,8 +294,10 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
 
     _updateValue(mappedValue, value) {
       const target = this._target.querySelector('.value');
-      target.textContent = mappedValue;
-      this._debouncedDetectOverflow();
+      if (target) {
+        target.textContent = mappedValue;
+        this._debouncedDetectOverflow();
+      }
     },
 
     _applyShowProgress(value) {
@@ -270,13 +336,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         if (!icon) {
           const fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
           fo.setAttribute('class', 'icon-container');
-          const halfSize = this._iconSize / 2;
-          const x = this.getRadius() - halfSize;
-          const y = this.getRadius() * 0.6 - halfSize;
-          fo.setAttribute('x', `${x}`);
-          fo.setAttribute('y', `${y}`);
-          fo.setAttribute('width', this._iconSize + '');
-          fo.setAttribute('height', this._iconSize + '');
           fo.style.textAlign = 'center';
 
           icon = document.createElement('cv-icon');
@@ -284,6 +343,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
           icon.style.fontSize = this._iconSize + 'px';
           fo.appendChild(icon);
           this._target.appendChild(fo);
+          this.__updateIconPosition();
         }
       } else if (icon) {
         this._target.remove(icon);

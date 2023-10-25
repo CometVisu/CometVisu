@@ -1867,7 +1867,7 @@
       <xsd:extension base="cv-flow">
         <xsd:sequence>
           <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
-          <xsd:element name="cv-energy-value" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
+          <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -2322,6 +2322,7 @@
       <xsd:enumeration value="button" />
       <xsd:enumeration value="0.5x0.5" />
       <xsd:enumeration value="1x0.5" />
+      <xsd:enumeration value="1x1" />
       <xsd:enumeration value="2x1" />
       <xsd:enumeration value="1x2" />
       <xsd:enumeration value="2x2" />
