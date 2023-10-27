@@ -594,8 +594,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           eventSource.addEventListener('touchcancel', finish);
         }
       });
-<<<<<<< Updated upstream
-=======
     },
 
     isTemplateWidget(name) {
@@ -621,7 +619,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         );
         this._templateWidgets.push(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'));
       }
->>>>>>> Stashed changes
     }
   },
 

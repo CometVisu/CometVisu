@@ -90,7 +90,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       super._checkIfEnvironment();
       const parent = this._element.parentElement;
       let isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
-      console.log(this._element.localName, 'is widget', isWidget);
       this.setWidget(isWidget);
     },
 
