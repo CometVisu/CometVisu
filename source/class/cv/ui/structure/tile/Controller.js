@@ -129,6 +129,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     __HTML_STRUCT: null,
     __mappings: null,
     __stylings: null,
+    _templateWidgets: null,
 
     getHtmlStructure() {
       return this.__HTML_STRUCT;
@@ -320,6 +321,31 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           elem.classList.remove('scrolled');
         }
       }
+    },
+
+    isTemplateWidget(name) {
+      return this._templateWidgets.includes(name);
+    },
+
+    /**
+     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
+     * @param xml {XMLDocument}
+     */
+    registerTemplates(xml) {
+      if (this._templateWidgets === null) {
+        this._templateWidgets = [];
+      }
+      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
+        customElements.define(
+          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
+          class extends TemplatedElement {
+            constructor() {
+              super(template.getAttribute('id'));
+            }
+          }
+        );
+        this._templateWidgets.push(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'));
+      });
     },
 
     /**
@@ -568,25 +594,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           eventSource.addEventListener('touchcancel', finish);
         }
       });
-    },
-
-
-    /**
-     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
-     * @param xml {XMLDocument}
-     */
-    registerTemplates(xml) {
-      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
-        const Clazz = qx.Class.getByName(`cv.ui.structure.tile.widgets.${qx.lang.String.camelCase(template.getAttribute('id'))}`);
-        customElements.define(
-          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
-          class extends TemplatedElement {
-            constructor() {
-              super(template.getAttribute('id'), Clazz);
-            }
-          }
-        );
-      });
     }
   },
 
@@ -756,6 +763,9 @@ class TemplatedElement extends QxConnector {
                   case 'target':
                     targetName = value;
                     break;
+                  case 'value':
+                    // not needed here
+                    break;
                   default:
                     qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
                     break;
@@ -773,7 +783,7 @@ class TemplatedElement extends QxConnector {
       content.querySelectorAll('*').forEach(elem => {
         [...elem.attributes].forEach(attr => {
           if (attr.name.startsWith('slot-')) {
-            let value = attr.value;
+            let attrValue = attr.value;
             let targetName = attr.name.substring(5);
             // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute
             if (attr.name.endsWith('-mapping') && elem.hasAttribute('slot-mapping')) {
@@ -785,15 +795,14 @@ class TemplatedElement extends QxConnector {
             } else if (attr.value.startsWith(':')) {
               // this template slot-attribute contains some configuration
               const parts = attr.value.substring(1).split(',');
-              if (!parts[parts.length-1].includes('=')) {
-                // this is the value
-                value = parts.pop();
-              }
               for (const entry of parts) {
                 const [key, value] = entry.split('=');
                 switch (key) {
                   case 'target':
                     targetName = value;
+                    break;
+                  case 'value':
+                    attrValue = value;
                     break;
                   default:
                     qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
@@ -801,8 +810,8 @@ class TemplatedElement extends QxConnector {
                 }
               }
             }
-            if (value) {
-              elem.setAttribute(targetName, value);
+            if (attrValue) {
+              elem.setAttribute(targetName, attrValue);
             }
             elem.removeAttribute(attr.name);
           }
