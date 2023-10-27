@@ -72,7 +72,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      */
     widget: {
       check: 'Boolean',
-      init: 'false'
+      init: false
     },
 
     /**
@@ -80,7 +80,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      */
     inPopup: {
       check: 'Boolean',
-      init: 'false'
+      init: false
     }
   },
 

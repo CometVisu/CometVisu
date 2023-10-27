@@ -594,6 +594,34 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           eventSource.addEventListener('touchcancel', finish);
         }
       });
+<<<<<<< Updated upstream
+=======
+    },
+
+    isTemplateWidget(name) {
+      return this._templateWidgets.includes(name);
+    },
+
+    /**
+     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
+     * @param xml {XMLDocument}
+     */
+    registerTemplates(xml) {
+      if (this._templateWidgets === null) {
+        this._templateWidgets = [];
+      }
+      for (const template of xml.querySelectorAll('templates[structure=\'tile\'] > template')) {
+        customElements.define(
+          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
+          class extends TemplatedElement {
+            constructor() {
+              super(template.getAttribute('id'));
+            }
+          }
+        );
+        this._templateWidgets.push(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'));
+      }
+>>>>>>> Stashed changes
     }
   },
 
