@@ -66,6 +66,12 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       init: false,
       apply: '_applyCenterY',
       transform: '_parseBoolean'
+    },
+
+    fullscreenViewBox: {
+      check: 'String',
+      nullable: true,
+      event: 'changeFullscreenViewBox'
     }
   },
 
@@ -79,6 +85,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     _dragPoint: null,
     _startPoint: null,
     _expiredTouchStart: null,
+    _viewBoxBinding: null,
 
     _init() {
       super._init();
@@ -104,7 +111,24 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
 
       if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
         this._initFullscreenSwitch();
-        this.addListener('changeFullscreen', ev => this._updateDimensions());
+        this.addListener('changeFullscreen', ev => {
+          if (ev.getData()) {
+            if (!this._viewBoxBinding) {
+              this._viewBoxBinding = this.bind('fullscreenViewBox', this, 'viewBox');
+            }
+          } else if (this._viewBoxBinding) {
+            this.removeBinding(this._viewBoxBinding);
+            this._viewBoxBinding = null;
+
+            // restore old value
+            if (this._element.hasAttribute('view-box')) {
+              this.setViewBox(this._element.getAttribute('view-box'));
+            } else {
+              this.resetViewBox();
+            }
+          }
+          this._updateDimensions();
+        });
       }
 
       this.addListener('changeViewBox', this._updateViewBox, this);
@@ -482,7 +506,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       cv.ui.structure.tile.Controller.PREFIX + 'flow',
       class extends QxConnector {
         // @ignore
-        static observedAttributes = ['view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination', 'center-x','center-y'];
+        static observedAttributes = ['view-box', 'fullscreen-view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination', 'center-x','center-y'];
         constructor() {
           super(QxClass);
         }
