@@ -764,7 +764,7 @@ class TemplatedElement extends QxConnector {
       }
       // transfer attribute slots
       const attributes = this.getAttributeNames();
-      attributes.forEach(name => {
+      for (const name of attributes) {
         let value = this.getAttribute(name);
         const slotAttributeName = `slot-${name}`;
         const targets = content.querySelectorAll(`[${slotAttributeName}]`);
@@ -783,10 +783,10 @@ class TemplatedElement extends QxConnector {
             if (targetValue.startsWith(':')) {
               // this template slot-attribute contains some configuration
               for (const entry of targetValue.substring(1).split(',')) {
-                const [key, value] = entry.split('=');
+                const [key, val] = entry.split('=');
                 switch (key) {
                   case 'target':
-                    targetName = value;
+                    targetName = val;
                     break;
                   case 'value':
                     // not needed here
@@ -798,15 +798,17 @@ class TemplatedElement extends QxConnector {
               }
             }
           }
+
           target.setAttribute(targetName, value);
           target.removeAttribute(slotAttributeName);
         }
         if (targets.length > 0) {
           this.removeAttribute(name);
         }
-      });
-      content.querySelectorAll('*').forEach(elem => {
-        [...elem.attributes].forEach(attr => {
+      }
+
+      for (const elem of content.querySelectorAll('*')) {
+        for (const attr of [...elem.attributes]) {
           if (attr.name.startsWith('slot-')) {
             let attrValue = attr.value;
             let targetName = attr.name.substring(5);
@@ -818,16 +820,17 @@ class TemplatedElement extends QxConnector {
             } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
               targetName = 'format';
             } else if (attr.value.startsWith(':')) {
+              attrValue = '';
               // this template slot-attribute contains some configuration
               const parts = attr.value.substring(1).split(',');
               for (const entry of parts) {
-                const [key, value] = entry.split('=');
+                const [key, val] = entry.split('=');
                 switch (key) {
                   case 'target':
-                    targetName = value;
+                    targetName = val;
                     break;
                   case 'value':
-                    attrValue = value;
+                    attrValue = val;
                     break;
                   default:
                     qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
@@ -840,8 +843,8 @@ class TemplatedElement extends QxConnector {
             }
             elem.removeAttribute(attr.name);
           }
-        });
-      });
+        }
+      }
 
       // clear content
       this.innerHTML = '';
