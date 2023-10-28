@@ -24,13 +24,15 @@
  * @since 2023
  *
  * @ignore(d3.select)
+ * @ignore(screen)
  */
 qx.Class.define('cv.ui.structure.tile.components.Flow', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: [
     cv.ui.structure.tile.components.svg.MSvgGrid,
     cv.ui.structure.tile.MResize,
-    cv.ui.structure.tile.MStringTransforms
+    cv.ui.structure.tile.MStringTransforms,
+    cv.ui.structure.tile.MFullscreen
   ],
 
   /*
@@ -84,9 +86,25 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       this._element.appendChild(svg);
 
       this.setResizeTarget(this._element);
-      this.addListener('resized', this._updateCellSize, this);
+      this.addListener('resized', this._updateDimensions, this);
       for (const layoutEvent of ['changeRows', 'changeColumns', 'changeOuterPadding', 'changeSpacing']) {
         this.addListener(layoutEvent, this._updateCellSize, this);
+      }
+
+      let title = this.getHeader('label.title');
+      const element = this._element;
+      if (element.hasAttribute('title') && !title) {
+        title = document.createElement('label');
+        title.classList.add('title');
+        let span = document.createElement('span');
+        title.appendChild(span);
+        span.textContent = element.getAttribute('title');
+        this.appendToHeader(title);
+      }
+
+      if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+        this._initFullscreenSwitch();
+        this.addListener('changeFullscreen', ev => this._updateDimensions());
       }
 
       this.addListener('changeViewBox', this._updateViewBox, this);
@@ -356,6 +374,47 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
           }
       }
       this._element.setAttribute('view-box', `${column} ${row} ${width} ${height}`);
+    },
+
+    _updateDimensions() {
+      const isFullscreen = this.isFullscreen();
+      if (isFullscreen) {
+        const minSize = Math.min(screen.availHeight, screen.availWidth);
+        if (minSize > 600) {
+          this.setOuterPadding(16);
+          this.setSpacing(32);
+        } else if (minSize >= 400) {
+          this.setOuterPadding(16);
+          this.setSpacing(26);
+        }
+        // set fixed height
+        let height = 0;
+        if (screen.availHeight > screen.availWidth) {
+          const bbox = this.SVG.getBBox();
+          height = Math.min(screen.availHeight, Math.max(bbox.height, this.getRows() * 100));
+        } else {
+          height = screen.availHeight;
+        }
+        if (this._tileElement) {
+          this._tileElement.style.height = `${height}px`;
+        }
+      } else {
+        if (this._tileElement) {
+          this._tileElement.style.height = 'unset';
+        }
+        if (this._element.hasAttribute('outer-padding')) {
+          this.setOuterPadding(this._element.getAttribute('outer-padding'));
+        } else {
+          this.resetOuterPadding();
+        }
+        if (this._element.hasAttribute('spacing')) {
+          this.setSpacing(this._element.getAttribute('spacing'));
+        } else {
+          this.resetSpacing();
+        }
+      }
+
+      window.requestAnimationFrame(() => this._updateCellSize());
     },
 
     _updateViewBox() {

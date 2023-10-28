@@ -8,7 +8,7 @@
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element name="cv-meta" type="cv-meta" minOccurs="0"/>
-        <xsd:element name="header" type="header" minOccurs="0"/>
+        <xsd:element name="header" type="header-element" minOccurs="0"/>
         <xsd:element name="main" type="main"/>
         <xsd:element name="footer" type="footer" minOccurs="0"/>
       </xsd:sequence>
@@ -261,7 +261,7 @@
   </xsd:complexType>
 
   <!-- basic structure -->
-  <xsd:complexType name="header">
+  <xsd:complexType name="header-element">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="nav" type="nav" />
@@ -1891,6 +1891,32 @@
           <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
           <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
+        <xsd:attribute name="house-row" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Row of the position od the house (default=1).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Zeile in der das Haus positioniert werden soll (default=1)</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="house-column" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Column of the position od the house (default=1).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Spalte in der das Haus positioniert werden soll (default=1)</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="title" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Title of the widget.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Titel des Widgets.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Allows showing the widget in fullscreen size.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Widgets auf volle Bildschirmgröße.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="header" type="header"/>
+        <xsd:attribute name="mobile-header" type="header"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -1998,6 +2024,7 @@
       <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />
     </xsd:sequence>
     <xsd:attribute name="size" type="tile-size" />
+    <xsd:attribute name="mobile-size" type="tile-size" />
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="view-box">
       <xsd:annotation>
@@ -2346,10 +2373,22 @@
       <xsd:enumeration value="1x0.5" />
       <xsd:enumeration value="1x1" />
       <xsd:enumeration value="2x1" />
+      <xsd:enumeration value="2x1.5" />
       <xsd:enumeration value="1x2" />
       <xsd:enumeration value="2x2" />
       <xsd:enumeration value="2x4" />
       <xsd:enumeration value="4x2" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="header">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the visibility of the widget header.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt die Sichtbarkeit des Widget-Headers fest.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="auto-hide" />
+      <xsd:enumeration value="visible" />
     </xsd:restriction>
   </xsd:simpleType>
 

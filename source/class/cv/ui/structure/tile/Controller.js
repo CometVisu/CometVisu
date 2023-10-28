@@ -609,11 +609,16 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         this._templateWidgets = [];
       }
       for (const template of xml.querySelectorAll('templates[structure=\'tile\'] > template')) {
+        const className = qx.lang.String.firstUp(qx.lang.String.camelCase(template.getAttribute('id')));
+        let Clazz = qx.Class.getByName(`cv.ui.structure.tile.widgets.${className}`);
+        if (!Clazz) {
+          Clazz = cv.ui.structure.tile.widgets.TemplateWidget;
+        }
         customElements.define(
           cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
           class extends TemplatedElement {
             constructor() {
-              super(template.getAttribute('id'));
+              super(template.getAttribute('id'), Clazz);
             }
           }
         );
@@ -696,7 +701,7 @@ class TemplatedElement extends QxConnector {
 
       // copy all attributes, except 'id' of the template itself to the widget
       for (const name of template.getAttributeNames()) {
-        if (name !== 'id') {
+        if (name !== 'id' && !this.hasAttribute(name)) {
           this.setAttribute(name, template.getAttribute(name));
         }
       }

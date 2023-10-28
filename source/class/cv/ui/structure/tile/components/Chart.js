@@ -28,7 +28,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   include: [
     cv.ui.structure.tile.MVisibility,
     cv.ui.structure.tile.MRefresh,
-    cv.ui.structure.tile.MResize
+    cv.ui.structure.tile.MResize,
+    cv.ui.structure.tile.MFullscreen
   ],
 
   /*
@@ -161,13 +162,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _chartConf: null,
 
     async _init() {
-      this._checkIfEnvironment();
+      this._checkEnvironment();
 
       this._initializing = true;
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
-      const chartId = 'chart-' + this._id;
+
       element.setAttribute('data-chart-id', this._id.toString());
       const inBackground = this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true';
 
@@ -267,52 +268,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this.appendToHeader(button);
       }
       if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
-        // add fullscreen button + address
-        const button = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
-        button.setAttribute('data-value', '0');
-
-        const popupAddress = `state:${chartId}-popup`;
-
-        button.addEventListener('click', () => {
-          cv.data.Model.getInstance().onUpdate(popupAddress, button.getAttribute('data-value') === '0' ? '1' : '0', 'system');
-        });
-
-        this.appendToHeader(button, 'right');
-
-        // address
-        const tileAddress = document.createElement('cv-address');
-        tileAddress.setAttribute('mode', 'read');
-        tileAddress.setAttribute('target', 'fullscreen-popup');
-        tileAddress.setAttribute('backend', 'system');
-        tileAddress.setAttribute('send-mode', 'always');
-        tileAddress.textContent = popupAddress;
-        element.parentElement.appendChild(tileAddress);
-
-        // listen to parent tile of popup is opened or not
-        let parent = element;
-        while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
-          parent = parent.parentElement;
-        }
-        if (parent) {
-          const tileWidget = parent.getInstance();
-          tileWidget.addListener('closed', () => cv.data.Model.getInstance().onUpdate(popupAddress, '0', 'system'));
-
-          // because we added a read address to the tile after is has been initialized we need to init the listener here manually
-          parent.addEventListener('stateUpdate', ev => {
-            tileWidget.onStateUpdate(ev);
-            // cancel event here
-            ev.stopPropagation();
-          });
+        this._initFullscreenSwitch();
 
         // only on mobile we need this, because of height: auto
-          if (document.body.classList.contains('mobile')) {
-            tileWidget.addListener('fullscreenChanged', () => {
-              this._onRendered();
-            });
-          }
+        if (document.body.classList.contains('mobile')) {
+          this.addListener('changeFullscreen', () => this._onRendered());
         }
       }
-
 
       if (element.hasAttribute('refresh')) {
         this.setRefresh(parseInt(element.getAttribute('refresh')));
@@ -1497,17 +1459,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
         d3.select(this._element).select('svg').property('value', O[i]).dispatch('input', {bubbles: true});
       }
-    },
-
-    _buttonFactory(icon, classes) {
-      const button = document.createElement('button');
-      button.classList.add(...classes);
-      if (icon) {
-        const i = document.createElement('i');
-        i.classList.add(icon);
-        button.appendChild(i);
-      }
-      return button;
     },
 
     __updateTitle() {

@@ -93,24 +93,15 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     _writeAddresses: null,
     _headerFooterParent: null,
     _preMappingHooks: null,
+    _tileElement: null,
 
-    _checkIfEnvironment() {
+    _checkEnvironment() {
       let inPopup = false;
       if (this._element.parentElement.localName === 'cv-popup') {
         this._headerFooterParent = this._element.parentElement;
         inPopup = true;
       } else {
-        let tile = this._element;
-        let i = 0;
-        // we are looking for cv-tile parent which is the direct child of a widget
-        while (tile.localName !== 'cv-tile') {
-          tile = tile.parentElement;
-          i++;
-          if (i > 2) {
-            tile = null;
-            break;
-          }
-        }
+        let tile = this._getTileParent();
         if (tile) {
           let parent = tile.parentElement;
           this._headerFooterParent = parent;
@@ -122,8 +113,27 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       this.setInPopup(inPopup);
     },
 
+    _getTileParent() {
+      if (!this._tileElement) {
+        let tile = this._element;
+        let i = 0;
+        while (tile && tile.localName !== 'cv-tile') {
+          tile = tile.parentElement;
+          i++;
+          if (i > 2) {
+            tile = null;
+            break;
+          }
+        }
+        if (tile && tile.localName === 'cv-tile') {
+          this._tileElement = tile;
+        }
+      }
+      return this._tileElement;
+    },
+
     _init() {
-      this._checkIfEnvironment();
+      this._checkEnvironment();
 
       const element = this._element;
       let hasReadAddress = false;
@@ -170,7 +180,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * @param element {HTMLElement}
      * @param align {String} center (default), left or right
      */
-    appendToHeader(element, align) {
+    appendToHeader(element, align = undefined) {
       if (this._headerFooterParent) {
         let header = this._headerFooterParent.querySelector(':scope > header');
         if (!header) {

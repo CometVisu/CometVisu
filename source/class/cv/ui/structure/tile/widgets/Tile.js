@@ -86,8 +86,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     _maxAge: null,
     _hideTimer: null,
 
-    _checkIfEnvironment() {
-      super._checkIfEnvironment();
+    _checkEnvironment() {
+      super._checkEnvironment();
       const parent = this._element.parentElement;
       let isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
       this.setWidget(isWidget);

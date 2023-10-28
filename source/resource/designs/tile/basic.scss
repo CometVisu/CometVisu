@@ -713,6 +713,10 @@ body {
         &[size="2x1"] {
             width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
         }
+        &[size="2x1.5"] {
+            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 1.5 + var(--spacing));
+        }
         &[size="2x2"] {
             width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
@@ -831,6 +835,31 @@ body {
             @include common-header;
         }
 
+        &[header="auto-hide"]:not(.popup) {
+             > header {
+                 z-index: 10;
+                 position: absolute;
+                 top: 0;
+                 left: 0;
+                 right: 0;
+                 opacity: 0;
+
+                 &:hover {
+                     animation-name: fade-in-opacity;
+                     animation-duration: 1s;
+                     animation-fill-mode: forwards;
+                 }
+             }
+            @keyframes fade-in-opacity {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        }
+
         > cv-tile {
             flex-basis: 100%;
             width: 100%;
@@ -883,6 +912,10 @@ body {
                 background: none;
                 border: none;
                 color: var(--primaryText);
+            }
+
+            > cv-tile {
+                flex-basis: unset;
             }
         }
     }
