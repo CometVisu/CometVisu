@@ -43,6 +43,18 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       check: 'Number',
       init: 1,
       apply: '_applyScale'
+    },
+
+    offsetY: {
+      check: 'Number',
+      init: 0,
+      apply: '_applyOffsetY'
+    },
+
+    offsetX: {
+      check: 'Number',
+      init: 0,
+      apply: '_applyOffsetX'
     }
   },
 
@@ -86,7 +98,10 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
         }
       }
       parent.appendChild(svg);
-      this._target = svg;
+
+      const group = document.createElementNS(ns, 'g');
+      svg.appendChild(group);
+      this._target = group;
 
       if (element.hasAttribute('icon')) {
         this._applyIcon(this.getIcon());
@@ -99,6 +114,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       value.setAttribute('class', 'value');
       value.setAttribute('fill', this.getColor());
       this._target.appendChild(value);
+
+      this.addListener('heightChanged', this._centerY, this);
+      this.addListener('widthChanged', this._centerX, this);
 
       this._updateHeight();
       this._updateWidth();
@@ -117,28 +135,10 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     },
 
     _applyScale(scale) {
-      this._iconSize = 24 * scale;
-      this._fontSize = 12 * scale;
-      const icon = this._target.querySelector('cv-icon');
-      if (icon) {
-        icon.style.fontSize = this._iconSize + 'px';
-        const fo = icon.parentElement;
-        fo.setAttribute('width', this._iconSize + 'px');
-        fo.setAttribute('height', this._iconSize + 'px');
-      }
-      let text = this._target.querySelector('text.value');
-      if (text) {
-        text.style.fontSize = this._fontSize + 'px';
-        text.setAttribute('y', '' + (32 * scale));
-      }
-      text = this._target.querySelector('text.title');
-      if (text) {
-        text.style.fontSize = (this._fontSize + 2) + 'px';
-        text.setAttribute('y', '' + (16 * scale));
-      }
+      this._target.setAttribute('transform', `scale(${scale})`);
       if (this._svg) {
-        this._svg.setAttribute('height', '' + (56 * scale * this.getRowspan()));
-        this._svg.setAttribute('width', '' + (56 * scale * this.getColspan()));
+        this.setHeight(56 * scale * this.getRowspan());
+        this.setWidth(56 * scale * this.getColspan());
       }
     },
 
@@ -146,6 +146,32 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       const target = this._target.querySelector('.value');
       target.textContent = mappedValue;
       this._debouncedDetectOverflow();
+    },
+
+    _centerY() {
+      this.setOffsetY(this.getHeight() / 2 - this._svg.getBBox().height / 2);
+    },
+
+    _centerX() {
+      this.setOffsetX(this.getWidth() / 2 - this._svg.getBBox().width / 2);
+    },
+
+    _applyOffsetY(value) {
+      const icon = this._target.querySelector('.icon-container');
+      if (icon) {
+        icon.setAttribute('y', `${value}`);
+      }
+      let text = this._target.querySelector('text.value');
+      if (text) {
+        text.setAttribute('y', '' + (value + 32));
+      }
+      text = this._target.querySelector('text.title');
+      if (text) {
+        text.setAttribute('y', '' + (value + 16));
+      }
+    },
+
+    _applyOffsetX() {
     },
 
     _applyTitle(title) {
@@ -156,7 +182,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
             text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             text.setAttribute('x', '0');
             text.setAttribute('y', '16');
-            text.setAttribute('alignment-baseline', 'central');
+            text.setAttribute('alignment-baseline',  'central');
             text.classList.add('title');
             this._target.appendChild(text);
           }

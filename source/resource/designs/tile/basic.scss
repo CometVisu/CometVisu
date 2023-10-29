@@ -902,9 +902,9 @@ body {
 
             > button.close {
                 position: absolute;
-                padding: var(--spacing);
                 right: 0;
                 top: 0;
+                padding: 4px var(--spacing);
                 z-index: 100;
                 font-size: 28px;
                 line-height: 20px;
@@ -1997,6 +1997,10 @@ body {
     }
 
     svg {
+
+        svg {
+            overflow: visible;
+        }
 
         foreignObject {
             > * {

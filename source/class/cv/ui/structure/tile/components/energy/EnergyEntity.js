@@ -161,7 +161,24 @@ qx.Class.define('cv.ui.structure.tile.components.energy.EnergyEntity', {
           arrow.setAttribute('fill', 'transparent');
           this._target.appendChild(arrow);
         }
-        arrow.setAttribute('transform', `translate(28, 8) rotate(${direction === 'incoming' ? '90' : '-90'}, 3, 4)`);
+        this.__updateDirectionPosition();
+      }
+    },
+
+    _applyOffsetY(value) {
+      super._applyOffsetY(value);
+      this.__updateDirectionPosition();
+    },
+
+    _applyScale(scale) {
+      super._applyScale(scale);
+      this.__updateDirectionPosition();
+    },
+
+    __updateDirectionPosition() {
+      let arrow = this._target.querySelector('path.energy-direction');
+      if (arrow) {
+        arrow.setAttribute('transform', `translate(28, ${this.getOffsetY() + 8}) rotate(${this.getDirection() === 'incoming' ? '90' : '-90'}, 3, 4)`);
       }
     }
   },

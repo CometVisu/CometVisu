@@ -164,21 +164,8 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
           delete this._cells[id];
         }
       }
-
-      let cx = this.getOuterPadding() + column * this.getSpacing() + column * this.getCellWidth() + this.getCellWidth() / 2;
-      let cy = this.getOuterPadding() + row * this.getSpacing() + row * this.getCellHeight() + this.getCellHeight() / 2;
-      const bbox = element.getBBox();
-      if (bbox.width === 0 && bbox.height === 0) {
-        if (retries < 3) {
-          setTimeout(() => {
-            this.layout(element, row, column, replace, ++retries);
-          }, 100);
-        }
-        return;
-      }
-      let x = cx - bbox.width / 2 - bbox.x;
-      let y = cy - bbox.height / 2 - bbox.y;
-      this.debug(element.getAttribute('id'), row, column, cx, cy, bbox);
+      let x = this.getOuterPadding() + column * this.getSpacing() + column * this.getCellWidth();
+      let y  = this.getOuterPadding() + row * this.getSpacing() + row * this.getCellHeight();
       element.setAttribute('x', `${x}`);
       element.setAttribute('y', `${y}`);
       this._cells[cellId] = element;

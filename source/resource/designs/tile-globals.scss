@@ -254,8 +254,10 @@ html {
   background: #1e1e1e;
   border: 1px solid #fff;
 }
-
 .popup div {
+  margin: 0;
+}
+.popup > div {
   margin: 4px;
   max-height: 80vh;
 }

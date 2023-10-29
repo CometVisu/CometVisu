@@ -101,8 +101,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
 
       // add surrounding svg node
       const svg = this._svg = document.createElementNS(ns, 'svg');
-      svg.setAttribute('height', '' + (radius * 2));
-      svg.setAttribute('width', '' + (radius * 2));
+      this.setHeight(radius * 2);
+      this.setWidth(radius * 2);
       svg.setAttribute('type', 'circle');
       for (const name of ['x', 'y']) {
         if (element.hasAttribute(name)) {
@@ -267,8 +267,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         this.__updateAmountPosition();
       }
       if (this._svg) {
-        this._svg.setAttribute('height', '' + (radius * 2));
-        this._svg.setAttribute('width', '' + (radius * 2));
+        this.setHeight(radius * 2);
+        this.setWidth(radius * 2);
       }
     },
 

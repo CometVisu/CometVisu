@@ -64,6 +64,20 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
       init: 1,
       apply: '_updateWidth',
       transform: '_parseFloat'
+    },
+
+    height: {
+      check: 'Number',
+      init: 0,
+      apply: '_applySize',
+      event: 'heightChanged'
+    },
+
+    width: {
+      check: 'Number',
+      init: 0,
+      apply: '_applySize',
+      event: 'widthChanged'
     }
   },
 
@@ -99,21 +113,27 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
 
     _updateWidth() {
       if (this._parentGridLayout && this._svg) {
-        const width = this._parentGridLayout.getCellWidth() * this.getColspan();
-        this._svg.setAttribute('width', `${width}`);
+        const width = this._parentGridLayout.getCellWidth() * this.getColspan() + this._parentGridLayout.getSpacing() * (this.getColspan() - 1);
+        this.setWidth(width);
       }
     },
 
     _updateHeight() {
       if (this._parentGridLayout && this._svg) {
-        const height = this._parentGridLayout.getCellHeight() * this.getRowspan();
-        this._svg.setAttribute('height', `${height}`);
+        const height = this._parentGridLayout.getCellHeight() * this.getRowspan() + this._parentGridLayout.getSpacing() * (this.getRowspan() - 1);
+        this.setHeight(height);
       }
     },
 
     _applyPosition() {
       if (this._parentGridLayout && this._svg) {
         this._parentGridLayout.layout(this._svg, this.getRow(), this.getColumn());
+      }
+    },
+
+    _applySize(value, oldValue, name) {
+      if (this._svg) {
+        this._svg.setAttribute(name, `${value}`);
       }
     }
   }

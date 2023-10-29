@@ -447,10 +447,10 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         const parts = viewBox.split(' ').map(v => parseInt(v));
         if (parts.length === 4) {
           this._updatePaginationButtons();
-          const x = this.getOuterPadding() + this.getCellWidth() * parts[0] + (parts[0] > 1 ? (parts[0]-1) * this.getSpacing() : 0);
-          const y = this.getOuterPadding() + this.getCellHeight() * parts[1] + (parts[1] > 1 ? (parts[1]-1) * this.getSpacing() : 0);
-          const width = this.getOuterPadding() + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2]-1) * this.getSpacing() : 0);
-          const height = this.getOuterPadding() + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3]-1) * this.getSpacing() : 0);
+          const x = this.getCellWidth() * parts[0] + (parts[0] > 1 ? (parts[0]-1) * this.getSpacing() : 0);
+          const y = this.getCellHeight() * parts[1] + (parts[1] > 1 ? (parts[1]-1) * this.getSpacing() : 0);
+          const width = this.getOuterPadding() * 2 + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2]-1) * this.getSpacing() : 0);
+          const height = this.getOuterPadding() * 2 + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3]-1) * this.getSpacing() : 0);
 
           if (typeof window.d3 === 'object') {
             const svg = d3.select(this._element).select('svg');

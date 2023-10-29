@@ -56,7 +56,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.TemplateWidget', {
 
     _init() {
       super._init();
-      this._headerFooterParent = this._element;
       const element = this._element;
 
       // has mobile attributes
