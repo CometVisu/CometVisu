@@ -37,6 +37,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       check: 'String',
       init: '',
       apply: '_applyTitle'
+    },
+
+    scale: {
+      check: 'Number',
+      init: 1,
+      apply: '_applyScale'
     }
   },
 
@@ -50,6 +56,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     _svg: null,
     _iconSize: null,
     _iconPosition: null,
+    _debouncedUpdateRSize: null,
 
     getSvg() {
       return this._svg;
@@ -64,7 +71,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       const element = this._element;
       this._findParentGridLayout();
       const parent = this._parentGridLayout ? this._parentGridLayout.SVG : element;
-      this._iconSize = 24;
+      this._iconSize = 24 * this.getScale();
+      this._debouncedUpdateRSize = qx.util.Function.debounce(this._updateSize.bind(this), 10);
+      this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRSize, this);
 
       const ns = 'http://www.w3.org/2000/svg';
 
@@ -96,6 +105,41 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
 
       this._applyPosition();
       this._applyTitle(this.getTitle());
+    },
+
+    _updateSize() {
+      const newScale = Math.min(2.5, (Math.min(this._parentGridLayout.getCellWidth(), this._parentGridLayout.getCellHeight()) - this._parentGridLayout.getSpacing()) / 56);
+      if (newScale === 0.0) {
+        return;
+      }
+      this.debug('new scale:', newScale);
+      this.setScale(newScale);
+    },
+
+    _applyScale(scale) {
+      this._iconSize = 24 * scale;
+      this._fontSize = 12 * scale;
+      const icon = this._target.querySelector('cv-icon');
+      if (icon) {
+        icon.style.fontSize = this._iconSize + 'px';
+        const fo = icon.parentElement;
+        fo.setAttribute('width', this._iconSize + 'px');
+        fo.setAttribute('height', this._iconSize + 'px');
+      }
+      let text = this._target.querySelector('text.value');
+      if (text) {
+        text.style.fontSize = this._fontSize + 'px';
+        text.setAttribute('y', '' + (32 * scale));
+      }
+      text = this._target.querySelector('text.title');
+      if (text) {
+        text.style.fontSize = (this._fontSize + 2) + 'px';
+        text.setAttribute('y', '' + (16 * scale));
+      }
+      if (this._svg) {
+        this._svg.setAttribute('height', '' + (56 * scale * this.getRowspan()));
+        this._svg.setAttribute('width', '' + (56 * scale * this.getColspan()));
+      }
     },
 
     _updateValue(mappedValue, value) {
