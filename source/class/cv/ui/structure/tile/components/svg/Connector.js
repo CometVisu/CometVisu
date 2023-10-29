@@ -361,6 +361,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
         if (value) {
           this._path.classList.add(value);
         }
+        this._applyShowDirection();
       }
     },
 
