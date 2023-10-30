@@ -319,12 +319,12 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       }
       if (enabled) {
         button.classList.add('clickable');
-        qx.event.Registration.addListener(button, 'click', callback, this);
+        qx.event.Registration.addListener(button, 'tap', callback, this);
       } else {
         if (button.classList.contains('clickable')) {
           button.classList.remove('clickable');
         }
-        qx.event.Registration.removeListener(button, 'click', callback, this);
+        qx.event.Registration.removeListener(button, 'tap', callback, this);
       }
     },
 
