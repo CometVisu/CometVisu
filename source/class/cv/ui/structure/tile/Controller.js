@@ -160,7 +160,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       if (!pageId) {
         return;
       }
-      const page = document.querySelector('#' + pageId);
+      const page = document.querySelector('cv-page#' + pageId);
       if (page) {
         if (!page.classList.contains('active')) {
           for (let oldPage of document.querySelectorAll('cv-page.active')) {

@@ -178,7 +178,7 @@ body {
 
     > header {
         box-shadow: var(--headerShadow);
-        overflow: hidden;
+        /*overflow: hidden; blocks menu visibility */
 
         > [hide-on-scroll="true"] {
             transition: transform 0.2s, height 0.5s;
@@ -215,6 +215,7 @@ body {
 
             > li {
                 height: unset;
+                white-space: normal;
 
                 &:first-child {
                     border-top-left-radius: inherit;
