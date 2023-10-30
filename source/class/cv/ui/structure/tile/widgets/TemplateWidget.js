@@ -41,8 +41,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.TemplateWidget', {
   ***********************************************
   */
   members: {
-    __mobileReplacements: null,
-
     _checkEnvironment() {
       this._headerFooterParent = this._element;
     },
@@ -52,49 +50,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.TemplateWidget', {
         this._tileElement = this._element.querySelector(':scope > cv-tile');
       }
       return this._tileElement;
-    },
-
-    _init() {
-      super._init();
-      const element = this._element;
-
-      // has mobile attributes
-      this.__mobileReplacements = [];
-
-      for (const name of element.getAttributeNames()) {
-        if (name.startsWith('mobile-')) {
-          const targetName = name.substring(7);
-          this.__mobileReplacements.push({
-            name: targetName,
-            mobile: element.getAttribute(name),
-            desktop: element.getAttribute(targetName)
-          });
-        }
-      }
-
-      if (this.__mobileReplacements.length > 0) {
-        qx.core.Init.getApplication().addListener('changeMobile', this.__updateAttributes, this);
-      }
-
-      if (document.body.classList.contains('mobile')) {
-        this.__updateAttributes();
-      }
-    },
-
-    __updateAttributes() {
-      const isMobile = document.body.classList.contains('mobile');
-      for (const entry of this.__mobileReplacements) {
-        this._element.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
-      }
     }
-  },
-
-  /*
-  ***********************************************
-    DESTRUCTOR
-  ***********************************************
-  */
-  destruct() {
-    qx.core.Init.getApplication().removeListener('changeMobile', this.__updateAttributes, this);
   }
 });

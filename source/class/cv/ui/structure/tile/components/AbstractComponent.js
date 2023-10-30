@@ -94,6 +94,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     _headerFooterParent: null,
     _preMappingHooks: null,
     _tileElement: null,
+    __mobileReplacements: null,
 
     _checkEnvironment() {
       let inPopup = false;
@@ -166,6 +167,35 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           // cancel event here
           ev.stopPropagation();
         });
+      }
+
+      // has mobile attributes
+      this.__mobileReplacements = [];
+
+      for (const name of element.getAttributeNames()) {
+        if (name.startsWith('mobile-')) {
+          const targetName = name.substring(7);
+          this.__mobileReplacements.push({
+            name: targetName,
+            mobile: element.getAttribute(name),
+            desktop: element.getAttribute(targetName)
+          });
+        }
+      }
+
+      if (this.__mobileReplacements.length > 0) {
+        qx.core.Init.getApplication().addListener('changeMobile', this.__updateAttributes, this);
+      }
+
+      if (document.body.classList.contains('mobile')) {
+        this.__updateAttributes();
+      }
+    },
+
+    __updateAttributes() {
+      const isMobile = document.body.classList.contains('mobile');
+      for (const entry of this.__mobileReplacements) {
+        this._element.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
       }
     },
 
@@ -397,5 +427,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   destruct() {
     this._writeAddresses = null;
     this._headerFooterParent = null;
+    qx.core.Init.getApplication().removeListener('changeMobile', this.__updateAttributes, this);
   }
 });
