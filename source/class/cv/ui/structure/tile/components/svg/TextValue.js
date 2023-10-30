@@ -126,7 +126,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     },
 
     _updateSize() {
-      const newScale = Math.min(2.5, (Math.min(this._parentGridLayout.getCellWidth(), this._parentGridLayout.getCellHeight()) - this._parentGridLayout.getSpacing()) / 56);
+      const newScale = Math.min(2.5, (Math.min(this._parentGridLayout.getCellWidth(), this._parentGridLayout.getCellHeight()) - this._parentGridLayout.getSpacing()) / cv.ui.structure.tile.components.svg.MGraphicsElement.DefaultSize);
       if (newScale === 0.0) {
         return;
       }
@@ -137,8 +137,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     _applyScale(scale) {
       this._target.setAttribute('transform', `scale(${scale})`);
       if (this._svg) {
-        this.setHeight(56 * scale * this.getRowspan());
-        this.setWidth(56 * scale * this.getColspan());
+        this.setHeight(cv.ui.structure.tile.components.svg.MGraphicsElement.DefaultSize * scale * this.getRowspan());
+        this.setWidth(cv.ui.structure.tile.components.svg.MGraphicsElement.DefaultSize * scale * this.getColspan());
       }
     },
 
