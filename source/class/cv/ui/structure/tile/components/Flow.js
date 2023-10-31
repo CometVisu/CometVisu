@@ -87,10 +87,17 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     _expiredTouchStart: null,
     _viewBoxBinding: null,
 
+    getSvg() {
+      if (!this.SVG) {
+        this.SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        this._element.appendChild(this.SVG);
+      }
+      return this.SVG;
+    },
+
     _init() {
       super._init();
-      const svg = this.SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      this._element.appendChild(svg);
+      this.getSvg();
 
       this.setResizeTarget(this._element);
       this.addListener('resized', this._updateDimensions, this);
@@ -137,6 +144,14 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         this._applyPan(true);
       }
       this._applyPagination(this.getPagination());
+
+      if (element.querySelectorAll(':scope > cv-power-entity:not([type="house"]), :scope > cv-svg-round-value').length === 0) {
+        // remove the house
+        const house = element.querySelector(':scope > cv-power-entity[type="house"]');
+        if (house) {
+          house.remove();
+        }
+      }
     },
 
     _applyCenterX(value) {
@@ -159,8 +174,11 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       if (rowElements.length === 1) {
         rowElements[0].setAttribute('column', '1');
       } else if (rowElements.length === 2) {
-        rowElements[0].setAttribute('column', '0.5');
-        rowElements[1].setAttribute('column', '1.5');
+        const sorted = Array.from(rowElements);
+        sorted.sort((a, b) => parseFloat(a.getAttribute('column')) - parseFloat(b.getAttribute('column')));
+        console.log(sorted);
+        sorted[0].setAttribute('column', '0.5');
+        sorted[1].setAttribute('column', '1.5');
       }
     },
 
@@ -168,8 +186,10 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       if (columnElements.length === 1) {
         columnElements[0].setAttribute('row', '1');
       } else if (columnElements.length === 2) {
-        columnElements[0].setAttribute('row', '0.5');
-        columnElements[1].setAttribute('row', '1.5');
+        const sorted = Array.from(columnElements);
+        sorted.sort((a, b) => parseFloat(a.getAttribute('row')) - parseFloat(b.getAttribute('row')));
+        sorted[0].setAttribute('row', '0.5');
+        sorted[1].setAttribute('row', '1.5');
       }
     },
 

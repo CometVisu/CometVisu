@@ -95,7 +95,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         this._debouncedUpdateRadius = qx.util.Function.debounce(this._updateRadius.bind(this), 10);
         this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRadius, this);
       }
-      const parent = this._parentGridLayout ? this._parentGridLayout.SVG : element;
+      const parent = this._parentGridLayout ? this._parentGridLayout.getSvg() : element;
 
       const ns = 'http://www.w3.org/2000/svg';
 
@@ -298,10 +298,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
     },
 
     _updateValue(mappedValue, value) {
-      const target = this._target.querySelector('.value');
-      if (target) {
-        target.textContent = mappedValue;
-        this._debouncedDetectOverflow();
+      if (this._target) {
+        const target = this._target.querySelector('.value');
+        if (target) {
+          target.textContent = mappedValue;
+          this._debouncedDetectOverflow();
+        }
       }
     },
 

@@ -82,7 +82,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       super._init();
       const element = this._element;
       this._findParentGridLayout();
-      const parent = this._parentGridLayout ? this._parentGridLayout.SVG : element;
+      const parent = this._parentGridLayout ? this._parentGridLayout.getSvg() : element;
       this._iconSize = 24 * this.getScale();
       this._debouncedUpdateRSize = qx.util.Function.debounce(this._updateSize.bind(this), 10);
       this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRSize, this);
@@ -135,7 +135,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     },
 
     _applyScale(scale) {
-      this._target.setAttribute('transform', `scale(${scale})`);
+      if (this._target) {
+        this._target.setAttribute('transform', `scale(${scale})`);
+      }
       if (this._svg) {
         this.setHeight(cv.ui.structure.tile.components.svg.MGraphicsElement.DefaultSize * scale * this.getRowspan());
         this.setWidth(cv.ui.structure.tile.components.svg.MGraphicsElement.DefaultSize * scale * this.getColspan());
@@ -143,9 +145,11 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     },
 
     _updateValue(mappedValue, value) {
-      const target = this._target.querySelector('.value');
-      target.textContent = mappedValue;
-      this._debouncedDetectOverflow();
+      if (this._target) {
+        const target = this._target.querySelector('.value');
+        target.textContent = mappedValue;
+        this._debouncedDetectOverflow();
+      }
     },
 
     _centerY() {
