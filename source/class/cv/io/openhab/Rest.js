@@ -151,12 +151,20 @@ qx.Class.define('cv.io.openhab.Rest', {
       return true;
     },
 
-    processChartsData : function (response) {
+    processChartsData : function (response, config) {
       if (response && response.data) {
         const data = response.data;
-        const newRrd = new Array(data.length);
+        const newRrd = [];
+        const scaling = config && Object.prototype.hasOwnProperty.call(config, 'scaling') ? config.scaling : 1.0;
+        const offset = config && Object.prototype.hasOwnProperty.call(config, 'offset') && Number.isFinite(config.offset) ? config.offset * 1000 : 0;
+        let lastValue;
+        let value;
         for (let j = 0, l = data.length; j < l; j++) {
-          newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+          value = parseFloat(data[j].state) * scaling;
+          if (value !== lastValue) {
+            newRrd.push([data[j].time + offset, value]);
+          }
+          lastValue = value;
         }
         return newRrd;
       }
@@ -398,9 +406,16 @@ qx.Class.define('cv.io.openhab.Rest', {
         case 'rrd':
           return function (result) {
             if (format === 'monaco') {
-              return result.map(element => ({insertText: element, label: element, kind: window.monaco.languages.CompletionItemKind.EnumMember}));
-            } 
-              return result.map(element => ({value: element, label: element}));
+              return result.map(element => ({
+                insertText: element,
+                label: element,
+                kind: window.monaco.languages.CompletionItemKind.EnumMember
+              }));
+            }
+            return result.map(element => ({
+              value: element,
+              label: element
+            }));
           };
         default:
           return null;
