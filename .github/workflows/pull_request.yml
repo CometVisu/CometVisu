@@ -106,8 +106,9 @@ jobs:
           target: source
       - name: Install grunt
         run: npm install -g grunt-cli
+      - run: which google-chrome
       - name: Run tests
         run: grunt e2e-chrome
         env:
-          CHROME_BIN: google-chrome-stable
+          CHROME_BIN: /usr/bin/google-chrome
           WEBDRIVER_PATH: /usr/local/bin/chromedriver
