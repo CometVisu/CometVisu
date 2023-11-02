@@ -1865,8 +1865,8 @@
   <xsd:complexType name="cv-energy">
     <xsd:complexContent>
       <xsd:extension base="cv-flow">
-        <xsd:sequence>
-          <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:all>
+          <xsd:element name="cv-address" maxOccurs="unbounded" minOccurs="0">
             <xsd:complexType>
               <xsd:simpleContent>
                 <xsd:extension base="address">
@@ -1890,7 +1890,7 @@
           </xsd:element>
           <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
           <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
-        </xsd:sequence>
+        </xsd:all>
         <xsd:attribute name="house-row" type="xsd:decimal">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Row of the position od the house (default=1).</xsd:documentation>
@@ -2019,10 +2019,10 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-flow">
-    <xsd:sequence>
+    <xsd:all>
       <xsd:element name="cv-svg-round-value" type="cv-svg-round-value" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />
-    </xsd:sequence>
+    </xsd:all>
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute name="mobile-size" type="tile-size" />
     <xsd:attributeGroup ref="appearance-attributes" />
@@ -2108,10 +2108,10 @@
   # -->
 
   <xsd:complexType name="cv-svg-text-value">
-    <xsd:sequence>
+    <xsd:all>
       <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
-    </xsd:sequence>
+    </xsd:all>
     <xsd:attribute name="id" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">ID of this element.</xsd:documentation>
@@ -2137,10 +2137,10 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-svg-round-value">
-    <xsd:sequence>
+    <xsd:all>
       <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
-    </xsd:sequence>
+    </xsd:all>
     <xsd:attribute name="id" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">ID of this element.</xsd:documentation>
