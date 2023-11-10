@@ -279,7 +279,7 @@ class WidgetExampleParser:
         try:
             etree.fromstring(visu_config, tile_parser if parsed['settings']['structure'] == "tile" else parser)
         except etree.XMLSyntaxError as e:
-            print(visu_config)
+            print("'%s'" % visu_config)
             print("ERROR: %s" % str(e))
             raise e
         parsed["settings"]["config"] = visu_config
