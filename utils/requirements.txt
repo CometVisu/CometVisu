@@ -10,3 +10,4 @@ rjsmin
 semver
 requests
 Pillow
+python-dotenv

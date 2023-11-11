@@ -41,6 +41,7 @@ from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
 from utils.commands.scaffolding import Scaffolder
+from dotenv import dotenv_values
 
 try:
     # Python 2.6-2.7
@@ -243,9 +244,17 @@ class DocGenerator(Command):
 
         if not skip_screenshots:
             grunt = sh.Command("grunt")
+            new_env = os.environ.copy()
+            if os.path.isfile(".protractor-env"):
+                config = dotenv_values(".protractor-env")
+                new_env.update(config)
+
             # generate the screenshots
             grunt("--force", "screenshots", "--subDir=manual", "--browserName=%s" % browser,
-                  "--target=%s" % screenshot_build, _out=self.process_output, _err=self.process_output)
+                  "--target=%s" % screenshot_build,
+                  _out=self.process_output,
+                  _err=self.process_output,
+                  _env=new_env)
 
             # 2dn run with access to the generated screenshots
             print ('================================================================================')
