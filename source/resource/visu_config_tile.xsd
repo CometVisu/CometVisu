@@ -1865,7 +1865,7 @@
   <xsd:complexType name="cv-energy">
     <xsd:complexContent>
       <xsd:extension base="cv-flow">
-        <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:choice maxOccurs="unbounded">
           <xsd:element name="cv-address" minOccurs="0" maxOccurs="unbounded">
             <xsd:complexType>
               <xsd:simpleContent>
@@ -1919,6 +1919,8 @@
         </xsd:attribute>
         <xsd:attribute name="header" type="header"/>
         <xsd:attribute name="mobile-header" type="header"/>
+        <xsd:attribute name="center-x" type="xsd:boolean" default="true"/>
+        <xsd:attribute name="center-y" type="xsd:boolean" default="false"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
