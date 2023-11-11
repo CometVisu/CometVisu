@@ -29,7 +29,7 @@ qx.Class.define('cv.util.Svg', {
   statics: {
     getBBox(element) {
       const bbox = { x: 0, y: 0, cx: 0, cy: 0, width: 0, height: 0 };
-      const svg = element.ownerSVGElement || element.localName === "svg" ? element : null;
+      const svg = element.ownerSVGElement;
       if (svg) {
         if (qx.core.Environment.get('browser.name').includes('firefox')) {
           // firefox getScreenCTM does not work well, we have to do it manually
