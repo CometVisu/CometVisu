@@ -156,17 +156,35 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
 
     _applyCenterX(value) {
       if (value) {
-        this.__adjustRow(this._element.querySelectorAll(':scope > *[row="0"]'));
-        this.__adjustRow(this._element.querySelectorAll(':scope > *[row="1"]'));
-        this.__adjustRow(this._element.querySelectorAll(':scope > *[row="2"]'));
+        this.__applyCenter('row', this.getRows());
       }
     },
 
     _applyCenterY(value) {
       if (value) {
-        this.__adjustColumn(this._element.querySelectorAll(':scope > *[column="0"]'));
-        this.__adjustColumn(this._element.querySelectorAll(':scope > *[column="1"]'));
-        this.__adjustColumn(this._element.querySelectorAll(':scope > *[column="2"]'));
+        this.__applyCenter('column', this.getColumns());
+      }
+    },
+
+    __applyCenter(selector, total) {
+      // do not center the middle one(s)
+      let skip = [];
+      if (total > 2) {
+        if (total % 2 > 0) {
+          skip.push(Math.floor(total / 2));
+        } else {
+          skip.push((total / 2) - 1);
+          skip.push(total / 2);
+        }
+      }
+      for (let i = 0; i < total; i++) {
+        if (!skip.includes(i)) {
+          if (selector === 'row') {
+            this.__adjustRow(this._element.querySelectorAll(`:scope > *[row="${i}"]`));
+          } else {
+            this.__adjustColumn(this._element.querySelectorAll(`:scope > *[column="${i}"]`));
+          }
+        }
       }
     },
 
@@ -176,7 +194,6 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       } else if (rowElements.length === 2) {
         const sorted = Array.from(rowElements);
         sorted.sort((a, b) => parseFloat(a.getAttribute('column')) - parseFloat(b.getAttribute('column')));
-        console.log(sorted);
         sorted[0].setAttribute('column', '0.5');
         sorted[1].setAttribute('column', '1.5');
       }
