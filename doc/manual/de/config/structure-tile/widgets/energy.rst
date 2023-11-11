@@ -103,6 +103,30 @@ Als letztes muss noch die Position des Hauses verändert werden, dieses ist imme
 was bei einen 3x3 Layout die Mitte ist, da immer bei 0 angefangen wird zu zählen).
 Da wir hier nur eine Zeile haben, positionieren wir das Haus in dieser ``house-row="0"``.
 
+Bestimmung der "Flussrichtung"
+++++++++++++++++++++++++++++++
+
+Einige Leistungswerte können auch negativ werden und definieren so die Flussrichtung. Gibt der Hauptzähler z.B.
+einen negativen Werte aus, bedeutet dass, das diese Leistung gerade ins Netz eingespeist wird. Ein positiver Wert
+bedeutet, dass diese Leistung gerade aus dem Netz bezogen wird. Bei einem Batteriespeicher kann der Wert ebenfalls negativ werden,
+wenn die Batterie geladen wird. PV und Verbraucherzähler liefern i.d.R. nur positive Werte auch wenn sie direkt gegenüber gestellt
+unterschiedliche Richtungen darstellen (Erzeugung vs. Verbrauch).
+
+Die Darstellung der Energieflüsse zwischen zwei Elementen wird über das ``connect-to`` Attribut definiert.
+Das Netz (``<cv-power-entity type="grid" id="grid">``) ist mit dem Haus verbunden durch ``connect-to="house"``.
+Ein positiver Wert bedeutet dann das die Energie vom Netz in Richtung Haus fließt (Netzbezug) und ein negativer
+Wert bedeutet, dass die Energy vom Haus in Richtung Netz fließt (Netzeinspeisung).
+
+Das selbe gilt für den Wechselrichter (``<cv-power-entity type="pv">``), nur das es hier nur Positive Werte geben kann,
+die dann in Richtung Haus fließen.
+
+.. hint::
+
+    Wie bereits erwählt liefern Verbraucherzähler auch nur positive Werte, obwohl hier technisch gesehen
+    Energie vom Haus in einen Verbraucher fließt. Daher muss die Verbindung eines Verbrauchers
+    zum Haus mit ``connect-from="house"`` angegeben werden.
+
+
 Komplexes Beispiel
 ^^^^^^^^^^^^^^^^^^
 
