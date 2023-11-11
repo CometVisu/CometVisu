@@ -369,7 +369,7 @@
             </cv-value>
         </footer>
     </template>
-    <template id="energy" size="2x1">
+    <template id="energy" size="1x1">
         <header>
             <label class="title">
                 <slot name="title">TITLE</slot>
@@ -380,7 +380,7 @@
             <cv-menu>
                 <slot name="menu" parent-scope="1"/>
             </cv-menu>
-            <cv-flow slot-title="" slot-allow-fullscreen="false" slot-rows="3" slot-columns="6" slot-pan="true" slot-view-box="0 0 6 3" slot-fullscreen-view-box="" slot-mobile-view-box="" slot-pagination="horizontal" slot-center-x="true">
+            <cv-flow slot-title="" slot-allow-fullscreen="false" slot-rows="3" slot-columns="6" slot-pan="true" slot-view-box="0 0 3 3" slot-fullscreen-view-box="" slot-mobile-view-box="" slot-pagination="horizontal" slot-center-x="true">
                 <slot name="default"/>
                 <cv-power-entity type="pv" id="inverter-pv" connect-to="house" row="0" column="1">
                     <cv-address-group operator="+">
