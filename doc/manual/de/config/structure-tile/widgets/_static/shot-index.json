@@ -26,5 +26,13 @@
     "cv-small-status": "92689663bdbd994f616265953a34a62c",
     "cv-small-status-open": "e422f9972428d53331ad9a31066ce24b",
     "cv-small-status-mapping": "9e17dd381867346672a1d6a41f7a2d81",
-    "cv-small-status-label": "210344785361012280e26675e1e03b1d"
+    "cv-small-status-label": "210344785361012280e26675e1e03b1d",
+    "cv-energy-full": "00f0333420b0f5ee5f16d92d7bcca09f",
+    "cv-energy-partial": "dbf764b284dac149b900816e7a9974cd",
+    "cv-energy-simple": "08d89f7d2a98a54adac963d53c8fc9f2",
+    "cv-energy-complex1": "5a923cf5167616acd11ea8a5e3b39232",
+    "cv-energy-complex-right": "3c3de9014f2c7979c0c0a25eaece3744",
+    "cv-energy-complex-left": "022e0bff164239eb87b6e44f0e6c2dcc",
+    "cv-energy-complex-fsc": "5ce4677ade4246cba6a5adb5b7e9be8b",
+    "cv-energy-complex-fsc-open": "a41c91e623b7e171e507d5e98507db0c"
 }

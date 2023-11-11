@@ -793,14 +793,13 @@ body {
             border-radius: 8px;
             color: var(--primaryText);
             background: transparent;
-            border: none;
             width: 32px;
             height: 32px;
             font-size: 24px;
             padding: 0;
             text-align: center;
             vertical-align: middle;
-            line-height: 32px;
+            line-height: 24px;
             cursor: pointer;
 
             &:disabled {
