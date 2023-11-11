@@ -186,7 +186,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
 
     _updateRadius() {
       if (this._parentGridLayout) {
-        const newRadius = Math.floor((Math.min(this._parentGridLayout.getCellWidth(), this._parentGridLayout.getCellHeight()) - this._parentGridLayout.getSpacing()) / 2);
+        const newRadius = Math.floor((Math.min(this._parentGridLayout.getCellWidth(), this._parentGridLayout.getCellHeight())) / 2);
         if (this.getRadius() !== newRadius) {
           this._element.setAttribute('radius', '' + newRadius);
         }
@@ -266,6 +266,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         }
         this.__updateAmountPosition();
       }
+      console.log(radius, this._svg);
       if (this._svg) {
         this.setHeight(radius * 2);
         this.setWidth(radius * 2);
