@@ -266,7 +266,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         }
         this.__updateAmountPosition();
       }
-      console.log(radius, this._svg);
       if (this._svg) {
         this.setHeight(radius * 2);
         this.setWidth(radius * 2);

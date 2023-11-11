@@ -67,7 +67,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
 
     spacing: {
       check: 'Number',
-      init: 4,
+      init: 8,
       event: 'changeSpacing',
       apply: '_invalidateLayout',
       transform: '__toInt'
