@@ -5,6 +5,11 @@ Flow
 
 .. api-doc:: cv.ui.structure.tile.components.Flow
 
+.. toctree::
+    :maxdepth: 1
+
+    Power entity<power-entity>
+    Energy entity<energy-entity>
 
 Beschreibung
 ------------
