@@ -66,6 +66,7 @@ jobs:
           target: build
       - name: Install grunt
         run: npm install -g grunt-cli
+      - run: sudo rm /usr/bin/chromedriver
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         env:
