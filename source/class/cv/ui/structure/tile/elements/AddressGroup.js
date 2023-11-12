@@ -52,15 +52,19 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
 
   /*
   ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    changeValue: 'qx.event.type.Data'
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
   properties: {
-    value: {
-      apply: '_applyValue',
-      init: null,
-      event: 'changeValue'
-    },
 
     operator: {
       check: ['+', '-', '/', '*'],
@@ -101,6 +105,24 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
   members: {
     _i: null,
     _values: null,
+    __value: null,
+
+    setValue(val) {
+      if (this.__value !== val) {
+        const oldValue = this.__value;
+        this.__value = val;
+        this.fireDataEvent('changeValue', val, oldValue);
+        this._applyValue(val);
+      }
+    },
+
+    getValue() {
+      return this.__value;
+    },
+
+    resetValue() {
+      this.__value = null;
+    },
 
     getAddress() {
       return this._element.getAttribute('id');
