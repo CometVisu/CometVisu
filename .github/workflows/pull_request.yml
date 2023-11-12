@@ -86,7 +86,8 @@ jobs:
       CV_BROWSER: ${{ matrix.browser }}
     steps:
       - run: update-alternatives --skip-auto --config google-chrome
-      - run: update-alternatives --skip-auto --config chromedriver
+      - run: which chromedriver
+      - run: update-alternatives --remove-all chromedriver
       - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
