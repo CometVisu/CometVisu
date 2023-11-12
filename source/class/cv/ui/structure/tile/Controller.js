@@ -760,8 +760,9 @@ class TemplatedElement extends QxConnector {
             }
           } else {
             slot.remove();
-            if (parentNode.children.length === 0) {
+            if (parentNode.children.length === 0 && slotParentScope >= 0) {
               // also remove slots parent when it has no content
+              // can be obeyed by setting parent-scope="-1"
               parentNode.remove();
             }
           }
