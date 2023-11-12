@@ -1,5 +1,6 @@
-{% if versions %}
-{# Add rst-badge after rst-versions for small badge style. #}
+{% extends "sphinx_rtd_theme/layout.html" %}
+{% block footer %}
+  {{ super() }}
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="{{ _('Versions') }}">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> {{ _('Version') }}</span>
@@ -10,9 +11,9 @@
       <dl>
         <dt>{{ _('Versions') }}</dt>
         {% for slug, url in versions %}
-          <dd><a href="{{ url }}">{{ slug }}</a></dd>
+        <dd><a href="{{ url }}">{{ slug }}</a></dd>
         {% endfor %}
       </dl>
     </div>
   </div>
-{% endif %}
+{% endblock %}

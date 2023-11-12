@@ -182,6 +182,8 @@ class DocGenerator(Command):
              ):
 
         sphinx_build = sh.Command("sphinx-build")
+        build_env = os.environ.copy()
+        build_env["READTHEDOCS"] = "true"
 
         # check if sources exist for this language
         section = "manual-%s" % language
@@ -205,7 +207,7 @@ class DocGenerator(Command):
             args = ["-N", "-b", "spelling", source_dir, target_dir]
             total_fails = {}
             total_count = 0
-            sphinx_build(*args, _out=lambda l: self._handle_spellcheck(l, total_fails))
+            sphinx_build(*args, _out=lambda l: self._handle_spellcheck(l, total_fails), _env=build_env)
             for file, fails in total_fails.items():
                 rel_file = file[len(self.root_dir)+1:]
                 total_count += len(fails)
@@ -240,7 +242,7 @@ class DocGenerator(Command):
         print ('================================================================================')
         print ('sphinx_build: first run')
         print ('================================================================================')
-        sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
+        sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output, _env=build_env)
 
         if not skip_screenshots:
             grunt = sh.Command("grunt")
@@ -260,7 +262,7 @@ class DocGenerator(Command):
             print ('================================================================================')
             print ('sphinx_build: second run')
             print ('================================================================================')
-            sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
+            sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output, _env=build_env)
 
         with open(os.path.join(target_dir, "..", "version"), "w+") as f:
             f.write(self._get_source_version())

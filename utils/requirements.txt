@@ -4,6 +4,7 @@ sphinx==7.2.6
 lxml
 sphinxcontrib-plantuml
 sphinxcontrib-spelling
+sphinx_rtd_theme
 configparser
 PyYAML
 rjsmin
