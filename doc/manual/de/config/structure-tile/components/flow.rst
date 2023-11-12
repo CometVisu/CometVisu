@@ -14,7 +14,7 @@ Flow
 Beschreibung
 ------------
 
-Die Flow-Komponente erzeugt ein Flussdiagramm in dem einzelne Werte in relation zu einander dargestellt werden.
+Die Flow-Komponente erzeugt ein Flussdiagramm in dem einzelne Werte in Relation zu einander dargestellt werden.
 Diese Komponente kommt im :ref:`Energy-Widget<tile-energy>` zu Einsatz um die Energieflüsse innerhalb eines Hauses
 darstellen zu können. Momentan stehen daher auch nur Energie-bezogene Komponenten zur Verfügung die innerhalb der Flow-
 Komponente eingesetzt werden können.

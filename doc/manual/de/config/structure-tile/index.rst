@@ -227,43 +227,43 @@ Damit können übliche Anwendungsfälle innerhalb eines Smart-Homes abgedeckt we
 oder die Bedienung einer Rolllade (Shutter).
 
 .. table::
-   :widths: 30 70
+    :widths: 30 70
 
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-switch-on.png              |  :ref:`tile-switch`                                       |
-    |    :width: 150                                           | Einfacher Schalter, Taster oder Trigger                   |
+    | .. image:: widgets/_static/cv-switch-on.png              | :ref:`tile-switch`                                        |
+    |     :width: 150                                          | Einfacher Schalter, Taster oder Trigger                   |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-dimmer.png                 |  :ref:`tile-dimmer`                                       |
-    |    :width: 150                                           | Schalter mit zusätzlichem Slider zur Einstellung eines    |
+    | .. image:: widgets/_static/cv-dimmer.png                 | :ref:`tile-dimmer`                                        |
+    |     :width: 150                                          | Schalter mit zusätzlichem Slider zur Einstellung eines    |
     |                                                          | Prozentwerts.                                             |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-shutter.png                |  :ref:`tile-shutter`                                      |
-    |    :width: 150                                           | Taster für hoch/runter/stop zur Bedienung einer Jalousie  |
+    | .. image:: widgets/_static/cv-shutter.png                | :ref:`tile-shutter`                                       |
+    |     :width: 150                                          | Taster für hoch/runter/stop zur Bedienung einer Jalousie  |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-info.png                   |  :ref:`tile-info`                                         |
-    |    :width: 150                                           | Darstellung eines Werts in verschiedenen Arten.           |
+    | .. image:: widgets/_static/cv-info.png                   | :ref:`tile-info`                                          |
+    |     :width: 150                                          | Darstellung eines Werts in verschiedenen Arten.           |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-status.png                 |  :ref:`tile-status`                                       |
-    |    :width: 150                                           | Status Anzeige in halber Kachel-Höhe                      |
+    | .. image:: widgets/_static/cv-status.png                 | :ref:`tile-status`                                        |
+    |     :width: 150                                          | Status Anzeige in halber Kachel-Höhe                      |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-small-status.png           |  :ref:`tile-small-status`                                 |
-    |    :width: 60                                            | Status Anzeige in Button-Größe                            |
+    | .. image:: widgets/_static/cv-small-status.png           | :ref:`tile-small-status`                                  |
+    |     :width: 60                                           | Status Anzeige in Button-Größe                            |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-status-chart.png           |  :ref:`tile-status-chart`                                 |
-    |    :width: 150                                           | Status-Widget mit Chart im Hintergrund                    |
+    | .. image:: widgets/_static/cv-status-chart.png           | :ref:`tile-status-chart`                                  |
+    |     :width: 150                                          | Status-Widget mit Chart im Hintergrund                    |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-rtc.png                    |  :ref:`tile-rtc`                                          |
-    |    :width: 150                                           | Raumtemperatursteuerung mit Einstellungen für HVAC und    |
+    | .. image:: widgets/_static/cv-rtc.png                    | :ref:`tile-rtc`                                           |
+    |     :width: 150                                          | Raumtemperatursteuerung mit Einstellungen für HVAC und    |
     |                                                          | einer Solltemperatur                                      |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-media-player.png           |  :ref:`tile-media-player`                                 |
-    |    :width: 150                                           | Steuerung eines Medien-Abspielers mit Start/Stop          |
+    | .. image:: widgets/_static/cv-media-player.png           | :ref:`tile-media-player`                                  |
+    |     :width: 150                                          | Steuerung eines Medien-Abspielers mit Start/Stop          |
     |                                                          | vor & zurück und einer Lautstärkeregelsung                |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-widget-pair.png            |  :ref:`tile-widget-pair`                                  |
+    | .. image:: widgets/_static/cv-widget-pair.png            | :ref:`tile-widget-pair`                                   |
     |    :width: 150                                           | Ermöglicht es zwei Kacheln in halber Höhe darzustellen    |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-energy.png                 |  :ref:`tile-widget-energy`                                |
+    | .. image:: widgets/_static/cv-energy-full.png            | :ref:`tile-energy`                                        |
     |    :width: 150                                           | Zeigt Energieflüsse innerhalb eines Hauses an             |
     +----------------------------------------------------------+-----------------------------------------------------------+
 
@@ -492,6 +492,10 @@ mehrere Komponenten in einer Kachel.
     Chart <components/chart>
     Color <components/color>
     Flow <components/flow>
+    Power entity <components/power-entity>
+    Energy entity <components/energy-entity>
+    SVG round value <components/svg-round-value>
+    SVG text value <components/svg-text-value>
 
 
 Sonstiges
