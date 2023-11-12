@@ -491,7 +491,6 @@ mehrere Komponenten in einer Kachel.
     List <components/list>
     Chart <components/chart>
     Color <components/color>
-    Flow <components/flow>
     Power entity <components/power-entity>
     Energy entity <components/energy-entity>
     SVG round value <components/svg-round-value>

@@ -9,8 +9,8 @@ Beschreibung
 ------------
 
 Die SVG round value Komponente besteht aus einem Icon und einem Text in einem farbigen Kreis. Sie bildet die technische
-Basis für die :ref:`Power Entity Komponente<tile-component-power-entity>` und wird dadurch normalerweise in der
-:ref:`Flow Komponente<tile-component-flow>` bzw. dem :ref:`Energy Widget<tile-energy>` eingesetzt.
+Basis für die :ref:`Power Entity Komponente<tile-component-power-entity>` und wird dadurch normalerweise im
+:ref:`Energy Widget<tile-energy>` eingesetzt.
 Funktional ähnelt diese Komponente der :ref:`Value Komponente<tile-component-value>`.
 
 .. widget-example::

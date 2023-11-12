@@ -1880,6 +1880,7 @@
                         <xsd:enumeration value="charger-power" />
                         <xsd:enumeration value="heatpump-power" />
                         <xsd:enumeration value="consumer-power" />
+                        <xsd:enumeration value="house-power" />
                         <xsd:enumeration value="tileAddress" />
                       </xsd:restriction>
                     </xsd:simpleType>

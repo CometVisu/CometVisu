@@ -393,7 +393,9 @@
                     </cv-address-group>
                     <slot name="battery-other"/>
                 </cv-power-entity>
-                <cv-power-entity type="house" id="house" slot-house-row=":target=row,value=1" slot-house-column=":target=column,value=1"/>
+                <cv-power-entity type="house" id="house" slot-house-row=":target=row,value=1" slot-house-column=":target=column,value=1">
+                    <slot name="house-power" />
+                </cv-power-entity>
                 <cv-power-entity type="grid" id="grid" connect-to="house" row="1" column="2">
                     <cv-address-group operator="+">
                         <slot name="grid-power" parent-scope="2"/>

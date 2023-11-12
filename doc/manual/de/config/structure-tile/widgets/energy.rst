@@ -103,6 +103,8 @@ Als letztes muss noch die Position des Hauses verändert werden, dieses ist imme
 was bei einen 3x3 Layout die Mitte ist, da immer bei 0 angefangen wird zu zählen).
 Da wir hier nur eine Zeile haben, positionieren wir das Haus in dieser ``house-row="0"``.
 
+.. _tile-energy-flow:
+
 Bestimmung der "Flussrichtung"
 ++++++++++++++++++++++++++++++
 
