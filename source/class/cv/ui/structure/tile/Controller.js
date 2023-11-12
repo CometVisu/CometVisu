@@ -323,31 +323,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       }
     },
 
-    isTemplateWidget(name) {
-      return this._templateWidgets.includes(name);
-    },
-
-    /**
-     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
-     * @param xml {XMLDocument}
-     */
-    registerTemplates(xml) {
-      if (this._templateWidgets === null) {
-        this._templateWidgets = [];
-      }
-      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
-        customElements.define(
-          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
-          class extends TemplatedElement {
-            constructor() {
-              super(template.getAttribute('id'));
-            }
-          }
-        );
-        this._templateWidgets.push(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'));
-      });
-    },
-
     /**
      * Pre parsing hook, do everything here that is needed before the real parsing process can start
      * @param xml {XMLDocument}

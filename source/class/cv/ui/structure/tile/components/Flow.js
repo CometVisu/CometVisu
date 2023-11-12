@@ -553,7 +553,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       cv.ui.structure.tile.Controller.PREFIX + 'flow',
       class extends QxConnector {
         // @ignore
-        static observedAttributes = ['view-box', 'fullscreen-view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination', 'center-x','center-y'];
+        static observedAttributes = ['view-box', 'fullscreen-view-box', 'pan', 'rows', 'columns', 'cell-width', 'cell-height', 'outer-padding', 'spacing', 'pagination', 'center-x', 'center-y'];
         constructor() {
           super(QxClass);
         }
