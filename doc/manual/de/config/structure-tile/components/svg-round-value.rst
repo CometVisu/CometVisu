@@ -15,13 +15,41 @@ Funktional ähnelt diese Komponente der :ref:`Value Komponente<tile-component-va
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-svg-round-value" wrap-in="cv-widget" wrapped-position="row='1' column='1'" margin="10 10 10 10">
-        <screenshot name="cv-svg-round-value">
+    <settings design="tile" selector="cv-svg-round-value" wrap-in="cv-widget" wrapped-position="row='2' column='2'">
+        <screenshot name="cv-svg-round-value" margin="10 10 10 10">
             <data address="1/4/2">75</data>
         </screenshot>
     </settings>
     <cv-svg-round-value format="%d%%" icon="knxuf-measure_battery_100">
         <cv-address transform="DPT:5.001" mode="read">1/4/2</cv-address>
+    </cv-svg-round-value>
+
+Optional kann der äußere Kreis als Fortschrittsbalken genutzt werden.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-svg-round-value" wrap-in="cv-widget" wrapped-position="row='2' column='2'">
+        <screenshot name="cv-svg-round-progress" margin="10 10 10 10">
+            <data address="1/4/2">75</data>
+        </screenshot>
+    </settings>
+    <cv-svg-round-value format="%d%%" icon="knxuf-measure_battery_100">
+        <cv-address transform="DPT:5.001" mode="read">1/4/2</cv-address>
+        <cv-address transform="DPT:5.001" mode="read" target="progress">1/4/2</cv-address>
+    </cv-svg-round-value>
+
+Ebenso kann die Farbe des Kreises und auch die Farbe des Fortschittsbalken verändert werden.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-svg-round-value" wrap-in="cv-widget" wrapped-position="row='2' column='2'">
+        <screenshot name="cv-svg-round-colored" margin="10 10 10 10">
+            <data address="1/4/2">75</data>
+        </screenshot>
+    </settings>
+    <cv-svg-round-value format="%d%%" icon="knxuf-measure_battery_100" background-color="black" foreground-color="red">
+        <cv-address transform="DPT:5.001" mode="read">1/4/2</cv-address>
+        <cv-address transform="DPT:5.001" mode="read" target="progress">1/4/2</cv-address>
     </cv-svg-round-value>
 
 Erlaubte Attribute
