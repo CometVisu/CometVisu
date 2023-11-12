@@ -183,7 +183,6 @@ class DocGenerator(Command):
 
         sphinx_build = sh.Command("sphinx-build")
         build_env = os.environ.copy()
-        build_env["READTHEDOCS"] = "true"
 
         # check if sources exist for this language
         section = "manual-%s" % language
