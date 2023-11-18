@@ -44,44 +44,44 @@
        *
        * @internal
        */
-      __P_186_0: {},
+      __P_194_0: {},
       /**
        * Array for call stack-like data types.
        *
        * @internal
        */
-      __P_186_1: [],
+      __P_194_1: [],
       /**
        * Flag marking profiler run.
        *
        * @internal
        */
-      __P_186_2: true,
+      __P_194_2: true,
       /**
        * Profiler execution time. Subtracted for more accurate calculations.
        *
        * @internal
        */
-      __P_186_3: undefined,
+      __P_194_3: undefined,
       /**
        * Amount of times to run calculation of profiler overhead.
        *
        * @internal
        */
-      __P_186_4: 4000,
+      __P_194_4: 4000,
       /**
        * Clear profiling data and start profiling.
        */
       start: function start() {
-        this.__P_186_2 = true;
-        this.__P_186_0 = {};
-        this.__P_186_1.splice(0, this.__P_186_1.length - 2);
+        this.__P_194_2 = true;
+        this.__P_194_0 = {};
+        this.__P_194_1.splice(0, this.__P_194_1.length - 2);
       },
       /**
        * Stop profiling.
        */
       stop: function stop() {
-        this.__P_186_2 = false;
+        this.__P_194_2 = false;
       },
       /**
        * Return the profiling data as JSON data structure.
@@ -119,7 +119,7 @@
        * @return {Map} The current profiling data.
        */
       getProfileData: function getProfileData() {
-        return this.__P_186_0;
+        return this.__P_194_0;
       },
       /**
        * Show profiling results in a popup window. The results are sorted by the
@@ -130,7 +130,7 @@
       showResults: function showResults(maxLength) {
         this.stop();
         this.normalizeProfileData();
-        var data = Object.values(this.__P_186_0);
+        var data = Object.values(this.__P_194_0);
         data = data.sort(function (a, b) {
           return a.calibratedOwnTime < b.calibratedOwnTime ? 1 : -1;
         });
@@ -171,7 +171,7 @@
        * @param count {Integer} Number of iterations to measure.
        * @return {Number} Overhead of a wrapped function call in milliseconds.
        */
-      __P_186_5: function __P_186_5(count) {
+      __P_194_5: function __P_194_5(count) {
         // we use eval to unroll the loop because we don't want to measure the loop overhead.
 
         // Measure wrapped function
@@ -205,18 +205,18 @@
       /**
        * Helper to measure overhead.
        */
-      __P_186_6: function __P_186_6() {},
+      __P_194_6: function __P_194_6() {},
       /**
        * Normalize profiling data by subtracting the overhead of wrapping from the
        * function's own time.
        */
       normalizeProfileData: function normalizeProfileData() {
-        if (this.__P_186_3 == undefined) {
-          this.__P_186_3 = this.__P_186_5(this.__P_186_4);
+        if (this.__P_194_3 == undefined) {
+          this.__P_194_3 = this.__P_194_5(this.__P_194_4);
         }
-        for (var key in this.__P_186_0) {
-          var profileData = this.__P_186_0[key];
-          profileData.calibratedOwnTime = Math.max(profileData.ownTime - profileData.subRoutineCalls * this.__P_186_3, 0);
+        for (var key in this.__P_194_0) {
+          var profileData = this.__P_194_0[key];
+          profileData.calibratedOwnTime = Math.max(profileData.ownTime - profileData.subRoutineCalls * this.__P_194_3, 0);
           profileData.calibratedAvgTime = profileData.calibratedOwnTime / profileData.callCount;
         }
       },
@@ -231,14 +231,14 @@
        */
       profileBefore: function profileBefore(fullName, fcn, type, args) {
         var me = qx.dev.Profile;
-        if (!me.__P_186_2) {
+        if (!me.__P_194_2) {
           return;
         }
         var callData = {
           subRoutineTime: 0,
           subRoutineCalls: 0
         };
-        me.__P_186_1.push(callData);
+        me.__P_194_1.push(callData);
         callData.startTime = new Date();
       },
       /**
@@ -253,21 +253,21 @@
        */
       profileAfter: function profileAfter(fullName, fcn, type, args, returnValue) {
         var me = qx.dev.Profile;
-        if (!me.__P_186_2) {
+        if (!me.__P_194_2) {
           return;
         }
         var endTime = new Date();
-        var callData = me.__P_186_1.pop();
+        var callData = me.__P_194_1.pop();
         var totalTime = endTime - callData.startTime;
         var ownTime = totalTime - callData.subRoutineTime;
-        if (me.__P_186_1.length > 0) {
-          var lastCall = me.__P_186_1[me.__P_186_1.length - 1];
+        if (me.__P_194_1.length > 0) {
+          var lastCall = me.__P_194_1[me.__P_194_1.length - 1];
           lastCall.subRoutineTime += totalTime;
           lastCall.subRoutineCalls += 1;
         }
         var fcnKey = fullName + " (" + type + ")";
-        if (me.__P_186_0[fcnKey] === undefined) {
-          me.__P_186_0[fcnKey] = {
+        if (me.__P_194_0[fcnKey] === undefined) {
+          me.__P_194_0[fcnKey] = {
             totalTime: 0,
             ownTime: 0,
             callCount: 0,
@@ -276,7 +276,7 @@
             type: type
           };
         }
-        var functionData = me.__P_186_0[fcnKey];
+        var functionData = me.__P_194_0[fcnKey];
         functionData.totalTime += totalTime;
         functionData.ownTime += ownTime;
         functionData.callCount += 1;
@@ -288,4 +288,4 @@
   qx.dev.Profile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Profile.js.map?dt=1692560704347
+//# sourceMappingURL=Profile.js.map?dt=1700345591905

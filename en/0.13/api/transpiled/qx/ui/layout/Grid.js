@@ -117,8 +117,8 @@
      */
     construct: function construct(spacingX, spacingY) {
       qx.ui.layout.Abstract.constructor.call(this);
-      this.__P_371_0 = [];
-      this.__P_371_1 = [];
+      this.__P_379_0 = [];
+      this.__P_379_1 = [];
       if (spacingX) {
         this.setSpacingX(spacingX);
       }
@@ -170,17 +170,17 @@
 
     members: {
       /** @type {Array} 2D array of grid cell data */
-      __P_371_2: null,
-      __P_371_0: null,
-      __P_371_1: null,
-      __P_371_3: null,
-      __P_371_4: null,
-      __P_371_5: null,
-      __P_371_6: null,
+      __P_379_2: null,
+      __P_379_0: null,
+      __P_379_1: null,
+      __P_379_3: null,
+      __P_379_4: null,
+      __P_379_5: null,
+      __P_379_6: null,
       /** @type {Array} cached row heights */
-      __P_371_7: null,
+      __P_379_7: null,
       /** @type {Array} cached column widths */
-      __P_371_8: null,
+      __P_379_8: null,
       // overridden
       verifyLayoutProperty: qx.core.Environment.select("qx.debug", {
         "true": function _true(item, name, value) {
@@ -199,7 +199,7 @@
       /**
        * Rebuild the internal representation of the grid
        */
-      __P_371_9: function __P_371_9() {
+      __P_379_9: function __P_379_9() {
         var grid = [];
         var colSpans = [];
         var rowSpans = [];
@@ -246,13 +246,13 @@
             grid[y] = [];
           }
         }
-        this.__P_371_2 = grid;
-        this.__P_371_3 = colSpans;
-        this.__P_371_4 = rowSpans;
-        this.__P_371_5 = maxRowIndex;
-        this.__P_371_6 = maxColIndex;
-        this.__P_371_7 = null;
-        this.__P_371_8 = null;
+        this.__P_379_2 = grid;
+        this.__P_379_3 = colSpans;
+        this.__P_379_4 = rowSpans;
+        this.__P_379_5 = maxRowIndex;
+        this.__P_379_6 = maxColIndex;
+        this.__P_379_7 = null;
+        this.__P_379_8 = null;
 
         // Clear invalidation marker
         delete this._invalidChildrenCache;
@@ -265,10 +265,10 @@
        * @param value {var} data to store
        */
       _setRowData: function _setRowData(row, key, value) {
-        var rowData = this.__P_371_0[row];
+        var rowData = this.__P_379_0[row];
         if (!rowData) {
-          this.__P_371_0[row] = {};
-          this.__P_371_0[row][key] = value;
+          this.__P_379_0[row] = {};
+          this.__P_379_0[row][key] = value;
         } else {
           rowData[key] = value;
         }
@@ -281,10 +281,10 @@
        * @param value {var} data to store
        */
       _setColumnData: function _setColumnData(column, key, value) {
-        var colData = this.__P_371_1[column];
+        var colData = this.__P_379_1[column];
         if (!colData) {
-          this.__P_371_1[column] = {};
-          this.__P_371_1[column][key] = value;
+          this.__P_379_1[column] = {};
+          this.__P_379_1[column][key] = value;
         } else {
           colData[key] = value;
         }
@@ -331,7 +331,7 @@
        *     containing the vertical and horizontal column alignment.
        */
       getColumnAlign: function getColumnAlign(column) {
-        var colData = this.__P_371_1[column] || {};
+        var colData = this.__P_379_1[column] || {};
         return {
           vAlign: colData.vAlign || "top",
           hAlign: colData.hAlign || "left"
@@ -367,7 +367,7 @@
        *     containing the vertical and horizontal row alignment.
        */
       getRowAlign: function getRowAlign(row) {
-        var rowData = this.__P_371_0[row] || {};
+        var rowData = this.__P_379_0[row] || {};
         return {
           vAlign: rowData.vAlign || "top",
           hAlign: rowData.hAlign || "left"
@@ -384,9 +384,9 @@
        */
       getCellWidget: function getCellWidget(row, column) {
         if (this._invalidChildrenCache) {
-          this.__P_371_9();
+          this.__P_379_9();
         }
-        var row = this.__P_371_2[row] || {};
+        var row = this.__P_379_2[row] || {};
         return row[column] || null;
       },
       /**
@@ -396,9 +396,9 @@
        */
       getRowCount: function getRowCount() {
         if (this._invalidChildrenCache) {
-          this.__P_371_9();
+          this.__P_379_9();
         }
-        return this.__P_371_5 + 1;
+        return this.__P_379_5 + 1;
       },
       /**
        * Get the number of columns in the grid layout.
@@ -407,9 +407,9 @@
        */
       getColumnCount: function getColumnCount() {
         if (this._invalidChildrenCache) {
-          this.__P_371_9();
+          this.__P_379_9();
         }
-        return this.__P_371_6 + 1;
+        return this.__P_379_6 + 1;
       },
       /**
        * Get a map of the cell's alignment. For vertical alignment the row alignment
@@ -426,9 +426,9 @@
       getCellAlign: function getCellAlign(row, column) {
         var vAlign = "top";
         var hAlign = "left";
-        var rowData = this.__P_371_0[row];
-        var colData = this.__P_371_1[column];
-        var widget = this.__P_371_2[row][column];
+        var rowData = this.__P_379_0[row];
+        var colData = this.__P_379_1[column];
+        var widget = this.__P_379_2[row][column];
         if (widget) {
           var widgetProps = {
             vAlign: widget.getAlignY(),
@@ -482,7 +482,7 @@
        * @return {Integer} The column's flex value
        */
       getColumnFlex: function getColumnFlex(column) {
-        var colData = this.__P_371_1[column] || {};
+        var colData = this.__P_379_1[column] || {};
         return colData.flex !== undefined ? colData.flex : 0;
       },
       /**
@@ -505,7 +505,7 @@
        * @return {Integer} The row's flex value
        */
       getRowFlex: function getRowFlex(row) {
-        var rowData = this.__P_371_0[row] || {};
+        var rowData = this.__P_379_0[row] || {};
         var rowFlex = rowData.flex !== undefined ? rowData.flex : 0;
         return rowFlex;
       },
@@ -529,7 +529,7 @@
        * @return {Integer} The column's maximum width
        */
       getColumnMaxWidth: function getColumnMaxWidth(column) {
-        var colData = this.__P_371_1[column] || {};
+        var colData = this.__P_379_1[column] || {};
         return colData.maxWidth !== undefined ? colData.maxWidth : Infinity;
       },
       /**
@@ -552,7 +552,7 @@
        * @return {Integer} The column's width
        */
       getColumnWidth: function getColumnWidth(column) {
-        var colData = this.__P_371_1[column] || {};
+        var colData = this.__P_379_1[column] || {};
         return colData.width !== undefined ? colData.width : null;
       },
       /**
@@ -575,7 +575,7 @@
        * @return {Integer} The column's minimum width
        */
       getColumnMinWidth: function getColumnMinWidth(column) {
-        var colData = this.__P_371_1[column] || {};
+        var colData = this.__P_379_1[column] || {};
         return colData.minWidth || 0;
       },
       /**
@@ -598,7 +598,7 @@
        * @return {Integer} The row's maximum width
        */
       getRowMaxHeight: function getRowMaxHeight(row) {
-        var rowData = this.__P_371_0[row] || {};
+        var rowData = this.__P_379_0[row] || {};
         return rowData.maxHeight || Infinity;
       },
       /**
@@ -621,7 +621,7 @@
        * @return {Integer} The row's width
        */
       getRowHeight: function getRowHeight(row) {
-        var rowData = this.__P_371_0[row] || {};
+        var rowData = this.__P_379_0[row] || {};
         return rowData.height !== undefined ? rowData.height : null;
       },
       /**
@@ -644,7 +644,7 @@
        * @return {Integer} The row's minimum width
        */
       getRowMinHeight: function getRowMinHeight(row) {
-        var rowData = this.__P_371_0[row] || {};
+        var rowData = this.__P_379_0[row] || {};
         return rowData.minHeight || 0;
       },
       /**
@@ -682,8 +682,8 @@
        */
       _fixHeightsRowSpan: function _fixHeightsRowSpan(rowHeights) {
         var vSpacing = this.getSpacingY();
-        for (var i = 0, l = this.__P_371_4.length; i < l; i++) {
-          var widget = this.__P_371_4[i];
+        for (var i = 0, l = this.__P_379_4.length; i < l; i++) {
+          var widget = this.__P_379_4[i];
           var hint = this._getOuterSize(widget);
           var widgetProps = widget.getLayoutProperties();
           var widgetRow = widgetProps.row;
@@ -870,18 +870,18 @@
        *     <code>height</code>.
        */
       _getRowHeights: function _getRowHeights() {
-        if (this.__P_371_7 != null) {
-          return this.__P_371_7;
+        if (this.__P_379_7 != null) {
+          return this.__P_379_7;
         }
         var rowHeights = [];
-        var maxRowIndex = this.__P_371_5;
-        var maxColIndex = this.__P_371_6;
+        var maxRowIndex = this.__P_379_5;
+        var maxColIndex = this.__P_379_6;
         for (var row = 0; row <= maxRowIndex; row++) {
           var minHeight = 0;
           var height = 0;
           var maxHeight = 0;
           for (var col = 0; col <= maxColIndex; col++) {
-            var widget = this.__P_371_2[row][col];
+            var widget = this.__P_379_2[row][col];
             if (!widget) {
               continue;
             }
@@ -913,10 +913,10 @@
             maxHeight: maxHeight
           };
         }
-        if (this.__P_371_4.length > 0) {
+        if (this.__P_379_4.length > 0) {
           this._fixHeightsRowSpan(rowHeights);
         }
-        this.__P_371_7 = rowHeights;
+        this.__P_379_7 = rowHeights;
         return rowHeights;
       },
       /**
@@ -927,18 +927,18 @@
        *     <code>width</code>.
        */
       _getColWidths: function _getColWidths() {
-        if (this.__P_371_8 != null) {
-          return this.__P_371_8;
+        if (this.__P_379_8 != null) {
+          return this.__P_379_8;
         }
         var colWidths = [];
-        var maxColIndex = this.__P_371_6;
-        var maxRowIndex = this.__P_371_5;
+        var maxColIndex = this.__P_379_6;
+        var maxRowIndex = this.__P_379_5;
         for (var col = 0; col <= maxColIndex; col++) {
           var width = 0;
           var minWidth = 0;
           var maxWidth = Infinity;
           for (var row = 0; row <= maxRowIndex; row++) {
-            var widget = this.__P_371_2[row][col];
+            var widget = this.__P_379_2[row][col];
             if (!widget) {
               continue;
             }
@@ -969,7 +969,7 @@
         if (this._getColSpans().length > 0) {
           this._fixWidthsColSpan(colWidths);
         }
-        this.__P_371_8 = colWidths;
+        this.__P_379_8 = colWidths;
         return colWidths;
       },
       /**
@@ -1046,12 +1046,12 @@
        * @return {Array} the __colSpans array
        */
       _getColSpans: function _getColSpans() {
-        return this.__P_371_3;
+        return this.__P_379_3;
       },
       // overridden
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         if (this._invalidChildrenCache) {
-          this.__P_371_9();
+          this.__P_379_9();
         }
         var Util = qx.ui.layout.Util;
         var hSpacing = this.getSpacingX();
@@ -1061,8 +1061,8 @@
         var prefWidths = this._getColWidths();
         var colStretchOffsets = this._getColumnFlexOffsets(availWidth);
         var colWidths = [];
-        var maxColIndex = this.__P_371_6;
-        var maxRowIndex = this.__P_371_5;
+        var maxColIndex = this.__P_379_6;
+        var maxRowIndex = this.__P_379_5;
         var offset;
         for (var col = 0; col <= maxColIndex; col++) {
           offset = colStretchOffsets[col] ? colStretchOffsets[col].offset : 0;
@@ -1083,7 +1083,7 @@
         for (var col = 0; col <= maxColIndex; col++) {
           var top = 0;
           for (var row = 0; row <= maxRowIndex; row++) {
-            var widget = this.__P_371_2[row][col];
+            var widget = this.__P_379_2[row][col];
 
             // ignore empty cells
             if (!widget) {
@@ -1127,13 +1127,13 @@
       // overridden
       invalidateLayoutCache: function invalidateLayoutCache() {
         qx.ui.layout.Grid.superclass.prototype.invalidateLayoutCache.call(this);
-        this.__P_371_8 = null;
-        this.__P_371_7 = null;
+        this.__P_379_8 = null;
+        this.__P_379_7 = null;
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         if (this._invalidChildrenCache) {
-          this.__P_371_9();
+          this.__P_379_9();
         }
 
         // calculate col widths
@@ -1180,10 +1180,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_371_2 = this.__P_371_0 = this.__P_371_1 = this.__P_371_3 = this.__P_371_4 = this.__P_371_8 = this.__P_371_7 = null;
+      this.__P_379_2 = this.__P_379_0 = this.__P_379_1 = this.__P_379_3 = this.__P_379_4 = this.__P_379_8 = this.__P_379_7 = null;
     }
   });
   qx.ui.layout.Grid.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Grid.js.map?dt=1692560728065
+//# sourceMappingURL=Grid.js.map?dt=1700345606059

@@ -175,8 +175,8 @@
     */
 
     statics: {
-      __P_346_0: null,
-      __P_346_1: null,
+      __P_354_0: null,
+      __P_354_1: null,
       /**
        * Get the shared default date formatter
        *
@@ -184,15 +184,15 @@
        */
       getDefaultDateFormatter: function getDefaultDateFormatter() {
         var format = qx.locale.Date.getDateFormat("medium").toString();
-        if (format == this.__P_346_0) {
-          return this.__P_346_1;
+        if (format == this.__P_354_0) {
+          return this.__P_354_1;
         }
-        if (this.__P_346_1) {
-          this.__P_346_1.dispose();
+        if (this.__P_354_1) {
+          this.__P_354_1.dispose();
         }
-        this.__P_346_1 = new qx.util.format.DateFormat(format, qx.locale.Manager.getInstance().getLocale());
-        this.__P_346_0 = format;
-        return this.__P_346_1;
+        this.__P_354_1 = new qx.util.format.DateFormat(format, qx.locale.Manager.getInstance().getLocale());
+        this.__P_354_0 = format;
+        return this.__P_354_1;
       }
     },
     /*
@@ -202,7 +202,7 @@
     */
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __P_346_2: null,
+      __P_354_2: null,
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -232,7 +232,7 @@
         var _this = this;
         // listen for locale changes
         {
-          this.__P_346_2 = qx.locale.Manager.getInstance().addListener("changeLocale", function () {
+          this.__P_354_2 = qx.locale.Manager.getInstance().addListener("changeLocale", function () {
             _this._setDefaultDateFormat();
           });
         }
@@ -539,8 +539,8 @@
     destruct: function destruct() {
       // listen for locale changes
       {
-        if (this.__P_346_2) {
-          qx.locale.Manager.getInstance().removeListenerById(this.__P_346_2);
+        if (this.__P_354_2) {
+          qx.locale.Manager.getInstance().removeListenerById(this.__P_354_2);
         }
       }
     }
@@ -548,4 +548,4 @@
   qx.ui.form.DateField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateField.js.map?dt=1692560725137
+//# sourceMappingURL=DateField.js.map?dt=1700345604254

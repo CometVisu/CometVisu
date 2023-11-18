@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The ColorChooser widget &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/versions.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -61,12 +65,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-the-cometvisu">Widgets in the CometVisu</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Operable widgets</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../audio/index.html">The Audio widget</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">The ColorChooser widget</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#settings">Settings</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">The ColorChooser widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../designtoggle/index.html">The DesignToggle widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../imagetrigger/index.html">The ImageTrigger widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../infoaction/index.html">The InfoAction widget</a></li>
@@ -112,10 +111,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Configuration of the CometVisu</a> &raquo;</li>
-          <li><a href="../index.html">Operable widgets</a> &raquo;</li>
-      <li>The ColorChooser widget</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Configuration of the CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Operable widgets</a></li>
+      <li class="breadcrumb-item active">The ColorChooser widget</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -132,22 +131,22 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="the-colorchooser-widget">
-<span id="colorchooser"></span><h1>The ColorChooser widget<a class="headerlink" href="#the-colorchooser-widget" title="Permalink to this headline">¶</a></h1>
+<span id="colorchooser"></span><h1>The ColorChooser widget<a class="headerlink" href="#the-colorchooser-widget" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
-<div class="line"><strong>Available since version</strong>: 2012</div>
+<div class="line"><strong>Available since</strong>: 2012</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>The ColorChooser let you select and display a color, e.g. for lighting effects.
 It supports a RGB light source with red, green and blue light components as well
 as a RGBW light source that also has a white channel.</p>
 <figure class="align-default" id="id3">
 <img alt="The ColorChooser" src="../../../_images/colorchooser_example.png" />
 <figcaption>
-<p><span class="caption-text">The ColorChooser</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">The ColorChooser</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;LCh-box;T:2500-15000;Y&quot;</span><span class="nt">&gt;</span>
@@ -160,21 +159,17 @@ as a RGBW light source that also has a white channel.</p>
 </pre></div>
 </div>
 <section id="simple-mode">
-<h3>Simple mode<a class="headerlink" href="#simple-mode" title="Permalink to this headline">¶</a></h3>
+<h3>Simple mode<a class="headerlink" href="#simple-mode" title="Link to this heading"></a></h3>
 <p>For most use cases the simple mode will be sufficient. It is optimized for
 a simple configuration by ignoring a perfect color consistency between lighting
 and display.</p>
 <section id="widget-components-slider">
-<h4>Widget components: slider<a class="headerlink" href="#widget-components-slider" title="Permalink to this headline">¶</a></h4>
+<h4>Widget components: slider<a class="headerlink" href="#widget-components-slider" title="Link to this heading"></a></h4>
 <p>The ColorChooser offers different possibilities and combinations for selecting
 and displaying of a color. There are sliders for a direct control of a
 color channel, but also some for a indirect modification of a channel by
 representing a part of a color in the way a human is experiencing it.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 87%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></p></td>
 <td><p>red channel - direct control of RGB-lighting</p></td>
@@ -231,11 +226,11 @@ to use <code class="docutils literal notranslate"><span class="pre">Y</span></co
 <code class="docutils literal notranslate"><span class="pre">T</span></code> slider by stating it separated by a colon. E.g. <code class="docutils literal notranslate"><span class="pre">T:2000-10000</span></code> would
 create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 <section id="example-rgb-slider">
-<h5>Example: RGB slider<a class="headerlink" href="#example-rgb-slider" title="Permalink to this headline">¶</a></h5>
+<h5>Example: RGB slider<a class="headerlink" href="#example-rgb-slider" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id4">
 <img alt="ColorChooser, RGB slider" src="../../../_images/colorchooser_slider_rgb.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, RGB slider</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, RGB slider</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;RGB-r;RGB-g;RGB-b&quot;</span><span class="nt">&gt;</span>
@@ -249,11 +244,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </div>
 </section>
 <section id="example-rgbw-slider">
-<h5>Example: RGBW slider<a class="headerlink" href="#example-rgbw-slider" title="Permalink to this headline">¶</a></h5>
+<h5>Example: RGBW slider<a class="headerlink" href="#example-rgbw-slider" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id5">
 <img alt="ColorChooser, RGBW slider" src="../../../_images/colorchooser_slider_rgbw.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, RGBW slider</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, RGBW slider</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;RGBW-r;RGBW-g;RGBW-b;RGBW-w&quot;</span><span class="nt">&gt;</span>
@@ -268,11 +263,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </div>
 </section>
 <section id="example-hsv-slider">
-<h5>Example: HSV slider<a class="headerlink" href="#example-hsv-slider" title="Permalink to this headline">¶</a></h5>
+<h5>Example: HSV slider<a class="headerlink" href="#example-hsv-slider" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id6">
 <img alt="ColorChooser, HSV slider" src="../../../_images/colorchooser_slider_hsv.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, HSV slider</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, HSV slider</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;h;s;v&quot;</span><span class="nt">&gt;</span>
@@ -286,11 +281,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </div>
 </section>
 <section id="example-color-temperature-and-brightness-slider">
-<h5>Example: color temperature and brightness slider<a class="headerlink" href="#example-color-temperature-and-brightness-slider" title="Permalink to this headline">¶</a></h5>
+<h5>Example: color temperature and brightness slider<a class="headerlink" href="#example-color-temperature-and-brightness-slider" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id7">
 <img alt="ColorChooser, color temperature and brightness slider" src="../../../_images/colorchooser_slider_TY.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, color temperature and brightness slider</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, color temperature and brightness slider</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;T:2000-10000;Y&quot;</span><span class="nt">&gt;</span>
@@ -304,11 +299,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </div>
 </section>
 <section id="example-lch-slider">
-<h5>Example: LCh slider<a class="headerlink" href="#example-lch-slider" title="Permalink to this headline">¶</a></h5>
+<h5>Example: LCh slider<a class="headerlink" href="#example-lch-slider" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id8">
 <img alt="ColorChooser, LCh slider" src="../../../_images/colorchooser_slider_LCh.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, LCh slider</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, LCh slider</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;LCh-L;LCh-C;LCh-h&quot;</span><span class="nt">&gt;</span>
@@ -323,13 +318,9 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </section>
 </section>
 <section id="widget-components-color-selection-wheel">
-<h4>Widget components: color selection wheel<a class="headerlink" href="#widget-components-color-selection-wheel" title="Permalink to this headline">¶</a></h4>
+<h4>Widget components: color selection wheel<a class="headerlink" href="#widget-components-color-selection-wheel" title="Link to this heading"></a></h4>
 <p>There are also combined, more complex interactions possible:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 86%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">box</span></code></p></td>
 <td><p>Color selection wheel with quadratic brightness and saturation selector, HSV color space</p></td>
@@ -346,11 +337,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </tbody>
 </table>
 <section id="example-combined-chooser-box">
-<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">box</span></code><a class="headerlink" href="#example-combined-chooser-box" title="Permalink to this headline">¶</a></h5>
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">box</span></code><a class="headerlink" href="#example-combined-chooser-box" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id9">
 <img alt="ColorChooser, combined chooser: box" src="../../../_images/colorchooser_complex_box.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, combined chooser: box</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, combined chooser: box</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;box&quot;</span><span class="nt">&gt;</span>
@@ -364,11 +355,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </div>
 </section>
 <section id="example-combined-chooser-triangle">
-<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">triangle</span></code><a class="headerlink" href="#example-combined-chooser-triangle" title="Permalink to this headline">¶</a></h5>
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">triangle</span></code><a class="headerlink" href="#example-combined-chooser-triangle" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id10">
 <img alt="ColorChooser, combined chooser: triangle" src="../../../_images/colorchooser_complex_triangle.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, combined chooser: triangle</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, combined chooser: triangle</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;triangle&quot;</span><span class="nt">&gt;</span>
@@ -382,11 +373,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </div>
 </section>
 <section id="example-combined-chooser-lch-box">
-<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-box</span></code><a class="headerlink" href="#example-combined-chooser-lch-box" title="Permalink to this headline">¶</a></h5>
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-box</span></code><a class="headerlink" href="#example-combined-chooser-lch-box" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id11">
 <img alt="ColorChooser, combined chooser: LCh-box" src="../../../_images/colorchooser_complex_LCh_box.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, combined chooser: LCh-box</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, combined chooser: LCh-box</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;LCh-box&quot;</span><span class="nt">&gt;</span>
@@ -400,11 +391,11 @@ create a slider going from 2000 Kelvin to 10000 Kelvin.</p>
 </div>
 </section>
 <section id="example-combined-chooser-lch-triangle">
-<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code><a class="headerlink" href="#example-combined-chooser-lch-triangle" title="Permalink to this headline">¶</a></h5>
+<h5>Example: combined chooser <code class="docutils literal notranslate"><span class="pre">LCh-triangle</span></code><a class="headerlink" href="#example-combined-chooser-lch-triangle" title="Link to this heading"></a></h5>
 <figure class="align-default" id="id12">
 <img alt="ColorChooser, combined chooser: LCh-triangle" src="../../../_images/colorchooser_complex_LCh_triangle.png" />
 <figcaption>
-<p><span class="caption-text">ColorChooser, combined chooser: LCh-triangle</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">ColorChooser, combined chooser: LCh-triangle</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;colorchooser</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;LCh-triangle&quot;</span><span class="nt">&gt;</span>
@@ -426,7 +417,7 @@ alignment.</p>
 </section>
 </section>
 <section id="dim-curves">
-<h4>Dim curves<a class="headerlink" href="#dim-curves" title="Permalink to this headline">¶</a></h4>
+<h4>Dim curves<a class="headerlink" href="#dim-curves" title="Link to this heading"></a></h4>
 <p>The eye doesn’t measure brightness in a linear fashion but in a logarithmic
 way to be able to see at a dark night as well as during high noon. Different
 lighting systems, like DALI, take that into account and thus use a non linear
@@ -460,11 +451,6 @@ shows the correct curve to use for compensation:</p>
    .linearorange {background-color:#ff7f00; color:#ff7f00;}
    .logorange    {background-color:#ff0800; color:#ff0800;}
 </style><table class="docutils align-default">
-<colgroup>
-<col style="width: 26%" />
-<col style="width: 26%" />
-<col style="width: 48%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>target color</p></td>
 <td><p>real color</p></td>
@@ -494,7 +480,7 @@ device as described in the professional mode.</p>
 </section>
 </section>
 <section id="professional-mode">
-<h3>Professional mode<a class="headerlink" href="#professional-mode" title="Permalink to this headline">¶</a></h3>
+<h3>Professional mode<a class="headerlink" href="#professional-mode" title="Link to this heading"></a></h3>
 <p>For professional applications like architecture, art galleries or yachting the
 simple mode can be easily upgraded to the professional mode where the color
 chooser can be used for true color selecting.</p>
@@ -588,7 +574,7 @@ and RGB mode for communication.</p>
 </section>
 </section>
 <section id="settings">
-<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<h2>Settings<a class="headerlink" href="#settings" title="Link to this heading"></a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
 <p>The behaviour and appearance of the Info widget can be influenced by using certain attributes and elements.
@@ -596,14 +582,8 @@ The following tables show the allowed attributes and elements and their possible
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
 <section id="allowed-attributes-in-the-colorchooser-element">
-<h3>Allowed attributes in the colorchooser-element<a class="headerlink" href="#allowed-attributes-in-the-colorchooser-element" title="Permalink to this headline">¶</a></h3>
+<h3>Allowed attributes in the colorchooser-element<a class="headerlink" href="#allowed-attributes-in-the-colorchooser-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -721,19 +701,13 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <figure class="align-center" id="id13">
 <img alt="../../../_images/en_config_widgets_colorchooser_index_editor_attributes.png" src="../../../_images/en_config_widgets_colorchooser_index_editor_attributes.png" />
 <figcaption>
-<p><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#id2" id="id1">1</a></span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="allowed-child-elements-and-their-attributes">
-<h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
+<h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -823,12 +797,6 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -890,12 +858,6 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -966,7 +928,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <figure class="align-center" id="id14">
 <img alt="../../../_images/en_config_widgets_colorchooser_index_editor_elements.png" src="../../../_images/en_config_widgets_colorchooser_index_editor_elements.png" />
 <figcaption>
-<p><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Elements in the editor</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition important">
@@ -978,10 +940,6 @@ here it is e.g. possible to use a <code class="docutils literal notranslate"><sp
 </div>
 <p>Valid values for <code class="docutils literal notranslate"><span class="pre">variant</span></code> are:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 87%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RGB-r</span></code></p></td>
 <td><p>Red channel of RGB lighting</p></td>
@@ -1057,7 +1015,7 @@ a ColorChooser with a HSV control and RGB bus communication.</p>
 </section>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <p>It is possible to manually edit the <a class="reference internal" href="../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> and add an entry
 for the Info widget.</p>
 <div class="admonition caution">
@@ -1075,11 +1033,12 @@ XML-editor to UTF-8 mode!</p>
 </pre></div>
 </div>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>The simple view might not show everything. To see all elements/attributes use the expert view.</p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -1104,8 +1063,12 @@ XML-editor to UTF-8 mode!</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -1116,22 +1079,18 @@ XML-editor to UTF-8 mode!</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -89,7 +89,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     members: {
-      __P_76_0: null,
+      __P_78_0: null,
       _init: function _init() {
         var _this = this;
         var element = this._element;
@@ -156,10 +156,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               throttleInterval: this.getThrottleInterval()
             };
             cv.parser.pure.widgets.ColorChooser.parseAttributes(element, props);
-            this.__P_76_0 = new cv.ui.structure.pure.ColorChooser(props);
-            this.__P_76_0.addListener('colorChanged', this._onColorChanged, this);
+            this.__P_78_0 = new cv.ui.structure.pure.ColorChooser(props);
+            this.__P_78_0.addListener('colorChanged', this._onColorChanged, this);
             this._onColorChanged();
-            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_76_0.getDomString(), "</div>");
+            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_78_0.getDomString(), "</div>");
             element.appendChild(popup);
             element.addEventListener('click', function (ev) {
               var path = ev.path || ev.composedPath && ev.composedPath();
@@ -168,22 +168,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }
             });
             qx.event.Timer.once(function () {
-              _this.__P_76_0._onDomReady();
+              _this.__P_78_0._onDomReady();
             }, this, 0);
             this.setResizeTarget(popup);
             this.addListener('resized', function () {
-              _this.__P_76_0.invalidateScreensize();
+              _this.__P_78_0.invalidateScreensize();
             });
           }
         }
       },
       _onColorChanged: function _onColorChanged() {
-        var color = this.__P_76_0.getColor();
+        var color = this.__P_78_0.getColor();
         var rgb = color.getComponent('rgb');
         var v = color.getComponent('v');
-        this.setValue("#".concat(this.__P_76_1(rgb.r)).concat(this.__P_76_1(rgb.g)).concat(this.__P_76_1(rgb.b)).concat(this.__P_76_1(v)));
+        this.setValue("#".concat(this.__P_78_1(rgb.r)).concat(this.__P_78_1(rgb.g)).concat(this.__P_78_1(rgb.b)).concat(this.__P_78_1(v)));
       },
-      __P_76_1: function __P_76_1(v) {
+      __P_78_1: function __P_78_1(v) {
         return Math.round(v * 255).toString(16).padStart(2, '0');
       },
       _updateValue: function _updateValue(mappedValue, value) {
@@ -210,7 +210,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_76_0");
+      this._disposeObjects("__P_78_0");
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'color', /*#__PURE__*/function (_QxConnector) {
@@ -229,4 +229,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1692560692795
+//# sourceMappingURL=Color.js.map?dt=1700345584166

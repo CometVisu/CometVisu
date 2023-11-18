@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eigene Direktiven &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/versions.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=70a09b52"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" /> 
@@ -29,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -65,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Eigene Direktiven</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Eigene Direktiven</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,15 +86,11 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="eigene-direktiven">
-<h1>Eigene Direktiven<a class="headerlink" href="#eigene-direktiven" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Eigene Direktiven<a class="headerlink" href="#eigene-direktiven" title="Link to this heading"></a></h1>
 <p>Neben den vorhandenen Sphinx/Docutils Direktiven werden in der CometVisu Dokumentation auch einige
 Direktiven genutzt, die dabei helfen, die Dokumentation einfacher auf einem aktuellen Stand zu halten.
 Folgende Direktiven werden zur Zeit unterstützt:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 81%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
 <th class="head"><p>Beschreibung</p></th>
@@ -115,7 +115,7 @@ Folgende Direktiven werden zur Zeit unterstützt:</p>
 </tbody>
 </table>
 <section id="die-widget-example-direktive">
-<h2>Die <em>widget-example</em> Direktive<a class="headerlink" href="#die-widget-example-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Die <em>widget-example</em> Direktive<a class="headerlink" href="#die-widget-example-direktive" title="Link to this heading"></a></h2>
 <p>Die <em>widget-example</em> Direktive erlaubt Beispiel-Code einer CometVisu config aus der später vollautomatisch
 einer oder mehrere Screenshots generiert werden und zusammen mit dem Beispiel-Code in die Dokumentation eingebunden
 werden.</p>
@@ -153,7 +153,7 @@ werden.</p>
 <figure class="align-default" id="id1">
 <img alt="Switch mit mapping + styling" src="../../_images/switch_complete.png" />
 <figcaption>
-<p><span class="caption-text">Switch mit mapping + styling</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Switch mit mapping + styling</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -214,16 +214,10 @@ Screenshots beeinflusst werden können</p>
 </pre></div>
 </div>
 <section id="der-settings-bereich">
-<h3>Der <em>&lt;settings&gt;</em>-Bereich<a class="headerlink" href="#der-settings-bereich" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Der <em>&lt;settings&gt;</em>-Bereich<a class="headerlink" href="#der-settings-bereich" title="Link to this heading"></a></h3>
 <p>Dieser Bereich wird definiert durch das <cite>&lt;settings&gt;</cite>-Element und dieses kann durch Attribute und Unterelemente
 verfeinert werden.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 57%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="3"><p>Attribut</p></th>
@@ -303,7 +297,7 @@ verfeinert werden.</p>
 </section>
 </section>
 <section id="die-parameter-information-direktive">
-<h2>Die <em>parameter-information</em> Direktive<a class="headerlink" href="#die-parameter-information-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Die <em>parameter-information</em> Direktive<a class="headerlink" href="#die-parameter-information-direktive" title="Link to this heading"></a></h2>
 <p>Diese Direktive erzeugt automatisch eine Tabellenübersicht mit den Attributen des Widgets. Diese Daten werden
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
 Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der den Widget-Namen enthält.</p>
@@ -312,12 +306,6 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -370,7 +358,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </table>
 </section>
 <section id="die-elements-information-direktive">
-<h2>Die <em>elements-information</em> Direktive<a class="headerlink" href="#die-elements-information-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Die <em>elements-information</em> Direktive<a class="headerlink" href="#die-elements-information-direktive" title="Link to this heading"></a></h2>
 <p>Diese Direktive erzeugt automatisch eine Tabellenübersicht mit den erlaubten Unter-Elementen eines Widgets. Diese Daten werden
 aus der Schema-Definition (visu_config.xsd) ausgelesen.
 Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der den Widget-Namen enthält.</p>
@@ -379,12 +367,6 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </pre></div>
 </div>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -474,12 +456,6 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -541,12 +517,6 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -616,7 +586,7 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </table>
 </section>
 <section id="die-api-doc-direktive">
-<h2>Die <em>api-doc</em> Direktive<a class="headerlink" href="#die-api-doc-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Die <em>api-doc</em> Direktive<a class="headerlink" href="#die-api-doc-direktive" title="Link to this heading"></a></h2>
 <p>Diese Direktive liest wichtige Informationen aus der Source-Code Dokumentation eines Widgets oder Plugins.
 Momentan sind das die Werte der <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> und <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> Angaben.</p>
 <div class="admonition important">
@@ -636,13 +606,13 @@ Namen der Klasse angeben wie sie in <code class="docutils literal notranslate"><
 <p>erzeugt folgenden Inhalt:</p>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Christian Mayer</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 0.8.0 (2012)</div>
+<div class="line"><strong>Verfügbar seit</strong>: 0.8.0 (2012)</div>
 <div class="line"><br /></div>
 </div>
 </div>
 </section>
 <section id="die-replaces-directive">
-<h2>Die <em>replaces</em> Directive<a class="headerlink" href="#die-replaces-directive" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Die <em>replaces</em> Directive<a class="headerlink" href="#die-replaces-directive" title="Link to this heading"></a></h2>
 <p>Durch diese Direktive lasst sich definieren, welche Seiten des alten Wikis durch diese Handbuch-Seite ersetzt werden.
 Es können mehrere Wiki-Seiten angegeben werden. Diese Direktive fügt der Dokumentation keinen Inhalt hinzu,
 sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
@@ -674,9 +644,13 @@ sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -684,24 +658,20 @@ sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -47,10 +47,10 @@
     */
 
     members: {
-      __P_496_0: null,
+      __P_504_0: null,
       // interface implementation
       setDesktop: function setDesktop(desktop) {
-        this.__P_496_0 = desktop;
+        this.__P_504_0 = desktop;
         if (desktop) {
           this.updateStack();
         } else {
@@ -66,7 +66,7 @@
        * @return {qx.ui.window.IDesktop} The desktop
        */
       getDesktop: function getDesktop() {
-        return this.__P_496_0;
+        return this.__P_504_0;
       },
       // interface implementation
       changeActiveWindow: function changeActiveWindow(active, oldActive) {
@@ -91,8 +91,8 @@
        * {@link qx.ui.core.queue.Widget widget queue}.
        */
       syncWidget: function syncWidget() {
-        this.__P_496_0.forceUnblock();
-        var windows = this.__P_496_0.getWindows();
+        this.__P_504_0.forceUnblock();
+        var windows = this.__P_504_0.getWindows();
         // z-index for all three window kinds
         var zIndex = this._minZIndex;
         var zIndexOnTop = zIndex + windows.length * 2;
@@ -114,7 +114,7 @@
           // top of Normal Windows.
           if (win.isModal()) {
             win.setZIndex(zIndexModal);
-            this.__P_496_0.blockContent(zIndexModal - 1);
+            this.__P_504_0.blockContent(zIndexModal - 1);
             zIndexModal += 2;
             //just activate it if it's modal
             active = win;
@@ -133,11 +133,11 @@
         }
 
         //set active window or null otherwise
-        this.__P_496_0.setActiveWindow(active);
+        this.__P_504_0.setActiveWindow(active);
       },
       // interface implementation
       bringToFront: function bringToFront(win) {
-        var windows = this.__P_496_0.getWindows();
+        var windows = this.__P_504_0.getWindows();
         var removed = qx.lang.Array.remove(windows, win);
         if (removed) {
           windows.push(win);
@@ -146,7 +146,7 @@
       },
       // interface implementation
       sendToBack: function sendToBack(win) {
-        var windows = this.__P_496_0.getWindows();
+        var windows = this.__P_504_0.getWindows();
         var removed = qx.lang.Array.remove(windows, win);
         if (removed) {
           windows.unshift(win);
@@ -160,10 +160,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_496_0");
+      this._disposeObjects("__P_504_0");
     }
   });
   qx.ui.window.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1692560740519
+//# sourceMappingURL=Manager.js.map?dt=1700345613237

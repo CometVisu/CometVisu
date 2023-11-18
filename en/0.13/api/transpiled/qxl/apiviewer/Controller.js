@@ -90,22 +90,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       qxl.apiviewer.ClassLoader.setBaseUri("".concat(qx.$$appRoot, "../resource/").concat(qxl.apiviewer.ClassLoader.RESOURCEPATH, "/"));
       this._detailLoader = this._widgetRegistry.getWidgetById("detail_loader");
       this._tabViewController = new qxl.apiviewer.TabViewController(this._widgetRegistry);
-      this.__P_554_0();
+      this.__P_562_0();
       this._tree = this._widgetRegistry.getWidgetById("tree");
-      this.__P_554_1();
-      this.__P_554_2();
+      this.__P_562_1();
+      this.__P_562_2();
       var btn_inherited = this._widgetRegistry.getWidgetById("btn_inherited");
       var btn_included = this._widgetRegistry.getWidgetById("btn_included");
-      btn_inherited.addListener("changeValue", this.__P_554_3, this);
-      btn_included.addListener("changeValue", this.__P_554_3, this);
+      btn_inherited.addListener("changeValue", this.__P_562_3, this);
+      btn_included.addListener("changeValue", this.__P_562_3, this);
       this._history = qx.bom.History.getInstance();
-      this.__P_554_4();
+      this.__P_562_4();
       qx.core.Init.getApplication().getRoot().addListener("pointerdown", function (e) {
-        this.__P_554_5 = e.isShiftPressed() || e.isCtrlOrCommandPressed();
+        this.__P_562_5 = e.isShiftPressed() || e.isCtrlOrCommandPressed();
       }, this, true);
     },
     members: {
-      __P_554_5: false,
+      __P_562_5: false,
       // overridden
       $$logCategory: "application",
       /**
@@ -139,9 +139,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             // Handle bookmarks
             var state = _this._history.getState();
             if (state) {
-              _this.__P_554_6(_this.__P_554_7(state));
+              _this.__P_562_6(_this.__P_562_7(state));
             } else {
-              _this.__P_554_6("");
+              _this.__P_562_6("");
             }
           });
         });
@@ -149,7 +149,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       /**
        * binds the events of the TabView controller
        */
-      __P_554_0: function __P_554_0() {
+      __P_562_0: function __P_562_0() {
         this._tabViewController.addListener("classLinkTapped", function (evt) {
           this._updateHistory(evt.getData());
         }, this);
@@ -174,7 +174,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       /**
        * binds the selection event of the package tree.
        */
-      __P_554_1: function __P_554_1() {
+      __P_562_1: function __P_562_1() {
         this._tree.addListener("changeSelection", function (evt) {
           var treeNode = evt.getData()[0];
           if (treeNode && treeNode.getUserData("nodeName") && !this._ignoreTreeSelection) {
@@ -188,7 +188,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       /**
        * binds the actions of the toolbar buttons.
        */
-      __P_554_2: function __P_554_2() {
+      __P_562_2: function __P_562_2() {
         var uiModel = qxl.apiviewer.UiModel.getInstance();
         var btn_inherited = this._widgetRegistry.getWidgetById("btn_inherited");
         btn_inherited.bind("value", uiModel, "showInherited");
@@ -214,7 +214,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * inherited and mixin includes.
        *
        */
-      __P_554_3: function __P_554_3() {
+      __P_562_3: function __P_562_3() {
         var menuButton = this._widgetRegistry.getWidgetById("menubtn_includes");
         var btn_inherited = this._widgetRegistry.getWidgetById("btn_inherited");
         var btn_included = this._widgetRegistry.getWidgetById("btn_included");
@@ -236,11 +236,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       /**
        * bind history events
        */
-      __P_554_4: function __P_554_4() {
+      __P_562_4: function __P_562_4() {
         this._history.addListener("changeState", function (evt) {
-          var item = this.__P_554_7(evt.getData());
+          var item = this.__P_562_7(evt.getData());
           if (item) {
-            this.__P_554_6(item);
+            this.__P_562_6(item);
           }
         }, this);
       },
@@ -252,7 +252,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _updateHistory: function _updateHistory(className) {
         var newTitle = className + " - " + this._titlePrefix;
-        qx.bom.History.getInstance().addToHistory(this.__P_554_8(className), newTitle);
+        qx.bom.History.getInstance().addToHistory(this.__P_562_8(className), newTitle);
       },
       /**
        * Display information about a class
@@ -277,13 +277,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   break;
                 }
                 _context.next = 7;
-                return _this2._tabViewController.openClass(classNode, _this2.__P_554_5);
+                return _this2._tabViewController.openClass(classNode, _this2.__P_562_5);
               case 7:
                 _context.next = 11;
                 break;
               case 9:
                 _context.next = 11;
-                return _this2._tabViewController.openPackage(classNode, _this2.__P_554_5);
+                return _this2._tabViewController.openPackage(classNode, _this2.__P_562_5);
               case 11:
                 callback && callback.call(self);
               case 12:
@@ -301,7 +301,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        *          "qx.mypackage.MyClass" or "qx.mypackage.MyClass#myProperty")
        *
        */
-      __P_554_6: function __P_554_6(fullItemName) {
+      __P_562_6: function __P_562_6(fullItemName) {
         var _this3 = this;
         qxl.apiviewer.LoadingIndicator.getInstance().show();
         var className = fullItemName;
@@ -349,10 +349,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           });
         });
       },
-      __P_554_8: function __P_554_8(state) {
+      __P_562_8: function __P_562_8(state) {
         return state.replace(/(.*)#(.*)/g, "$1~$2");
       },
-      __P_554_7: function __P_554_7(encodedState) {
+      __P_562_7: function __P_562_7(encodedState) {
         return encodedState.replace(/(.*)~(.*)/g, "$1#$2");
       }
     },
@@ -369,4 +369,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   qxl.apiviewer.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1692560747701
+//# sourceMappingURL=Controller.js.map?dt=1700345617626

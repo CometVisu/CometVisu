@@ -218,13 +218,13 @@
     "_callee2",
     "_callee2$",
     "_context2",
-    "__P_154_4",
+    "__P_162_4",
     "_this3",
     "__addFontFace",
     "Environment",
     "get",
     "parseInt",
-    "__P_154_5",
+    "__P_162_5",
     "fontLookupKey",
     "createFontLookupKey",
     "__addedFontFaces",
@@ -270,11 +270,11 @@
     "__loaders",
     "getLoader",
     "loader",
-    "__P_154_3",
+    "__P_162_3",
     "includeFile",
     "lookupKey",
     "__getSourcesMap",
-    "__P_154_12",
+    "__P_162_12",
     "sources",
     "formats",
     "reg",
@@ -283,7 +283,7 @@
     "browserVersion",
     "os",
     "osVersion",
-    "__P_154_8"
+    "__P_162_8"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/bom/webfonts/WebFontLoader.js"

@@ -102,7 +102,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
             } else if (prop === "dangerouslySetInnerHTML") {
               // eslint-disable-next-line no-underscore-dangle
-              innerHtml = attributes[prop].__P_241_0;
+              innerHtml = attributes[prop].__P_249_0;
             } else if (qx.html.Jsx.SYNTETIC_EVENTS[prop]) {
               var eventName = prop.replace(/^on/, "").toLowerCase();
               eventHandlers[eventName] = attributes[prop];
@@ -167,4 +167,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.html.Jsx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsx.js.map?dt=1692560712678
+//# sourceMappingURL=Jsx.js.map?dt=1700345596930

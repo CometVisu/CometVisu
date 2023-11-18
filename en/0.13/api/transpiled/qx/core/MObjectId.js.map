@@ -27,7 +27,7 @@
     "getQxOwner",
     "__onOwnedObjectIdChange",
     "_cascadeQxObjectIdChanges",
-    "__P_165_2",
+    "__P_173_2",
     "obj",
     "newId",
     "oldId",
@@ -68,7 +68,7 @@
     "setQxObjectId",
     "removeOwnedQxObject",
     "args",
-    "__P_165_3",
+    "__P_173_3",
     "getOwnedQxObjects",
     "values",
     "MObjectId"

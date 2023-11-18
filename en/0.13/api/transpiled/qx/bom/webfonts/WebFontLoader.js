@@ -84,7 +84,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     construct: function construct(fontFamily) {
       qx.core.Object.constructor.call(this);
       this.setFontFamily(fontFamily);
-      this.__P_154_0 = {};
+      this.__P_162_0 = {};
     },
     properties: {
       /** The font name that this font is known by */
@@ -138,16 +138,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     */
 
     members: {
-      __P_154_1: null,
-      __P_154_2: null,
+      __P_162_1: null,
+      __P_162_2: null,
       _validators: null,
       getValidator: function getValidator(fontWeight, fontStyle) {
         fontWeight = fontWeight || "normal";
         fontStyle = fontStyle || "normal";
         var id = fontWeight + "::" + fontStyle;
-        var validator = this.__P_154_0[id];
+        var validator = this.__P_162_0[id];
         if (!validator) {
-          validator = this.__P_154_0[id] = new qx.bom.webfonts.Validator(this.getFontFamily(), this.getComparisonString(), fontWeight, fontStyle);
+          validator = this.__P_162_0[id] = new qx.bom.webfonts.Validator(this.getFontFamily(), this.getComparisonString(), fontWeight, fontStyle);
           validator.setTimeout(qx.bom.webfonts.WebFont.VALIDATION_TIMEOUT);
           validator.validate();
         }
@@ -171,7 +171,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     url += url.indexOf("?") < 0 ? "?" : "&";
                     url += _this.getVersion();
                   }
-                  qx.bom.webfonts.WebFontLoader.__P_154_3(url);
+                  qx.bom.webfonts.WebFontLoader.__P_162_3(url);
                 });
                 fontFaces = _this.getFontFaces();
                 if (fontFaces) {
@@ -189,10 +189,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       });
                     }
                   });
-                  _this.__P_154_1 = qx.lang.Array.clone(fontFaces);
-                  _this.__P_154_2 = new qx.Promise();
+                  _this.__P_162_1 = qx.lang.Array.clone(fontFaces);
+                  _this.__P_162_2 = new qx.Promise();
                 }
-                _this.__P_154_4();
+                _this.__P_162_4();
               case 4:
               case "end":
                 return _context.stop();
@@ -207,7 +207,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.__P_154_2;
+                return _this2.__P_162_2;
               case 2:
                 return _context2.abrupt("return", _context2.sent);
               case 3:
@@ -220,24 +220,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       /**
        * Adds the font faces in __fontFacesQueue
        */
-      __P_154_4: function __P_154_4() {
+      __P_162_4: function __P_162_4() {
         var _this3 = this;
-        if (this.__P_154_1 == null) {
+        if (this.__P_162_1 == null) {
           return;
         }
-        var fontFace = this.__P_154_1.pop();
-        this.__P_154_5(fontFace);
-        if (this.__P_154_1.length == 0) {
-          this.__P_154_1 = null;
-          this.__P_154_2.resolve(true);
+        var fontFace = this.__P_162_1.pop();
+        this.__P_162_5(fontFace);
+        if (this.__P_162_1.length == 0) {
+          this.__P_162_1 = null;
+          this.__P_162_2.resolve(true);
         }
         if (qx.core.Environment.get("engine.name") == "mshtml" && (parseInt(qx.core.Environment.get("engine.version")) < 9 || qx.core.Environment.get("browser.documentmode") < 9)) {
           // old IEs need a break in between adding @font-face rules
           setTimeout(function () {
-            return _this3.__P_154_4();
+            return _this3.__P_162_4();
           }, 100);
         } else {
-          this.__P_154_4();
+          this.__P_162_4();
         }
       },
       /**
@@ -246,15 +246,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @param {*} fontFace - POJO of from the array in Manifest.json
        * @returns
        */
-      __P_154_5: function __P_154_5(fontFace) {
+      __P_162_5: function __P_162_5(fontFace) {
         var fontFamily = fontFace.fontFamily || this.getFontFamily();
         var fontLookupKey = qx.bom.webfonts.WebFontLoader.createFontLookupKey(fontFamily, fontFace.fontWeight || "normal", fontFace.fontStyle || "normal");
-        if (qx.bom.webfonts.WebFontLoader.__P_154_6[fontLookupKey]) {
+        if (qx.bom.webfonts.WebFontLoader.__P_162_6[fontLookupKey]) {
           return;
         }
-        if (!qx.bom.webfonts.WebFontLoader.__P_154_7) {
+        if (!qx.bom.webfonts.WebFontLoader.__P_162_7) {
           var _styleSheet = qx.bom.Stylesheet.createElement();
-          qx.bom.webfonts.WebFontLoader.__P_154_7 = _styleSheet;
+          qx.bom.webfonts.WebFontLoader.__P_162_7 = _styleSheet;
         }
         var sourcesMap = {};
         var MATCH_FORMAT = new RegExp(".(" + qx.bom.webfonts.WebFontLoader.getPreferredFormats().join("|") + ")");
@@ -305,17 +305,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         rule += "font-style: " + (fontFace.fontStyle || "normal") + ";\n";
         rule += "font-weight: " + (fontFace.fontWeight || "normal") + ";\n";
         rule = "@font-face {\n" + rule + "}\n";
-        var styleSheet = qx.bom.webfonts.WebFontLoader.__P_154_7;
+        var styleSheet = qx.bom.webfonts.WebFontLoader.__P_162_7;
         try {
           if (qx.core.Environment.get("browser.name") == "ie" && qx.core.Environment.get("browser.documentmode") < 9) {
-            var cssText = qx.bom.webfonts.WebFontLoader.__P_154_8(styleSheet.cssText);
+            var cssText = qx.bom.webfonts.WebFontLoader.__P_162_8(styleSheet.cssText);
             cssText += rule;
             styleSheet.cssText = cssText;
           } else {
             styleSheet.insertRule(rule, styleSheet.cssRules.length);
           }
         } catch (ex) {}
-        qx.bom.webfonts.WebFontLoader.__P_154_6[fontLookupKey] = true;
+        qx.bom.webfonts.WebFontLoader.__P_162_6[fontLookupKey] = true;
       },
       // property apply
       _applyFontFaces: function _applyFontFaces(fontFaces, old) {
@@ -349,12 +349,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        */
       VALIDATION_TIMEOUT: 5000,
       /** @type{String[]} array of supported font formats, most preferred first */
-      __P_154_9: null,
+      __P_162_9: null,
       /** */
-      __P_154_10: {},
-      __P_154_6: {},
+      __P_162_10: {},
+      __P_162_6: {},
       /** Loader instances indexed by font family name */
-      __P_154_11: {},
+      __P_162_11: {},
       /**
        * Gets/creates a loader
        *
@@ -363,9 +363,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @returns
        */
       getLoader: function getLoader(name, create) {
-        var loader = qx.bom.webfonts.WebFontLoader.__P_154_11[name];
+        var loader = qx.bom.webfonts.WebFontLoader.__P_162_11[name];
         if (!loader && create) {
-          loader = qx.bom.webfonts.WebFontLoader.__P_154_11[name] = new qx.bom.webfonts.WebFontLoader(name);
+          loader = qx.bom.webfonts.WebFontLoader.__P_162_11[name] = new qx.bom.webfonts.WebFontLoader(name);
         }
         return loader;
       },
@@ -374,12 +374,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        *
        * @param {String} url
        */
-      __P_154_3: function __P_154_3(url) {
-        if (qx.bom.webfonts.WebFontLoader.__P_154_10[url]) {
+      __P_162_3: function __P_162_3(url) {
+        if (qx.bom.webfonts.WebFontLoader.__P_162_10[url]) {
           return;
         }
         qx.bom.Stylesheet.includeFile(url);
-        qx.bom.webfonts.WebFontLoader.__P_154_10[url] = true;
+        qx.bom.webfonts.WebFontLoader.__P_162_10[url] = true;
       },
       /**
        * Creates a lookup key to index the created fonts.
@@ -400,7 +400,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @param sources {String[]} Array of source URLs
        * @return {Map} Map of formats and URLs
        */
-      __P_154_12: function __P_154_12(sources) {
+      __P_162_12: function __P_162_12(sources) {
         var formats = qx.bom.webfonts.WebFontLoader.FONT_FORMATS;
         var sourcesMap = {};
         var reg = new RegExp(".(" + formats.join("|") + ")");
@@ -422,8 +422,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * or empty Array if none could be determined
        */
       getPreferredFormats: function getPreferredFormats() {
-        if (qx.bom.webfonts.WebFontLoader.__P_154_9) {
-          return qx.bom.webfonts.WebFontLoader.__P_154_9;
+        if (qx.bom.webfonts.WebFontLoader.__P_162_9) {
+          return qx.bom.webfonts.WebFontLoader.__P_162_9;
         }
         var preferredFormats = [];
         var browser = qx.core.Environment.get("browser.name");
@@ -445,7 +445,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (browser == "mobileSafari" && os == "ios" && osVersion >= 4.1) {
           preferredFormats.push("svg");
         }
-        return qx.bom.webfonts.WebFontLoader.__P_154_9 = preferredFormats;
+        return qx.bom.webfonts.WebFontLoader.__P_162_9 = preferredFormats;
       },
       /**
        * IE 6 and 7 omit the trailing quote after the format name when
@@ -455,7 +455,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @param cssText {String} CSS text
        * @return {String} Fixed CSS text
        */
-      __P_154_8: function __P_154_8(cssText) {
+      __P_162_8: function __P_162_8(cssText) {
         return cssText.replace("'eot)", "'eot')").replace("('embedded-opentype)", "('embedded-opentype')");
       }
     }
@@ -463,4 +463,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   qx.bom.webfonts.WebFontLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFontLoader.js.map?dt=1692560701704
+//# sourceMappingURL=WebFontLoader.js.map?dt=1700345590260

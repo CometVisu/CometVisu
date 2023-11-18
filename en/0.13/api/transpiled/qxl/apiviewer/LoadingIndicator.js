@@ -40,9 +40,9 @@
     type: "singleton",
     extend: qx.core.Object,
     construct: function construct() {
-      this.__P_574_0 = new qx.ui.core.Blocker(qxl.apiviewer.MWidgetRegistry.getWidgetById("tabView"));
-      this.__P_574_0.setColor("#D5D5D5");
-      this.__P_574_0.setOpacity(0.5);
+      this.__P_582_0 = new qx.ui.core.Blocker(qxl.apiviewer.MWidgetRegistry.getWidgetById("tabView"));
+      this.__P_582_0.setColor("#D5D5D5");
+      this.__P_582_0.setOpacity(0.5);
 
       /*
       this.__blocker.getBlockerElement().setStyle("padding-top", "100px");
@@ -55,16 +55,16 @@
     },
 
     members: {
-      __P_574_0: null,
+      __P_582_0: null,
       show: function show() {
-        this.__P_574_0.block();
+        this.__P_582_0.block();
       },
       hide: function hide() {
-        this.__P_574_0.unblock();
+        this.__P_582_0.unblock();
       }
     }
   });
   qxl.apiviewer.LoadingIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadingIndicator.js.map?dt=1692560749336
+//# sourceMappingURL=LoadingIndicator.js.map?dt=1700345618619

@@ -72,7 +72,7 @@
 
     statics: {
       /** Internal helper structure to map cursor values to supported ones */
-      __P_137_0: {},
+      __P_145_0: {},
       /**
        * Compiles the given cursor into a CSS compatible string.
        *
@@ -80,7 +80,7 @@
        * @return {String} CSS string
        */
       compile: function compile(cursor) {
-        return "cursor:" + (this.__P_137_0[cursor] || cursor) + ";";
+        return "cursor:" + (this.__P_145_0[cursor] || cursor) + ";";
       },
       /**
        * Returns the computed cursor style for the given element.
@@ -101,7 +101,7 @@
        * @param value {String} New cursor value to set
        */
       set: function set(element, value) {
-        element.style.cursor = this.__P_137_0[value] || value;
+        element.style.cursor = this.__P_145_0[value] || value;
       },
       /**
        * Removes the local cursor style applied to the element
@@ -115,12 +115,12 @@
     defer: function defer(statics) {
       // < IE 9
       if (qx.core.Environment.get("engine.name") == "mshtml" && (parseFloat(qx.core.Environment.get("engine.version")) < 9 || qx.core.Environment.get("browser.documentmode") < 9) && !qx.core.Environment.get("browser.quirksmode")) {
-        statics.__P_137_0["nesw-resize"] = "ne-resize";
-        statics.__P_137_0["nwse-resize"] = "nw-resize";
+        statics.__P_145_0["nesw-resize"] = "ne-resize";
+        statics.__P_145_0["nwse-resize"] = "nw-resize";
       }
     }
   });
   qx.bom.element.Cursor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cursor.js.map?dt=1692560700111
+//# sourceMappingURL=Cursor.js.map?dt=1700345589256

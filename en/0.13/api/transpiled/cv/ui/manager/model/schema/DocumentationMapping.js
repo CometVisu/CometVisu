@@ -113,6 +113,7 @@
         'tile-component-button': '/develop/manual/config/structure-tile/components/button.html#tile-component-button',
         'tile-component-chart': '/develop/manual/config/structure-tile/components/chart.html#tile-component-chart',
         'tile-component-color': '/develop/manual/config/structure-tile/components/color.html#tile-component-color',
+        'tile-component-energy-entity': '/develop/manual/config/structure-tile/components/energy-entity.html#tile-component-energy-entity',
         'tile-component-group': '/develop/manual/config/structure-tile/components/group.html#tile-component-group',
         'tile-component-icon': '/develop/manual/config/structure-tile/components/icon.html#tile-component-icon',
         'tile-component-image': '/develop/manual/config/structure-tile/components/image.html#tile-component-image',
@@ -120,13 +121,17 @@
         'tile-component-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-component-menu',
         'tile-component-page': '/develop/manual/config/structure-tile/components/page.html#tile-component-page',
         'tile-component-popup': '/develop/manual/config/structure-tile/components/popup.html#tile-component-popup',
+        'tile-component-power-entity': '/develop/manual/config/structure-tile/components/power-entity.html#tile-component-power-entity',
         'tile-component-select': '/develop/manual/config/structure-tile/components/select.html#tile-component-select',
         'tile-component-slider': '/develop/manual/config/structure-tile/components/slider.html#tile-component-slider',
         'tile-component-spinner': '/develop/manual/config/structure-tile/components/spinner.html#tile-component-spinner',
+        'tile-component-svg-round-value-entity': '/develop/manual/config/structure-tile/components/svg-round-value.html#tile-component-svg-round-value-entity',
+        'tile-component-svg-text-value-entity': '/develop/manual/config/structure-tile/components/svg-text-value.html#tile-component-svg-text-value-entity',
         'tile-component-value': '/develop/manual/config/structure-tile/components/value.html#tile-component-value',
         'tile-components': '/develop/manual/config/structure-tile/index.html#tile-components',
         'tile-dimmer': '/develop/manual/config/structure-tile/widgets/dimmer.html#tile-dimmer',
         'tile-element-address': '/develop/manual/config/structure-tile/elements/address.html#tile-element-address',
+        'tile-element-address-group': '/develop/manual/config/structure-tile/elements/address-group.html#tile-element-address-group',
         'tile-element-address-target': '/develop/manual/config/structure-tile/elements/address.html#tile-element-address-target',
         'tile-element-backend': '/develop/manual/config/structure-tile/elements/backend.html#tile-element-backend',
         'tile-element-loader': '/develop/manual/config/structure-tile/elements/loader.html#tile-element-loader',
@@ -134,6 +139,8 @@
         'tile-element-state-notification': '/develop/manual/config/structure-tile/elements/state-notification.html#tile-element-state-notification',
         'tile-element-style': '/develop/manual/config/structure-tile/elements/style.html#tile-element-style',
         'tile-element-styling': '/develop/manual/config/structure-tile/elements/styling.html#tile-element-styling',
+        'tile-energy': '/develop/manual/config/structure-tile/widgets/energy.html#tile-energy',
+        'tile-energy-flow': '/develop/manual/config/structure-tile/widgets/energy.html#tile-energy-flow',
         'tile-info': '/develop/manual/config/structure-tile/widgets/info.html#tile-info',
         'tile-item-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-item-menu',
         'tile-media-player': '/develop/manual/config/structure-tile/widgets/media-player.html#tile-media-player',
@@ -176,4 +183,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1692560688390
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1700345581471

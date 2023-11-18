@@ -123,7 +123,7 @@
       },
       "name": "checkedLabelPath",
       "propertyType": "new",
-      "apply": "__P_172_0",
+      "apply": "__P_180_0",
       "nullable": true,
       "allowNull": true,
       "check": "String"
@@ -151,7 +151,7 @@
       },
       "name": "checkedIconPath",
       "propertyType": "new",
-      "apply": "__P_172_0",
+      "apply": "__P_180_0",
       "nullable": true,
       "allowNull": true,
       "check": "String"
@@ -179,7 +179,7 @@
       },
       "name": "checkedLabelOptions",
       "propertyType": "new",
-      "apply": "__P_172_0",
+      "apply": "__P_180_0",
       "nullable": true,
       "allowNull": true
     },
@@ -206,7 +206,7 @@
       },
       "name": "checkedIconOptions",
       "propertyType": "new",
-      "apply": "__P_172_0",
+      "apply": "__P_180_0",
       "nullable": true,
       "allowNull": true
     },

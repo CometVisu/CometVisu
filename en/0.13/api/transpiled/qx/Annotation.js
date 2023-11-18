@@ -100,7 +100,7 @@
        * @param annoClass {Class?} optional class which the annotations being returned must implement
        * @return {Object[]} the annotations, never null
        */
-      __P_88_0: function __P_88_0(clazz, name, group, annoClass) {
+      __P_96_0: function __P_96_0(clazz, name, group, annoClass) {
         if (clazz.$$annotations === undefined) {
           return [];
         }
@@ -124,7 +124,7 @@
        * @param annoClass {Class?} optional class which the annotations being returned must implement
        * @return {Object[]} the annotations, never null
        */
-      __P_88_1: function __P_88_1(clazz, name, group, annoClass) {
+      __P_96_1: function __P_96_1(clazz, name, group, annoClass) {
         var result = [];
         for (var tmp = clazz; tmp; tmp = tmp.superclass) {
           if (tmp.$$annotations !== undefined) {
@@ -149,7 +149,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnClass: function getOwnClass(clazz, annoClass) {
-        return this.__P_88_0(clazz, "@", null, annoClass);
+        return this.__P_96_0(clazz, "@", null, annoClass);
       },
       /**
        * Returns the class annotations, from this class and superclasses
@@ -158,7 +158,7 @@
        * @return {Object[]} the annotations, never null
        */
       getClass: function getClass(clazz, annoClass) {
-        return this.__P_88_1(clazz, "@", null, annoClass);
+        return this.__P_96_1(clazz, "@", null, annoClass);
       },
       /**
        * Returns the class constructor's annotations, exclusively from the class
@@ -167,7 +167,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnConstructor: function getOwnConstructor(clazz, annoClass) {
-        return this.__P_88_0(clazz, "@construct", null, annoClass);
+        return this.__P_96_0(clazz, "@construct", null, annoClass);
       },
       /**
        * Returns the class constructor's annotations, from the class and superclasses
@@ -176,7 +176,7 @@
        * @return {Object[]} the annotations, never null
        */
       getConstructor: function getConstructor(clazz, annoClass) {
-        return this.__P_88_1(clazz, "@construct", null, annoClass);
+        return this.__P_96_1(clazz, "@construct", null, annoClass);
       },
       /**
        * Returns the class destructor's annotations, exclusively from the class
@@ -185,7 +185,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnDestructor: function getOwnDestructor(clazz, annoClass) {
-        return this.__P_88_0(clazz, "@destruct", null, annoClass);
+        return this.__P_96_0(clazz, "@destruct", null, annoClass);
       },
       /**
        * Returns the class destructor's annotations, from the class and superclasses
@@ -194,7 +194,7 @@
        * @return {Object[]} the annotations, never null
        */
       getDestructor: function getDestructor(clazz, annoClass) {
-        return this.__P_88_1(clazz, "@destruct", null, annoClass);
+        return this.__P_96_1(clazz, "@destruct", null, annoClass);
       },
       /**
        * Returns the class member's annotations, exclusively from the class
@@ -204,7 +204,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnMember: function getOwnMember(clazz, name, annoClass) {
-        return this.__P_88_0(clazz, name, "members", annoClass);
+        return this.__P_96_0(clazz, name, "members", annoClass);
       },
       /**
        * Returns the class member's annotations, from the class and superclass
@@ -214,7 +214,7 @@
        * @return {Object[]} the annotations, never null
        */
       getMember: function getMember(clazz, name, annoClass) {
-        return this.__P_88_1(clazz, name, "members", annoClass);
+        return this.__P_96_1(clazz, name, "members", annoClass);
       },
       /**
        * Returns the class property's annotations, exclusively from the class
@@ -224,7 +224,7 @@
        * @return {Object[]} the annotations, never null
        */
       getOwnProperty: function getOwnProperty(clazz, name, annoClass) {
-        return this.__P_88_0(clazz, name, "properties", annoClass);
+        return this.__P_96_0(clazz, name, "properties", annoClass);
       },
       /**
        * Returns the class property's annotations, from the class and superclasses
@@ -234,7 +234,7 @@
        * @return {Object[]} the annotations, never null
        */
       getProperty: function getProperty(clazz, name, annoClass) {
-        return this.__P_88_1(clazz, name, "properties", annoClass);
+        return this.__P_96_1(clazz, name, "properties", annoClass);
       },
       /**
        * Returns a list of property names that implement a given annotation.
@@ -259,11 +259,11 @@
        * @return {Object[]} the annotations, never null
        */
       getStatic: function getStatic(clazz, name, annoClass) {
-        return this.__P_88_0(clazz, name, "statics", annoClass);
+        return this.__P_96_0(clazz, name, "statics", annoClass);
       }
     }
   });
   qx.Annotation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Annotation.js.map?dt=1692560694622
+//# sourceMappingURL=Annotation.js.map?dt=1700345585832

@@ -52,7 +52,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     ***********************************************
     */
     members: {
-      __P_79_0: null,
+      __P_82_0: null,
       _init: function _init() {
         var _this = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -107,8 +107,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   doc = parser.parseFromString(_this._element.innerHTML, 'application/xml');
                   props = Clazz.parse(doc.firstElementChild, id, '', 'text');
                   cv.TemplateEngine.getInstance().setDomFinished(false);
-                  _this.__P_79_0 = new Clazz(props);
-                  _this._element.innerHTML = "<div class=\"widget_container\" id=\"".concat(id, "\" data-type=\"").concat(props.$$type, "\">").concat(_this.__P_79_0.getDomString(), "</div>");
+                  _this.__P_82_0 = new Clazz(props);
+                  _this._element.innerHTML = "<div class=\"widget_container\" id=\"".concat(id, "\" data-type=\"").concat(props.$$type, "\">").concat(_this.__P_82_0.getDomString(), "</div>");
                   scriptLoader = cv.util.ScriptLoader.getInstance();
                   window.requestAnimationFrame(function () {
                     if (!scriptLoader.isFinished()) {
@@ -180,4 +180,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.tile.components.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1692560693525
+//# sourceMappingURL=Plugin.js.map?dt=1700345584724

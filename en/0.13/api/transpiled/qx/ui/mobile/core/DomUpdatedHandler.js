@@ -60,11 +60,11 @@
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__P_389_0 = manager;
-      this.__P_389_1 = {};
+      this.__P_397_0 = manager;
+      this.__P_397_1 = {};
 
       // Register
-      qx.ui.mobile.core.DomUpdatedHandler.__P_389_2[this.toHashCode()] = this;
+      qx.ui.mobile.core.DomUpdatedHandler.__P_397_2[this.toHashCode()] = this;
     },
     /*
     *****************************************************************************
@@ -82,14 +82,14 @@
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false,
       /** @type {Map} Stores all domUpdated manager instances */
-      __P_389_2: {},
+      __P_397_2: {},
       /**
        * Informs all handlers. Useful after massive DOM manipulations e.g.
        * through {@link qx.ui.mobile.core.Widget}.
        *
        */
       refresh: function refresh() {
-        var all = this.__P_389_2;
+        var all = this.__P_397_2;
         for (var hash in all) {
           all[hash].refresh();
         }
@@ -102,8 +102,8 @@
     */
 
     members: {
-      __P_389_0: null,
-      __P_389_1: null,
+      __P_397_0: null,
+      __P_397_1: null,
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
@@ -116,7 +116,7 @@
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
         var hash = target.toHashCode();
-        var targets = this.__P_389_1;
+        var targets = this.__P_397_1;
         if (targets && !targets[hash]) {
           targets[hash] = target;
         }
@@ -124,7 +124,7 @@
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {
         var hash = target.toHashCode();
-        var targets = this.__P_389_1;
+        var targets = this.__P_397_1;
         if (!targets) {
           return;
         }
@@ -143,13 +143,13 @@
        *
        */
       refresh: function refresh() {
-        var targets = this.__P_389_1;
+        var targets = this.__P_397_1;
         var target;
         for (var hash in targets) {
           target = targets[hash];
           if (target && !target.$$disposed && target.isSeeable()) {
             var evt = qx.event.Registration.createEvent("domupdated");
-            this.__P_389_0.dispatchEvent(target, evt);
+            this.__P_397_0.dispatchEvent(target, evt);
           }
         }
       }
@@ -160,10 +160,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_389_0 = this.__P_389_1 = null;
+      this.__P_397_0 = this.__P_397_1 = null;
 
       // Deregister
-      delete qx.ui.mobile.core.DomUpdatedHandler.__P_389_2[this.toHashCode()];
+      delete qx.ui.mobile.core.DomUpdatedHandler.__P_397_2[this.toHashCode()];
     },
     /*
     *****************************************************************************
@@ -177,4 +177,4 @@
   qx.ui.mobile.core.DomUpdatedHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DomUpdatedHandler.js.map?dt=1692560730005
+//# sourceMappingURL=DomUpdatedHandler.js.map?dt=1700345607162

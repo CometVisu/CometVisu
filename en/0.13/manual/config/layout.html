@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Functions for controlling the layout &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -89,9 +93,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>Functions for controlling the layout</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Functions for controlling the layout</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -108,7 +112,7 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="functions-for-controlling-the-layout">
-<span id="layout"></span><h1>Functions for controlling the layout<a class="headerlink" href="#functions-for-controlling-the-layout" title="Permalink to this headline">¶</a></h1>
+<span id="layout"></span><h1>Functions for controlling the layout<a class="headerlink" href="#functions-for-controlling-the-layout" title="Link to this heading"></a></h1>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <ul class="simple">
@@ -125,12 +129,6 @@ visible widgets. In the following example, the line widget
 lists all the attributes that are explained in more detail
 in the following sections:</p>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -220,7 +218,7 @@ in the following sections:</p>
 </tbody>
 </table>
 <section id="the-attribute-colspan">
-<h2>The attribute colspan<a class="headerlink" href="#the-attribute-colspan" title="Permalink to this headline">¶</a></h2>
+<h2>The attribute colspan<a class="headerlink" href="#the-attribute-colspan" title="Link to this heading"></a></h2>
 <p>Colspan determines how many columns the widget should occupy
 on a large display. The default value is <code class="docutils literal notranslate"><span class="pre">colspan=&quot;6&quot;</span></code>,
 if not specified. This sets the widget width to half the page size.
@@ -232,7 +230,7 @@ definitions per row returns 12.</p>
 <figure class="align-default" id="id2">
 <img alt="../_images/Layout_colspan1.png" src="../_images/Layout_colspan1.png" />
 <figcaption>
-<p><span class="caption-text">Simple text widgets with different colspan values</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Simple text widgets with different colspan values</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>The special case <code class="docutils literal notranslate"><span class="pre">colpan=&quot;0&quot;</span></code> creates a widget with the minimum
@@ -276,24 +274,24 @@ differently on 3 display sizes.</p>
 <figure class="align-default" id="id3">
 <img alt="../_images/Layout_colspan_screensize_large.png" src="../_images/Layout_colspan_screensize_large.png" />
 <figcaption>
-<p><span class="caption-text">Representation at a resolution of 1100x640</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Representation at a resolution of 1100x640</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id4">
 <img alt="../_images/Layout_colspan_screensize_medium_640x400.png" src="../_images/Layout_colspan_screensize_medium_640x400.png" />
 <figcaption>
-<p><span class="caption-text">Representation at a resolution of 640x400 (Smartphone in landscape mode)</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Representation at a resolution of 640x400 (Smartphone in landscape mode)</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id5">
 <img alt="../_images/Layout_colspan_screensize_small_400x640.png" src="../_images/Layout_colspan_screensize_small_400x640.png" />
 <figcaption>
-<p><span class="caption-text">Representation at a resolution of 400x640 (Smartphone in portrait mode)</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Representation at a resolution of 400x640 (Smartphone in portrait mode)</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="the-attribute-rowspan">
-<h2>The attribute rowspan<a class="headerlink" href="#the-attribute-rowspan" title="Permalink to this headline">¶</a></h2>
+<h2>The attribute rowspan<a class="headerlink" href="#the-attribute-rowspan" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Rowspan</span></code> determines the number of lines a widget occupies. Currently
 only integer statements are allowed for <code class="docutils literal notranslate"><span class="pre">rowspan</span></code>. Most widgets
 do not require <code class="docutils literal notranslate"><span class="pre">rowspan</span></code> because the default value <code class="docutils literal notranslate"><span class="pre">rowspan=&quot;1&quot;</span></code>
@@ -311,7 +309,7 @@ to be the same as the five individual widgets on the left.</p>
 <figure class="align-default" id="id6">
 <img alt="../_images/Layout_rowspan_mitImage.png" src="../_images/Layout_rowspan_mitImage.png" />
 <figcaption>
-<p><span class="caption-text">Image-Widget with rowspan=”5”</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Image-Widget with rowspan=”5”</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Because the widget arrangement is one after the other in rows,
@@ -319,7 +317,7 @@ using different values for <code class="docutils literal notranslate"><span clas
 <figure class="align-default" id="id7">
 <img alt="../_images/Layout_rowspan.png" src="../_images/Layout_rowspan.png" />
 <figcaption>
-<p><span class="caption-text">Empty areas in interaction with the rowspan element</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Empty areas in interaction with the rowspan element</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>In such cases, the use of the Group widget in conjunction with
@@ -327,7 +325,7 @@ the nowidget attribute can be remedied.</p>
 <figure class="align-default" id="id8">
 <img alt="../_images/Layout_rowspan_mitGroup.png" src="../_images/Layout_rowspan_mitGroup.png" />
 <figcaption>
-<p><span class="caption-text">Control of the arrangement with an invisible group(attribute <code class="docutils literal notranslate"><span class="pre">nowidget=&quot;true&quot;</span></code>)</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Control of the arrangement with an invisible group(attribute <code class="docutils literal notranslate"><span class="pre">nowidget=&quot;true&quot;</span></code>)</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Below the xml code for the screenshot with the correct arrangement.</p>
@@ -376,8 +374,12 @@ the nowidget attribute can be remedied.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -388,22 +390,18 @@ the nowidget attribute can be remedied.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -62,7 +62,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     */
     construct: function construct(element) {
       cv.ui.structure.tile.elements.AbstractCustomElement.constructor.call(this, element);
-      this.__P_87_0 = {};
+      this.__P_95_0 = {};
     },
     /*
     ***********************************************
@@ -70,7 +70,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     ***********************************************
     */
     members: {
-      __P_87_0: null,
+      __P_95_0: null,
       _applyConnected: function _applyConnected(value, oldValue, name) {
         cv.ui.structure.tile.elements.Mapping.superclass.prototype._applyConnected.call(this, value, oldValue, name);
         // avoid adding styling elements here as they inherit this method but call the super method too
@@ -87,19 +87,21 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
        * @param val {variant}
        * @param store {Map<string, variant>?} optional stored values from other addresses
        * @param params {Array<variant>?} optional array of parameters for the mapping
+       * @param emptyWhenNoMatch {Boolean} return empty string when no mapped value is found, otherwise the value is returned (default)
        * @return {string|*|string}
        */
       mapValue: function mapValue(val, store, params) {
         var _this = this;
-        if (Object.prototype.hasOwnProperty.call(this.__P_87_0, val)) {
-          return this.__P_87_0[val];
+        var emptyWhenNoMatch = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+        if (Object.prototype.hasOwnProperty.call(this.__P_95_0, val)) {
+          return this.__P_95_0[val];
         }
-        var mappedValue = '' + val;
+        var mappedValue = emptyWhenNoMatch ? '' : '' + val;
         var exactMatch = this._element.querySelector(':scope > entry[value="' + val + '"]');
         var type = this._element.hasAttribute('type') ? this._element.getAttribute('type') : 'string';
         if (exactMatch) {
           mappedValue = this._convert(exactMatch.innerHTML.trim(), type);
-          this.__P_87_0[val] = mappedValue;
+          this.__P_95_0[val] = mappedValue;
           return mappedValue;
         }
         var formula = this._element.querySelector(':scope > formula');
@@ -142,7 +144,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         if (!mapped && defaultValue !== null) {
           mappedValue = this.mapValue(defaultValue);
         }
-        this.__P_87_0[val] = mappedValue;
+        this.__P_95_0[val] = mappedValue;
         return mappedValue;
       },
       _convert: function _convert(value, type) {
@@ -164,7 +166,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_87_0 = null;
+      this.__P_95_0 = null;
     },
     defer: function defer(Clazz) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'mapping', /*#__PURE__*/function (_QxConnector) {
@@ -183,4 +185,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.elements.Mapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mapping.js.map?dt=1692560694161
+//# sourceMappingURL=Mapping.js.map?dt=1700345585523

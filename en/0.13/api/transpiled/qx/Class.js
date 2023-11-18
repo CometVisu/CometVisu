@@ -148,7 +148,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * A static reference to the property implementation in the case it
        * should be included.
        */
-      __P_90_0: true ? qx.core.Property : null,
+      __P_98_0: true ? qx.core.Property : null,
       /*
       ---------------------------------------------------------------------------
          PUBLIC METHODS
@@ -224,7 +224,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       define: function define(name, config) {
         try {
-          return this.__P_90_1(name, config);
+          return this.__P_98_1(name, config);
         } catch (ex) {
           qx.Class.$$brokenClassDefinitions = true;
           throw ex;
@@ -238,7 +238,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param {*} config @see `define()`
        * @returns  @see `define()`
        */
-      __P_90_1: function __P_90_1(name, config) {
+      __P_98_1: function __P_98_1(name, config) {
         if (!config) {
           config = {};
         }
@@ -263,35 +263,35 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // Validate incoming data
 
         // Create the class
-        var clazz = this.__P_90_2(name, config.type, config.extend, config.statics, config.construct, config.destruct, config.include);
+        var clazz = this.__P_98_2(name, config.type, config.extend, config.statics, config.construct, config.destruct, config.include);
 
         // Initialise class and constructor/destructor annotations
         ["@", "@construct", "@destruct"].forEach(function (id) {
-          this.__P_90_3(clazz, id, null, config[id]);
+          this.__P_98_3(clazz, id, null, config[id]);
         }, this);
 
         // Members, properties, events and mixins are only allowed for non-static classes
         if (config.extend) {
           // Attach properties
           if (config.properties) {
-            this.__P_90_4(clazz, config.properties, true);
+            this.__P_98_4(clazz, config.properties, true);
           }
 
           // Attach members
           if (config.members) {
-            this.__P_90_5(clazz, config.members, true, true, false);
+            this.__P_98_5(clazz, config.members, true, true, false);
           }
 
           // Process events
           if (config.events) {
-            this.__P_90_6(clazz, config.events, true);
+            this.__P_98_6(clazz, config.events, true);
           }
 
           // Include mixins
           // Must be the last here to detect conflicts
           if (config.include) {
             for (var i = 0, l = config.include.length; i < l; i++) {
-              this.__P_90_7(clazz, config.include[i], false);
+              this.__P_98_7(clazz, config.include[i], false);
             }
           }
         }
@@ -310,7 +310,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // Interface support for non-static classes
         if (config.implement) {
           for (var i = 0, l = config.implement.length; i < l; i++) {
-            this.__P_90_8(clazz, config.implement[i]);
+            this.__P_98_8(clazz, config.implement[i]);
           }
         }
         // Process defer
@@ -325,7 +325,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                 properties[name] = config;
 
                 // execute generic property handler
-                qx.Class.__P_90_4(clazz, properties, true);
+                qx.Class.__P_98_4(clazz, properties, true);
               }
             });
           });
@@ -394,7 +394,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param mixin {Mixin} The mixin to be included.
        */
       include: function include(clazz, mixin) {
-        qx.Class.__P_90_7(clazz, mixin, false);
+        qx.Class.__P_98_7(clazz, mixin, false);
       },
       /**
        * Include all features of the given mixin into the class. The mixin may
@@ -411,7 +411,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Class} the new class definition
        */
       patch: function patch(clazz, mixin) {
-        qx.Class.__P_90_7(clazz, mixin, true);
+        qx.Class.__P_98_7(clazz, mixin, true);
         return qx.Class.getByName(clazz.classname);
       },
       /**
@@ -702,7 +702,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /** Stores all defined classes */
       $$registry: qx.Bootstrap.$$registry,
       /** @type {Map} allowed keys in non-static class definition */
-      __P_90_9: qx.core.Environment.select("qx.debug", {
+      __P_98_9: qx.core.Environment.select("qx.debug", {
         "true": {
           "@": "object",
           "@construct": "object",
@@ -735,7 +735,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         "default": null
       }),
       /** @type {Map} allowed keys in static class definition */
-      __P_90_10: qx.core.Environment.select("qx.debug", {
+      __P_98_10: qx.core.Environment.select("qx.debug", {
         "true": {
           "@": "object",
           type: "string",
@@ -756,7 +756,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param name {String} The name of the class
        * @param config {Map} Configuration map
        */
-      __P_90_11: qx.core.Environment.select("qx.debug", {
+      __P_98_11: qx.core.Environment.select("qx.debug", {
         "true": function _true(name, config) {
           // Validate type
           if (config.type && !(config.type === "static" || config.type === "abstract" || config.type === "singleton")) {
@@ -769,7 +769,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           }
 
           // Validate keys
-          var allowed = config.type === "static" ? this.__P_90_10 : this.__P_90_9;
+          var allowed = config.type === "static" ? this.__P_98_10 : this.__P_98_9;
           for (var key in config) {
             if (!allowed[key]) {
               throw new Error('The configuration key "' + key + '" in class "' + name + '" is not allowed!');
@@ -861,7 +861,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @signature function(clazz)
        * @param clazz {Class} The configured class.
        */
-      __P_90_12: qx.core.Environment.select("qx.debug", {
+      __P_98_12: qx.core.Environment.select("qx.debug", {
         "true": function _true(clazz) {
           var superclass = clazz.superclass;
           while (superclass) {
@@ -887,7 +887,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param key {String} Name of the annotated item
        * @param anno {Object} Annotation object
        */
-      __P_90_3: function __P_90_3(clazz, group, key, anno) {
+      __P_98_3: function __P_98_3(clazz, group, key, anno) {
         if (anno !== undefined) {
           if (clazz.$$annotations === undefined) {
             clazz.$$annotations = {};
@@ -917,7 +917,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param mixins {Mixin[]} array of mixins of the class
        * @return {Class} The generated class
        */
-      __P_90_2: function __P_90_2(name, type, extend, statics, construct, destruct, mixins) {
+      __P_98_2: function __P_98_2(name, type, extend, statics, construct, destruct, mixins) {
         var isStrictMode = function isStrictMode() {
           return typeof this == "undefined";
         };
@@ -931,9 +931,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (extend) {
             // Create default constructor
             if (!construct) {
-              construct = this.__P_90_13();
+              construct = this.__P_98_13();
             }
-            clazz = this.__P_90_14(construct, name, type);
+            clazz = this.__P_98_14(construct, name, type);
 
             // Add singleton getInstance()
             if (type === "singleton") {
@@ -957,7 +957,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
 
               // Attach annotations
-              this.__P_90_3(clazz, "statics", key, statics["@" + key]);
+              this.__P_98_3(clazz, "statics", key, statics["@" + key]);
             }
           }
         }
@@ -1014,7 +1014,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param events {Map} map of event names the class fires.
        * @param patch {Boolean ? false} Enable redefinition of event type?
        */
-      __P_90_6: function __P_90_6(clazz, events, patch) {
+      __P_98_6: function __P_98_6(clazz, events, patch) {
         if (clazz.$$events) {
           for (var key in events) {
             clazz.$$events[key] = events[key];
@@ -1031,7 +1031,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param patch {Boolean ? false} Overwrite property with the limitations of a property
                  which means you are able to refine but not to replace (esp. for new properties)
        */
-      __P_90_4: function __P_90_4(clazz, properties, patch) {
+      __P_98_4: function __P_98_4(clazz, properties, patch) {
         // check for the property module
 
         var config;
@@ -1070,22 +1070,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             if (config.async) {
               event[config.event + "Async"] = "qx.event.type.Data";
             }
-            this.__P_90_6(clazz, event, patch);
+            this.__P_98_6(clazz, event, patch);
           }
 
           // Remember inheritable properties
           if (config.inheritable) {
-            this.__P_90_0.$$inheritable[name] = true;
+            this.__P_98_0.$$inheritable[name] = true;
             if (!proto.$$refreshInheritables) {
-              this.__P_90_0.attachRefreshInheritables(clazz);
+              this.__P_98_0.attachRefreshInheritables(clazz);
             }
           }
           if (!config.refine) {
-            this.__P_90_0.attachMethods(clazz, name, config);
+            this.__P_98_0.attachMethods(clazz, name, config);
           }
 
           // Add annotations
-          this.__P_90_3(clazz, "properties", name, config["@"]);
+          this.__P_98_3(clazz, "properties", name, config["@"]);
         }
       },
       /**
@@ -1097,7 +1097,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param config {Map} configuration map
        * @param patch {Boolean ? false} enable refine/patch?
        */
-      __P_90_15: qx.core.Environment.select("qx.debug", {
+      __P_98_15: qx.core.Environment.select("qx.debug", {
         "true": function _true(clazz, name, config, patch) {
           // check for properties
 
@@ -1126,7 +1126,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           }
 
           // Check 0.7 keys
-          var allowed = config.group ? this.__P_90_0.$$allowedGroupKeys : this.__P_90_0.$$allowedKeys;
+          var allowed = config.group ? this.__P_98_0.$$allowedGroupKeys : this.__P_98_0.$$allowedKeys;
           for (var key in config) {
             if (allowed[key] === undefined) {
               throw new Error('The configuration key "' + key + '" of property "' + name + '" in class "' + clazz.classname + '" is not allowed!');
@@ -1162,7 +1162,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param wrap {Boolean ? false} Whether the member method should be wrapped.
        *     this is needed to allow base calls in patched mixin members.
        */
-      __P_90_5: function __P_90_5(clazz, members, patch, base, wrap) {
+      __P_98_5: function __P_98_5(clazz, members, patch, base, wrap) {
         var proto = clazz.prototype;
         var key, member;
         qx.Bootstrap.setDisplayNames(members, clazz.classname + ".prototype");
@@ -1173,7 +1173,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (key.charAt(0) === "@") {
             var annoKey = key.substring(1);
             if (members[annoKey] === undefined) {
-              this.__P_90_3(clazz, "members", annoKey, members[key]);
+              this.__P_98_3(clazz, "members", annoKey, members[key]);
             }
             continue;
           }
@@ -1207,7 +1207,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           proto[key] = member;
 
           // Attach annotations
-          this.__P_90_3(clazz, "members", key, members["@" + key]);
+          this.__P_98_3(clazz, "members", key, members["@" + key]);
         }
       },
       /**
@@ -1216,7 +1216,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param clazz {Class} class to add interface to
        * @param iface {Interface} the Interface to add
        */
-      __P_90_8: function __P_90_8(clazz, iface) {
+      __P_98_8: function __P_98_8(clazz, iface) {
         // Store interface reference
         var list = qx.Interface.flatten([iface]);
         if (clazz.$$implements) {
@@ -1234,7 +1234,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param mixin {Mixin} Include all features of this mixin
        * @param patch {Boolean} Overwrite existing fields, functions and properties
        */
-      __P_90_7: function __P_90_7(clazz, mixin, patch) {
+      __P_98_7: function __P_98_7(clazz, mixin, patch) {
         if (this.hasMixin(clazz, mixin)) {
           return;
         }
@@ -1247,17 +1247,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
           // Attach events
           if (entry.$$events) {
-            this.__P_90_6(clazz, entry.$$events, patch);
+            this.__P_98_6(clazz, entry.$$events, patch);
           }
 
           // Attach properties (Properties are already readonly themselves, no patch handling needed)
           if (entry.$$properties) {
-            this.__P_90_4(clazz, entry.$$properties, patch);
+            this.__P_98_4(clazz, entry.$$properties, patch);
           }
 
           // Attach members (Respect patch setting, but dont apply base variables)
           if (entry.$$members) {
-            this.__P_90_5(clazz, entry.$$members, patch, patch, patch);
+            this.__P_98_5(clazz, entry.$$members, patch, patch, patch);
           }
         }
 
@@ -1281,7 +1281,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *
        * @return {Function} The default constructor.
        */
-      __P_90_13: function __P_90_13() {
+      __P_98_13: function __P_98_13() {
         function defaultConstructor() {
           defaultConstructor.base.apply(this, arguments);
         }
@@ -1296,7 +1296,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param type {String} the user specified class type
        * @return {Function} The wrapped constructor
        */
-      __P_90_14: function __P_90_14(construct, name, type) {
+      __P_98_14: function __P_98_14(construct, name, type) {
         var wrapper = function wrapper() {
           var clazz = wrapper;
           // Execute default constructor
@@ -1329,4 +1329,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1692560694946
+//# sourceMappingURL=Class.js.map?dt=1700345586047

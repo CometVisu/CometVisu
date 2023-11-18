@@ -5,7 +5,7 @@ Das RSSLog Plugin
 
 .. api-doc:: cv.plugins.RssLog
 
-.. spelling::
+.. spelling:word-list::
 
     Always
     database

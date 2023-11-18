@@ -67,12 +67,17 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     ***********************************************
     */
     members: {
-      __P_85_0: null,
-      __P_85_1: null,
+      __P_92_0: null,
+      __P_92_1: null,
+      _stateUpdateTarget: null,
+      getAddress: function getAddress() {
+        return this._element.textContent.trim();
+      },
       _init: function _init() {
         var _this = this;
         var element = this._element;
-        var address = element.textContent.trim();
+        this._stateUpdateTarget = element;
+        var address = this.getAddress();
         if (address) {
           var model = cv.data.Model.getInstance();
           var backendName = element.getAttribute('backend');
@@ -145,7 +150,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
        * @param state {variant} state to send
        */
       fireStateUpdate: function fireStateUpdate(address, state) {
-        if (this.__P_85_0 !== state || this._element.getAttribute('send-mode') === 'always') {
+        if (this.__P_92_0 !== state || this._element.getAttribute('send-mode') === 'always') {
           var transform = this._element.getAttribute('transform') || 'raw';
           var transformedState = cv.Transform.decode({
             transform: transform,
@@ -168,7 +173,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             bubbles: true,
             cancelable: true,
             detail: {
-              address: this._element.textContent.trim(),
+              address: this.getAddress(),
               state: transformedState,
               target: target,
               targetConfig: targetConfig,
@@ -179,10 +184,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
             }
           });
-          this.__P_85_1 = transformedState;
+          this.__P_92_1 = transformedState;
           //console.log(ev.detail);
-          this._element.dispatchEvent(ev);
-          this.__P_85_0 = state;
+          this._stateUpdateTarget.dispatchEvent(ev);
+          this.__P_92_0 = state;
           // reset lastSentValue
           if (state !== this._element.lastSentValue) {
             this._element.lastSentValue = null;
@@ -204,7 +209,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         return this._element.getAttribute('mode') !== 'read';
       },
       getValue: function getValue() {
-        return this.__P_85_1;
+        return this.__P_92_1;
       }
     },
     defer: function defer(Clazz) {
@@ -224,4 +229,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.elements.Address.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Address.js.map?dt=1692560693968
+//# sourceMappingURL=Address.js.map?dt=1700345585360

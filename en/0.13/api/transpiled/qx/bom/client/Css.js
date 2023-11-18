@@ -58,7 +58,7 @@
    */
   qx.Bootstrap.define("qx.bom.client.Css", {
     statics: {
-      __P_121_0: null,
+      __P_129_0: null,
       /**
        * Checks what box model is used in the current environment.
        * @return {String} It either returns "content" or "border".
@@ -233,7 +233,7 @@
        * @internal
        */
       getLinearGradient: function getLinearGradient() {
-        qx.bom.client.Css.__P_121_0 = false;
+        qx.bom.client.Css.__P_129_0 = false;
         var value = "linear-gradient(0deg, #fff, #000)";
         var el = document.createElement("div");
         var style = qx.bom.Style.getAppliedStyle(el, "backgroundImage", value);
@@ -242,7 +242,7 @@
           value = "-webkit-gradient(linear,0% 0%,100% 100%,from(white), to(red))";
           var style = qx.bom.Style.getAppliedStyle(el, "backgroundImage", value, false);
           if (style) {
-            qx.bom.client.Css.__P_121_0 = true;
+            qx.bom.client.Css.__P_129_0 = true;
           }
         }
 
@@ -280,10 +280,10 @@
        * @internal
        */
       getLegacyWebkitGradient: function getLegacyWebkitGradient() {
-        if (qx.bom.client.Css.__P_121_0 === null) {
+        if (qx.bom.client.Css.__P_129_0 === null) {
           qx.bom.client.Css.getLinearGradient();
         }
-        return qx.bom.client.Css.__P_121_0;
+        return qx.bom.client.Css.__P_129_0;
       },
       /**
        * Checks if rgba colors can be used:
@@ -452,4 +452,4 @@
   qx.bom.client.Css.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Css.js.map?dt=1692560698656
+//# sourceMappingURL=Css.js.map?dt=1700345588367

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hilf dem CometVisu Projekt &mdash; CometVisu</title>
@@ -13,17 +13,17 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Die RST-Syntax" href="doc/rst.html" />
-    <link rel="prev" title="Adressen - die Kommunikation mit dem Backend" href="../config/structure-tile/elements/address.html" /> 
+    <link rel="prev" title="Address-Gruppen - Rechnen mit Address-Werten" href="../config/structure-tile/elements/address-group.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -99,8 +103,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Hilf dem CometVisu Projekt</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hilf dem CometVisu Projekt</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -116,12 +120,12 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="hilf-dem-cometvisu-projekt">
-<h1>Hilf dem CometVisu Projekt<a class="headerlink" href="#hilf-dem-cometvisu-projekt" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Hilf dem CometVisu Projekt<a class="headerlink" href="#hilf-dem-cometvisu-projekt" title="Link to this heading"></a></h1>
 <p>Die Mitarbeit am CometVisu Projekt ist problemlos möglich und auch höchst willkommen!
 Hierbei sind nicht nur Entwickler angesprochen, die neue Features oder Bugfixes beitragen möchten, sondern
 auch Anwender, die ihre eigenen Erfahrungen in die Verbesserung der Dokumentation einfließen lassen möchten.</p>
 <section id="allgemeine-vorbereitungen">
-<h2>Allgemeine Vorbereitungen<a class="headerlink" href="#allgemeine-vorbereitungen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Allgemeine Vorbereitungen<a class="headerlink" href="#allgemeine-vorbereitungen" title="Link to this heading"></a></h2>
 <p>Grundsätzlich gibt es keinen Unterschied in der Vorgehensweise, zwischen Änderungen am Sourcecode und Änderungen an
 der Dokumentation, daher werden die Vorbereitungen dazu hier in allgemeiner Weise beschrieben. Die im folgenden beschriebenen
 Schritte müssen einmalig gemacht werden.</p>
@@ -151,7 +155,7 @@ Zum ‚clonen‘ des Repositories führt man folgende Schritte aus:</p>
 <p>das wars schon, die lokale Arbeitskopie liegt dann im <em>CometVisu</em> Unterordner. Damit sind alle Vorbereitungen getroffen.</p>
 </section>
 <section id="allgemeine-vorgehensweise">
-<h2>Allgemeine Vorgehensweise<a class="headerlink" href="#allgemeine-vorgehensweise" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Allgemeine Vorgehensweise<a class="headerlink" href="#allgemeine-vorgehensweise" title="Link to this heading"></a></h2>
 <p>Wenn man nun eine Änderung durchführen möchte, sollte man sich an die hier beschriebene Vorgehensweise halten. Auch
 wenn Sie auf den ersten Blick unnötig kompliziert erscheinen, vor allem wenn man nur Kleinigkeiten ändern möchte.
 Die Erfahrungswerte zeigen, dass man auf Dauer weniger Probleme hat, wenn man sich immer an diesen Workflow hält und
@@ -197,9 +201,9 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">name-des-branches</span></code>.</p>
 </section>
 <section id="repositories-synchron-halten">
-<h2>Repositories synchron halten<a class="headerlink" href="#repositories-synchron-halten" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Repositories synchron halten<a class="headerlink" href="#repositories-synchron-halten" title="Link to this heading"></a></h2>
 <section id="uber-github-com">
-<h3>Über github.com<a class="headerlink" href="#uber-github-com" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Über github.com<a class="headerlink" href="#uber-github-com" title="Link to this heading"></a></h3>
 <p>Um die von anderen Entwicklern <em>gemergeden</em> Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request
 vom privaten Repository aus gemacht werden. In der Zeile <em>This branch is … commits ahead of CometVisu:develop.</em> zeigt
 an, wie viele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum <em>Pull Request</em>,
@@ -207,13 +211,13 @@ welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private
 <figure class="align-default" id="id5">
 <img alt="../_images/pull_request_sync.png" src="../_images/pull_request_sync.png" />
 <figcaption>
-<p><span class="caption-text">Pull Request für Synchronisation zwischen Haupt- und privaten Repository</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Pull Request für Synchronisation zwischen Haupt- und privaten Repository</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id6">
 <img alt="../_images/github_sync2.png" src="../_images/github_sync2.png" />
 <figcaption>
-<p><span class="caption-text">Vergleich der Änderungen</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Vergleich der Änderungen</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition important">
@@ -223,20 +227,20 @@ welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private
 <figure class="align-default" id="id7">
 <img alt="../_images/github_sync3.png" src="../_images/github_sync3.png" />
 <figcaption>
-<p><span class="caption-text">Merge pull request erzeugen</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Merge pull request erzeugen</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Das Akzeptieren aller Änderungen synchronisiert die Änderungen vom Haupt-Repository auf das private Repository.</p>
 <figure class="align-default" id="id8">
 <img alt="../_images/github_sync4.png" src="../_images/github_sync4.png" />
 <figcaption>
-<p><span class="caption-text">Merge bestätigen</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Merge bestätigen</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
 <img alt="../_images/github_sync5.png" src="../_images/github_sync5.png" />
 <figcaption>
-<p><span class="caption-text">Erfolgreiche Synchronisierung</span><a class="headerlink" href="#id9" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Erfolgreiche Synchronisierung</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Die lokale Kopie des privaten Repositories muss dann ebenso aktualisiert werden. Dazu muss im lokalen Repository in den Branch
@@ -245,7 +249,7 @@ Mit dem Befehl <code class="docutils literal notranslate"><span class="pre">git<
 wieder synchron sind, kann wie oben unter 1. beschrieben mit neuen Änderungen an der Dokumentation fortgefahren werden.</p>
 </section>
 <section id="uber-die-kommandozeile">
-<h3>Über die Kommandozeile<a class="headerlink" href="#uber-die-kommandozeile" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Über die Kommandozeile<a class="headerlink" href="#uber-die-kommandozeile" title="Link to this heading"></a></h3>
 <p>Natürlich kann man den lokalen Klon seines Repositories auch rein über Kommandozeilenbefehle komfortabel synchron halten.
 Um dieses möglichst einfach zu machen, muss man die <em>Remotes</em> seines lokalen Klons entsprechend konfigurieren.</p>
 <div class="admonition hint">
@@ -255,7 +259,7 @@ geklont wurde (<code class="docutils literal notranslate"><span class="pre">git<
 (<code class="docutils literal notranslate"><span class="pre">https://github.com/CometVisu/CometVisu.git</span></code>) sehen die URLs entsprechend anders aus.</p>
 </div>
 <section id="zusammenfassung">
-<h4>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># aktuelle Einstellungen abfragen</span>
 git<span class="w"> </span>remote<span class="w"> </span>-v
 &gt;&gt;&gt;<span class="w"> </span>origin<span class="w">  </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
@@ -276,7 +280,7 @@ git<span class="w"> </span>pull
 </div>
 </section>
 <section id="ausfuhrliche-vorgehensweise">
-<h4>Ausführliche Vorgehensweise<a class="headerlink" href="#ausfuhrliche-vorgehensweise" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Ausführliche Vorgehensweise<a class="headerlink" href="#ausfuhrliche-vorgehensweise" title="Link to this heading"></a></h4>
 <p>Die aktuellen Einstellungen kann man mit dem Befehl <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> abfragen.
 Üblicherweise liefert das folgende Werte:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>origin<span class="w">      </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
@@ -313,7 +317,7 @@ in den eigenen Fork <em>gepushed</em> hat in den lokalen Klon bekommen. Dazu kan
 </section>
 </section>
 <section id="mithilfe-bei-der-dokumentation">
-<h2>Mithilfe bei der Dokumentation<a class="headerlink" href="#mithilfe-bei-der-dokumentation" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Mithilfe bei der Dokumentation<a class="headerlink" href="#mithilfe-bei-der-dokumentation" title="Link to this heading"></a></h2>
 <p>Die CometVisu Dokumentation wird mit Hilfe des <a class="reference external" href="http://www.sphinx-doc.org/">Sphinx - Python Documentation Generators</a>
 erzeugt. Geschrieben wird die Dokumentation daher im reStructuredText-Format (kurz. RST). Hierbei handelt es sich
 um eine vereinfachte Auszeichnungssprache, die in der reinen Textform gut lesbar ist und den Vorteil hat, einfach
@@ -347,7 +351,7 @@ Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für 
 <div class="toctree-wrapper compound">
 </div>
 <section id="lokales-erzeugen-der-html-doku">
-<h3>Lokales Erzeugen der HTML-Doku<a class="headerlink" href="#lokales-erzeugen-der-html-doku" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Lokales Erzeugen der HTML-Doku<a class="headerlink" href="#lokales-erzeugen-der-html-doku" title="Link to this heading"></a></h3>
 <div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">Zu tun</p>
 <ul class="simple">
@@ -362,7 +366,7 @@ CometVisu befinden.</p>
 <figure class="align-default" id="id10">
 <img alt="../_images/start_docu_build.png" src="../_images/start_docu_build.png" />
 <figcaption>
-<p><span class="caption-text">Start building</span><a class="headerlink" href="#id10" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Start building</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Nach dem Build Prozess sollte die neue Dokumentation unter
@@ -377,7 +381,7 @@ werden.</p>
 </div>
 </section>
 <section id="dokumentation-schreiben-mit-visualstudio-code">
-<h3>Dokumentation schreiben mit VisualStudio Code<a class="headerlink" href="#dokumentation-schreiben-mit-visualstudio-code" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Dokumentation schreiben mit VisualStudio Code<a class="headerlink" href="#dokumentation-schreiben-mit-visualstudio-code" title="Link to this heading"></a></h3>
 <p>Der Editor <a class="reference external" href="https://code.visualstudio.com">Visual Studio Code</a> bietet ein Plugin, mit dessen Hilfe man sich eine
 Live Preview der geschriebenen Dokumentation anzeigen lassen kann.</p>
 <div class="admonition important">
@@ -394,7 +398,7 @@ Extension empfohlen.</p>
 <figure class="align-default" id="id11">
 <img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
 <figcaption>
-<p><span class="caption-text">Install extensions</span><a class="headerlink" href="#id11" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Install extensions</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
@@ -415,7 +419,7 @@ korrekte Vorschau nicht angezeigt.</p>
 <figure class="align-default" id="id12">
 <img alt="../_images/visual_studio_sphinx_select2.png" src="../_images/visual_studio_sphinx_select2.png" />
 <figcaption>
-<p><span class="caption-text">Select a Sphinx config</span><a class="headerlink" href="#id12" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Select a Sphinx config</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit <code class="docutils literal notranslate"><span class="pre">Strg+Shift</span> <span class="pre">r</span></code> das Live-Preview Fenster öffnen.
@@ -423,7 +427,7 @@ korrekte Vorschau nicht angezeigt.</p>
 <figure class="align-default" id="id13">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
 <figcaption>
-<p><span class="caption-text">Ansicht des Editors mit Live-Preview</span><a class="headerlink" href="#id13" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Ansicht des Editors mit Live-Preview</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="toctree-wrapper compound">
@@ -431,7 +435,7 @@ korrekte Vorschau nicht angezeigt.</p>
 </section>
 </section>
 <section id="mithilfe-bei-der-entwicklung">
-<h2>Mithilfe bei der Entwicklung<a class="headerlink" href="#mithilfe-bei-der-entwicklung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Mithilfe bei der Entwicklung<a class="headerlink" href="#mithilfe-bei-der-entwicklung" title="Link to this heading"></a></h2>
 <div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">Zu tun</p>
 <ul class="simple">
@@ -453,7 +457,7 @@ korrekte Vorschau nicht angezeigt.</p>
 </div>
 </section>
 <section id="fehlerbericht-erstellen">
-<h2>Fehlerbericht erstellen<a class="headerlink" href="#fehlerbericht-erstellen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Fehlerbericht erstellen<a class="headerlink" href="#fehlerbericht-erstellen" title="Link to this heading"></a></h2>
 <p>Fehlerberichte sollten nach Möglichkeit durch Anlegen eines Issues auf <a class="reference external" href="https://github.com/CometVisu/CometVisu/issues">github.com</a>
 erfolgen. Bevorzugte Sprache ist hier Englisch. Der Fehlerbericht sollte aus folgenden Teilen bestehen, die so detailliert wie möglich
 ausformuliert sind.</p>
@@ -469,7 +473,7 @@ ausformuliert sind.</p>
 oder auf <a class="reference external" href="https://gitter.im/CometVisu/CometVisu_DE">Gitter</a> um Rat gefragt werden.</p>
 </div>
 <section id="fehlerberichte-mit-replay-dateien">
-<h3>Fehlerberichte mit Replay-Dateien<a class="headerlink" href="#fehlerberichte-mit-replay-dateien" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Fehlerberichte mit Replay-Dateien<a class="headerlink" href="#fehlerberichte-mit-replay-dateien" title="Link to this heading"></a></h3>
 <p>Ab Version 0.11.0 steht eine zusätzliche Möglichkeit zur Verfügung, den Entwicklern die Fehlersuche zu erleichtern
 und die Fehlerberichte zu verbessern. Benutzer können das Verhalten der CometVisu aufzeichnen und eine sogenannte
 Replay-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).</p>
@@ -491,11 +495,12 @@ testen können, ob die Fehlerkorrektur auch wirkt.</p>
 <p>Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Replay-Dateien aufgezeichnet werden.
 Wenn ein Nutzer z.B. die vorhandenen Designs angepasst hat, eigene Icons/Bilder benutzt, die nicht Teil der
 CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnung sind.</p>
-<dl class="citation">
-<dt class="label" id="rst-wiki"><span class="brackets"><a class="fn-backref" href="#id2">RST-Wiki</a></span></dt>
-<dd><p><a class="reference external" href="https://de.wikipedia.org/wiki/ReStructuredText">https://de.wikipedia.org/wiki/ReStructuredText</a></p>
-</dd>
-</dl>
+<div role="list" class="citation-list">
+<div class="citation" id="rst-wiki" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">RST-Wiki</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://de.wikipedia.org/wiki/ReStructuredText">https://de.wikipedia.org/wiki/ReStructuredText</a></p>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -504,8 +509,8 @@ CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnu
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../config/structure-tile/elements/address.html" class="btn btn-neutral float-left" title="Adressen - die Kommunikation mit dem Backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="doc/rst.html" class="btn btn-neutral float-right" title="Die RST-Syntax" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../config/structure-tile/elements/address-group.html" class="btn btn-neutral float-left" title="Address-Gruppen - Rechnen mit Address-Werten" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="doc/rst.html" class="btn btn-neutral float-right" title="Die RST-Syntax" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -521,9 +526,13 @@ CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnu
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -531,24 +540,20 @@ CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnu
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

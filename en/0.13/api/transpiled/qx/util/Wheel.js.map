@@ -26,7 +26,7 @@
     "deltaX",
     "y",
     "wheelDeltaY",
-    "__P_514_0",
+    "__P_522_0",
     "util",
     "Wheel",
     "absDelta",
@@ -38,7 +38,7 @@
     "log",
     "min",
     "max",
-    "__P_514_1",
+    "__P_522_1",
     "maxRet"
   ],
   "sources": [

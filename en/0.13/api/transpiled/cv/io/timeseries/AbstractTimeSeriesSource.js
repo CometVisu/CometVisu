@@ -60,7 +60,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     ***********************************************
     */
     statics: {
-      urlRegex: /^(flux|openhab|rrd|demo):\/\/(\w+)?@?([^\/]+)(\/[^?]*)\??(.*)/
+      urlRegex: /^(flux|openhab|rrd|demo):\/\/((\w+)@)?([^\/]+)(\/[^?]*)?\??(.*)/
     },
     /*
     ***********************************************
@@ -94,10 +94,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (match) {
           return {
             type: match[1],
-            authority: match[2],
-            name: match[3],
-            path: match[4],
-            params: match[5] ? match[5].split('&').reduce(function (map, entry) {
+            authority: match[3],
+            name: match[4],
+            path: match[5],
+            params: match[6] ? match[6].split('&').reduce(function (map, entry) {
               var _entry$split = entry.split('='),
                 _entry$split2 = _slicedToArray(_entry$split, 2),
                 key = _entry$split2[0],
@@ -189,4 +189,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.io.timeseries.AbstractTimeSeriesSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1692560748842
+//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1700345618312

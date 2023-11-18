@@ -77,21 +77,21 @@
       if (qx.core.Environment.get("css.boxsizing")) {
         stylesheet += ".qx-cell {" + qx.bom.element.BoxSizing.compile("content-box") + "}";
       }
-      this.__P_475_0 = qx.bom.Stylesheet.createElement(stylesheet);
-      this.__P_475_1 = {};
-      this.__P_475_2 = {};
+      this.__P_483_0 = qx.bom.Stylesheet.createElement(stylesheet);
+      this.__P_483_1 = {};
+      this.__P_483_2 = {};
     },
     members: {
-      __P_475_0: null,
-      __P_475_1: null,
-      __P_475_2: null,
+      __P_483_0: null,
+      __P_483_1: null,
+      __P_483_2: null,
       /**
        * Get the DOM stylesheet element
        *
        * @return {StyleSheet} The DOM stylesheet element
        */
       getStylesheet: function getStylesheet() {
-        return this.__P_475_0;
+        return this.__P_483_0;
       },
       /**
        * Get the CSS class stored under the given key
@@ -101,7 +101,7 @@
        *   <code>null</code>.
        */
       getCssClass: function getCssClass(key) {
-        return this.__P_475_1[key] || null;
+        return this.__P_483_1[key] || null;
       },
       /**
        * Dynamically create a CSS rule for the given style string. The selector is
@@ -113,14 +113,14 @@
        * @return {String} The CSS class name.
        */
       computeClassForStyles: function computeClassForStyles(key, styleString) {
-        var cssClass = this.__P_475_2[styleString];
+        var cssClass = this.__P_483_2[styleString];
         if (!cssClass) {
           // generate stylesheet rule
-          var cssClass = this.__P_475_3();
-          qx.bom.Stylesheet.addRule(this.__P_475_0, "." + cssClass, styleString);
-          this.__P_475_2[styleString] = cssClass;
+          var cssClass = this.__P_483_3();
+          qx.bom.Stylesheet.addRule(this.__P_483_0, "." + cssClass, styleString);
+          this.__P_483_2[styleString] = cssClass;
         }
-        this.__P_475_1[key] = cssClass;
+        this.__P_483_1[key] = cssClass;
         return cssClass;
       },
       /**
@@ -128,16 +128,16 @@
        *
        * @return {String} The next unique CSS class name
        */
-      __P_475_3: function __P_475_3() {
-        return "qx-cell-" + this.toHashCode() + "-" + this.__P_475_4++;
+      __P_483_3: function __P_483_3() {
+        return "qx-cell-" + this.toHashCode() + "-" + this.__P_483_4++;
       },
-      __P_475_4: 0
+      __P_483_4: 0
     },
     destruct: function destruct() {
-      this.__P_475_0 = this.__P_475_1 = this.__P_475_2 = null;
+      this.__P_483_0 = this.__P_483_1 = this.__P_483_2 = null;
     }
   });
   qx.ui.virtual.cell.CellStylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellStylesheet.js.map?dt=1692560738232
+//# sourceMappingURL=CellStylesheet.js.map?dt=1700345611898

@@ -77,7 +77,7 @@
     construct: function construct() {
       cv.io.AbstractClient.constructor.call(this);
       this.addresses = [];
-      this.__P_562_0 = {
+      this.__P_570_0 = {
         theme: '_applyTheme'
       };
       qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
@@ -111,7 +111,7 @@
       backendName: 'system',
       addresses: null,
       implementedAddresses: null,
-      __P_562_0: null,
+      __P_570_0: null,
       _onPageChange: function _onPageChange(ev) {
         var page = ev.getData();
         var data = {};
@@ -131,10 +131,10 @@
         this.addresses = addresses ? addresses : [];
         if (qx.core.Environment.get('html.storage.local')) {
           var value;
-          for (var name in this.__P_562_0) {
+          for (var name in this.__P_570_0) {
             value = localStorage.getItem('system:' + name);
             if (value) {
-              var func = this[this.__P_562_0[name]];
+              var func = this[this.__P_570_0[name]];
               if (typeof func === 'function') {
                 func(value);
               } else {
@@ -196,7 +196,7 @@
             // just write the value to the states to update Listeners
             cv.data.Model.getInstance().onUpdate(address, value, 'system');
           }
-          if (qx.core.Environment.get('html.storage.local') && target in this.__P_562_0) {
+          if (qx.core.Environment.get('html.storage.local') && target in this.__P_570_0) {
             localStorage.setItem('system:' + target, value);
           }
         }
@@ -269,4 +269,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1692560748398
+//# sourceMappingURL=System.js.map?dt=1700345618036

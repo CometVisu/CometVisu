@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tutorial: First steps - a visu in half a minute &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -77,9 +81,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Usage of the CometVisu</a> &raquo;</li>
-      <li>Tutorial: First steps - a visu in half a minute</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Usage of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Tutorial: First steps - a visu in half a minute</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -96,25 +100,20 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="tutorial-first-steps-a-visu-in-half-a-minute">
-<h1>Tutorial: First steps - a visu in half a minute<a class="headerlink" href="#tutorial-first-steps-a-visu-in-half-a-minute" title="Permalink to this headline">¶</a></h1>
+<h1>Tutorial: First steps - a visu in half a minute<a class="headerlink" href="#tutorial-first-steps-a-visu-in-half-a-minute" title="Link to this heading"></a></h1>
 <p>This tutorial shows how to create a first (quite simple, though) visualisation
 within half a minute.</p>
 <section id="video">
-<h2>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h2>
+<h2>Video<a class="headerlink" href="#video" title="Link to this heading"></a></h2>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto; margin-bottom: 24px;">
   <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/YK86XVVkfDk" style="position:absolute;width:100%;height:100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div></section>
 <section id="single-steps">
-<h2>Single steps<a class="headerlink" href="#single-steps" title="Permalink to this headline">¶</a></h2>
+<h2>Single steps<a class="headerlink" href="#single-steps" title="Link to this heading"></a></h2>
 <p>The actions shown in the video are repeated here step by step.
 As an example the visu will contain a heating control for the living room that
 is defined by:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 38%" />
-<col style="width: 25%" />
-<col style="width: 38%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Value</p></th>
 <th class="head"><p>GA</p></th>
@@ -139,7 +138,7 @@ addresses as this tutorial. Please check and change the addresses accordingly
 when you are repeating this tutorial for your self!</p>
 </div>
 <section id="first-visu-in-less-than-half-a-minute">
-<h3>First visu - in less than half a minute<a class="headerlink" href="#first-visu-in-less-than-half-a-minute" title="Permalink to this headline">¶</a></h3>
+<h3>First visu - in less than half a minute<a class="headerlink" href="#first-visu-in-less-than-half-a-minute" title="Link to this heading"></a></h3>
 <p>At the <a class="reference internal" href="../config/manager.html#manager"><span class="std std-ref">manager</span></a> “Editieren” of the default config has to be
 chosen:</p>
 <figure class="align-default">
@@ -213,7 +212,7 @@ as it was recommended early on) you should be able to see the temperature:</p>
 </figure>
 </section>
 <section id="refinement">
-<h3>Refinement<a class="headerlink" href="#refinement" title="Permalink to this headline">¶</a></h3>
+<h3>Refinement<a class="headerlink" href="#refinement" title="Link to this heading"></a></h3>
 <p>To come from a simple number to a usable visualisation it should be extended
 a bit. As a first step the shown number will be enhanced to display one
 digit after the decimal point as well as the unit “°C”.</p>
@@ -262,11 +261,6 @@ with “Wohnzimmertemperatur”, the German word for “living room temperature�
 </figure>
 <p>The attributes of the <code class="docutils literal notranslate"><span class="pre">infotrigger</span></code> itself must be filled with:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 17%" />
-<col style="width: 65%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Value</p></th>
@@ -357,8 +351,12 @@ in our case as all changes were saved by us immediately before:</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -369,22 +367,18 @@ in our case as all changes were saved by us immediately before:</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

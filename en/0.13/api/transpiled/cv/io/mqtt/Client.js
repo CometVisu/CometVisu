@@ -52,8 +52,8 @@
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
-      this.__P_524_0 = {};
-      this.__P_524_1 = {};
+      this.__P_532_0 = {};
+      this.__P_532_1 = {};
     },
     /*
     ***********************************************
@@ -307,4 +307,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1692560743050
+//# sourceMappingURL=Client.js.map?dt=1700345614800

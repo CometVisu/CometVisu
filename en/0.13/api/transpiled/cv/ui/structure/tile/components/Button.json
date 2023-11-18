@@ -14,9 +14,9 @@
         "index": 867
       },
       "end": {
-        "line": 502,
+        "line": 498,
         "column": 3,
-        "index": 15808
+        "index": 15694
       }
     },
     "jsdoc": {
@@ -467,9 +467,9 @@
           "index": 10131
         },
         "end": {
-          "line": 343,
+          "line": 339,
           "column": 5,
-          "index": 10482
+          "index": 10368
         }
       },
       "type": "function",
@@ -481,14 +481,14 @@
     "_applyName": {
       "location": {
         "start": {
-          "line": 345,
+          "line": 341,
           "column": 4,
-          "index": 10489
+          "index": 10375
         },
         "end": {
-          "line": 352,
+          "line": 348,
           "column": 5,
-          "index": 10766
+          "index": 10652
         }
       },
       "type": "function",
@@ -500,14 +500,14 @@
     "updateValue": {
       "location": {
         "start": {
-          "line": 354,
+          "line": 350,
           "column": 4,
-          "index": 10773
+          "index": 10659
         },
         "end": {
-          "line": 359,
+          "line": 355,
           "column": 5,
-          "index": 10919
+          "index": 10805
         }
       },
       "type": "function",
@@ -516,14 +516,14 @@
     "onStateUpdate": {
       "location": {
         "start": {
-          "line": 366,
+          "line": 362,
           "column": 4,
-          "index": 11098
+          "index": 10984
         },
         "end": {
-          "line": 388,
+          "line": 384,
           "column": 5,
-          "index": 12098
+          "index": 11984
         }
       },
       "jsdoc": {
@@ -549,14 +549,14 @@
     "onClicked": {
       "location": {
         "start": {
-          "line": 390,
+          "line": 386,
           "column": 4,
-          "index": 12105
+          "index": 11991
         },
         "end": {
-          "line": 433,
+          "line": 429,
           "column": 5,
-          "index": 13698
+          "index": 13584
         }
       },
       "type": "function",
@@ -565,14 +565,14 @@
     "onPointerDown": {
       "location": {
         "start": {
-          "line": 435,
+          "line": 431,
           "column": 4,
-          "index": 13705
+          "index": 13591
         },
         "end": {
-          "line": 448,
+          "line": 444,
           "column": 5,
-          "index": 14114
+          "index": 14000
         }
       },
       "type": "function",
@@ -581,14 +581,14 @@
     "onPointerUp": {
       "location": {
         "start": {
-          "line": 450,
+          "line": 446,
           "column": 4,
-          "index": 14121
+          "index": 14007
         },
         "end": {
-          "line": 463,
+          "line": 459,
           "column": 5,
-          "index": 14526
+          "index": 14412
         }
       },
       "type": "function",
@@ -597,14 +597,14 @@
     "createRipple": {
       "location": {
         "start": {
-          "line": 465,
+          "line": 461,
           "column": 4,
-          "index": 14533
+          "index": 14419
         },
         "end": {
-          "line": 489,
+          "line": 485,
           "column": 5,
-          "index": 15582
+          "index": 15468
         }
       },
       "type": "function",
@@ -4632,14 +4632,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 492,
+        "line": 488,
         "column": 2,
-        "index": 15591
+        "index": 15477
       },
       "end": {
-        "line": 501,
+        "line": 497,
         "column": 3,
-        "index": 15804
+        "index": 15690
       }
     }
   },

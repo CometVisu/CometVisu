@@ -161,19 +161,19 @@
         if (!this.getStartColor() || !this.getEndColor()) {
           return;
         }
-        var styleImpl = this.__P_337_0;
+        var styleImpl = this.__P_345_0;
         if (qx.core.Environment.get("css.gradient.legacywebkit")) {
-          styleImpl = this.__P_337_1;
+          styleImpl = this.__P_345_1;
         } else if (!qx.core.Environment.get("css.gradient.linear") && qx.core.Environment.get("css.borderradius")) {
-          styleImpl = this.__P_337_2;
+          styleImpl = this.__P_345_2;
         } else if (!qx.core.Environment.get("css.gradient.linear")) {
-          styleImpl = this.__P_337_3;
+          styleImpl = this.__P_345_3;
         }
         var gradientProperties = ["startColor", "endColor", "colorPositionUnit", "orientation", "startColorPosition", "endColorPosition"];
         (function (startColors, endColors, units, orientations, startColorPositions, endColorPositions) {
           for (var i = 0; i < startColors.length; i++) {
-            var startColor = this.__P_337_4(startColors[i]);
-            var endColor = this.__P_337_4(endColors[i]);
+            var startColor = this.__P_345_4(startColors[i]);
+            var endColor = this.__P_345_4(endColors[i]);
             var unit = units[i];
             var orientation = orientations[i];
             var startColorPosition = startColorPositions[i];
@@ -210,7 +210,7 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __P_337_1: function __P_337_1(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __P_345_1: function __P_345_1(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         // webkit uses px values if non are given
         unit = unit === "px" ? "" : unit;
         if (orientation == "horizontal") {
@@ -240,10 +240,10 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __P_337_2: function __P_337_2(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
-        var me = qx.ui.decoration.MLinearBackgroundGradient.__P_337_2;
-        if (!me.__P_337_5) {
-          me.__P_337_5 = document.createElement("canvas");
+      __P_345_2: function __P_345_2(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+        var me = qx.ui.decoration.MLinearBackgroundGradient.__P_345_2;
+        if (!me.__P_345_5) {
+          me.__P_345_5 = document.createElement("canvas");
         }
         var isVertical = orientation == "vertical";
         var height = isVertical ? 200 : 1;
@@ -264,9 +264,9 @@
             width = Math.max(width, (endColorPosition - startColorPosition) * 2);
           }
         }
-        me.__P_337_5.width = width;
-        me.__P_337_5.height = height;
-        var ctx = me.__P_337_5.getContext("2d");
+        me.__P_345_5.width = width;
+        me.__P_345_5.height = height;
+        var ctx = me.__P_345_5.getContext("2d");
         if (isVertical) {
           var lingrad = ctx.createLinearGradient(0, 0, 0, height);
         } else {
@@ -293,7 +293,7 @@
         } else {
           size = isVertical ? height + "px 100%" : "100% " + width + "px";
         }
-        backgroundStyle.push("url(" + me.__P_337_5.toDataURL() + ") " + size);
+        backgroundStyle.push("url(" + me.__P_345_5.toDataURL() + ") " + size);
         return true;
       },
       /**
@@ -312,7 +312,7 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (false).
        */
-      __P_337_3: function __P_337_3(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __P_345_3: function __P_345_3(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         var type = orientation == "horizontal" ? 1 : 0;
 
         // convert rgb, hex3 and named colors to hex6
@@ -360,7 +360,7 @@
        *
        * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).
        */
-      __P_337_0: function __P_337_0(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
+      __P_345_0: function __P_345_0(startColor, endColor, unit, orientation, startColorPosition, endColorPosition, styles, backgroundStyle) {
         // WebKit, Opera and Gecko interpret 0deg as "to right"
         var deg = orientation == "horizontal" ? 0 : 270;
         var start = startColor + " " + startColorPosition + unit;
@@ -379,7 +379,7 @@
        * @param color {String} The color name
        * @return {Map} The resolved color
        */
-      __P_337_4: function __P_337_4(color) {
+      __P_345_4: function __P_345_4(color) {
         return qx.core.Environment.get("qx.theme") ? qx.theme.manager.Color.getInstance().resolve(color) : color;
       },
       // property apply
@@ -389,4 +389,4 @@
   qx.ui.decoration.MLinearBackgroundGradient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1692560724290
+//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1700345603756

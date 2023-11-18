@@ -164,9 +164,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           var lastPart = 'start';
           var v = result; // use the fact that `v` is now a reference and not a copy
           while (selector !== '') {
-            var _this$__P_536_ = this.__P_536_0(selector),
-              firstPart = _this$__P_536_.firstPart,
-              remainingPart = _this$__P_536_.remainingPart;
+            var _this$__P_544_ = this.__P_544_0(selector),
+              firstPart = _this$__P_544_.firstPart,
+              remainingPart = _this$__P_544_.remainingPart;
             if (isFinite(firstPart)) {
               v[lastPart] = [];
             } else {
@@ -216,9 +216,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           try {
             var v = JSON.parse(value);
             while (selector !== '') {
-              var _this$__P_536_2 = this.__P_536_0(selector),
-                firstPart = _this$__P_536_2.firstPart,
-                remainingPart = _this$__P_536_2.remainingPart;
+              var _this$__P_544_2 = this.__P_544_0(selector),
+                firstPart = _this$__P_544_2.firstPart,
+                remainingPart = _this$__P_544_2.remainingPart;
               if (_typeof(v) === 'object' && firstPart in v) {
                 v = v[firstPart];
               } else {
@@ -252,7 +252,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @param {string} selector - the JSON (sub-)selector
        * @returns {{firstPart: string, remainingPart: string}}
        */
-      __P_536_0: function __P_536_0(selector) {
+      __P_544_0: function __P_544_0(selector) {
         if (selector[0] === '[') {
           var _selector$match = selector.match(/^\[([^\]]*)]\.?(.*)/),
             _selector$match2 = _slicedToArray(_selector$match, 3),
@@ -289,4 +289,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1692560744166
+//# sourceMappingURL=Transform.js.map?dt=1700345615507

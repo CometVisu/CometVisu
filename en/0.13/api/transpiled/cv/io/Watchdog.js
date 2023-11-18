@@ -65,7 +65,7 @@
     members: {
       last: null,
       hardLast: null,
-      __P_575_0: null,
+      __P_583_0: null,
       aliveCheckFunction: function aliveCheckFunction() {
         var now = new Date();
         if (now - this.last < this.getClient().getBackend().maxConnectionAge && this.getClient().getCurrentTransport().isConnectionRunning()) {
@@ -75,19 +75,19 @@
         this.last = now;
       },
       start: function start(watchdogTimer) {
-        if (this.__P_575_0) {
+        if (this.__P_583_0) {
           this.stop();
         }
-        this.__P_575_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+        this.__P_583_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
       },
       stop: function stop() {
-        if (this.__P_575_0) {
-          clearInterval(this.__P_575_0);
-          this.__P_575_0 = null;
+        if (this.__P_583_0) {
+          clearInterval(this.__P_583_0);
+          this.__P_583_0 = null;
         }
       },
       isActive: function isActive() {
-        return !!this.__P_575_0;
+        return !!this.__P_583_0;
       },
       ping: function ping(fullReload) {
         this.last = new Date();
@@ -100,4 +100,4 @@
   cv.io.Watchdog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watchdog.js.map?dt=1692560749357
+//# sourceMappingURL=Watchdog.js.map?dt=1700345618632

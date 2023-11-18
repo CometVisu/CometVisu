@@ -55,7 +55,7 @@
     ******************************************************
     */
     members: {
-      __P_559_0: null,
+      __P_567_0: null,
       /**
        * Calculate Hash code for current request
        */
@@ -67,7 +67,7 @@
         var delay;
         var url = cv.report.Record.normalizeUrl(this._getConfiguredUrl());
         if (ev.getData() === 'opened') {
-          this.__P_559_0 = Date.now();
+          this.__P_567_0 = Date.now();
           // calculate Hash value for request
           cv.report.Record.record(cv.report.Record.XHR, 'request', {
             url: url,
@@ -81,7 +81,7 @@
           }
           cv.report.utils.MXhrHook.PENDING[hash].push(url);
         } else if (ev.getData() === 'load') {
-          if (!this.__P_559_0) {
+          if (!this.__P_567_0) {
             this.error('response received without sendTime set. Not possible to calculate correct delay');
           }
           // response has been received (successful or not) -> log it
@@ -90,7 +90,7 @@
             var parts = entry.split(': ');
             headers[parts[0]] = parts[1];
           });
-          delay = Date.now() - this.__P_559_0;
+          delay = Date.now() - this.__P_567_0;
 
           // log the trigger that triggers the server responses
 
@@ -108,7 +108,7 @@
               phase: 'load'
             });
           }
-          this.__P_559_0 = null;
+          this.__P_567_0 = null;
 
           // delete pending request
           cv.report.utils.MXhrHook.PENDING[hash].shift();
@@ -116,7 +116,7 @@
             delete cv.report.utils.MXhrHook.PENDING[hash];
           }
         } else if (ev.getData() === 'abort') {
-          delay = Date.now() - this.__P_559_0;
+          delay = Date.now() - this.__P_567_0;
 
           // request aborted, maybe by watchdog
           cv.report.Record.record(cv.report.Record.XHR, 'response', {
@@ -138,4 +138,4 @@
   cv.report.utils.MXhrHook.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MXhrHook.js.map?dt=1692560748146
+//# sourceMappingURL=MXhrHook.js.map?dt=1700345617884

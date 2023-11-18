@@ -132,7 +132,7 @@
       Array.prototype.push.apply(this, Array.prototype.slice.call(col, 0, col.length));
     },
     members: {
-      __P_494_0: null,
+      __P_502_0: null,
       /**
        * Responsible for initializing of the widget. This checks for the data attribute
        * named <code>data-qx-class</code> and initializes the widget if necessary.
@@ -158,11 +158,11 @@
        * @return {String} The CSS prefix for the current object.
        */
       getCssPrefix: function getCssPrefix() {
-        if (!this.__P_494_0) {
+        if (!this.__P_502_0) {
           var split = this.classname.split(".");
-          this.__P_494_0 = "qx-" + split[split.length - 1].toLowerCase();
+          this.__P_502_0 = "qx-" + split[split.length - 1].toLowerCase();
         }
-        return this.__P_494_0;
+        return this.__P_502_0;
       },
       /**
        * Changes the enabled state of the current collection, which means all
@@ -333,4 +333,4 @@
   qx.ui.website.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1692560740379
+//# sourceMappingURL=Widget.js.map?dt=1700345613155

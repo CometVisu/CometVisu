@@ -297,6 +297,20 @@
             }
           }
         },
+        'audio_ls_51': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('audio_ls_51')
+            }
+          }
+        },
         'audio_ls_51_center': {
           '*': {
             'white': '*/white',
@@ -353,7 +367,7 @@
             }
           }
         },
-        'audio_ls_51': {
+        'audio_mic': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -363,7 +377,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('audio_ls_51')
+              '*': cv.util.IconTools.svgKUF('audio_mic')
             }
           }
         },
@@ -378,20 +392,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('audio_mic_mute')
-            }
-          }
-        },
-        'audio_mic': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('audio_mic')
             }
           }
         },
@@ -745,6 +745,20 @@
             }
           }
         },
+        'control_arrow_down': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_arrow_down')
+            }
+          }
+        },
         'control_arrow_down_left': {
           '*': {
             'white': '*/white',
@@ -770,20 +784,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('control_arrow_down_right')
-            }
-          }
-        },
-        'control_arrow_down': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_arrow_down')
             }
           }
         },
@@ -885,6 +885,20 @@
             }
           }
         },
+        'control_arrow_up': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_arrow_up')
+            }
+          }
+        },
         'control_arrow_up_left': {
           '*': {
             'white': '*/white',
@@ -910,20 +924,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('control_arrow_up_right')
-            }
-          }
-        },
-        'control_arrow_up': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_arrow_up')
             }
           }
         },
@@ -1249,6 +1249,20 @@
             }
           }
         },
+        'control_building_flat': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_flat')
+            }
+          }
+        },
         'control_building_flat_filled': {
           '*': {
             'white': '*/white',
@@ -1305,6 +1319,20 @@
             }
           }
         },
+        'control_building_flat_s': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_flat_s')
+            }
+          }
+        },
         'control_building_flat_s_filled': {
           '*': {
             'white': '*/white',
@@ -1316,6 +1344,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('control_building_flat_s_filled')
+            }
+          }
+        },
+        'control_building_flat_s_mkg': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_flat_s_mkg')
             }
           }
         },
@@ -1375,20 +1417,6 @@
             }
           }
         },
-        'control_building_flat_s_mkg': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_flat_s_mkg')
-            }
-          }
-        },
         'control_building_flat_s_okg_all': {
           '*': {
             'white': '*/white',
@@ -1428,34 +1456,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('control_building_flat_s_okg_og')
-            }
-          }
-        },
-        'control_building_flat_s': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_flat_s')
-            }
-          }
-        },
-        'control_building_flat': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_flat')
             }
           }
         },
@@ -1540,6 +1540,118 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('control_building_kg')
+            }
+          }
+        },
+        'control_building_modern02_okg_all': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_all')
+            }
+          }
+        },
+        'control_building_modern02_okg_dg': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_dg')
+            }
+          }
+        },
+        'control_building_modern02_okg_eg': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_eg')
+            }
+          }
+        },
+        'control_building_modern02_okg_int_all': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_all')
+            }
+          }
+        },
+        'control_building_modern02_okg_int_dg': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_dg')
+            }
+          }
+        },
+        'control_building_modern02_okg_int_eg': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_eg')
+            }
+          }
+        },
+        'control_building_modern02_okg_int_og': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_og')
+            }
+          }
+        },
+        'control_building_modern02_okg_og': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_og')
             }
           }
         },
@@ -1963,118 +2075,6 @@
             }
           }
         },
-        'control_building_modern02_okg_all': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_all')
-            }
-          }
-        },
-        'control_building_modern02_okg_dg': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_dg')
-            }
-          }
-        },
-        'control_building_modern02_okg_eg': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_eg')
-            }
-          }
-        },
-        'control_building_modern02_okg_int_all': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_all')
-            }
-          }
-        },
-        'control_building_modern02_okg_int_dg': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_dg')
-            }
-          }
-        },
-        'control_building_modern02_okg_int_eg': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_eg')
-            }
-          }
-        },
-        'control_building_modern02_okg_int_og': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_int_og')
-            }
-          }
-        },
-        'control_building_modern02_okg_og': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_building_modern02_okg_og')
-            }
-          }
-        },
         'control_building_og': {
           '*': {
             'white': '*/white',
@@ -2369,6 +2369,20 @@
             }
           }
         },
+        'control_centr_arrow_down': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_centr_arrow_down')
+            }
+          }
+        },
         'control_centr_arrow_down_left': {
           '*': {
             'white': '*/white',
@@ -2394,20 +2408,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('control_centr_arrow_down_right')
-            }
-          }
-        },
-        'control_centr_arrow_down': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_centr_arrow_down')
             }
           }
         },
@@ -2439,6 +2439,20 @@
             }
           }
         },
+        'control_centr_arrow_up': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('control_centr_arrow_up')
+            }
+          }
+        },
         'control_centr_arrow_up_left': {
           '*': {
             'white': '*/white',
@@ -2464,20 +2478,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('control_centr_arrow_up_right')
-            }
-          }
-        },
-        'control_centr_arrow_up': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('control_centr_arrow_up')
             }
           }
         },
@@ -3181,6 +3181,20 @@
             }
           }
         },
+        'fts_blade_arc': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_blade_arc')
+            }
+          }
+        },
         'fts_blade_arc_-10': {
           '*': {
             'white': '*/white',
@@ -3503,7 +3517,7 @@
             }
           }
         },
-        'fts_blade_arc': {
+        'fts_blade_s': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -3513,7 +3527,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_blade_arc')
+              '*': cv.util.IconTools.svgKUF('fts_blade_s')
             }
           }
         },
@@ -3699,7 +3713,7 @@
             }
           }
         },
-        'fts_blade_s': {
+        'fts_blade_z': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -3709,7 +3723,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_blade_s')
+              '*': cv.util.IconTools.svgKUF('fts_blade_z')
             }
           }
         },
@@ -3895,7 +3909,7 @@
             }
           }
         },
-        'fts_blade_z': {
+        'fts_door': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -3905,7 +3919,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_blade_z')
+              '*': cv.util.IconTools.svgKUF('fts_door')
             }
           }
         },
@@ -3951,6 +3965,34 @@
             }
           }
         },
+        'fts_door_slide': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_door_slide')
+            }
+          }
+        },
+        'fts_door_slide_2w': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_door_slide_2w')
+            }
+          }
+        },
         'fts_door_slide_2w_open_l': {
           '*': {
             'white': '*/white',
@@ -3993,20 +4035,6 @@
             }
           }
         },
-        'fts_door_slide_2w': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_door_slide_2w')
-            }
-          }
-        },
         'fts_door_slide_m': {
           '*': {
             'white': '*/white',
@@ -4018,20 +4046,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_door_slide_m')
-            }
-          }
-        },
-        'fts_door_slide_open_m': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_door_slide_open_m')
             }
           }
         },
@@ -4049,7 +4063,7 @@
             }
           }
         },
-        'fts_door_slide': {
+        'fts_door_slide_open_m': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -4059,7 +4073,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_door_slide')
+              '*': cv.util.IconTools.svgKUF('fts_door_slide_open_m')
             }
           }
         },
@@ -4088,20 +4102,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_door_unlocked')
-            }
-          }
-        },
-        'fts_door': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_door')
             }
           }
         },
@@ -4144,6 +4144,34 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_frontdoor')
+            }
+          }
+        },
+        'fts_garage': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_garage')
+            }
+          }
+        },
+        'fts_garage_car_01': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_garage_car_01')
             }
           }
         },
@@ -4301,7 +4329,7 @@
             }
           }
         },
-        'fts_garage': {
+        'fts_light_dome': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -4311,7 +4339,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_garage')
+              '*': cv.util.IconTools.svgKUF('fts_light_dome')
             }
           }
         },
@@ -4329,7 +4357,7 @@
             }
           }
         },
-        'fts_light_dome': {
+        'fts_shutter': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -4339,7 +4367,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_light_dome')
+              '*': cv.util.IconTools.svgKUF('fts_shutter')
             }
           }
         },
@@ -4606,6 +4634,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_shutter_up')
+            }
+          }
+        },
+        'fts_shutter_vert': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_shutter_vert')
             }
           }
         },
@@ -4959,7 +5001,7 @@
             }
           }
         },
-        'fts_shutter_vert': {
+        'fts_sliding_gate': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -4969,21 +5011,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_shutter_vert')
-            }
-          }
-        },
-        'fts_shutter': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_shutter')
+              '*': cv.util.IconTools.svgKUF('fts_sliding_gate')
             }
           }
         },
@@ -4998,6 +5026,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_sliding_gate_closed')
+            }
+          }
+        },
+        'fts_sliding_gate_l': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_sliding_gate_l')
             }
           }
         },
@@ -5029,20 +5071,6 @@
             }
           }
         },
-        'fts_sliding_gate_l': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_sliding_gate_l')
-            }
-          }
-        },
         'fts_sliding_gate_open': {
           '*': {
             'white': '*/white',
@@ -5057,7 +5085,7 @@
             }
           }
         },
-        'fts_sliding_gate': {
+        'fts_sunblind': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -5067,7 +5095,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_sliding_gate')
+              '*': cv.util.IconTools.svgKUF('fts_sunblind')
             }
           }
         },
@@ -5099,20 +5127,6 @@
             }
           }
         },
-        'fts_sunblind': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_sunblind')
-            }
-          }
-        },
         'fts_umbrella_offset_closed': {
           '*': {
             'white': '*/white',
@@ -5138,6 +5152,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_umbrella_offset_open')
+            }
+          }
+        },
+        'fts_window_1w': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_window_1w')
             }
           }
         },
@@ -5197,7 +5225,7 @@
             }
           }
         },
-        'fts_window_1w': {
+        'fts_window_2w': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -5207,11 +5235,11 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_1w')
+              '*': cv.util.IconTools.svgKUF('fts_window_2w')
             }
           }
         },
-        'fts_window_2w_open_l_tilt_r': {
+        'fts_window_2w_open': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -5221,7 +5249,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_2w_open_l_tilt_r')
+              '*': cv.util.IconTools.svgKUF('fts_window_2w_open')
             }
           }
         },
@@ -5236,6 +5264,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_window_2w_open_l')
+            }
+          }
+        },
+        'fts_window_2w_open_l_tilt_r': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_window_2w_open_l_tilt_r')
             }
           }
         },
@@ -5267,7 +5309,7 @@
             }
           }
         },
-        'fts_window_2w_open': {
+        'fts_window_2w_tilt': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -5277,21 +5319,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_2w_open')
-            }
-          }
-        },
-        'fts_window_2w_tilt_l_open_r': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_2w_tilt_l_open_r')
+              '*': cv.util.IconTools.svgKUF('fts_window_2w_tilt')
             }
           }
         },
@@ -5306,6 +5334,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_window_2w_tilt_l')
+            }
+          }
+        },
+        'fts_window_2w_tilt_l_open_r': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_window_2w_tilt_l_open_r')
             }
           }
         },
@@ -5337,7 +5379,7 @@
             }
           }
         },
-        'fts_window_2w_tilt': {
+        'fts_window_louvre': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -5347,21 +5389,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_2w_tilt')
-            }
-          }
-        },
-        'fts_window_2w': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_2w')
+              '*': cv.util.IconTools.svgKUF('fts_window_louvre')
             }
           }
         },
@@ -5379,7 +5407,7 @@
             }
           }
         },
-        'fts_window_louvre': {
+        'fts_window_roof': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -5389,7 +5417,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_louvre')
+              '*': cv.util.IconTools.svgKUF('fts_window_roof')
             }
           }
         },
@@ -5418,6 +5446,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_window_roof_open_2')
+            }
+          }
+        },
+        'fts_window_roof_shutter': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('fts_window_roof_shutter')
             }
           }
         },
@@ -5561,7 +5603,7 @@
             }
           }
         },
-        'fts_window_roof_shutter': {
+        'fts_yard_gate_2w': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -5571,21 +5613,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_roof_shutter')
-            }
-          }
-        },
-        'fts_window_roof': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_window_roof')
+              '*': cv.util.IconTools.svgKUF('fts_yard_gate_2w')
             }
           }
         },
@@ -5600,20 +5628,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('fts_yard_gate_2w_open')
-            }
-          }
-        },
-        'fts_yard_gate_2w': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('fts_yard_gate_2w')
             }
           }
         },
@@ -5911,20 +5925,6 @@
             }
           }
         },
-        'it_satellite_dish_heating': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('it_satellite_dish_heating')
-            }
-          }
-        },
         'it_satellite_dish': {
           '*': {
             'white': '*/white',
@@ -5936,6 +5936,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('it_satellite_dish')
+            }
+          }
+        },
+        'it_satellite_dish_heating': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('it_satellite_dish_heating')
             }
           }
         },
@@ -5992,6 +6006,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('it_television')
+            }
+          }
+        },
+        'it_ups': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('it_ups')
             }
           }
         },
@@ -6065,7 +6093,7 @@
             }
           }
         },
-        'it_ups': {
+        'it_wifi': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -6075,7 +6103,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('it_ups')
+              '*': cv.util.IconTools.svgKUF('it_wifi')
             }
           }
         },
@@ -6090,20 +6118,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('it_wifi_2')
-            }
-          }
-        },
-        'it_wifi': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('it_wifi')
             }
           }
         },
@@ -6317,20 +6331,6 @@
             }
           }
         },
-        'light_disco_ball_on': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('light_disco_ball_on')
-            }
-          }
-        },
         'light_disco_ball': {
           '*': {
             'white': '*/white',
@@ -6342,6 +6342,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('light_disco_ball')
+            }
+          }
+        },
+        'light_disco_ball_on': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_disco_ball_on')
             }
           }
         },
@@ -6387,20 +6401,6 @@
             }
           }
         },
-        'light_floor_lamp_2': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('light_floor_lamp_2')
-            }
-          }
-        },
         'light_floor_lamp': {
           '*': {
             'white': '*/white',
@@ -6412,6 +6412,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('light_floor_lamp')
+            }
+          }
+        },
+        'light_floor_lamp_2': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_floor_lamp_2')
             }
           }
         },
@@ -6440,6 +6454,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('light_garage')
+            }
+          }
+        },
+        'light_indoor': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_indoor')
             }
           }
         },
@@ -6485,6 +6513,20 @@
             }
           }
         },
+        'light_indoor_og': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_indoor_og')
+            }
+          }
+        },
         'light_indoor_og_1': {
           '*': {
             'white': '*/white',
@@ -6513,20 +6555,6 @@
             }
           }
         },
-        'light_indoor_og': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('light_indoor_og')
-            }
-          }
-        },
         'light_indoor_ug': {
           '*': {
             'white': '*/white',
@@ -6538,20 +6566,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('light_indoor_ug')
-            }
-          }
-        },
-        'light_indoor': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('light_indoor')
             }
           }
         },
@@ -6569,7 +6583,7 @@
             }
           }
         },
-        'light_led_stripe_rgb': {
+        'light_led': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -6579,7 +6593,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('light_led_stripe_rgb')
+              '*': cv.util.IconTools.svgKUF('light_led')
             }
           }
         },
@@ -6597,7 +6611,7 @@
             }
           }
         },
-        'light_led': {
+        'light_led_stripe_rgb': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -6607,7 +6621,21 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('light_led')
+              '*': cv.util.IconTools.svgKUF('light_led_stripe_rgb')
+            }
+          }
+        },
+        'light_light': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_light')
             }
           }
         },
@@ -6765,20 +6793,6 @@
             }
           }
         },
-        'light_light': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('light_light')
-            }
-          }
-        },
         'light_mirror': {
           '*': {
             'white': '*/white',
@@ -6807,20 +6821,6 @@
             }
           }
         },
-        'light_office_desk': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('light_office_desk')
-            }
-          }
-        },
         'light_office': {
           '*': {
             'white': '*/white',
@@ -6832,6 +6832,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('light_office')
+            }
+          }
+        },
+        'light_office_desk': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_office_desk')
             }
           }
         },
@@ -6877,20 +6891,6 @@
             }
           }
         },
-        'light_pendant_light_round': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('light_pendant_light_round')
-            }
-          }
-        },
         'light_pendant_light': {
           '*': {
             'white': '*/white',
@@ -6905,7 +6905,7 @@
             }
           }
         },
-        'light_plant_spot': {
+        'light_pendant_light_round': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -6915,7 +6915,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('light_plant_spot')
+              '*': cv.util.IconTools.svgKUF('light_pendant_light_round')
             }
           }
         },
@@ -6933,7 +6933,7 @@
             }
           }
         },
-        'light_pool_rgb': {
+        'light_plant_spot': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -6943,7 +6943,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('light_pool_rgb')
+              '*': cv.util.IconTools.svgKUF('light_plant_spot')
             }
           }
         },
@@ -6958,6 +6958,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('light_pool')
+            }
+          }
+        },
+        'light_pool_rgb': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('light_pool_rgb')
             }
           }
         },
@@ -7479,6 +7493,20 @@
             }
           }
         },
+        'measure_globe': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('measure_globe')
+            }
+          }
+        },
         'measure_globe_lat': {
           '*': {
             'white': '*/white',
@@ -7504,20 +7532,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('measure_globe_long')
-            }
-          }
-        },
-        'measure_globe': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('measure_globe')
             }
           }
         },
@@ -7703,20 +7717,6 @@
             }
           }
         },
-        'measure_power_meter': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('measure_power_meter')
-            }
-          }
-        },
         'measure_power': {
           '*': {
             'white': '*/white',
@@ -7728,6 +7728,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('measure_power')
+            }
+          }
+        },
+        'measure_power_meter': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('measure_power_meter')
             }
           }
         },
@@ -7756,6 +7770,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('measure_radioactivity')
+            }
+          }
+        },
+        'measure_smart_meter': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('measure_smart_meter')
             }
           }
         },
@@ -7801,20 +7829,6 @@
             }
           }
         },
-        'message_attention_2': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('message_attention_2')
-            }
-          }
-        },
         'message_attention': {
           '*': {
             'white': '*/white',
@@ -7829,7 +7843,7 @@
             }
           }
         },
-        'message_bell_door_disabled': {
+        'message_attention_2': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -7839,21 +7853,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('message_bell_door_disabled')
-            }
-          }
-        },
-        'message_bell_door': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('message_bell_door')
+              '*': cv.util.IconTools.svgKUF('message_attention_2')
             }
           }
         },
@@ -7871,7 +7871,7 @@
             }
           }
         },
-        'message_bug_filled': {
+        'message_bell_door': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -7881,7 +7881,21 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('message_bug_filled')
+              '*': cv.util.IconTools.svgKUF('message_bell_door')
+            }
+          }
+        },
+        'message_bell_door_disabled': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_bell_door_disabled')
             }
           }
         },
@@ -7896,6 +7910,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('message_bug')
+            }
+          }
+        },
+        'message_bug_filled': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_bug_filled')
             }
           }
         },
@@ -7938,6 +7966,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('message_error')
+            }
+          }
+        },
+        'message_garbage': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_garbage')
             }
           }
         },
@@ -7997,20 +8039,6 @@
             }
           }
         },
-        'message_garbage': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('message_garbage')
-            }
-          }
-        },
         'message_help': {
           '*': {
             'white': '*/white',
@@ -8039,20 +8067,6 @@
             }
           }
         },
-        'message_light_barrier_open': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('message_light_barrier_open')
-            }
-          }
-        },
         'message_light_barrier': {
           '*': {
             'white': '*/white',
@@ -8064,6 +8078,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('message_light_barrier')
+            }
+          }
+        },
+        'message_light_barrier_open': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_light_barrier_open')
             }
           }
         },
@@ -8081,6 +8109,20 @@
             }
           }
         },
+        'message_mail': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_mail')
+            }
+          }
+        },
         'message_mail_open': {
           '*': {
             'white': '*/white',
@@ -8095,7 +8137,7 @@
             }
           }
         },
-        'message_mail': {
+        'message_manual': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -8105,7 +8147,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('message_mail')
+              '*': cv.util.IconTools.svgKUF('message_manual')
             }
           }
         },
@@ -8151,6 +8193,20 @@
             }
           }
         },
+        'message_postbox': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_postbox')
+            }
+          }
+        },
         'message_postbox_mail': {
           '*': {
             'white': '*/white',
@@ -8165,7 +8221,7 @@
             }
           }
         },
-        'message_postbox': {
+        'message_presence': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -8175,7 +8231,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('message_postbox')
+              '*': cv.util.IconTools.svgKUF('message_presence')
             }
           }
         },
@@ -8249,20 +8305,6 @@
             }
           }
         },
-        'message_presence': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('message_presence')
-            }
-          }
-        },
         'message_service': {
           '*': {
             'white': '*/white',
@@ -8274,6 +8316,34 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('message_service')
+            }
+          }
+        },
+        'message_socket': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_socket')
+            }
+          }
+        },
+        'message_socket_ch': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('message_socket_ch')
             }
           }
         },
@@ -8305,20 +8375,6 @@
             }
           }
         },
-        'message_socket_ch': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('message_socket_ch')
-            }
-          }
-        },
         'message_socket_on_off': {
           '*': {
             'white': '*/white',
@@ -8330,20 +8386,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('message_socket_on_off')
-            }
-          }
-        },
-        'message_socket': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('message_socket')
             }
           }
         },
@@ -8431,6 +8473,34 @@
             }
           }
         },
+        'phone_call': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('phone_call')
+            }
+          }
+        },
+        'phone_call_end': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('phone_call_end')
+            }
+          }
+        },
         'phone_call_end_in': {
           '*': {
             'white': '*/white',
@@ -8459,20 +8529,6 @@
             }
           }
         },
-        'phone_call_end': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('phone_call_end')
-            }
-          }
-        },
         'phone_call_in': {
           '*': {
             'white': '*/white',
@@ -8498,20 +8554,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('phone_call_out')
-            }
-          }
-        },
-        'phone_call': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('phone_call')
             }
           }
         },
@@ -8571,6 +8613,20 @@
             }
           }
         },
+        'phone_ring': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('phone_ring')
+            }
+          }
+        },
         'phone_ring_in': {
           '*': {
             'white': '*/white',
@@ -8596,20 +8652,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('phone_ring_out')
-            }
-          }
-        },
-        'phone_ring': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('phone_ring')
             }
           }
         },
@@ -8669,6 +8711,20 @@
             }
           }
         },
+        'sani_central_vacuum_cleaner': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('sani_central_vacuum_cleaner')
+            }
+          }
+        },
         'sani_central_vacuum_cleaner_dust_cont': {
           '*': {
             'white': '*/white',
@@ -8697,20 +8753,6 @@
             }
           }
         },
-        'sani_central_vacuum_cleaner': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('sani_central_vacuum_cleaner')
-            }
-          }
-        },
         'sani_cogeneration': {
           '*': {
             'white': '*/white',
@@ -8722,6 +8764,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('sani_cogeneration')
+            }
+          }
+        },
+        'sani_cooling': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('sani_cooling')
             }
           }
         },
@@ -8764,20 +8820,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('sani_cooling_temp')
-            }
-          }
-        },
-        'sani_cooling': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('sani_cooling')
             }
           }
         },
@@ -8837,6 +8879,20 @@
             }
           }
         },
+        'sani_heating': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('sani_heating')
+            }
+          }
+        },
         'sani_heating_automatic': {
           '*': {
             'white': '*/white',
@@ -8879,7 +8935,7 @@
             }
           }
         },
-        'sani_heating': {
+        'sani_irrigation': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -8889,7 +8945,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('sani_heating')
+              '*': cv.util.IconTools.svgKUF('sani_irrigation')
             }
           }
         },
@@ -8963,20 +9019,6 @@
             }
           }
         },
-        'sani_irrigation': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('sani_irrigation')
-            }
-          }
-        },
         'sani_leakage': {
           '*': {
             'white': '*/white',
@@ -9033,20 +9075,6 @@
             }
           }
         },
-        'sani_solar_temp': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('sani_solar_temp')
-            }
-          }
-        },
         'sani_solar': {
           '*': {
             'white': '*/white',
@@ -9058,6 +9086,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('sani_solar')
+            }
+          }
+        },
+        'sani_solar_temp': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('sani_solar_temp')
             }
           }
         },
@@ -9551,6 +9593,20 @@
             }
           }
         },
+        'scene_cooking': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_cooking')
+            }
+          }
+        },
         'scene_cooking_alternat': {
           '*': {
             'white': '*/white',
@@ -9576,20 +9632,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_cooking_hob')
-            }
-          }
-        },
-        'scene_cooking': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_cooking')
             }
           }
         },
@@ -9691,20 +9733,6 @@
             }
           }
         },
-        'scene_dressing_room_alternat': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_dressing_room_alternat')
-            }
-          }
-        },
         'scene_dressing_room': {
           '*': {
             'white': '*/white',
@@ -9719,7 +9747,7 @@
             }
           }
         },
-        'scene_drink_hot': {
+        'scene_dressing_room_alternat': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -9729,7 +9757,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('scene_drink_hot')
+              '*': cv.util.IconTools.svgKUF('scene_dressing_room_alternat')
             }
           }
         },
@@ -9747,6 +9775,20 @@
             }
           }
         },
+        'scene_drink_hot': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_drink_hot')
+            }
+          }
+        },
         'scene_dump_truck': {
           '*': {
             'white': '*/white',
@@ -9761,7 +9803,7 @@
             }
           }
         },
-        'scene_fitness_2': {
+        'scene_firewood': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -9771,7 +9813,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('scene_fitness_2')
+              '*': cv.util.IconTools.svgKUF('scene_firewood')
             }
           }
         },
@@ -9786,6 +9828,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_fitness')
+            }
+          }
+        },
+        'scene_fitness_2': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_fitness_2')
             }
           }
         },
@@ -9817,20 +9873,6 @@
             }
           }
         },
-        'scene_fountain_indoor': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_fountain_indoor')
-            }
-          }
-        },
         'scene_fountain': {
           '*': {
             'white': '*/white',
@@ -9845,6 +9887,20 @@
             }
           }
         },
+        'scene_fountain_indoor': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_fountain_indoor')
+            }
+          }
+        },
         'scene_freezer': {
           '*': {
             'white': '*/white',
@@ -9856,6 +9912,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_freezer')
+            }
+          }
+        },
+        'scene_gaming': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_gaming')
             }
           }
         },
@@ -9887,20 +9957,6 @@
             }
           }
         },
-        'scene_gaming': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_gaming')
-            }
-          }
-        },
         'scene_garden': {
           '*': {
             'white': '*/white',
@@ -9929,20 +9985,6 @@
             }
           }
         },
-        'scene_hall_alternat': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_hall_alternat')
-            }
-          }
-        },
         'scene_hall': {
           '*': {
             'white': '*/white',
@@ -9954,6 +9996,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_hall')
+            }
+          }
+        },
+        'scene_hall_alternat': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_hall_alternat')
             }
           }
         },
@@ -10041,20 +10097,6 @@
             }
           }
         },
-        'scene_laundry_room_fem': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_laundry_room_fem')
-            }
-          }
-        },
         'scene_laundry_room': {
           '*': {
             'white': '*/white',
@@ -10066,6 +10108,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_laundry_room')
+            }
+          }
+        },
+        'scene_laundry_room_fem': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_laundry_room_fem')
             }
           }
         },
@@ -10097,20 +10153,6 @@
             }
           }
         },
-        'scene_making_love_clean': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_making_love_clean')
-            }
-          }
-        },
         'scene_making_love': {
           '*': {
             'white': '*/white',
@@ -10122,6 +10164,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_making_love')
+            }
+          }
+        },
+        'scene_making_love_clean': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_making_love_clean')
             }
           }
         },
@@ -10307,6 +10363,20 @@
             }
           }
         },
+        'scene_projector_closed': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_projector_closed')
+            }
+          }
+        },
         'scene_projector_closed_on_off': {
           '*': {
             'white': '*/white',
@@ -10321,7 +10391,7 @@
             }
           }
         },
-        'scene_projector_closed': {
+        'scene_projector_open': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -10331,7 +10401,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('scene_projector_closed')
+              '*': cv.util.IconTools.svgKUF('scene_projector_open')
             }
           }
         },
@@ -10349,7 +10419,7 @@
             }
           }
         },
-        'scene_projector_open': {
+        'scene_robo_lawnmower': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -10359,7 +10429,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('scene_projector_open')
+              '*': cv.util.IconTools.svgKUF('scene_robo_lawnmower')
             }
           }
         },
@@ -10419,7 +10489,7 @@
             }
           }
         },
-        'scene_robo_lawnmower': {
+        'scene_robo_vac_cleaner': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -10429,7 +10499,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('scene_robo_lawnmower')
+              '*': cv.util.IconTools.svgKUF('scene_robo_vac_cleaner')
             }
           }
         },
@@ -10489,20 +10559,6 @@
             }
           }
         },
-        'scene_robo_vac_cleaner': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_robo_vac_cleaner')
-            }
-          }
-        },
         'scene_sauna': {
           '*': {
             'white': '*/white',
@@ -10514,20 +10570,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_sauna')
-            }
-          }
-        },
-        'scene_scene_teach_in': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_scene_teach_in')
             }
           }
         },
@@ -10545,6 +10587,20 @@
             }
           }
         },
+        'scene_scene_teach_in': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_scene_teach_in')
+            }
+          }
+        },
         'scene_shower': {
           '*': {
             'white': '*/white',
@@ -10556,6 +10612,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_shower')
+            }
+          }
+        },
+        'scene_sleeping': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_sleeping')
             }
           }
         },
@@ -10626,20 +10696,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_sleeping_twin_1_1')
-            }
-          }
-        },
-        'scene_sleeping': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_sleeping')
             }
           }
         },
@@ -10769,20 +10825,6 @@
             }
           }
         },
-        'scene_toilet_alternat': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('scene_toilet_alternat')
-            }
-          }
-        },
         'scene_toilet': {
           '*': {
             'white': '*/white',
@@ -10794,6 +10836,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('scene_toilet')
+            }
+          }
+        },
+        'scene_toilet_alternat': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('scene_toilet_alternat')
             }
           }
         },
@@ -10895,6 +10951,20 @@
             }
           }
         },
+        'secur_alarm': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('secur_alarm')
+            }
+          }
+        },
         'secur_alarm_alarm': {
           '*': {
             'white': '*/white',
@@ -10948,20 +11018,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('secur_alarm_test')
-            }
-          }
-        },
-        'secur_alarm': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('secur_alarm')
             }
           }
         },
@@ -11357,6 +11413,20 @@
             }
           }
         },
+        'status_presence_simulation': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('status_presence_simulation')
+            }
+          }
+        },
         'status_presence_simulation_rec': {
           '*': {
             'white': '*/white',
@@ -11382,20 +11452,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('status_presence_simulation_run')
-            }
-          }
-        },
-        'status_presence_simulation': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('status_presence_simulation')
             }
           }
         },
@@ -11539,6 +11595,20 @@
             }
           }
         },
+        'temp_temperature': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('temp_temperature')
+            }
+          }
+        },
         'temp_temperature_max': {
           '*': {
             'white': '*/white',
@@ -11564,20 +11634,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('temp_temperature_min')
-            }
-          }
-        },
-        'temp_temperature': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('temp_temperature')
             }
           }
         },
@@ -11665,6 +11721,20 @@
             }
           }
         },
+        'time_alarm_clock': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('time_alarm_clock')
+            }
+          }
+        },
         'time_alarm_clock_alarm_off': {
           '*': {
             'white': '*/white',
@@ -11704,20 +11774,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('time_alarm_clock_snooze')
-            }
-          }
-        },
-        'time_alarm_clock': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('time_alarm_clock')
             }
           }
         },
@@ -11847,20 +11903,6 @@
             }
           }
         },
-        'time_timer_switch': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('time_timer_switch')
-            }
-          }
-        },
         'time_timer': {
           '*': {
             'white': '*/white',
@@ -11872,6 +11914,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('time_timer')
+            }
+          }
+        },
+        'time_timer_switch': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('time_timer_switch')
             }
           }
         },
@@ -11931,7 +11987,7 @@
             }
           }
         },
-        'vent_air_filter_full': {
+        'veh_car_01': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -11941,7 +11997,105 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('vent_air_filter_full')
+              '*': cv.util.IconTools.svgKUF('veh_car_01')
+            }
+          }
+        },
+        'veh_car_01_charging': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('veh_car_01_charging')
+            }
+          }
+        },
+        'veh_car_01_charging_battery': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('veh_car_01_charging_battery')
+            }
+          }
+        },
+        'veh_car_01_charging_battery_100': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('veh_car_01_charging_battery_100')
+            }
+          }
+        },
+        'veh_car_01_charging_battery_25': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('veh_car_01_charging_battery_25')
+            }
+          }
+        },
+        'veh_car_01_charging_battery_50': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('veh_car_01_charging_battery_50')
+            }
+          }
+        },
+        'veh_car_01_charging_battery_75': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('veh_car_01_charging_battery_75')
+            }
+          }
+        },
+        'veh_wallbox': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('veh_wallbox')
             }
           }
         },
@@ -11959,6 +12113,20 @@
             }
           }
         },
+        'vent_air_filter_full': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('vent_air_filter_full')
+            }
+          }
+        },
         'vent_ambient_air': {
           '*': {
             'white': '*/white',
@@ -11973,20 +12141,6 @@
             }
           }
         },
-        'vent_bypass_open': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('vent_bypass_open')
-            }
-          }
-        },
         'vent_bypass': {
           '*': {
             'white': '*/white',
@@ -11998,6 +12152,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('vent_bypass')
+            }
+          }
+        },
+        'vent_bypass_open': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('vent_bypass_open')
             }
           }
         },
@@ -12113,6 +12281,20 @@
             }
           }
         },
+        'vent_ventilation': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('vent_ventilation')
+            }
+          }
+        },
         'vent_ventilation_control': {
           '*': {
             'white': '*/white',
@@ -12211,20 +12393,6 @@
             }
           }
         },
-        'vent_ventilation': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('vent_ventilation')
-            }
-          }
-        },
         'weather_barometric_pressure': {
           '*': {
             'white': '*/white',
@@ -12236,6 +12404,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('weather_barometric_pressure')
+            }
+          }
+        },
+        'weather_cloudy': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('weather_cloudy')
             }
           }
         },
@@ -12267,7 +12449,7 @@
             }
           }
         },
-        'weather_cloudy': {
+        'weather_directions': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -12277,7 +12459,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('weather_cloudy')
+              '*': cv.util.IconTools.svgKUF('weather_directions')
             }
           }
         },
@@ -12393,7 +12575,7 @@
             }
           }
         },
-        'weather_directions': {
+        'weather_fog': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -12403,7 +12585,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('weather_directions')
+              '*': cv.util.IconTools.svgKUF('weather_fog')
             }
           }
         },
@@ -12421,20 +12603,6 @@
             }
           }
         },
-        'weather_fog': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('weather_fog')
-            }
-          }
-        },
         'weather_frost': {
           '*': {
             'white': '*/white',
@@ -12446,6 +12614,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('weather_frost')
+            }
+          }
+        },
+        'weather_humidity': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('weather_humidity')
             }
           }
         },
@@ -12488,20 +12670,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('weather_humidity_soil')
-            }
-          }
-        },
-        'weather_humidity': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('weather_humidity')
             }
           }
         },
@@ -12715,6 +12883,20 @@
             }
           }
         },
+        'weather_rain': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('weather_rain')
+            }
+          }
+        },
         'weather_rain_gauge': {
           '*': {
             'white': '*/white',
@@ -12771,20 +12953,6 @@
             }
           }
         },
-        'weather_rain': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('weather_rain')
-            }
-          }
-        },
         'weather_sleet': {
           '*': {
             'white': '*/white',
@@ -12796,6 +12964,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('weather_sleet')
+            }
+          }
+        },
+        'weather_snow': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('weather_snow')
             }
           }
         },
@@ -12841,7 +13023,7 @@
             }
           }
         },
-        'weather_snow': {
+        'weather_station': {
           '*': {
             'white': '*/white',
             'ws': '*/white',
@@ -12851,7 +13033,7 @@
             'potassium': '*/purple',
             'sodium': '*/orange',
             '*': {
-              '*': cv.util.IconTools.svgKUF('weather_snow')
+              '*': cv.util.IconTools.svgKUF('weather_station')
             }
           }
         },
@@ -12880,20 +13062,6 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('weather_station_quadra')
-            }
-          }
-        },
-        'weather_station': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('weather_station')
             }
           }
         },
@@ -12978,6 +13146,20 @@
             'sodium': '*/orange',
             '*': {
               '*': cv.util.IconTools.svgKUF('weather_thunderstorm')
+            }
+          }
+        },
+        'weather_wind': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('weather_wind')
             }
           }
         },
@@ -13107,6 +13289,20 @@
             }
           }
         },
+        'weather_wind_speed': {
+          '*': {
+            'white': '*/white',
+            'ws': '*/white',
+            'antimony': '*/blue',
+            'boron': '*/green',
+            'lithium': '*/red',
+            'potassium': '*/purple',
+            'sodium': '*/orange',
+            '*': {
+              '*': cv.util.IconTools.svgKUF('weather_wind_speed')
+            }
+          }
+        },
         'weather_wind_speed_bft': {
           '*': {
             'white': '*/white',
@@ -13135,34 +13331,6 @@
             }
           }
         },
-        'weather_wind_speed': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('weather_wind_speed')
-            }
-          }
-        },
-        'weather_wind': {
-          '*': {
-            'white': '*/white',
-            'ws': '*/white',
-            'antimony': '*/blue',
-            'boron': '*/green',
-            'lithium': '*/red',
-            'potassium': '*/purple',
-            'sodium': '*/orange',
-            '*': {
-              '*': cv.util.IconTools.svgKUF('weather_wind')
-            }
-          }
-        },
         'weather_winter': {
           '*': {
             'white': '*/white',
@@ -13185,4 +13353,4 @@
   cv.IconConfig.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconConfig.js.map?dt=1692560746354
+//# sourceMappingURL=IconConfig.js.map?dt=1700345616871

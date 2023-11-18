@@ -96,7 +96,7 @@
         return "";
       },
       /** Maps user agent names to system IDs */
-      __P_125_0: {
+      __P_133_0: {
         // Windows
         "Windows NT 10.0": "10",
         "Windows NT 6.3": "8.1",
@@ -154,9 +154,9 @@
        *   could not be detected.
        */
       getVersion: function getVersion() {
-        var version = qx.bom.client.OperatingSystem.__P_125_1(navigator.userAgent);
+        var version = qx.bom.client.OperatingSystem.__P_133_1(navigator.userAgent);
         if (version == null) {
-          version = qx.bom.client.OperatingSystem.__P_125_2(navigator.userAgent);
+          version = qx.bom.client.OperatingSystem.__P_133_2(navigator.userAgent);
         }
         if (version != null) {
           return version;
@@ -169,15 +169,15 @@
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __P_125_1: function __P_125_1(userAgent) {
+      __P_133_1: function __P_133_1(userAgent) {
         var str = [];
-        for (var key in qx.bom.client.OperatingSystem.__P_125_0) {
+        for (var key in qx.bom.client.OperatingSystem.__P_133_0) {
           str.push(key);
         }
         var reg = new RegExp("(" + str.join("|").replace(/\./g, ".") + ")", "g");
         var match = reg.exec(userAgent);
         if (match && match[1]) {
-          return qx.bom.client.OperatingSystem.__P_125_0[match[1]];
+          return qx.bom.client.OperatingSystem.__P_133_0[match[1]];
         }
         return null;
       },
@@ -186,7 +186,7 @@
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __P_125_2: function __P_125_2(userAgent) {
+      __P_133_2: function __P_133_2(userAgent) {
         var windows = userAgent.indexOf("Windows Phone") != -1;
         var android = userAgent.indexOf("Android") != -1;
         var iOs = userAgent.match(/(iPad|iPhone|iPod)/i) ? true : false;
@@ -224,4 +224,4 @@
   qx.bom.client.OperatingSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OperatingSystem.js.map?dt=1692560699122
+//# sourceMappingURL=OperatingSystem.js.map?dt=1700345588665

@@ -86,7 +86,7 @@
        * @param width {Integer} The cell's width
        * @param height {Integer} The cell's height
        */
-      __P_483_0: function __P_483_0(htmlArr, row, column, left, top, width, height) {
+      __P_491_0: function __P_491_0(htmlArr, row, column, left, top, width, height) {
         var cellProperties = this._cellProvider.getCellProperties(row, column);
         var insets = cellProperties.insets || [0, 0];
         htmlArr.push("<div ", "style='", "left:", left, "px;", "top:", top, "px;", this._getCellSizeStyle(width, height, insets[0], insets[1]), cellProperties.style || "", "' ", "class='", cellProperties.classes || "", "' ", cellProperties.attributes || "", ">", cellProperties.content || "", "</div>");
@@ -103,7 +103,7 @@
           for (var i = 0, l = cells.length; i < l; i++) {
             var cell = cells[i];
             var cellBounds = bounds[i];
-            this.__P_483_0(html, cell.firstRow, cell.firstColumn, cellBounds.left, cellBounds.top, cellBounds.width, cellBounds.height);
+            this.__P_491_0(html, cell.firstRow, cell.firstColumn, cellBounds.left, cellBounds.top, cellBounds.width, cellBounds.height);
           }
         } else {
           // create empty dummy map
@@ -125,7 +125,7 @@
           for (var y = 0; y < columnSizes.length; y++) {
             var width = columnSizes[y];
             if (!spanMap[row][column]) {
-              this.__P_483_0(html, row, column, left, top, width, height);
+              this.__P_491_0(html, row, column, left, top, width, height);
             }
             column++;
             left += width;
@@ -148,4 +148,4 @@
   qx.ui.virtual.layer.HtmlCellSpan.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlCellSpan.js.map?dt=1692560738962
+//# sourceMappingURL=HtmlCellSpan.js.map?dt=1700345612353

@@ -363,7 +363,7 @@
           var client = cv.io.BackendConnections.getClient();
           // never convert influx data
           if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
-            tsdata = client.processChartsData(tsdata);
+            tsdata = client.processChartsData(tsdata, ts);
           } else {
             // calculate timestamp offset and scaling
             var millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
@@ -907,4 +907,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1692560683389
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1700345578139

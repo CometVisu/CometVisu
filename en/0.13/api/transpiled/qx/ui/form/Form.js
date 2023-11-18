@@ -44,7 +44,7 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_348_0 = [];
+      this.__P_356_0 = [];
       this._buttons = [];
       this._buttonOptions = [];
       this._validationManager = this._createValidationManager();
@@ -55,7 +55,7 @@
       change: "qx.event.type.Event"
     },
     members: {
-      __P_348_0: null,
+      __P_356_0: null,
       _validationManager: null,
       _groupCounter: 0,
       _buttons: null,
@@ -84,8 +84,8 @@
        *   will be available in your form renderer specific to the added item.
        */
       add: function add(item, label, validator, name, validatorContext, options) {
-        if (this.__P_348_1()) {
-          this.__P_348_0.push({
+        if (this.__P_356_1()) {
+          this.__P_356_0.push({
             title: null,
             items: [],
             labels: [],
@@ -95,14 +95,14 @@
           });
         }
         // save the given arguments
-        this.__P_348_0[this._groupCounter].items.push(item);
-        this.__P_348_0[this._groupCounter].labels.push(label);
-        this.__P_348_0[this._groupCounter].options.push(options);
+        this.__P_356_0[this._groupCounter].items.push(item);
+        this.__P_356_0[this._groupCounter].labels.push(label);
+        this.__P_356_0[this._groupCounter].options.push(options);
         // if no name is given, use the label without not working character
         if (name == null) {
           name = label.replace(/\s+|&|-|\+|\*|\/|\||!|\.|,|:|\?|;|~|%|\{|\}|\(|\)|\[|\]|<|>|=|\^|@|\\/g, "");
         }
-        this.__P_348_0[this._groupCounter].names.push(name);
+        this.__P_356_0[this._groupCounter].names.push(name);
 
         // add the item to the validation manager
         this._validationManager.add(item, validator, validatorContext);
@@ -121,10 +121,10 @@
        *   given to the renderer.
        */
       addGroupHeader: function addGroupHeader(title, options) {
-        if (!this.__P_348_1()) {
+        if (!this.__P_356_1()) {
           this._groupCounter++;
         }
-        this.__P_348_0.push({
+        this.__P_356_0.push({
           title: title,
           items: [],
           labels: [],
@@ -156,8 +156,8 @@
        *
        * @return {Boolean} true, if nothing has been added jet.
        */
-      __P_348_1: function __P_348_1() {
-        return this.__P_348_0.length === 0;
+      __P_356_1: function __P_356_1() {
+        return this.__P_356_0.length === 0;
       },
       /*
       ---------------------------------------------------------------------------
@@ -171,8 +171,8 @@
        * @return {Boolean} <code>true</code>, if the item could be removed.
        */
       remove: function remove(item) {
-        for (var i = 0; i < this.__P_348_0.length; i++) {
-          var group = this.__P_348_0[i];
+        for (var i = 0; i < this.__P_356_0.length; i++) {
+          var group = this.__P_356_0[i];
           for (var j = 0; j < group.items.length; j++) {
             var storedItem = group.items[j];
             if (storedItem === item) {
@@ -204,15 +204,15 @@
        * @return {Boolean} <code>true</code>, if the header could be removed.
        */
       removeGroupHeader: function removeGroupHeader(title) {
-        for (var i = 0; i < this.__P_348_0.length; i++) {
-          var group = this.__P_348_0[i];
+        for (var i = 0; i < this.__P_356_0.length; i++) {
+          var group = this.__P_356_0[i];
           if (group.title === title) {
             var targetGroup;
 
             // if it's the first group
             if (i == 0) {
               // if it's the only group
-              if (this.__P_348_0.length == 1) {
+              if (this.__P_356_0.length == 1) {
                 // remove the title and the header options
                 group.title = null;
                 group.headerOptions = {};
@@ -221,11 +221,11 @@
                 return true;
               } else {
                 // add to the next
-                targetGroup = this.__P_348_0[i + 1];
+                targetGroup = this.__P_356_0[i + 1];
               }
             } else {
               // add to the previous group
-              targetGroup = this.__P_348_0[i - 1];
+              targetGroup = this.__P_356_0[i - 1];
             }
 
             // copy the data over
@@ -235,7 +235,7 @@
             targetGroup.options = targetGroup.options.concat(group.options);
 
             // delete the group
-            this.__P_348_0.splice(i, 1);
+            this.__P_356_0.splice(i, 1);
             this._groupCounter--;
 
             // fire the change event
@@ -272,8 +272,8 @@
       getItems: function getItems() {
         var items = {};
         // go threw all groups
-        for (var i = 0; i < this.__P_348_0.length; i++) {
-          var group = this.__P_348_0[i];
+        for (var i = 0; i < this.__P_356_0.length; i++) {
+          var group = this.__P_356_0[i];
           // get all items
           for (var j = 0; j < group.names.length; j++) {
             var name = group.names[j];
@@ -289,8 +289,8 @@
        * @return {qx.ui.form.IForm|null} The form item or null.
        */
       getItem: function getItem(name) {
-        for (var i = 0; i < this.__P_348_0.length; i++) {
-          var group = this.__P_348_0[i];
+        for (var i = 0; i < this.__P_356_0.length; i++) {
+          var group = this.__P_356_0[i];
           for (var j = 0; j < group.names.length; j++) {
             if (group.names[j] === name) {
               return group.items[j];
@@ -364,7 +364,7 @@
        * @internal
        */
       getGroups: function getGroups() {
-        return this.__P_348_0;
+        return this.__P_356_0;
       },
       /**
        * Accessor method for the renderer which returns all added buttons in an
@@ -413,7 +413,7 @@
     */
     destruct: function destruct() {
       // holding references to widgets --> must set to null
-      this.__P_348_0 = this._buttons = this._buttonOptions = null;
+      this.__P_356_0 = this._buttons = this._buttonOptions = null;
       this._validationManager.dispose();
       this._resetter.dispose();
     }
@@ -421,4 +421,4 @@
   qx.ui.form.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1692560725233
+//# sourceMappingURL=Form.js.map?dt=1700345604314

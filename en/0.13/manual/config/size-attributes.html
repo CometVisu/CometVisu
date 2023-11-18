@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resize widget content &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -90,9 +94,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>Resize widget content</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Resize widget content</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -109,7 +113,7 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="resize-widget-content">
-<span id="size-attributes"></span><h1>Resize widget content<a class="headerlink" href="#resize-widget-content" title="Permalink to this headline">¶</a></h1>
+<span id="size-attributes"></span><h1>Resize widget content<a class="headerlink" href="#resize-widget-content" title="Link to this heading"></a></h1>
 <p>In the following widgets are next to the child element <code class="docutils literal notranslate"><span class="pre">layout</span></code>
 (specifies the outer widget dimensions) other attributes such as.
 <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> to influence the content:</p>
@@ -130,7 +134,7 @@ in addition.</p>
 <p>The information is in CSS format and can be in pixels, percent
 or relative to the font size.</p>
 <section id="size-information-in-pixels">
-<h2>Size information in pixels<a class="headerlink" href="#size-information-in-pixels" title="Permalink to this headline">¶</a></h2>
+<h2>Size information in pixels<a class="headerlink" href="#size-information-in-pixels" title="Link to this heading"></a></h2>
 <p>The specification in pixels takes place in the
 format <code class="docutils literal notranslate"><span class="pre">width=&quot;300px&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">height=&quot;200px&quot;</span></code>.</p>
 <div class="admonition important">
@@ -143,7 +147,7 @@ on the display size (screen size). An overview provides e.g.
 </div>
 </section>
 <section id="sizes-in-percent">
-<h2>Sizes in percent<a class="headerlink" href="#sizes-in-percent" title="Permalink to this headline">¶</a></h2>
+<h2>Sizes in percent<a class="headerlink" href="#sizes-in-percent" title="Link to this heading"></a></h2>
 <p>The percentage is expressed in the format
 <code class="docutils literal notranslate"><span class="pre">width=&quot;100%&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">height=&quot;100%&quot;</span></code>.</p>
 <p>The percentage refers to the visible area of the widget size. That
@@ -152,7 +156,7 @@ and reduced) to the entire width of the widget, with
 <code class="docutils literal notranslate"><span class="pre">width=50%</span></code> the widget will be half filled.</p>
 </section>
 <section id="size-information-relative-to-the-font-size">
-<h2>Size information relative to the font size<a class="headerlink" href="#size-information-relative-to-the-font-size" title="Permalink to this headline">¶</a></h2>
+<h2>Size information relative to the font size<a class="headerlink" href="#size-information-relative-to-the-font-size" title="Link to this heading"></a></h2>
 <p>The specification is in the format <code class="docutils literal notranslate"><span class="pre">width=&quot;50em&quot;</span></code> or
 <code class="docutils literal notranslate"><span class="pre">height=&quot;30em&quot;</span></code>. The unit “em” is the standard font size of
 the text in the Cometvisu.</p>
@@ -180,8 +184,12 @@ the text in the Cometvisu.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -192,22 +200,18 @@ the text in the Cometvisu.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

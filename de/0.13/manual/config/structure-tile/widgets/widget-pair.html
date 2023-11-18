@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Widget-Pair &mdash; CometVisu</title>
@@ -13,16 +13,16 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/versions.js"></script>
-        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
-    <link rel="next" title="Button" href="../components/button.html" />
+    <link rel="next" title="Das Energy Widget" href="energy.html" />
     <link rel="prev" title="Das Media-Player Widget" href="media-player.html" /> 
 </head>
 
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,10 +70,8 @@
 <li class="toctree-l4"><a class="reference internal" href="status-chart.html">Status-Chart</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rtc.html">RTC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Widget-pair</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#beschreibung">Beschreibung</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Widget-pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy.html">Energy</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -96,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
-      <li>Das Widget-Pair</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Grundsätzlicher Aufbau</a></li>
+      <li class="breadcrumb-item active">Das Widget-Pair</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -115,15 +117,15 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="das-widget-pair">
-<span id="tile-widget-pair"></span><h1>Das Widget-Pair<a class="headerlink" href="#das-widget-pair" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="tile-widget-pair"></span><h1>Das Widget-Pair<a class="headerlink" href="#das-widget-pair" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Tobias Bräutigam</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 2022</div>
+<div class="line"><strong>Verfügbar seit</strong>: 2022</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das Widget-Pair erlaubt es zwei einfache Widgets mit halber Höhe untereinander darzustellen.
 Die Gesamthöhe beider Widgets entspricht dabei genau der Höhe eines normalen Widgets und passt somit ins Layout.
 Es macht natürlich nur Sinn Widgets innerhalb des Widget-Pairs zu benutzen die wenig Inhalte haben und somit
@@ -145,14 +147,8 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </pre></div>
 </div>
 <section id="erlaubte-attribute-im-widget-pair-element">
-<h3>Erlaubte Attribute im Widget-Pair-Element<a class="headerlink" href="#erlaubte-attribute-im-widget-pair-element" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute im Widget-Pair-Element<a class="headerlink" href="#erlaubte-attribute-im-widget-pair-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -185,14 +181,8 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </table>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -230,12 +220,6 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -324,15 +308,39 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td></td>
 </tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-switch</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-switch</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -424,15 +432,24 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td></td>
 </tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-info</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -538,12 +555,6 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -555,7 +566,7 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="14"><dl class="simple">
+<tr class="row-odd"><td rowspan="15"><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-status-chart</p></li>
 </ul>
@@ -598,21 +609,40 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td><p>Überschrift des Popups.</p></td>
 </tr>
-<tr class="row-even"><td><p>zero-based</p></td>
-<td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Die y-Achse immer bei 0 beginnen lassen.</p></td>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Minimaler Wert.</p></td>
 </tr>
-<tr class="row-odd"><td><p>visible-on</p></td>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Maximaler Wert.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
 <td><p><em>mobile</em> oder <em>desktop</em></p></td>
 <td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
 </tr>
-<tr class="row-even"><td><p>class</p></td>
+<tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><p>style</p></td>
+<tr class="row-even"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status-chart</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
@@ -659,15 +689,24 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td></td>
 </tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status-chart</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -756,8 +795,8 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="media-player.html" class="btn btn-neutral float-left" title="Das Media-Player Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../components/button.html" class="btn btn-neutral float-right" title="Button" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="media-player.html" class="btn btn-neutral float-left" title="Das Media-Player Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="energy.html" class="btn btn-neutral float-right" title="Das Energy Widget" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -773,9 +812,13 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -783,24 +826,20 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

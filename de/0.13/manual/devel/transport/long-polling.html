@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Long polling &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/versions.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=70a09b52"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,9 +87,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Informationen für Entwickler</a> &raquo;</li>
-      <li>Long polling</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Informationen für Entwickler</a></li>
+      <li class="breadcrumb-item active">Long polling</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -101,9 +105,9 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="long-polling">
-<span id="id1"></span><h1>Long polling<a class="headerlink" href="#long-polling" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="id1"></span><h1>Long polling<a class="headerlink" href="#long-polling" title="Link to this heading"></a></h1>
 <section id="lesende-anfragen">
-<h2>Lesende Anfragen<a class="headerlink" href="#lesende-anfragen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Lesende Anfragen<a class="headerlink" href="#lesende-anfragen" title="Link to this heading"></a></h2>
 <p>Beim Long polling stellt die CometVisu eine Verbindung zum Backend her und lässt diese offen bis das Backend Daten sendet.
 Die initiale Anfrage nach allen Werten beantwortet das Backend sofort. Die darauffolgenden Anfragen werden beantwortet,
 sobald ein neuer Wert eintrifft. Dieser wird dann an die CometVisu gesendet, worauf die Verbindung geschlossen und sofort
@@ -115,7 +119,7 @@ beendet und neu started, wenn innerhalb von 60 Sekunden keine Antwort gekommen i
 </div>
 </section>
 <section id="schreibende-anfragen">
-<h2>Schreibende Anfragen<a class="headerlink" href="#schreibende-anfragen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Schreibende Anfragen<a class="headerlink" href="#schreibende-anfragen" title="Link to this heading"></a></h2>
 <p>Wenn ein neuer Wert an das Backend gesendet werden soll (weil z.B. der Benutzer ein Widget bedient hat), wird
 eine neue Anfrage, die vollkommen unabhängig von den lesenden Anfragen ist, an das Backend gesendet.
 Hier bestätigt das Backend auch lediglich das erfolgreiche Empfangen der Anfrage, neue Werte werden immer nur über
@@ -127,8 +131,8 @@ die lesenden Anfragen gesendet.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Informationen für Entwickler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="sse.html" class="btn btn-neutral float-right" title="Server sent events (SSE)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Informationen für Entwickler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="sse.html" class="btn btn-neutral float-right" title="Server sent events (SSE)" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -144,9 +148,13 @@ die lesenden Anfragen gesendet.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -154,24 +162,20 @@ die lesenden Anfragen gesendet.</p>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

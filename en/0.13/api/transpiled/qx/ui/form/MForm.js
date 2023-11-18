@@ -48,7 +48,7 @@
   qx.Mixin.define("qx.ui.form.MForm", {
     construct: function construct() {
       {
-        qx.locale.Manager.getInstance().addListener("changeLocale", this.__P_351_0, this);
+        qx.locale.Manager.getInstance().addListener("changeLocale", this.__P_359_0, this);
       }
     },
     properties: {
@@ -100,7 +100,7 @@
        * @signature function(e)
        * @param e {Event} the change event
        */
-      __P_351_0: qx.core.Environment.select("qx.dynlocale", {
+      __P_359_0: qx.core.Environment.select("qx.dynlocale", {
         "true": function _true(e) {
           // invalid message
           var invalidMessage = this.getInvalidMessage();
@@ -118,11 +118,11 @@
     },
     destruct: function destruct() {
       {
-        qx.locale.Manager.getInstance().removeListener("changeLocale", this.__P_351_0, this);
+        qx.locale.Manager.getInstance().removeListener("changeLocale", this.__P_359_0, this);
       }
     }
   });
   qx.ui.form.MForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MForm.js.map?dt=1692560725684
+//# sourceMappingURL=MForm.js.map?dt=1700345604587

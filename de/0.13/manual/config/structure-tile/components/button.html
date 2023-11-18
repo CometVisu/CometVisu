@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Button &mdash; CometVisu</title>
@@ -13,17 +13,17 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/versions.js"></script>
-        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
     <link rel="next" title="Value" href="value.html" />
-    <link rel="prev" title="Das Widget-Pair" href="../widgets/widget-pair.html" /> 
+    <link rel="prev" title="Das Energy Widget" href="../widgets/energy.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,20 +62,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Button</a></li>
-<li class="toctree-l5"><a class="reference internal" href="value.html">Value</a></li>
-<li class="toctree-l5"><a class="reference internal" href="image.html">Image</a></li>
-<li class="toctree-l5"><a class="reference internal" href="select.html">Select</a></li>
-<li class="toctree-l5"><a class="reference internal" href="spinner.html">Spinner</a></li>
-<li class="toctree-l5"><a class="reference internal" href="slider.html">Slider</a></li>
-<li class="toctree-l5"><a class="reference internal" href="list.html">List</a></li>
-<li class="toctree-l5"><a class="reference internal" href="chart.html">Chart</a></li>
-<li class="toctree-l5"><a class="reference internal" href="color.html">Color</a></li>
-<li class="toctree-l5"><a class="reference internal" href="icon.html">Icon</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../elements/address.html">Address</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#sonstiges">Sonstiges</a></li>
 </ul>
 </li>
 </ul>
@@ -97,10 +89,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
-      <li>Button</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Grundsätzlicher Aufbau</a></li>
+      <li class="breadcrumb-item active">Button</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -116,30 +108,30 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="button">
-<span id="tile-component-button"></span><h1>Button<a class="headerlink" href="#button" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="tile-component-button"></span><h1>Button<a class="headerlink" href="#button" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Tobias Bräutigam</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 2022</div>
+<div class="line"><strong>Verfügbar seit</strong>: 2022</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Der Button unterstützt unterschiedliche Betriebsmodi, die im folgenden beschrieben werden.</p>
 <section id="schalter">
-<h3>Schalter<a class="headerlink" href="#schalter" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Schalter<a class="headerlink" href="#schalter" title="Link to this heading"></a></h3>
 <p>Ein Schalter-Button erlaubt das Senden und Darstellen eines Zustands. Das einfachste Beispiel hierfür ist ein An/Aus-Schalter.
 Der Button zeigt den aktuellen Zustand an und wechselt beim Klicken zwischen den beiden möglichen Zuständen.</p>
 <figure class="align-default" id="id1">
 <img alt="Ausgeschaltet" src="../../../_images/cv-button-off.png" />
 <figcaption>
-<p><span class="caption-text">Ausgeschaltet</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Ausgeschaltet</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id2">
 <img alt="Eingeschaltet" src="../../../_images/cv-button-on.png" />
 <figcaption>
-<p><span class="caption-text">Eingeschaltet</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Eingeschaltet</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -165,7 +157,7 @@ bewirkt das je nach Zustand ein anderes Icon benutzt wird. Zusätzlich wird übe
 Icons und der Umrandung des Buttons je nach Zustand unterschiedlich gesetzt.</p>
 </section>
 <section id="trigger">
-<h3>Trigger<a class="headerlink" href="#trigger" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Trigger<a class="headerlink" href="#trigger" title="Link to this heading"></a></h3>
 <p>Ein Trigger-Button sendet dann beim Klicken immer einen festen Wert an das Backend. Hier ist der gesendete Wert also
 nicht wie beim Schalter abhängig vom aktuellen Zustand, sondern es wird immer ein und der selbe Wert gesendet.
 Eingestellt wird dieser Modus indem der zu sendende feste Wert in dem &lt;cv-address&gt;-Element angeben wird:</p>
@@ -174,7 +166,7 @@ Eingestellt wird dieser Modus indem der zu sendende feste Wert in dem &lt;cv-add
 </div>
 </section>
 <section id="taster">
-<h3>Taster<a class="headerlink" href="#taster" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Taster<a class="headerlink" href="#taster" title="Link to this heading"></a></h3>
 <p>Ein Taster-Button sendet einen Wert beim Drücken des Buttons und beim Loslassen des Buttons einen anderen.
 Im Trigger- und Schalter-Modus wird nur ein Wert beim Loslassen des Buttons gesendet (einfacher Klick).
 Auch dieser Modus wird über das &lt;cv-address&gt;-Element aktiviert. Genauer gesagt benötigt man hier zwei Adressen:</p>
@@ -185,21 +177,21 @@ Auch dieser Modus wird über das &lt;cv-address&gt;-Element aktiviert. Genauer g
 <p>Hier wird als beim Drücken (<code class="docutils literal notranslate"><span class="pre">on=&quot;down&quot;</span></code>) der Wert <code class="docutils literal notranslate"><span class="pre">1</span></code> an <code class="docutils literal notranslate"><span class="pre">1/4/2</span></code> gesendet und beim Loslassen (<code class="docutils literal notranslate"><span class="pre">on=&quot;up&quot;</span></code>) der Wert <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 </section>
 <section id="weitere-eigenschaften">
-<h3>Weitere Eigenschaften<a class="headerlink" href="#weitere-eigenschaften" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Weitere Eigenschaften<a class="headerlink" href="#weitere-eigenschaften" title="Link to this heading"></a></h3>
 <section id="runder-button">
-<h4>Runder Button<a class="headerlink" href="#runder-button" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Runder Button<a class="headerlink" href="#runder-button" title="Link to this heading"></a></h4>
 <p>Als zusätzliche Option kann der Button als Kreis dargestellt werden, dazu muss lediglich dem &lt;cv-button&gt;-Element
 ein <code class="docutils literal notranslate"><span class="pre">class=&quot;round-button&quot;</span></code> hinzugefügt werden.</p>
 <figure class="align-default" id="id3">
 <img alt="Ausgeschaltet" src="../../../_images/cv-button-round-off.png" />
 <figcaption>
-<p><span class="caption-text">Ausgeschaltet</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Ausgeschaltet</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id4">
 <img alt="Eingeschaltet" src="../../../_images/cv-button-round-on.png" />
 <figcaption>
-<p><span class="caption-text">Eingeschaltet</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Eingeschaltet</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;round-button&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;light&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
@@ -207,7 +199,7 @@ ein <code class="docutils literal notranslate"><span class="pre">class=&quot;rou
 </div>
 </section>
 <section id="fortschrittsanzeige">
-<h4>Fortschrittsanzeige<a class="headerlink" href="#fortschrittsanzeige" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Fortschrittsanzeige<a class="headerlink" href="#fortschrittsanzeige" title="Link to this heading"></a></h4>
 <p>Der Rand des Buttons kann auch genutzt werden um einen Prozentwert darzustellen. So kann man z.B. den Fortschritt
 eines gerade spielenden Liedes, eine Lautstärke oder den Helligkeitswert eines Dimmers darstellen.</p>
 <div class="admonition hint">
@@ -218,7 +210,7 @@ Button verwendet werden.</p>
 <figure class="align-default" id="id5">
 <img alt="75% Helligkeit " src="../../../_images/cv-button-progress.png" />
 <figcaption>
-<p><span class="caption-text">75% Helligkeit</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">75% Helligkeit</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -242,7 +234,7 @@ Button verwendet werden.</p>
 </div>
 </section>
 <section id="zusatzliche-beschriftung">
-<h4>Zusätzliche Beschriftung<a class="headerlink" href="#zusatzliche-beschriftung" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Zusätzliche Beschriftung<a class="headerlink" href="#zusatzliche-beschriftung" title="Link to this heading"></a></h4>
 <p>Optional kann der Button über ein <code class="docutils literal notranslate"><span class="pre">text</span></code>-Attribut eine zusätzliche Beschriftung erhalten.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;round-button&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;light&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;button&quot;</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;Licht&quot;</span><span class="nt">&gt;</span>
 </pre></div>
@@ -253,14 +245,8 @@ Button verwendet werden.</p>
 </section>
 </section>
 <section id="erlaubte-attribute">
-<h3>Erlaubte Attribute<a class="headerlink" href="#erlaubte-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute<a class="headerlink" href="#erlaubte-attribute" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -321,14 +307,8 @@ Button verwendet werden.</p>
 </table>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -421,12 +401,6 @@ Button verwendet werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -450,7 +424,7 @@ Button verwendet werden.</p>
 <td><p>Legt die Größe des Icons fest.</p></td>
 </tr>
 <tr class="row-even"><td><p>color</p></td>
-<td><p>token</p></td>
+<td><p>Text</p></td>
 <td><p>Farbe des Icons.</p></td>
 </tr>
 <tr class="row-odd"><td><p>visible-on</p></td>
@@ -483,12 +457,6 @@ Button verwendet werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -586,12 +554,6 @@ Button verwendet werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -655,8 +617,8 @@ Button verwendet werden.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../widgets/widget-pair.html" class="btn btn-neutral float-left" title="Das Widget-Pair" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="value.html" class="btn btn-neutral float-right" title="Value" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../widgets/energy.html" class="btn btn-neutral float-left" title="Das Energy Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="value.html" class="btn btn-neutral float-right" title="Value" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -672,9 +634,13 @@ Button verwendet werden.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -682,24 +648,20 @@ Button verwendet werden.</p>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

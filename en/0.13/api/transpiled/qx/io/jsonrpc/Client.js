@@ -117,7 +117,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         parser = new qx.io.jsonrpc.protocol.Parser();
       }
       this.setParser(parser);
-      this.__P_246_0 = [];
+      this.__P_254_0 = [];
     },
     properties: {
       /**
@@ -139,7 +139,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       /**
        * A cache of the requests which have been sent out and are still pending
        */
-      __P_246_0: null,
+      __P_254_0: null,
       /**
        * If a service name has been configured, prepend it to the method name,
        * unless it has already been prefixed
@@ -163,7 +163,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        */
       _throwTransportException: function _throwTransportException(exception) {
         this.fireDataEvent("error", exception);
-        this.__P_246_0.forEach(function (request) {
+        this.__P_254_0.forEach(function (request) {
           if (request instanceof qx.io.jsonrpc.protocol.Request) {
             request.handleTransportException(exception);
           }
@@ -198,12 +198,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }); // store requests
                 requests.forEach(function (request) {
                   var id = request.getId();
-                  if (_this2.__P_246_0[id] !== undefined) {
+                  if (_this2.__P_254_0[id] !== undefined) {
                     throw new qx.io.exception.Transport("Request ID ".concat(id, " is already in use"), qx.io.exception.Transport.INVALID_ID, {
                       request: message.toObject()
                     });
                   }
-                  _this2.__P_246_0[id] = request;
+                  _this2.__P_254_0[id] = request;
                 });
 
                 // inform listeners
@@ -364,7 +364,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (message instanceof qx.io.jsonrpc.protocol.Result || message instanceof qx.io.jsonrpc.protocol.Error) {
           // handle results and errors, which are responses to sent requests
           id = message.getId();
-          request = this.__P_246_0[id];
+          request = this.__P_254_0[id];
           if (request === undefined) {
             // no request with this id exists
             throw new qx.io.exception.Transport("Invalid jsonrpc response data: Unknown id ".concat(id, "."), qx.io.exception.Transport.UNKNOWN_ID, message.toObject());
@@ -393,7 +393,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           throw new Error("Unhandled message:" + message.toString());
         }
         // mark request as handled (and remove reference so it can be gc'ed)
-        this.__P_246_0[id] = true;
+        this.__P_254_0[id] = true;
       }
     },
     environment: {
@@ -403,4 +403,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   qx.io.jsonrpc.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1692560713477
+//# sourceMappingURL=Client.js.map?dt=1700345597405

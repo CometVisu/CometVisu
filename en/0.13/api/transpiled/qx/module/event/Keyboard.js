@@ -150,8 +150,8 @@
        */
       registerInputFix: function registerInputFix(element) {
         if (element.type === "text" || element.type === "password" || element.type === "textarea") {
-          if (!element.__P_287_0) {
-            element.__P_287_0 = qxWeb(element).on("keyup", qx.module.event.Keyboard._inputFix);
+          if (!element.__P_295_0) {
+            element.__P_295_0 = qxWeb(element).on("keyup", qx.module.event.Keyboard._inputFix);
           }
         }
       },
@@ -162,9 +162,9 @@
        * @internal
        */
       unregisterInputFix: function unregisterInputFix(element) {
-        if (element.__P_287_0 && !qxWeb(element).hasListener("input")) {
+        if (element.__P_295_0 && !qxWeb(element).hasListener("input")) {
           qxWeb(element).off("keyup", qx.module.event.Keyboard._inputFix);
-          element.__P_287_0 = null;
+          element.__P_295_0 = null;
         }
       },
       /**
@@ -178,8 +178,8 @@
         }
         var target = ev.getTarget();
         var newValue = qxWeb(target).getValue();
-        if (!target.__P_287_1 || target.__P_287_1 !== newValue) {
-          target.__P_287_1 = newValue;
+        if (!target.__P_295_1 || target.__P_295_1 !== newValue) {
+          target.__P_295_1 = newValue;
           ev.type = ev._type = "input";
           target.$$emitter.emit("input", ev);
         }
@@ -195,4 +195,4 @@
   qx.module.event.Keyboard.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Keyboard.js.map?dt=1692560717791
+//# sourceMappingURL=Keyboard.js.map?dt=1700345600029

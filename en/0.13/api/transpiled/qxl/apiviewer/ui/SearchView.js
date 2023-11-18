@@ -67,7 +67,7 @@
       var layout = new qx.ui.layout.VBox();
       this.setLayout(layout);
       this.setBackgroundColor("white");
-      this.__P_568_0 = false;
+      this.__P_576_0 = false;
       this.listdata = [];
       this.apiindex = {};
       this._showSearchForm();
@@ -91,12 +91,12 @@
     */
 
     members: {
-      __P_568_1: null,
-      __P_568_0: null,
-      __P_568_2: null,
-      __P_568_3: null,
-      __P_568_4: null,
-      __P_568_5: null,
+      __P_576_1: null,
+      __P_576_0: null,
+      __P_576_2: null,
+      __P_576_3: null,
+      __P_576_4: null,
+      __P_576_5: null,
       /**
        * Enters a term into the search box and selects the
        * first result
@@ -115,9 +115,9 @@
         }, this);
         if (qx.lang.Object.getLength(this.apiindex) == 0) {
           // Index not ready yet, defer search
-          this.__P_568_5 = term;
+          this.__P_576_5 = term;
         } else {
-          this.__P_568_5 = null;
+          this.__P_576_5 = null;
           // Set search box value
           this.sinput.setValue(term);
         }
@@ -147,7 +147,7 @@
           column: 0,
           colSpan: 2
         });
-        this.__P_568_4 = {
+        this.__P_576_4 = {
           PACKAGE: 0,
           ENTRY: 4,
           CLASS: 1,
@@ -160,7 +160,7 @@
           CONSTANT: 3,
           CHILDCONTROL: 6
         };
-        this.__P_568_3 = new qx.data.Array([true, true, true, true, true, true, true]);
+        this.__P_576_3 = new qx.data.Array([true, true, true, true, true, true, true]);
         var types = ["Packages", "Classes, Mixins, Interfaces", "Methods", "Constants", "Properties", "Events", "Child Controls"];
         var iconNameParts = ["package", "class", "method_public", "constant", "property", "event", "childcontrol"];
         var typeContainer = new qx.ui.container.Composite(new qx.ui.layout.HBox());
@@ -189,14 +189,14 @@
           typeToggleButton.setGap(0);
           typeToggleButton.setIconPosition("top");
           typeToggleButton.setShow("icon");
-          typeToggleButton.bind("value", this.__P_568_3, "[" + i + "]");
+          typeToggleButton.bind("value", this.__P_576_3, "[" + i + "]");
           typeToggleButton.setKeepFocus(true);
           typeToggleButton.setValue(true);
           typeContainer.add(typeToggleButton);
           typeToggleButton.addListener("changeValue", function (e) {
             this._searchResult(this.sinput.getValue() || "");
           }, this);
-          this.__P_568_3.bind("[" + i + "]", typeToggleButton, "value");
+          this.__P_576_3.bind("[" + i + "]", typeToggleButton, "value");
         }
         var typeToggleButtonAll = new qx.ui.form.ToggleButton("Toggle Filters");
         typeToggleButtonAll.setFocusable(false);
@@ -209,8 +209,8 @@
         typeToggleButtonAll.setMarginLeft(10);
         typeContainer.add(typeToggleButtonAll);
         typeToggleButtonAll.addListener("changeValue", function (e) {
-          for (var i = 0; i < this.__P_568_3.length; i++) {
-            this.__P_568_3.setItem(i, e.getData());
+          for (var i = 0; i < this.__P_576_3.length; i++) {
+            this.__P_576_3.setItem(i, e.getData());
           }
           this._searchResult(this.sinput.getValue() || "");
           typeToggleButtonAll.setToolTipText(e.getData() ? "Deactivate all filters" : "Activate all filters");
@@ -270,8 +270,8 @@
           width: "1*"
         });
         tcm.setDataCellRenderer(0, new qx.ui.table.cellrenderer.Image(20, 20));
-        this.__P_568_0 = true;
-        this.__P_568_2 = table;
+        this.__P_576_0 = true;
+        this.__P_576_2 = table;
 
         // table.addListener("appear", this.__handleNote, this);
 
@@ -309,8 +309,8 @@
 
         // If all toggle butons are disabled stop here
         var allFiltersDisabled = true;
-        for (var i = 0; i < this.__P_568_3.length; i++) {
-          if (this.__P_568_3.getItem(i) === true) {
+        for (var i = 0; i < this.__P_576_3.length; i++) {
+          if (this.__P_576_3.getItem(i) === true) {
             allFiltersDisabled = false;
             break;
           }
@@ -319,7 +319,7 @@
         // If empty or too short search string stop here
         if (svalue.length < 3 || allFiltersDisabled) {
           // Reset the result list
-          if (this.__P_568_0) {
+          if (this.__P_576_0) {
             this.listdata.splice(0, this.listdata.length);
           }
           this._resetElements();
@@ -332,7 +332,7 @@
           new RegExp(search[0]);
         } catch (ex) {
           // Reset the result list
-          if (this.__P_568_0) {
+          if (this.__P_576_0) {
             this.listdata.splice(0, this.listdata.length);
           }
           this._resetElements();
@@ -446,7 +446,7 @@
        * @param type {String} the type in uppercase
        */
       _isTypeFilteredIn: function _isTypeFilteredIn(type) {
-        return this.__P_568_3.getItem(this.__P_568_4[type]);
+        return this.__P_576_3.getItem(this.__P_576_4[type]);
       },
       /**
        * Set data for the listview
@@ -567,28 +567,28 @@
         this._tableModel.setData([]);
         this._tableModel.setColumns(["", ""]);
       },
-      __P_568_6: function __P_568_6(table) {
-        this.__P_568_1 = new qx.ui.popup.Popup(new qx.ui.layout.Canvas()).set({
+      __P_576_6: function __P_576_6(table) {
+        this.__P_576_1 = new qx.ui.popup.Popup(new qx.ui.layout.Canvas()).set({
           autoHide: false,
           width: 170
         });
         var hintText = this.tr("Hint: You can use regular expressions in the search field.");
         var hint = new qx.ui.basic.Label(hintText);
         hint.setRich(true);
-        this.__P_568_1.add(hint, {
+        this.__P_576_1.add(hint, {
           edge: 3
         });
-        this.__P_568_1.setPosition("bottom-left");
-        this.__P_568_1.placeToWidget(this.sinput, false);
-        this.__P_568_1.show();
+        this.__P_576_1.setPosition("bottom-left");
+        this.__P_576_1.placeToWidget(this.sinput, false);
+        this.__P_576_1.show();
       },
-      __P_568_7: function __P_568_7(e) {
-        if (this.__P_568_1) {
+      __P_576_7: function __P_576_7(e) {
+        if (this.__P_576_1) {
           if ((this.sinput.getValue() || "").trim().length == 0) {
-            this.__P_568_1.show();
+            this.__P_576_1.show();
           }
         } else {
-          this.__P_568_6();
+          this.__P_576_6();
         }
       }
     },
@@ -598,12 +598,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.apiindex = this._table = this.__P_568_2 = this._tableModel = this.__P_568_3 = this.__P_568_4 = this._selectionModel = null;
-      this._disposeObjects("sinput", "__P_568_1");
+      this.apiindex = this._table = this.__P_576_2 = this._tableModel = this.__P_576_3 = this.__P_576_4 = this._selectionModel = null;
+      this._disposeObjects("sinput", "__P_576_1");
       this._disposeArray("listdata");
     }
   });
   qxl.apiviewer.ui.SearchView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SearchView.js.map?dt=1692560749003
+//# sourceMappingURL=SearchView.js.map?dt=1700345618410

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The RST-Syntax &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/versions.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -55,23 +59,12 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#help-with-the-documentation">Help with the documentation</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">The RST-Syntax</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#heading">Heading</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#inline-markup">Inline Markup</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#listings">Listings</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#links-and-references">Links and References</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#directives">Directives</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#text-block">Text-Block</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#images">Images</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#inline-markup">Inline Markup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directives">Directives</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#own-directives">Own directives</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#the-widget-example-directive">The <em>widget-example</em> Directive</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#the-settings">The <em>&lt;settings&gt;</em></a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#the-widget-example-directive">The <em>widget-example</em> Directive</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#the-parameter-information-directive">The <em>parameter-information</em> Directive</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#the-elements-information-directive">The <em>elements-information</em> Directive</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#the-api-doc-directive">The <em>api-doc</em> Directive</a></li>
@@ -104,9 +97,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Help the CometVisu project</a> &raquo;</li>
-      <li>The RST-Syntax</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Help the CometVisu project</a></li>
+      <li class="breadcrumb-item active">The RST-Syntax</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -123,9 +116,9 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="the-rst-syntax">
-<h1>The RST-Syntax<a class="headerlink" href="#the-rst-syntax" title="Permalink to this headline">¶</a></h1>
+<h1>The RST-Syntax<a class="headerlink" href="#the-rst-syntax" title="Link to this heading"></a></h1>
 <section id="heading">
-<h2>Heading<a class="headerlink" href="#heading" title="Permalink to this headline">¶</a></h2>
+<h2>Heading<a class="headerlink" href="#heading" title="Link to this heading"></a></h2>
 <p>Headings are defined in RST by “underlining” the text with certain
 special characters. It should be noted here that the special characters
 are at least as long as the text itself. Although the RST syntax is
@@ -157,7 +150,7 @@ tutorials and may otherwise within the documentation do not occur, all
 others can be used with care.</p>
 </section>
 <section id="inline-markup">
-<h2>Inline Markup<a class="headerlink" href="#inline-markup" title="Permalink to this headline">¶</a></h2>
+<h2>Inline Markup<a class="headerlink" href="#inline-markup" title="Link to this heading"></a></h2>
 <p>If the text in the documentation is to be specially formatted (for
 example, bold, italic, etc.) or references / links are inserted, a
 special syntax is required within the text.</p>
@@ -170,13 +163,13 @@ two asterisks (<cite>**bold text**</cite>), are more options.</p>
 <li><p><strong>Code</strong>: <code class="docutils literal notranslate"><span class="pre">``Code</span> <span class="pre">inside</span> <span class="pre">Text``</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">inside</span> <span class="pre">Text</span></code></p></li>
 </ul>
 <section id="listings">
-<h3>Listings<a class="headerlink" href="#listings" title="Permalink to this headline">¶</a></h3>
+<h3>Listings<a class="headerlink" href="#listings" title="Link to this heading"></a></h3>
 <p>For non-numbered lists, each line is started with <code class="docutils literal notranslate"><span class="pre">*</span></code>, and in the case
 of numbered files with <code class="docutils literal notranslate"><span class="pre">#.</span></code>. With appropriate Indentation of the
 lines, even nested lists are possible.</p>
 </section>
 <section id="links-and-references">
-<h3>Links and References<a class="headerlink" href="#links-and-references" title="Permalink to this headline">¶</a></h3>
+<h3>Links and References<a class="headerlink" href="#links-and-references" title="Link to this heading"></a></h3>
 <p>The basic syntax of links contains a title and the link itself
 in the following structure: <code class="docutils literal notranslate"><span class="pre">`Title</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">link</span> <span class="pre">&lt;URL</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">link&gt;`</span></code>.
 Of course you can also refer to other documents within the documentation:
@@ -189,7 +182,7 @@ it is omitted, the page title of the linked document used as the title
 </section>
 </section>
 <section id="directives">
-<h2>Directives<a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h2>
+<h2>Directives<a class="headerlink" href="#directives" title="Link to this heading"></a></h2>
 <p>For things that go beyond plain text (such as images, cues, warnings, etc.),
 directives are used. In contrast to the already discussed <em>inline markup</em>,
 these may not appear in the same line as the “normal” text but need a blank
@@ -213,7 +206,7 @@ content are optional and different in quantity and in the presence of
 directive to directive. In the following the most important directives
 are presented.</p>
 <section id="text-block">
-<h3>Text-Block<a class="headerlink" href="#text-block" title="Permalink to this headline">¶</a></h3>
+<h3>Text-Block<a class="headerlink" href="#text-block" title="Link to this heading"></a></h3>
 <p>Simple directives that can be used to create a color-coded text block
 with a given title, to define notes, information, warnings, etc.
 These directives have no parameters and options just a content.</p>
@@ -233,7 +226,7 @@ hints, you can write the following.</p>
 </div>
 </section>
 <section id="images">
-<h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
+<h3>Images<a class="headerlink" href="#images" title="Link to this heading"></a></h3>
 <p>Images are included with the <em>figure</em> directive. There is also
 an <em>image</em> directive, but the <em>figure</em> directive allows complex captions.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> <span class="nt">&lt;path to image&gt;</span>
@@ -247,16 +240,12 @@ an <em>image</em> directive, but the <em>figure</em> directive allows complex ca
 </section>
 </section>
 <section id="own-directives">
-<h1>Own directives<a class="headerlink" href="#own-directives" title="Permalink to this headline">¶</a></h1>
+<h1>Own directives<a class="headerlink" href="#own-directives" title="Link to this heading"></a></h1>
 <p>In addition to the existing Sphinx/Docutils directives, there are also
 some special directives in the CometVisu that help to keep the
 documentation more up-to-date.</p>
 <p>The following directives are currently supported:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 81%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
 <th class="head"><p>Description</p></th>
@@ -281,7 +270,7 @@ documentation more up-to-date.</p>
 </tbody>
 </table>
 <section id="the-widget-example-directive">
-<h2>The <em>widget-example</em> Directive<a class="headerlink" href="#the-widget-example-directive" title="Permalink to this headline">¶</a></h2>
+<h2>The <em>widget-example</em> Directive<a class="headerlink" href="#the-widget-example-directive" title="Link to this heading"></a></h2>
 <p>The <em>widget-example</em> directive allows example code of a CometVisu config
 from which one or more screenshots will be automatically generated later
 and integrated into the documentation together with the example code.</p>
@@ -319,7 +308,7 @@ and integrated into the documentation together with the example code.</p>
 <figure class="align-default" id="id1">
 <img alt="Switch with mapping + styling" src="../../_images/switch_complete.png" />
 <figcaption>
-<p><span class="caption-text">Switch with mapping + styling</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Switch with mapping + styling</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -387,16 +376,10 @@ screenshot (Default: <em>left</em>)</p></li>
 </pre></div>
 </div>
 <section id="the-settings">
-<h3>The <em>&lt;settings&gt;</em><a class="headerlink" href="#the-settings" title="Permalink to this headline">¶</a></h3>
+<h3>The <em>&lt;settings&gt;</em><a class="headerlink" href="#the-settings" title="Link to this heading"></a></h3>
 <p>This area is defined by the <cite>&lt;settings&gt;</cite> element and this can be refined
 by attributes and subelements.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 57%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="3"><p>Attribute</p></th>
@@ -475,7 +458,7 @@ by attributes and subelements.</p>
 </section>
 </section>
 <section id="the-parameter-information-directive">
-<h2>The <em>parameter-information</em> Directive<a class="headerlink" href="#the-parameter-information-directive" title="Permalink to this headline">¶</a></h2>
+<h2>The <em>parameter-information</em> Directive<a class="headerlink" href="#the-parameter-information-directive" title="Link to this heading"></a></h2>
 <p>This directive automatically creates a table summary with the
 widget’s attributes. These data are read from the schema definition
 (visu_config.xsd). This directive has no options, no content, and only
@@ -485,12 +468,6 @@ one parameter that contains the widget name.</p>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -543,7 +520,7 @@ one parameter that contains the widget name.</p>
 </table>
 </section>
 <section id="the-elements-information-directive">
-<h2>The <em>elements-information</em> Directive<a class="headerlink" href="#the-elements-information-directive" title="Permalink to this headline">¶</a></h2>
+<h2>The <em>elements-information</em> Directive<a class="headerlink" href="#the-elements-information-directive" title="Link to this heading"></a></h2>
 <p>This directive automatically creates a table summary with the allowed
 sub-elements of a widget. These data are read from the schema definition
 (visu_config.xsd). This directive has no options, no content, and only
@@ -553,12 +530,6 @@ one parameter that contains the widget name.</p>
 </pre></div>
 </div>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -648,12 +619,6 @@ one parameter that contains the widget name.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -715,12 +680,6 @@ one parameter that contains the widget name.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -790,7 +749,7 @@ one parameter that contains the widget name.</p>
 </table>
 </section>
 <section id="the-api-doc-directive">
-<h2>The <em>api-doc</em> Directive<a class="headerlink" href="#the-api-doc-directive" title="Permalink to this headline">¶</a></h2>
+<h2>The <em>api-doc</em> Directive<a class="headerlink" href="#the-api-doc-directive" title="Link to this heading"></a></h2>
 <p>This directive reads important information from the source code
 documentation of a widget or plugin. Currently these are the values
 of the <code class="docutils literal notranslate"><span class="pre">&#64;author</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> specifications.</p>
@@ -812,13 +771,13 @@ For widgets of other structures or any other source code files the full name mus
 <p>generates the following content:</p>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Christian Mayer</div>
-<div class="line"><strong>Available since version</strong>: 0.8.0 (2012)</div>
+<div class="line"><strong>Available since</strong>: 0.8.0 (2012)</div>
 <div class="line"><br /></div>
 </div>
 </div>
 </section>
 <section id="the-replaces-directive">
-<h2>The <em>replaces</em> Directive<a class="headerlink" href="#the-replaces-directive" title="Permalink to this headline">¶</a></h2>
+<h2>The <em>replaces</em> Directive<a class="headerlink" href="#the-replaces-directive" title="Link to this heading"></a></h2>
 <p>This directive defines which pages of the old wiki are replaced by
 this manual page. Several wiki pages can be specified. This
 directive does not add any content to the documentation, but is
@@ -854,8 +813,12 @@ used to automatically create redirects.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -866,22 +829,18 @@ used to automatically create redirects.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

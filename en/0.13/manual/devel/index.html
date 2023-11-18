@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Information for developers &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -78,8 +82,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Information for developers</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Information for developers</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -96,10 +100,10 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="information-for-developers">
-<h1>Information for developers<a class="headerlink" href="#information-for-developers" title="Permalink to this headline">¶</a></h1>
+<h1>Information for developers<a class="headerlink" href="#information-for-developers" title="Link to this heading"></a></h1>
 <p>This page provides an introduction to the internal context and background of CometVisu and is aimed primarily at developers.</p>
 <section id="basics-of-the-software">
-<h2>Basics of the software<a class="headerlink" href="#basics-of-the-software" title="Permalink to this headline">¶</a></h2>
+<h2>Basics of the software<a class="headerlink" href="#basics-of-the-software" title="Link to this heading"></a></h2>
 <p>CometVisu has been built on the <a class="reference external" href="http://www.qooxdoo.org">Qooxdoo framework</a>
 since version 0.11. The Qooxdoo Framework offers its own object-oriented class
 system (including advanced features such as: interface mixins, class separator,
@@ -126,12 +130,12 @@ design. However, it would be possible to implement a new Qooxdoo-UI
 based widget package, which can be used in parallel.</p>
 </section>
 <section id="start-behavior">
-<h2>Start Behavior<a class="headerlink" href="#start-behavior" title="Permalink to this headline">¶</a></h2>
+<h2>Start Behavior<a class="headerlink" href="#start-behavior" title="Link to this heading"></a></h2>
 <p>The process of loading the Visu runs according to the CometVisu
 protocol in the following steps:</p>
 <figure class="align-center" id="id1">
 <figcaption>
-<p><span class="caption-text">Start communication between CometVisu and backend</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Start communication between CometVisu and backend</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <ol class="arabic">
@@ -176,7 +180,7 @@ changes of the values are listened to.</p></li>
 </ol>
 </section>
 <section id="transport-layers">
-<h2>Transport layers<a class="headerlink" href="#transport-layers" title="Permalink to this headline">¶</a></h2>
+<h2>Transport layers<a class="headerlink" href="#transport-layers" title="Link to this heading"></a></h2>
 <p>The transport layers are responsible for communication between CometVisu
 and the backend from the moment of the successful login. The main task
 is to retrieve values from the backend (read request) and send value
@@ -202,7 +206,7 @@ changes to the backend (write request).</p>
 </div>
 </section>
 <section id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<h2>Caching<a class="headerlink" href="#caching" title="Link to this heading"></a></h2>
 <p>The CometVisu uses its own caching mechanisms to accelerate the
 initial loading. Most of the time is needed to load the XML
 configuration file from the server, then parse it and generate
@@ -220,7 +224,7 @@ is performed again and the data from the cache is discarded.</p>
 <p>Caching can be influenced by the URL parameter <a class="reference internal" href="../config/url-params.html#enablecache"><span class="std std-ref">enableCache - Activate Caching</span></a>.</p>
 </section>
 <section id="the-notification-router">
-<h2>The Notification Router<a class="headerlink" href="#the-notification-router" title="Permalink to this headline">¶</a></h2>
+<h2>The Notification Router<a class="headerlink" href="#the-notification-router" title="Link to this heading"></a></h2>
 <p>There is an internal <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> which is used for
 different purposes. The main function of this router is to receive
 messages and forward them to the right recipient. Possible
@@ -257,7 +261,7 @@ assignment, a title, text and various configuration options.</p>
 </div>
 </section>
 <section id="error-handling">
-<h2>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h2>
+<h2>Error handling<a class="headerlink" href="#error-handling" title="Link to this heading"></a></h2>
 <p>The NotificationRouter is also used to display all uncaught errors during the
 runtime of the Visu. These errors appear as a pop-up and allow the user to
 directly open an issue on Github with a pre-filled form containing the most
@@ -271,13 +275,13 @@ persists and disappear automatically once the problem is resolved.</p>
 <figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/noticenter_hidden.png"><img alt="../_images/noticenter_hidden.png" src="../_images/noticenter_hidden.png" style="width: 795.9px; height: 556.5px;" /></a>
 <figcaption>
-<p><span class="caption-text">Closed messaging center with a critical error message</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Closed messaging center with a critical error message</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/NotificationCenter.png"><img alt="../_images/NotificationCenter.png" src="../_images/NotificationCenter.png" style="width: 798.6999999999999px; height: 557.9px;" /></a>
 <figcaption>
-<p><span class="caption-text">Open news center with a critical error message</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Open news center with a critical error message</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>The <code class="docutils literal notranslate"><span class="pre">NotificationRouter</span></code> is also used for the
@@ -306,8 +310,12 @@ persists and disappear automatically once the problem is resolved.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -318,22 +326,18 @@ persists and disappear automatically once the problem is resolved.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

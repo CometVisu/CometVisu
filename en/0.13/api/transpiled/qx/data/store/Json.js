@@ -133,7 +133,7 @@
     members: {
       _marshaler: null,
       _delegate: null,
-      __P_181_0: null,
+      __P_189_0: null,
       // apply function
       _applyUrl: function _applyUrl(value, old) {
         if (value != null) {
@@ -149,7 +149,7 @@
        * @return {Object} The request.
        */
       _getRequest: function _getRequest() {
-        return this.__P_181_0;
+        return this.__P_189_0;
       },
       /**
        * Set request.
@@ -157,7 +157,7 @@
        * @param request {Object} The request.
        */
       _setRequest: function _setRequest(request) {
-        this.__P_181_0 = request;
+        this.__P_189_0 = request;
       },
       /**
        * Creates and sends a GET request with the given url.
@@ -169,9 +169,9 @@
        */
       _createRequest: function _createRequest(url) {
         // dispose old request
-        if (this.__P_181_0) {
-          this.__P_181_0.dispose();
-          this.__P_181_0 = null;
+        if (this.__P_189_0) {
+          this.__P_189_0.dispose();
+          this.__P_189_0 = null;
         }
         var req = new qx.io.request.Xhr(url);
         this._setRequest(req);
@@ -280,9 +280,9 @@
         this.fireDataEvent("loaded", this.getModel());
 
         // get rid of the request object
-        if (this.__P_181_0) {
-          this.__P_181_0.dispose();
-          this.__P_181_0 = null;
+        if (this.__P_189_0) {
+          this.__P_189_0.dispose();
+          this.__P_189_0 = null;
         }
       },
       /**
@@ -301,8 +301,8 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      if (this.__P_181_0 != null) {
-        this._disposeObjects("__P_181_0");
+      if (this.__P_189_0 != null) {
+        this._disposeObjects("__P_189_0");
       }
 
       // The marshaler internally uses the singleton pattern
@@ -314,4 +314,4 @@
   qx.data.store.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1692560704027
+//# sourceMappingURL=Json.js.map?dt=1700345591718

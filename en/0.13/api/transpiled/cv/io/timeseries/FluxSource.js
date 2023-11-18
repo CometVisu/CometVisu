@@ -11,6 +11,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       "cv.io.timeseries.AbstractTimeSeriesSource": {
         "require": true
       },
+      "cv.ConfigCache": {},
       "qx.log.Logger": {}
     }
   };
@@ -54,7 +55,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _init: function _init() {
         var config = this.getConfig();
         if (config) {
-          var parts = config.path.substring(1).split('/');
           var bucket = config.name;
           var options = {
             method: 'POST',
@@ -65,6 +65,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           };
           // for inline bucket the query template is defined in the config and is provided externally
           if (bucket !== 'inline') {
+            var parts = config.path.substring(1).split('/');
             var measurement = parts.shift();
             var field = parts.shift() || 'value';
             var queryParts = ["from(bucket:\"".concat(bucket, "\")"), '|> range($$RANGE$$)', "|> filter(fn: (r) => r._measurement == \"".concat(measurement, "\" and r._field == \"").concat(field, "\")")];
@@ -147,6 +148,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           // get aggregation from series
           config.options.requestData += "\n  |> aggregateWindow(every: ".concat(this._getAgWindowEveryForSeries(series), ", fn: mean)");
         }
+        config.url += "&h=".concat(cv.ConfigCache.hashCode(config.options.requestData));
         return config;
       },
       /**
@@ -191,4 +193,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.io.timeseries.FluxSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FluxSource.js.map?dt=1692560746862
+//# sourceMappingURL=FluxSource.js.map?dt=1700345617203

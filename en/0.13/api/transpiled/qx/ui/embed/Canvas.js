@@ -98,7 +98,7 @@
      */
     construct: function construct(canvasWidth, canvasHeight) {
       qx.ui.core.Widget.constructor.call(this);
-      this.__P_339_0 = new qx.util.DeferredCall(this.__P_339_1, this);
+      this.__P_347_0 = new qx.util.DeferredCall(this.__P_347_1, this);
       this.addListener("resize", this._onResize, this);
       if (canvasWidth !== undefined) {
         this.setCanvasWidth(canvasWidth);
@@ -155,7 +155,7 @@
 
     members: {
       /** @type {qx.util.DeferredCall} */
-      __P_339_0: null,
+      __P_347_0: null,
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -168,7 +168,7 @@
       /**
        * This methods triggers the redraw of the canvas' content
        */
-      __P_339_1: function __P_339_1() {
+      __P_347_1: function __P_347_1() {
         var canvas = this.getContentElement();
         var height = canvas.getHeight();
         var width = canvas.getWidth();
@@ -183,18 +183,18 @@
       // property apply
       _applyCanvasWidth: function _applyCanvasWidth(value, old) {
         this.getContentElement().setWidth(value);
-        this.__P_339_0.schedule();
+        this.__P_347_0.schedule();
       },
       // property apply
       _applyCanvasHeight: function _applyCanvasHeight(value, old) {
         this.getContentElement().setHeight(value);
-        this.__P_339_0.schedule();
+        this.__P_347_0.schedule();
       },
       /**
        * Redraw the canvas
        */
       update: function update() {
-        this.__P_339_0.schedule();
+        this.__P_347_0.schedule();
       },
       /**
        * Widget resize event handler. Updates the canvas dimension if needed.
@@ -235,10 +235,10 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      this._disposeObjects("__P_339_0");
+      this._disposeObjects("__P_347_0");
     }
   });
   qx.ui.embed.Canvas.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Canvas.js.map?dt=1692560724429
+//# sourceMappingURL=Canvas.js.map?dt=1700345603839

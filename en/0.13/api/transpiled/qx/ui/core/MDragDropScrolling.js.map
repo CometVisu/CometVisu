@@ -80,7 +80,7 @@
     "height",
     "stop",
     "scrollBy",
-    "__P_312_0",
+    "__P_320_0",
     "e",
     "target",
     "getOriginalTarget",
@@ -96,7 +96,7 @@
     "bind",
     "start",
     "stopPropagation",
-    "__P_312_1",
+    "__P_320_1",
     "destruct",
     "MDragDropScrolling"
   ],

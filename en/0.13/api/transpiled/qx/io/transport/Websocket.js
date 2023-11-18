@@ -44,7 +44,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       /**
        * @type {WebSocket}
        */
-      __P_265_0: null,
+      __P_273_0: null,
       /**
        * Returns the object which implements the transport on the
        * underlying level, so that transport-specific configuration
@@ -53,10 +53,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @return {WebSocket}
        */
       getTransportImpl: function getTransportImpl() {
-        if (!this.__P_265_0) {
-          this.__P_265_0 = this._createTransportImpl();
+        if (!this.__P_273_0) {
+          this.__P_273_0 = this._createTransportImpl();
         }
-        return this.__P_265_0;
+        return this.__P_273_0;
       },
       /**
        * Transport the given message to the endpoint
@@ -125,8 +125,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     destruct: function destruct() {
-      this.__P_265_0.close();
-      this.__P_265_0 = null;
+      this.__P_273_0.close();
+      this.__P_273_0 = null;
     },
     defer: function defer() {
       qx.io.graphql.Client.registerTransport(/^ws/, qx.io.transport.Websocket);
@@ -135,4 +135,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   qx.io.transport.Websocket.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Websocket.js.map?dt=1692560715140
+//# sourceMappingURL=Websocket.js.map?dt=1700345598473

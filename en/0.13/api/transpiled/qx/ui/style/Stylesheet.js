@@ -41,12 +41,12 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_433_0 = qx.bom.Stylesheet.createElement();
-      this.__P_433_1 = [];
+      this.__P_441_0 = qx.bom.Stylesheet.createElement();
+      this.__P_441_1 = [];
     },
     members: {
-      __P_433_1: null,
-      __P_433_0: null,
+      __P_441_1: null,
+      __P_441_0: null,
       /**
        * Adds a rule to the global stylesheet.
        * @param selector {String} The CSS selector to add the rule for.
@@ -56,8 +56,8 @@
         if (this.hasRule(selector)) {
           return;
         }
-        qx.bom.Stylesheet.addRule(this.__P_433_0, selector, css);
-        this.__P_433_1.push(selector);
+        qx.bom.Stylesheet.addRule(this.__P_441_0, selector, css);
+        this.__P_441_1.push(selector);
       },
       /**
        * Check if a rule exists.
@@ -65,19 +65,19 @@
        * @return {Boolean} <code>true</code> if the rule exists
        */
       hasRule: function hasRule(selector) {
-        return this.__P_433_1.indexOf(selector) != -1;
+        return this.__P_441_1.indexOf(selector) != -1;
       },
       /**
        * Remove the rule for the given selector.
        * @param selector {String} The selector to identify the rule.
        */
       removeRule: function removeRule(selector) {
-        delete this.__P_433_1[this.__P_433_1.indexOf(selector)];
-        qx.bom.Stylesheet.removeRule(this.__P_433_0, selector);
+        delete this.__P_441_1[this.__P_441_1.indexOf(selector)];
+        qx.bom.Stylesheet.removeRule(this.__P_441_0, selector);
       }
     }
   });
   qx.ui.style.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1692560733735
+//# sourceMappingURL=Stylesheet.js.map?dt=1700345609207

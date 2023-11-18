@@ -14,9 +14,9 @@
         "index": 937
       },
       "end": {
-        "line": 213,
+        "line": 220,
         "column": 3,
-        "index": 7938
+        "index": 8070
       }
     },
     "jsdoc": {
@@ -74,17 +74,49 @@
       "type": "variable",
       "access": "private"
     },
+    "_stateUpdateTarget": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1252
+        },
+        "end": {
+          "line": 37,
+          "column": 28,
+          "index": 1276
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "getAddress": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1283
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1350
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
     "_init": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 44,
           "column": 4,
-          "index": 1253
+          "index": 1358
         },
         "end": {
-          "line": 124,
+          "line": 131,
           "column": 5,
-          "index": 4898
+          "index": 5035
         }
       },
       "type": "function",
@@ -97,14 +129,14 @@
     "fireStateUpdate": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 138,
           "column": 4,
-          "index": 5115
+          "index": 5252
         },
         "end": {
-          "line": 180,
+          "line": 187,
           "column": 5,
-          "index": 7325
+          "index": 7457
         }
       },
       "jsdoc": {
@@ -137,14 +169,14 @@
     "isRead": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 193,
           "column": 4,
-          "index": 7411
+          "index": 7543
         },
         "end": {
-          "line": 188,
+          "line": 195,
           "column": 5,
-          "index": 7488
+          "index": 7620
         }
       },
       "jsdoc": {
@@ -169,14 +201,14 @@
     "isWrite": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 201,
           "column": 4,
-          "index": 7575
+          "index": 7707
         },
         "end": {
-          "line": 196,
+          "line": 203,
           "column": 5,
-          "index": 7652
+          "index": 7784
         }
       },
       "jsdoc": {
@@ -201,14 +233,14 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 198,
+          "line": 205,
           "column": 4,
-          "index": 7659
+          "index": 7791
         },
         "end": {
-          "line": 200,
+          "line": 207,
           "column": 5,
-          "index": 7715
+          "index": 7847
         }
       },
       "type": "function",
@@ -450,16 +482,18 @@
   "defer": {
     "location": {
       "start": {
-        "line": 203,
+        "line": 210,
         "column": 2,
-        "index": 7724
+        "index": 7856
       },
       "end": {
-        "line": 212,
+        "line": 219,
         "column": 3,
-        "index": 7934
+        "index": 8066
       }
     }
   },
-  "descendants": []
+  "descendants": [
+    "cv.ui.structure.tile.elements.AddressGroup"
+  ]
 }

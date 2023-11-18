@@ -19,6 +19,50 @@
             <entry value="0">inactive</entry>
             <entry range-min="1">active</entry>
         </cv-styling>
+        <cv-mapping name="tile-kilo-watts">
+            <formula><![CDATA[
+                let unit = 'W';
+                let value = Math.round(x);
+                const abs = Math.abs(x);
+                if (abs >= 1000000) {
+                   value = Math.round(x / 100000.0) / 10.0;
+                   unit = 'MW';
+                } else if (abs >= 1000) {
+                   value = Math.round(x / 100.0) / 10.0;
+                   unit = 'kW';
+                }
+                y = value + ' ' + unit;
+            ]]></formula>
+        </cv-mapping>
+        <cv-mapping name="tile-kilo-watt-hours">
+            <formula><![CDATA[
+                let unit = 'Wh';
+                let value = x;
+                const abs = Math.abs(x);
+                if (abs >= 1000000) {
+                   value = Math.round(x / 100000.0) / 10.0;
+                   unit = 'MWh';
+                } else if (abs >= 1000) {
+                   value = Math.round(x / 100.0) / 10.0;
+                   unit = 'kWh';
+                }
+                y = value + ' ' + unit;
+            ]]></formula>
+        </cv-mapping>
+        <cv-styling name="tile-grid-power">
+            <entry range-min="-100000" range-max="-10">grid-inject</entry>
+            <entry range-min="-10" range-max="10">disabled</entry>
+            <entry range-min="10" range-max="100000">grid-consume</entry>
+        </cv-styling>
+        <cv-styling name="tile-pv-power">
+            <entry range-min="-9" range-max="0.5">disabled</entry>
+            <entry range-min="0.5" range-max="100000">pv-inject</entry>
+        </cv-styling>
+        <cv-styling name="tile-battery-power">
+            <entry range-min="-100000" range-max="-2">battery-inject</entry>
+            <entry range-min="-2" range-max="2">disabled</entry>
+            <entry range-min="2" range-max="100000">battery-consume</entry>
+        </cv-styling>
     </cv-meta>
     <template id="switch">
         <header>
@@ -286,7 +330,7 @@
             </cv-row>
             <cv-chart background="true" show-grid="false" show-y-axis="false"
                       show-x-axis="false" slot-y-format="" slot-series="month" slot-refresh="300" colspan="3"
-                      rowspan="3" slot-x-format="%d. %b" slot-zero-based="true">
+                      rowspan="3" slot-x-format="%d. %b" slot-min="0">
                 <slot name="dataset">NEEDS DATASET</slot>
                 <slot name="liveUpdateAddress">NEEDS ADDRESS</slot>
             </cv-chart>
@@ -297,7 +341,7 @@
                     </label>
                 </header>
                 <cv-chart slot-y-format="%.2f m³" slot-series="month" slot-refresh="300"
-                          slot-x-format="%d. %b" slot-selection="all" slot-zero-based="true">
+                          slot-x-format="%d. %b" slot-selection="all" slot-min="0">
                     <slot name="dataset">NEEDS DATASET</slot>
                 </cv-chart>
             </cv-popup>
@@ -324,5 +368,55 @@
                 <label class="value secondary" style="font-size: 14px"/>
             </cv-value>
         </footer>
+    </template>
+    <template id="energy" size="1x1">
+        <header>
+            <label class="title">
+                <slot name="title">TITLE</slot>
+            </label>
+            <slot name="header"/>
+        </header>
+        <cv-tile>
+            <cv-menu>
+                <slot name="menu" parent-scope="1"/>
+            </cv-menu>
+            <cv-flow slot-title="" slot-allow-fullscreen="false" slot-rows="3" slot-columns="6" slot-pan="true" slot-view-box="0 0 3 3" slot-fullscreen-view-box="" slot-mobile-view-box="" slot-pagination="horizontal" slot-center-x="true">
+                <slot name="default"/>
+                <cv-power-entity type="pv" id="inverter-pv" connect-to="house" row="0" column="1">
+                    <cv-address-group operator="+">
+                        <slot name="pv-power" parent-scope="2"/>
+                    </cv-address-group>
+                </cv-power-entity>
+                <cv-power-entity type="battery" id="battery" connect-to="house" row="1" column="0">
+                    <cv-address-group operator="+">
+                        <slot name="battery-power" parent-scope="2"/>
+                    </cv-address-group>
+                    <slot name="battery-other"/>
+                </cv-power-entity>
+                <cv-power-entity type="house" id="house" slot-house-row=":target=row,value=1" slot-house-column=":target=column,value=1">
+                    <slot name="house-power" parent-scope="-1"/>
+                </cv-power-entity>
+                <cv-power-entity type="grid" id="grid" connect-to="house" row="1" column="2">
+                    <cv-address-group operator="+">
+                        <slot name="grid-power" parent-scope="2"/>
+                    </cv-address-group>
+                </cv-power-entity>
+                <cv-power-entity type="charger" id="charger" connect-from="house" row="2" column="0">
+                    <cv-address-group operator="+">
+                        <slot name="charger-power" parent-scope="2"/>
+                    </cv-address-group>
+                </cv-power-entity>
+                <cv-power-entity type="heatpump" id="heatpump" connect-from="house" row="2" column="1">
+                    <slot name="heatpump-power" parent-scope="1"/>
+                </cv-power-entity>
+                <cv-power-entity type="consumer" id="consumer" connect-from="house" row="2" column="2">
+                    <cv-address-group operator="+">
+                        <slot name="consumer-power" parent-scope="2"/>
+                    </cv-address-group>
+                </cv-power-entity>
+            </cv-flow>
+            <slot name="tileAddress">NEEDS ADDRESS</slot>
+        </cv-tile>
+        <footer><slot name="footer"/></footer>
     </template>
 </templates>

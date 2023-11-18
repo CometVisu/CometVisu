@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Customize CometVisu &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -69,11 +73,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#include-your-own-icons">Include your own icons</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#change-individual-widgets-through-css-classes">Change individual widgets through CSS classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#write-your-own-design">Write your own design</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#write-your-own-widgets-via-plugins">Write your own widgets via plugins</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#structure-a-widget">Structure a Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#example-plugin">example plugin</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#write-your-own-widgets-via-plugins">Write your own widgets via plugins</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#write-your-own-structure">Write your own structure</a></li>
 </ul>
 </li>
@@ -99,9 +99,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>Customize CometVisu</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Customize CometVisu</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -118,17 +118,11 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="customize-cometvisu">
-<span id="customizing"></span><h1>Customize CometVisu<a class="headerlink" href="#customize-cometvisu" title="Permalink to this headline">¶</a></h1>
+<span id="customizing"></span><h1>Customize CometVisu<a class="headerlink" href="#customize-cometvisu" title="Link to this heading"></a></h1>
 <p>The CometVisu can be customized in many different ways to your own
 needs. In the following, the different possibilities - sorted by
 degree of complexity - are described in detail.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 2%" />
-<col style="width: 15%" />
-<col style="width: 7%" />
-<col style="width: 76%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p>Adjustment</p></th>
@@ -188,14 +182,14 @@ degree of complexity - are described in detail.</p>
 </tbody>
 </table>
 <section id="change-existing-design">
-<span id="custom-cssrules"></span><h2>Change existing design<a class="headerlink" href="#change-existing-design" title="Permalink to this headline">¶</a></h2>
+<span id="custom-cssrules"></span><h2>Change existing design<a class="headerlink" href="#change-existing-design" title="Link to this heading"></a></h2>
 <p>The existing designs can be adapted by own CSS rules. In the metafile of the
 configuration file, paths to CSS files can be specified, which are loaded
 in addition to the CSS files of the CometVisu design.</p>
 <p>The CSS-files can be uploaded with the <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a>,
 if it is not possible to access the servers filesystem directly.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">Extracting a configuration file that loads 2 additional CSS files:</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Extracting a configuration file that loads 2 additional CSS files:</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;meta&gt;</span>
 <span class="w">        </span><span class="nt">&lt;files&gt;</span>
@@ -220,14 +214,14 @@ compatibility and will be removed in future versions.</p>
 </div>
 </section>
 <section id="include-your-own-icons">
-<h2>Include your own icons<a class="headerlink" href="#include-your-own-icons" title="Permalink to this headline">¶</a></h2>
+<h2>Include your own icons<a class="headerlink" href="#include-your-own-icons" title="Link to this heading"></a></h2>
 <p>This option defines the name of the icon, which is located under the
 directory specified in <code class="docutils literal notranslate"><span class="pre">uri</span></code>. The icons defined in this way can then
 be accessed via the name that is easier to remember. The directory
 specification is in the example relative to the CV installation.</p>
 <p>Here, the icons were previously stored in a separate subdirectory.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Add an additional icon</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Add an additional icon</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
 <span class="w">    </span><span class="nt">&lt;meta&gt;</span>
 <span class="w">        </span>...
@@ -246,7 +240,7 @@ specification is in the example relative to the CV installation.</p>
 </div>
 </section>
 <section id="change-individual-widgets-through-css-classes">
-<span id="custom-css"></span><h2>Change individual widgets through CSS classes<a class="headerlink" href="#change-individual-widgets-through-css-classes" title="Permalink to this headline">¶</a></h2>
+<span id="custom-css"></span><h2>Change individual widgets through CSS classes<a class="headerlink" href="#change-individual-widgets-through-css-classes" title="Link to this heading"></a></h2>
 <p>With many widgets it is possible to specify a <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute in the
 configuration file, which can then be used for own CSS rules. This gives
 you the opportunity to visually change individual widgets.</p>
@@ -257,7 +251,7 @@ file is given a <code class="docutils literal notranslate"><span class="pre">cus
 the HTML code <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">class=&quot;switch</span> <span class="pre">custom_fancy&quot;...</span></code></p>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">An individualized switch widget</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">An individualized switch widget</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;meta&gt;</span>
 <span class="w">        </span><span class="nt">&lt;files&gt;</span>
@@ -273,7 +267,7 @@ the HTML code <code class="docutils literal notranslate"><span class="pre">&lt;d
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">CSS rules for the switch widget in the file <cite>resource/config/media/my-custom-style.css</cite></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">CSS rules for the switch widget in the file <cite>resource/config/media/my-custom-style.css</cite></span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">switch</span><span class="p">.</span><span class="nc">custom_fancy</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">pink</span><span class="p">;</span>
 <span class="p">}</span>
@@ -282,7 +276,7 @@ the HTML code <code class="docutils literal notranslate"><span class="pre">&lt;d
 </div>
 </section>
 <section id="write-your-own-design">
-<h2>Write your own design<a class="headerlink" href="#write-your-own-design" title="Permalink to this headline">¶</a></h2>
+<h2>Write your own design<a class="headerlink" href="#write-your-own-design" title="Link to this heading"></a></h2>
 <p>In addition to the already described possibilities for optical
 adjustments, there is a further possibility to write a completely new design.</p>
 <p>A CometVisu design consists of at least the following files:</p>
@@ -303,7 +297,7 @@ ready. This can be obtained by cloning the git repository, executing
 </div>
 </section>
 <section id="write-your-own-widgets-via-plugins">
-<span id="custom-plugins"></span><h2>Write your own widgets via plugins<a class="headerlink" href="#write-your-own-widgets-via-plugins" title="Permalink to this headline">¶</a></h2>
+<span id="custom-plugins"></span><h2>Write your own widgets via plugins<a class="headerlink" href="#write-your-own-widgets-via-plugins" title="Link to this heading"></a></h2>
 <p>New widgets can be added via plugins. This is a good entry point into the
 CometVisu development as you get to know the possibilities of the system.
 As documentation of the possibilities of your own widget the source code
@@ -358,7 +352,7 @@ for compatibility with future CometVisu versions.</p></li>
 </li>
 </ol>
 <section id="structure-a-widget">
-<h3>Structure a Widget<a class="headerlink" href="#structure-a-widget" title="Permalink to this headline">¶</a></h3>
+<h3>Structure a Widget<a class="headerlink" href="#structure-a-widget" title="Link to this heading"></a></h3>
 <p>To add a new widget, three things are needed:</p>
 <ol class="arabic simple">
 <li><p>A <em>parser</em> that can read the widget definition from
@@ -386,7 +380,7 @@ not to reprogram all parsers in such a case, this separation has been made.</p>
 </div>
 </section>
 <section id="example-plugin">
-<h3>example plugin<a class="headerlink" href="#example-plugin" title="Permalink to this headline">¶</a></h3>
+<h3>example plugin<a class="headerlink" href="#example-plugin" title="Link to this heading"></a></h3>
 <p>A simple example, for a new widget that can be plugged in,
 can be found in the <code class="docutils literal notranslate"><span class="pre">resource/config/structure_custom.js</span></code>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
@@ -456,7 +450,7 @@ can not be used due to an error.</p>
 </section>
 </section>
 <section id="write-your-own-structure">
-<h2>Write your own structure<a class="headerlink" href="#write-your-own-structure" title="Permalink to this headline">¶</a></h2>
+<h2>Write your own structure<a class="headerlink" href="#write-your-own-structure" title="Link to this heading"></a></h2>
 <p>If the HTML code generated by the CometVisu is to be changed, you
 have to write a new structure. So far, only the <code class="docutils literal notranslate"><span class="pre">pure</span></code> structure
 exists in the CometVisu under the path <code class="docutils literal notranslate"><span class="pre">cv.ui.structure.pure</span></code>.
@@ -496,8 +490,12 @@ exchange the structures easily.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -508,22 +506,18 @@ exchange the structures easily.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

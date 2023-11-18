@@ -64,9 +64,9 @@
     implement: [qx.ui.core.IMultiSelection, qx.ui.form.IModelSelection, qx.ui.form.IField],
     construct: function construct() {
       qx.ui.form.AbstractSelectBox.constructor.call(this);
-      this.__P_344_0 = new qx.data.Array();
-      this.__P_344_0.addListener("change", this.__P_344_1, this);
-      this.__P_344_2 = [];
+      this.__P_352_0 = new qx.data.Array();
+      this.__P_352_0.addListener("change", this.__P_352_1, this);
+      this.__P_352_2 = [];
       this._add(this._createChildControl("tags"), {
         flex: 1,
         flexShrink: true
@@ -109,9 +109,9 @@
     },
     members: {
       /** @type {qx.data.Array} the modelSelection psuedo property */
-      __P_344_0: null,
+      __P_352_0: null,
       /** @type {qx.ui.basic.Atom[]} atoms used to show the selection */
-      __P_344_2: null,
+      __P_352_2: null,
       /**
        * @Override
        * @lint ignoreReferenceField(_forwardStates)
@@ -285,19 +285,19 @@
        * @see qx.ui.form.IModelSelection
        */
       setModelSelection: function setModelSelection(value) {
-        this.__P_344_1.replace(value ? value : []);
+        this.__P_352_1.replace(value ? value : []);
       },
       /**
        * @Override
        * @see qx.ui.form.IModelSelection
        */
       getModelSelection: function getModelSelection() {
-        return this.__P_344_0;
+        return this.__P_352_0;
       },
       /**
        * Event handler for changes to the modelSelection array
        */
-      __P_344_1: function __P_344_1(evt) {
+      __P_352_1: function __P_352_1(evt) {
         var checked = [];
         var selected = {};
         this.getModelSelection().forEach(function (itemModel) {
@@ -336,7 +336,7 @@
           return item.getModel();
         });
         if (!qx.lang.Array.equals(modelSelection, this.getModelSelection().toArray())) {
-          this.__P_344_0.replace(modelSelection);
+          this.__P_352_0.replace(modelSelection);
           this.fireDataEvent("changeValue", this.getValue());
           var children = {};
           this.getChildren().forEach(function (item) {
@@ -367,16 +367,16 @@
               itemModel: itemModel
             });
           };
-          while (this.__P_344_2.length > modelSelection.length) {
-            var tag = this.__P_344_2.pop();
+          while (this.__P_352_2.length > modelSelection.length) {
+            var tag = this.__P_352_2.pop();
             detachTag(tag);
           }
           modelSelection.forEach(function (itemModel, index) {
             var tag = _this.getChildControl("tag#" + index);
-            if (_this.__P_344_2.length <= index) {
-              _this.__P_344_2.push(tag);
+            if (_this.__P_352_2.length <= index) {
+              _this.__P_352_2.push(tag);
             } else {
-              _this.__P_344_2[index] = tag;
+              _this.__P_352_2[index] = tag;
             }
             attachTag(tag, itemModel);
           });
@@ -446,4 +446,4 @@
   qx.ui.form.CheckedSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckedSelectBox.js.map?dt=1692560724996
+//# sourceMappingURL=CheckedSelectBox.js.map?dt=1700345604169

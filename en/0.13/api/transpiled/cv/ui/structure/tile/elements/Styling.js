@@ -67,6 +67,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         } else {
           cv.Application.structureController.removeStyling(this._element.getAttribute('name'));
         }
+      },
+      mapValue: function mapValue(val, store, params) {
+        return cv.ui.structure.tile.elements.Styling.superclass.prototype.mapValue.call(this, val, store, params, true);
       }
     },
     defer: function defer(Clazz) {
@@ -86,4 +89,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.elements.Styling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Styling.js.map?dt=1692560694284
+//# sourceMappingURL=Styling.js.map?dt=1700345585598

@@ -100,8 +100,8 @@
       this.addListener("dbltap", this._stopPropagation, this);
       this.addListener("swipe", this._stopPropagation, this);
       this.addListener("longtap", this._stopPropagation, this);
-      this.addListener("appear", this.__P_234_0, this);
-      this.addListener("disappear", this.__P_234_0, this);
+      this.addListener("appear", this.__P_242_0, this);
+      this.addListener("disappear", this.__P_242_0, this);
     },
     members: {
       /**
@@ -116,7 +116,7 @@
        * Refreshes the cursor by setting it to <code>null</code> and then to the
        * old value.
        */
-      __P_234_0: function __P_234_0() {
+      __P_242_0: function __P_242_0() {
         var currentCursor = this.getStyle("cursor");
         this.setStyle("cursor", null, true);
         this.setStyle("cursor", currentCursor, true);
@@ -126,4 +126,4 @@
   qx.html.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1692560712178
+//# sourceMappingURL=Blocker.js.map?dt=1700345596617

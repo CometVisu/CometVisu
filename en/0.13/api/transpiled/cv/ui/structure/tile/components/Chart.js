@@ -10,10 +10,6 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
@@ -44,16 +40,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.ui.structure.tile.MResize": {
         "require": true
       },
+      "cv.ui.structure.tile.MFullscreen": {
+        "require": true
+      },
       "cv.util.ScriptLoader": {},
       "qx.util.ResourceManager": {},
       "qx.event.Timer": {},
       "qx.locale.Manager": {},
       "qx.locale.Number": {},
       "qx.locale.Date": {},
-      "cv.data.Model": {},
       "cv.util.String": {},
       "cv.io.BackendConnections": {},
       "cv.io.timeseries.FluxSource": {},
+      "cv.ConfigCache": {},
       "cv.io.timeseries.OpenhabPersistenceSource": {},
       "cv.io.timeseries.RRDSource": {},
       "cv.io.timeseries.DemoSource": {},
@@ -93,7 +92,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
   qx.Class.define('cv.ui.structure.tile.components.Chart', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
-    include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh, cv.ui.structure.tile.MResize],
+    include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh, cv.ui.structure.tile.MResize, cv.ui.structure.tile.MFullscreen],
     /*
     ***********************************************
       STATICS
@@ -182,7 +181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       currentPeriod: {
         check: 'Number',
         init: 0,
-        apply: "__P_75_0"
+        apply: "__P_77_0"
       },
       startTime: {
         check: 'Number',
@@ -210,12 +209,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _dataSetConfigs: null,
       _initializing: null,
       _navigationEnabled: null,
-      __P_75_1: null,
-      __P_75_2: false,
-      __P_75_3: null,
-      __P_75_4: null,
-      __P_75_5: null,
-      __P_75_6: null,
+      __P_77_1: null,
+      __P_77_2: false,
+      __P_77_3: null,
+      __P_77_4: null,
+      __P_77_5: null,
+      __P_77_6: null,
       /**
       * @type {d3.Selection}
       */
@@ -232,25 +231,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @type {String}
        */
       _titleString: null,
-      __P_75_7: null,
-      __P_75_8: null,
+      __P_77_7: null,
+      __P_77_8: null,
       // all chart properties
       _chartConf: null,
       _init: function _init() {
         var _this = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-          var element, chartId, inBackground, title, span, seriesSelection, s, currentSeries, button, _span, i, popup, option, _iterator, _step, _s, _button, popupAddress, tileAddress, parent, tileWidget, svg, noToolTips, format, timeFormat, formatString, datasetSources, readAddresses;
+          var element, inBackground, title, span, seriesSelection, s, currentSeries, button, _span, i, popup, option, _iterator, _step, _s, svg, noToolTips, format, timeFormat, formatString, datasetSources, readAddresses;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
-                _this._checkIfWidget();
+                _this._checkEnvironment();
                 _this._initializing = true;
                 element = _this._element;
                 _context2.next = 5;
                 return cv.ui.structure.tile.components.Chart.JS_LOADED;
               case 5:
                 _this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
-                chartId = 'chart-' + _this._id;
                 element.setAttribute('data-chart-id', _this._id.toString());
                 inBackground = _this._element.hasAttribute('background') && _this._element.getAttribute('background') === 'true';
                 title = _this.getHeader('label.title');
@@ -358,48 +356,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.appendToHeader(button);
                 }
                 if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
-                  // add fullscreen button + address
-                  _button = _this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
-                  _button.setAttribute('data-value', '0');
-                  popupAddress = "state:".concat(chartId, "-popup");
-                  _button.addEventListener('click', function () {
-                    cv.data.Model.getInstance().onUpdate(popupAddress, _button.getAttribute('data-value') === '0' ? '1' : '0', 'system');
-                  });
-                  _this.appendToHeader(_button, 'right');
+                  _this._initFullscreenSwitch();
 
-                  // address
-                  tileAddress = document.createElement('cv-address');
-                  tileAddress.setAttribute('mode', 'read');
-                  tileAddress.setAttribute('target', 'fullscreen-popup');
-                  tileAddress.setAttribute('backend', 'system');
-                  tileAddress.setAttribute('send-mode', 'always');
-                  tileAddress.textContent = popupAddress;
-                  element.parentElement.appendChild(tileAddress);
-
-                  // listen to parent tile of popup is opened or not
-                  parent = element;
-                  while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
-                    parent = parent.parentElement;
-                  }
-                  if (parent) {
-                    tileWidget = parent.getInstance();
-                    tileWidget.addListener('closed', function () {
-                      return cv.data.Model.getInstance().onUpdate(popupAddress, '0', 'system');
+                  // only on mobile we need this, because of height: auto
+                  if (document.body.classList.contains('mobile')) {
+                    _this.addListener('changeFullscreen', function () {
+                      return _this._onRendered();
                     });
-
-                    // because we added a read address to the tile after is has been initialized we need to init the listener here manually
-                    parent.addEventListener('stateUpdate', function (ev) {
-                      tileWidget.onStateUpdate(ev);
-                      // cancel event here
-                      ev.stopPropagation();
-                    });
-
-                    // only on mobile we need this, because of height: auto
-                    if (document.body.classList.contains('mobile')) {
-                      tileWidget.addListener('fullscreenChanged', function () {
-                        _this._onRendered();
-                      });
-                    }
                   }
                 }
                 if (element.hasAttribute('refresh')) {
@@ -460,7 +423,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     return true;
                   }]]);
                 }
-                _this.__P_75_8 = {
+                _this.__P_77_8 = {
                   x: function x(d) {
                     return d.time;
                   },
@@ -470,7 +433,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   },
                   // given d in data, returns the (quantitative) y-value
                   z: function z(d) {
-                    return d.src;
+                    return d.key;
                   },
                   // given d in data, returns the (categorical) z-value
                   color: function color(d) {
@@ -526,7 +489,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
 
                 _this._initializing = false;
-                _this.__P_75_9();
+                _this.__P_77_9();
 
                 // check if we have a read address for live updates
                 datasetSources = Array.from(_this._element.querySelectorAll(':scope > dataset')).map(function (elem) {
@@ -542,7 +505,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     ev.stopPropagation();
                   });
                 }
-              case 35:
+              case 34:
               case "end":
                 return _context2.stop();
             }
@@ -585,6 +548,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       refresh: function refresh() {
         this._loaded = false;
+        this.__P_77_0();
         this._loadData();
       },
       // triggered after a change os series or period
@@ -601,7 +565,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this._loaded = false;
           this._loadData();
         }
-        this.__P_75_9();
+        this.__P_77_9();
       },
       _applyCurrentSeries: function _applyCurrentSeries(series) {
         var currentSelection = this.getHeader('.popup.series > cv-option[selected="selected"]');
@@ -619,9 +583,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             newSelection.setAttribute('selected', 'selected');
           }
         }
-        this.__P_75_0();
+        this.__P_77_0();
       },
-      __P_75_0: function __P_75_0() {
+      __P_77_0: function __P_77_0() {
         var series = this.getCurrentSeries();
         var currentPeriod = this.getCurrentPeriod();
         var end = new Date();
@@ -631,48 +595,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 'hour':
             interval = 3600;
             periodStart.setHours(periodStart.getHours() - currentPeriod, 0, 0, 0);
-            if (currentPeriod > 0) {
-              end.setHours(periodStart.getHours() + 1, 0, 0, 0);
-            }
+            end.setHours(periodStart.getHours() + 1, 0, 0, 0);
             break;
           case 'day':
             interval = 86400;
             periodStart.setDate(periodStart.getDate() - currentPeriod);
             periodStart.setHours(0, 0, 0, 0);
-            if (currentPeriod > 0) {
-              end.setDate(periodStart.getDate() + 1);
-              end.setHours(0, 0, 0, 0);
-            }
+            end.setDate(periodStart.getDate() + 1);
+            end.setHours(0, 0, 0, 0);
             break;
           case 'week':
             interval = 604800;
-            periodStart.setDate(-periodStart.getDay() - 7 * currentPeriod);
+            periodStart.setDate(periodStart.getDate() - (periodStart.getDay() || 7) + 1 - 7 * currentPeriod);
             periodStart.setHours(0, 0, 0, 0);
-            if (currentPeriod > 0) {
-              end.setDate(periodStart.getDate() + 7);
-              end.setHours(0, 0, 0, 0);
-            }
+            end.setDate(periodStart.getDate() + 7);
+            end.setHours(0, 0, 0, 0);
             break;
           case 'month':
             interval = 2592000;
             periodStart.setMonth(periodStart.getMonth() - currentPeriod);
             periodStart.setDate(1);
             periodStart.setHours(0, 0, 0, 0);
-            if (currentPeriod > 0) {
-              end.setMonth(periodStart.getMonth() + 1, 1);
-              end.setHours(0, 0, 0, 0);
-            }
+            end.setMonth(periodStart.getMonth() + 1, 1);
+            end.setHours(0, 0, 0, 0);
             break;
           case 'year':
             interval = 31536000;
             periodStart.setFullYear(periodStart.getFullYear() - currentPeriod);
             periodStart.setMonth(0, 1);
             periodStart.setHours(0, 0, 0, 0);
-            if (currentPeriod > 0) {
-              end.setFullYear(periodStart.getFullYear() + 1);
-              end.setMonth(periodStart.getMonth() + 1, 1);
-              end.setHours(0, 0, 0, 0);
-            }
+            end.setFullYear(periodStart.getFullYear() + 1);
+            end.setMonth(periodStart.getMonth() + 1, 1);
+            end.setHours(0, 0, 0, 0);
             break;
         }
         var startTs = Math.round(periodStart.getTime() / 1000);
@@ -743,11 +697,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
               var type = ts.src.split('://')[0].toLowerCase();
               ts.type = type;
+              var key = ts.src;
               switch (type) {
                 case 'flux':
                   ts.source = new cv.io.timeseries.FluxSource(ts.src);
                   if (ts.source.isInline()) {
-                    ts.source.setQueryTemplate(dataSet.textContent.trim());
+                    var fluxQuery = dataSet.textContent.trim();
+                    key = cv.ConfigCache.hashCode(fluxQuery).toString();
+                    ts.source.setQueryTemplate(fluxQuery);
                   }
                   break;
                 case 'openhab':
@@ -763,7 +720,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   this.error('unknown chart data source type ' + type);
                   break;
               }
-              this._dataSetConfigs[ts.src] = ts;
+              ts.key = key;
+              this._dataSetConfigs[key] = ts;
             }
           } catch (err) {
             _iterator2.e(err);
@@ -834,6 +792,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     time = _step4$value[0],
                     value = _step4$value[1];
                   chartData.push({
+                    key: entry.ts.key,
                     src: entry.ts.src,
                     time: mins > 0 ? Math.round(time / mins) * mins : time,
                     value: value
@@ -853,7 +812,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
         if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
           // no margins
-          this.__P_75_8 = Object.assign(this.__P_75_8, {
+          this.__P_77_8 = Object.assign(this.__P_77_8, {
             marginRight: 0,
             marginBottom: 0,
             marginLeft: 0
@@ -878,9 +837,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       _onRendered: function _onRendered(chartData, retries) {
         var _this4 = this;
-        if (this.__P_75_4) {
-          clearTimeout(this.__P_75_4);
-          this.__P_75_4 = null;
+        if (this.__P_77_4) {
+          clearTimeout(this.__P_77_4);
+          this.__P_77_4 = null;
         }
         if (this.isVisible()) {
           var _this$_getSize = this._getSize(),
@@ -889,7 +848,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             height = _this$_getSize2[1];
           if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
             // this makes no sense
-            this.__P_75_4 = setTimeout(function () {
+            this.__P_77_4 = setTimeout(function () {
               _this4._onRendered(chartData, retries > 0 ? retries + 1 : 1);
             }, 150);
           }
@@ -897,8 +856,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             // do nothing, these values are invalid
             return;
           }
-          this.__P_75_8.width = width;
-          this.__P_75_8.height = height;
+          this.__P_77_8.width = width;
+          this.__P_77_8.height = height;
           d3.select(this._element).select('svg').attr('viewBox', "0, 0, ".concat(width, ", ").concat(height));
           if (chartData) {
             this._renderChart(chartData);
@@ -925,7 +884,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
         if (!this._element.style.height && (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' || this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
           // the parent container has height: auto, so we need to have one
-          this._element.style.height = height + this.__P_75_8.marginTop + this.__P_75_8.marginBottom + 'px';
+          this._element.style.height = height + this.__P_77_8.marginTop + this.__P_77_8.marginBottom + 'px';
         }
         return [width, height];
       },
@@ -989,7 +948,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        */
       _renderChart: function _renderChart(data, single) {
         var _this5 = this;
-        var config = this.__P_75_8;
+        var config = this.__P_77_8;
         var svg = d3.select(this._element).select('svg');
 
         // Compute values.
@@ -1013,7 +972,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           } else {
             X.push(data.time);
             Y.push(data.value);
-            Z.push(data.src);
+            Z.push(data.key);
             O.push(data);
             T.push(config.title === undefined ? data.src : config.title === null ? null : config.title(data));
 
@@ -1038,19 +997,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // Compute default domains, and unique the z-domain.
         var xDomain = d3.extent(X);
         var minVal = 0;
-        var zeroBased = !this._element.hasAttribute('zero-based') || this._element.getAttribute('zero-based') === 'true';
-        if (!zeroBased) {
+        var maxVal = 0;
+        if (this._element.hasAttribute('min')) {
+          var min = parseFloat(this._element.getAttribute('min'));
+          if (!isNaN(min)) {
+            minVal = min;
+          }
+        } else {
           minVal = d3.min(Y);
           if (minVal > 1.0) {
             minVal -= 1;
           }
         }
-        var maxVal = d3.max(Y);
-        if (maxVal > 1.0) {
-          // add some inner chart padding
-          maxVal += 1;
+        if (this._element.hasAttribute('max')) {
+          var max = parseFloat(this._element.getAttribute('max'));
+          if (!isNaN(max)) {
+            maxVal = max;
+          }
         } else {
-          maxVal += 0.1;
+          maxVal = d3.max(Y);
+          if (maxVal > 1.0) {
+            // add some inner chart padding
+            maxVal += 1;
+          } else {
+            maxVal += 0.1;
+          }
         }
         var yDomain = [minVal, maxVal];
         var zDomain = new d3.InternSet(Z);
@@ -1210,7 +1181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           if (this._chartConf.areaGroups.size > 0) {
             this._chartConf.areaContainer = this._getSvgElement(svg, 'g', ['area'], {
               stroke: 'none',
-              fill: typeof config.color === 'string' ? this.__P_75_10(config.color, '30') : null
+              fill: typeof config.color === 'string' ? this.__P_77_10(config.color, '30') : null
             });
           }
           if (this._chartConf.barGroups.size > 0) {
@@ -1317,11 +1288,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         } finally {
           _iterator8.f();
         }
-        this.__P_75_8 = config;
+        this.__P_77_8 = config;
         this._dot = svg.select('g.dot');
 
         // show zero line in grid for non-zero based charts
-        if (!zeroBased) {
+        if (minVal !== 0) {
           var targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
           var yValue = 0.0;
           var _data = [0, X.length - 1];
@@ -1354,7 +1325,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         if (this._chartConf.areaContainer) {
           this._chartConf.areaContainer.selectAll('path').data(this._chartConf.areaGroups).join(function (enter) {
             return enter.append('path').style('mix-blend-mode', config.mixBlendMode).attr('fill', typeof config.color === 'function' ? function (p) {
-              return _this5.__P_75_10(config.color(p[0]), '30');
+              return _this5.__P_77_10(config.color(p[0]), '30');
             } : null);
           }).transition(t).attr('d', function (d) {
             var curveName = _this5._dataSetConfigs[d[0]].curve || 'linear';
@@ -1504,24 +1475,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _onPointerEntered: function _onPointerEntered(ev) {
         var _this6 = this;
         if (this._loaded) {
-          this.__P_75_1 = setTimeout(function () {
-            _this6.__P_75_11(true, ev);
-            _this6.__P_75_1 = null;
+          this.__P_77_1 = setTimeout(function () {
+            _this6.__P_77_11(true, ev);
+            _this6.__P_77_1 = null;
           }, 500);
         }
       },
       _onPointerLeft: function _onPointerLeft(ev) {
-        if (this.__P_75_1) {
-          clearTimeout(this.__P_75_1);
+        if (this.__P_77_1) {
+          clearTimeout(this.__P_77_1);
         }
         if (this._loaded) {
           if (ev.relatedTarget !== this._tooltip) {
-            this.__P_75_11(false);
+            this.__P_77_11(false);
           }
         }
       },
-      __P_75_11: function __P_75_11(val, ev) {
-        this.__P_75_2 = val;
+      __P_77_11: function __P_77_11(val, ev) {
+        this.__P_77_2 = val;
         if (val) {
           if (this._dot) {
             this._dot.attr('display', null);
@@ -1542,7 +1513,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       },
       _onPointerMoved: function _onPointerMoved(event, center) {
-        if (this._loaded && this.__P_75_2) {
+        if (this._loaded && this.__P_77_2) {
           var xm = 0;
           var ym = 0;
           if (event) {
@@ -1551,8 +1522,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             xm = _d3$pointer2[0];
             ym = _d3$pointer2[1];
           } else if (center) {
-            xm = this.__P_75_8.width / 2;
-            ym = this.__P_75_8.height / 2;
+            xm = this.__P_77_8.width / 2;
+            ym = this.__P_77_8.height / 2;
           } else {
             return;
           }
@@ -1570,14 +1541,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var i = d3.least(I, function (i) {
             return Math.hypot(x(X[i]) - xm, y(Y[i]) - ym);
           });
-          var scaleFactorX = this._element.offsetWidth / this.__P_75_8.width;
-          var scaleFactorY = this._element.offsetHeight / this.__P_75_8.height;
+          var scaleFactorX = this._element.offsetWidth / this.__P_77_8.width;
+          var scaleFactorY = this._element.offsetHeight / this.__P_77_8.height;
           // closest point
           var xOffset = xz ? xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0) : 0;
           this._dot.attr('transform', "translate(".concat(x(X[i]) + xOffset, ",").concat(y(Y[i]), ")"));
           if (T) {
             var cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
-            var timeString = this.__P_75_8.xFormat(new Date(X[i]));
+            var timeString = this.__P_77_8.xFormat(new Date(X[i]));
             var top = ym * scaleFactorY - this._tooltip.offsetHeight;
             if (top < 0) {
               top += cursorOffset + this._tooltip.offsetHeight;
@@ -1601,18 +1572,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
       },
-      _buttonFactory: function _buttonFactory(icon, classes) {
-        var _button$classList;
-        var button = document.createElement('button');
-        (_button$classList = button.classList).add.apply(_button$classList, _toConsumableArray(classes));
-        if (icon) {
-          var i = document.createElement('i');
-          i.classList.add(icon);
-          button.appendChild(i);
-        }
-        return button;
-      },
-      __P_75_9: function __P_75_9() {
+      __P_77_9: function __P_77_9() {
         if (this._navigationEnabled) {
           var title = this.getHeader('label.title span');
           if (title) {
@@ -1697,7 +1657,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @return {string|*}
        * @private
        */
-      __P_75_10: function __P_75_10(color, opacity) {
+      __P_77_10: function __P_77_10(color, opacity) {
+        if (color.startsWith('var(')) {
+          color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length - 1));
+        }
         if (color.startsWith('rgb(')) {
           return 'rgba(' + color.substring(4, color.length - 1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
         } else if (color.startsWith('#') && color.length === 7) {
@@ -1732,4 +1695,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1692560692719
+//# sourceMappingURL=Chart.js.map?dt=1700345584117

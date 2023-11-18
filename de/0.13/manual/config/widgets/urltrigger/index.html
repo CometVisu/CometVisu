@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das UrlTrigger Widget &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/versions.js"></script>
-        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,26 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../index.html#elemente-fur-konvertierung-und-formatierung">Elemente für Konvertierung und Formatierung</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../../index.html#widgets-in-der-pure-struktur">Widgets in der Pure-Struktur</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Bedienbare Widgets</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="../audio/index.html">Das Audio Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../colorchooser/index.html">Der ColorChooser</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../designtoggle/index.html">Das DesignToggle Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../imagetrigger/index.html">Das ImageTrigger Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../infoaction/index.html">Das InfoAction Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../infotrigger/index.html">Das InfoTrigger Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../multitrigger/index.html">Das MultiTrigger Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../pagejump/index.html">Das PageJump Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../pushbutton/index.html">Das PushButton Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../refresh/index.html">Das Refresh Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../reload/index.html">Das Reload Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../slide/index.html">Das Slide Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../switch/index.html">Das Switch Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../toggle/index.html">Das Toggle Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../trigger/index.html">Das Trigger Widget</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Das UrlTrigger Widget</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../notificationcenterbadge/index.html">Das NotificationCenterBadge Widget</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Bedienbare Widgets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#darstellende-widgets">Darstellende Widgets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#sonstige-widgets">Sonstige Widgets</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
@@ -112,10 +97,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../index.html">Bedienbare Widgets</a> &raquo;</li>
-      <li>Das UrlTrigger Widget</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Bedienbare Widgets</a></li>
+      <li class="breadcrumb-item active">Das UrlTrigger Widget</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -131,15 +116,15 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="das-urltrigger-widget">
-<span id="urltrigger"></span><h1>Das UrlTrigger Widget<a class="headerlink" href="#das-urltrigger-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="urltrigger"></span><h1>Das UrlTrigger Widget<a class="headerlink" href="#das-urltrigger-widget" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Christian Mayer</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 2012</div>
+<div class="line"><strong>Verfügbar seit</strong>: 2012</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das UrlTrigger Widget fügt der Visualisierung eine Schaltfläche hinzu, die im Hintergrund eine
 URL öffnet. Hierbei handelt es sich um eine reine Abfrage, d.H die abgefragten Daten werden nicht genutzt.</p>
 <figure class="align-default">
@@ -147,7 +132,7 @@ URL öffnet. Hierbei handelt es sich um eine reine Abfrage, d.H die abgefragten 
 </figure>
 </section>
 <section id="einstellungen">
-<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link to this heading"></a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Grundsätzliches</span></a>.</p>
 <p>Das Verhalten und Aussehen des UrlTrigger-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
@@ -156,14 +141,8 @@ beides über den <a class="reference internal" href="../../editor.html#editor"><
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <section id="erlaubte-attribute-im-urltrigger-element">
-<h3>Erlaubte Attribute im UrlTrigger-Element<a class="headerlink" href="#erlaubte-attribute-im-urltrigger-element" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute im UrlTrigger-Element<a class="headerlink" href="#erlaubte-attribute-im-urltrigger-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -213,19 +192,13 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id2">
 <img alt="../../../_images/de_config_widgets_urltrigger_index_editor_attributes.png" src="../../../_images/de_config_widgets_urltrigger_index_editor_attributes.png" />
 <figcaption>
-<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -315,12 +288,6 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -384,13 +351,13 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id3">
 <img alt="../../../_images/de_config_widgets_urltrigger_index_editor_elements.png" src="../../../_images/de_config_widgets_urltrigger_index_editor_elements.png" />
 <figcaption>
-<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="xml-syntax">
-<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link to this heading"></a></h2>
 <p>Alternativ kann man für das UrlTrigger Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
@@ -402,7 +369,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <figure class="align-default" id="id4">
 <img alt="UrlTrigger, einfaches Beispiel" src="../../../_images/urltrigger_simple.png" />
 <figcaption>
-<p><span class="caption-text">UrlTrigger, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">UrlTrigger, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;urltrigger</span><span class="w"> </span><span class="na">url=</span><span class="s">&quot;/open/data/index.php&quot;</span><span class="nt">&gt;</span>
@@ -412,11 +379,12 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </pre></div>
 </div>
 <p class="rubric">Fußnoten</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -424,8 +392,8 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../trigger/index.html" class="btn btn-neutral float-left" title="Das Trigger Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../notificationcenterbadge/index.html" class="btn btn-neutral float-right" title="Das NotificationCenterBadge Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../trigger/index.html" class="btn btn-neutral float-left" title="Das Trigger Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../notificationcenterbadge/index.html" class="btn btn-neutral float-right" title="Das NotificationCenterBadge Widget" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -441,9 +409,13 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -451,24 +423,20 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

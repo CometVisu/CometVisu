@@ -36,7 +36,7 @@
     "innerColor",
     "innerOpacity",
     "members",
-    "__P_336_1",
+    "__P_344_1",
     "styles",
     "propName",
     "core",
@@ -92,7 +92,7 @@
     "length",
     "join",
     "border",
-    "__P_336_2",
+    "__P_344_2",
     "edge",
     "rgb",
     "util",
@@ -101,7 +101,7 @@
     "rgbString",
     "rgbToRgbString",
     "_applyDoubleBorder",
-    "__P_336_0",
+    "__P_344_0",
     "MDoubleBorder"
   ],
   "sources": [

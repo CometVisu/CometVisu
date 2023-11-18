@@ -54,7 +54,7 @@
       "name": "valid",
       "propertyType": "new",
       "event": "changeValid",
-      "apply": "__P_153_0",
+      "apply": "__P_161_0",
       "init": false,
       "check": "Boolean",
       "defaultValue": false

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prerequisites for the installation &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -48,19 +52,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation of the CometVisu</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Prerequisites for the installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#backend">Backend</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#knxd-eibd">knxd / eibd</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="backends/install-eibd.html">Install eibd</a></li>
-<li class="toctree-l5"><a class="reference internal" href="backends/install-eibd.html#install-knxd">Install knxd</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#knxd-eibd">knxd / eibd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#openhab">openHAB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mqtt">MQTT</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#backend-configuration">Backend configuration</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#http-header-docker-environment-variable">HTTP header / Docker environment variable</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#config-file">Config file</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#url">URL</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#backend-configuration">Backend configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#graph-tool-rrdtool">Graph tool - RRDtool</a><ul>
@@ -108,9 +103,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Installation of the CometVisu</a> &raquo;</li>
-      <li>Prerequisites for the installation</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Installation of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Prerequisites for the installation</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -127,7 +122,7 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="prerequisites-for-the-installation">
-<span id="generic"></span><h1>Prerequisites for the installation<a class="headerlink" href="#prerequisites-for-the-installation" title="Permalink to this headline">¶</a></h1>
+<span id="generic"></span><h1>Prerequisites for the installation<a class="headerlink" href="#prerequisites-for-the-installation" title="Link to this heading"></a></h1>
 <p>To be able to use the CometVisu the system needs to
 fulfill a few prerequisites.</p>
 <p>These are</p>
@@ -145,7 +140,7 @@ the prerequisite is PHP 7. The core of the CometVisu itself can be used
 without PHP though.</p>
 </div>
 <section id="backend">
-<h2>Backend<a class="headerlink" href="#backend" title="Permalink to this headline">¶</a></h2>
+<h2>Backend<a class="headerlink" href="#backend" title="Link to this heading"></a></h2>
 <p>To be able to connect the devices with the CometVisu you need a “backend”.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -154,7 +149,7 @@ connection to multiple backends is not supported.</p>
 </div>
 <p>There are different possibilities:</p>
 <section id="knxd-eibd">
-<h3>knxd / eibd<a class="headerlink" href="#knxd-eibd" title="Permalink to this headline">¶</a></h3>
+<h3>knxd / eibd<a class="headerlink" href="#knxd-eibd" title="Link to this heading"></a></h3>
 <p>For a direct connection to the KNX bus the knxd is used.
 The installation of the backend is described under
 <a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a>.</p>
@@ -162,35 +157,30 @@ The installation of the backend is described under
 </div>
 </section>
 <section id="openhab">
-<h3>openHAB<a class="headerlink" href="#openhab" title="Permalink to this headline">¶</a></h3>
+<h3>openHAB<a class="headerlink" href="#openhab" title="Link to this heading"></a></h3>
 <p>To use openHAB as backend you can refer to
 <a class="reference internal" href="openhab.html"><span class="doc">Installation on a Debian System with openHAB</span></a>
 and
 <a class="reference internal" href="docker_openhab.html"><span class="doc">Installing on an Ubuntu system with openHAB and Docker</span></a>.</p>
 </section>
 <section id="mqtt">
-<h3>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h3>
+<h3>MQTT<a class="headerlink" href="#mqtt" title="Link to this heading"></a></h3>
 <p>To use the CometVisu as one of the MQTT participant you need a MQTT broker
 that can be contacted with WebSockets.</p>
 </section>
 <section id="backend-configuration">
-<h3>Backend configuration<a class="headerlink" href="#backend-configuration" title="Permalink to this headline">¶</a></h3>
+<h3>Backend configuration<a class="headerlink" href="#backend-configuration" title="Link to this heading"></a></h3>
 <p>To configure the CometVisu to use a given backend different possibilities are
 available, listed below.
 There a later listed method overrules those above it, e.g. the values from the
 config file will be used even when those are set differently with docker
 environment variables.</p>
 <section id="http-header-docker-environment-variable">
-<h4>HTTP header / Docker environment variable<a class="headerlink" href="#http-header-docker-environment-variable" title="Permalink to this headline">¶</a></h4>
+<h4>HTTP header / Docker environment variable<a class="headerlink" href="#http-header-docker-environment-variable" title="Link to this heading"></a></h4>
 <p>The web server can pass setup information in the HTTP header of the
 config file. By using the official docker image of the CometVisu this can
 be achieved by setting the corresponding <code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code> parameters.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 28%" />
-<col style="width: 14%" />
-<col style="width: 58%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>HTTP header</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ENVIRONMENT</span></code></p></td>
@@ -233,14 +223,10 @@ and are transported like that over the network!</p>
 </div>
 </section>
 <section id="config-file">
-<h4>Config file<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h4>
+<h4>Config file<a class="headerlink" href="#config-file" title="Link to this heading"></a></h4>
 <p>In the all containing <code class="docutils literal notranslate"><span class="pre">&lt;pages&gt;</span></code> element the different parameters can be set
 as attributes:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 29%" />
-<col style="width: 71%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>attribute</p></td>
 <td><p>use</p></td>
@@ -278,7 +264,7 @@ as attributes:</p>
 </div>
 </section>
 <section id="url">
-<h4>URL<a class="headerlink" href="#url" title="Permalink to this headline">¶</a></h4>
+<h4>URL<a class="headerlink" href="#url" title="Link to this heading"></a></h4>
 <p>By the URL parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> the backend can also be selected. This is
 only relevant for special cases like development or testing. It also requires
 that the access URLs are set by one of the other methods.</p>
@@ -286,7 +272,7 @@ that the access URLs are set by one of the other methods.</p>
 </section>
 </section>
 <section id="graph-tool-rrdtool">
-<h2>Graph tool - RRDtool<a class="headerlink" href="#graph-tool-rrdtool" title="Permalink to this headline">¶</a></h2>
+<h2>Graph tool - RRDtool<a class="headerlink" href="#graph-tool-rrdtool" title="Link to this heading"></a></h2>
 <p>An optional but much-recommended component is rrdtool to
 provide the data for creating graphs. There are many ways
 to pass data to rrds and the use of rrdtool is documented
@@ -298,7 +284,7 @@ described under <a class="reference internal" href="install-rrd.html"><span clas
 external software, only PHP is required.</p>
 </section>
 <section id="web-server">
-<h2>Web server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h2>
+<h2>Web server<a class="headerlink" href="#web-server" title="Link to this heading"></a></h2>
 <p>The relevant files to connect via eibd/knxd are CGI programs, usually
 located at <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code>. They must be executable for the account
 of the web server. This could be enforced by:</p>
@@ -314,7 +300,7 @@ as well.</p>
 <p>To be able to use additional components like the editor the web server must
 support PHP.</p>
 <section id="lighttpd">
-<h3>lighttpd<a class="headerlink" href="#lighttpd" title="Permalink to this headline">¶</a></h3>
+<h3>lighttpd<a class="headerlink" href="#lighttpd" title="Link to this heading"></a></h3>
 <p>For the lighttpd web server an example configuration is given. (Other web
 servers are also possible, of course). Please make sure that you are
 changing the example parameters to fit your need.</p>
@@ -387,7 +373,7 @@ changing the example parameters to fit your need.</p>
 </section>
 </section>
 <section id="installing-cometvisu">
-<h2>Installing CometVisu<a class="headerlink" href="#installing-cometvisu" title="Permalink to this headline">¶</a></h2>
+<h2>Installing CometVisu<a class="headerlink" href="#installing-cometvisu" title="Link to this heading"></a></h2>
 <p>The CometVisu can be downloaded at <a class="reference external" href="https://github.com/CometVisu/CometVisu">https://github.com/CometVisu/CometVisu</a> and
 unpacked at the web root, most likely in it’s own directory (e.g.
 <code class="docutils literal notranslate"><span class="pre">/var/www/visu/</span></code>).</p>
@@ -398,7 +384,7 @@ Pi</a> is
 available under <a class="reference internal" href="raspberry.html"><span class="doc">CometVisu auf Raspberry Pi</span></a>.</p>
 </section>
 <section id="testing-the-installed-cometvisu">
-<h2>Testing the installed CometVisu<a class="headerlink" href="#testing-the-installed-cometvisu" title="Permalink to this headline">¶</a></h2>
+<h2>Testing the installed CometVisu<a class="headerlink" href="#testing-the-installed-cometvisu" title="Link to this heading"></a></h2>
 <p>Just open <a class="reference external" href="http://MyServer/visu/">http://MyServer/visu/</a> in the browser.</p>
 <p>Have fun!</p>
 </section>
@@ -425,8 +411,12 @@ available under <a class="reference internal" href="raspberry.html"><span class=
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -437,22 +427,18 @@ available under <a class="reference internal" href="raspberry.html"><span class=
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

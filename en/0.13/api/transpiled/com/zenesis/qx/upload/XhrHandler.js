@@ -195,7 +195,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       }
     },
     statics: {
-      __P_566_0: false,
+      __P_574_0: false,
       /**
        * Detects whether this handler is support on the current browser
        *
@@ -212,18 +212,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * cookies)
        */
       setWithCredentials: function setWithCredentials(value) {
-        this.__P_566_0 = true;
+        this.__P_574_0 = true;
       },
       /**
        * Whether to set XMLHttpRequest.withCredentials (used for CORS uploads wth
        * cookies)
        */
       isWithCredentials: function isWithCredentials() {
-        return this.__P_566_0;
+        return this.__P_574_0;
       }
     }
   });
   com.zenesis.qx.upload.XhrHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XhrHandler.js.map?dt=1692560748758
+//# sourceMappingURL=XhrHandler.js.map?dt=1700345618259

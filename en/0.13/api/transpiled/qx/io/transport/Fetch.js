@@ -43,7 +43,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       /**
        * @type {Object}
        */
-      __P_264_0: null,
+      __P_272_0: null,
       /**
        * Returns the object which implements the transport on the
        * underlying level, so that transport-specific configuration
@@ -54,10 +54,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @return {Object}
        */
       getTransportImpl: function getTransportImpl() {
-        if (!this.__P_264_0) {
-          this.__P_264_0 = this._createTransportImpl();
+        if (!this.__P_272_0) {
+          this.__P_272_0 = this._createTransportImpl();
         }
-        return this.__P_264_0;
+        return this.__P_272_0;
       },
       /**
        * Transport the given message to the endpoint
@@ -139,4 +139,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   qx.io.transport.Fetch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Fetch.js.map?dt=1692560714899
+//# sourceMappingURL=Fetch.js.map?dt=1700345598324

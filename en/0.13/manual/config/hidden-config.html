@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hidden configurations &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -87,9 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>Hidden configurations</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Hidden configurations</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -106,9 +110,9 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="hidden-configurations">
-<span id="hidden-config"></span><h1>Hidden configurations<a class="headerlink" href="#hidden-configurations" title="Permalink to this headline">¶</a></h1>
+<span id="hidden-config"></span><h1>Hidden configurations<a class="headerlink" href="#hidden-configurations" title="Link to this heading"></a></h1>
 <section id="background">
-<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading"></a></h2>
 <p>The Hidden Configurations are configuration data that is not transferred to
 the client and stays on the server. Therefore, these are “hidden” from the
 user, but are readable on the server itself in plain text.
@@ -126,7 +130,7 @@ thus remain hidden from the developers.</p>
 hidden configuration is described in their respective documentation.</p>
 </section>
 <section id="construction">
-<h2>Construction<a class="headerlink" href="#construction" title="Permalink to this headline">¶</a></h2>
+<h2>Construction<a class="headerlink" href="#construction" title="Link to this heading"></a></h2>
 <p>The hidden configurations are stored in the file <code class="docutils literal notranslate"><span class="pre">config/hidden.php</span></code>.
 This file can be edited via a normal text editor as well as via the
 <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a>.</p>
@@ -153,7 +157,7 @@ stored as a PHP array:</p>
 </div>
 </section>
 <section id="manager">
-<h2>Manager<a class="headerlink" href="#manager" title="Permalink to this headline">¶</a></h2>
+<h2>Manager<a class="headerlink" href="#manager" title="Link to this heading"></a></h2>
 <p>Conveniently, the content of the hidden configuration can
 be edited via the <a class="reference internal" href="manager.html#manager"><span class="std std-ref">Manager</span></a>.</p>
 <figure class="align-default">
@@ -161,17 +165,12 @@ be edited via the <a class="reference internal" href="manager.html#manager"><spa
 </figure>
 </section>
 <section id="known-name-entries">
-<h2>Known <code class="docutils literal notranslate"><span class="pre">Name</span></code> Entries<a class="headerlink" href="#known-name-entries" title="Permalink to this headline">¶</a></h2>
+<h2>Known <code class="docutils literal notranslate"><span class="pre">Name</span></code> Entries<a class="headerlink" href="#known-name-entries" title="Link to this heading"></a></h2>
 <p>Even if the choice for the <code class="docutils literal notranslate"><span class="pre">name</span></code> is basically free, there are
 usual entries for it, which are recommended to be used. Thus, some
 widgets or plug-ins without an explicit configuration can look in the usual
 name for entries, which can reduce the configuration effort.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 28%" />
-<col style="width: 48%" />
-<col style="width: 24%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
 <th class="head"><p>Usage</p></th>
@@ -213,8 +212,12 @@ name for entries, which can reduce the configuration effort.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -225,22 +228,18 @@ name for entries, which can reduce the configuration effort.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -82,16 +82,16 @@
       this._init();
     },
     members: {
-      __P_412_0: null,
-      __P_412_1: null,
-      __P_412_2: null,
+      __P_420_0: null,
+      __P_420_1: null,
+      __P_420_2: null,
       /**
        * Returns the image widget which is used for this renderer.
        *
        * @return {qx.ui.mobile.basic.Image} The image widget
        */
       getImageWidget: function getImageWidget() {
-        return this.__P_412_0;
+        return this.__P_420_0;
       },
       /**
        * Returns the title widget which is used for this renderer.
@@ -99,7 +99,7 @@
        * @return {qx.ui.mobile.basic.Label} The title widget
        */
       getTitleWidget: function getTitleWidget() {
-        return this.__P_412_1;
+        return this.__P_420_1;
       },
       /**
        * Sets the source of the image widget.
@@ -107,7 +107,7 @@
        * @param source {String} The source to set
        */
       setImage: function setImage(source) {
-        this.__P_412_0.setSource(source);
+        this.__P_420_0.setSource(source);
       },
       /**
        * Sets the value of the title widget.
@@ -116,9 +116,9 @@
        */
       setTitle: function setTitle(title) {
         if (title && title.translate) {
-          this.__P_412_1.setValue(title.translate());
+          this.__P_420_1.setValue(title.translate());
         } else {
-          this.__P_412_1.setValue(title);
+          this.__P_420_1.setValue(title);
         }
       },
       /**
@@ -133,14 +133,14 @@
        *
        */
       _init: function _init() {
-        this.__P_412_0 = this._createImage();
-        this.add(this.__P_412_0);
-        this.__P_412_2 = this._createRightContainer();
-        this.add(this.__P_412_2, {
+        this.__P_420_0 = this._createImage();
+        this.add(this.__P_420_0);
+        this.__P_420_2 = this._createRightContainer();
+        this.add(this.__P_420_2, {
           flex: 1
         });
-        this.__P_412_1 = this._createTitle();
-        this.__P_412_2.add(this.__P_412_1);
+        this.__P_420_1 = this._createTitle();
+        this.__P_420_2.add(this.__P_420_1);
       },
       /**
        * Creates and returns the right container composite. Override this to adapt the widget code.
@@ -174,15 +174,15 @@
       },
       // overridden
       reset: function reset() {
-        this.__P_412_0.setSource(null);
-        this.__P_412_1.setValue("");
+        this.__P_420_0.setSource(null);
+        this.__P_420_1.setValue("");
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_412_0", "__P_412_1", "__P_412_2");
+      this._disposeObjects("__P_420_0", "__P_420_1", "__P_420_2");
     }
   });
   qx.ui.mobile.list.renderer.group.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1692560732143
+//# sourceMappingURL=Default.js.map?dt=1700345608279

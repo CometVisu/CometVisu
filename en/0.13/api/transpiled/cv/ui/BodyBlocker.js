@@ -42,8 +42,8 @@
     */
     construct: function construct() {
       qx.bom.Blocker.constructor.call(this);
-      this.__P_561_0 = {};
-      this.__P_561_1 = [];
+      this.__P_569_0 = {};
+      this.__P_569_1 = [];
       this.setBlockerOpacity(0.5);
       this.setBlockerColor('#000000');
     },
@@ -53,19 +53,19 @@
     ******************************************************
     */
     members: {
-      __P_561_2: null,
-      __P_561_0: null,
-      __P_561_1: null,
+      __P_569_2: null,
+      __P_569_0: null,
+      __P_569_1: null,
       /**
        * @param topic {String} topic of the message related to this blocker
        * @param unique {Boolean} true if it is a unique message
        */
       block: function block(topic, unique) {
-        cv.ui.BodyBlocker.superclass.prototype.block.call(this, this.__P_561_3());
-        if (!Object.prototype.hasOwnProperty.call(this.__P_561_0, topic)) {
-          this.__P_561_0[topic] = 1;
+        cv.ui.BodyBlocker.superclass.prototype.block.call(this, this.__P_569_3());
+        if (!Object.prototype.hasOwnProperty.call(this.__P_569_0, topic)) {
+          this.__P_569_0[topic] = 1;
         } else if (!unique) {
-          this.__P_561_0[topic]++;
+          this.__P_569_0[topic]++;
         }
         document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
           elem.classList.add('blurred');
@@ -73,11 +73,11 @@
       },
       unblock: function unblock(topic) {
         if (topic) {
-          if (Object.prototype.hasOwnProperty.call(this.__P_561_0, topic)) {
-            this.__P_561_0[topic]--;
-            if (this.__P_561_0[topic] === 0) {
-              delete this.__P_561_0[topic];
-              if (Object.keys(this.__P_561_0).length === 0) {
+          if (Object.prototype.hasOwnProperty.call(this.__P_569_0, topic)) {
+            this.__P_569_0[topic]--;
+            if (this.__P_569_0[topic] === 0) {
+              delete this.__P_569_0[topic];
+              if (Object.keys(this.__P_569_0).length === 0) {
                 cv.ui.BodyBlocker.superclass.prototype.unblock.call(this);
                 document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
                   elem.classList.remove('blurred');
@@ -87,22 +87,22 @@
           }
         } else {
           // not topic given unblock all
-          this.__P_561_0 = {};
+          this.__P_569_0 = {};
           cv.ui.BodyBlocker.superclass.prototype.unblock.call(this);
           document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
             elem.classList.remove('blurred');
           });
         }
       },
-      __P_561_3: function __P_561_3() {
-        if (!this.__P_561_2) {
-          this.__P_561_2 = document.querySelector('body');
+      __P_569_3: function __P_569_3() {
+        if (!this.__P_569_2) {
+          this.__P_569_2 = document.querySelector('body');
         }
-        return this.__P_561_2;
+        return this.__P_569_2;
       }
     }
   });
   cv.ui.BodyBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BodyBlocker.js.map?dt=1692560748336
+//# sourceMappingURL=BodyBlocker.js.map?dt=1700345617996

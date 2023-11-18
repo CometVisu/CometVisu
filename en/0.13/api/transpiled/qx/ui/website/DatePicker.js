@@ -75,7 +75,7 @@
     extend: qx.ui.website.Widget,
     statics: {
       /** List of valid positions to check against */
-      __P_490_0: null,
+      __P_498_0: null,
       /**
        * *format*
        *
@@ -185,9 +185,9 @@
         }
         var uniqueId = Math.round(Math.random() * 10000);
         this._uniqueId = uniqueId;
-        this.__P_490_1(this);
-        this.__P_490_2(this);
-        this.__P_490_3(this);
+        this.__P_498_1(this);
+        this.__P_498_2(this);
+        this.__P_498_3(this);
         var calendarId = "datepicker-calendar-" + uniqueId;
         var calendar = qxWeb.create('<div id="' + calendarId + '"></div>').calendar();
         calendar.on("tap", this._onCalendarTap);
@@ -211,16 +211,16 @@
       // overridden
       render: function render() {
         this.getCalendar().render();
-        this.__P_490_1(this);
-        this.__P_490_2(this);
-        this.__P_490_3(this);
+        this.__P_498_1(this);
+        this.__P_498_2(this);
+        this.__P_498_3(this);
         this.setEnabled(this.getEnabled());
         return this;
       },
       // overridden
       setConfig: function setConfig(name, config) {
         if (name === "position") {
-          var validPositions = qx.ui.website.DatePicker.__P_490_0;
+          var validPositions = qx.ui.website.DatePicker.__P_498_0;
           if (validPositions.indexOf(config) === -1) {
             throw new Error("Wrong config value for \"position\"! Only the values \"" + validPositions.join('", "') + '" are supported!');
           }
@@ -303,7 +303,7 @@
        *
        * @param collection {qxWeb} collection to work on
        */
-      __P_490_1: function __P_490_1(collection) {
+      __P_498_1: function __P_498_1(collection) {
         if (collection.getConfig("readonly")) {
           collection.setAttribute("readonly", "readonly");
         } else {
@@ -315,7 +315,7 @@
        *
        * @param collection {qxWeb} collection to work on
        */
-      __P_490_2: function __P_490_2(collection) {
+      __P_498_2: function __P_498_2(collection) {
         var icon;
         if (collection.getConfig("icon") === null) {
           icon = collection.getNext("img#" + collection._iconId);
@@ -351,7 +351,7 @@
        *
        * @param collection {qxWeb} collection to work on
        */
-      __P_490_3: function __P_490_3(collection) {
+      __P_498_3: function __P_498_3(collection) {
         if (collection.getConfig("mode") === "icon") {
           collection.off("tap", collection._onTap);
         } else {
@@ -378,10 +378,10 @@
       qxWeb.$attach({
         datepicker: statics.datepicker
       });
-      statics.__P_490_0 = ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right", "left-top", "left-middle", "left-bottom", "right-top", "right-middle", "right-bottom"];
+      statics.__P_498_0 = ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right", "left-top", "left-middle", "left-bottom", "right-top", "right-middle", "right-bottom"];
     }
   });
   qx.ui.website.DatePicker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DatePicker.js.map?dt=1692560739781
+//# sourceMappingURL=DatePicker.js.map?dt=1700345612806

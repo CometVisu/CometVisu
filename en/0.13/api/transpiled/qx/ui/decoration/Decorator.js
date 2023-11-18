@@ -73,7 +73,7 @@
     implement: [qx.ui.decoration.IDecorator],
     include: [qx.ui.decoration.MBackgroundColor, qx.ui.decoration.MBorderRadius, qx.ui.decoration.MBoxShadow, qx.ui.decoration.MDoubleBorder, qx.ui.decoration.MLinearBackgroundGradient, qx.ui.decoration.MBorderImage, qx.ui.decoration.MTransition],
     members: {
-      __P_334_0: false,
+      __P_342_0: false,
       /**
        * Returns the configured padding minus the border width.
        * @return {Map} Map of top, right, bottom and left padding values
@@ -127,7 +127,7 @@
             styles[name] = styles[name].join(", ");
           }
         }
-        this.__P_334_0 = true;
+        this.__P_342_0 = true;
         return styles;
       },
       // overridden
@@ -165,7 +165,7 @@
       },
       // overridden
       _isInitialized: function _isInitialized() {
-        return this.__P_334_0;
+        return this.__P_342_0;
       },
       /**
        * Ensures that every propertyValue specified in propertyNames is an array.
@@ -191,7 +191,7 @@
           return prop.length;
         }));
         for (var i = 0; i < propertyValues.length; i++) {
-          this.__P_334_1(propertyValues[i], items);
+          this.__P_342_1(propertyValues[i], items);
         }
         return propertyValues;
       },
@@ -200,7 +200,7 @@
        * @param array {Array} Incoming array. Has to contain at least one element.
        * @param to {Integer} Desired length. Must be greater than or equal to the the length of arr.
        */
-      __P_334_1: function __P_334_1(array, to) {
+      __P_342_1: function __P_342_1(array, to) {
         var initial = array.length;
         while (array.length < to) {
           array.push(array[array.length % initial]);
@@ -211,4 +211,4 @@
   qx.ui.decoration.Decorator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decorator.js.map?dt=1692560723959
+//# sourceMappingURL=Decorator.js.map?dt=1700345603570

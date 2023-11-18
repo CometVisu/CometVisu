@@ -54,7 +54,7 @@
     implement: qx.event.IEventHandler,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_227_0 = qx.lang.Function.listener(this._onNative, this);
+      this.__P_235_0 = qx.lang.Function.listener(this._onNative, this);
     },
     statics: {
       /** @type {Integer} Priority of this handler */
@@ -100,7 +100,7 @@
       },
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
-        qx.bom.Event.addNativeListener(target, type, this.__P_227_0);
+        qx.bom.Event.addNativeListener(target, type, this.__P_235_0);
       },
       /**
        * Default event handler for events that do not bubble
@@ -114,7 +114,7 @@
       }),
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type) {
-        qx.bom.Event.removeNativeListener(target, type, this.__P_227_0);
+        qx.bom.Event.removeNativeListener(target, type, this.__P_235_0);
       }
     },
     defer: function defer(statics) {
@@ -124,4 +124,4 @@
   qx.event.handler.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1692560711259
+//# sourceMappingURL=Video.js.map?dt=1700345596044

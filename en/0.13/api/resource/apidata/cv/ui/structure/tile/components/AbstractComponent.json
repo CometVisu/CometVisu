@@ -14,9 +14,9 @@
         "index": 866
       },
       "end": {
-        "line": 352,
+        "line": 432,
         "column": 3,
-        "index": 10702
+        "index": 13111
       }
     },
     "jsdoc": {
@@ -32,39 +32,58 @@
   "isAbstract": true,
   "isStatic": false,
   "isSingleton": false,
+  "construct": {
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1149
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1225
+      }
+    },
+    "jsdoc": {}
+  },
   "properties": {
     "value": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 43,
           "column": 4,
-          "index": 1166
+          "index": 1373
         },
         "end": {
-          "line": 36,
+          "line": 48,
           "column": 5,
-          "index": 1225
+          "index": 1482
         }
       },
       "name": "value",
       "propertyType": "new",
-      "apply": "_applyValue"
+      "event": "changeValue",
+      "apply": "_applyValue",
+      "nullable": true,
+      "allowNull": true
     },
     "styleClass": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 50,
           "column": 4,
-          "index": 1232
+          "index": 1489
         },
         "end": {
-          "line": 42,
+          "line": 55,
           "column": 5,
-          "index": 1328
+          "index": 1618
         }
       },
       "name": "styleClass",
       "propertyType": "new",
+      "event": "changeStyleClass",
       "apply": "_applyStyleClass",
       "nullable": true,
       "allowNull": true,
@@ -73,14 +92,14 @@
     "enabled": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 57,
           "column": 4,
-          "index": 1335
+          "index": 1625
         },
         "end": {
-          "line": 48,
+          "line": 61,
           "column": 5,
-          "index": 1422
+          "index": 1712
         }
       },
       "name": "enabled",
@@ -93,14 +112,14 @@
     "visibility": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 63,
           "column": 4,
-          "index": 1429
+          "index": 1719
         },
         "end": {
-          "line": 55,
+          "line": 68,
           "column": 5,
-          "index": 1584
+          "index": 1874
         }
       },
       "name": "visibility",
@@ -118,14 +137,14 @@
     "widget": {
       "location": {
         "start": {
-          "line": 60,
+          "line": 73,
           "column": 4,
-          "index": 1674
+          "index": 1964
         },
         "end": {
-          "line": 63,
+          "line": 76,
           "column": 5,
-          "index": 1733
+          "index": 2021
         }
       },
       "jsdoc": {
@@ -138,21 +157,21 @@
       },
       "name": "widget",
       "propertyType": "new",
-      "init": "false",
+      "init": false,
       "check": "Boolean",
-      "defaultValue": "false"
+      "defaultValue": false
     },
     "inPopup": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 81,
           "column": 4,
-          "index": 1807
+          "index": 2095
         },
         "end": {
-          "line": 71,
+          "line": 84,
           "column": 5,
-          "index": 1867
+          "index": 2153
         }
       },
       "jsdoc": {
@@ -165,9 +184,9 @@
       },
       "name": "inPopup",
       "propertyType": "new",
-      "init": "false",
+      "init": false,
       "check": "Boolean",
-      "defaultValue": "false"
+      "defaultValue": false
     },
     "qxOwner": {
       "type": "property",
@@ -206,14 +225,14 @@
     "_writeAddresses": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 93,
           "column": 4,
-          "index": 2013
+          "index": 2299
         },
         "end": {
-          "line": 80,
+          "line": 93,
           "column": 25,
-          "index": 2034
+          "index": 2320
         }
       },
       "type": "variable",
@@ -222,30 +241,94 @@
     "_headerFooterParent": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 94,
           "column": 4,
-          "index": 2040
+          "index": 2326
         },
         "end": {
-          "line": 81,
+          "line": 94,
           "column": 29,
-          "index": 2065
+          "index": 2351
         }
       },
       "type": "variable",
       "access": "protected"
     },
-    "_checkIfWidget": {
+    "_preMappingHooks": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 95,
           "column": 4,
-          "index": 2072
+          "index": 2357
         },
         "end": {
-          "line": 113,
+          "line": 95,
+          "column": 26,
+          "index": 2379
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_tileElement": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2385
+        },
+        "end": {
+          "line": 96,
+          "column": 22,
+          "index": 2403
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__mobileReplacements": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2409
+        },
+        "end": {
+          "line": 97,
+          "column": 30,
+          "index": 2435
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_checkEnvironment": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2442
+        },
+        "end": {
+          "line": 115,
           "column": 5,
-          "index": 3099
+          "index": 2954
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getTileParent": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 2961
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3404
         }
       },
       "type": "function",
@@ -254,14 +337,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 136,
           "column": 4,
-          "index": 3106
+          "index": 3411
         },
         "end": {
-          "line": 146,
+          "line": 193,
           "column": 5,
-          "index": 4026
+          "index": 5183
         }
       },
       "type": "function",
@@ -271,17 +354,53 @@
         "cv.ui.structure.tile.elements.AbstractCustomElement"
       ]
     },
+    "__updateAttributes": {
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 5190
+        },
+        "end": {
+          "line": 200,
+          "column": 5,
+          "index": 5437
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "getElement": {
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 5444
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 5492
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
     "appendToHeader": {
       "location": {
         "start": {
-          "line": 155,
+          "line": 213,
           "column": 4,
-          "index": 4378
+          "index": 5844
         },
         "end": {
-          "line": 173,
+          "line": 231,
           "column": 5,
-          "index": 5090
+          "index": 6568
         }
       },
       "jsdoc": {
@@ -311,14 +430,14 @@
     "getHeader": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 238,
           "column": 4,
-          "index": 5265
+          "index": 6743
         },
         "end": {
-          "line": 191,
+          "line": 249,
           "column": 5,
-          "index": 5640
+          "index": 7118
         }
       },
       "jsdoc": {
@@ -352,14 +471,14 @@
     "appendToFooter": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 257,
           "column": 4,
-          "index": 5931
+          "index": 7409
         },
         "end": {
-          "line": 208,
+          "line": 266,
           "column": 5,
-          "index": 6267
+          "index": 7745
         }
       },
       "jsdoc": {
@@ -382,14 +501,14 @@
     "getFooter": {
       "location": {
         "start": {
-          "line": 215,
+          "line": 273,
           "column": 4,
-          "index": 6442
+          "index": 7920
         },
         "end": {
-          "line": 226,
+          "line": 284,
           "column": 5,
-          "index": 6817
+          "index": 8295
         }
       },
       "jsdoc": {
@@ -420,17 +539,87 @@
       "type": "function",
       "access": "public"
     },
+    "registerPreMappingHook": {
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 8586
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 8802
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register hook function {Function(value: number) : number} that is called before the mapping gets applied.\n It must return a number that is used as a new value for mapping.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {{(value: number) : number}}",
+            "paramName": "callback",
+            "description": "}",
+            "type": "{(value: number) : number"
+          },
+          {
+            "name": "@param",
+            "body": "context {object}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "unregisterPreMappingHook": {
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 4,
+          "index": 8912
+        },
+        "end": {
+          "line": 305,
+          "column": 5,
+          "index": 9038
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unregister pre-mapping hook</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {{(value: number) : number}}",
+            "paramName": "callback",
+            "description": "}",
+            "type": "{(value: number) : number"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "_applyValue": {
       "location": {
         "start": {
-          "line": 229,
+          "line": 308,
           "column": 4,
-          "index": 6846
+          "index": 9067
         },
         "end": {
-          "line": 249,
+          "line": 332,
           "column": 5,
-          "index": 7834
+          "index": 10261
         }
       },
       "jsdoc": {},
@@ -443,14 +632,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 252,
+          "line": 335,
           "column": 4,
-          "index": 7894
+          "index": 10321
         },
         "end": {
-          "line": 252,
+          "line": 335,
           "column": 39,
-          "index": 7929
+          "index": 10356
         }
       },
       "jsdoc": {},
@@ -460,14 +649,14 @@
     "_applyStyleClass": {
       "location": {
         "start": {
-          "line": 255,
+          "line": 338,
           "column": 4,
-          "index": 7958
+          "index": 10385
         },
         "end": {
-          "line": 267,
+          "line": 346,
           "column": 5,
-          "index": 8309
+          "index": 10622
         }
       },
       "jsdoc": {},
@@ -480,14 +669,14 @@
     "_applyEnabled": {
       "location": {
         "start": {
-          "line": 269,
+          "line": 348,
           "column": 4,
-          "index": 8316
+          "index": 10629
         },
         "end": {
-          "line": 291,
+          "line": 370,
           "column": 5,
-          "index": 9112
+          "index": 11425
         }
       },
       "type": "function",
@@ -499,14 +688,14 @@
     "_applyVisibility": {
       "location": {
         "start": {
-          "line": 293,
+          "line": 372,
           "column": 4,
-          "index": 9119
+          "index": 11432
         },
         "end": {
-          "line": 311,
+          "line": 390,
           "column": 5,
-          "index": 9599
+          "index": 11912
         }
       },
       "type": "function",
@@ -518,14 +707,14 @@
     "onStateUpdate": {
       "location": {
         "start": {
-          "line": 319,
+          "line": 398,
           "column": 4,
-          "index": 9840
+          "index": 12152
         },
         "end": {
-          "line": 340,
+          "line": 419,
           "column": 5,
-          "index": 10478
+          "index": 12790
         }
       },
       "jsdoc": {
@@ -538,9 +727,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "ev {CustomEvent} stateUpdate event fired from an cv-address component",
+            "body": "ev {CustomEvent} stateUpdate event fired from a cv-address component",
             "paramName": "ev",
-            "description": " stateUpdate event fired from an cv-address component",
+            "description": " stateUpdate event fired from a cv-address component",
             "type": "CustomEvent"
           }
         ],
@@ -4428,14 +4617,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 348,
+        "line": 427,
         "column": 2,
-        "index": 10612
+        "index": 12924
       },
       "end": {
-        "line": 351,
+        "line": 431,
         "column": 3,
-        "index": 10698
+        "index": 13107
       }
     },
     "jsdoc": {}
@@ -4444,6 +4633,7 @@
     "cv.ui.structure.tile.components.Breadcrumbs",
     "cv.ui.structure.tile.components.Chart",
     "cv.ui.structure.tile.components.Color",
+    "cv.ui.structure.tile.components.Flow",
     "cv.ui.structure.tile.components.Icon",
     "cv.ui.structure.tile.components.Image",
     "cv.ui.structure.tile.components.List",
@@ -4458,6 +4648,7 @@
     "cv.ui.structure.tile.widgets.Group",
     "cv.ui.structure.tile.widgets.Page",
     "cv.ui.structure.tile.widgets.Popup",
+    "cv.ui.structure.tile.widgets.TemplateWidget",
     "cv.ui.structure.tile.widgets.Tile",
     "cv.ui.structure.tile.widgets.WidgetPair"
   ]

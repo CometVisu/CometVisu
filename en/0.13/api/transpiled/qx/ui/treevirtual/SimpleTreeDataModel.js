@@ -134,7 +134,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       this._nodeArr.push(qx.ui.treevirtual.MTreePrimitive._getEmptyTree());
 
       // Track which columns are editable
-      this.__P_469_0 = null;
+      this.__P_477_0 = null;
     },
     properties: {
       /**
@@ -157,10 +157,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     */
 
     members: {
-      __P_469_1: null,
-      __P_469_0: null,
-      __P_469_2: null,
-      __P_469_3: null,
+      __P_477_1: null,
+      __P_477_0: null,
+      __P_477_2: null,
+      __P_477_3: null,
       /** Rows, resorted into tree order as necessary */
       _rowArr: null,
       /** Tree nodes, organized with hierarchy */
@@ -183,7 +183,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *
        */
       setTree: function setTree(tree) {
-        this.__P_469_1 = tree;
+        this.__P_477_1 = tree;
       },
       /**
        * Get the tree object for which this data model is used.
@@ -191,7 +191,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.ui.treevirtual.TreeVirtual}
        */
       getTree: function getTree() {
-        return this.__P_469_1;
+        return this.__P_477_1;
       },
       /**
        * Sets all columns editable or not editable.
@@ -201,9 +201,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *
        */
       setEditable: function setEditable(editable) {
-        this.__P_469_0 = [];
+        this.__P_477_0 = [];
         for (var col = 0; col < this.getColumnCount(); col++) {
-          this.__P_469_0[col] = editable;
+          this.__P_477_0[col] = editable;
         }
         this.fireEvent("metaDataChanged");
       },
@@ -219,19 +219,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       setColumnEditable: function setColumnEditable(columnIndex, editable) {
         if (editable != this.isColumnEditable(columnIndex)) {
-          if (this.__P_469_0 == null) {
-            this.__P_469_0 = [];
+          if (this.__P_477_0 == null) {
+            this.__P_477_0 = [];
           }
-          this.__P_469_0[columnIndex] = editable;
+          this.__P_477_0[columnIndex] = editable;
           this.fireEvent("metaDataChanged");
         }
       },
       // overridden
       isColumnEditable: function isColumnEditable(columnIndex) {
         if (columnIndex == this._treeColumn) {
-          return this.__P_469_1.getAllowNodeEdit();
+          return this.__P_477_1.getAllowNodeEdit();
         }
-        return this.__P_469_0 ? this.__P_469_0[columnIndex] == true : false;
+        return this.__P_477_0 ? this.__P_477_0[columnIndex] == true : false;
       },
       // overridden
       isColumnSortable: function isColumnSortable(columnIndex) {
@@ -321,7 +321,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // convert from rowArr to nodeArr, and get the requested node
         var node = this.getNodeFromRow(rowIndex);
         if (columnIndex === this._treeColumn) {
-          if (!this.__P_469_1.getAllowNodeEdit() || value["label"] === undefined) {
+          if (!this.__P_477_1.getAllowNodeEdit() || value["label"] === undefined) {
             return;
           }
           // only allow to set the node label via this method, clone the original node
@@ -536,7 +536,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *   {@link #addLeaf}.
        * @param level {Integer} the level in the hierarchy
        */
-      __P_469_4: function __P_469_4(nodeId, level) {
+      __P_477_4: function __P_477_4(nodeId, level) {
         var filter = this.getFilter();
         var child = null;
         var childNodeId;
@@ -544,7 +544,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // For each child of the specified node...
         var numChildren = this._nodeArr[nodeId].children.length;
         var index = 0;
-        var children = this.__P_469_2[nodeId] = [];
+        var children = this.__P_477_2[nodeId] = [];
         for (var i = 0; i < numChildren; i++) {
           // Determine the node id of this child
           childNodeId = this._nodeArr[nodeId].children[i];
@@ -554,7 +554,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
           // Skip deleted nodes or apply the filter
           if (child == null || filter && !filter.call(this, child)) {
-            this.__P_469_3 = true;
+            this.__P_477_3 = true;
             continue;
           }
 
@@ -570,8 +570,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // Set the last child flag of the node only when no node was skipped.
           // Otherwise we will have to recalculate the last child flags, as
           // the parent or sibling node might become the first child.
-          if (!this.__P_469_3) {
-            this.__P_469_5(child, i == numChildren - 1);
+          if (!this.__P_477_3) {
+            this.__P_477_5(child, i == numChildren - 1);
           }
 
           // Ensure there's an entry in the columnData array for each column
@@ -620,7 +620,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // If this child is opened, ...
           if (child.bOpened) {
             // ... then add its children too.
-            this.__P_469_4(childNodeId, level + 1);
+            this.__P_477_4(childNodeId, level + 1);
           }
           index++;
         }
@@ -633,16 +633,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *   A node identifier, as previously returned by {@link #addBranch} or
        *   {@link #addLeaf}.
        */
-      __P_469_6: function __P_469_6(nodeId) {
-        var tempTreeData = this.__P_469_2;
+      __P_477_6: function __P_477_6(nodeId) {
+        var tempTreeData = this.__P_477_2;
         var children = tempTreeData[nodeId];
         var numChildren = children.length;
         for (var i = 0; i < numChildren; i++) {
           var child = children[i];
-          this.__P_469_5(child, i == numChildren - 1);
+          this.__P_477_5(child, i == numChildren - 1);
           var hasChildren = tempTreeData[child.nodeId] && tempTreeData[child.nodeId].length > 0;
           if (hasChildren) {
-            this.__P_469_6(child.nodeId);
+            this.__P_477_6(child.nodeId);
           }
         }
       },
@@ -652,7 +652,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param node {Object} the node object
        * @param isLastChild {Boolean} whether the node is the last child
        */
-      __P_469_5: function __P_469_5(node, isLastChild) {
+      __P_477_5: function __P_477_5(node, isLastChild) {
         // Determine if we're the last child of our parent
         node.lastChild = [isLastChild];
 
@@ -669,10 +669,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /**
        * Renders the tree data.
        */
-      __P_469_7: function __P_469_7() {
+      __P_477_7: function __P_477_7() {
         // Reset the __tempTreeData
-        this.__P_469_2 = [];
-        this.__P_469_3 = false;
+        this.__P_477_2 = [];
+        this.__P_477_3 = false;
 
         // Reset the row array
         this._rowArr = [];
@@ -685,16 +685,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
         // Begin in-order traversal of the tree from the root to regenerate
         // _rowArr.
-        this.__P_469_4(0, 1);
+        this.__P_477_4(0, 1);
 
         // Reset the lastChild flags when needed, so that the tree can render the
         // tree lines right.
-        if (this.__P_469_3) {
-          this.__P_469_6(0);
+        if (this.__P_477_3) {
+          this.__P_477_6(0);
         }
 
         // Give the memory free
-        this.__P_469_2 = null;
+        this.__P_477_2 = null;
 
         // Inform the listeners
         if (this.hasListener("dataChanged")) {
@@ -738,7 +738,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         }
 
         // Re-render the row array
-        this.__P_469_7();
+        this.__P_477_7();
 
         // Set selections in the selection model now
         var selectionModel = this.getTree().getSelectionModel();
@@ -879,7 +879,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
 
               // Get the tree to which this data model is attached
-              var tree = this.__P_469_1;
+              var tree = this.__P_477_1;
 
               // Are we opening or closing?
               if (node.bOpened) {
@@ -996,11 +996,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Boolean} If the node has edit permitted
        */
       isNodeEditable: function isNodeEditable(rowIndex) {
-        return this.__P_469_1.getAllowNodeEdit() && this.getNodeFromRow(rowIndex).bCanEdit;
+        return this.__P_477_1.getAllowNodeEdit() && this.getNodeFromRow(rowIndex).bCanEdit;
       }
     },
     destruct: function destruct() {
-      this._rowArr = this._nodeArr = this._nodeRowMap = this._selections = this.__P_469_1 = this.__P_469_2 = null;
+      this._rowArr = this._nodeArr = this._nodeRowMap = this._selections = this.__P_477_1 = this.__P_477_2 = null;
     },
     defer: function defer(statics) {
       // For backward compatibility, ensure the Type values are available from
@@ -1011,4 +1011,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.ui.treevirtual.SimpleTreeDataModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1692560737807
+//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1700345611638

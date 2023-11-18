@@ -16,9 +16,9 @@
         "index": 1989
       },
       "end": {
-        "line": 559,
+        "line": 620,
         "column": 3,
-        "index": 19288
+        "index": 21531
       }
     },
     "jsdoc": {
@@ -329,17 +329,33 @@
       "type": "variable",
       "access": "private"
     },
+    "_templateWidgets": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 4203
+        },
+        "end": {
+          "line": 132,
+          "column": 26,
+          "index": 4225
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
     "getHtmlStructure": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 134,
           "column": 4,
-          "index": 4204
+          "index": 4232
         },
         "end": {
-          "line": 135,
+          "line": 136,
           "column": 5,
-          "index": 4263
+          "index": 4291
         }
       },
       "type": "function",
@@ -362,14 +378,14 @@
     "supports": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 138,
           "column": 4,
-          "index": 4270
+          "index": 4298
         },
         "end": {
-          "line": 139,
+          "line": 140,
           "column": 5,
-          "index": 4327
+          "index": 4355
         }
       },
       "type": "function",
@@ -401,14 +417,14 @@
     "initLayout": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 142,
           "column": 4,
-          "index": 4334
+          "index": 4362
         },
         "end": {
-          "line": 141,
+          "line": 142,
           "column": 19,
-          "index": 4349
+          "index": 4377
         }
       },
       "type": "function",
@@ -417,14 +433,14 @@
     "__gotoStartPage": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 144,
           "column": 4,
-          "index": 4356
+          "index": 4384
         },
         "end": {
-          "line": 150,
+          "line": 151,
           "column": 5,
-          "index": 4582
+          "index": 4610
         }
       },
       "type": "function",
@@ -433,14 +449,14 @@
     "onHistoryRequest": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 153,
           "column": 4,
-          "index": 4589
+          "index": 4617
         },
         "end": {
-          "line": 156,
+          "line": 157,
           "column": 5,
-          "index": 4684
+          "index": 4712
         }
       },
       "type": "function",
@@ -461,14 +477,14 @@
     "scrollToPage": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 159,
           "column": 4,
-          "index": 4691
+          "index": 4719
         },
         "end": {
-          "line": 194,
+          "line": 195,
           "column": 5,
-          "index": 6134
+          "index": 6169
         }
       },
       "type": "function",
@@ -477,14 +493,14 @@
     "parseBackendSettings": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 198,
           "column": 4,
-          "index": 6190
+          "index": 6225
         },
         "end": {
-          "line": 207,
+          "line": 208,
           "column": 5,
-          "index": 6617
+          "index": 6652
         }
       },
       "jsdoc": {},
@@ -498,14 +514,14 @@
     "parseSettings": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 214,
           "column": 4,
-          "index": 6731
+          "index": 6766
         },
         "end": {
-          "line": 309,
+          "line": 312,
           "column": 5,
-          "index": 11021
+          "index": 11095
         }
       },
       "jsdoc": {
@@ -535,14 +551,14 @@
     "_applyScrolled": {
       "location": {
         "start": {
-          "line": 311,
+          "line": 314,
           "column": 4,
-          "index": 11028
+          "index": 11102
         },
         "end": {
-          "line": 321,
+          "line": 324,
           "column": 5,
-          "index": 11414
+          "index": 11488
         }
       },
       "type": "function",
@@ -551,47 +567,17 @@
         "scrolled"
       ]
     },
-    "registerTemplates": {
-      "location": {
-        "start": {
-          "line": 327,
-          "column": 4,
-          "index": 11603
-        },
-        "end": {
-          "line": 338,
-          "column": 5,
-          "index": 12005
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Registers customElements for all templates in the given xml that are direct children of a <templates structure=\"tile\"> element</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "xml {XMLDocument}"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "public"
-    },
     "preParse": {
       "location": {
         "start": {
-          "line": 344,
+          "line": 330,
           "column": 4,
-          "index": 12161
+          "index": 11644
         },
         "end": {
-          "line": 370,
+          "line": 356,
           "column": 5,
-          "index": 13346
+          "index": 12829
         }
       },
       "jsdoc": {
@@ -619,14 +605,14 @@
     "createUI": {
       "location": {
         "start": {
-          "line": 376,
+          "line": 362,
           "column": 4,
-          "index": 13539
+          "index": 13022
         },
         "end": {
-          "line": 376,
-          "column": 23,
-          "index": 13558
+          "line": 363,
+          "column": 5,
+          "index": 13046
         }
       },
       "jsdoc": {
@@ -656,14 +642,14 @@
     "observeVisibility": {
       "location": {
         "start": {
-          "line": 378,
+          "line": 365,
           "column": 4,
-          "index": 13565
+          "index": 13053
         },
         "end": {
-          "line": 394,
+          "line": 381,
           "column": 5,
-          "index": 14291
+          "index": 13779
         }
       },
       "type": "function",
@@ -672,14 +658,14 @@
     "translate": {
       "location": {
         "start": {
-          "line": 396,
+          "line": 383,
           "column": 4,
-          "index": 14298
+          "index": 13786
         },
         "end": {
-          "line": 446,
+          "line": 433,
           "column": 5,
-          "index": 16314
+          "index": 15802
         }
       },
       "type": "function",
@@ -688,14 +674,14 @@
     "doScreenSave": {
       "location": {
         "start": {
-          "line": 452,
+          "line": 439,
           "column": 4,
-          "index": 16432
+          "index": 15920
         },
         "end": {
-          "line": 456,
+          "line": 443,
           "column": 5,
-          "index": 16585
+          "index": 16073
         }
       },
       "jsdoc": {
@@ -724,14 +710,14 @@
     "getInitialAddresses": {
       "location": {
         "start": {
-          "line": 461,
+          "line": 448,
           "column": 4,
-          "index": 16693
+          "index": 16181
         },
         "end": {
-          "line": 463,
+          "line": 450,
           "column": 5,
-          "index": 16739
+          "index": 16227
         }
       },
       "jsdoc": {
@@ -752,14 +738,14 @@
     "getInitialPageId": {
       "location": {
         "start": {
-          "line": 469,
+          "line": 456,
           "column": 4,
-          "index": 16876
+          "index": 16364
         },
         "end": {
-          "line": 472,
+          "line": 459,
           "column": 5,
-          "index": 17005
+          "index": 16493
         }
       },
       "jsdoc": {
@@ -788,14 +774,14 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 479,
+          "line": 466,
           "column": 4,
-          "index": 17138
+          "index": 16626
         },
         "end": {
-          "line": 484,
+          "line": 471,
           "column": 5,
-          "index": 17278
+          "index": 16766
         }
       },
       "jsdoc": {
@@ -825,14 +811,14 @@
     "removeMapping": {
       "location": {
         "start": {
-          "line": 486,
+          "line": 473,
           "column": 4,
-          "index": 17285
+          "index": 16773
         },
         "end": {
-          "line": 490,
+          "line": 477,
           "column": 5,
-          "index": 17387
+          "index": 16875
         }
       },
       "type": "function",
@@ -841,14 +827,14 @@
     "mapValue": {
       "location": {
         "start": {
-          "line": 492,
+          "line": 479,
           "column": 4,
-          "index": 17394
+          "index": 16882
         },
         "end": {
-          "line": 508,
+          "line": 495,
           "column": 5,
-          "index": 18058
+          "index": 17546
         }
       },
       "type": "function",
@@ -857,14 +843,14 @@
     "addStyling": {
       "location": {
         "start": {
-          "line": 514,
+          "line": 501,
           "column": 4,
-          "index": 18184
+          "index": 17672
         },
         "end": {
-          "line": 519,
+          "line": 506,
           "column": 5,
-          "index": 18324
+          "index": 17812
         }
       },
       "jsdoc": {
@@ -894,14 +880,14 @@
     "removeStyling": {
       "location": {
         "start": {
-          "line": 521,
+          "line": 508,
           "column": 4,
-          "index": 18331
+          "index": 17819
         },
         "end": {
-          "line": 525,
+          "line": 512,
           "column": 5,
-          "index": 18433
+          "index": 17921
         }
       },
       "type": "function",
@@ -910,14 +896,14 @@
     "styleValue": {
       "location": {
         "start": {
-          "line": 527,
+          "line": 514,
           "column": 4,
-          "index": 18440
+          "index": 17928
         },
         "end": {
-          "line": 532,
+          "line": 519,
           "column": 5,
-          "index": 18680
+          "index": 18165
         }
       },
       "type": "function",
@@ -926,14 +912,14 @@
     "parseLabel": {
       "location": {
         "start": {
-          "line": 535,
+          "line": 522,
           "column": 4,
-          "index": 18733
+          "index": 18218
         },
         "end": {
-          "line": 537,
+          "line": 524,
           "column": 5,
-          "index": 18770
+          "index": 18255
         }
       },
       "jsdoc": {},
@@ -943,18 +929,80 @@
     "_onChangeLocale": {
       "location": {
         "start": {
-          "line": 539,
+          "line": 526,
           "column": 4,
-          "index": 18777
+          "index": 18262
         },
         "end": {
-          "line": 541,
+          "line": 528,
           "column": 5,
-          "index": 18852
+          "index": 18337
         }
       },
       "type": "function",
       "access": "protected"
+    },
+    "enablePullToRefresh": {
+      "location": {
+        "start": {
+          "line": 530,
+          "column": 4,
+          "index": 18344
+        },
+        "end": {
+          "line": 572,
+          "column": 5,
+          "index": 19928
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isTemplateWidget": {
+      "location": {
+        "start": {
+          "line": 574,
+          "column": 4,
+          "index": 19935
+        },
+        "end": {
+          "line": 576,
+          "column": 5,
+          "index": 20016
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "registerTemplates": {
+      "location": {
+        "start": {
+          "line": 582,
+          "column": 4,
+          "index": 20205
+        },
+        "end": {
+          "line": 602,
+          "column": 5,
+          "index": 21095
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers customElements for all templates in the given xml that are direct children of a <templates structure=\"tile\"> element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {XMLDocument}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     },
     "getRenderTarget": {
       "type": "function",
@@ -4492,28 +4540,28 @@
   "defer": {
     "location": {
       "start": {
-        "line": 544,
+        "line": 605,
         "column": 2,
-        "index": 18861
+        "index": 21104
       },
       "end": {
-        "line": 549,
+        "line": 610,
         "column": 3,
-        "index": 19042
+        "index": 21285
       }
     }
   },
   "destruct": {
     "location": {
       "start": {
-        "line": 556,
+        "line": 617,
         "column": 2,
-        "index": 19172
+        "index": 21415
       },
       "end": {
-        "line": 558,
+        "line": 619,
         "column": 3,
-        "index": 19284
+        "index": 21527
       }
     },
     "jsdoc": {}

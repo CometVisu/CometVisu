@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anleitung zum Erstellen eines Animierten Hydraulikplans &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -64,15 +68,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#sonstiges">sonstiges</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="notifications.html">Benachrichtigungen</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rrd_examples.html">RRD Einführung &amp; Beispiele</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Anleitung zum Erstellen eines Animierten Hydraulikplans</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#voraussetzung">Voraussetzung</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#wir-erstellen-einen-puffer">Wir erstellen einen Puffer</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#wir-erstellen-leitungen">Wir erstellen Leitungen</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#xml-file-anpassen-inkscape">XML-File anpassen (Inkscape)</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#xml-file-anpassen-editor">XML-File anpassen (Editor)</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#das-fertige-ergebnis-im-webbrowser">Das Fertige Ergebnis im Webbrowser</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Anleitung zum Erstellen eines Animierten Hydraulikplans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="customizing.html">Anpassungen vornehmen</a></li>
 </ul>
 </li>
@@ -100,9 +96,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
-      <li>Anleitung zum Erstellen eines Animierten Hydraulikplans</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Konfiguration der CometVisu</a></li>
+      <li class="breadcrumb-item active">Anleitung zum Erstellen eines Animierten Hydraulikplans</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -118,15 +114,15 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="anleitung-zum-erstellen-eines-animierten-hydraulikplans">
-<h1>Anleitung zum Erstellen eines Animierten Hydraulikplans<a class="headerlink" href="#anleitung-zum-erstellen-eines-animierten-hydraulikplans" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Anleitung zum Erstellen eines Animierten Hydraulikplans<a class="headerlink" href="#anleitung-zum-erstellen-eines-animierten-hydraulikplans" title="Link to this heading"></a></h1>
 <section id="voraussetzung">
-<h2>Voraussetzung<a class="headerlink" href="#voraussetzung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Voraussetzung<a class="headerlink" href="#voraussetzung" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Inkscape</p></li>
 </ul>
 </section>
 <section id="wir-erstellen-einen-puffer">
-<h2>Wir erstellen einen Puffer<a class="headerlink" href="#wir-erstellen-einen-puffer" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Wir erstellen einen Puffer<a class="headerlink" href="#wir-erstellen-einen-puffer" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Inkscape Starten</p></li>
 <li><p>Rechteck erstellen</p></li>
@@ -217,7 +213,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </figure>
 </section>
 <section id="wir-erstellen-leitungen">
-<h2>Wir erstellen Leitungen<a class="headerlink" href="#wir-erstellen-leitungen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Wir erstellen Leitungen<a class="headerlink" href="#wir-erstellen-leitungen" title="Link to this heading"></a></h2>
 <p>Rohre werden mit dem Freihandlinien Zeichner erstellt. Es ist damit
 möglich auch gerade Linien zu Zeichnen Am Startpunkt mit der Maus
 klicken. Am Zielpunk wider klicken, fertig ist die Gerade. Wenn man mit
@@ -278,7 +274,7 @@ benötigt.</p>
 </figure>
 </section>
 <section id="xml-file-anpassen-inkscape">
-<h2>XML-File anpassen (Inkscape)<a class="headerlink" href="#xml-file-anpassen-inkscape" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>XML-File anpassen (Inkscape)<a class="headerlink" href="#xml-file-anpassen-inkscape" title="Link to this heading"></a></h2>
 <p>Nun kommt das Geheimnis der animierten Leitungen</p>
 <ul class="simple">
 <li><p>Gruppen Bilden</p></li>
@@ -310,7 +306,7 @@ flow_control bedeuten:</p>
 </figure>
 </section>
 <section id="xml-file-anpassen-editor">
-<h2>XML-File anpassen (Editor)<a class="headerlink" href="#xml-file-anpassen-editor" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>XML-File anpassen (Editor)<a class="headerlink" href="#xml-file-anpassen-editor" title="Link to this heading"></a></h2>
 <p>Es ist auch möglich die SVG Datei direkt per Editor zu bearbeiten. Basis
 ist die Leitung als Gruppe eingefasst</p>
 <ul class="simple">
@@ -336,7 +332,7 @@ Rohr) suchen</p></li>
 </figure>
 </section>
 <section id="das-fertige-ergebnis-im-webbrowser">
-<h2>Das Fertige Ergebnis im Webbrowser<a class="headerlink" href="#das-fertige-ergebnis-im-webbrowser" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Das Fertige Ergebnis im Webbrowser<a class="headerlink" href="#das-fertige-ergebnis-im-webbrowser" title="Link to this heading"></a></h2>
 <figure class="align-default">
 <img alt="XML5.png" src="../_images/XML5.png" />
 </figure>
@@ -347,8 +343,8 @@ Rohr) suchen</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="rrd/processes.html" class="btn btn-neutral float-left" title="Anzahl der Prozess auf Linux System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="customizing.html" class="btn btn-neutral float-right" title="Anpassungen vornehmen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rrd/processes.html" class="btn btn-neutral float-left" title="Anzahl der Prozess auf Linux System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="customizing.html" class="btn btn-neutral float-right" title="Anpassungen vornehmen" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -364,9 +360,13 @@ Rohr) suchen</p></li>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -374,24 +374,20 @@ Rohr) suchen</p></li>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

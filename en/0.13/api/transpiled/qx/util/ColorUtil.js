@@ -185,13 +185,13 @@
         } else if (this.isSystemColor(str)) {
           throw new Error("Could not convert system colors to RGB: " + str);
         } else if (this.isRgbaString(str)) {
-          color = this.__P_500_0(str);
+          color = this.__P_508_0(str);
         } else if (this.isRgbString(str)) {
-          color = this.__P_500_1();
+          color = this.__P_508_1();
         } else if (this.ishexShortString(str)) {
-          color = this.__P_500_2();
+          color = this.__P_508_2();
         } else if (this.ishexLongString(str)) {
-          color = this.__P_500_3();
+          color = this.__P_508_3();
         }
         if (color) {
           // don't mention alpha if the color is opaque
@@ -313,7 +313,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_500_1: function __P_500_1() {
+      __P_508_1: function __P_508_1() {
         var red = parseInt(RegExp.$1, 10);
         var green = parseInt(RegExp.$2, 10);
         var blue = parseInt(RegExp.$3, 10);
@@ -324,7 +324,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_500_0: function __P_500_0() {
+      __P_508_0: function __P_508_0() {
         var red = parseInt(RegExp.$1, 10);
         var green = parseInt(RegExp.$2, 10);
         var blue = parseInt(RegExp.$3, 10);
@@ -341,7 +341,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_500_2: function __P_500_2() {
+      __P_508_2: function __P_508_2() {
         var red = parseInt(RegExp.$1, 16) * 17;
         var green = parseInt(RegExp.$2, 16) * 17;
         var blue = parseInt(RegExp.$3, 16) * 17;
@@ -353,7 +353,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_500_4: function __P_500_4() {
+      __P_508_4: function __P_508_4() {
         var red = parseInt(RegExp.$1, 16) * 17;
         var green = parseInt(RegExp.$2, 16) * 17;
         var blue = parseInt(RegExp.$3, 16) * 17;
@@ -364,7 +364,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_500_5: function __P_500_5() {
+      __P_508_5: function __P_508_5() {
         var red = parseInt(RegExp.$1, 16) * 16 + parseInt(RegExp.$2, 16);
         var green = parseInt(RegExp.$3, 16) * 16 + parseInt(RegExp.$4, 16);
         var blue = parseInt(RegExp.$5, 16) * 16 + parseInt(RegExp.$6, 16);
@@ -375,7 +375,7 @@
        *
        * @return {Array} an array with red, green, blue
        */
-      __P_500_3: function __P_500_3() {
+      __P_508_3: function __P_508_3() {
         var red = parseInt(RegExp.$1, 16);
         var green = parseInt(RegExp.$2, 16);
         var blue = parseInt(RegExp.$3, 16);
@@ -390,7 +390,7 @@
        */
       hex3StringToRgb: function hex3StringToRgb(value) {
         if (this.isHex3String(value)) {
-          return this.__P_500_4(value);
+          return this.__P_508_4(value);
         }
         throw new Error("Invalid hex3 value: " + value);
       },
@@ -415,7 +415,7 @@
        */
       hex6StringToRgb: function hex6StringToRgb(value) {
         if (this.isHex6String(value)) {
-          return this.__P_500_5(value);
+          return this.__P_508_5(value);
         }
         throw new Error("Invalid hex6 value: " + value);
       },
@@ -427,10 +427,10 @@
        */
       hexStringToRgb: function hexStringToRgb(value) {
         if (this.ishexShortString(value)) {
-          return this.__P_500_2(value);
+          return this.__P_508_2(value);
         }
         if (this.ishexLongString(value)) {
-          return this.__P_500_3(value);
+          return this.__P_508_3(value);
         }
         throw new Error("Invalid hex value: " + value);
       },
@@ -604,7 +604,7 @@
        * @param hue_tuner {Function}  function
        * @return {String} a valid CSS rgb color string.*
        */
-      __P_500_6: function __P_500_6(color, tuneMap, tuner, hue_tuner) {
+      __P_508_6: function __P_508_6(color, tuneMap, tuner, hue_tuner) {
         var rgba = this.stringToRgb(color);
         for (var key in tuneMap) {
           if (tuneMap[key] == 0) {
@@ -699,7 +699,7 @@
        * @return {String} a valid CSS rgb color string.
        */
       scale: function scale(color, scaleMap) {
-        return this.__P_500_6(color, scaleMap, function (value, scale, max) {
+        return this.__P_508_6(color, scaleMap, function (value, scale, max) {
           if (value > max) {
             value = max;
           }
@@ -734,7 +734,7 @@
        * @return {String} a valid CSS rgb color string.
        */
       adjust: function adjust(color, adjustMap) {
-        return this.__P_500_6(color, adjustMap, function (value, offset, max) {
+        return this.__P_508_6(color, adjustMap, function (value, offset, max) {
           value += offset;
           if (value > max) {
             return max;
@@ -813,4 +813,4 @@
   qx.util.ColorUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorUtil.js.map?dt=1692560740923
+//# sourceMappingURL=ColorUtil.js.map?dt=1700345613475

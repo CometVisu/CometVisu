@@ -77,7 +77,7 @@
     extend: qx.ui.table.columnmodel.resizebehavior.Abstract,
     construct: function construct() {
       qx.ui.table.columnmodel.resizebehavior.Abstract.constructor.call(this);
-      this.__P_445_0 = [];
+      this.__P_453_0 = [];
 
       // This layout is not connected to a widget but to this class. This class
       // must implement the method "getLayoutChildren", which must return all
@@ -86,9 +86,9 @@
       // data object
       // The advantage of the use of the normal layout manager is that the
       // semantics of flex and percent are exactly the same as in the widget code.
-      this.__P_445_1 = new qx.ui.layout.HBox();
-      this.__P_445_1.connectToWidget(this);
-      this.__P_445_2 = new qx.util.DeferredCall(this._computeColumnsFlexWidth, this);
+      this.__P_453_1 = new qx.ui.layout.HBox();
+      this.__P_453_1.connectToWidget(this);
+      this.__P_453_2 = new qx.util.DeferredCall(this._computeColumnsFlexWidth, this);
     },
     /*
     *****************************************************************************
@@ -135,14 +135,14 @@
     */
 
     members: {
-      __P_445_1: null,
-      __P_445_3: null,
-      __P_445_0: null,
-      __P_445_2: null,
+      __P_453_1: null,
+      __P_453_3: null,
+      __P_453_0: null,
+      __P_453_2: null,
       /**
        * Whether we have initialized widths on the first appear yet
        */
-      __P_445_4: false,
+      __P_453_4: false,
       /**
        * Set the width of a column.
        *
@@ -161,13 +161,13 @@
        */
       setWidth: function setWidth(col, width, flex) {
         // Ensure the column is within range
-        if (col >= this.__P_445_0.length) {
+        if (col >= this.__P_453_0.length) {
           throw new Error("Column number out of range");
         }
 
         // Set the new width
-        this.__P_445_0[col].setColumnWidth(width, flex);
-        this.__P_445_2.schedule();
+        this.__P_453_0[col].setColumnWidth(width, flex);
+        this.__P_453_2.schedule();
       },
       /**
        * Set the minimum width of a column.
@@ -184,13 +184,13 @@
        */
       setMinWidth: function setMinWidth(col, width) {
         // Ensure the column is within range
-        if (col >= this.__P_445_0.length) {
+        if (col >= this.__P_453_0.length) {
           throw new Error("Column number out of range");
         }
 
         // Set the new width
-        this.__P_445_0[col].setMinWidth(width);
-        this.__P_445_2.schedule();
+        this.__P_453_0[col].setMinWidth(width);
+        this.__P_453_2.schedule();
       },
       /**
        * Set the maximum width of a column.
@@ -207,13 +207,13 @@
        */
       setMaxWidth: function setMaxWidth(col, width) {
         // Ensure the column is within range
-        if (col >= this.__P_445_0.length) {
+        if (col >= this.__P_453_0.length) {
           throw new Error("Column number out of range");
         }
 
         // Set the new width
-        this.__P_445_0[col].setMaxWidth(width);
-        this.__P_445_2.schedule();
+        this.__P_453_0[col].setMaxWidth(width);
+        this.__P_453_2.schedule();
       },
       /**
        * Set any or all of the width, minimum width, and maximum width of a
@@ -253,12 +253,12 @@
       onAppear: function onAppear(event, forceRefresh) {
         // If we haven't initialized widths at least once, or
         // they want us to reinitialize widths on every appear event...
-        if (forceRefresh === true || !this.__P_445_4 || this.getInitializeWidthsOnEveryAppear()) {
+        if (forceRefresh === true || !this.__P_453_4 || this.getInitializeWidthsOnEveryAppear()) {
           // Calculate column widths
           this._computeColumnsFlexWidth();
 
           // Track that we've initialized widths at least once
-          this.__P_445_4 = true;
+          this.__P_453_4 = true;
         }
       },
       // overloaded
@@ -290,7 +290,7 @@
       },
       // overloaded
       _setNumColumns: function _setNumColumns(numColumns) {
-        var colData = this.__P_445_0;
+        var colData = this.__P_453_0;
         // Are there now fewer (or the same number of) columns than there were
         // previously?
         if (numColumns <= colData.length) {
@@ -312,14 +312,14 @@
        * @return {qx.ui.core.ColumnData[]} The list of column data object to layout.
        */
       getLayoutChildren: function getLayoutChildren() {
-        return this.__P_445_3;
+        return this.__P_453_3;
       },
       /**
        * Computes the width of all flexible children.
        *
        */
       _computeColumnsFlexWidth: function _computeColumnsFlexWidth() {
-        this.__P_445_2.cancel();
+        this.__P_453_2.cancel();
         var width = this._getAvailableWidth();
         if (width === null) {
           return;
@@ -327,7 +327,7 @@
         var tableColumnModel = this.getTableColumnModel();
         var visibleColumns = tableColumnModel.getVisibleColumns();
         var visibleColumnsLength = visibleColumns.length;
-        var colData = this.__P_445_0;
+        var colData = this.__P_453_0;
         var i, l;
         if (visibleColumnsLength === 0) {
           return;
@@ -338,11 +338,11 @@
         for (i = 0; i < visibleColumnsLength; i++) {
           columns.push(colData[visibleColumns[i]]);
         }
-        this.__P_445_3 = columns;
-        this.__P_445_5();
+        this.__P_453_3 = columns;
+        this.__P_453_5();
 
         // Use a horizontal box layout to determine the available width.
-        this.__P_445_1.renderLayout(width, 100, {
+        this.__P_453_1.renderLayout(width, 100, {
           top: 0,
           right: 0,
           bottom: 0,
@@ -358,9 +358,9 @@
       /**
        * Clear all layout caches of the column datas.
        */
-      __P_445_5: function __P_445_5() {
-        this.__P_445_1.invalidateChildrenCache();
-        var children = this.__P_445_3;
+      __P_453_5: function __P_453_5() {
+        this.__P_453_1.invalidateChildrenCache();
+        var children = this.__P_453_3;
         for (var i = 0, l = children.length; i < l; i++) {
           children[i].invalidateLayoutCache();
         }
@@ -488,7 +488,7 @@
        * @return {qx.ui.core.ColumnData[]} array of the resizing information of a column.
        */
       _getResizeColumnData: function _getResizeColumnData() {
-        return this.__P_445_0;
+        return this.__P_453_0;
       }
     },
     /*
@@ -497,11 +497,11 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_445_0 = this.__P_445_3 = null;
-      this._disposeObjects("__P_445_1", "__P_445_2");
+      this.__P_453_0 = this.__P_453_3 = null;
+      this._disposeObjects("__P_453_1", "__P_453_2");
     }
   });
   qx.ui.table.columnmodel.resizebehavior.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1692560735010
+//# sourceMappingURL=Default.js.map?dt=1700345609963

@@ -115,6 +115,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       _lastUpdate: null,
       _maxAge: null,
       _hideTimer: null,
+      _checkEnvironment: function _checkEnvironment() {
+        cv.ui.structure.tile.widgets.Tile.superclass.prototype._checkEnvironment.call(this);
+        var parent = this._element.parentElement;
+        var isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
+        this.setWidget(isWidget);
+      },
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.widgets.Tile.superclass.prototype._init.call(this);
@@ -360,4 +366,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   cv.ui.structure.tile.widgets.Tile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tile.js.map?dt=1692560694523
+//# sourceMappingURL=Tile.js.map?dt=1700345585768

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mapping &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/versions.js"></script>
-        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,15 +60,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-struktur">Pure-Struktur</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html#meta-bereich">Meta-Bereich</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="backend.html">Backend</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Mapping</a></li>
-<li class="toctree-l5"><a class="reference internal" href="styling.html">Styling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="loader.html">Loader</a></li>
-<li class="toctree-l5"><a class="reference internal" href="style.html">CSS-Style</a></li>
-<li class="toctree-l5"><a class="reference internal" href="state-notification.html">Status-Benachrichtigung</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#meta-bereich">Meta-Bereich</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#navigation-seitenstruktur">Navigation / Seitenstruktur</a></li>
 </ul>
 </li>
@@ -93,10 +89,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
-      <li>Mapping</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Grundsätzlicher Aufbau</a></li>
+      <li class="breadcrumb-item active">Mapping</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -112,7 +108,7 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="mapping">
-<span id="tile-element-mapping"></span><h1>Mapping<a class="headerlink" href="#mapping" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="tile-element-mapping"></span><h1>Mapping<a class="headerlink" href="#mapping" title="Link to this heading"></a></h1>
 <div class="admonition hint">
 <p class="admonition-title">Hinweis</p>
 <p>Die Funktionalität der Mappings in der Tile-Struktur unterscheidet nicht nicht wesentlich von den Mappings in der Pure-Struktur.
@@ -130,7 +126,7 @@ Mapping-Definition bekommt einen eindeutigen Namen, auf den man sich im
 späteren Verlauf für die unterschiedlichsten Visualisierungselemente
 beziehen kann.</p>
 <section id="mapping-von-werten-zu-text">
-<h2>Mapping von Werten zu Text<a class="headerlink" href="#mapping-von-werten-zu-text" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Mapping von Werten zu Text<a class="headerlink" href="#mapping-von-werten-zu-text" title="Link to this heading"></a></h2>
 <p>Eine einfache Definition im Meta-Bereich sieht folgendermaßen aus:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;AusAn&quot;</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Aus<span class="nt">&lt;/entry&gt;</span>
@@ -141,10 +137,6 @@ beziehen kann.</p>
 <p>Dies würde bei Benutzung mit z.B. einem <a class="reference internal" href="../widgets/info.html#tile-info"><span class="std std-ref">Info-Widget</span></a></p>
 <p>Statt 0 und 1:</p>
 <table class="image-float docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><figure class="align-default">
 <img alt="../../../_images/cv-value-nomapping-off.png" src="../../../_images/cv-value-nomapping-off.png" />
@@ -159,10 +151,6 @@ beziehen kann.</p>
 </table>
 <p>An und Aus anzeigen:</p>
 <table class="image-float docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><figure class="align-default">
 <img alt="../../../_images/cv-value-mapping-off.png" src="../../../_images/cv-value-mapping-off.png" />
@@ -178,7 +166,7 @@ beziehen kann.</p>
 <p>Die Farbe kann durch die Definition des <a class="reference internal" href="styling.html#tile-element-styling"><span class="std std-ref">Stylings</span></a> bestimmt werden.</p>
 </section>
 <section id="mapping-von-werten-in-icons">
-<h2>Mapping von Werten in Icons<a class="headerlink" href="#mapping-von-werten-in-icons" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Mapping von Werten in Icons<a class="headerlink" href="#mapping-von-werten-in-icons" title="Link to this heading"></a></h2>
 <p>Sofern ein Status per Icon angezeigt werden soll, kann man ein Mapping benutzen, um statt Werten (z.B. 0 oder 1) Icons
 anzuzeigen.</p>
 <p>Die Definition im Meta-Bereich sieht dann folgendermaßen aus:</p>
@@ -204,10 +192,6 @@ anzuzeigen.</p>
 <p>So würde bei Benutzung mit z.B. einem <a class="reference internal" href="../widgets/switch.html#tile-switch"><span class="std std-ref">Switch-Widget</span></a>, je nach Status
 unterschiedliche Icons angezeigt:</p>
 <table class="image-float docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><figure class="align-default">
 <img alt="Switch off" src="../../../_images/cv-switch-mapping-off.png" />
@@ -223,18 +207,13 @@ unterschiedliche Icons angezeigt:</p>
 <p>Die Farbe der Icons wird hierbei über das Styling gesteuert.</p>
 </section>
 <section id="mapping-von-nicht-binaren-werten">
-<h2>Mapping von nicht-binären Werten<a class="headerlink" href="#mapping-von-nicht-binaren-werten" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Mapping von nicht-binären Werten<a class="headerlink" href="#mapping-von-nicht-binaren-werten" title="Link to this heading"></a></h2>
 <p>Mapping funktioniert nicht nur bei binären Datentypen.
 Ein Türkontakt liefert 0 bei geschlossener Tür, 1 bei offener Tür und 2
 bei gekippter Tür. Das Mapping ersetzt die wenig aussagekräftige Zahl
 durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
 <a class="reference external" href="http://knx-user-forum.de/knx-uf-iconset/">KNX User Forum Iconset</a></p>
 <table class="image-float docutils align-default">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><figure class="align-default">
 <img alt="../../../_images/mapping_door_closed1.png" src="../../../_images/mapping_door_closed1.png" />
@@ -282,7 +261,7 @@ durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
 </div>
 </section>
 <section id="wertebereiche">
-<h2>Wertebereiche<a class="headerlink" href="#wertebereiche" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Wertebereiche<a class="headerlink" href="#wertebereiche" title="Link to this heading"></a></h2>
 <p>Es können auch Wertbereiche für die entsprechende Darstellung gewählt
 werden:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Vorzeichen&quot;</span><span class="nt">&gt;</span>
@@ -299,7 +278,7 @@ ist es möglich, für einzelne Werte Sonderbezeichnungen (in diesem Fall
 die „Null“) zu definieren.</p>
 </section>
 <section id="besondere-mapping-werte">
-<h2>Besondere Mapping-Werte<a class="headerlink" href="#besondere-mapping-werte" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Besondere Mapping-Werte<a class="headerlink" href="#besondere-mapping-werte" title="Link to this heading"></a></h2>
 <p>Es gibt zwei Mapping Werte die gesondert behandelt werden:</p>
 <blockquote>
 <div><ul class="simple">
@@ -316,7 +295,7 @@ die „Null“) zu definieren.</p>
 <p>Liefert das Backend keine Wert, liefert das Mapping den Wert <em>Fehler</em> zurück, ansonsten <em>Ok</em>.</p>
 </section>
 <section id="formeln-einsteiger">
-<h2>Formeln (Einsteiger)<a class="headerlink" href="#formeln-einsteiger" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Formeln (Einsteiger)<a class="headerlink" href="#formeln-einsteiger" title="Link to this heading"></a></h2>
 <p>Manchmal ist es auch nötig, Werte vor der Darstellung umzurechnen, z.B.
 um andere Einheiten zu benutzen.</p>
 <p>„x“ ist der Eingangswert, den die Formel passend modifiziert auf den
@@ -357,10 +336,6 @@ gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.</p>
 Sensoren liefern in der Regel nummerische Werte. Bleiben diesen aus, kann z.B. das expire-Binding
 in openHAB einen negativen Wert zurückliefern. Das Mapping würde ein <em>OK</em> oder <em>not OK</em> liefern:</p>
 <table class="image-float docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><figure class="align-default">
 <img alt="../../../_images/mapping-sensor-alarm-ok.png" src="../../../_images/mapping-sensor-alarm-ok.png" />
@@ -388,7 +363,7 @@ in openHAB einen negativen Wert zurückliefern. Das Mapping würde ein <em>OK</e
 </div>
 </section>
 <section id="formeln-advanced">
-<h2>Formeln (Advanced)<a class="headerlink" href="#formeln-advanced" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Formeln (Advanced)<a class="headerlink" href="#formeln-advanced" title="Link to this heading"></a></h2>
 <p>Wenn bekannt ist, um welchen exakten Objekt-Typ es sich handelt, können
 in einer Formel auch die konkreten JavaScript-Methoden verwendet werden.</p>
 <p>Wird bspw. openHAB als Backend verwendet, gibt es dort den Item-Type
@@ -434,7 +409,7 @@ die Referenz der verfügbaren JavaScript-Methoden, welche man auf diesem
 Objekt aufrufen kann.</p>
 </section>
 <section id="formeln-mit-lokalem-store">
-<h2>Formeln mit lokalem Store<a class="headerlink" href="#formeln-mit-lokalem-store" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Formeln mit lokalem Store<a class="headerlink" href="#formeln-mit-lokalem-store" title="Link to this heading"></a></h2>
 <p>Eine Besonderheit, die momentan nur für <a class="reference internal" href="../components/button.html#tile-component-button"><span class="std std-ref">&lt;cv-button&gt;</span></a> implementiert ist, ist das Benutzen
 eines Wertspeichers (Store) innerhalb einer Formel. Das ermöglicht es in der Formel Berechnungen durchzuführen, die
 von mehreren Status-Werten abhängen. Möchte man z.B. berechnen wie viel Prozent eines Lieds bereits abgespielt wurde
@@ -479,13 +454,13 @@ mapping-Attribute die Angabe von zusätzlichen Parametern:
 und leer, wenn keine angeben wurden.</p>
 </section>
 <section id="beispiel-mappings">
-<h2>Beispiel-Mappings<a class="headerlink" href="#beispiel-mappings" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beispiel-Mappings<a class="headerlink" href="#beispiel-mappings" title="Link to this heading"></a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hinweis</p>
 <p>bei copy&amp;paste einen UTF-8 fähigen Editor nutzen!</p>
 </div>
 <section id="wind-und-windstarke">
-<h3>Wind und Windstärke<a class="headerlink" href="#wind-und-windstarke" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Wind und Windstärke<a class="headerlink" href="#wind-und-windstarke" title="Link to this heading"></a></h3>
 <p>Für Wetterdaten in km/h:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kmh2bft&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
@@ -572,7 +547,7 @@ und leer, wenn keine angeben wurden.</p>
 </div>
 </section>
 <section id="windrichtung">
-<h3>Windrichtung<a class="headerlink" href="#windrichtung" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Windrichtung<a class="headerlink" href="#windrichtung" title="Link to this heading"></a></h3>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Windrichtung_°&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;11.25&quot;</span><span class="nt">&gt;</span>Nord<span class="nt">&lt;/entry&gt;</span>
 <span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;11.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;33.75&quot;</span><span class="nt">&gt;</span>Nordnordost<span class="nt">&lt;/entry&gt;</span>
@@ -602,8 +577,8 @@ und leer, wenn keine angeben wurden.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="backend.html" class="btn btn-neutral float-left" title="Konfiguration der Backend Verbindung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="styling.html" class="btn btn-neutral float-right" title="Styling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="backend.html" class="btn btn-neutral float-left" title="Konfiguration der Backend Verbindung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="styling.html" class="btn btn-neutral float-right" title="Styling" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -619,9 +594,13 @@ und leer, wenn keine angeben wurden.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -629,24 +608,20 @@ und leer, wenn keine angeben wurden.</p>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

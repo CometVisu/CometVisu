@@ -79,7 +79,7 @@
           column = child.getLayoutProperties().column;
           columnChildren[column] = child;
         }
-        var menu = this.__P_378_0(children[0]);
+        var menu = this.__P_386_0(children[0]);
         var columns = menu.getColumnSizes();
         var spacing = menu.getSpacingX();
 
@@ -110,7 +110,7 @@
        * @param widget {qx.ui.core.Widget} the widget to get the menu for
        * @return {qx.ui.menu.Menu} the menu
        */
-      __P_378_0: function __P_378_0(widget) {
+      __P_386_0: function __P_386_0(widget) {
         while (!(widget instanceof qx.ui.menu.Menu)) {
           widget = widget.getLayoutParent();
         }
@@ -136,4 +136,4 @@
   qx.ui.menu.ButtonLayout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ButtonLayout.js.map?dt=1692560728755
+//# sourceMappingURL=ButtonLayout.js.map?dt=1700345606448

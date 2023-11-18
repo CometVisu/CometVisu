@@ -219,7 +219,7 @@
           };
         }
         var resolvedImage = qx.util.AliasManager.getInstance().resolve(this.getBorderImage());
-        var computedSlices = this.__P_335_0(resolvedImage);
+        var computedSlices = this.__P_343_0(resolvedImage);
         return {
           top: this.getSliceTop() || computedSlices[0],
           right: this.getSliceRight() || computedSlices[1],
@@ -234,7 +234,7 @@
        * @param baseImage {String} Resource Id of the base border image
        * @return {Integer[]} Array with the top, right, bottom and left slice widths
        */
-      __P_335_0: function __P_335_0(baseImage) {
+      __P_343_0: function __P_343_0(baseImage) {
         var mode = this.getBorderImageMode();
         var topSlice = 0;
         var rightSlice = 0;
@@ -259,4 +259,4 @@
   qx.ui.decoration.MBorderImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBorderImage.js.map?dt=1692560724092
+//# sourceMappingURL=MBorderImage.js.map?dt=1700345603642

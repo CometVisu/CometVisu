@@ -33,6 +33,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "cv.data.Model": {},
       "cv.io.BackendConnections": {},
       "cv.parser.pure.MetaParser": {},
+      "cv.util.ScriptLoader": {},
+      "cv.ui.structure.pure.layout.ResizeHandler": {},
       "qx.event.message.Bus": {},
       "cv.TemplateEngine": {},
       "cv.parser.pure.WidgetParser": {},
@@ -49,7 +51,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         "require": true
       },
       "qx.bom.History": {},
-      "cv.ui.structure.pure.layout.ResizeHandler": {},
       "qx.util.Uri": {},
       "cv.util.String": {},
       "cv.util.Tree": {},
@@ -267,6 +268,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * @param xml {XMLDocument} loaded config file
        */
       createUI: function createUI(xml) {
+        cv.util.ScriptLoader.getInstance().addListenerOnce('stylesAndScriptsLoaded', function () {
+          cv.ui.structure.pure.layout.ResizeHandler.invalidateScreensize();
+        }, this);
         if (!cv.Config.cacheUsed) {
           this.debug('creating pages');
           var page = xml.querySelector('pages > page'); // only one page element allowed...
@@ -698,4 +702,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.pure.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1692560689992
+//# sourceMappingURL=Controller.js.map?dt=1700345582357

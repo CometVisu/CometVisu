@@ -41,7 +41,7 @@
     */
     construct: function construct() {
       qx.ui.virtual.cell.AbstractImage.constructor.call(this);
-      this.__P_473_0 = qx.util.AliasManager.getInstance();
+      this.__P_481_0 = qx.util.AliasManager.getInstance();
     },
     /*
     *****************************************************************************
@@ -78,24 +78,24 @@
     */
 
     members: {
-      __P_473_1: null,
-      __P_473_2: null,
-      __P_473_0: null,
+      __P_481_1: null,
+      __P_481_2: null,
+      __P_481_0: null,
       // property apply
       _applyIconTrue: function _applyIconTrue(value) {
-        this.__P_473_1 = this.__P_473_0.resolve(value);
+        this.__P_481_1 = this.__P_481_0.resolve(value);
       },
       // property apply
       _applyIconFalse: function _applyIconFalse(value) {
-        this.__P_473_2 = this.__P_473_0.resolve(value);
+        this.__P_481_2 = this.__P_481_0.resolve(value);
       },
       // overridden
       _identifyImage: function _identifyImage(value) {
-        return value == true ? this.__P_473_1 : this.__P_473_2;
+        return value == true ? this.__P_481_1 : this.__P_481_2;
       }
     }
   });
   qx.ui.virtual.cell.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1692560738132
+//# sourceMappingURL=Boolean.js.map?dt=1700345611833

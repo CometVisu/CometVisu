@@ -104,19 +104,19 @@
   qx.Bootstrap.define("qx.application.Routing", {
     implement: [qx.core.IDisposable],
     construct: function construct() {
-      this.__P_98_0 = new qx.event.Messaging();
-      this.__P_98_1 = qx.bom.History.getInstance();
-      this.__P_98_1.addListener("changeState", this.__P_98_2, this);
+      this.__P_106_0 = new qx.event.Messaging();
+      this.__P_106_1 = qx.bom.History.getInstance();
+      this.__P_106_1.addListener("changeState", this.__P_106_2, this);
     },
     statics: {
       DEFAULT_PATH: "/",
-      __P_98_3: [],
-      __P_98_4: []
+      __P_106_3: [],
+      __P_106_4: []
     },
     members: {
-      __P_98_1: null,
-      __P_98_0: null,
-      __P_98_5: null,
+      __P_106_1: null,
+      __P_106_0: null,
+      __P_106_5: null,
       /**
        * Initialization method used to execute the get route for the currently set history path.
        * If no path is set, either the given argument named <code>defaultPath</code>
@@ -139,7 +139,7 @@
        * @return {String} A valid path.
        */
       _getPathOrFallback: function _getPathOrFallback(path, defaultPath) {
-        if (path == "" || path == null || !this.__P_98_0.has("get", path)) {
+        if (path == "" || path == null || !this.__P_106_0.has("get", path)) {
           path = defaultPath || qx.application.Routing.DEFAULT_PATH;
         }
         return path;
@@ -154,7 +154,7 @@
        * @return {String} Event listener ID
        */
       onGet: function onGet(route, handler, scope) {
-        return this.__P_98_0.on("get", route, handler, scope);
+        return this.__P_106_0.on("get", route, handler, scope);
       },
       /**
        * This is a shorthand for {@link #onGet}.
@@ -177,7 +177,7 @@
        * @return {String} Event listener ID
        */
       onPost: function onPost(route, handler, scope) {
-        return this.__P_98_0.on("post", route, handler, scope);
+        return this.__P_106_0.on("post", route, handler, scope);
       },
       /**
        * Adds a route handler for the "put" operation. The route gets called
@@ -189,7 +189,7 @@
        * @return {String} Event listener ID
        */
       onPut: function onPut(route, handler, scope) {
-        return this.__P_98_0.on("put", route, handler, scope);
+        return this.__P_106_0.on("put", route, handler, scope);
       },
       /**
        * Adds a route handler for the "delete" operation. The route gets called
@@ -201,7 +201,7 @@
        * @return {String} Event listener ID
        */
       onDelete: function onDelete(route, handler, scope) {
-        return this.__P_98_0.on("delete", route, handler, scope);
+        return this.__P_106_0.on("delete", route, handler, scope);
       },
       /**
        * Adds a route handler for the "any" operation. The "any" operation is called
@@ -213,7 +213,7 @@
        * @return {String} Event listener ID
        */
       onAny: function onAny(route, handler, scope) {
-        return this.__P_98_0.onAny(route, handler, scope);
+        return this.__P_106_0.onAny(route, handler, scope);
       },
       /**
        * Removes a registered route by the given id.
@@ -221,17 +221,17 @@
        * @param id {String} The id of the registered route
        */
       remove: function remove(id) {
-        this.__P_98_0.remove(id);
+        this.__P_106_0.remove(id);
       },
       /**
        * Hash change event handler.
        *
        * @param evt {qx.event.type.Data} The changeHash event.
        */
-      __P_98_2: function __P_98_2(evt) {
+      __P_106_2: function __P_106_2(evt) {
         var path = evt.getData();
         path = this._getPathOrFallback(path);
-        if (path != this.__P_98_5) {
+        if (path != this.__P_106_5) {
           this._executeGet(path, null, true);
         }
       },
@@ -244,8 +244,8 @@
        *
        */
       _executeGet: function _executeGet(path, customData, fromEvent) {
-        this.__P_98_5 = path;
-        var history = this.__P_98_6(path);
+        this.__P_106_5 = path;
+        var history = this.__P_106_6(path);
         if (history) {
           if (!customData) {
             customData = history.data.customData || {};
@@ -253,14 +253,14 @@
             customData.action = history.action;
             customData.fromEvent = fromEvent;
           } else {
-            this.__P_98_7(path, customData);
+            this.__P_106_7(path, customData);
           }
         } else {
-          this.__P_98_8(path, customData);
-          qx.application.Routing.__P_98_4 = [];
+          this.__P_106_8(path, customData);
+          qx.application.Routing.__P_106_4 = [];
         }
-        this.__P_98_1.setState(path);
-        this.__P_98_0.emit("get", path, null, customData);
+        this.__P_106_1.setState(path);
+        this.__P_106_0.emit("get", path, null, customData);
       },
       /**
        * Executes the get operation and informs all matching route handler.
@@ -288,7 +288,7 @@
        * @param customData {var} The given custom data that should be propagated
        */
       executePost: function executePost(path, params, customData) {
-        this.__P_98_0.emit("post", path, params, customData);
+        this.__P_106_0.emit("post", path, params, customData);
       },
       /**
        * Executes the put operation and informs all matching route handler.
@@ -298,7 +298,7 @@
        * @param customData {var} The given custom data that should be propagated
        */
       executePut: function executePut(path, params, customData) {
-        this.__P_98_0.emit("put", path, params, customData);
+        this.__P_106_0.emit("put", path, params, customData);
       },
       /**
        * Executes the delete operation and informs all matching route handler.
@@ -308,14 +308,14 @@
        * @param customData {var} The given custom data that should be propagated
        */
       executeDelete: function executeDelete(path, params, customData) {
-        this.__P_98_0.emit("delete", path, params, customData);
+        this.__P_106_0.emit("delete", path, params, customData);
       },
       /**
        * Returns state value (history hash) of the navigation handler.
        * @return {String} State of history navigation handler
        */
       getState: function getState() {
-        return this.__P_98_1.getState();
+        return this.__P_106_1.getState();
       },
       /**
        * Adds the custom data of a given path to the history.
@@ -323,8 +323,8 @@
        * @param path {String} The path to store.
        * @param customData {var} The custom data to store
        */
-      __P_98_8: function __P_98_8(path, customData) {
-        qx.application.Routing.__P_98_3.unshift({
+      __P_106_8: function __P_106_8(path, customData) {
+        qx.application.Routing.__P_106_3.unshift({
           path: path,
           customData: customData
         });
@@ -334,8 +334,8 @@
        * @param path {String} The path to replace.
        * @param customData {var} The custom data to store.
        */
-      __P_98_7: function __P_98_7(path, customData) {
-        var register = [qx.application.Routing.__P_98_3, qx.application.Routing.__P_98_4];
+      __P_106_7: function __P_106_7(path, customData) {
+        var register = [qx.application.Routing.__P_106_3, qx.application.Routing.__P_106_4];
         for (var i = 0; i < register.length; i++) {
           for (var j = 0; j < register[i].length; j++) {
             if (register[i][j].path == path) {
@@ -350,9 +350,9 @@
        * @param path {String} The path of the entry
        * @return {Map|null} The retrieved entry. <code>null</code> when no entry was found.
        */
-      __P_98_6: function __P_98_6(path) {
-        var back = qx.application.Routing.__P_98_3;
-        var forward = qx.application.Routing.__P_98_4;
+      __P_106_6: function __P_106_6(path) {
+        var back = qx.application.Routing.__P_106_3;
+        var forward = qx.application.Routing.__P_106_4;
         var found = false;
         var entry = null;
         var length = back.length;
@@ -413,7 +413,7 @@
           };
         }
         var path,
-          back = qx.application.Routing.__P_98_3;
+          back = qx.application.Routing.__P_106_3;
         if (back.length > 0) {
           // Remove current state
           back.shift();
@@ -434,11 +434,11 @@
        * Decouples the Routing from the navigation handler.
        */
       dispose: function dispose() {
-        this.__P_98_1.removeListener("changeState", this.__P_98_2, this);
+        this.__P_106_1.removeListener("changeState", this.__P_106_2, this);
       }
     }
   });
   qx.application.Routing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Routing.js.map?dt=1692560696599
+//# sourceMappingURL=Routing.js.map?dt=1700345587080

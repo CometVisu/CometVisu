@@ -167,6 +167,8 @@
         // xsd:-namespaces types, those are the originals
         switch (baseType) {
           case 'xsd:string':
+          case 'xsd:normalizedString':
+          case 'xsd:token':
           case 'xsd:anyURI':
           case 'xsd:anyType':
             if (!(typeof value == 'string')) {
@@ -296,4 +298,4 @@
   cv.ui.manager.model.schema.SimpleType.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleType.js.map?dt=1692560688690
+//# sourceMappingURL=SimpleType.js.map?dt=1700345581646

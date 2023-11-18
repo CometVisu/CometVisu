@@ -110,7 +110,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Database of supported features.
        * Filled with additional data at initialization
        */
-      __P_127_0: {
+      __P_135_0: {
         quicktime: {
           plugin: ["QuickTime"],
           control: "QuickTimeCheckObject.QuickTimeCheck.1"
@@ -148,8 +148,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getQuicktimeVersion: function getQuicktimeVersion() {
-        var entry = qx.bom.client.Plugin.__P_127_0["quicktime"];
-        return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["quicktime"];
+        return qx.bom.client.Plugin.__P_135_1(entry.control, entry.plugin);
       },
       /**
        * Fetches the version of the windows media plugin.
@@ -158,8 +158,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getWindowsMediaVersion: function getWindowsMediaVersion() {
-        var entry = qx.bom.client.Plugin.__P_127_0["wmv"];
-        return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin, true);
+        var entry = qx.bom.client.Plugin.__P_135_0["wmv"];
+        return qx.bom.client.Plugin.__P_135_1(entry.control, entry.plugin, true);
       },
       /**
        * Fetches the version of the divx plugin.
@@ -168,8 +168,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getDivXVersion: function getDivXVersion() {
-        var entry = qx.bom.client.Plugin.__P_127_0["divx"];
-        return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["divx"];
+        return qx.bom.client.Plugin.__P_135_1(entry.control, entry.plugin);
       },
       /**
        * Fetches the version of the silverlight plugin.
@@ -178,8 +178,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getSilverlightVersion: function getSilverlightVersion() {
-        var entry = qx.bom.client.Plugin.__P_127_0["silverlight"];
-        return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["silverlight"];
+        return qx.bom.client.Plugin.__P_135_1(entry.control, entry.plugin);
       },
       /**
        * Fetches the version of the pdf plugin.
@@ -202,8 +202,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getPdfVersion: function getPdfVersion() {
-        var entry = qx.bom.client.Plugin.__P_127_0["pdf"];
-        return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["pdf"];
+        return qx.bom.client.Plugin.__P_135_1(entry.control, entry.plugin);
       },
       /**
        * Checks if the quicktime plugin is available.
@@ -211,8 +211,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getQuicktime: function getQuicktime() {
-        var entry = qx.bom.client.Plugin.__P_127_0["quicktime"];
-        return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["quicktime"];
+        return qx.bom.client.Plugin.__P_135_2(entry.control, entry.plugin);
       },
       /**
        * Checks if the windows media plugin is available.
@@ -220,8 +220,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getWindowsMedia: function getWindowsMedia() {
-        var entry = qx.bom.client.Plugin.__P_127_0["wmv"];
-        return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin, true);
+        var entry = qx.bom.client.Plugin.__P_135_0["wmv"];
+        return qx.bom.client.Plugin.__P_135_2(entry.control, entry.plugin, true);
       },
       /**
        * Checks if the divx plugin is available.
@@ -229,8 +229,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getDivX: function getDivX() {
-        var entry = qx.bom.client.Plugin.__P_127_0["divx"];
-        return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["divx"];
+        return qx.bom.client.Plugin.__P_135_2(entry.control, entry.plugin);
       },
       /**
        * Checks if the silverlight plugin is available.
@@ -238,8 +238,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getSilverlight: function getSilverlight() {
-        var entry = qx.bom.client.Plugin.__P_127_0["silverlight"];
-        return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["silverlight"];
+        return qx.bom.client.Plugin.__P_135_2(entry.control, entry.plugin);
       },
       /**
        * Checks if the pdf plugin is available.
@@ -261,8 +261,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getPdf: function getPdf() {
-        var entry = qx.bom.client.Plugin.__P_127_0["pdf"];
-        return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
+        var entry = qx.bom.client.Plugin.__P_135_0["pdf"];
+        return qx.bom.client.Plugin.__P_135_2(entry.control, entry.plugin);
       },
       /**
        * Internal helper for getting the version of a given plugin.
@@ -275,8 +275,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *   for IE11 plugins that aren't listed in navigator.plugins
        * @return {String} The version of the plugin as string.
        */
-      __P_127_1: function __P_127_1(activeXName, pluginNames, forceActiveX) {
-        var available = qx.bom.client.Plugin.__P_127_2(activeXName, pluginNames, forceActiveX);
+      __P_135_1: function __P_135_1(activeXName, pluginNames, forceActiveX) {
+        var available = qx.bom.client.Plugin.__P_135_2(activeXName, pluginNames, forceActiveX);
 
         // don't check if the plugin is not available
         if (!available) {
@@ -344,7 +344,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *   for IE11 plugins that aren't listed in navigator.plugins
        * @return {Boolean} <code>true</code>, if the plugin available
        */
-      __P_127_2: function __P_127_2(activeXName, pluginNames, forceActiveX) {
+      __P_135_2: function __P_135_2(activeXName, pluginNames, forceActiveX) {
         // IE checks
         if (qx.bom.client.Engine.getName() == "mshtml" && (qx.bom.client.Browser.getDocumentMode() < 11 || forceActiveX)) {
           if (!this.getActiveX()) {
@@ -394,4 +394,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.client.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1692560699487
+//# sourceMappingURL=Plugin.js.map?dt=1700345588876

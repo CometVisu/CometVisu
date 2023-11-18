@@ -40,7 +40,7 @@
     */
     construct: function construct(tagName) {
       qx.html.Element.constructor.call(this);
-      this.__P_547_0 = document.createElementNS('http://www.w3.org/2000/svg', tagName);
+      this.__P_555_0 = document.createElementNS('http://www.w3.org/2000/svg', tagName);
     },
     /*
     ***********************************************
@@ -49,18 +49,18 @@
     */
     members: {
       _createDomElement: function _createDomElement() {
-        return this.__P_547_0;
+        return this.__P_555_0;
       },
       getDomElement: function getDomElement() {
-        return this.__P_547_0;
+        return this.__P_555_0;
       }
     },
     destruct: function destruct() {
-      this.__P_547_0.$$widget = null;
-      this.__P_547_0 = null;
+      this.__P_555_0.$$widget = null;
+      this.__P_555_0 = null;
     }
   });
   cv.svg.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1692560746559
+//# sourceMappingURL=Element.js.map?dt=1700345617001

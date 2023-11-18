@@ -69,12 +69,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
       // this.base(arguments);
       this.lazyPlugins = ['plugin-openhab'];
-      this.__P_527_0 = new qx.data.Array();
+      this.__P_535_0 = new qx.data.Array();
       this._domFinishedQueue = [];
-      this.__P_527_0.addListener('changeLength', function (ev) {
+      this.__P_535_0.addListener('changeLength', function (ev) {
         _this.setPartsLoaded(ev.getData() === 0);
       });
-      this.__P_527_1 = {};
+      this.__P_535_1 = {};
       this.defaults = {
         widget: {},
         plugin: {}
@@ -164,7 +164,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        */
       defaults: null,
       pluginsToLoadCount: 0,
-      __P_527_0: null,
+      __P_535_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: null,
@@ -192,12 +192,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             return !loadLazyParts.includes(p);
           });
         }
-        this.__P_527_0.append(parts);
+        this.__P_535_0.append(parts);
         var waitingFor = new qx.data.Array(parts);
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === 'complete') {
-              this.__P_527_0.remove(part);
+              this.__P_535_0.remove(part);
               this.debug('successfully loaded part ' + part);
               if (part.startsWith('structure-')) {
                 if (!cv.Config.loadedStructure) {
@@ -205,7 +205,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
                 qx.core.Init.getApplication().setStructureLoaded(true);
               }
-              this.__P_527_0.remove(part);
+              this.__P_535_0.remove(part);
               waitingFor.remove(part);
             } else {
               this.error('error loading part ' + part);
@@ -343,7 +343,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       var alternativeStyles = [baseUri + '/basic.css'];
                       alternativeStyles.push({
                         uri: baseUri + '/mobile.css',
-                        media: "screen and (max-width:".concat(cv.Config.maxMobileScreenWidthh, "px)")
+                        media: "screen and (max-width:".concat(cv.Config.maxMobileScreenWidth, "px)")
                       });
                       alternativeStyles.push(baseUri + '/custom.css');
                       cv.util.ScriptLoader.getInstance().addStyles(alternativeStyles);
@@ -356,7 +356,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 19;
                 return _this2.loadParts([cv.Config.getStructure()]);
               case 19:
-                if (cv.Application.structureController.parseBackendSettings(xml)) {
+                if (cv.Application.structureController.parseBackendSettings(xml) || cv.Config.testMode) {
                   cv.io.BackendConnections.initBackendClients();
                 }
                 cv.Application.structureController.parseSettings(xml);
@@ -533,4 +533,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1692560743488
+//# sourceMappingURL=TemplateEngine.js.map?dt=1700345615077

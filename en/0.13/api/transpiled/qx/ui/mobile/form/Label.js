@@ -157,7 +157,7 @@
     */
 
     members: {
-      __P_399_0: null,
+      __P_407_0: null,
       // overridden
       _getTagName: function _getTagName() {
         return "label";
@@ -197,13 +197,13 @@
        *
        */
       setLabelFor: function setLabelFor(elementId) {
-        if (this.__P_399_0) {
-          this.__P_399_0.removeListener("changeEnabled", this._changeEnabled, this);
+        if (this.__P_407_0) {
+          this.__P_407_0.removeListener("changeEnabled", this._changeEnabled, this);
         }
-        this.__P_399_0 = qx.ui.mobile.core.Widget.getWidgetById(elementId);
-        if (this.__P_399_0) {
-          this.__P_399_0.addListener("changeEnabled", this._changeEnabled, this);
-          this.setEnabled(this.__P_399_0.getEnabled());
+        this.__P_407_0 = qx.ui.mobile.core.Widget.getWidgetById(elementId);
+        if (this.__P_407_0) {
+          this.__P_407_0.addListener("changeEnabled", this._changeEnabled, this);
+          this.setEnabled(this.__P_407_0.getEnabled());
         }
         this._setAttribute("for", elementId);
       },
@@ -212,8 +212,8 @@
        * @param evt {qx.event.type.Pointer} The tap event.
        */
       _onTap: function _onTap(evt) {
-        if (this.__P_399_0 && qx.core.Environment.get("event.dispatchevent")) {
-          var target = this.__P_399_0.getContentElement();
+        if (this.__P_407_0 && qx.core.Environment.get("event.dispatchevent")) {
+          var target = this.__P_407_0.getContentElement();
           qx.event.Registration.fireEvent(target, "tap", qx.event.type.Tap, [evt.getNativeEvent(), target, null, true, true]);
         }
       },
@@ -235,9 +235,9 @@
     },
     destruct: function destruct() {
       this.removeListener("tap", this._onTap, this);
-      if (this.__P_399_0) {
-        this.__P_399_0.removeListener("changeEnabled", this._changeEnabled, this);
-        this.__P_399_0 = null;
+      if (this.__P_407_0) {
+        this.__P_407_0.removeListener("changeEnabled", this._changeEnabled, this);
+        this.__P_407_0 = null;
       }
       {
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
@@ -247,4 +247,4 @@
   qx.ui.mobile.form.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1692560730855
+//# sourceMappingURL=Label.js.map?dt=1700345607657

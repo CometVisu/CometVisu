@@ -98,4 +98,4 @@
   qx.util.placement.BestFitAxis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BestFitAxis.js.map?dt=1692560742456
+//# sourceMappingURL=BestFitAxis.js.map?dt=1700345614426

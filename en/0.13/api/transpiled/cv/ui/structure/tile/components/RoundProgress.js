@@ -103,15 +103,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     ***********************************************
     */
     members: {
-      __P_80_0: null,
-      __P_80_1: null,
-      __P_80_2: null,
-      __P_80_3: null,
-      __P_80_4: null,
-      __P_80_5: null,
-      __P_80_6: null,
-      __P_80_7: null,
-      __P_80_8: null,
+      __P_83_0: null,
+      __P_83_1: null,
+      __P_83_2: null,
+      __P_83_3: null,
+      __P_83_4: null,
+      __P_83_5: null,
+      __P_83_6: null,
+      __P_83_7: null,
+      __P_83_8: null,
       _queuedFitText: null,
       _init: function _init() {
         var _this = this;
@@ -119,10 +119,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         var element = this._element;
         var style = document.querySelector(':root').style;
         var hasFixedRadius = element.hasAttribute('radius');
-        var radius = this.__P_80_4 = element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56;
+        var radius = this.__P_83_4 = element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56;
         var strokeWidth = element.getAttribute('stroke') || 8;
-        var normalizedRadius = this.__P_80_3 = radius - strokeWidth / 2;
-        this.__P_80_1 = normalizedRadius * 2 * Math.PI;
+        var normalizedRadius = this.__P_83_3 = radius - strokeWidth / 2;
+        this.__P_83_1 = normalizedRadius * 2 * Math.PI;
         if (element.hasAttribute('min')) {
           var min = parseInt(element.getAttribute('min'));
           if (!isNaN(min)) {
@@ -165,8 +165,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           bar.setAttribute('cx', '50%');
           bar.setAttribute('cy', '50%');
           bar.setAttribute('stroke-width', strokeWidth);
-          bar.setAttribute('stroke-dasharray', "".concat(this.__P_80_1, " ").concat(this.__P_80_1));
-          bar.setAttribute('stroke-dashoffset', this.__P_80_1);
+          bar.setAttribute('stroke-dasharray', "".concat(this.__P_83_1, " ").concat(this.__P_83_1));
+          bar.setAttribute('stroke-dashoffset', this.__P_83_1);
           if (element.hasAttribute('foreground-color')) {
             bar.style.stroke = element.getAttribute('foreground-color');
           }
@@ -183,7 +183,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             }
             svg.appendChild(_bg);
           }
-          this.__P_80_2 = {
+          this.__P_83_2 = {
             x: strokeWidth / 2,
             y: radius
           };
@@ -198,40 +198,40 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           svg.appendChild(_bar);
         }
         element.replaceChildren(svg, document.createElement('label'));
-        this.__P_80_7 = radius * 2 - strokeWidth * 2 - 24;
+        this.__P_83_7 = radius * 2 - strokeWidth * 2 - 24;
         if (!hasFixedRadius) {
           qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', function (ev) {
-            _this.__P_80_4 = ev.getData();
-            _this.__P_80_3 = _this.__P_80_4 - strokeWidth / 2;
-            _this.__P_80_1 = _this.__P_80_3 * 2 * Math.PI;
-            height = type === 'semiCircle' ? _this.__P_80_4 : _this.__P_80_4 * 2;
+            _this.__P_83_4 = ev.getData();
+            _this.__P_83_3 = _this.__P_83_4 - strokeWidth / 2;
+            _this.__P_83_1 = _this.__P_83_3 * 2 * Math.PI;
+            height = type === 'semiCircle' ? _this.__P_83_4 : _this.__P_83_4 * 2;
             var svg = element.querySelector(':scope > svg');
             svg.setAttribute('height', '' + height);
-            svg.setAttribute('width', '' + _this.__P_80_4 * 2);
+            svg.setAttribute('width', '' + _this.__P_83_4 * 2);
             if (type === 'circle') {
               _this._element.querySelectorAll(':scope > svg > circle').forEach(function (circle) {
-                circle.setAttribute('r', '' + _this.__P_80_3);
+                circle.setAttribute('r', '' + _this.__P_83_3);
                 if (circle.classList.contains('bar')) {
-                  circle.setAttribute('stroke-dasharray', _this.__P_80_1 + ' ' + _this.__P_80_1);
-                  circle.setAttribute('stroke-dashoffset', '' + _this.__P_80_1);
+                  circle.setAttribute('stroke-dasharray', _this.__P_83_1 + ' ' + _this.__P_83_1);
+                  circle.setAttribute('stroke-dashoffset', '' + _this.__P_83_1);
                 }
               });
             } else if (type === 'semiCircle') {
-              _this.__P_80_2.y = _this.__P_80_4;
+              _this.__P_83_2.y = _this.__P_83_4;
               var _bg2 = _this._element.querySelector(':scope > svg > path.bg');
               if (_bg2) {
-                _bg2.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(_this.__P_80_4, " A ").concat(_this.__P_80_3, " ").concat(_this.__P_80_3, " 0 0 1 ").concat(_this.__P_80_4 * 2 - strokeWidth / 2, " ").concat(_this.__P_80_4));
+                _bg2.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(_this.__P_83_4, " A ").concat(_this.__P_83_3, " ").concat(_this.__P_83_3, " 0 0 1 ").concat(_this.__P_83_4 * 2 - strokeWidth / 2, " ").concat(_this.__P_83_4));
               }
             }
             _this._applyProgress(_this.isPropertyInitialized('progress') ? _this.getProgress() : 0);
           });
         }
       },
-      __P_80_9: function __P_80_9(angle) {
+      __P_83_9: function __P_83_9(angle) {
         var angleRad = angle * (Math.PI / 180.0);
         return {
-          x: this.__P_80_4 - this.__P_80_3 * Math.cos(angleRad),
-          y: this.__P_80_4 - this.__P_80_3 * Math.sin(angleRad)
+          x: this.__P_83_4 - this.__P_83_3 * Math.cos(angleRad),
+          y: this.__P_83_4 - this.__P_83_3 * Math.sin(angleRad)
         };
       },
       _applyProgress: function _applyProgress(value) {
@@ -243,33 +243,33 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           switch (this.getType()) {
             case 'circle':
               valueElement = this._element.querySelector(':scope > svg > circle.bar');
-              valueElement.setAttribute('stroke-dashoffset', '' + this.__P_80_1 - percent / 100 * this.__P_80_1);
+              valueElement.setAttribute('stroke-dashoffset', '' + this.__P_83_1 - percent / 100 * this.__P_83_1);
               break;
             case 'semiCircle':
               valueElement = this._element.querySelector(':scope > svg > path.bar');
-              end = this.__P_80_9(1.8 * percent);
-              valueElement.setAttribute('d', ['M', this.__P_80_2.x, this.__P_80_2.y, 'A', this.__P_80_3, this.__P_80_3, 0, 0, 1, end.x, end.y].join(' '));
+              end = this.__P_83_9(1.8 * percent);
+              valueElement.setAttribute('d', ['M', this.__P_83_2.x, this.__P_83_2.y, 'A', this.__P_83_3, this.__P_83_3, 0, 0, 1, end.x, end.y].join(' '));
               break;
           }
         }
       },
       _fitText: function _fitText() {
-        if (this.__P_80_5 && this.__P_80_5.textContent) {
+        if (this.__P_83_5 && this.__P_83_5.textContent) {
           if (this.isVisible()) {
-            if (!this.__P_80_6) {
-              this.__P_80_6 = document.createElement('canvas');
-              this.__P_80_10 = this.__P_80_6.getContext('2d');
-              var compStyle = window.getComputedStyle(this.__P_80_5);
-              this.__P_80_10.font = compStyle.getPropertyValue('font');
-              this.__P_80_8 = compStyle.getPropertyValue('font-size');
+            if (!this.__P_83_6) {
+              this.__P_83_6 = document.createElement('canvas');
+              this.__P_83_10 = this.__P_83_6.getContext('2d');
+              var compStyle = window.getComputedStyle(this.__P_83_5);
+              this.__P_83_10.font = compStyle.getPropertyValue('font');
+              this.__P_83_8 = compStyle.getPropertyValue('font-size');
             }
-            var metrics = this.__P_80_10.measureText(this.__P_80_5.textContent);
-            if (metrics.width > this.__P_80_7) {
+            var metrics = this.__P_83_10.measureText(this.__P_83_5.textContent);
+            if (metrics.width > this.__P_83_7) {
               // adjust font-size
-              var factor = this.__P_80_7 / metrics.width;
-              this.__P_80_5.style.fontSize = Math.floor(parseInt(this.__P_80_8) * factor) + 'px';
+              var factor = this.__P_83_7 / metrics.width;
+              this.__P_83_5.style.fontSize = Math.floor(parseInt(this.__P_83_8) * factor) + 'px';
             } else {
-              this.__P_80_5.style.fontSize = this.__P_80_8;
+              this.__P_83_5.style.fontSize = this.__P_83_8;
             }
             this._queuedFitText = false;
           } else {
@@ -284,14 +284,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       _applyText: function _applyText(value) {
         if (this.isConnected()) {
-          if (!this.__P_80_5) {
-            this.__P_80_5 = this._element.querySelector(':scope > label');
+          if (!this.__P_83_5) {
+            this.__P_83_5 = this._element.querySelector(':scope > label');
           }
-          this.__P_80_5.textContent = value;
+          this.__P_83_5.textContent = value;
           if (!value) {
             // empty text, just reset to default font size
-            if (this.__P_80_8) {
-              this.__P_80_5.style.fontSize = this.__P_80_8;
+            if (this.__P_83_8) {
+              this.__P_83_5.style.fontSize = this.__P_83_8;
             }
           } else {
             this._fitText();
@@ -305,7 +305,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_80_5 = null;
+      this.__P_83_5 = null;
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'round-progress', /*#__PURE__*/function (_QxConnector) {
@@ -324,4 +324,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.RoundProgress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundProgress.js.map?dt=1692560693613
+//# sourceMappingURL=RoundProgress.js.map?dt=1700345584778

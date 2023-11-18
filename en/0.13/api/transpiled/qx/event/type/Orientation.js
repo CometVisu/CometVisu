@@ -56,8 +56,8 @@
     */
 
     members: {
-      __P_232_0: null,
-      __P_232_1: null,
+      __P_240_0: null,
+      __P_240_1: null,
       /**
        * Initialize the fields of the event. The event must be initialized before
        * it can be dispatched.
@@ -68,8 +68,8 @@
        */
       init: function init(orientation, mode) {
         qx.event.type.Orientation.superclass.prototype.init.call(this, false, false);
-        this.__P_232_0 = orientation;
-        this.__P_232_1 = mode;
+        this.__P_240_0 = orientation;
+        this.__P_240_1 = mode;
         return this;
       },
       /**
@@ -84,8 +84,8 @@
        */
       clone: function clone(embryo) {
         var clone = qx.event.type.Orientation.superclass.prototype.clone.call(this, embryo);
-        clone.__P_232_0 = this.__P_232_0;
-        clone.__P_232_1 = this.__P_232_1;
+        clone.__P_240_0 = this.__P_240_0;
+        clone.__P_240_1 = this.__P_240_1;
         return clone;
       },
       /**
@@ -101,7 +101,7 @@
        * @return {Integer} The current orientation in degree
        */
       getOrientation: function getOrientation() {
-        return this.__P_232_0;
+        return this.__P_240_0;
       },
       /**
        * Whether the viewport orientation is currently in landscape mode.
@@ -110,7 +110,7 @@
        *     is currently in landscape mode.
        */
       isLandscape: function isLandscape() {
-        return this.__P_232_1 == "landscape";
+        return this.__P_240_1 == "landscape";
       },
       /**
        * Whether the viewport orientation is currently in portrait mode.
@@ -119,11 +119,11 @@
        *     is currently in portrait mode.
        */
       isPortrait: function isPortrait() {
-        return this.__P_232_1 == "portrait";
+        return this.__P_240_1 == "portrait";
       }
     }
   });
   qx.event.type.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1692560711775
+//# sourceMappingURL=Orientation.js.map?dt=1700345596373

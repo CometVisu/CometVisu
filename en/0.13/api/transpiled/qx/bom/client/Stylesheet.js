@@ -50,11 +50,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *
        * @return {StyleSheet} Stylesheet element
        */
-      __P_128_0: function __P_128_0() {
-        if (!qx.bom.client.Stylesheet.__P_128_1) {
-          qx.bom.client.Stylesheet.__P_128_1 = qx.bom.Stylesheet.createElement();
+      __P_136_0: function __P_136_0() {
+        if (!qx.bom.client.Stylesheet.__P_136_1) {
+          qx.bom.client.Stylesheet.__P_136_1 = qx.bom.Stylesheet.createElement();
         }
-        return qx.bom.client.Stylesheet.__P_128_1;
+        return qx.bom.client.Stylesheet.__P_136_1;
       },
       /**
        * Check for IE's non-standard document.createStyleSheet function.
@@ -76,7 +76,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Boolean} <code>true</code> if insertRule is supported
        */
       getInsertRule: function getInsertRule() {
-        return typeof qx.bom.client.Stylesheet.__P_128_0().insertRule === "function";
+        return typeof qx.bom.client.Stylesheet.__P_136_0().insertRule === "function";
       },
       /**
        * Check for stylesheet.deleteRule. Legacy IEs do not support this.
@@ -85,7 +85,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Boolean} <code>true</code> if deleteRule is supported
        */
       getDeleteRule: function getDeleteRule() {
-        return typeof qx.bom.client.Stylesheet.__P_128_0().deleteRule === "function";
+        return typeof qx.bom.client.Stylesheet.__P_136_0().deleteRule === "function";
       },
       /**
        * Decides whether to use the legacy IE-only stylesheet.addImport or the
@@ -95,7 +95,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Boolean} <code>true</code> if stylesheet.addImport is supported
        */
       getAddImport: function getAddImport() {
-        return _typeof(qx.bom.client.Stylesheet.__P_128_0().addImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__P_136_0().addImport) === "object";
       },
       /**
        * Decides whether to use the legacy IE-only stylesheet.removeImport or the
@@ -105,7 +105,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Boolean} <code>true</code> if stylesheet.removeImport is supported
        */
       getRemoveImport: function getRemoveImport() {
-        return _typeof(qx.bom.client.Stylesheet.__P_128_0().removeImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__P_136_0().removeImport) === "object";
       }
     },
     defer: function defer(statics) {
@@ -119,4 +119,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.client.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1692560699573
+//# sourceMappingURL=Stylesheet.js.map?dt=1700345588927

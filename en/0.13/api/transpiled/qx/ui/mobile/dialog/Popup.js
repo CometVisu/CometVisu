@@ -101,7 +101,7 @@
         qx.ui.mobile.dialog.Popup.ROOT = qx.core.Init.getApplication().getRoot();
       }
       qx.ui.mobile.dialog.Popup.ROOT.add(this);
-      this.__P_397_0 = anchor;
+      this.__P_405_0 = anchor;
       if (widget) {
         this._initializeChild(widget);
       }
@@ -147,13 +147,13 @@
       }
     },
     members: {
-      __P_397_1: false,
-      __P_397_2: null,
-      __P_397_3: null,
-      __P_397_0: null,
-      __P_397_4: null,
-      __P_397_5: null,
-      __P_397_6: null,
+      __P_405_1: false,
+      __P_405_2: null,
+      __P_405_3: null,
+      __P_405_0: null,
+      __P_405_4: null,
+      __P_405_5: null,
+      __P_405_6: null,
       /**
        * Event handler. Called whenever the position of the popup should be updated.
        */
@@ -163,14 +163,14 @@
         for (var i = 0; i < anchorClasses.length; i++) {
           this.removeCssClass(anchorClasses[i]);
         }
-        if (this.__P_397_0) {
+        if (this.__P_405_0) {
           this.addCssClass("anchor");
           var rootHeight = qx.ui.mobile.dialog.Popup.ROOT.getHeight();
           var rootWidth = qx.ui.mobile.dialog.Popup.ROOT.getWidth();
           var rootPosition = qx.bom.element.Location.get(qx.ui.mobile.dialog.Popup.ROOT.getContainerElement());
-          var anchorPosition = qx.bom.element.Location.get(this.__P_397_0.getContainerElement());
+          var anchorPosition = qx.bom.element.Location.get(this.__P_405_0.getContainerElement());
           var popupDimension = qx.bom.element.Dimension.getSize(this.getContainerElement());
-          this.__P_397_6 = popupDimension;
+          this.__P_405_6 = popupDimension;
           var computedPopupPosition = qx.util.placement.Placement.compute(popupDimension, {
             width: rootPosition.left + rootWidth,
             height: rootPosition.top + rootHeight
@@ -203,7 +203,7 @@
             }
             this.placeTo(computedPopupPosition.left, computedPopupPosition.top);
           }
-        } else if (this.__P_397_2) {
+        } else if (this.__P_405_2) {
           // No Anchor
           this._positionToCenter();
         }
@@ -213,9 +213,9 @@
        * First it updates the position, then registers the event handlers, and shows it.
        */
       show: function show() {
-        if (!this.__P_397_1) {
+        if (!this.__P_405_1) {
           qx.core.Init.getApplication().fireEvent("popup");
-          this.__P_397_7();
+          this.__P_405_7();
 
           // Move outside of viewport
           this.placeTo(-1000, -1000);
@@ -227,7 +227,7 @@
           // Now render position.
           this._updatePosition();
         }
-        this.__P_397_1 = true;
+        this.__P_405_1 = true;
         if (this.getModal() === true) {
           qx.ui.mobile.core.Blocker.getInstance().show();
           if (this.getHideOnBlockerTap()) {
@@ -239,11 +239,11 @@
        * Hides the popup.
        */
       hide: function hide() {
-        if (this.__P_397_1) {
-          this.__P_397_8();
+        if (this.__P_405_1) {
+          this.__P_405_8();
           this.exclude();
         }
-        this.__P_397_1 = false;
+        this.__P_405_1 = false;
         if (this.getModal()) {
           qx.ui.mobile.core.Blocker.getInstance().hide();
         }
@@ -265,13 +265,13 @@
        * @return {Boolean} whether the popup is shown or not.
        */
       isShown: function isShown() {
-        return this.__P_397_1;
+        return this.__P_405_1;
       },
       /**
        * Toggles the visibility of this popup.
        */
       toggleVisibility: function toggleVisibility() {
-        if (this.__P_397_1 == true) {
+        if (this.__P_405_1 == true) {
           this.hide();
         } else {
           this.show();
@@ -295,7 +295,7 @@
         var clientX = evt.getViewportLeft();
         var clientY = evt.getViewportTop();
         var popupLocation = qx.bom.element.Location.get(this.getContainerElement());
-        var isOutsideWidget = clientX < popupLocation.left || clientX > popupLocation.left + this.__P_397_6.width || clientY > popupLocation.top + this.__P_397_6.height || clientY < popupLocation.top;
+        var isOutsideWidget = clientX < popupLocation.left || clientX > popupLocation.left + this.__P_405_6.width || clientY > popupLocation.top + this.__P_405_6.height || clientY < popupLocation.top;
         if (isOutsideWidget) {
           this.hide();
         }
@@ -324,24 +324,24 @@
       /**
        * Registers all needed event listeners
        */
-      __P_397_7: function __P_397_7() {
+      __P_405_7: function __P_405_7() {
         qx.core.Init.getApplication().addListener("stop", this.hide, this);
         qx.core.Init.getApplication().addListener("popup", this.hide, this);
         qx.event.Registration.addListener(window, "resize", this._updatePosition, this);
-        if (this.__P_397_0) {
-          this.__P_397_0.addCssClass("anchor-target");
+        if (this.__P_405_0) {
+          this.__P_405_0.addCssClass("anchor-target");
           qx.ui.mobile.dialog.Popup.ROOT.addListener("pointerdown", this._trackUserTap, this);
         }
       },
       /**
        * Unregisters all needed event listeners
        */
-      __P_397_8: function __P_397_8() {
+      __P_405_8: function __P_405_8() {
         qx.core.Init.getApplication().removeListener("stop", this.hide, this);
         qx.core.Init.getApplication().removeListener("popup", this.hide, this);
         qx.event.Registration.removeListener(window, "resize", this._updatePosition, this);
-        if (this.__P_397_0) {
-          this.__P_397_0.removeCssClass("anchor-target");
+        if (this.__P_405_0) {
+          this.__P_405_0.removeCssClass("anchor-target");
           qx.ui.mobile.dialog.Popup.ROOT.removeListener("pointerdown", this._trackUserTap, this);
         }
       },
@@ -352,20 +352,20 @@
        *
        */
       _initializeChild: function _initializeChild(widget) {
-        if (this.__P_397_2 == null) {
-          this.__P_397_2 = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox());
-          this.__P_397_2.setDefaultCssClass("popup-content");
-          this._add(this.__P_397_2);
+        if (this.__P_405_2 == null) {
+          this.__P_405_2 = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox());
+          this.__P_405_2.setDefaultCssClass("popup-content");
+          this._add(this.__P_405_2);
         }
         if (this._createTitleWidget()) {
-          this.__P_397_2.remove(this._createTitleWidget());
-          this.__P_397_2.add(this._createTitleWidget());
+          this.__P_405_2.remove(this._createTitleWidget());
+          this.__P_405_2.add(this._createTitleWidget());
         }
-        this.__P_397_2.add(widget, {
+        this.__P_405_2.add(widget, {
           flex: 1
         });
         widget.addListener("domupdated", this._updatePosition, this);
-        this.__P_397_4 = widget;
+        this.__P_405_4 = widget;
       },
       /**
        * Creates the title atom widget.
@@ -373,13 +373,13 @@
        * @return {qx.ui.mobile.basic.Atom} The title atom widget.
        */
       _createTitleWidget: function _createTitleWidget() {
-        if (this.__P_397_5) {
-          return this.__P_397_5;
+        if (this.__P_405_5) {
+          return this.__P_405_5;
         }
         if (this.getTitle() || this.getIcon()) {
-          this.__P_397_5 = new qx.ui.mobile.basic.Atom(this.getTitle(), this.getIcon());
-          this.__P_397_5.addCssClass("popup-title");
-          return this.__P_397_5;
+          this.__P_405_5 = new qx.ui.mobile.basic.Atom(this.getTitle(), this.getIcon());
+          this.__P_405_5.addCssClass("popup-title");
+          return this.__P_405_5;
         } else {
           return null;
         }
@@ -387,16 +387,16 @@
       // property apply
       _applyTitle: function _applyTitle(value, old) {
         if (value) {
-          if (this.__P_397_5) {
-            this.__P_397_5.setLabel(value);
+          if (this.__P_405_5) {
+            this.__P_405_5.setLabel(value);
           } else {
-            this.__P_397_5 = new qx.ui.mobile.basic.Atom(value, this.getIcon());
-            this.__P_397_5.addCssClass("popup-title");
-            if (this.__P_397_4) {
-              this.__P_397_2.addBefore(this._createTitleWidget(), this.__P_397_4);
+            this.__P_405_5 = new qx.ui.mobile.basic.Atom(value, this.getIcon());
+            this.__P_405_5.addCssClass("popup-title");
+            if (this.__P_405_4) {
+              this.__P_405_2.addBefore(this._createTitleWidget(), this.__P_405_4);
             } else {
-              if (this.__P_397_2) {
-                this.__P_397_2.add(this._createTitleWidget());
+              if (this.__P_405_2) {
+                this.__P_405_2.add(this._createTitleWidget());
               }
             }
           }
@@ -405,16 +405,16 @@
       // property apply
       _applyIcon: function _applyIcon(value, old) {
         if (value) {
-          if (this.__P_397_5) {
-            this.__P_397_5.setIcon(value);
+          if (this.__P_405_5) {
+            this.__P_405_5.setIcon(value);
           } else {
-            this.__P_397_5 = new qx.ui.mobile.basic.Atom(this.getTitle(), value);
-            this.__P_397_5.addCssClass("popup-title");
-            if (this.__P_397_4) {
-              this.__P_397_2.addBefore(this._createTitleWidget(), this.__P_397_4);
+            this.__P_405_5 = new qx.ui.mobile.basic.Atom(this.getTitle(), value);
+            this.__P_405_5.addCssClass("popup-title");
+            if (this.__P_405_4) {
+              this.__P_405_2.addBefore(this._createTitleWidget(), this.__P_405_4);
             } else {
-              if (this.__P_397_2) {
-                this.__P_397_2.add(this._createTitleWidget());
+              if (this.__P_405_2) {
+                this.__P_405_2.add(this._createTitleWidget());
               }
             }
           }
@@ -435,7 +435,7 @@
        * @param widget {qx.ui.mobile.core.Widget} The anchor widget.
        */
       setAnchor: function setAnchor(widget) {
-        this.__P_397_0 = widget;
+        this.__P_405_0 = widget;
         this._updatePosition();
       },
       /**
@@ -444,7 +444,7 @@
        * @return {qx.ui.mobile.basic.Atom} The title widget.
        */
       getTitleWidget: function getTitleWidget() {
-        return this.__P_397_5;
+        return this.__P_405_5;
       },
       /**
        * This method removes the widget shown in the popup.
@@ -452,22 +452,22 @@
        * if the popup doesn't have an attached widget
        */
       removeWidget: function removeWidget() {
-        if (this.__P_397_4) {
-          this.__P_397_4.removeListener("domupdated", this._updatePosition, this);
-          this.__P_397_2.remove(this.__P_397_4);
-          return this.__P_397_4;
+        if (this.__P_405_4) {
+          this.__P_405_4.removeListener("domupdated", this._updatePosition, this);
+          this.__P_405_2.remove(this.__P_405_4);
+          return this.__P_405_4;
         } else {
           return null;
         }
       }
     },
     destruct: function destruct() {
-      this.__P_397_8();
-      this._disposeObjects("__P_397_2");
-      this.__P_397_1 = this.__P_397_3 = this._anchor = this.__P_397_4 = this.__P_397_6 = null;
+      this.__P_405_8();
+      this._disposeObjects("__P_405_2");
+      this.__P_405_1 = this.__P_405_3 = this._anchor = this.__P_405_4 = this.__P_405_6 = null;
     }
   });
   qx.ui.mobile.dialog.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1692560730635
+//# sourceMappingURL=Popup.js.map?dt=1700345607524

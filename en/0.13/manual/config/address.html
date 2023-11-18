@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Addresses - the communication with the backend &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -64,13 +68,7 @@
 <li class="toctree-l3"><a class="reference internal" href="widgets/index.html#other-widgets">Other widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Addresses - the communication with the backend</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#transform">Transform</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#knx">KNX</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#openhab">OpenHab</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#mqtt">MQTT</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#raw-values-test">Raw-Values / test:</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#transform">Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mode">Mode</a></li>
 </ul>
 </li>
@@ -98,9 +96,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>Addresses - the communication with the backend</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Addresses - the communication with the backend</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -117,16 +115,12 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="addresses-the-communication-with-the-backend">
-<span id="address"></span><h1>Addresses - the communication with the backend<a class="headerlink" href="#addresses-the-communication-with-the-backend" title="Permalink to this headline">¶</a></h1>
+<span id="address"></span><h1>Addresses - the communication with the backend<a class="headerlink" href="#addresses-the-communication-with-the-backend" title="Link to this heading"></a></h1>
 <p>Most widgets require one or more <code class="docutils literal notranslate"><span class="pre">address</span></code> elements for the communication
 with the backend to get the information from the KNX bus, OpenHAB or MQTT.
 The content of the element is the address itself, the attributes control
 the behavior:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 84%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">transform</span></code></p></td>
 <td><p>set the datatype at the backend, e.g. <code class="docutils literal notranslate"><span class="pre">DPT:1.001</span></code> for the KNX
@@ -144,21 +138,13 @@ green and blue channel for a color</p></td>
 </tbody>
 </table>
 <section id="transform">
-<h2>Transform<a class="headerlink" href="#transform" title="Permalink to this headline">¶</a></h2>
+<h2>Transform<a class="headerlink" href="#transform" title="Link to this heading"></a></h2>
 <p>The “namespace” for the backend specific value for <code class="docutils literal notranslate"><span class="pre">transform</span></code> is separated
 by a colon written in front of the data type. The valid values for the different
 backends are:</p>
 <section id="knx">
-<h3>KNX<a class="headerlink" href="#knx" title="Permalink to this headline">¶</a></h3>
+<h3>KNX<a class="headerlink" href="#knx" title="Link to this heading"></a></h3>
 <p><table class="docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">transform</span></code></p></th>
 <th class="head"><p>name</p></th>
@@ -580,16 +566,8 @@ backends are:</p>
 </p>
 </section>
 <section id="openhab">
-<h3>OpenHab<a class="headerlink" href="#openhab" title="Permalink to this headline">¶</a></h3>
+<h3>OpenHab<a class="headerlink" href="#openhab" title="Link to this heading"></a></h3>
 <p><table class="docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">transform</span></code></p></th>
 <th class="head"><p>name</p></th>
@@ -682,17 +660,8 @@ backends are:</p>
 </p>
 </section>
 <section id="mqtt">
-<h3>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h3>
+<h3>MQTT<a class="headerlink" href="#mqtt" title="Link to this heading"></a></h3>
 <p><table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">transform</span></code></p></th>
 <th class="head"><p>name</p></th>
@@ -845,19 +814,11 @@ backends are:</p>
 </p>
 </section>
 <section id="raw-values-test">
-<h3>Raw-Values / test:<a class="headerlink" href="#raw-values-test" title="Permalink to this headline">¶</a></h3>
+<h3>Raw-Values / test:<a class="headerlink" href="#raw-values-test" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">transform</span></code> values without a namespace are mostly for development
 purposes of the CometVisu, but in special cases they might also be useful
 in the production environment.</p>
 <p><table class="docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-<col style="width: 17%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">transform</span></code></p></th>
 <th class="head"><p>name</p></th>
@@ -895,7 +856,7 @@ in the production environment.</p>
 </section>
 </section>
 <section id="mode">
-<h2>Mode<a class="headerlink" href="#mode" title="Permalink to this headline">¶</a></h2>
+<h2>Mode<a class="headerlink" href="#mode" title="Link to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In the KNX context it is common to have <code class="docutils literal notranslate"><span class="pre">write</span></code> for only one address
@@ -927,8 +888,12 @@ set a value and give back the status.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -939,22 +904,18 @@ set a value and give back the status.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

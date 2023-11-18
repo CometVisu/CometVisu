@@ -179,7 +179,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               var rootList = this._element.querySelector(':scope > ul');
               if (rootList) {
                 rootList.replaceChildren();
-                this.__P_78_0(rootList, parentElement, currentPage, 0);
+                this.__P_81_0(rootList, parentElement, currentPage, 0);
               }
               break;
             }
@@ -329,7 +329,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
         }
       },
-      __P_78_0: function __P_78_0(parentList, parentElement, currentPage, currentLevel) {
+      __P_81_0: function __P_81_0(parentList, parentElement, currentPage, currentLevel) {
         var _this3 = this;
         if (!parentElement) {
           return;
@@ -393,6 +393,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   p.appendChild(document.createTextNode(pageName));
                 }
                 summary.appendChild(p);
+                p.addEventListener('click', function (ev) {
+                  if (details.hasAttribute('open')) {
+                    _this3._closeDetail(details);
+                  } else {
+                    _this3._openDetail(details);
+                  }
+                });
               }
               var expander = document.createElement('i');
               expander.classList.add('expander');
@@ -408,7 +415,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               details.appendChild(summary);
               var subList = document.createElement('ul');
               details.appendChild(subList);
-              _this3.__P_78_0(subList, page, currentPage, currentLevel + 1);
+              _this3.__P_81_0(subList, page, currentPage, currentLevel + 1);
               li.appendChild(details);
             } else {
               li.appendChild(a);
@@ -496,4 +503,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1692560693333
+//# sourceMappingURL=Menu.js.map?dt=1700345584603

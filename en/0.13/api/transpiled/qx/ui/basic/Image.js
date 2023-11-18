@@ -116,7 +116,7 @@
      * @param source {String?null} The URL of the image to display.
      */
     construct: function construct(source) {
-      this.__P_298_0 = {};
+      this.__P_306_0 = {};
       qx.ui.core.Widget.constructor.call(this);
       if (source) {
         this.setSource(source);
@@ -224,13 +224,13 @@
     */
 
     members: {
-      __P_298_1: null,
-      __P_298_2: null,
-      __P_298_3: null,
-      __P_298_0: null,
-      __P_298_4: null,
-      __P_298_5: null,
-      __P_298_6: 0,
+      __P_306_1: null,
+      __P_306_2: null,
+      __P_306_3: null,
+      __P_306_0: null,
+      __P_306_4: null,
+      __P_306_5: null,
+      __P_306_6: 0,
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         qx.ui.basic.Image.superclass.prototype._onChangeTheme.call(this);
@@ -244,17 +244,17 @@
       */
       // overridden
       getContentElement: function getContentElement() {
-        return this.__P_298_7();
+        return this.__P_306_7();
       },
       // overridden
       _createContentElement: function _createContentElement() {
-        return this.__P_298_7();
+        return this.__P_306_7();
       },
       // overridden
       _getContentHint: function _getContentHint() {
         return {
-          width: this.__P_298_1 || 0,
-          height: this.__P_298_2 || 0
+          width: this.__P_306_1 || 0,
+          height: this.__P_306_2 || 0
         };
       },
       // overridden
@@ -263,16 +263,16 @@
         var source = this.getSource();
         source = qx.util.AliasManager.getInstance().resolve(source);
         var el = this.getContentElement();
-        if (this.__P_298_5) {
+        if (this.__P_306_5) {
           el = el.getChild(0);
         }
-        this.__P_298_8(el, source);
+        this.__P_306_8(el, source);
       },
       // overridden
       _applyTextColor: function _applyTextColor(value) {
-        if (this.__P_298_9() === "font") {
+        if (this.__P_306_9() === "font") {
           var el = this.getContentElement();
-          if (this.__P_298_5) {
+          if (this.__P_306_5) {
             el = el.getChild(0);
           }
           if (value) {
@@ -286,12 +286,12 @@
       _applyPadding: function _applyPadding(value, old, name) {
         qx.ui.basic.Image.superclass.prototype._applyPadding.call(this, value, old, name);
         var element = this.getContentElement();
-        if (this.__P_298_5) {
+        if (this.__P_306_5) {
           element.getChild(0).setStyles({
             top: this.getPaddingTop() || 0,
             left: this.getPaddingLeft() || 0
           });
-        } else if (this.__P_298_9() === "font") {
+        } else if (this.__P_306_9() === "font") {
           element.setStyles({
             top: this.getPaddingTop() || 0,
             left: this.getPaddingLeft() || 0
@@ -303,7 +303,7 @@
       renderLayout: function renderLayout(left, top, width, height) {
         qx.ui.basic.Image.superclass.prototype.renderLayout.call(this, left, top, width, height);
         var element = this.getContentElement();
-        if (this.__P_298_5) {
+        if (this.__P_306_5) {
           element.getChild(0).setStyles({
             width: width - (this.getPaddingLeft() || 0) - (this.getPaddingRight() || 0),
             height: height - (this.getPaddingTop() || 0) - (this.getPaddingBottom() || 0),
@@ -342,8 +342,8 @@
        * Remembers the mode to keep track which contentElement is currently in use.
        * @param mode {String} internal mode (alphaScaled|scaled|nonScaled)
        */
-      __P_298_10: function __P_298_10(mode) {
-        this.__P_298_3 = mode;
+      __P_306_10: function __P_306_10(mode) {
+        this.__P_306_3 = mode;
       },
       /**
        * Returns the current mode if set. Otherwise checks the current source and
@@ -351,25 +351,25 @@
        *
        * @return {String} current internal mode
        */
-      __P_298_9: function __P_298_9() {
-        if (this.__P_298_3 == null) {
+      __P_306_9: function __P_306_9() {
+        if (this.__P_306_3 == null) {
           var source = this.getSource();
           if (source && qx.lang.String.startsWith(source, "@")) {
-            this.__P_298_3 = "font";
+            this.__P_306_3 = "font";
           }
           var isPng = false;
           if (source != null) {
             isPng = source.endsWith(".png");
           }
           if (this.getScale() && isPng && qx.core.Environment.get("css.alphaimageloaderneeded")) {
-            this.__P_298_3 = "alphaScaled";
+            this.__P_306_3 = "alphaScaled";
           } else if (this.getScale()) {
-            this.__P_298_3 = "scaled";
+            this.__P_306_3 = "scaled";
           } else {
-            this.__P_298_3 = "nonScaled";
+            this.__P_306_3 = "nonScaled";
           }
         }
-        return this.__P_298_3;
+        return this.__P_306_3;
       },
       /**
        * Creates a contentElement suitable for the current mode
@@ -377,7 +377,7 @@
        * @param mode {String} internal mode
        * @return {qx.html.Image} suitable image content element
        */
-      __P_298_11: function __P_298_11(mode) {
+      __P_306_11: function __P_306_11(mode) {
         var scale;
         var tagName;
         var clazz = qx.html.Image;
@@ -412,7 +412,7 @@
         } else {
           element.setScale(scale);
           if (qx.core.Environment.get("css.alphaimageloaderneeded")) {
-            var wrapper = this.__P_298_5 = new qx.html.Element("div");
+            var wrapper = this.__P_306_5 = new qx.html.Element("div");
             element.connectObject(this);
             wrapper.setStyle("position", "absolute");
             wrapper.add(element);
@@ -426,17 +426,17 @@
        *
        * @return {qx.html.Image} suitable image contentElement
        */
-      __P_298_7: function __P_298_7() {
+      __P_306_7: function __P_306_7() {
         if (this.$$disposed) {
           return null;
         }
-        var mode = this.__P_298_9();
-        if (this.__P_298_0[mode] == null) {
-          this.__P_298_0[mode] = this.__P_298_11(mode);
+        var mode = this.__P_306_9();
+        if (this.__P_306_0[mode] == null) {
+          this.__P_306_0[mode] = this.__P_306_11(mode);
         }
-        var element = this.__P_298_0[mode];
-        if (!this.__P_298_4) {
-          this.__P_298_4 = element;
+        var element = this.__P_306_0[mode];
+        if (!this.__P_306_4) {
+          this.__P_306_4 = element;
         }
         return element;
       },
@@ -450,23 +450,23 @@
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var source = AliasManager.resolve(this.getSource());
         var element = this.getContentElement();
-        if (this.__P_298_5) {
+        if (this.__P_306_5) {
           element = element.getChild(0);
         }
         if (!source) {
-          this.__P_298_12(element);
+          this.__P_306_12(element);
           return;
         }
-        this.__P_298_13(source);
+        this.__P_306_13(source);
         if (qx.core.Environment.get("engine.name") == "mshtml" && (parseInt(qx.core.Environment.get("engine.version"), 10) < 9 || qx.core.Environment.get("browser.documentmode") < 9)) {
           var repeat = this.getScale() ? "scale" : "no-repeat";
           element.tagNameHint = qx.bom.element.Decoration.getTagName(repeat, source);
         }
-        var contentEl = this.__P_298_14();
+        var contentEl = this.__P_306_14();
 
         // Detect if the image registry knows this image
         if (ResourceManager.isFontUri(source)) {
-          this.__P_298_15(contentEl, source);
+          this.__P_306_15(contentEl, source);
           var color = this.getTextColor();
           if (qx.lang.Type.isString(color)) {
             this._applyTextColor(color, null);
@@ -481,17 +481,17 @@
 
             // set background size on current element (div or img)
             var backgroundSize = imageWidth + "px, " + imageHeight + "px";
-            this.__P_298_4.setStyle("background-size", backgroundSize);
+            this.__P_306_4.setStyle("background-size", backgroundSize);
             this.setSource(highResolutionSource);
             source = highResolutionSource;
           }
-          this.__P_298_15(contentEl, source);
-          this.__P_298_16();
+          this.__P_306_15(contentEl, source);
+          this.__P_306_16();
         } else if (qx.io.ImageLoader.isLoaded(source)) {
-          this.__P_298_17(contentEl, source);
-          this.__P_298_16();
+          this.__P_306_17(contentEl, source);
+          this.__P_306_16();
         } else {
-          this.__P_298_18(contentEl, source);
+          this.__P_306_18(contentEl, source);
         }
       },
       /**
@@ -500,24 +500,24 @@
        * helper will be called, if you try to load a managed image or an
        * previously loaded unmanaged image.
        */
-      __P_298_16: function __P_298_16() {
-        this.__P_298_6++;
+      __P_306_16: function __P_306_16() {
+        this.__P_306_6++;
         qx.bom.AnimationFrame.request(function (rId) {
           // prevent firing of the event if source changed in the meantime
-          if (rId === this.__P_298_6) {
+          if (rId === this.__P_306_6) {
             this.fireEvent("loaded");
           } else {
             this.fireEvent("aborted");
           }
-        }.bind(this, this.__P_298_6));
+        }.bind(this, this.__P_306_6));
       },
       /**
        * Returns the content element.
        * @return {qx.html.Image} content element
        */
-      __P_298_14: function __P_298_14() {
-        var contentEl = this.__P_298_4;
-        if (this.__P_298_5) {
+      __P_306_14: function __P_306_14() {
+        var contentEl = this.__P_306_4;
+        if (this.__P_306_5) {
           contentEl = contentEl.getChild(0);
         }
         return contentEl;
@@ -528,38 +528,38 @@
        *
        * @param source {String} source of the image
        */
-      __P_298_13: qx.core.Environment.select("engine.name", {
+      __P_306_13: qx.core.Environment.select("engine.name", {
         mshtml: function mshtml(source) {
           var alphaImageLoader = qx.core.Environment.get("css.alphaimageloaderneeded");
           var isPng = source.endsWith(".png");
           var isFont = source.startsWith("@");
           if (isFont) {
-            this.__P_298_10("font");
+            this.__P_306_10("font");
           } else if (alphaImageLoader && isPng) {
-            if (this.getScale() && this.__P_298_9() != "alphaScaled") {
-              this.__P_298_10("alphaScaled");
-            } else if (!this.getScale() && this.__P_298_9() != "nonScaled") {
-              this.__P_298_10("nonScaled");
+            if (this.getScale() && this.__P_306_9() != "alphaScaled") {
+              this.__P_306_10("alphaScaled");
+            } else if (!this.getScale() && this.__P_306_9() != "nonScaled") {
+              this.__P_306_10("nonScaled");
             }
           } else {
-            if (this.getScale() && this.__P_298_9() != "scaled") {
-              this.__P_298_10("scaled");
-            } else if (!this.getScale() && this.__P_298_9() != "nonScaled") {
-              this.__P_298_10("nonScaled");
+            if (this.getScale() && this.__P_306_9() != "scaled") {
+              this.__P_306_10("scaled");
+            } else if (!this.getScale() && this.__P_306_9() != "nonScaled") {
+              this.__P_306_10("nonScaled");
             }
           }
-          this.__P_298_19(this.__P_298_7());
+          this.__P_306_19(this.__P_306_7());
         },
         "default": function _default(source) {
           var isFont = source && qx.lang.String.startsWith(source, "@");
           if (isFont) {
-            this.__P_298_10("font");
-          } else if (this.getScale() && this.__P_298_9() != "scaled") {
-            this.__P_298_10("scaled");
-          } else if (!this.getScale() && this.__P_298_9() != "nonScaled") {
-            this.__P_298_10("nonScaled");
+            this.__P_306_10("font");
+          } else if (this.getScale() && this.__P_306_9() != "scaled") {
+            this.__P_306_10("scaled");
+          } else if (!this.getScale() && this.__P_306_9() != "nonScaled") {
+            this.__P_306_10("nonScaled");
           }
-          this.__P_298_19(this.__P_298_7());
+          this.__P_306_19(this.__P_306_7());
         }
       }),
       /**
@@ -567,8 +567,8 @@
        *
        * @param elementToAdd {qx.html.Image} content element to add
        */
-      __P_298_19: function __P_298_19(elementToAdd) {
-        var currentContentElement = this.__P_298_4;
+      __P_306_19: function __P_306_19(elementToAdd) {
+        var currentContentElement = this.__P_306_4;
         if (currentContentElement != elementToAdd) {
           if (currentContentElement != null) {
             var pixel = "px";
@@ -583,7 +583,7 @@
             }
 
             // Don't transfer background image when switching from image to icon font
-            var mode = this.__P_298_9();
+            var mode = this.__P_306_9();
             if (mode === "font" || mode === "scaled") {
               delete styles.backgroundImage;
             }
@@ -598,7 +598,7 @@
             styles.left = parseInt(currentContentElement.getStyle("left") || insets.left) + pixel;
             styles.top = parseInt(currentContentElement.getStyle("top") || insets.top) + pixel;
             styles.zIndex = 10;
-            var newEl = this.__P_298_5 ? elementToAdd.getChild(0) : elementToAdd;
+            var newEl = this.__P_306_5 ? elementToAdd.getChild(0) : elementToAdd;
             newEl.setStyles(styles, true);
             newEl.setSelectable(this.getSelectable());
             if (!currentContentElement.isVisible()) {
@@ -624,7 +624,7 @@
             } else {
               newEl.setValue("");
             }
-            var currentEl = this.__P_298_14();
+            var currentEl = this.__P_306_14();
             newEl.tagNameHint = hint;
             newEl.setAttribute("class", currentEl.getAttribute("class"));
 
@@ -645,7 +645,7 @@
               currentDomEl.$$hash = newDomEl.$$hash;
               newDomEl.$$hash = currentHash;
             }
-            this.__P_298_4 = elementToAdd;
+            this.__P_306_4 = elementToAdd;
           }
         }
       },
@@ -655,7 +655,7 @@
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __P_298_15: function __P_298_15(el, source) {
+      __P_306_15: function __P_306_15(el, source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var isFont = ResourceManager.isFontUri(source);
 
@@ -690,30 +690,30 @@
             width = this.getWidth() || hint.width;
             height = this.getHeight() || hint.height;
           } else {
-            var font = this.__P_298_20(source);
+            var font = this.__P_306_20(source);
             var size = parseInt(source.split("/")[2] || font.getSize(), 10);
             width = ResourceManager.getImageWidth(source) || size;
             height = ResourceManager.getImageHeight(source) || size;
           }
-          this.__P_298_21(width, height);
-          this.__P_298_8(el, source);
+          this.__P_306_21(width, height);
+          this.__P_306_8(el, source);
 
           // Apply source
         } else {
           // Apply source
-          this.__P_298_8(el, source);
+          this.__P_306_8(el, source);
 
           // Compare with old sizes and relayout if necessary
-          this.__P_298_21(ResourceManager.getImageWidth(source), ResourceManager.getImageHeight(source));
+          this.__P_306_21(ResourceManager.getImageWidth(source), ResourceManager.getImageHeight(source));
         }
       },
-      __P_298_22: function __P_298_22(el, width, height) {
+      __P_306_22: function __P_306_22(el, width, height) {
         if (this.getScale()) {
           el.setStyle("fontSize", (width > height ? height : width) + "px");
         } else {
           var source = qx.util.AliasManager.getInstance().resolve(this.getSource());
           var sparts = source.split("/");
-          var font = this.__P_298_20(source);
+          var font = this.__P_306_20(source);
           var size = parseInt(sparts[2] || font.getSize());
           el.setStyle("fontSize", size + "px");
         }
@@ -727,10 +727,10 @@
             var hint = this.getSizeHint();
             var width = this.getWidth() || hint.width || 40;
             var height = this.getHeight() || hint.height || 40;
-            this.__P_298_22(el, width, height);
+            this.__P_306_22(el, width, height);
           }
         } else {
-          this.__P_298_21();
+          this.__P_306_21();
         }
       },
       /**
@@ -739,16 +739,16 @@
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __P_298_17: function __P_298_17(el, source) {
+      __P_306_17: function __P_306_17(el, source) {
         var ImageLoader = qx.io.ImageLoader;
 
         // Apply source
-        this.__P_298_8(el, source);
+        this.__P_306_8(el, source);
 
         // Compare with old sizes and relayout if necessary
         var width = ImageLoader.getWidth(source);
         var height = ImageLoader.getHeight(source);
-        this.__P_298_21(width, height);
+        this.__P_306_21(width, height);
       },
       /**
        * Use the ImageLoader to load an unmanaged image
@@ -756,13 +756,13 @@
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __P_298_18: function __P_298_18(el, source) {
+      __P_306_18: function __P_306_18(el, source) {
         var ImageLoader = qx.io.ImageLoader;
         // only try to load the image if it not already failed
         if (!ImageLoader.isFailed(source)) {
-          ImageLoader.load(source, this.__P_298_23, this);
+          ImageLoader.load(source, this.__P_306_23, this);
         } else {
-          this.__P_298_12(el);
+          this.__P_306_12(el);
         }
       },
       /**
@@ -770,7 +770,7 @@
        *
        * @param el {Element} image DOM element
        */
-      __P_298_12: function __P_298_12(el) {
+      __P_306_12: function __P_306_12(el) {
         if (el != null) {
           if (el instanceof qx.html.Image) {
             el.resetSource();
@@ -779,7 +779,7 @@
           }
         }
       },
-      __P_298_20: function __P_298_20(source) {
+      __P_306_20: function __P_306_20(source) {
         var font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
         if (typeof font == "string") {
           throw new Error("Cannot find font in virtual image source: '".concat(source, "'"));
@@ -793,11 +793,11 @@
        * @param el {Element} image DOM element
        * @param source {String} source path
        */
-      __P_298_8: function __P_298_8(el, source) {
+      __P_306_8: function __P_306_8(el, source) {
         var isFont = source && qx.lang.String.startsWith(source, "@");
         if (isFont) {
           var ResourceManager = qx.util.ResourceManager.getInstance();
-          var font = this.__P_298_20(source);
+          var font = this.__P_306_20(source);
           var fontStyles = qx.lang.Object.clone(font.getStyles());
           delete fontStyles.color;
           el.setStyles(fontStyles);
@@ -805,7 +805,7 @@
           el.setStyle("display", "table-cell");
           el.setStyle("verticalAlign", "middle");
           el.setStyle("textAlign", "center");
-          this.__P_298_22(el, this.__P_298_1, this.__P_298_2);
+          this.__P_306_22(el, this.__P_306_1, this.__P_306_2);
           var charCode = ResourceManager.fromFontUriToCharCode(source);
           el.setValue(String.fromCharCode(charCode));
           return;
@@ -861,7 +861,7 @@
        * @param source {String} Image source which was loaded
        * @param imageInfo {Map} Dimensions of the loaded image
        */
-      __P_298_23: function __P_298_23(source, imageInfo) {
+      __P_306_23: function __P_306_23(source, imageInfo) {
         // Ignore the callback on already disposed images
         if (this.$$disposed === true) {
           return;
@@ -885,7 +885,7 @@
         }
 
         // Update image
-        this.__P_298_17(this.__P_298_14(), source);
+        this.__P_306_17(this.__P_306_14(), source);
       },
       /**
        * Updates the content hint when the image size has been changed
@@ -893,12 +893,12 @@
        * @param width {Integer} width of the image
        * @param height {Integer} height of the image
        */
-      __P_298_21: function __P_298_21(width, height) {
+      __P_306_21: function __P_306_21(width, height) {
         if (width === undefined) {
-          width = this.__P_298_1;
+          width = this.__P_306_1;
         }
         if (height === undefined) {
-          height = this.__P_298_2;
+          height = this.__P_306_2;
         }
         if (this._recalc(width, height)) {
           qx.ui.core.queue.Layout.add(this);
@@ -965,9 +965,9 @@
         }
         width = Math.round(width);
         height = Math.round(height);
-        if (width != this.__P_298_1 || height != this.__P_298_2) {
-          this.__P_298_1 = width;
-          this.__P_298_2 = height;
+        if (width != this.__P_306_1 || height != this.__P_306_2) {
+          this.__P_306_1 = width;
+          this.__P_306_2 = height;
           return true;
         }
         return false;
@@ -979,19 +979,19 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      for (var mode in this.__P_298_0) {
-        if (this.__P_298_0.hasOwnProperty(mode)) {
-          this.__P_298_0[mode].disconnectObject(this);
+      for (var mode in this.__P_306_0) {
+        if (this.__P_306_0.hasOwnProperty(mode)) {
+          this.__P_306_0[mode].disconnectObject(this);
         }
       }
-      delete this.__P_298_4;
-      if (this.__P_298_5) {
-        delete this.__P_298_5;
+      delete this.__P_306_4;
+      if (this.__P_306_5) {
+        delete this.__P_306_5;
       }
-      this._disposeMap("__P_298_0");
+      this._disposeMap("__P_306_0");
     }
   });
   qx.ui.basic.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1692560720732
+//# sourceMappingURL=Image.js.map?dt=1700345601706

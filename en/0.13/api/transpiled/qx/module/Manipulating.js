@@ -79,7 +79,7 @@
        * @param duration {Number} The animation's duration in ms
        * @return {q} The collection for chaining.
        */
-      __P_281_0: function __P_281_0(property, value, duration) {
+      __P_289_0: function __P_289_0(property, value, duration) {
         var desc = qx.lang.Object.clone(qx.module.Manipulating._animationDescription[property], true);
         desc.keyFrames[100][property] = value;
         return this.animate(desc, duration);
@@ -91,7 +91,7 @@
        * @return {qxWeb} Collection
        * @internal
        */
-      __P_281_1: function __P_281_1(arg) {
+      __P_289_1: function __P_289_1(arg) {
         var coll;
         // Collection/array of DOM elements
         if (qx.lang.Type.isArray(arg)) {
@@ -118,13 +118,13 @@
        * @return {Element} innermost element
        * @internal
        */
-      __P_281_2: function __P_281_2(element) {
+      __P_289_2: function __P_289_2(element) {
         if (element.childNodes.length == 0) {
           return element;
         }
         for (var i = 0, l = element.childNodes.length; i < l; i++) {
           if (element.childNodes[i].nodeType === 1) {
-            return this.__P_281_2(element.childNodes[i]);
+            return this.__P_289_2(element.childNodes[i]);
           }
         }
         return element;
@@ -137,7 +137,7 @@
        * @return {Element[]} Array of elements
        * @internal
        */
-      __P_281_3: function __P_281_3(arg) {
+      __P_289_3: function __P_289_3(arg) {
         if (!qx.lang.Type.isArray(arg)) {
           var fromSelector = qxWeb(arg);
           arg = fromSelector.length > 0 ? fromSelector : [arg];
@@ -222,7 +222,7 @@
        * @return {qxWeb} The collection for chaining
        */
       appendTo: function appendTo(parent) {
-        parent = qx.module.Manipulating.__P_281_3(parent);
+        parent = qx.module.Manipulating.__P_289_3(parent);
         for (var i = 0, l = parent.length; i < l; i++) {
           this._forEachElement(function (item, j) {
             if (i == 0) {
@@ -247,7 +247,7 @@
        * @return {qxWeb} The collection for chaining
        */
       insertBefore: function insertBefore(target) {
-        target = qx.module.Manipulating.__P_281_3(target);
+        target = qx.module.Manipulating.__P_289_3(target);
         for (var i = 0, l = target.length; i < l; i++) {
           this._forEachElement(function (item, index) {
             if (i == 0) {
@@ -272,7 +272,7 @@
        * @return {qxWeb} The collection for chaining
        */
       insertAfter: function insertAfter(target) {
-        target = qx.module.Manipulating.__P_281_3(target);
+        target = qx.module.Manipulating.__P_289_3(target);
         for (var i = 0, l = target.length; i < l; i++) {
           for (var j = this.length - 1; j >= 0; j--) {
             if (!this[j] || this[j].nodeType !== 1) {
@@ -300,14 +300,14 @@
        * @return {qxWeb} The collection for chaining
        */
       wrap: function wrap(wrapper) {
-        wrapper = qx.module.Manipulating.__P_281_1(wrapper);
+        wrapper = qx.module.Manipulating.__P_289_1(wrapper);
         if (wrapper.length == 0) {
           return this;
         }
         this._forEachElement(function (item) {
           var clonedwrapper = wrapper.eq(0).clone(true);
           qx.dom.Element.insertAfter(clonedwrapper[0], item);
-          var innermost = qx.module.Manipulating.__P_281_2(clonedwrapper[0]);
+          var innermost = qx.module.Manipulating.__P_289_2(clonedwrapper[0]);
           qx.dom.Element.insertEnd(item, innermost);
         });
         return this;
@@ -445,7 +445,7 @@
       setScrollLeft: function setScrollLeft(value, duration) {
         var Node = qx.dom.Node;
         if (duration && qx.bom.element && qx.bom.element.AnimationJs) {
-          qx.module.Manipulating.__P_281_0.bind(this, "scrollLeft", value, duration)();
+          qx.module.Manipulating.__P_289_0.bind(this, "scrollLeft", value, duration)();
         }
         for (var i = 0, l = this.length, obj; i < l; i++) {
           obj = this[i];
@@ -472,7 +472,7 @@
       setScrollTop: function setScrollTop(value, duration) {
         var Node = qx.dom.Node;
         if (duration && qx.bom.element && qx.bom.element.AnimationJs) {
-          qx.module.Manipulating.__P_281_0.bind(this, "scrollTop", value, duration)();
+          qx.module.Manipulating.__P_289_0.bind(this, "scrollTop", value, duration)();
         }
         for (var i = 0, l = this.length, obj; i < l; i++) {
           obj = this[i];
@@ -522,4 +522,4 @@
   qx.module.Manipulating.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manipulating.js.map?dt=1692560717271
+//# sourceMappingURL=Manipulating.js.map?dt=1700345599726

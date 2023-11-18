@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Status Widget &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/versions.js"></script>
-        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -61,15 +65,13 @@
 <li class="toctree-l4"><a class="reference internal" href="dimmer.html">Dimmer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shutter.html">Shutter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="info.html">Info</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Status</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#beschreibung">Beschreibung</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="small-status.html">Small-Status</a></li>
 <li class="toctree-l4"><a class="reference internal" href="status-chart.html">Status-Chart</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rtc.html">RTC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
 <li class="toctree-l4"><a class="reference internal" href="widget-pair.html">Widget-pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="energy.html">Energy</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -96,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
-      <li>Das Status Widget</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Grundsätzlicher Aufbau</a></li>
+      <li class="breadcrumb-item active">Das Status Widget</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -115,15 +117,15 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="das-status-widget">
-<span id="tile-status"></span><h1>Das Status Widget<a class="headerlink" href="#das-status-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="tile-status"></span><h1>Das Status Widget<a class="headerlink" href="#das-status-widget" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Tobias Bräutigam</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 2022</div>
+<div class="line"><strong>Verfügbar seit</strong>: 2022</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das Status-Widget kombiniert ein Icon mit einem Text. Es dient dazu Status-Information zusammenzufassen,
 z.B. die Anzahl der offenen Fenster in der Wohnung.
 Das Status-Widget belegt nur die halbe Höhe eines Standard-Widgets.</p>
@@ -176,14 +178,8 @@ Werte benutzt, wie das Status-Element muss hier nochmal die selbe <a class="refe
 <p>Um weitere Details zum Status zu liefern kann dieses Widget mit einem <a class="reference internal" href="../components/popup.html#tile-component-popup"><span class="std std-ref">Popup</span></a> verknüpft werden.
 Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Informationen.</p>
 <section id="erlaubte-attribute-im-status-element">
-<h3>Erlaubte Attribute im Status-Element<a class="headerlink" href="#erlaubte-attribute-im-status-element" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute im Status-Element<a class="headerlink" href="#erlaubte-attribute-im-status-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -224,14 +220,8 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </table>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -255,7 +245,7 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 <td><p>Legt die Größe des Icons fest.</p></td>
 </tr>
 <tr class="row-even"><td><p>color</p></td>
-<td><p>token</p></td>
+<td><p>Text</p></td>
 <td><p>Farbe des Icons.</p></td>
 </tr>
 <tr class="row-odd"><td><p>visible-on</p></td>
@@ -288,12 +278,6 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -444,12 +428,6 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -531,12 +509,6 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -566,12 +538,6 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -693,12 +659,6 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -710,7 +670,7 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="15"><dl class="simple">
+<tr class="row-odd"><td rowspan="16"><dl class="simple">
 <dt>cv-status</dt><dd><ul class="simple">
 <li><p>cv-chart</p></li>
 </ul>
@@ -761,9 +721,320 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Zeigt den Chart im Hintergrund einer Kachel.</p></td>
 </tr>
-<tr class="row-even"><td><p>zero-based</p></td>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Minimaler Wert.</p></td>
+</tr>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Maximaler Wert.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="17"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-chart</p></li>
+<li><p>h-line</p></li>
+<li><p>layout</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>colspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Spaltenanzahl für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><p>colspan-m</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>colspan-s</p></td>
+<td><p>Zahl</p></td>
+<td><p>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</p></td>
+</tr>
+<tr class="row-even"><td><p>rowspan</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeilenanzahl für dieses Widget.</p></td>
+</tr>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten.</p></td>
+</tr>
+<tr class="row-even"><td><p>x-s</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>x-m</p></td>
+<td><p>Text</p></td>
+<td><p>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
+</tr>
+<tr class="row-even"><td><p>y</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten.</p></td>
+</tr>
+<tr class="row-odd"><td><p>y-s</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
+</tr>
+<tr class="row-even"><td><p>y-m</p></td>
+<td><p>Text</p></td>
+<td><p>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>z</p></td>
+<td><p>Text</p></td>
+<td><p>Für zukünftige Anwendungen reserviert.</p></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten.</p></td>
+</tr>
+<tr class="row-odd"><td><p>width-s</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
+</tr>
+<tr class="row-even"><td><p>width-m</p></td>
+<td><p>Text</p></td>
+<td><p>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>scale</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Die y-Achse immer bei 0 beginnen lassen.</p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</p></td>
+</tr>
+<tr class="row-even"><td><p>scale-s</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</p></td>
+</tr>
+<tr class="row-odd"><td><p>scale-m</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="14"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>transform</p></td>
+<td><p>Text</p></td>
+<td><p>Legt den Datentyp im Backend fest, z.B. DPT:1.001 für den KNX Datenpunkttyp 1.001.</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>Legt fest, ob auf dieser Adresse nur gelesen <code class="docutils literal notranslate"><span class="pre">read</span></code>, geschrieben <code class="docutils literal notranslate"><span class="pre">write</span></code>, beides <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> oder nichts davon <code class="docutils literal notranslate"><span class="pre">disable</span></code> werden soll</p></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>Text</p></td>
+<td><p>Fixer Wert welcher an diese Adresse gesendet wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>on</p></td>
+<td><p><em>click</em>, <em>down</em> oder <em>up</em></p></td>
+<td><p>Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit <code class="docutils literal notranslate"><span class="pre">value</span></code> und mode=``read`` oder <code class="docutils literal notranslate"><span class="pre">readwrite</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>Text</p></td>
+<td><p>Ziel innerhalb der Eltern-Widgets für das die Werte dieser Adresse benutzt werden sollen. Die möglichen Werte hängen vom Eltern-Widget ab.</p></td>
+</tr>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>backend</p></td>
+<td><p>Text</p></td>
+<td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-odd"><td><p>delay</p></td>
+<td><p>positiveInteger</p></td>
+<td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>send-mode</p></td>
+<td><p><em>on-change</em> oder <em>always</em></p></td>
+<td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="6"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p></li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">name</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Name unter dem das Icon registriert ist.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icon in CSS Notation (z.B. #1188FF).</p></td>
+</tr>
+<tr class="row-even"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p></li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Text um bei dem Widget eine Beschreibung darzustellen.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>label</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>tr</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Legt fest, dass der Text-Inhalt dieses Elements übersetzt werden soll.</p></td>
+</tr>
+<tr class="row-even"><td><p>value-size</p></td>
+<td><p><em>small</em>, <em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
+<td><p>Legt die Schriftgröße fest.</p></td>
 </tr>
 <tr class="row-odd"><td><p>visible-on</p></td>
 <td><p><em>mobile</em> oder <em>desktop</em></p></td>
@@ -777,82 +1048,952 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td rowspan="17"><dl class="simple">
+<tr class="row-even"><td><dl class="simple">
 <dt>cv-status</dt><dd><ul class="simple">
-<li><p>cv-chart</p></li>
-<li><p>h-line</p></li>
-<li><p>layout</p></li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><p>colspan</p></td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>meter</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>min</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>size</p></td>
+<td><p><em>small</em>, <em>large</em>, <em>x-large</em>, <em>xx-large</em> oder <em>xxx-large</em></p></td>
+<td><p>Legt die Größe des Icons fest.</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icons.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-icon</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="10"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-round-progress</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>radius</p></td>
+<td><p>integer</p></td>
+<td><p>Radius des Kreises.</p></td>
+</tr>
+<tr class="row-even"><td><p>stroke</p></td>
+<td><p>integer</p></td>
+<td><p>Randbreite des Kreises.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td><p><em>circle</em> oder <em>semiCircle</em></p></td>
+<td><p>Darstellungsart (Kreis: <code class="docutils literal notranslate"><span class="pre">circle</span></code> (default) oder Halbkreis: <code class="docutils literal notranslate"><span class="pre">semiCircle</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>min</p></td>
 <td><p>Zahl</p></td>
-<td><p>Spaltenanzahl für dieses Widget.</p></td>
+<td><p>Minimaler Wert.</p></td>
 </tr>
-<tr class="row-odd"><td><p>colspan-m</p></td>
+<tr class="row-odd"><td><p>max</p></td>
 <td><p>Zahl</p></td>
-<td><p>Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</p></td>
+<td><p>Maximaler Wert.</p></td>
 </tr>
-<tr class="row-even"><td><p>colspan-s</p></td>
-<td><p>Zahl</p></td>
-<td><p>Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</p></td>
-</tr>
-<tr class="row-odd"><td><p>rowspan</p></td>
-<td><p>Zahl</p></td>
-<td><p>Zeilenanzahl für dieses Widget.</p></td>
-</tr>
-<tr class="row-even"><td><p>x</p></td>
+<tr class="row-even"><td><p>foreground-color</p></td>
 <td><p>Text</p></td>
-<td><p>Horizontale Position des Widgets auf 2D Seiten.</p></td>
+<td><p>Farbe des Wertbalkens.</p></td>
 </tr>
-<tr class="row-odd"><td><p>x-s</p></td>
+<tr class="row-odd"><td><p>background-color</p></td>
 <td><p>Text</p></td>
-<td><p>Horizontale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
+<td><p>Farbe des Hintergrundbalkens.</p></td>
 </tr>
-<tr class="row-even"><td><p>x-m</p></td>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
-<td><p>Horizontale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><p>y</p></td>
+<tr class="row-even"><td><p>style</p></td>
 <td><p>Text</p></td>
-<td><p>Vertikale Position des Widgets auf 2D Seiten.</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td><p>y-s</p></td>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-group</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>icon</p></td>
 <td><p>Text</p></td>
-<td><p>Vertikale Position des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
+<td><p>Icon für die Gruppe.</p></td>
 </tr>
-<tr class="row-odd"><td><p>y-m</p></td>
+<tr class="row-even"><td><p>name</p></td>
 <td><p>Text</p></td>
-<td><p>Vertikale Position des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
+<td><p>Name der Gruppe.</p></td>
 </tr>
-<tr class="row-even"><td><p>z</p></td>
-<td><p>Text</p></td>
-<td><p>Für zukünftige Anwendungen reserviert.</p></td>
-</tr>
-<tr class="row-odd"><td><p>width</p></td>
-<td><p>Text</p></td>
-<td><p>Breite des Widgets auf 2D Seiten.</p></td>
-</tr>
-<tr class="row-even"><td><p>width-s</p></td>
-<td><p>Text</p></td>
-<td><p>Breite des Widgets auf 2D Seiten auf kleinen (small) Browser Größen.</p></td>
-</tr>
-<tr class="row-odd"><td><p>width-m</p></td>
-<td><p>Text</p></td>
-<td><p>Breite des Widgets auf 2D Seiten auf mittleren (medium) Browser Größen.</p></td>
-</tr>
-<tr class="row-even"><td><p>scale</p></td>
+<tr class="row-odd"><td><p>open</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten (Standardeinstellung: true).</p></td>
+<td><p>Macht den Inhalt der Gruppe sichtbar. Ansonsten ist nur der Inhalt von „summary“ sichtbar.</p></td>
 </tr>
-<tr class="row-odd"><td><p>scale-s</p></td>
+<tr class="row-even"><td><p>wrap</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf kleinen (small) Browser Größen (Standardeinstellung: true).</p></td>
+<td><p>Verhindert Zeilenumbrüche, wenn der Inhalt zu breit für die Bildschirmgröße ist. Stattdessen wird der Inhalt scrollbar.</p></td>
 </tr>
-<tr class="row-even"><td><p>scale-m</p></td>
+<tr class="row-odd"><td><p>hide-on-scroll</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Automatische Anpassung der Layout-Werte auf Basis der Skalierung des Backdrops ein/-ausschalten auf mittleren (medium) Browser Größen (Standardeinstellung: true).</p></td>
+<td><p>Blendet dieses Element aus, wenn der Seiteninhalt gescrollt wurde.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-group</p></li>
+<li><p>custom</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-group</p></li>
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">transform</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</p></td>
+</tr>
+<tr class="row-even"><td><p>variant</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>ignore-error</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: ignoriere Dekodierfehler.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-group</p></li>
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="14"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>transform</p></td>
+<td><p>Text</p></td>
+<td><p>Legt den Datentyp im Backend fest, z.B. DPT:1.001 für den KNX Datenpunkttyp 1.001.</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>Legt fest, ob auf dieser Adresse nur gelesen <code class="docutils literal notranslate"><span class="pre">read</span></code>, geschrieben <code class="docutils literal notranslate"><span class="pre">write</span></code>, beides <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> oder nichts davon <code class="docutils literal notranslate"><span class="pre">disable</span></code> werden soll</p></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>Text</p></td>
+<td><p>Fixer Wert welcher an diese Adresse gesendet wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>on</p></td>
+<td><p><em>click</em>, <em>down</em> oder <em>up</em></p></td>
+<td><p>Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit <code class="docutils literal notranslate"><span class="pre">value</span></code> und mode=``read`` oder <code class="docutils literal notranslate"><span class="pre">readwrite</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>Text</p></td>
+<td><p>Ziel innerhalb der Eltern-Widgets für das die Werte dieser Adresse benutzt werden sollen. Die möglichen Werte hängen vom Eltern-Widget ab.</p></td>
+</tr>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>backend</p></td>
+<td><p>Text</p></td>
+<td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-odd"><td><p>delay</p></td>
+<td><p>positiveInteger</p></td>
+<td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>send-mode</p></td>
+<td><p><em>on-change</em> oder <em>always</em></p></td>
+<td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>iframe</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>src</p></td>
+<td><p>anyURI</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>data-src</p></td>
+<td><p>anyURI</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>dataset</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>src</p></td>
+<td><p>anyURI</p></td>
+<td><p>Datenquelle für dieses Chart-Element.</p></td>
+</tr>
+<tr class="row-even"><td><p>title</p></td>
+<td><p>Text</p></td>
+<td><p>Titel des Chart-Elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p>chart-type</p></td>
+<td><p><em>line</em> oder <em>bar</em></p></td>
+<td><p>Typ des Chart-Elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>curve</p></td>
+<td><p><em>linear</em>, <em>step</em> oder <em>natural</em></p></td>
+<td><p>Typ der Kurven-Interpolation eines Linien-Charts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Chart-Elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>show-area</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Bereich unterhalb eines Liniendiagramms ausfüllen.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>dataset</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>h-line</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>src</p></td>
+<td><p>Text</p></td>
+<td><p>Datenquelle für diese Linie</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td></td>
+<td><p>Typ des Chart-Elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe der Linie.</p></td>
+</tr>
+<tr class="row-odd"><td><p>show-value</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Wert anzeigen</p></td>
+</tr>
+<tr class="row-even"><td><p>value-color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Werts.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="14"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>transform</p></td>
+<td><p>Text</p></td>
+<td><p>Legt den Datentyp im Backend fest, z.B. DPT:1.001 für den KNX Datenpunkttyp 1.001.</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>Legt fest, ob auf dieser Adresse nur gelesen <code class="docutils literal notranslate"><span class="pre">read</span></code>, geschrieben <code class="docutils literal notranslate"><span class="pre">write</span></code>, beides <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> oder nichts davon <code class="docutils literal notranslate"><span class="pre">disable</span></code> werden soll</p></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>Text</p></td>
+<td><p>Fixer Wert welcher an diese Adresse gesendet wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>on</p></td>
+<td><p><em>click</em>, <em>down</em> oder <em>up</em></p></td>
+<td><p>Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit <code class="docutils literal notranslate"><span class="pre">value</span></code> und mode=``read`` oder <code class="docutils literal notranslate"><span class="pre">readwrite</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>target</p></td>
+<td><p>Text</p></td>
+<td><p>Ziel innerhalb der Eltern-Widgets für das die Werte dieser Adresse benutzt werden sollen. Die möglichen Werte hängen vom Eltern-Widget ab.</p></td>
+</tr>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>backend</p></td>
+<td><p>Text</p></td>
+<td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-odd"><td><p>delay</p></td>
+<td><p>positiveInteger</p></td>
+<td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>send-mode</p></td>
+<td><p><em>on-change</em> oder <em>always</em></p></td>
+<td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="6"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p></li>
+<li><p>label</p></li>
+<li><p>icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">name</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Name unter dem das Icon registriert ist.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>flavour</p></td>
+<td><p>Text</p></td>
+<td><p>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icon in CSS Notation (z.B. #1188FF).</p></td>
+</tr>
+<tr class="row-even"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p></li>
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Text um bei dem Widget eine Beschreibung darzustellen.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>p</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>label</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>tr</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Legt fest, dass der Text-Inhalt dieses Elements übersetzt werden soll.</p></td>
+</tr>
+<tr class="row-even"><td><p>value-size</p></td>
+<td><p><em>small</em>, <em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
+<td><p>Legt die Schriftgröße fest.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>label</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>meter</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>min</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>size</p></td>
+<td><p><em>small</em>, <em>large</em>, <em>x-large</em>, <em>xx-large</em> oder <em>xxx-large</em></p></td>
+<td><p>Legt die Größe des Icons fest.</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Icons.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-icon</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="10"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-round-progress</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>radius</p></td>
+<td><p>integer</p></td>
+<td><p>Radius des Kreises.</p></td>
+</tr>
+<tr class="row-even"><td><p>stroke</p></td>
+<td><p>integer</p></td>
+<td><p>Randbreite des Kreises.</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td><p><em>circle</em> oder <em>semiCircle</em></p></td>
+<td><p>Darstellungsart (Kreis: <code class="docutils literal notranslate"><span class="pre">circle</span></code> (default) oder Halbkreis: <code class="docutils literal notranslate"><span class="pre">semiCircle</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Minimaler Wert.</p></td>
+</tr>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Maximaler Wert.</p></td>
+</tr>
+<tr class="row-even"><td><p>foreground-color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Wertbalkens.</p></td>
+</tr>
+<tr class="row-odd"><td><p>background-color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Hintergrundbalkens.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 </tbody>
 </table>
@@ -864,8 +2005,8 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="info.html" class="btn btn-neutral float-left" title="Das Info Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="small-status.html" class="btn btn-neutral float-right" title="Das kleine Status Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="info.html" class="btn btn-neutral float-left" title="Das Info Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="small-status.html" class="btn btn-neutral float-right" title="Das kleine Status Widget" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -881,9 +2022,13 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -891,24 +2036,20 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

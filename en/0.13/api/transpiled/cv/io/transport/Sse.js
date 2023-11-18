@@ -47,7 +47,7 @@
      */
     construct: function construct(client) {
       this.client = client;
-      this.__P_556_0 = {};
+      this.__P_564_0 = {};
     },
     /*
      ******************************************************
@@ -59,7 +59,7 @@
       sessionId: null,
       client: null,
       eventSource: null,
-      __P_556_0: null,
+      __P_564_0: null,
       /**
        * This function gets called once the communication is established
        * and session information is available
@@ -92,7 +92,7 @@
         this.eventSource.addEventListener('error', this.handleError.bind(this), false);
 
         // add additional listeners
-        Object.getOwnPropertyNames(this.__P_556_0).forEach(this.__P_556_1, this);
+        Object.getOwnPropertyNames(this.__P_564_0).forEach(this.__P_564_1, this);
         this.eventSource.onerror = function () {
           this.error('connection lost');
           this.client.setConnected(false);
@@ -115,8 +115,8 @@
       },
       dispatchTopicMessage: function dispatchTopicMessage(topic, message) {
         this.client.record(topic, message);
-        if (this.__P_556_0[topic]) {
-          this.__P_556_0[topic].forEach(function (entry) {
+        if (this.__P_564_0[topic]) {
+          this.__P_564_0[topic].forEach(function (entry) {
             entry[0].call(entry[1], message);
           });
         }
@@ -128,15 +128,15 @@
        * @param context {Object}
        */
       subscribe: function subscribe(topic, callback, context) {
-        if (!this.__P_556_0[topic]) {
-          this.__P_556_0[topic] = [];
+        if (!this.__P_564_0[topic]) {
+          this.__P_564_0[topic] = [];
         }
-        this.__P_556_0[topic].push([callback, context]);
+        this.__P_564_0[topic].push([callback, context]);
         if (this.isConnectionRunning()) {
-          this.__P_556_1(topic);
+          this.__P_564_1(topic);
         }
       },
-      __P_556_1: function __P_556_1(topic) {
+      __P_564_1: function __P_564_1(topic) {
         this.debug('subscribing to topic ' + topic);
         this.eventSource.addEventListener(topic, function (e) {
           this.dispatchTopicMessage(topic, e);
@@ -187,4 +187,4 @@
   cv.io.transport.Sse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sse.js.map?dt=1692560747873
+//# sourceMappingURL=Sse.js.map?dt=1700345617728

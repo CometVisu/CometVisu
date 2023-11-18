@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>URL-Parameter &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -100,9 +104,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>URL-Parameter</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">URL-Parameter</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -119,20 +123,16 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="url-parameter">
-<h1>URL-Parameter<a class="headerlink" href="#url-parameter" title="Permalink to this headline">¶</a></h1>
+<h1>URL-Parameter<a class="headerlink" href="#url-parameter" title="Link to this heading"></a></h1>
 <p>The behavior of CometVisu can be partially adjusted by URL parameters.
 Since these parameters can also be saved in the favorites of the browser,
 the corresponding variants can be accessed as effectively and quickly.</p>
 <section id="use">
-<h2>Use<a class="headerlink" href="#use" title="Permalink to this headline">¶</a></h2>
+<h2>Use<a class="headerlink" href="#use" title="Link to this heading"></a></h2>
 <p>These parameters are simply appended to the URL by a “?”
 (first URL parameter), separated by a “&amp;” (all other URL parameters).</p>
 <p>Examples:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 48%" />
-<col style="width: 52%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Description</p></th>
 <th class="head"><p>URL</p></th>
@@ -155,26 +155,26 @@ the corresponding variants can be accessed as effectively and quickly.</p>
 </table>
 </section>
 <section id="parameter">
-<h2>Parameter<a class="headerlink" href="#parameter" title="Permalink to this headline">¶</a></h2>
+<h2>Parameter<a class="headerlink" href="#parameter" title="Link to this heading"></a></h2>
 <section id="config-config-file">
-<h3><em>config</em> - Config file<a class="headerlink" href="#config-config-file" title="Permalink to this headline">¶</a></h3>
+<h3><em>config</em> - Config file<a class="headerlink" href="#config-config-file" title="Link to this heading"></a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">config</span></code> selects another config file.</p>
 <p>So, for example <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">=</span> <span class="pre">NAME</span></code> - This config file must be
 under the name <code class="docutils literal notranslate"><span class="pre">visu_config_NAME.xml</span></code> either in the config directory
 of the Visu or in the <code class="docutils literal notranslate"><span class="pre">config/demo</span></code> directory of Visu.</p>
 </section>
 <section id="design-design">
-<h3><em>design</em> - Design<a class="headerlink" href="#design-design" title="Permalink to this headline">¶</a></h3>
+<h3><em>design</em> - Design<a class="headerlink" href="#design-design" title="Link to this heading"></a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">design</span></code> overrides the design in the config file.</p>
 </section>
 <section id="forcereload-cache-settings">
-<h3><em>forceReload</em> - Cache settings<a class="headerlink" href="#forcereload-cache-settings" title="Permalink to this headline">¶</a></h3>
+<h3><em>forceReload</em> - Cache settings<a class="headerlink" href="#forcereload-cache-settings" title="Link to this heading"></a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">forceReload</span></code> with the value <em>true</em>
 (<code class="docutils literal notranslate"><span class="pre">forceReload=true</span></code>) safely reloads all files.</p>
 <p>This may be important after customizing the config file.</p>
 </section>
 <section id="startpage-start-page">
-<h3><em>startpage</em> - Start page<a class="headerlink" href="#startpage-start-page" title="Permalink to this headline">¶</a></h3>
+<h3><em>startpage</em> - Start page<a class="headerlink" href="#startpage-start-page" title="Link to this heading"></a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">startpage</span></code> can be used to specify the sub-page which
 will be displayed first after loading the visu.</p>
 <p>The easiest way to directly load a specific start page is to navigate
@@ -192,7 +192,7 @@ in the house, it can make sense to display the subpage that corresponds
 to the room first, depending on the Visu location, for a complete config file.</p>
 </section>
 <section id="forcedevice-override-output-device">
-<h3><em>forceDevice</em> - Override output device<a class="headerlink" href="#forcedevice-override-output-device" title="Permalink to this headline">¶</a></h3>
+<h3><em>forceDevice</em> - Override output device<a class="headerlink" href="#forcedevice-override-output-device" title="Link to this heading"></a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">forceDevice</span></code> parameter, the value <code class="docutils literal notranslate"><span class="pre">mobile</span></code> can be used
 to display the page on “large” devices as well as on a small, mobile
 device (such as a smartphone). Any other value will display the page
@@ -200,7 +200,7 @@ device (such as a smartphone). Any other value will display the page
 <p>This is actually only needed for developers.</p>
 </section>
 <section id="maturity-maturity">
-<h3><em>maturity</em> - Maturity<a class="headerlink" href="#maturity-maturity" title="Permalink to this headline">¶</a></h3>
+<h3><em>maturity</em> - Maturity<a class="headerlink" href="#maturity-maturity" title="Link to this heading"></a></h3>
 <p>By the parameter <code class="docutils literal notranslate"><span class="pre">maturity</span></code> you can unlock features that are still
 in development and thus have unintended cross-effects.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">release</span> <span class="p">(</span><span class="n">maturity</span><span class="o">=</span><span class="n">release</span><span class="p">)</span>
@@ -210,7 +210,7 @@ in development and thus have unintended cross-effects.</p>
 <p>This should only be used by developers!</p>
 </section>
 <section id="backend-backend">
-<h3><em>backend</em> - Backend<a class="headerlink" href="#backend-backend" title="Permalink to this headline">¶</a></h3>
+<h3><em>backend</em> - Backend<a class="headerlink" href="#backend-backend" title="Link to this heading"></a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> configures the used backend at runtime. There is
 also a <code class="docutils literal notranslate"><span class="pre">backend</span></code> parameter in the config to fix this.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span> <span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="p">)</span>
@@ -223,7 +223,7 @@ changed. “r”, “w” and “l” are in /cgi-bin/.</p>
 <p>The option “openhab” uses the path necessary for OpenHAB.</p>
 </section>
 <section id="enablequeue-queue">
-<h3><em>enableQueue</em> - Queue<a class="headerlink" href="#enablequeue-queue" title="Permalink to this headline">¶</a></h3>
+<h3><em>enableQueue</em> - Queue<a class="headerlink" href="#enablequeue-queue" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">enableQueue</span></code> parameter influences whether all or only the group
 addresses required on the current page are queried by the CV. This may
 lead to performance improvements.</p>
@@ -235,7 +235,7 @@ lead to performance improvements.</p>
 is currently off by default.</p>
 </section>
 <section id="testmode-test-mode-without-real-backend">
-<h3><em>testMode</em> - Test mode without real backend<a class="headerlink" href="#testmode-test-mode-without-real-backend" title="Permalink to this headline">¶</a></h3>
+<h3><em>testMode</em> - Test mode without real backend<a class="headerlink" href="#testmode-test-mode-without-real-backend" title="Link to this heading"></a></h3>
 <p>With the parameter <code class="docutils literal notranslate"><span class="pre">testMode</span></code> you can test the CometVisu rudimentarily
 without having a running backend in the background. Normally, the CometVisu
 sends the switch-on value at the defined address to the backend when a switch
@@ -254,7 +254,7 @@ and return addresses, this will not work with the TestMode.</p>
 </div>
 </section>
 <section id="enablecache-activate-caching">
-<span id="enablecache"></span><h3><em>enableCache</em> - Activate Caching<a class="headerlink" href="#enablecache-activate-caching" title="Permalink to this headline">¶</a></h3>
+<span id="enablecache"></span><h3><em>enableCache</em> - Activate Caching<a class="headerlink" href="#enablecache-activate-caching" title="Link to this heading"></a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">enableCache</span></code> can be used to configure caching. This has
 the effect that a config is not completely read in every reload and that an
 HTML page is generated from it, but that the rendered HTML structure including
@@ -270,7 +270,7 @@ or deleted (=invalid).</p>
 </div>
 </section>
 <section id="reporting-record-session">
-<span id="reporting"></span><h3><em>reporting</em> - Record Session<a class="headerlink" href="#reporting-record-session" title="Permalink to this headline">¶</a></h3>
+<span id="reporting"></span><h3><em>reporting</em> - Record Session<a class="headerlink" href="#reporting-record-session" title="Link to this heading"></a></h3>
 <p>To support an error message, the interaction with the CometVisu can be
 recorded and made available to the developers as a replay file. They can thus
 see exactly which data has been exchanged between the CometVisu and the backend and which
@@ -303,7 +303,7 @@ resolution.</p>
 </div>
 </section>
 <section id="reporterrors-automatically-send-error-messages-to-sentry-io">
-<span id="reporterrors"></span><h3><em>reportErrors</em> - Automatically send error messages to sentry.io<a class="headerlink" href="#reporterrors-automatically-send-error-messages-to-sentry-io" title="Permalink to this headline">¶</a></h3>
+<span id="reporterrors"></span><h3><em>reportErrors</em> - Automatically send error messages to sentry.io<a class="headerlink" href="#reporterrors-automatically-send-error-messages-to-sentry-io" title="Link to this heading"></a></h3>
 <p>Another way for developers to improve CometVisu is to enable automatic bug
 reports. These reports are sometimes sent completely automatically to a web
 service (sentry.io) when an error occurs, which collects, processes and
@@ -322,7 +322,7 @@ can try to reproduce the error again and then send an error report with
 further explanations to sentry.io.</p>
 </section>
 <section id="log-debug-messages-in-the-browser-console">
-<span id="log"></span><h3><em>log</em> - Debug-messages in the browser console<a class="headerlink" href="#log-debug-messages-in-the-browser-console" title="Permalink to this headline">¶</a></h3>
+<span id="log"></span><h3><em>log</em> - Debug-messages in the browser console<a class="headerlink" href="#log-debug-messages-in-the-browser-console" title="Link to this heading"></a></h3>
 <p>Use this parameter to turn debug messages output on and off in the browser
 console. In the developer version, these are turned on by default.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="k">for</span> <span class="n">Release</span><span class="p">,</span> <span class="n">true</span> <span class="k">for</span> <span class="n">develop</span>
@@ -354,8 +354,12 @@ console. In the developer version, these are turned on by default.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -366,22 +370,18 @@ console. In the developer version, these are turned on by default.</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

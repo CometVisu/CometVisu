@@ -253,9 +253,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "ev {CustomEvent} stateUpdate event fired from an cv-address component",
+            "body": "ev {CustomEvent} stateUpdate event fired from a cv-address component",
             "paramName": "ev",
-            "description": " stateUpdate event fired from an cv-address component",
+            "description": " stateUpdate event fired from a cv-address component",
             "type": "CustomEvent"
           }
         ],

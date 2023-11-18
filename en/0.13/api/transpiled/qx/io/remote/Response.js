@@ -76,7 +76,7 @@
     */
 
     members: {
-      __P_254_0: null,
+      __P_262_0: null,
       /*
       ---------------------------------------------------------------------------
         USER METHODS
@@ -98,8 +98,8 @@
        * @return {Object | null} The header value or null;
        */
       getResponseHeader: function getResponseHeader(vHeader) {
-        if (this.__P_254_0) {
-          return this.__P_254_0[vHeader.toLowerCase()] || null;
+        if (this.__P_262_0) {
+          return this.__P_262_0[vHeader.toLowerCase()] || null;
         }
         return null;
       },
@@ -116,7 +116,7 @@
           Object.keys(value).forEach(function (key) {
             lowerHeaders[key.toLowerCase()] = value[key];
           });
-          this.__P_254_0 = lowerHeaders;
+          this.__P_262_0 = lowerHeaders;
         }
       }
     }
@@ -124,4 +124,4 @@
   qx.io.remote.Response.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Response.js.map?dt=1692560714021
+//# sourceMappingURL=Response.js.map?dt=1700345597751

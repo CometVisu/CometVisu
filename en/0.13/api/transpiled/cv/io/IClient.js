@@ -142,8 +142,9 @@
       /**
        * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
        * @param data {var}
+       * @param config {{scaling: number, offset: number}}
        */
-      processChartsData: function processChartsData(data) {},
+      processChartsData: function processChartsData(data, config) {},
       /**
        * This function sends a value
        * @param address {String} address to send the value to
@@ -191,4 +192,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1692560747758
+//# sourceMappingURL=IClient.js.map?dt=1700345617666

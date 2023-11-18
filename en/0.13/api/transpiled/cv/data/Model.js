@@ -46,10 +46,10 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__P_532_0 = {};
-      this.__P_532_1 = {};
-      this.__P_532_2 = {};
-      this.__P_532_3 = {};
+      this.__P_540_0 = {};
+      this.__P_540_1 = {};
+      this.__P_540_2 = {};
+      this.__P_540_3 = {};
     },
     /*
     ******************************************************
@@ -83,10 +83,10 @@
     ******************************************************
     */
     members: {
-      __P_532_0: null,
-      __P_532_1: null,
-      __P_532_2: null,
-      __P_532_3: null,
+      __P_540_0: null,
+      __P_540_1: null,
+      __P_540_2: null,
+      __P_540_3: null,
       /**
        * @param backendName {String?} name of the backend
        * @return {Map}
@@ -95,7 +95,7 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        return Object.prototype.hasOwnProperty.call(this.__P_532_1, backendName) ? this.__P_532_1 : {};
+        return Object.prototype.hasOwnProperty.call(this.__P_540_1, backendName) ? this.__P_540_1 : {};
       },
       /**
        * Updates the state of a single address
@@ -108,15 +108,15 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        if (!Object.prototype.hasOwnProperty.call(this.__P_532_0, backendName)) {
-          this.__P_532_0[backendName] = {};
+        if (!Object.prototype.hasOwnProperty.call(this.__P_540_0, backendName)) {
+          this.__P_540_0[backendName] = {};
         }
-        var initial = !Object.prototype.hasOwnProperty.call(this.__P_532_0[backendName], address);
-        var changed = initial || this.__P_532_0[backendName][address] !== state;
-        this.__P_532_0[backendName][address] = state;
+        var initial = !Object.prototype.hasOwnProperty.call(this.__P_540_0[backendName], address);
+        var changed = initial || this.__P_540_0[backendName][address] !== state;
+        this.__P_540_0[backendName][address] = state;
         // notify listeners
-        if (Object.prototype.hasOwnProperty.call(this.__P_532_1, backendName) && this.__P_532_1[backendName][address]) {
-          this.__P_532_1[backendName][address].forEach(function (listener) {
+        if (Object.prototype.hasOwnProperty.call(this.__P_540_1, backendName) && this.__P_540_1[backendName][address]) {
+          this.__P_540_1[backendName][address].forEach(function (listener) {
             listener[0].call(listener[1], address, state, initial, changed);
           }, this);
         }
@@ -131,10 +131,10 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        if (!Object.prototype.hasOwnProperty.call(this.__P_532_0, backendName)) {
-          this.__P_532_0[backendName] = {};
+        if (!Object.prototype.hasOwnProperty.call(this.__P_540_0, backendName)) {
+          this.__P_540_0[backendName] = {};
         }
-        this.__P_532_0[backendName][address] = state;
+        this.__P_540_0[backendName][address] = state;
       },
       /**
        * Handle incoming data from backend
@@ -152,7 +152,7 @@
         if (!data) {
           return;
         }
-        var addressList = this.__P_532_2[backendName];
+        var addressList = this.__P_540_2[backendName];
         if (addressList) {
           Object.getOwnPropertyNames(data).forEach(function (address) {
             if (Object.prototype.hasOwnProperty.call(addressList, address)) {
@@ -174,7 +174,7 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        return Object.prototype.hasOwnProperty.call(this.__P_532_0, backendName) ? this.__P_532_0[backendName][address] : undefined;
+        return Object.prototype.hasOwnProperty.call(this.__P_540_0, backendName) ? this.__P_540_0[backendName][address] : undefined;
       },
       /**
        * Add a listener to an address, that gets called when an update for that address has been received.
@@ -188,13 +188,13 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        if (!Object.prototype.hasOwnProperty.call(this.__P_532_1, backendName)) {
-          this.__P_532_1[backendName] = {};
+        if (!Object.prototype.hasOwnProperty.call(this.__P_540_1, backendName)) {
+          this.__P_540_1[backendName] = {};
         }
-        if (!this.__P_532_1[backendName][address]) {
-          this.__P_532_1[backendName][address] = [];
+        if (!this.__P_540_1[backendName][address]) {
+          this.__P_540_1[backendName][address] = [];
         }
-        this.__P_532_1[backendName][address].push([callback, context]);
+        this.__P_540_1[backendName][address].push([callback, context]);
       },
       /**
        * Remove an address listener
@@ -208,10 +208,10 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        if (Object.prototype.hasOwnProperty.call(this.__P_532_1, backendName)) {
-          if (this.__P_532_1[backendName][address]) {
+        if (Object.prototype.hasOwnProperty.call(this.__P_540_1, backendName)) {
+          if (this.__P_540_1[backendName][address]) {
             var removeIndex = -1;
-            this.__P_532_1[backendName][address].some(function (entry, i) {
+            this.__P_540_1[backendName][address].some(function (entry, i) {
               if (entry[0] === callback && entry[1] === context) {
                 removeIndex = i;
                 return true;
@@ -219,9 +219,9 @@
               return false;
             });
             if (removeIndex >= 0) {
-              this.__P_532_1[backendName][address].splice(removeIndex, 1);
-              if (this.__P_532_1[backendName][address].length === 0) {
-                delete this.__P_532_1[backendName][address];
+              this.__P_540_1[backendName][address].splice(removeIndex, 1);
+              if (this.__P_540_1[backendName][address].length === 0) {
+                delete this.__P_540_1[backendName][address];
               }
             }
           }
@@ -237,10 +237,10 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        if (!Object.prototype.hasOwnProperty.call(this.__P_532_2, backendName)) {
-          this.__P_532_2[backendName] = {};
+        if (!Object.prototype.hasOwnProperty.call(this.__P_540_2, backendName)) {
+          this.__P_540_2[backendName] = {};
         }
-        var list = this.__P_532_2[backendName];
+        var list = this.__P_540_2[backendName];
         if (address in list) {
           if (!list[address].includes(id)) {
             list[address].push(id);
@@ -258,7 +258,7 @@
         if (!backendName) {
           backendName = this.getDefaultBackendName();
         }
-        return Object.prototype.hasOwnProperty.call(this.__P_532_2, backendName) ? Object.keys(this.__P_532_2[backendName]) : [];
+        return Object.prototype.hasOwnProperty.call(this.__P_540_2, backendName) ? Object.keys(this.__P_540_2[backendName]) : [];
       },
       /**
        * Setter for address list.
@@ -266,7 +266,7 @@
        * @param backendName {String?} optional backend name for this address
        */
       setAddressList: function setAddressList(value, backendName) {
-        this.__P_532_2[backendName || this.getDefaultBackendName()] = value;
+        this.__P_540_2[backendName || this.getDefaultBackendName()] = value;
       },
       /**
        * Getter for the address list.
@@ -274,7 +274,7 @@
        * @return {Map} Address -> path mapping
        */
       getAddressList: function getAddressList(backendName) {
-        return this.__P_532_2[backendName || this.getDefaultBackendName()];
+        return this.__P_540_2[backendName || this.getDefaultBackendName()];
       },
       /**
        * Clears the current address list.
@@ -282,7 +282,7 @@
        * @internal
        */
       resetAddressList: function resetAddressList(backendName) {
-        this.__P_532_2[backendName || this.getDefaultBackendName()] = {};
+        this.__P_540_2[backendName || this.getDefaultBackendName()] = {};
       },
       /**
        * Return (reference to) widgetData object by path.
@@ -290,7 +290,7 @@
        * @return {Map} widget data map
        */
       getWidgetData: function getWidgetData(path) {
-        return this.__P_532_3[path] || (this.__P_532_3[path] = {});
+        return this.__P_540_3[path] || (this.__P_540_3[path] = {});
       },
       /**
        * Return (reference to) widget data by element
@@ -324,35 +324,35 @@
        * @param value {Map} path -> widget data map
        */
       setWidgetDataModel: function setWidgetDataModel(value) {
-        this.__P_532_3 = value;
+        this.__P_540_3 = value;
       },
       /**
        * Getter for widget data model
        * @return {Map} path -> widget data map
        */
       getWidgetDataModel: function getWidgetDataModel() {
-        return this.__P_532_3;
+        return this.__P_540_3;
       },
       /**
        * Clear the widget data model.
        * @internal
        */
       resetWidgetDataModel: function resetWidgetDataModel() {
-        this.__P_532_3 = {};
+        this.__P_540_3 = {};
       },
       /**
        * Clear the model, internal method for testing purposes
        * @internal
        */
       clear: function clear() {
-        this.__P_532_2 = {};
-        this.__P_532_3 = {};
-        this.__P_532_0 = {};
-        this.__P_532_1 = {};
+        this.__P_540_2 = {};
+        this.__P_540_3 = {};
+        this.__P_540_0 = {};
+        this.__P_540_1 = {};
       }
     }
   });
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1692560743912
+//# sourceMappingURL=Model.js.map?dt=1700345615353

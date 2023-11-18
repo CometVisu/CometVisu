@@ -764,6 +764,13 @@
           {
             "name": "@param",
             "body": "data {var}"
+          },
+          {
+            "name": "@param",
+            "body": "config {{scaling: number, offset: number}}",
+            "paramName": "config",
+            "description": "}",
+            "type": "{scaling: number, offset: number"
           }
         ]
       }

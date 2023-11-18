@@ -63,7 +63,7 @@
     "__renderLine",
     "height",
     "getSpacingY",
-    "__P_370_0",
+    "__P_378_0",
     "util",
     "Util",
     "left",
@@ -93,7 +93,7 @@
     "getHeightForWidth",
     "getLastLineChildren",
     "lineData",
-    "__P_370_1",
+    "__P_378_1",
     "lineCount",
     "max"
   ],

@@ -1,3 +1,6 @@
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -6,8 +9,10 @@
         "require": true
       },
       "cv.ui.structure.tile.elements.AbstractCustomElement": {
+        "construct": true,
         "require": true
       },
+      "qx.core.Init": {},
       "cv.Application": {},
       "cv.util.String": {}
     }
@@ -40,18 +45,30 @@
     type: 'abstract',
     /*
     ***********************************************
+      CONSTRUCTOR
+    ***********************************************
+    */
+    construct: function construct(element) {
+      cv.ui.structure.tile.elements.AbstractCustomElement.constructor.call(this, element);
+      this._preMappingHooks = [];
+    },
+    /*
+    ***********************************************
       PROPERTIES
     ***********************************************
     */
     properties: {
       value: {
         apply: '_applyValue',
-        init: null
+        init: null,
+        nullable: true,
+        event: 'changeValue'
       },
       styleClass: {
         check: 'String',
         nullable: true,
-        apply: '_applyStyleClass'
+        apply: '_applyStyleClass',
+        event: 'changeStyleClass'
       },
       enabled: {
         check: 'Boolean',
@@ -69,14 +86,14 @@
        */
       widget: {
         check: 'Boolean',
-        init: 'false'
+        init: false
       },
       /**
        * True if this tile is the content of a popup
        */
       inPopup: {
         check: 'Boolean',
-        init: 'false'
+        init: false
       }
     },
     /*
@@ -87,17 +104,31 @@
     members: {
       _writeAddresses: null,
       _headerFooterParent: null,
-      _checkIfWidget: function _checkIfWidget() {
-        var isWidget = false;
-        var isPopup = false;
+      _preMappingHooks: null,
+      _tileElement: null,
+      __P_75_0: null,
+      _checkEnvironment: function _checkEnvironment() {
+        var inPopup = false;
         if (this._element.parentElement.localName === 'cv-popup') {
           this._headerFooterParent = this._element.parentElement;
-          isPopup = true;
+          inPopup = true;
         } else {
+          var tile = this._getTileParent();
+          if (tile) {
+            var parent = tile.parentElement;
+            this._headerFooterParent = parent;
+            if (parent.localName === 'cv-popup') {
+              inPopup = true;
+            }
+          }
+        }
+        this.setInPopup(inPopup);
+      },
+      _getTileParent: function _getTileParent() {
+        if (!this._tileElement) {
           var tile = this._element;
           var i = 0;
-          // we are looking for cv-tile parent which is the direct child of a widget
-          while (tile.localName !== 'cv-tile') {
+          while (tile && tile.localName !== 'cv-tile') {
             tile = tile.parentElement;
             i++;
             if (i > 2) {
@@ -105,22 +136,15 @@
               break;
             }
           }
-          if (tile) {
-            var parent = tile.parentElement;
-            this._headerFooterParent = parent;
-            if (parent.localName === 'cv-popup') {
-              isPopup = true;
-            } else if (parent.localName.startsWith('cv-')) {
-              isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
-            }
+          if (tile && tile.localName === 'cv-tile') {
+            this._tileElement = tile;
           }
         }
-        this.setInPopup(isPopup);
-        this.setWidget(isWidget);
+        return this._tileElement;
       },
       _init: function _init() {
         var _this = this;
-        this._checkIfWidget();
+        this._checkEnvironment();
         var element = this._element;
         var hasReadAddress = false;
         var writeAddresses = [];
@@ -139,6 +163,10 @@
               break;
           }
         });
+        if (!hasReadAddress) {
+          // address groups are read-only
+          hasReadAddress = element.querySelectorAll(':scope > cv-address-group').length > 0;
+        }
         this._writeAddresses = writeAddresses;
         if (hasReadAddress) {
           element.addEventListener('stateUpdate', function (ev) {
@@ -147,6 +175,52 @@
             ev.stopPropagation();
           });
         }
+
+        // has mobile attributes
+        this.__P_75_0 = [];
+        var _iterator = _createForOfIteratorHelper(element.getAttributeNames()),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var name = _step.value;
+            if (name.startsWith('mobile-')) {
+              var targetName = name.substring(7);
+              this.__P_75_0.push({
+                name: targetName,
+                mobile: element.getAttribute(name),
+                desktop: element.getAttribute(targetName)
+              });
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+        if (this.__P_75_0.length > 0) {
+          qx.core.Init.getApplication().addListener('changeMobile', this.__P_75_1, this);
+        }
+        if (document.body.classList.contains('mobile')) {
+          this.__P_75_1();
+        }
+      },
+      __P_75_1: function __P_75_1() {
+        var isMobile = document.body.classList.contains('mobile');
+        var _iterator2 = _createForOfIteratorHelper(this.__P_75_0),
+          _step2;
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var entry = _step2.value;
+            this._element.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+      },
+      getElement: function getElement() {
+        return this._element;
       },
       /**
        * Append the given element to a header inside the widget this component is a direct child of.
@@ -155,7 +229,8 @@
        * @param element {HTMLElement}
        * @param align {String} center (default), left or right
        */
-      appendToHeader: function appendToHeader(element, align) {
+      appendToHeader: function appendToHeader(element) {
+        var align = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
         if (this._headerFooterParent) {
           var header = this._headerFooterParent.querySelector(':scope > header');
           if (!header) {
@@ -224,16 +299,53 @@
         }
         return null;
       },
+      /**
+       * Register hook function {Function(value: number) : number} that is called before the mapping gets applied.
+       * It must return a number that is used as a new value for mapping.
+       * @param callback {{(value: number) : number}}
+       * @param context {object}
+       */
+      registerPreMappingHook: function registerPreMappingHook(callback, context) {
+        var exists = this._preMappingHooks.some(function (e) {
+          return e[0] === callback;
+        });
+        if (!exists) {
+          this._preMappingHooks.push([callback, context || this]);
+        }
+      },
+      /**
+       * Unregister pre-mapping hook
+       * @param callback {{(value: number) : number}}
+       */
+      unregisterPreMappingHook: function unregisterPreMappingHook(callback) {
+        this._preMappingHooks = this._preMappingHooks.filter(function (e) {
+          return e[0] !== callback;
+        });
+      },
       // property apply
       _applyValue: function _applyValue(value) {
         if (this.isConnected()) {
           this._element.setAttribute('value', value || '');
           var mappedValue = value;
-          if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
-            mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
+          var _iterator3 = _createForOfIteratorHelper(this._preMappingHooks),
+            _step3;
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var hookEntry = _step3.value;
+              mappedValue = hookEntry[0].call(hookEntry[1], mappedValue);
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
           }
-          if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
-            mappedValue = cv.util.String.sprintf(this._element.getAttribute('format'), mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
+          if (mappedValue !== null) {
+            if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
+              mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
+            }
+            if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
+              mappedValue = cv.util.String.sprintf(this._element.getAttribute('format'), mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
+            }
           }
           this._updateValue(mappedValue, value);
           if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
@@ -247,14 +359,10 @@
       // property apply
       _applyStyleClass: function _applyStyleClass(value, oldValue) {
         var classes = this._element.classList;
-        if (oldValue) {
-          if (classes.contains(oldValue)) {
-            classes.replace(oldValue, value);
-          } else {
-            classes.add(value);
-            classes.remove(oldValue);
-          }
-        } else if (value) {
+        if (oldValue && classes.contains(oldValue)) {
+          classes.remove(oldValue);
+        }
+        if (value) {
           classes.add(value);
         }
       },
@@ -300,7 +408,7 @@
       /**
        * Handles the incoming data from the backend for this widget
        *
-       * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
+       * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
        * @return {Boolean} true of the update has been handled
        */
       onStateUpdate: function onStateUpdate(ev) {
@@ -333,9 +441,10 @@
     destruct: function destruct() {
       this._writeAddresses = null;
       this._headerFooterParent = null;
+      qx.core.Init.getApplication().removeListener('changeMobile', this.__P_75_1, this);
     }
   });
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1692560691961
+//# sourceMappingURL=AbstractComponent.js.map?dt=1700345583665

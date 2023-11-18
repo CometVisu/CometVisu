@@ -47,14 +47,14 @@
     ***********************************************
     */
     members: {
-      __P_543_0: 2,
-      __P_543_1: null,
+      __P_551_0: 2,
+      __P_551_1: null,
       /**
        * Upgrade config source
        * @param source {String|Document} content of a config file
        */
       upgrade: function upgrade(source) {
-        this.__P_543_1 = [];
+        this.__P_551_1 = [];
         if (typeof source === 'string') {
           source = qx.xml.Document.fromString(source);
         }
@@ -65,7 +65,7 @@
         var version = isTileStructure ? parseInt(pagesNode.getAttribute('version')) : parseInt(pagesNode.getAttribute('lib_version'));
         if (version === cv.Version.LIBRARY_VERSION_PURE) {
           // nothing to do
-          return [null, source, this.__P_543_1];
+          return [null, source, this.__P_551_1];
         }
         var suffix = isTileStructure ? 'Tile' : 'Pure';
         while (version < systemLibVersion) {
@@ -74,11 +74,11 @@
           if (method) {
             version = method.call(this, source);
           } else {
-            return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__P_543_1];
+            return [qx.locale.Manager.tr('Upgrader from version %1 not implemented', version), source, this.__P_551_1];
           }
         }
-        this.info('  - ' + this.__P_543_1.join('\n  - '));
-        return [null, source, this.__P_543_1];
+        this.info('  - ' + this.__P_551_1.join('\n  - '));
+        return [null, source, this.__P_551_1];
       },
       from7to8Pure: function from7to8Pure(source) {
         var c = 0;
@@ -91,20 +91,20 @@
           }
           c++;
         });
-        this.__P_543_2(source, 8);
+        this.__P_551_2(source, 8);
         if (c > 0) {
-          this.__P_543_1.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
+          this.__P_551_1.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (gweather)');
         }
         return 8;
       },
       from8to9Pure: function from8to9Pure(source) {
         var _this = this;
         var c = 0;
-        var singleIndent = ''.padEnd(this.__P_543_0, ' ');
+        var singleIndent = ''.padEnd(this.__P_551_0, ' ');
         source.querySelectorAll('multitrigger').forEach(function (node) {
-          var level = _this.__P_543_3(node);
+          var level = _this.__P_551_3(node);
           level++;
-          var indent = ''.padEnd(_this.__P_543_0 * level, ' ');
+          var indent = ''.padEnd(_this.__P_551_0 * level, ' ');
           var buttonConf = {};
           var attributesToDelete = [];
           var nameRegex = /^button([\d]+)(label|value)$/;
@@ -137,12 +137,12 @@
             buttons.appendChild(source.createTextNode('\n' + indent));
             node.appendChild(source.createTextNode(singleIndent));
             node.appendChild(buttons);
-            node.appendChild(source.createTextNode('\n' + ''.padEnd(_this.__P_543_0 * (level - 1), ' ')));
+            node.appendChild(source.createTextNode('\n' + ''.padEnd(_this.__P_551_0 * (level - 1), ' ')));
             c++;
           }
         });
         if (c > 0) {
-          this.__P_543_1.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
+          this.__P_551_1.push('converted ' + c + ' \'multitrigger\'-nodes to new button configuration');
         }
         c = 0;
         source.querySelectorAll('plugins > plugin[name=\'colorchooser\']').forEach(function (node) {
@@ -155,12 +155,12 @@
           c++;
         });
         if (c > 0) {
-          this.__P_543_1.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (colorchooser)');
+          this.__P_551_1.push('removed ' + c + ' \'plugin\'-nodes with obsolete plugin (colorchooser)');
         }
-        this.__P_543_2(source, 9);
+        this.__P_551_2(source, 9);
         return 9;
       },
-      __P_543_3: function __P_543_3(node) {
+      __P_551_3: function __P_551_3(node) {
         var level = 1;
         var parent = node.parentNode;
         while (parent && parent.nodeName !== 'pages') {
@@ -169,7 +169,7 @@
         }
         return level;
       },
-      __P_543_2: function __P_543_2(xml, version, isTile) {
+      __P_551_2: function __P_551_2(xml, version, isTile) {
         if (isTile === true) {
           xml.documentElement.setAttribute('version', version);
         } else {
@@ -594,4 +594,4 @@
   cv.util.ConfigUpgrader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigUpgrader.js.map?dt=1692560745159
+//# sourceMappingURL=ConfigUpgrader.js.map?dt=1700345616124

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ändern der Größe von Widget-Inhalten &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -59,12 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="layout.html">Funktionen zur Steuerung des Layouts</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Ändern der Größe von Widget-Inhalten</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#groszenangaben-in-pixel">Größenangaben in Pixel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#groszenangaben-in-prozent">Größenangaben in Prozent</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#groszenangaben-relativ-zur-schriftgrosze">Größenangaben relativ zur Schriftgröße</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Ändern der Größe von Widget-Inhalten</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung">Elemente für Konvertierung und Formatierung</a></li>
@@ -95,9 +94,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
-      <li>Ändern der Größe von Widget-Inhalten</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Konfiguration der CometVisu</a></li>
+      <li class="breadcrumb-item active">Ändern der Größe von Widget-Inhalten</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -113,7 +112,7 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="andern-der-grosze-von-widget-inhalten">
-<span id="size-attributes"></span><h1>Ändern der Größe von Widget-Inhalten<a class="headerlink" href="#andern-der-grosze-von-widget-inhalten" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="size-attributes"></span><h1>Ändern der Größe von Widget-Inhalten<a class="headerlink" href="#andern-der-grosze-von-widget-inhalten" title="Link to this heading"></a></h1>
 <p>In folgenden Widgets stehen neben dem Kind-Element <code class="docutils literal notranslate"><span class="pre">layout</span></code> (legt die äußeren Widget-Abmessungen fest) weitere
 Attribute wie zB. <code class="docutils literal notranslate"><span class="pre">width</span></code> und <code class="docutils literal notranslate"><span class="pre">height</span></code> zur Beeinflussung des Inhaltes zur Verfügung:</p>
 <ul class="simple">
@@ -130,7 +129,7 @@ Inhaltes automatisch an die Widgetgröße angepasst wird.  Trotzdem kann es in e
 das <code class="docutils literal notranslate"><span class="pre">width</span></code> oder <code class="docutils literal notranslate"><span class="pre">height</span></code> Attribut zu verwenden.</p>
 <p>Die Angabe erfolgt im CSS-Format und kann dabei in Pixel, Prozent oder relativ zur Schriftgröße erfolgen.</p>
 <section id="groszenangaben-in-pixel">
-<h2>Größenangaben in Pixel<a class="headerlink" href="#groszenangaben-in-pixel" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Größenangaben in Pixel<a class="headerlink" href="#groszenangaben-in-pixel" title="Link to this heading"></a></h2>
 <p>Die Angabe in Pixel erfolgt im Format <code class="docutils literal notranslate"><span class="pre">width=&quot;300px&quot;</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">height=&quot;200px&quot;</span></code>.</p>
 <div class="admonition important">
 <p class="admonition-title">Wichtig</p>
@@ -140,14 +139,14 @@ definiert. Eine Übersicht liefert zB. <a class="reference external" href="viewp
 </div>
 </section>
 <section id="groszenangaben-in-prozent">
-<h2>Größenangaben in Prozent<a class="headerlink" href="#groszenangaben-in-prozent" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Größenangaben in Prozent<a class="headerlink" href="#groszenangaben-in-prozent" title="Link to this heading"></a></h2>
 <p>Die Angabe in Prozent erfolgt im Format <code class="docutils literal notranslate"><span class="pre">width=&quot;100%&quot;</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">height=&quot;100%&quot;</span></code>.</p>
 <p>Die Prozentzahl bezieht sich dabei auf den sichtbaren Bereich der Widget-Größe. D.h. mit <code class="docutils literal notranslate"><span class="pre">width=100%</span></code> wird der Inhalt
 auf die gesamte Widgetbreite skaliert (sowohl vergrößert als auch verkleinert), mit <code class="docutils literal notranslate"><span class="pre">width=50%</span></code> wird das Widget zur
 Hälfte ausgefüllt.</p>
 </section>
 <section id="groszenangaben-relativ-zur-schriftgrosze">
-<h2>Größenangaben relativ zur Schriftgröße<a class="headerlink" href="#groszenangaben-relativ-zur-schriftgrosze" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Größenangaben relativ zur Schriftgröße<a class="headerlink" href="#groszenangaben-relativ-zur-schriftgrosze" title="Link to this heading"></a></h2>
 <p>Die Angabe erfolgt im Format <code class="docutils literal notranslate"><span class="pre">width=&quot;50em&quot;</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">height=&quot;30em&quot;</span></code>. Die Einheit „em“ ist dabei die Standardschriftgröße
 des Textes in der  Cometvisu.</p>
 </section>
@@ -157,8 +156,8 @@ des Textes in der  Cometvisu.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="layout.html" class="btn btn-neutral float-left" title="Funktionen zur Steuerung des Layouts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="flavour.html" class="btn btn-neutral float-right" title="Flavour" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="layout.html" class="btn btn-neutral float-left" title="Funktionen zur Steuerung des Layouts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="flavour.html" class="btn btn-neutral float-right" title="Flavour" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -174,9 +173,13 @@ des Textes in der  Cometvisu.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -184,24 +187,20 @@ des Textes in der  Cometvisu.</p>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

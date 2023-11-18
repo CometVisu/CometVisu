@@ -55,7 +55,7 @@
     construct: function construct(text) {
       qx.html.Node.constructor.call(this, "#text");
       if (text) {
-        this.__P_244_0 = text;
+        this.__P_252_0 = text;
       }
     },
     /*
@@ -65,12 +65,12 @@
      */
 
     members: {
-      __P_244_0: null,
+      __P_252_0: null,
       /*
        * @Override
        */
       _createDomElement: function _createDomElement() {
-        return window.document.createTextNode(this.__P_244_0 || "");
+        return window.document.createTextNode(this.__P_252_0 || "");
       },
       /*
        * @Override
@@ -84,7 +84,7 @@
       _copyData: function _copyData(fromMarkup, propertiesFromDom) {
         qx.html.Text.superclass.prototype._copyData.call(this, fromMarkup, propertiesFromDom);
         var elem = this._domNode;
-        elem.nodeValue = this.__P_244_0 || "";
+        elem.nodeValue = this.__P_252_0 || "";
       },
       /*
        * @Override
@@ -104,14 +104,14 @@
       _syncData: function _syncData() {
         qx.html.Text.superclass.prototype._syncData.call(this);
         var elem = this._domNode;
-        elem.nodeValue = this.__P_244_0 || "";
+        elem.nodeValue = this.__P_252_0 || "";
       },
       /*
        * @Override
        */
       _serializeImpl: function _serializeImpl(writer) {
-        if (this.__P_244_0 !== null) {
-          writer(this.__P_244_0);
+        if (this.__P_252_0 !== null) {
+          writer(this.__P_252_0);
         }
       },
       /**
@@ -127,7 +127,7 @@
        * @param direct {Boolean?} whether to set the DOM node immediately if there is one
        */
       setText: function setText(value, direct) {
-        this.__P_244_0 = value;
+        this.__P_252_0 = value;
         if (direct && this._domNode) {
           this._domNode.nodeValue = value;
         } else {
@@ -141,7 +141,7 @@
        * @return {String} the text node
        */
       getText: function getText() {
-        return this.__P_244_0;
+        return this.__P_252_0;
       }
     },
     /*
@@ -150,7 +150,7 @@
      * ****************************************************************************
      */
     defer: function defer(statics) {
-      statics.__P_244_1 = new qx.util.DeferredCall(statics.flush, statics);
+      statics.__P_252_1 = new qx.util.DeferredCall(statics.flush, statics);
     },
     /*
      * ****************************************************************************
@@ -162,10 +162,10 @@
         delete qx.html.Element._modified[this.toHashCode()];
         delete qx.html.Element._scroll[this.toHashCode()];
       }
-      this.__P_244_2 = this.__P_244_3 = this.__P_244_4 = this.__P_244_5 = this.__P_244_6 = this.__P_244_7 = this.__P_244_8 = null;
+      this.__P_252_2 = this.__P_252_3 = this.__P_252_4 = this.__P_252_5 = this.__P_252_6 = this.__P_252_7 = this.__P_252_8 = null;
     }
   });
   qx.html.Text.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Text.js.map?dt=1692560713010
+//# sourceMappingURL=Text.js.map?dt=1700345597124

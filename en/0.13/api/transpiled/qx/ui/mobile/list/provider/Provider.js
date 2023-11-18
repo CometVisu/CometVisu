@@ -55,15 +55,15 @@
       }
     },
     members: {
-      __P_410_0: null,
-      __P_410_1: null,
+      __P_418_0: null,
+      __P_418_1: null,
       /**
        * Sets the item renderer.
        *
        * @param renderer {qx.ui.mobile.list.renderer.Abstract} The used item renderer
        */
       _setItemRenderer: function _setItemRenderer(renderer) {
-        this.__P_410_0 = renderer;
+        this.__P_418_0 = renderer;
       },
       /**
        * Returns the set item renderer.
@@ -71,21 +71,21 @@
        * @return {qx.ui.mobile.list.renderer.Abstract} The used item renderer
        */
       _getItemRenderer: function _getItemRenderer() {
-        return this.__P_410_0;
+        return this.__P_418_0;
       },
       /**
        * Sets the group renderer.
        * @param renderer {qx.ui.mobile.list.renderer.group.Abstract} the group renderer.
        */
       _setGroupRenderer: function _setGroupRenderer(renderer) {
-        this.__P_410_1 = renderer;
+        this.__P_418_1 = renderer;
       },
       /**
        * Gets the group renderer.
        * @return {qx.ui.mobile.list.renderer.group.Abstract} the group renderer.
        */
       _getGroupRenderer: function _getGroupRenderer() {
-        return this.__P_410_1;
+        return this.__P_418_1;
       },
       /**
        * Returns the list item element for a given row.
@@ -96,11 +96,11 @@
        * @return {Element} the list item element.
        */
       getItemElement: function getItemElement(data, row) {
-        this.__P_410_0.reset();
+        this.__P_418_0.reset();
         this._configureItem(data, row);
 
         // Clone the element and all it's events
-        var clone = qx.bom.Element.clone(this.__P_410_0.getContainerElement(), true);
+        var clone = qx.bom.Element.clone(this.__P_418_0.getContainerElement(), true);
         clone.setAttribute("data-row", row);
         return clone;
       },
@@ -113,11 +113,11 @@
        * @return {Element} the group item element.
        */
       getGroupElement: function getGroupElement(data, group) {
-        this.__P_410_1.reset();
+        this.__P_418_1.reset();
         this._configureGroupItem(data, group);
 
         // Clone the element and all it's events
-        var clone = qx.bom.Element.clone(this.__P_410_1.getContainerElement(), true);
+        var clone = qx.bom.Element.clone(this.__P_418_1.getContainerElement(), true);
         clone.removeAttribute("id");
         clone.setAttribute("data-group", group);
         return clone;
@@ -131,7 +131,7 @@
       _configureItem: function _configureItem(data, row) {
         var delegate = this.getDelegate();
         if (delegate != null && delegate.configureItem != null) {
-          delegate.configureItem(this.__P_410_0, data, row);
+          delegate.configureItem(this.__P_418_0, data, row);
         }
       },
       /**
@@ -142,7 +142,7 @@
       _configureGroupItem: function _configureGroupItem(data, group) {
         var configureGroupItem = qx.util.Delegate.getMethod(this.getDelegate(), "configureGroupItem");
         if (configureGroupItem) {
-          configureGroupItem(this.__P_410_1, data, group);
+          configureGroupItem(this.__P_418_1, data, group);
         }
       },
       /**
@@ -185,10 +185,10 @@
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_410_0", "__P_410_1");
+      this._disposeObjects("__P_418_0", "__P_418_1");
     }
   });
   qx.ui.mobile.list.provider.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1692560732018
+//# sourceMappingURL=Provider.js.map?dt=1700345608203

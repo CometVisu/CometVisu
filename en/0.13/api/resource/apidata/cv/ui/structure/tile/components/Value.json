@@ -1092,5 +1092,8 @@
       "overriddenFrom": "cv.ui.structure.tile.MResize"
     }
   },
-  "descendants": []
+  "descendants": [
+    "cv.ui.structure.tile.components.svg.RoundValue",
+    "cv.ui.structure.tile.components.svg.TextValue"
+  ]
 }

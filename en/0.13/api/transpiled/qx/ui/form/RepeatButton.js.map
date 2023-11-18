@@ -65,7 +65,7 @@
     "getKeyIdentifier",
     "_onKeyDown",
     "fireEvent",
-    "__P_355_2",
+    "__P_363_2",
     "set",
     "getInterval",
     "getFirstInterval",
@@ -73,7 +73,7 @@
     "getMinTimer",
     "decrease",
     "getTimerDecrease",
-    "__P_355_3",
+    "__P_363_3",
     "destruct",
     "_disposeObjects"
   ],

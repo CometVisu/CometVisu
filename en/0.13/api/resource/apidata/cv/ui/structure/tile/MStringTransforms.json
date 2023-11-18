@@ -1,0 +1,95 @@
+{
+  "className": "cv.ui.structure.tile.MStringTransforms",
+  "packageName": "cv.ui.structure.tile",
+  "name": "MStringTransforms",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 0,
+        "index": 961
+      },
+      "end": {
+        "line": 56,
+        "column": 3,
+        "index": 1541
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Provides all transform helper functions for converting a string value,\n to other scalar property types.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2023</div>"
+        }
+      ],
+      "@since": [
+        {
+          "name": "@since",
+          "body": "2023"
+        }
+      ],
+      "@author": [
+        {
+          "name": "@author",
+          "body": "Tobias Bräutigam"
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "members": {
+    "_parseInt": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1161
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1280
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_parseFloat": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1406
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_parseBoolean": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1413
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1533
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    }
+  },
+  "descendants": []
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Set up a VM with Visual Studio code &mdash; CometVisu</title>
@@ -13,11 +13,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,11 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="todos.html">TODO’s</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#local-generation-of-the-html-documentation">Local generation of the HTML documentation</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#write-documentation-with-visualstudio-code">Write documentation with VisualStudio Code</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Set up a VM with Visual Studio code</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#preparation-of-the-virtual-machine">Preparation of the virtual machine</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#basic-configuration-of-ubuntu">Basic configuration of Ubuntu</a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Set up a VM with Visual Studio code</a></li>
 </ul>
 </li>
 </ul>
@@ -88,9 +88,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Help the CometVisu project</a> &raquo;</li>
-      <li>Set up a VM with Visual Studio code</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Help the CometVisu project</a></li>
+      <li class="breadcrumb-item active">Set up a VM with Visual Studio code</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -107,7 +107,7 @@ It is possible that some of the described features are not yet available in the 
 by an online translation service.</p>
 </div>
 <section id="set-up-a-vm-with-visual-studio-code">
-<h1>Set up a VM with Visual Studio code<a class="headerlink" href="#set-up-a-vm-with-visual-studio-code" title="Permalink to this headline">¶</a></h1>
+<h1>Set up a VM with Visual Studio code<a class="headerlink" href="#set-up-a-vm-with-visual-studio-code" title="Link to this heading"></a></h1>
 <p>Some of the tools used to generate documentation are only available
 on Linux. Therefore, the Live Preview does not currently work in
 Visual Studio Code on Windows.</p>
@@ -117,7 +117,7 @@ running live preview for rst-files. Emphasis is the configuration of
 the Linux environment and not the establishment of the VM, there are
 numerous good descriptions on the Internet.</p>
 <section id="preparation-of-the-virtual-machine">
-<h2>Preparation of the virtual machine<a class="headerlink" href="#preparation-of-the-virtual-machine" title="Permalink to this headline">¶</a></h2>
+<h2>Preparation of the virtual machine<a class="headerlink" href="#preparation-of-the-virtual-machine" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Download and install the free VMware Player from vmware.com.
 Of course, all other players for virtual machines are possible,
@@ -140,7 +140,7 @@ The vm-tools will later be installed as a package.</p></li>
 <p>For a detailed description of installing VMware search in the internet.</p>
 </section>
 <section id="basic-configuration-of-ubuntu">
-<h2>Basic configuration of Ubuntu<a class="headerlink" href="#basic-configuration-of-ubuntu" title="Permalink to this headline">¶</a></h2>
+<h2>Basic configuration of Ubuntu<a class="headerlink" href="#basic-configuration-of-ubuntu" title="Link to this heading"></a></h2>
 <p>The next steps will be executed in the terminal window. This can be opened
 with Ctrl-Alt-T. With a right click the terminal can be fixed with “Lock to
 Launcher” on the left toolbar.</p>
@@ -183,7 +183,7 @@ then select “install”. Then reload the editor!</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
 <figcaption>
-<p><span class="caption-text">Install extensions</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Install extensions</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>After a single reload of the editor, the extension is available.</p>
@@ -231,7 +231,7 @@ preview of a rst-file:</p>
 <figure class="align-default" id="id2">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
 <figcaption>
-<p><span class="caption-text">Editors with Live-Preview</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Editors with Live-Preview</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -258,8 +258,12 @@ preview of a rst-file:</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
@@ -270,22 +274,18 @@ preview of a rst-file:</p>
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

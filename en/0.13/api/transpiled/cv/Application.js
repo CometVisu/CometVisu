@@ -352,6 +352,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
           document.body.classList.remove('mobile');
         }
       },
+      isReady: function isReady() {
+        return this.__P_2_0;
+      },
       _applyManagerChecked: function _applyManagerChecked(value) {
         if (value && cv.Config.loadManager) {
           this.showManager(cv.Config.managerOptions.action, cv.Config.managerOptions.data);
@@ -1175,4 +1178,4 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1692560679752
+//# sourceMappingURL=Application.js.map?dt=1700345575537

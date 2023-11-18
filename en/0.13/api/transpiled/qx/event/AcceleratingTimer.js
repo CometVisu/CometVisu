@@ -55,8 +55,8 @@
     implement: [qx.core.IDisposable],
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_197_0 = new qx.event.Timer(this.getInterval());
-      this.__P_197_0.addListener("interval", this._onInterval, this);
+      this.__P_205_0 = new qx.event.Timer(this.getInterval());
+      this.__P_205_0.addListener("interval", this._onInterval, this);
     },
     events: {
       /** This event if fired each time the interval time has elapsed */
@@ -92,41 +92,41 @@
       }
     },
     members: {
-      __P_197_0: null,
-      __P_197_1: null,
+      __P_205_0: null,
+      __P_205_1: null,
       /**
        * Reset and start the timer.
        */
       start: function start() {
-        this.__P_197_0.setInterval(this.getFirstInterval());
-        this.__P_197_0.start();
+        this.__P_205_0.setInterval(this.getFirstInterval());
+        this.__P_205_0.start();
       },
       /**
        * Stop the timer
        */
       stop: function stop() {
-        this.__P_197_0.stop();
-        this.__P_197_1 = null;
+        this.__P_205_0.stop();
+        this.__P_205_1 = null;
       },
       /**
        * Interval event handler
        */
       _onInterval: function _onInterval() {
-        this.__P_197_0.stop();
-        if (this.__P_197_1 == null) {
-          this.__P_197_1 = this.getInterval();
+        this.__P_205_0.stop();
+        if (this.__P_205_1 == null) {
+          this.__P_205_1 = this.getInterval();
         }
-        this.__P_197_1 = Math.max(this.getMinimum(), this.__P_197_1 - this.getDecrease());
-        this.__P_197_0.setInterval(this.__P_197_1);
-        this.__P_197_0.start();
+        this.__P_205_1 = Math.max(this.getMinimum(), this.__P_205_1 - this.getDecrease());
+        this.__P_205_0.setInterval(this.__P_205_1);
+        this.__P_205_0.start();
         this.fireEvent("interval");
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_197_0");
+      this._disposeObjects("__P_205_0");
     }
   });
   qx.event.AcceleratingTimer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AcceleratingTimer.js.map?dt=1692560709155
+//# sourceMappingURL=AcceleratingTimer.js.map?dt=1700345594642

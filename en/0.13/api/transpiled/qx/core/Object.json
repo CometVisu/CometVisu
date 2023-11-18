@@ -4051,6 +4051,7 @@
     "cv.ui.structure.pure.navigation.PageHandler",
     "cv.ui.structure.pure.navigation.PagePartsHandler",
     "cv.ui.structure.tile.Controller",
+    "cv.ui.structure.tile.components.svg.Connector",
     "cv.ui.structure.tile.elements.AbstractCustomElement",
     "qx.Promise",
     "qx.application.AbstractGui",

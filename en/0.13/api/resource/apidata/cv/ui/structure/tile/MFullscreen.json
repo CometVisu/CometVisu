@@ -1,0 +1,291 @@
+{
+  "className": "cv.ui.structure.tile.MFullscreen",
+  "packageName": "cv.ui.structure.tile",
+  "name": "MFullscreen",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0,
+        "index": 809
+      },
+      "end": {
+        "line": 123,
+        "column": 3,
+        "index": 3763
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": ""
+        }
+      ]
+    }
+  },
+  "type": "mixin",
+  "properties": {
+    "fullscreen": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1009
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1137
+        }
+      },
+      "name": "fullscreen",
+      "propertyType": "new",
+      "event": "changeFullscreen",
+      "apply": "__P_73_0",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    }
+  },
+  "members": {
+    "__uuid": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1283
+        },
+        "end": {
+          "line": 45,
+          "column": 16,
+          "index": 1295
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__popupAddress": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1301
+        },
+        "end": {
+          "line": 46,
+          "column": 24,
+          "index": 1321
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__button": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1327
+        },
+        "end": {
+          "line": 47,
+          "column": 18,
+          "index": 1341
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "getUuid": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1348
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1476
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPopupAddress": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1483
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1647
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__applyFullscreen": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1654
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_initFullscreenSwitch": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1884
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3288
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_buttonFactory": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3295
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3583
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getFullscreen": {
+      "type": "function",
+      "name": "getFullscreen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fullscreen</code>.\n\nFor further details take a look at the property definition: {@link #fullscreen}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for fullscreen"
+          }
+        ]
+      }
+    },
+    "isFullscreen": {
+      "type": "function",
+      "name": "isFullscreen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fullscreen</code>.\n\nFor further details take a look at the property definition: {@link #fullscreen}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for fullscreen"
+          }
+        ]
+      }
+    },
+    "setFullscreen": {
+      "type": "function",
+      "name": "setFullscreen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>fullscreen</code>.\n\nFor further details take a look at the property definition: {@link #fullscreen}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for fullscreen"
+          }
+        ]
+      }
+    },
+    "resetFullscreen": {
+      "type": "function",
+      "name": "resetFullscreen",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>fullscreen</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #fullscreen}."
+          }
+        ]
+      }
+    }
+  },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 120,
+        "column": 2,
+        "index": 3717
+      },
+      "end": {
+        "line": 122,
+        "column": 3,
+        "index": 3759
+      }
+    },
+    "jsdoc": {}
+  },
+  "descendants": []
+}

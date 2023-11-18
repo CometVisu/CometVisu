@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grundsätzlicher Aufbau &mdash; CometVisu</title>
@@ -13,12 +13,12 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/versions.js"></script>
-        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=70a09b52"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
@@ -31,15 +31,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 0.13.0-dev
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,22 +60,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#pure-struktur">Pure-Struktur</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Grundsätzlicher Aufbau</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#meta-bereich">Meta-Bereich</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="elements/backend.html">Backend</a></li>
-<li class="toctree-l5"><a class="reference internal" href="elements/mapping.html">Mapping</a></li>
-<li class="toctree-l5"><a class="reference internal" href="elements/styling.html">Styling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="elements/loader.html">Loader</a></li>
-<li class="toctree-l5"><a class="reference internal" href="elements/style.html">CSS-Style</a></li>
-<li class="toctree-l5"><a class="reference internal" href="elements/state-notification.html">Status-Benachrichtigung</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#navigation-seitenstruktur">Navigation / Seitenstruktur</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="components/menu.html">Menu</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/page.html">Page</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/group.html">Group</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/popup.html">Popup</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#meta-bereich">Meta-Bereich</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#navigation-seitenstruktur">Navigation / Seitenstruktur</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#widgets">Widgets</a><ul>
@@ -85,23 +75,12 @@
 <li class="toctree-l4"><a class="reference internal" href="widgets/rtc.html">RTC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="widgets/media-player.html">Media Player</a></li>
 <li class="toctree-l4"><a class="reference internal" href="widgets/widget-pair.html">Widget-pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/energy.html">Energy</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#eigene-widgets-definieren">Eigene Widgets definieren</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#komponenten">Komponenten</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="components/button.html">Button</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/value.html">Value</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/image.html">Image</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/select.html">Select</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/spinner.html">Spinner</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/slider.html">Slider</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/list.html">List</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/chart.html">Chart</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/color.html">Color</a></li>
-<li class="toctree-l5"><a class="reference internal" href="components/icon.html">Icon</a></li>
-<li class="toctree-l5"><a class="reference internal" href="elements/address.html">Address</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#komponenten">Komponenten</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sonstiges">Sonstiges</a></li>
 </ul>
 </li>
 </ul>
@@ -127,9 +106,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-      <li>Grundsätzlicher Aufbau</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Konfiguration der CometVisu</a></li>
+      <li class="breadcrumb-item active">Grundsätzlicher Aufbau</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -145,7 +124,7 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="grundsatzlicher-aufbau">
-<h1>Grundsätzlicher Aufbau<a class="headerlink" href="#grundsatzlicher-aufbau" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Grundsätzlicher Aufbau<a class="headerlink" href="#grundsatzlicher-aufbau" title="Link to this heading"></a></h1>
 <p>Auf der obersten Ebene enthält eine Tile-Datei zunächst einen Meta-Bereich (<code class="docutils literal notranslate"><span class="pre">&lt;cv-meta&gt;</span></code>) in dem nicht sichtbare Einstellungen
 enthalten sind die für diese Konfigurationsdatei benötigt werden (z.B. Verbindungen zu Backends, das Laden von
 zusätzliche Dateien usw.).
@@ -172,7 +151,7 @@ angeordnet sind.
 Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
 Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.</p>
 <section id="meta-bereich">
-<h2>Meta-Bereich<a class="headerlink" href="#meta-bereich" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Meta-Bereich<a class="headerlink" href="#meta-bereich" title="Link to this heading"></a></h2>
 <p>Im Meta-Bereich (<code class="docutils literal notranslate"><span class="pre">&lt;cv-meta&gt;</span></code>) finden sich alle Einstellungen, die für diese Konfigurationsdatei benötigt werden.
 Dazu gehören z.B. die Verbindungen zu den <a class="reference internal" href="elements/backend.html#tile-element-backend"><span class="std std-ref">Backends</span></a>, die
 <a class="reference internal" href="elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mappings</span></a>, <a class="reference internal" href="elements/styling.html#tile-element-styling"><span class="std std-ref">Stylings</span></a> und <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a>.</p>
@@ -208,7 +187,7 @@ Dazu gehören z.B. die Verbindungen zu den <a class="reference internal" href="e
 </div>
 </section>
 <section id="navigation-seitenstruktur">
-<h2>Navigation / Seitenstruktur<a class="headerlink" href="#navigation-seitenstruktur" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Navigation / Seitenstruktur<a class="headerlink" href="#navigation-seitenstruktur" title="Link to this heading"></a></h2>
 <p>Neben den eigentlichen Seiteninhalten, gibt es feste Bereiche, die immer sichtbar sind unabhängig davon auf welcher
 Unterseite sich man gerade befindet. Dazu gibt es Header- und Footer-Bereiche und jeweils eine linke und rechte
 Seitenleiste. Im Hauptbereich befinden sich dann die einzelnen Seiten mit den jeweiligen Inhalten (Kacheln) zwischen denen
@@ -218,7 +197,7 @@ offenen Fenster oder der eingeschalteten Lichter, nutzen.</p>
 <figure class="align-default" id="id1">
 <img alt="Grundstruktur mit allen verfügbaren optionalen Bereichen" src="../../_images/tile-ui-structure.png" />
 <figcaption>
-<p><span class="caption-text">Grundstruktur mit allen verfügbaren optionalen Bereichen</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Grundstruktur mit allen verfügbaren optionalen Bereichen</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
@@ -288,11 +267,11 @@ Damit kann man schnell zurück zu übergeordneten Seiten springen.</p>
 </section>
 </section>
 <section id="widgets">
-<span id="tile-widgets"></span><h1>Widgets<a class="headerlink" href="#widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="tile-widgets"></span><h1>Widgets<a class="headerlink" href="#widgets" title="Link to this heading"></a></h1>
 <p>Ein Widget ist eine Kachel mit einer oder mehreren Komponenten mit der eine bestimmte Funktion erfüllt wird.
 Damit können übliche Anwendungsfälle innerhalb eines Smart-Homes abgedeckt werden, wie z.B. Lichtschalter (Switch)
 oder die Bedienung einer Rolllade (Shutter).</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
 <col style="width: 30%" />
 <col style="width: 70%" />
@@ -300,86 +279,61 @@ oder die Bedienung einer Rolllade (Shutter).</p>
 <tbody>
 <tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.png"><img alt="../../_images/cv-switch-on.png" src="../../_images/cv-switch-on.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/switch.html#tile-switch"><span class="std std-ref">Das Switch Widget</span></a></p>
-</div></blockquote>
-<p>Einfacher Schalter, Taster oder Trigger</p>
-</td>
+<td><p><a class="reference internal" href="widgets/switch.html#tile-switch"><span class="std std-ref">Das Switch Widget</span></a>
+Einfacher Schalter, Taster oder Trigger</p></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.png"><img alt="../../_images/cv-dimmer.png" src="../../_images/cv-dimmer.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/dimmer.html#tile-dimmer"><span class="std std-ref">Das Dimmer Widget</span></a></p>
-</div></blockquote>
-<p>Schalter mit zusätzlichem Slider zur Einstellung eines
-Prozentwerts.</p>
-</td>
+<td><p><a class="reference internal" href="widgets/dimmer.html#tile-dimmer"><span class="std std-ref">Das Dimmer Widget</span></a>
+Schalter mit zusätzlichem Slider zur Einstellung eines
+Prozentwerts.</p></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.png"><img alt="../../_images/cv-shutter.png" src="../../_images/cv-shutter.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/shutter.html#tile-shutter"><span class="std std-ref">Das Shutter Widget</span></a></p>
-</div></blockquote>
-<p>Taster für hoch/runter/stop zur Bedienung einer Jalousie</p>
-</td>
+<td><p><a class="reference internal" href="widgets/shutter.html#tile-shutter"><span class="std std-ref">Das Shutter Widget</span></a>
+Taster für hoch/runter/stop zur Bedienung einer Jalousie</p></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.png"><img alt="../../_images/cv-info.png" src="../../_images/cv-info.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/info.html#tile-info"><span class="std std-ref">Das Info Widget</span></a></p>
-</div></blockquote>
-<p>Darstellung eines Werts in verschiedenen Arten.</p>
-</td>
+<td><p><a class="reference internal" href="widgets/info.html#tile-info"><span class="std std-ref">Das Info Widget</span></a>
+Darstellung eines Werts in verschiedenen Arten.</p></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.png"><img alt="../../_images/cv-status.png" src="../../_images/cv-status.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/status.html#tile-status"><span class="std std-ref">Das Status Widget</span></a></p>
-</div></blockquote>
-<p>Status Anzeige in halber Kachel-Höhe</p>
-</td>
+<td><p><a class="reference internal" href="widgets/status.html#tile-status"><span class="std std-ref">Das Status Widget</span></a>
+Status Anzeige in halber Kachel-Höhe</p></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.png"><img alt="../../_images/cv-small-status.png" src="../../_images/cv-small-status.png" style="width: 60px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/small-status.html#tile-small-status"><span class="std std-ref">Das kleine Status Widget</span></a></p>
-</div></blockquote>
-<p>Status Anzeige in Button-Größe</p>
-</td>
+<td><p><a class="reference internal" href="widgets/small-status.html#tile-small-status"><span class="std std-ref">Das kleine Status Widget</span></a>
+Status Anzeige in Button-Größe</p></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.png"><img alt="../../_images/cv-status-chart.png" src="../../_images/cv-status-chart.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/status-chart.html#tile-status-chart"><span class="std std-ref">Das Status-Chart Widget</span></a></p>
-</div></blockquote>
-<p>Status-Widget mit Chart im Hintergrund</p>
-</td>
+<td><p><a class="reference internal" href="widgets/status-chart.html#tile-status-chart"><span class="std std-ref">Das Status-Chart Widget</span></a>
+Status-Widget mit Chart im Hintergrund</p></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.png"><img alt="../../_images/cv-rtc.png" src="../../_images/cv-rtc.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/rtc.html#tile-rtc"><span class="std std-ref">Das RTC Widget</span></a></p>
-</div></blockquote>
-<p>Raumtemperatursteuerung mit Einstellungen für HVAC und
-einer Solltemperatur</p>
-</td>
+<td><p><a class="reference internal" href="widgets/rtc.html#tile-rtc"><span class="std std-ref">Das RTC Widget</span></a>
+Raumtemperatursteuerung mit Einstellungen für HVAC und
+einer Solltemperatur</p></td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.png"><img alt="../../_images/cv-media-player.png" src="../../_images/cv-media-player.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/media-player.html#tile-media-player"><span class="std std-ref">Das Media-Player Widget</span></a></p>
-</div></blockquote>
-<p>Steuerung eines Medien-Abspielers mit Start/Stop
-vor &amp; zurück und einer Lautstärkeregelsung</p>
-</td>
+<td><p><a class="reference internal" href="widgets/media-player.html#tile-media-player"><span class="std std-ref">Das Media-Player Widget</span></a>
+Steuerung eines Medien-Abspielers mit Start/Stop
+vor &amp; zurück und einer Lautstärkeregelsung</p></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.png"><img alt="../../_images/cv-widget-pair.png" src="../../_images/cv-widget-pair.png" style="width: 150px;" /></a>
 </td>
-<td><blockquote>
-<div><p><a class="reference internal" href="widgets/widget-pair.html#tile-widget-pair"><span class="std std-ref">Das Widget-Pair</span></a></p>
-</div></blockquote>
-<p>Ermöglicht es zwei Kacheln in halber Höhe darzustellen</p>
+<td><p><a class="reference internal" href="widgets/widget-pair.html#tile-widget-pair"><span class="std std-ref">Das Widget-Pair</span></a>
+Ermöglicht es zwei Kacheln in halber Höhe darzustellen</p></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.png"><img alt="../../_images/cv-energy-full.png" src="../../_images/cv-energy-full.png" style="width: 150px;" /></a>
 </td>
+<td><p><a class="reference internal" href="widgets/energy.html#tile-energy"><span class="std std-ref">Das Energy Widget</span></a>
+Zeigt Energieflüsse innerhalb eines Hauses an</p></td>
 </tr>
 </tbody>
 </table>
@@ -387,7 +341,7 @@ vor &amp; zurück und einer Lautstärkeregelsung</p>
 </div>
 </section>
 <section id="eigene-widgets-definieren">
-<h1>Eigene Widgets definieren<a class="headerlink" href="#eigene-widgets-definieren" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Eigene Widgets definieren<a class="headerlink" href="#eigene-widgets-definieren" title="Link to this heading"></a></h1>
 <p>Sofern die vorhandenen Widgets nicht ausreichen, kann man sich auch eigenen Widgets definieren. Die Definition
 eines neuen Widgets erfolgt in einem <code class="docutils literal notranslate"><span class="pre">&lt;cv-widget&gt;</span></code>-Element. Dieses besteht aus dem eigentlichen Inhalts-Element
 <code class="docutils literal notranslate"><span class="pre">&lt;cv-tile&gt;</span></code> und jeweils einem optionalen <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;</span></code>- und <code class="docutils literal notranslate"><span class="pre">&lt;footer&gt;</span></code>-Element.
@@ -536,7 +490,7 @@ Sofern sie nicht vorhanden ist, muss sie mit folgender Grundstruktur angelegt we
 </div>
 <p>Danach kann das <code class="docutils literal notranslate"><span class="pre">&lt;cv-meter&gt;</span></code>-Widget ohne <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;...&lt;/custom&gt;</span></code> benutzt werden und es wird auch auf Gültigkeit geprüft.</p>
 <section id="komponenten">
-<span id="tile-components"></span><h2>Komponenten<a class="headerlink" href="#komponenten" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="tile-components"></span><h2>Komponenten<a class="headerlink" href="#komponenten" title="Link to this heading"></a></h2>
 <p>Eine Komponente ist ein einzelnes visuelles Element, das entweder bedienbar (z.B. Button) oder zur reinen
 Darstellung eines Werts benutzt wird (z.B. Value). Die bereits vorgestellten Widgets kombinieren eine oder
 mehrere Komponenten in einer Kachel.</p>
@@ -551,9 +505,22 @@ mehrere Komponenten in einer Kachel.</p>
 <li class="toctree-l1"><a class="reference internal" href="components/list.html">List</a></li>
 <li class="toctree-l1"><a class="reference internal" href="components/chart.html">Chart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="components/color.html">Color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/power-entity.html">Power entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/energy-entity.html">Energy entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/svg-round-value.html">SVG round value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/svg-text-value.html">SVG text value</a></li>
 </ul>
 </div>
+</section>
+<section id="sonstiges">
+<h2>Sonstiges<a class="headerlink" href="#sonstiges" title="Link to this heading"></a></h2>
+<p>Weitere Elemente die keine eigenständige Komponenten sind aber in diesen benutzt werden können.</p>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/icon.html">Icon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/address.html">Address</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/address-group.html">Address-Group</a></li>
+</ul>
 </div>
 </section>
 </section>
@@ -562,8 +529,8 @@ mehrere Komponenten in einer Kachel.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../customizing.html" class="btn btn-neutral float-left" title="Anpassungen vornehmen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="elements/backend.html" class="btn btn-neutral float-right" title="Konfiguration der Backend Verbindung" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../customizing.html" class="btn btn-neutral float-left" title="Anpassungen vornehmen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="elements/backend.html" class="btn btn-neutral float-right" title="Konfiguration der Backend Verbindung" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -579,9 +546,13 @@ mehrere Komponenten in einer Kachel.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
       v: 0.13.0-dev
@@ -589,24 +560,20 @@ mehrere Komponenten in einer Kachel.</p>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -14,9 +14,9 @@
         "index": 944
       },
       "end": {
-        "line": 310,
+        "line": 312,
         "column": 3,
-        "index": 9546
+        "index": 9609
       }
     },
     "jsdoc": {
@@ -244,9 +244,9 @@
           "index": 4626
         },
         "end": {
-          "line": 285,
+          "line": 287,
           "column": 5,
-          "index": 8984
+          "index": 9047
         }
       },
       "jsdoc": {
@@ -275,14 +275,14 @@
     "getEnumeration": {
       "location": {
         "start": {
-          "line": 292,
+          "line": 294,
           "column": 4,
-          "index": 9135
+          "index": 9198
         },
         "end": {
-          "line": 299,
+          "line": 301,
           "column": 5,
-          "index": 9362
+          "index": 9425
         }
       },
       "jsdoc": {
@@ -970,14 +970,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 307,
+        "line": 309,
         "column": 2,
-        "index": 9496
+        "index": 9559
       },
       "end": {
-        "line": 309,
+        "line": 311,
         "column": 3,
-        "index": 9542
+        "index": 9605
       }
     },
     "jsdoc": {}

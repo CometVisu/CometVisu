@@ -55,9 +55,9 @@
   qx.Class.define("qx.bom.element.Background", {
     statics: {
       /** @type {Array} Internal helper to improve compile performance */
-      __P_134_0: ["background-image:url(", null, ");", "background-position:", null, ";", "background-repeat:", null, ";"],
+      __P_142_0: ["background-image:url(", null, ");", "background-position:", null, ";", "background-repeat:", null, ";"],
       /** @type {Map} Empty styles when no image is given */
-      __P_134_1: {
+      __P_142_1: {
         backgroundImage: null,
         backgroundPosition: null,
         backgroundRepeat: null
@@ -71,7 +71,7 @@
        *    string value
        * @return {String} The background position CSS value
        */
-      __P_134_2: function __P_134_2(left, top) {
+      __P_142_2: function __P_142_2(left, top) {
         // Correcting buggy Firefox background-position implementation
         // Have problems with identical values
         var engine = qx.core.Environment.get("engine.name");
@@ -109,11 +109,11 @@
        * @return {String} CSS string
        */
       compile: function compile(source, repeat, left, top) {
-        var position = this.__P_134_2(left, top);
+        var position = this.__P_142_2(left, top);
         var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source);
 
         // Updating template
-        var tmpl = this.__P_134_0;
+        var tmpl = this.__P_142_0;
         tmpl[1] = "'" + backgroundImageUrl + "'"; // Put in quotes so spaces work
         tmpl[4] = position;
         tmpl[7] = repeat;
@@ -138,9 +138,9 @@
        */
       getStyles: function getStyles(source, repeat, left, top) {
         if (!source) {
-          return this.__P_134_1;
+          return this.__P_142_1;
         }
-        var position = this.__P_134_2(left, top);
+        var position = this.__P_142_2(left, top);
         var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source);
         var backgroundImageCssString = "url('" + backgroundImageUrl + "')"; // Put in quotes so spaces work
         var map = {
@@ -176,4 +176,4 @@
   qx.bom.element.Background.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Background.js.map?dt=1692560699960
+//# sourceMappingURL=Background.js.map?dt=1700345589169

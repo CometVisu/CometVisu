@@ -38,11 +38,11 @@
     extend: qx.ui.form.List,
     construct: function construct() {
       qx.ui.form.List.constructor.call(this);
-      this.__P_343_0 = {};
+      this.__P_351_0 = {};
     },
     destruct: function destruct() {
-      this.__P_343_0.dispose();
-      this.__P_343_0 = null;
+      this.__P_351_0.dispose();
+      this.__P_351_0 = null;
     },
     events: {
       /** Fired when the checked array changes, data is the array */
@@ -50,14 +50,14 @@
     },
     members: {
       /** @type {Map<String,qx.ui.form.CheckBox>} map of checked items, indexed by hash code */
-      __P_343_0: null,
+      __P_351_0: null,
       /**
        * Returns the array of checked items
        *
        * @return {qx.ui.form.CheckBox[]}
        */
       getChecked: function getChecked() {
-        return Object.values(this.__P_343_0);
+        return Object.values(this.__P_351_0);
       },
       /**
        * Sets the array of checked items
@@ -67,10 +67,10 @@
       setChecked: function setChecked(checked) {
         var _this = this;
         var oldData = this.getChecked();
-        this.__P_343_1 = true;
+        this.__P_351_1 = true;
         try {
           var toUncheck = {};
-          Object.values(this.__P_343_0).forEach(function (item) {
+          Object.values(this.__P_351_0).forEach(function (item) {
             return toUncheck[item.toHashCode()] = item;
           });
           var replacement = {};
@@ -80,7 +80,7 @@
             var someTurnedOn = false;
             checked.forEach(function (item) {
               var hash = item.toHashCode();
-              if (!_this.__P_343_0[hash]) {
+              if (!_this.__P_351_0[hash]) {
                 someTurnedOn = true;
                 item.setValue(true);
               }
@@ -96,9 +96,9 @@
           Object.values(toUncheck).forEach(function (item) {
             return item.setValue(false);
           });
-          this.__P_343_0 = replacement;
+          this.__P_351_0 = replacement;
         } finally {
-          this.__P_343_1 = false;
+          this.__P_351_1 = false;
         }
         this.fireDataEvent("changeChecked", this.getChecked(), oldData);
       },
@@ -115,9 +115,9 @@
         qx.ui.form.CheckedList.superclass.prototype._onAddChild.call(this, evt);
         var item = evt.getData();
         if (item.getValue()) {
-          this.__P_343_2(item);
+          this.__P_351_2(item);
         }
-        item.addListener("changeValue", this.__P_343_3, this);
+        item.addListener("changeValue", this.__P_351_3, this);
       },
       /*
        * @Override
@@ -125,9 +125,9 @@
       _onRemoveChild: function _onRemoveChild(evt) {
         qx.ui.form.CheckedList.superclass.prototype._onRemoveChild.call(this, evt);
         var item = evt.getData();
-        item.removeListener("changeValue", this.__P_343_3, this);
+        item.removeListener("changeValue", this.__P_351_3, this);
         if (item.getValue()) {
-          this.__P_343_2(item, true);
+          this.__P_351_2(item, true);
         }
       },
       /**
@@ -135,11 +135,11 @@
        *
        * @param evt {qx.event.type.Data} the event
        */
-      __P_343_3: function __P_343_3(evt) {
-        if (this.__P_343_1) {
+      __P_351_3: function __P_351_3(evt) {
+        if (this.__P_351_1) {
           return;
         }
-        this.__P_343_2(evt.getTarget());
+        this.__P_351_2(evt.getTarget());
       },
       /**
        * Handles changes in the items checked state
@@ -147,7 +147,7 @@
        * @param item {qx.ui.form.CheckBox} the item
        * @param removing {Boolean} whether the item is being removed (act as if unchecking)
        */
-      __P_343_2: function __P_343_2(item, removing) {
+      __P_351_2: function __P_351_2(item, removing) {
         var hash = item.toHashCode();
         var checked = item.getValue();
         if (removing) {
@@ -156,13 +156,13 @@
         var changed = false;
         var oldData = this.getChecked();
         if (checked) {
-          if (!this.__P_343_0[hash]) {
+          if (!this.__P_351_0[hash]) {
             changed = true;
-            this.__P_343_0[hash] = item;
+            this.__P_351_0[hash] = item;
           }
         } else {
-          if (this.__P_343_0[hash]) {
-            delete this.__P_343_0[hash];
+          if (this.__P_351_0[hash]) {
+            delete this.__P_351_0[hash];
             changed = true;
           }
         }
@@ -175,4 +175,4 @@
   qx.ui.form.CheckedList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckedList.js.map?dt=1692560724919
+//# sourceMappingURL=CheckedList.js.map?dt=1700345604124

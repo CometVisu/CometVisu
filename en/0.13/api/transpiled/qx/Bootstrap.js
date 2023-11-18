@@ -412,7 +412,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         construct.self = clazz.constructor = proto.constructor = clazz;
       },
       /** Private list of classes which have a defer method that needs to be executed */
-      __P_89_0: [],
+      __P_97_0: [],
       /**
        * Adds a callback for a class so that it's defer method can be called, either after all classes
        * are loaded or when absolutely necessary because of load-time requirements of other classes.
@@ -422,7 +422,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       addPendingDefer: function addPendingDefer(clazz, cb) {
         if (qx.$$loader && qx.$$loader.delayDefer) {
-          this.__P_89_0.push(clazz);
+          this.__P_97_0.push(clazz);
           clazz.$$pendingDefer = cb;
         } else {
           cb.call(clazz);
@@ -495,8 +495,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return clazz;
         };
         if (!dbClassInfo) {
-          var pendingDefers = this.__P_89_0;
-          this.__P_89_0 = [];
+          var pendingDefers = this.__P_97_0;
+          this.__P_97_0 = [];
           pendingDefers.forEach(execute);
           return;
         }
@@ -555,7 +555,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        * @type {String[]}
        */
-      __P_89_1: ["isPrototypeOf", "hasOwnProperty", "toLocaleString", "toString", "valueOf", "propertyIsEnumerable", "constructor"],
+      __P_97_1: ["isPrototypeOf", "hasOwnProperty", "toLocaleString", "toString", "valueOf", "propertyIsEnumerable", "constructor"],
       /**
        * Get the keys of a map as array as returned by a "for ... in" statement.
        *
@@ -581,7 +581,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // IE does not return "shadowed" keys even if they are defined directly
           // in the object. This is incompatible with the ECMA standard!!
           // This is why this checks are needed.
-          var shadowedKeys = qx.Bootstrap.__P_89_1;
+          var shadowedKeys = qx.Bootstrap.__P_97_1;
           for (var i = 0, a = shadowedKeys, l = a.length; i < l; i++) {
             if (hasOwnProperty.call(map, a[i])) {
               arr.push(a[i]);
@@ -614,7 +614,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        * @type {Map}
        */
-      __P_89_2: {
+      __P_97_2: {
         "[object String]": "String",
         "[object Array]": "Array",
         "[object Object]": "Object",
@@ -711,7 +711,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return "Null";
         }
         var classString = Object.prototype.toString.call(value);
-        return qx.Bootstrap.__P_89_2[classString] || classString.slice(8, -1);
+        return qx.Bootstrap.__P_97_2[classString] || classString.slice(8, -1);
       },
       /**
        * Whether the value is a string.
@@ -832,4 +832,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Bootstrap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bootstrap.js.map?dt=1692560694747
+//# sourceMappingURL=Bootstrap.js.map?dt=1700345585917

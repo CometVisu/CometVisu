@@ -57,13 +57,13 @@
       qx.ui.progressive.headfoot.Abstract.constructor.call(this);
 
       // Save the Widths object containing all of our column widths
-      this.__P_421_0 = columnWidths;
+      this.__P_429_0 = columnWidths;
 
       // Get the array of column width data
       var columnData = columnWidths.getData();
 
       // Create a place to put labels
-      this.__P_421_1 = [];
+      this.__P_429_1 = [];
 
       // For each label...
       for (var i = 0; i < columnData.length; i++) {
@@ -75,7 +75,7 @@
         this.add(label);
 
         // Save this label so we can resize it later
-        this.__P_421_1[i] = label;
+        this.__P_429_1[i] = label;
       }
 
       // Add a spacer to take up the scroll-bar width
@@ -101,8 +101,8 @@
       // column data object The advantage of the use of the normal layout
       // manager is that the semantics of flex and percent are exactly the same
       // as in the widget code.
-      this.__P_421_2 = new qx.ui.layout.HBox();
-      this.__P_421_2.connectToWidget(this);
+      this.__P_429_2 = new qx.ui.layout.HBox();
+      this.__P_429_2.connectToWidget(this);
     },
     properties: {
       appearance: {
@@ -111,10 +111,10 @@
       }
     },
     members: {
-      __P_421_0: null,
-      __P_421_3: null,
-      __P_421_1: null,
-      __P_421_2: null,
+      __P_429_0: null,
+      __P_429_3: null,
+      __P_429_1: null,
+      __P_429_2: null,
       // overridden
       join: function join(progressive) {
         // Save the progressive handle
@@ -126,8 +126,8 @@
        * @return {Array} List of child items
        */
       getLayoutChildren: function getLayoutChildren() {
-        if (this.__P_421_3) {
-          return this.__P_421_0.getData();
+        if (this.__P_429_3) {
+          return this.__P_429_0.getData();
         } else {
           return qx.ui.progressive.headfoot.TableHeading.superclass.prototype.getLayoutChildren.call(this);
         }
@@ -145,32 +145,32 @@
         var width = this.getBounds().width - qx.bom.element.Scroll.getScrollbarWidth() - insets.left - insets.right;
 
         // Compute the column widths
-        this.__P_421_3 = true;
+        this.__P_429_3 = true;
         var padding = {
           top: this.getPaddingTop(),
           right: this.getPaddingRight(),
           bottom: this.getPaddingBottom(),
           left: this.getPaddingLeft()
         };
-        this.__P_421_2.renderLayout(width, 100, padding);
-        this.__P_421_3 = false;
+        this.__P_429_2.renderLayout(width, 100, padding);
+        this.__P_429_3 = false;
 
         // Get the column data
-        var columnData = this.__P_421_0.getData();
+        var columnData = this.__P_429_0.getData();
 
         // Get the column width data.  For each label...
         for (var i = 0; i < columnData.length; i++) {
           // ... reset the width of the corresponding column (label)
-          this.__P_421_1[i].setWidth(columnData[i].getComputedWidth());
+          this.__P_429_1[i].setWidth(columnData[i].getComputedWidth());
         }
       }
     },
     destruct: function destruct() {
-      this.__P_421_0 = this.__P_421_1 = null;
+      this.__P_429_0 = this.__P_429_1 = null;
       this._disposeObjects("_layout");
     }
   });
   qx.ui.progressive.headfoot.TableHeading.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TableHeading.js.map?dt=1692560732814
+//# sourceMappingURL=TableHeading.js.map?dt=1700345608661

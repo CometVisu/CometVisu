@@ -155,42 +155,42 @@
      * is not supported, e.g. in IE8)
      */
     construct: function construct(target, emitter) {
-      this.__P_214_0 = target;
-      this.__P_214_1 = emitter;
-      this.__P_214_2 = {};
-      this.__P_214_3 = {};
-      this.__P_214_4 = {};
-      this.__P_214_5 = {};
-      this.__P_214_6 = [];
+      this.__P_222_0 = target;
+      this.__P_222_1 = emitter;
+      this.__P_222_2 = {};
+      this.__P_222_3 = {};
+      this.__P_222_4 = {};
+      this.__P_222_5 = {};
+      this.__P_222_6 = [];
       this._initObserver();
     },
     members: {
-      __P_214_0: null,
-      __P_214_1: null,
-      __P_214_2: null,
-      __P_214_7: null,
-      __P_214_8: null,
-      __P_214_9: null,
-      __P_214_10: null,
-      __P_214_3: null,
-      __P_214_11: null,
-      __P_214_4: null,
-      __P_214_12: null,
-      __P_214_5: null,
-      __P_214_6: null,
-      __P_214_13: 0,
-      __P_214_14: 0,
-      __P_214_15: false,
-      __P_214_16: 0,
+      __P_222_0: null,
+      __P_222_1: null,
+      __P_222_2: null,
+      __P_222_7: null,
+      __P_222_8: null,
+      __P_222_9: null,
+      __P_222_10: null,
+      __P_222_3: null,
+      __P_222_11: null,
+      __P_222_4: null,
+      __P_222_12: null,
+      __P_222_5: null,
+      __P_222_6: null,
+      __P_222_13: 0,
+      __P_222_14: 0,
+      __P_222_15: false,
+      __P_222_16: 0,
       /**
        * Register pointer event listeners
        */
       _initObserver: function _initObserver() {
         qx.event.handler.GestureCore.GESTURE_EVENTS.forEach(function (gestureType) {
-          qxWeb(this.__P_214_0).on(gestureType, this.checkAndFireGesture, this);
+          qxWeb(this.__P_222_0).on(gestureType, this.checkAndFireGesture, this);
         }.bind(this));
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
-          qxWeb(this.__P_214_0).on("dblclick", this._onDblClick, this);
+          qxWeb(this.__P_222_0).on("dblclick", this._onDblClick, this);
         }
 
         // list to wheel events
@@ -202,10 +202,10 @@
        */
       _stopObserver: function _stopObserver() {
         qx.event.handler.GestureCore.GESTURE_EVENTS.forEach(function (pointerType) {
-          qxWeb(this.__P_214_0).off(pointerType, this.checkAndFireGesture, this);
+          qxWeb(this.__P_222_0).off(pointerType, this.checkAndFireGesture, this);
         }.bind(this));
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
-          qxWeb(this.__P_214_0).off("dblclick", this._onDblClick, this);
+          qxWeb(this.__P_222_0).off("dblclick", this._onDblClick, this);
         }
         var data = qx.core.Environment.get("event.mousewheel");
         qxWeb(data.target).off(data.type, this._fireRoll, this);
@@ -241,9 +241,9 @@
        * @param target {Element} event target
        */
       gestureBegin: function gestureBegin(domEvent, target) {
-        if (this.__P_214_2[domEvent.pointerId]) {
-          this.__P_214_17(this.__P_214_2[domEvent.pointerId]);
-          delete this.__P_214_2[domEvent.pointerId];
+        if (this.__P_222_2[domEvent.pointerId]) {
+          this.__P_222_17(this.__P_222_2[domEvent.pointerId]);
+          delete this.__P_222_2[domEvent.pointerId];
         }
 
         /*
@@ -254,7 +254,7 @@
         if (this._hasIntermediaryHandler(target)) {
           return;
         }
-        this.__P_214_2[domEvent.pointerId] = {
+        this.__P_222_2[domEvent.pointerId] = {
           startTime: new Date().getTime(),
           lastEventTime: new Date().getTime(),
           startX: domEvent.clientX,
@@ -266,17 +266,17 @@
           target: target,
           isTap: true,
           isPrimary: domEvent.isPrimary,
-          longTapTimer: window.setTimeout(this.__P_214_18.bind(this, domEvent, target), qx.event.handler.GestureCore.LONGTAP_TIME)
+          longTapTimer: window.setTimeout(this.__P_222_18.bind(this, domEvent, target), qx.event.handler.GestureCore.LONGTAP_TIME)
         };
         if (domEvent.isPrimary) {
-          this.__P_214_9 = false;
-          this.__P_214_8 = target;
-          this.__P_214_19("trackstart", domEvent, target);
+          this.__P_222_9 = false;
+          this.__P_222_8 = target;
+          this.__P_222_19("trackstart", domEvent, target);
         } else {
-          this.__P_214_9 = true;
-          if (Object.keys(this.__P_214_2).length === 2) {
-            this.__P_214_10 = this._calcAngle();
-            this.__P_214_12 = this._calcDistance();
+          this.__P_222_9 = true;
+          if (Object.keys(this.__P_222_2).length === 2) {
+            this.__P_222_10 = this._calcAngle();
+            this.__P_222_12 = this._calcDistance();
           }
         }
       },
@@ -287,7 +287,7 @@
        * @param target {Element} event target
        */
       gestureMove: function gestureMove(domEvent, target) {
-        var gesture = this.__P_214_2[domEvent.pointerId];
+        var gesture = this.__P_222_2[domEvent.pointerId];
         if (gesture) {
           var oldClientX = gesture.clientX;
           var oldClientY = gesture.clientY;
@@ -300,12 +300,12 @@
           if (oldClientY) {
             gesture.velocityY = gesture.clientY - oldClientY;
           }
-          if (Object.keys(this.__P_214_2).length === 2) {
-            this.__P_214_20(domEvent, gesture.target);
-            this.__P_214_21(domEvent, gesture.target);
+          if (Object.keys(this.__P_222_2).length === 2) {
+            this.__P_222_20(domEvent, gesture.target);
+            this.__P_222_21(domEvent, gesture.target);
           }
-          if (!this.__P_214_9) {
-            this.__P_214_19("track", domEvent, gesture.target);
+          if (!this.__P_222_9) {
+            this.__P_222_19("track", domEvent, gesture.target);
             this._fireRoll(domEvent, "touch", gesture.target);
           }
 
@@ -313,7 +313,7 @@
           if (gesture.isTap) {
             gesture.isTap = this._isBelowTapMaxDistance(domEvent);
             if (!gesture.isTap) {
-              this.__P_214_17(gesture);
+              this.__P_222_17(gesture);
             }
           }
         }
@@ -327,7 +327,7 @@
        * @return {Boolean}
        */
       _hasIntermediaryHandler: function _hasIntermediaryHandler(target) {
-        while (target && target !== this.__P_214_0) {
+        while (target && target !== this.__P_222_0) {
           if (target.$$gestureHandler) {
             return true;
           }
@@ -343,12 +343,12 @@
        */
       gestureFinish: function gestureFinish(domEvent, target) {
         // If no start position is available for this pointerup event, cancel gesture recognition.
-        if (!this.__P_214_2[domEvent.pointerId]) {
+        if (!this.__P_222_2[domEvent.pointerId]) {
           return;
         }
-        var gesture = this.__P_214_2[domEvent.pointerId];
+        var gesture = this.__P_222_2[domEvent.pointerId];
         // delete the long tap
-        this.__P_214_17(gesture);
+        this.__P_222_17(gesture);
 
         /*
           If the dom event's target or one of its ancestors have
@@ -360,36 +360,36 @@
         }
 
         // always start the roll impulse on the original target
-        this.__P_214_22(gesture.velocityX, gesture.velocityY, domEvent, gesture.target);
-        this.__P_214_19("trackend", domEvent, gesture.target);
+        this.__P_222_22(gesture.velocityX, gesture.velocityY, domEvent, gesture.target);
+        this.__P_222_19("trackend", domEvent, gesture.target);
         if (gesture.isTap) {
           if (target !== gesture.target) {
-            delete this.__P_214_2[domEvent.pointerId];
+            delete this.__P_222_2[domEvent.pointerId];
             return;
           }
           this._fireEvent(domEvent, "tap", domEvent.target || target);
           var isDblTap = false;
-          if (Object.keys(this.__P_214_3).length > 0) {
+          if (Object.keys(this.__P_222_3).length > 0) {
             // delete old tap entries
             var limit = Date.now() - qx.event.handler.GestureCore.DOUBLETAP_TIME;
-            for (var time in this.__P_214_3) {
+            for (var time in this.__P_222_3) {
               if (time < limit) {
-                delete this.__P_214_3[time];
+                delete this.__P_222_3[time];
               } else {
-                var lastTap = this.__P_214_3[time];
-                var isBelowDoubleTapDistance = this.__P_214_23(lastTap.x, lastTap.y, domEvent.clientX, domEvent.clientY, domEvent.getPointerType());
+                var lastTap = this.__P_222_3[time];
+                var isBelowDoubleTapDistance = this.__P_222_23(lastTap.x, lastTap.y, domEvent.clientX, domEvent.clientY, domEvent.getPointerType());
                 var isSameTarget = lastTap.target === (domEvent.target || target);
                 var isSameButton = lastTap.button === domEvent.button;
                 if (isBelowDoubleTapDistance && isSameButton && isSameTarget) {
                   isDblTap = true;
-                  delete this.__P_214_3[time];
+                  delete this.__P_222_3[time];
                   this._fireEvent(domEvent, "dbltap", domEvent.target || target);
                 }
               }
             }
           }
           if (!isDblTap) {
-            this.__P_214_3[Date.now()] = {
+            this.__P_222_3[Date.now()] = {
               x: domEvent.clientX,
               y: domEvent.clientY,
               target: domEvent.target || target,
@@ -397,13 +397,13 @@
             };
           }
         } else if (!this._isBelowTapMaxDistance(domEvent)) {
-          var swipe = this.__P_214_24(domEvent, target);
+          var swipe = this.__P_222_24(domEvent, target);
           if (swipe) {
             domEvent.swipe = swipe;
             this._fireEvent(domEvent, "swipe", gesture.target || target);
           }
         }
-        delete this.__P_214_2[domEvent.pointerId];
+        delete this.__P_222_2[domEvent.pointerId];
       },
       /**
        * Stops the momentum scrolling currently running.
@@ -411,20 +411,20 @@
        * @param id {Integer} The timeoutId of a 'roll' event
        */
       stopMomentum: function stopMomentum(id) {
-        this.__P_214_4[id] = true;
+        this.__P_222_4[id] = true;
       },
       /**
        * Cancels the gesture if running.
        * @param id {Number} The pointer Id.
        */
       gestureCancel: function gestureCancel(id) {
-        if (this.__P_214_2[id]) {
-          this.__P_214_17(this.__P_214_2[id]);
-          delete this.__P_214_2[id];
+        if (this.__P_222_2[id]) {
+          this.__P_222_17(this.__P_222_2[id]);
+          delete this.__P_222_2[id];
         }
-        if (this.__P_214_5[id]) {
-          this.stopMomentum(this.__P_214_5[id]);
-          delete this.__P_214_5[id];
+        if (this.__P_222_5[id]) {
+          this.stopMomentum(this.__P_222_5[id]);
+          delete this.__P_222_5[id];
         }
       },
       /**
@@ -436,7 +436,7 @@
        * @internal
        */
       updateGestureTarget: function updateGestureTarget(id, target) {
-        this.__P_214_2[id].target = target;
+        this.__P_222_2[id].target = target;
       },
       /**
        * Method which will be called recursively to provide a momentum scrolling.
@@ -446,16 +446,16 @@
        * @param target {Element} The target of the momentum roll events
        * @param time {Number ?} The time in ms between the last two calls
        */
-      __P_214_22: function __P_214_22(deltaX, deltaY, domEvent, target, time) {
+      __P_222_22: function __P_222_22(deltaX, deltaY, domEvent, target, time) {
         var oldTimeoutId = domEvent.timeoutId;
-        if (!time && this.__P_214_5[domEvent.pointerId]) {
+        if (!time && this.__P_222_5[domEvent.pointerId]) {
           // new roll impulse started, stop the old one
-          this.stopMomentum(this.__P_214_5[domEvent.pointerId]);
+          this.stopMomentum(this.__P_222_5[domEvent.pointerId]);
         }
         // do nothing if we don't need to scroll
-        if (Math.abs(deltaY) < 1 && Math.abs(deltaX) < 1 || this.__P_214_4[oldTimeoutId] || this.getWindow && !this.getWindow()) {
-          delete this.__P_214_4[oldTimeoutId];
-          delete this.__P_214_5[domEvent.pointerId];
+        if (Math.abs(deltaY) < 1 && Math.abs(deltaX) < 1 || this.__P_222_4[oldTimeoutId] || this.getWindow && !this.getWindow()) {
+          delete this.__P_222_4[oldTimeoutId];
+          delete this.__P_222_5[domEvent.pointerId];
           return;
         }
         if (!time) {
@@ -470,7 +470,7 @@
 
         // set up a new timer with the new delta
         var timeoutId = qx.bom.AnimationFrame.request(qx.lang.Function.bind(function (deltaX, deltaY, domEvent, target, time) {
-          this.__P_214_22(deltaX, deltaY, domEvent, target, time);
+          this.__P_222_22(deltaX, deltaY, domEvent, target, time);
         }, this, deltaX, deltaY, domEvent, target, time));
         deltaX = Math.round(deltaX * 100) / 100;
         deltaY = Math.round(deltaY * 100) / 100;
@@ -482,7 +482,7 @@
         };
         domEvent.momentum = true;
         domEvent.timeoutId = timeoutId;
-        this.__P_214_5[domEvent.pointerId] = timeoutId;
+        this.__P_222_5[domEvent.pointerId] = timeoutId;
         this._fireEvent(domEvent, "roll", domEvent.target || target);
       },
       /**
@@ -492,8 +492,8 @@
       _calcAngle: function _calcAngle() {
         var pointerA = null;
         var pointerB = null;
-        for (var pointerId in this.__P_214_2) {
-          var gesture = this.__P_214_2[pointerId];
+        for (var pointerId in this.__P_222_2) {
+          var gesture = this.__P_222_2[pointerId];
           if (pointerA === null) {
             pointerA = gesture;
           } else {
@@ -511,8 +511,8 @@
       _calcDistance: function _calcDistance() {
         var pointerA = null;
         var pointerB = null;
-        for (var pointerId in this.__P_214_2) {
-          var gesture = this.__P_214_2[pointerId];
+        for (var pointerId in this.__P_222_2) {
+          var gesture = this.__P_222_2[pointerId];
           if (pointerA === null) {
             pointerA = gesture;
           } else {
@@ -548,7 +548,7 @@
        * @param type {String} The pointer type e.g. "mouse"
        * @return {Boolean} <code>true</code>, if points are in range
        */
-      __P_214_23: function __P_214_23(x1, y1, x2, y2, type) {
+      __P_222_23: function __P_222_23(x1, y1, x2, y2, type) {
         var clazz = qx.event.handler.GestureCore;
         var inX = Math.abs(x1 - x2) < clazz.DOUBLETAP_MAX_DISTANCE[type];
         var inY = Math.abs(y1 - y2) < clazz.DOUBLETAP_MAX_DISTANCE[type];
@@ -560,7 +560,7 @@
        * @return {Map} containing the deltaX as x, and deltaY as y.
        */
       _getDeltaCoordinates: function _getDeltaCoordinates(domEvent) {
-        var gesture = this.__P_214_2[domEvent.pointerId];
+        var gesture = this.__P_222_2[domEvent.pointerId];
         if (!gesture) {
           return null;
         }
@@ -586,7 +586,7 @@
        */
       _fireEvent: function _fireEvent(domEvent, type, target) {
         // The target may have been removed, e.g. menu hide on tap
-        if (!this.__P_214_0) {
+        if (!this.__P_222_0) {
           return;
         }
         var evt;
@@ -601,11 +601,11 @@
             momentum: domEvent.momentum
           });
           return target.dispatchEvent(evt);
-        } else if (this.__P_214_1) {
+        } else if (this.__P_222_1) {
           evt = new qx.event.type.dom.Custom(type, domEvent, {
-            target: this.__P_214_0,
-            currentTarget: this.__P_214_0,
-            srcElement: this.__P_214_0,
+            target: this.__P_222_0,
+            currentTarget: this.__P_222_0,
+            srcElement: this.__P_222_0,
             swipe: domEvent.swipe,
             scale: domEvent.scale,
             angle: domEvent.angle,
@@ -613,7 +613,7 @@
             pointerType: domEvent.pointerType,
             momentum: domEvent.momentum
           });
-          this.__P_214_1.emit(type, domEvent);
+          this.__P_222_1.emit(type, domEvent);
         }
       },
       /**
@@ -634,8 +634,8 @@
        * @param target {Element} event target
        * @return {Map|null} returns the swipe data when the user performed a swipe, null if the gesture was no swipe.
        */
-      __P_214_24: function __P_214_24(domEvent, target) {
-        var gesture = this.__P_214_2[domEvent.pointerId];
+      __P_222_24: function __P_222_24(domEvent, target) {
+        var gesture = this.__P_222_2[domEvent.pointerId];
         if (!gesture) {
           return null;
         }
@@ -663,7 +663,7 @@
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __P_214_19: function __P_214_19(type, domEvent, target) {
+      __P_222_19: function __P_222_19(type, domEvent, target) {
         domEvent.delta = this._getDeltaCoordinates(domEvent);
         this._fireEvent(domEvent, type, domEvent.target || target);
       },
@@ -674,7 +674,7 @@
        * @param target {Element} event target
        * @param rollFactor {Integer} the roll factor to apply
        */
-      __P_214_25: function __P_214_25(domEvent, target, rollFactor) {
+      __P_222_25: function __P_222_25(domEvent, target, rollFactor) {
         domEvent.delta = {
           x: qx.util.Wheel.getDelta(domEvent, "x") * rollFactor,
           y: qx.util.Wheel.getDelta(domEvent, "y") * rollFactor
@@ -688,30 +688,30 @@
        *
        * @param target {Element} event target
        */
-      __P_214_26: function __P_214_26(target) {
+      __P_222_26: function __P_222_26(target) {
         var rollFactor = qx.event.handler.GestureCore.ROLL_FACTOR;
         if (qx.util.Wheel.IS_TOUCHPAD) {
           // The domEvent was generated by a touchpad
           rollFactor = qx.event.handler.GestureCore.TOUCHPAD_ROLL_FACTOR;
         }
-        this.__P_214_16 = new Date().getTime();
-        var reLength = this.__P_214_6.length;
+        this.__P_222_16 = new Date().getTime();
+        var reLength = this.__P_222_6.length;
         for (var i = 0; i < reLength; i++) {
-          var domEvent = this.__P_214_6[i];
-          this.__P_214_25(domEvent, target, rollFactor);
+          var domEvent = this.__P_222_6[i];
+          this.__P_222_25(domEvent, target, rollFactor);
         }
-        this.__P_214_6 = [];
+        this.__P_222_6 = [];
       },
       /**
        * Ends touch pad detection process.
        */
-      __P_214_27: function __P_214_27() {
-        if (this.__P_214_6.length > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_THRESHOLD) {
+      __P_222_27: function __P_222_27() {
+        if (this.__P_222_6.length > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_THRESHOLD) {
           qx.util.Wheel.IS_TOUCHPAD = true;
         } else {
           qx.util.Wheel.IS_TOUCHPAD = false;
         }
-        this.__P_214_15 = true;
+        this.__P_222_15 = true;
       },
       /**
        * Is touchpad detection enabled ? Default implementation activates it only for Mac OS after Sierra (>= 10.12).
@@ -737,47 +737,47 @@
           if (this._isTouchPadDetectionEnabled()) {
             now = new Date().getTime();
             detectionTimeout = qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_TIMEOUT;
-            if (this.__P_214_16 > 0 && now - this.__P_214_16 > detectionTimeout) {
+            if (this.__P_222_16 > 0 && now - this.__P_222_16 > detectionTimeout) {
               // The detection timeout was reached. A new detection step should occur.
-              this.__P_214_15 = false;
-              this.__P_214_6 = [];
-              this.__P_214_16 = 0;
+              this.__P_222_15 = false;
+              this.__P_222_6 = [];
+              this.__P_222_16 = 0;
             }
-            if (!this.__P_214_15) {
+            if (!this.__P_222_15) {
               // We are into a detection session. We count the events so that we can decide if
               // they were fired by a real mouse wheel or a touchpad. Just swallow them until the
               // detection period is over.
-              if (this.__P_214_6.length === 0) {
+              if (this.__P_222_6.length === 0) {
                 // detection starts
-                this.__P_214_13 = now;
+                this.__P_222_13 = now;
                 qx.event.Timer.once(function () {
-                  if (!this.__P_214_15) {
+                  if (!this.__P_222_15) {
                     // There were not enough events during the TOUCHPAD_WHEEL_EVENTS_PERIOD to actually
                     // trigger a scrolling. Trigger it manually.
-                    this.__P_214_27();
-                    this.__P_214_26(target);
+                    this.__P_222_27();
+                    this.__P_222_26(target);
                   }
                 }, this, qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_PERIOD + 50);
               }
-              this.__P_214_6.push(domEvent);
-              this.__P_214_14++;
-              if (now - this.__P_214_13 > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_PERIOD) {
-                this.__P_214_27();
+              this.__P_222_6.push(domEvent);
+              this.__P_222_14++;
+              if (now - this.__P_222_13 > qx.event.handler.GestureCore.TOUCHPAD_WHEEL_EVENTS_PERIOD) {
+                this.__P_222_27();
               }
             }
-            if (this.__P_214_15) {
-              if (this.__P_214_6.length === 0) {
-                this.__P_214_6.push(domEvent);
+            if (this.__P_222_15) {
+              if (this.__P_222_6.length === 0) {
+                this.__P_222_6.push(domEvent);
               }
               // Detection is done. We can now decide the roll factor to apply to the delta.
               // Default to a real mouse wheel event as opposed to a touchpad one.
-              this.__P_214_26(target);
+              this.__P_222_26(target);
             }
           } else {
-            this.__P_214_25(domEvent, target, qx.event.handler.GestureCore.ROLL_FACTOR);
+            this.__P_222_25(domEvent, target, qx.event.handler.GestureCore.ROLL_FACTOR);
           }
         } else {
-          var gesture = this.__P_214_2[domEvent.pointerId];
+          var gesture = this.__P_222_2[domEvent.pointerId];
           domEvent.delta = {
             x: -gesture.velocityX,
             y: -gesture.velocityY,
@@ -792,11 +792,11 @@
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __P_214_20: function __P_214_20(domEvent, target) {
+      __P_222_20: function __P_222_20(domEvent, target) {
         if (!domEvent.isPrimary) {
           var angle = this._calcAngle();
-          domEvent.angle = Math.round((angle - this.__P_214_10) % 360);
-          this._fireEvent(domEvent, "rotate", this.__P_214_8);
+          domEvent.angle = Math.round((angle - this.__P_222_10) % 360);
+          this._fireEvent(domEvent, "rotate", this.__P_222_8);
         }
       },
       /**
@@ -805,12 +805,12 @@
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __P_214_21: function __P_214_21(domEvent, target) {
+      __P_222_21: function __P_222_21(domEvent, target) {
         if (!domEvent.isPrimary) {
           var distance = this._calcDistance();
-          var scale = distance / this.__P_214_12;
+          var scale = distance / this.__P_222_12;
           domEvent.scale = Math.round(scale * 100) / 100;
-          this._fireEvent(domEvent, "pinch", this.__P_214_8);
+          this._fireEvent(domEvent, "pinch", this.__P_222_8);
         }
       },
       /**
@@ -819,8 +819,8 @@
        * @param domEvent {Event} DOM event
        * @param target {Element} event target
        */
-      __P_214_18: function __P_214_18(domEvent, target) {
-        var gesture = this.__P_214_2[domEvent.pointerId];
+      __P_222_18: function __P_222_18(domEvent, target) {
+        var gesture = this.__P_222_2[domEvent.pointerId];
         if (gesture) {
           this._fireEvent(domEvent, "longtap", domEvent.target || target);
           gesture.longTapTimer = null;
@@ -831,7 +831,7 @@
        * Stops the time for the long tap event.
        * @param gesture {Map} Data may representing the gesture.
        */
-      __P_214_17: function __P_214_17(gesture) {
+      __P_222_17: function __P_222_17(gesture) {
         if (gesture.longTapTimer) {
           window.clearTimeout(gesture.longTapTimer);
           gesture.longTapTimer = null;
@@ -841,15 +841,15 @@
        * Dispose the current instance
        */
       dispose: function dispose() {
-        for (var gesture in this.__P_214_2) {
-          this.__P_214_17(gesture);
+        for (var gesture in this.__P_222_2) {
+          this.__P_222_17(gesture);
         }
         this._stopObserver();
-        this.__P_214_0 = this.__P_214_1 = null;
+        this.__P_222_0 = this.__P_222_1 = null;
       }
     }
   });
   qx.event.handler.GestureCore.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GestureCore.js.map?dt=1692560710510
+//# sourceMappingURL=GestureCore.js.map?dt=1700345595497
