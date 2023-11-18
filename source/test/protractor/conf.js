@@ -37,7 +37,7 @@ exports.config = {
   capabilities: {
     browserName: 'chrome',
     'chromeOptions': {
-      binary: process.env.CHROME_BIN,
+      binary: process.env.CHROME_BIN || process.env.BROWSER_PATH,
       args: [
         '--headless',
         '--disable-gpu',
