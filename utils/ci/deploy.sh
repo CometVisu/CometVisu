@@ -87,6 +87,9 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
       # we need a source-build to generate screenshots
       qx compile -t=source -f=false
       echo "generate API screenshots"
+      if test -f .protractor-env; then
+        source .protractor-env
+      fi
       grunt screenshots --subDir=build --browserName=chrome --target=source
       BUILD_CV=0
 
