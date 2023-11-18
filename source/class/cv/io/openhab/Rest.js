@@ -158,16 +158,18 @@ qx.Class.define('cv.io.openhab.Rest', {
       return true;
     },
 
-    processChartsData(response) {
+    processChartsData(response, config) {
       if (response && response.data) {
         const data = response.data;
         const newRrd = [];
+        const scaling = config && Object.prototype.hasOwnProperty.call(config, 'scaling') ? config.scaling : 1.0;
+        const offset = config && Object.prototype.hasOwnProperty.call(config, 'offset') && Number.isFinite(config.offset) ? config.offset * 1000 : 0;
         let lastValue;
         let value;
         for (let j = 0, l = data.length; j < l; j++) {
-          value = parseFloat(data[j].state);
+          value = parseFloat(data[j].state) * scaling;
           if (value !== lastValue) {
-            newRrd.push([data[j].time, value]);
+            newRrd.push([data[j].time + offset, value]);
           }
           lastValue = value;
         }

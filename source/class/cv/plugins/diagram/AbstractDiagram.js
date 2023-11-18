@@ -356,7 +356,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         const client = cv.io.BackendConnections.getClient();
         // never convert influx data
         if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
-          tsdata = client.processChartsData(tsdata);
+          tsdata = client.processChartsData(tsdata, ts);
         } else {
           // calculate timestamp offset and scaling
           const millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
