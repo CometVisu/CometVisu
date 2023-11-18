@@ -5,7 +5,7 @@ Address-Gruppen - Rechnen mit Address-Werten
 
 .. api-doc:: cv.ui.structure.tile.elements.AddressGroup
 
-Mit einer ``<cv-address-group>`` können Berechnungen mit den numerischen Werte von 
+Mit einer ``<cv-address-group>`` können Berechnungen mit den numerischen Werten von 
 mehreren ``<cv-address>``-Elementen vorgenommen werden. Mit dem folgenden einfachsten Beispiel 
 werden die beiden Werte der Gruppenadressen ``1/1/0`` und ``1/1/1`` addiert und der resultierende
 Wert kann dann in einem Widget angezeigt werden.

@@ -124,7 +124,7 @@ die dann in Richtung Haus fließen.
 
 .. hint::
 
-    Wie bereits erwählt liefern Verbraucherzähler auch nur positive Werte, obwohl hier technisch gesehen
+    Wie bereits erwähnt liefern Verbraucherzähler auch nur positive Werte, obwohl hier technisch gesehen
     Energie vom Haus in einen Verbraucher fließt. Daher muss die Verbindung eines Verbrauchers
     zum Haus mit ``connect-from="house"`` angegeben werden.
 
