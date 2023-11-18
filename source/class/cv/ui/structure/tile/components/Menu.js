@@ -350,6 +350,13 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
               p.appendChild(document.createTextNode(pageName));
             }
             summary.appendChild(p);
+            p.addEventListener('click', ev => {
+              if (details.hasAttribute('open')) {
+                this._closeDetail(details);
+              } else {
+                this._openDetail(details);
+              }
+            });
           }
           const expander = document.createElement('i');
           expander.classList.add('expander');

@@ -28,7 +28,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   include: [
     cv.ui.structure.tile.MVisibility,
     cv.ui.structure.tile.MRefresh,
-    cv.ui.structure.tile.MResize
+    cv.ui.structure.tile.MResize,
+    cv.ui.structure.tile.MFullscreen
   ],
 
   /*
@@ -161,13 +162,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _chartConf: null,
 
     async _init() {
-      this._checkIfWidget();
+      this._checkEnvironment();
 
       this._initializing = true;
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
-      const chartId = 'chart-' + this._id;
+
       element.setAttribute('data-chart-id', this._id.toString());
       const inBackground = this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true';
 
@@ -267,52 +268,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this.appendToHeader(button);
       }
       if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
-        // add fullscreen button + address
-        const button = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
-        button.setAttribute('data-value', '0');
-
-        const popupAddress = `state:${chartId}-popup`;
-
-        button.addEventListener('click', () => {
-          cv.data.Model.getInstance().onUpdate(popupAddress, button.getAttribute('data-value') === '0' ? '1' : '0', 'system');
-        });
-
-        this.appendToHeader(button, 'right');
-
-        // address
-        const tileAddress = document.createElement('cv-address');
-        tileAddress.setAttribute('mode', 'read');
-        tileAddress.setAttribute('target', 'fullscreen-popup');
-        tileAddress.setAttribute('backend', 'system');
-        tileAddress.setAttribute('send-mode', 'always');
-        tileAddress.textContent = popupAddress;
-        element.parentElement.appendChild(tileAddress);
-
-        // listen to parent tile of popup is opened or not
-        let parent = element;
-        while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
-          parent = parent.parentElement;
-        }
-        if (parent) {
-          const tileWidget = parent.getInstance();
-          tileWidget.addListener('closed', () => cv.data.Model.getInstance().onUpdate(popupAddress, '0', 'system'));
-
-          // because we added a read address to the tile after is has been initialized we need to init the listener here manually
-          parent.addEventListener('stateUpdate', ev => {
-            tileWidget.onStateUpdate(ev);
-            // cancel event here
-            ev.stopPropagation();
-          });
+        this._initFullscreenSwitch();
 
         // only on mobile we need this, because of height: auto
-          if (document.body.classList.contains('mobile')) {
-            tileWidget.addListener('fullscreenChanged', () => {
-              this._onRendered();
-            });
-          }
+        if (document.body.classList.contains('mobile')) {
+          this.addListener('changeFullscreen', () => this._onRendered());
         }
       }
-
 
       if (element.hasAttribute('refresh')) {
         this.setRefresh(parseInt(element.getAttribute('refresh')));
@@ -415,7 +377,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this.__config = {
         x: d => d.time, // given d in data, returns the (temporal) x-value
         y: d => +d.value, // given d in data, returns the (quantitative) y-value
-        z: d => d.src, // given d in data, returns the (categorical) z-value
+        z: d => d.key, // given d in data, returns the (categorical) z-value
         color: d => d && this._dataSetConfigs[d].color, // stroke color of line, as a constant or a function of *z*
         title: d => cv.util.String.sprintf(format, d.value), // given d in data, returns the title text
         curve: d3.curveLinear, // method of interpolation between points
@@ -497,6 +459,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     refresh() {
       this._loaded = false;
+      this.__updateTimeRange();
       this._loadData();
     },
 
@@ -548,29 +511,23 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         case 'hour':
           interval = 60 * 60;
           periodStart.setHours(periodStart.getHours() - currentPeriod, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setHours(periodStart.getHours() + 1, 0, 0, 0);
-          }
+          end.setHours(periodStart.getHours() + 1, 0, 0, 0);
           break;
 
         case 'day':
           interval = 24 * 60 * 60;
           periodStart.setDate(periodStart.getDate() - currentPeriod);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setDate(periodStart.getDate() + 1);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setDate(periodStart.getDate() + 1);
+          end.setHours(0, 0, 0, 0);
           break;
 
         case 'week':
           interval = 7 * 24 * 60 * 60;
           periodStart.setDate(periodStart.getDate() - (periodStart.getDay() || 7) + 1 - 7 * currentPeriod);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setDate(periodStart.getDate() + 7);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setDate(periodStart.getDate() + 7);
+          end.setHours(0, 0, 0, 0);
           break;
 
         case 'month':
@@ -578,10 +535,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           periodStart.setMonth(periodStart.getMonth() - currentPeriod);
           periodStart.setDate(1);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setMonth(periodStart.getMonth() + 1, 1);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setMonth(periodStart.getMonth() + 1, 1);
+          end.setHours(0, 0, 0, 0);
           break;
 
         case 'year':
@@ -589,11 +544,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           periodStart.setFullYear(periodStart.getFullYear() - currentPeriod);
           periodStart.setMonth(0, 1);
           periodStart.setHours(0, 0, 0, 0);
-          if (currentPeriod > 0) {
-            end.setFullYear(periodStart.getFullYear() + 1);
-            end.setMonth(periodStart.getMonth() + 1, 1);
-            end.setHours(0, 0, 0, 0);
-          }
+          end.setFullYear(periodStart.getFullYear() + 1);
+          end.setMonth(periodStart.getMonth() + 1, 1);
+          end.setHours(0, 0, 0, 0);
           break;
       }
       let startTs = Math.round(periodStart.getTime()/1000);
@@ -665,11 +618,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           }
           const type = ts.src.split('://')[0].toLowerCase();
           ts.type = type;
+          let key = ts.src;
           switch (type) {
             case 'flux':
               ts.source = new cv.io.timeseries.FluxSource(ts.src);
               if (ts.source.isInline()) {
-                ts.source.setQueryTemplate(dataSet.textContent.trim());
+                const fluxQuery = dataSet.textContent.trim();
+                key = cv.ConfigCache.hashCode(fluxQuery).toString();
+                ts.source.setQueryTemplate(fluxQuery);
               }
               break;
 
@@ -689,7 +645,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               this.error('unknown chart data source type ' + type);
               break;
           }
-          this._dataSetConfigs[ts.src] = ts;
+          ts.key = key;
+          this._dataSetConfigs[key] = ts;
         }
       }
 
@@ -753,6 +710,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           const mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
           for (let [time, value] of tsdata) {
             chartData.push({
+              key: entry.ts.key,
               src: entry.ts.src,
               time: mins > 0
                 ? Math.round(time / mins) * mins : time,
@@ -930,7 +888,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         } else {
           X.push(data.time);
           Y.push(data.value);
-          Z.push(data.src);
+          Z.push(data.key);
           O.push(data);
           T.push(config.title === undefined ? data.src : config.title === null ? null : config.title(data));
 
@@ -953,19 +911,31 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Compute default domains, and unique the z-domain.
       let xDomain = d3.extent(X);
       let minVal = 0;
-      const zeroBased = !this._element.hasAttribute('zero-based') || this._element.getAttribute('zero-based') === 'true';
-      if (!zeroBased) {
+      let maxVal = 0;
+      if (this._element.hasAttribute('min')) {
+        const min = parseFloat(this._element.getAttribute('min'));
+        if (!isNaN(min)) {
+          minVal = min;
+        }
+      } else {
         minVal = d3.min(Y);
         if (minVal > 1.0) {
           minVal -= 1;
         }
       }
-      let maxVal = d3.max(Y);
-      if (maxVal > 1.0) {
-        // add some inner chart padding
-        maxVal += 1;
+      if (this._element.hasAttribute('max')) {
+        const max = parseFloat(this._element.getAttribute('max'));
+        if (!isNaN(max)) {
+          maxVal = max;
+        }
       } else {
-        maxVal += 0.1;
+        maxVal = d3.max(Y);
+        if (maxVal > 1.0) {
+          // add some inner chart padding
+          maxVal += 1;
+        } else {
+          maxVal += 0.1;
+        }
       }
       const yDomain = [minVal, maxVal];
       const zDomain = new d3.InternSet(Z);
@@ -1204,7 +1174,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._dot = svg.select('g.dot');
 
       // show zero line in grid for non-zero based charts
-      if (!zeroBased) {
+      if (minVal !== 0) {
         let targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
         let yValue = 0.0;
         let data = [0, X.length-1];
@@ -1491,17 +1461,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
     },
 
-    _buttonFactory(icon, classes) {
-      const button = document.createElement('button');
-      button.classList.add(...classes);
-      if (icon) {
-        const i = document.createElement('i');
-        i.classList.add(icon);
-        button.appendChild(i);
-      }
-      return button;
-    },
-
     __updateTitle() {
       if (this._navigationEnabled) {
         let title = this.getHeader('label.title span');
@@ -1600,6 +1559,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
      * @private
      */
     __opacifyColor(color, opacity) {
+      if (color.startsWith('var(')) {
+        color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length-1));
+      }
       if (color.startsWith('rgb(')) {
         return 'rgba(' + color.substring(4, color.length-1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
       } else if (color.startsWith('#') && color.length === 7) {

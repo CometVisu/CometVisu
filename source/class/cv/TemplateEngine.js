@@ -341,7 +341,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
       // load structure-part
       await this.loadParts([cv.Config.getStructure()]);
-      if (cv.Application.structureController.parseBackendSettings(xml)) {
+      if (cv.Application.structureController.parseBackendSettings(xml) || cv.Config.testMode) {
         cv.io.BackendConnections.initBackendClients();
       }
       cv.Application.structureController.parseSettings(xml);

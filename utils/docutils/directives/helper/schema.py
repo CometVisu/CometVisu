@@ -70,6 +70,16 @@ class Schema:
         res += self.get_attribute_groups("xs:complexType[@name='%s']/xs:attributeGroup" % widget_name)
         res += self.get_attribute_groups("xs:complexType[@name='%s']/xs:simpleContent/xs:extension/xs:attributeGroup" % widget_name)
 
+        # find and resolve inherited attributes
+        ext = self.find("xs:complexType[@name='%s']/xs:complexContent/xs:extension" % widget_name)
+        if ext is not None:
+            print(ext)
+            # get attributes from extended element
+            res += self.get_widget_attributes(ext.get("base"))
+            # get attributes from extension
+            res += ext.findall(".//xs:attribute".replace("xs:", SCHEMA_SPACE))
+
+
         return res
 
     def get_attribute_groups(self, query):
@@ -91,7 +101,8 @@ class Schema:
         if ctype is None:
             return []
         elems = ctype.findall(".//xs:element".replace("xs:", SCHEMA_SPACE))
-        ext = ctype.find(".//xs:simpleContent/xs:extension".replace("xs:", SCHEMA_SPACE))
+        simple_ext = ctype.find(".//xs:simpleContent/xs:extension".replace("xs:", SCHEMA_SPACE))
+        complex_ext = ctype.find(".//xs:complexContent/xs:extension".replace("xs:", SCHEMA_SPACE))
 
         # find extended elements
         for elem in elems:
@@ -100,14 +111,17 @@ class Schema:
                 if sub_type is not None:
                     for sub_elem in self.get_widget_elements(elem.get('name'), ctype=sub_type, sub_type=True):
                         elems.append(sub_elem)
-        if ext is not None and ext.get("base") is not None:
+        if simple_ext is not None and simple_ext.get("base") is not None:
             # should we really hardcode this?
-            ref = self.find("xs:simpleType[@name='%s']" % ext.get("base"))
+            ref = self.find("xs:simpleType[@name='%s']" % simple_ext.get("base"))
             doc = self.get_node_documentation(ref, locale).text if ref is not None and self.get_node_documentation(ref, locale) is not None else ""
             elems.append(("#text", "string", doc))
         elif ctype.get("mixed", "false") == "true":
             doc = self.get_node_documentation(ctype, locale).text if self.get_node_documentation(ctype, locale) is not None else ""
             elems.append(("#text", "string", doc))
+
+        if complex_ext is not None and complex_ext.get("base") is not None:
+            elems += self.get_widget_elements(complex_ext.get("base"), locale)
         return elems
 
     def get_elements_of_attribute(self, attribute):

@@ -129,6 +129,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     __HTML_STRUCT: null,
     __mappings: null,
     __stylings: null,
+    _templateWidgets: null,
 
     getHtmlStructure() {
       return this.__HTML_STRUCT;
@@ -159,7 +160,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       if (!pageId) {
         return;
       }
-      const page = document.querySelector('#' + pageId);
+      const page = document.querySelector('cv-page#' + pageId);
       if (page) {
         if (!page.classList.contains('active')) {
           for (let oldPage of document.querySelectorAll('cv-page.active')) {
@@ -295,6 +296,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
               }
             });
           }
+
+          this.enablePullToRefresh();
         });
         ajaxRequest.addListener('statusError', e => {
           const status = e.getTarget().getTransport().status;
@@ -318,23 +321,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           elem.classList.remove('scrolled');
         }
       }
-    },
-
-    /**
-     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
-     * @param xml {XMLDocument}
-     */
-    registerTemplates(xml) {
-      xml.querySelectorAll('templates[structure=\'tile\'] > template').forEach(template => {
-        customElements.define(
-          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
-          class extends TemplatedElement {
-            constructor() {
-              super(template.getAttribute('id'));
-            }
-          }
-        );
-      });
     },
 
     /**
@@ -373,7 +359,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * Generate the UI code from the config file
      * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
      */
-    createUI(config) {},
+    createUI(config) {
+    },
 
     observeVisibility() {
       // find all pages with an iframe with attribute "data-src" and observe its parent page
@@ -528,7 +515,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       if (this.__stylings && Object.prototype.hasOwnProperty.call(this.__stylings, stylingName)) {
         return this.__stylings[stylingName].mapValue(value, store);
       }
-      return value;
+      return '';
     },
 
     // for compatibility with pure controller
@@ -538,6 +525,80 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     _onChangeLocale() {
       this.translate(document.body, false, true);
+    },
+
+    enablePullToRefresh() {
+      let startY = 0;
+      let scrollContainer;
+
+      const refreshSpinner = document.createElement('div');
+      refreshSpinner.classList.add('pull-to-refresh');
+      const icon = document.createElement('i');
+      icon.classList.add('ri-loader-4-fill');
+      refreshSpinner.append(icon);
+      document.body.append(refreshSpinner);
+      const eventSource = document;
+
+      const onMove = ev => {
+        const touchY = ev.touches[0].clientY;
+        const touchDiff = touchY - startY;
+        if (touchDiff > 60 && scrollContainer.scrollTop === 0) {
+          refreshSpinner.classList.add('visible');
+        } else {
+          refreshSpinner.classList.remove('visible');
+        }
+      };
+      const onEnd = () => {
+        finish();
+        if (refreshSpinner.classList.contains('visible')) {
+          refreshSpinner.classList.remove('visible');
+          location.reload();
+        }
+      };
+      const finish = () => {
+        eventSource.removeEventListener('touchmove', onMove);
+        eventSource.removeEventListener('touchend', onEnd);
+        eventSource.removeEventListener('touchcancel', finish);
+      };
+      eventSource.addEventListener('touchstart', ev => {
+        startY = ev.touches[0].clientY;
+        scrollContainer = document.querySelector('main');
+        if (scrollContainer && scrollContainer.scrollTop === 0) {
+          eventSource.addEventListener('touchmove', onMove);
+          eventSource.addEventListener('touchend', onEnd);
+          eventSource.addEventListener('touchcancel', finish);
+        }
+      });
+    },
+
+    isTemplateWidget(name) {
+      return this._templateWidgets.includes(name);
+    },
+
+    /**
+     * Registers customElements for all templates in the given xml that are direct children of a <templates structure="tile"> element
+     * @param xml {XMLDocument}
+     */
+    registerTemplates(xml) {
+      if (this._templateWidgets === null) {
+        this._templateWidgets = [];
+      }
+      for (const template of xml.querySelectorAll('templates[structure=\'tile\'] > template')) {
+        const className = qx.lang.String.firstUp(qx.lang.String.camelCase(template.getAttribute('id')));
+        let Clazz = qx.Class.getByName(`cv.ui.structure.tile.widgets.${className}`);
+        if (!Clazz) {
+          Clazz = cv.ui.structure.tile.widgets.TemplateWidget;
+        }
+        customElements.define(
+          cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'),
+          class extends TemplatedElement {
+            constructor() {
+              super(template.getAttribute('id'), Clazz);
+            }
+          }
+        );
+        this._templateWidgets.push(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'));
+      }
     }
   },
 
@@ -558,9 +619,55 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   }
 });
 
-class TemplatedElement extends HTMLElement {
-  constructor(templateId) {
+
+/* eslint-disable-next-line no-redeclare */
+class QxConnector extends HTMLElement {
+  constructor(QxClass) {
     super();
+    if (QxClass) {
+      if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {
+        this._instance = new QxClass(this);
+      } else {
+        throw Error(QxClass + ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement');
+      }
+    }
+    if (this.hasAttribute('colspan')) {
+      this.classList.add('colspan-' + this.getAttribute('colspan'));
+    }
+    if (this.hasAttribute('rowspan')) {
+      this.classList.add('rowspan-' + this.getAttribute('rowspan'));
+    }
+  }
+
+  getInstance() {
+    return this._instance;
+  }
+
+  connectedCallback() {
+    if (this._instance) {
+      this._instance.setConnected(true);
+    }
+  }
+
+  disconnectedCallback() {
+    if (this._instance) {
+      this._instance.setConnected(false);
+    }
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    name = qx.lang.String.camelCase(name);
+    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {
+      this._instance.set(name, newValue);
+    }
+  }
+}
+
+window.QxConnector = QxConnector;
+
+class TemplatedElement extends QxConnector {
+  constructor(templateId, QxClass) {
+    super(QxClass);
     const controller = cv.ui.structure.tile.Controller.getInstance();
     let template = document.getElementById(templateId);
     if (template) {
@@ -569,7 +676,7 @@ class TemplatedElement extends HTMLElement {
 
       // copy all attributes, except 'id' of the template itself to the widget
       for (const name of template.getAttributeNames()) {
-        if (name !== 'id') {
+        if (name !== 'id' && !this.hasAttribute(name)) {
           this.setAttribute(name, template.getAttribute(name));
         }
       }
@@ -580,6 +687,10 @@ class TemplatedElement extends HTMLElement {
         const replacementSelector = slot.hasAttribute('replaces') ? slot.getAttribute('replaces') : '';
         const slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
         let slotContents = this.querySelectorAll(`[slot='${slotName}']`);
+        if (slotContents.length === 0 && slotName === 'default') {
+          // add all elements that have no slot to this default slot
+          slotContents = this.querySelectorAll(':scope > *:not([slot])');
+        }
         const attrs = {};
         for (let i = 0, l = slot.attributes.length; i < l; i++) {
           if (!slotAttributes.includes(slot.attributes[i].name)) {
@@ -624,8 +735,9 @@ class TemplatedElement extends HTMLElement {
             }
           } else {
             slot.remove();
-            if (parentNode.children.length === 0) {
+            if (parentNode.children.length === 0 && slotParentScope >= 0) {
               // also remove slots parent when it has no content
+              // can be obeyed by setting parent-scope="-1"
               parentNode.remove();
             }
           }
@@ -633,9 +745,10 @@ class TemplatedElement extends HTMLElement {
       }
       // transfer attribute slots
       const attributes = this.getAttributeNames();
-      attributes.forEach(name => {
+      for (const name of attributes) {
         let value = this.getAttribute(name);
-        const targets = content.querySelectorAll('[slot-' + name + ']');
+        const slotAttributeName = `slot-${name}`;
+        const targets = content.querySelectorAll(`[${slotAttributeName}]`);
         let targetName = name;
         // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
         if (name.endsWith('-mapping')) {
@@ -646,15 +759,18 @@ class TemplatedElement extends HTMLElement {
           targetName = 'format';
         }
         for (const target of targets) {
-          if (targetName !== name && target.hasAttribute('slot-' + name)) {
-            const targetValue = target.getAttribute('slot-' + name);
+          if (target.hasAttribute(slotAttributeName)) {
+            const targetValue = target.getAttribute(slotAttributeName);
             if (targetValue.startsWith(':')) {
               // this template slot-attribute contains some configuration
               for (const entry of targetValue.substring(1).split(',')) {
-                const [key, value] = entry.split('=');
+                const [key, val] = entry.split('=');
                 switch (key) {
                   case 'target':
-                    name = value;
+                    targetName = val;
+                    break;
+                  case 'value':
+                    // not needed here
                     break;
                   default:
                     qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
@@ -662,22 +778,20 @@ class TemplatedElement extends HTMLElement {
                 }
               }
             }
-            target.setAttribute(name, value);
-
-            target.removeAttribute('slot-' + name);
-          } else {
-            target.setAttribute(targetName, value);
-
-            target.removeAttribute('slot-' + targetName);
           }
+
+          target.setAttribute(targetName, value);
+          target.removeAttribute(slotAttributeName);
         }
         if (targets.length > 0) {
           this.removeAttribute(name);
         }
-      });
-      content.querySelectorAll('*').forEach(elem => {
-        [...elem.attributes].forEach(attr => {
+      }
+
+      for (const elem of content.querySelectorAll('*')) {
+        for (const attr of [...elem.attributes]) {
           if (attr.name.startsWith('slot-')) {
+            let attrValue = attr.value;
             let targetName = attr.name.substring(5);
             // only e.g. map slot-progress-mapping to mapping if we have no slot-mapping attribute
             if (attr.name.endsWith('-mapping') && elem.hasAttribute('slot-mapping')) {
@@ -686,14 +800,32 @@ class TemplatedElement extends HTMLElement {
               targetName = 'styling';
             } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
               targetName = 'format';
+            } else if (attr.value.startsWith(':')) {
+              attrValue = '';
+              // this template slot-attribute contains some configuration
+              const parts = attr.value.substring(1).split(',');
+              for (const entry of parts) {
+                const [key, val] = entry.split('=');
+                switch (key) {
+                  case 'target':
+                    targetName = val;
+                    break;
+                  case 'value':
+                    attrValue = val;
+                    break;
+                  default:
+                    qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
+                    break;
+                }
+              }
             }
-            if (attr.value && !attr.value.startsWith(':')) {
-              elem.setAttribute(targetName, attr.value);
+            if (attrValue) {
+              elem.setAttribute(targetName, attrValue);
             }
             elem.removeAttribute(attr.name);
           }
-        });
-      });
+        }
+      }
 
       // clear content
       this.innerHTML = '';

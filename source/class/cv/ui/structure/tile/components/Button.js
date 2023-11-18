@@ -330,14 +330,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
     _applyStyleClass(value, oldValue) {
       const classes = this._element.classList;
-      if (oldValue) {
-        if (classes.contains(oldValue)) {
-          classes.replace(oldValue, value);
-        } else {
-          classes.add(value);
-          classes.remove(oldValue);
-        }
-      } else if (value) {
+      if (oldValue && classes.contains(oldValue)) {
+        classes.remove(oldValue);
+      }
+      if (value) {
         classes.add(value);
       }
     },

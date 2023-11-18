@@ -8,7 +8,7 @@
     <xsd:complexType>
       <xsd:sequence>
         <xsd:element name="cv-meta" type="cv-meta" minOccurs="0"/>
-        <xsd:element name="header" type="header" minOccurs="0"/>
+        <xsd:element name="header" type="header-element" minOccurs="0"/>
         <xsd:element name="main" type="main"/>
         <xsd:element name="footer" type="footer" minOccurs="0"/>
       </xsd:sequence>
@@ -261,7 +261,7 @@
   </xsd:complexType>
 
   <!-- basic structure -->
-  <xsd:complexType name="header">
+  <xsd:complexType name="header-element">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="nav" type="nav" />
@@ -602,6 +602,7 @@
       <xsd:element name="cv-rtc" type="cv-rtc"/>
       <xsd:element name="cv-widget-pair" type="cv-widget-pair"/>
       <xsd:element name="cv-media-player" type="cv-media-player"/>
+      <xsd:element name="cv-energy" type="cv-energy"/>
     </xsd:choice>
   </xsd:group>
 
@@ -617,10 +618,12 @@
       <xsd:element name="cv-list" type="cv-list" />
       <xsd:element name="cv-color" type="cv-color" />
       <xsd:element name="cv-icon" type="cv-icon" />
+      <xsd:element name="cv-flow" type="cv-flow" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
       <xsd:element name="cv-plugin" type="cv-plugin"/>
       <xsd:element name="cv-menu" type="cv-menu"/>
+      <xsd:element name="cv-svg-round-value" type="cv-svg-round-value"/>
       <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
@@ -814,7 +817,8 @@
         <xsd:documentation xml:lang="de">Zeigt den Chart im Hintergrund einer Kachel.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="zero-based" />
+    <xsd:attribute ref="min" />
+    <xsd:attribute ref="max" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">
@@ -1137,6 +1141,40 @@
     <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-address-group">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+        <xsd:element name="cv-address-group" type="cv-address-group" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="operator">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Math operator used for calculation.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Mathematischer Operator für Berechnung.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="+" />
+          <xsd:enumeration value="-" />
+          <xsd:enumeration value="*" />
+          <xsd:enumeration value="/" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="round" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Round the result.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ergebnis runden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="factor" type="xsd:float">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Multiply the result with this value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ergebnis mit diesem Wert multiplizieren.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
   <!--
   #####################################################################################################################
   # START: template based type (of templates that the structure has build in)
@@ -1820,7 +1858,72 @@
         <xsd:documentation xml:lang="de">Überschrift des Popups.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="zero-based" />
+    <xsd:attribute ref="min" />
+    <xsd:attribute ref="max" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-energy">
+    <xsd:complexContent>
+      <xsd:extension base="cv-flow">
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="cv-address" minOccurs="0" maxOccurs="unbounded">
+            <xsd:complexType>
+              <xsd:simpleContent>
+                <xsd:extension base="address">
+                  <xsd:attribute name="slot" use="required">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="pv-power" />
+                        <xsd:enumeration value="grid-power" />
+                        <xsd:enumeration value="battery-power" />
+                        <xsd:enumeration value="battery-other" />
+                        <xsd:enumeration value="charger-power" />
+                        <xsd:enumeration value="heatpump-power" />
+                        <xsd:enumeration value="consumer-power" />
+                        <xsd:enumeration value="house-power" />
+                        <xsd:enumeration value="tileAddress" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:extension>
+              </xsd:simpleContent>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
+          <xsd:element name="cv-svg-round-value" type="cv-svg-round-value" minOccurs="0" maxOccurs="unbounded" />
+          <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />    
+        </xsd:choice>
+        <xsd:attribute name="house-row" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Row of the position od the house (default=1).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Zeile in der das Haus positioniert werden soll (default=1)</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="house-column" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Column of the position od the house (default=1).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Spalte in der das Haus positioniert werden soll (default=1)</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="title" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Title of the widget.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Titel des Widgets.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Allows showing the widget in fullscreen size.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Widgets auf volle Bildschirmgröße.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="header" type="header"/>
+        <xsd:attribute name="mobile-header" type="header"/>
+        <xsd:attribute name="center-x" type="xsd:boolean" default="true"/>
+        <xsd:attribute name="center-y" type="xsd:boolean" default="false"/>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
 
   <!--
@@ -1828,6 +1931,271 @@
   # END: template based type (of templates that the structure has build in)
   #####################################################################################################################
   # -->
+
+
+  <!--
+  #####################################################################################################################
+  # START: SVG derived types for energy management
+  #####################################################################################################################
+  # -->
+  <xsd:complexType name="cv-energy-entity">
+    <xsd:complexContent>
+      <xsd:extension base="cv-svg-text-value">
+        <xsd:attribute name="type">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Type of this entity.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Typ dieser Entität.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="pv" />
+              <xsd:enumeration value="battery" />
+              <xsd:enumeration value="grid" />
+              <xsd:enumeration value="consumer" />
+              <xsd:enumeration value="charger" />
+              <xsd:enumeration value="heatpump" />
+              <xsd:enumeration value="house" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="direction" default="none">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the direction of the energy flow.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Definiert die Richtung, in welche die Energie geflossen ist.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="none" />
+              <xsd:enumeration value="incoming" />
+              <xsd:enumeration value="outgoing" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-power-entity">
+    <xsd:complexContent>
+    <xsd:extension base="cv-svg-round-value">
+      <xsd:attribute name="type">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Type of this entity.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Typ dieser Entität.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="pv" />
+            <xsd:enumeration value="battery" />
+            <xsd:enumeration value="grid" />
+            <xsd:enumeration value="consumer" />
+            <xsd:enumeration value="charger" />
+            <xsd:enumeration value="heatpump" />
+            <xsd:enumeration value="house" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="connect-to" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Connect to another cv-power-entity.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Verbindung zu anderer cv-power-entity herstellen.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="connect-from" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Connect from another cv-power-entity.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Verbindung von anderer cv-power-entity herstellen.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="connection-points">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Define where the connection line should start and end.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Legt fest wo die Verbindungslinie starten und enden sill</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:token">
+            <!-- allow everything except the reserved 'system' -->
+            <xsd:pattern value="auto|(top|right|bottom|left|auto)-(top|right|bottom|left|auto)"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+    </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-flow">
+    <xsd:choice>
+      <xsd:element name="cv-svg-round-value" type="cv-svg-round-value" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:choice>
+    <xsd:attribute name="size" type="tile-size" />
+    <xsd:attribute name="mobile-size" type="tile-size" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="view-box">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Viewbox of the grid (start-column start-row columns rows).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Viewbox des Grids (start-column start-row columns rows).</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:pattern value="\d+ \d+ \d+ \d+"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="pan" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">If only a part of the energy-grid is shown, this flag activates scrolling inside the grid.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wenn über die ViewBox nur ein Teil des Energiemanagements angezeigt wird, kann man mit pan das Scrollen innerhalb aktivieren.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="rows" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Number of rows used to lay out the content.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzahl der Zeilen, in der die Inhalte angeordnet werden können.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="columns" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Number of columns used to lay out the content.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzahl der Spalten, in der die Inhalte angeordnet werden können.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="cell-width" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width of a single cell in the layout.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite einer einzelnen Zelle im Layout.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="cell-height" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Height of a single cell in the layout.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Höhe einer einzelnen Zelle im Layout.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="outer-padding" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Spacing of the content to the outer edge.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Abstand des Inhalts zum äußeren Rand.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="spacing" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Distance between single cells in the layout.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Abstand zwischen den Zellen im Layout.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="pagination" default="none">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Activates pagination navigation by clicking on the edges of the element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktiviert Seitennavigation per Klick an den Rand des Elements.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="none" />
+          <xsd:enumeration value="horizontal" />
+          <xsd:enumeration value="vertical" />
+          <xsd:enumeration value="both" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <!--
+  #####################################################################################################################
+  # END: SVG derived types for energy management
+  #####################################################################################################################
+  # -->
+
+  <!--
+  #####################################################################################################################
+  # START: SVG types
+  #####################################################################################################################
+  # -->
+
+  <xsd:complexType name="cv-svg-text-value">
+    <xsd:choice>
+      <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:choice>
+    <xsd:attribute name="id" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID of this element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID dieses Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of this element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel dieses Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="svg-position-attributes"/>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the icon, usually the icon is pre-defined by the type, but can be overridden by this attribute.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon festlegen, wird automatisch von Typ festgelegt und kann hiermit überschrieben werden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="styling"/>
+    <xsd:attribute ref="mapping"/>
+    <xsd:attribute ref="format"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-svg-round-value">
+    <xsd:choice>
+      <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:choice>
+    <xsd:attribute name="id" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID of this element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID dieses Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of this element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel dieses Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="svg-position-attributes"/>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the icon, usually the icon is pre-defined by the type, but can be overridden by this attribute.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon festlegen, wird automatisch von Typ festgelegt und kann hiermit überschrieben werden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="radius" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Radius of the circle.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Radius des Kreises. </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="stroke" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Stroke width of the circle border.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Randbreite des Kreises.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="min"/>
+    <xsd:attribute ref="max"/>
+    <xsd:attribute name="foreground-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the value bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Wertbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="background-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the background bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Hintergrundbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="styling"/>
+    <xsd:attribute ref="mapping"/>
+    <xsd:attribute ref="format"/>
+  </xsd:complexType>
 
 
 
@@ -1995,7 +2363,7 @@
 
   <xsd:simpleType name="color">
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="[a-z]+|#[\da-fA-F]{6}([\da-fA-F]{2})?|rgb\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5])\)?|rgba\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?(1|1.0|0\.[0-9]+)\)?"/>
+      <xsd:pattern value="var\(--.+\)|[a-z]+|#[\da-fA-F]{6}([\da-fA-F]{2})?|rgb\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5])\)?|rgba\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?(1|1.0|0\.[0-9]+)\)?"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -2008,11 +2376,24 @@
       <xsd:enumeration value="button" />
       <xsd:enumeration value="0.5x0.5" />
       <xsd:enumeration value="1x0.5" />
+      <xsd:enumeration value="1x1" />
       <xsd:enumeration value="2x1" />
+      <xsd:enumeration value="2x1.5" />
       <xsd:enumeration value="1x2" />
       <xsd:enumeration value="2x2" />
       <xsd:enumeration value="2x4" />
       <xsd:enumeration value="4x2" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="header">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the visibility of the widget header.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt die Sichtbarkeit des Widget-Headers fest.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="auto-hide" />
+      <xsd:enumeration value="visible" />
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -2392,6 +2773,45 @@
     <xsd:attribute ref="style"/>
   </xsd:attributeGroup>
 
+  <xsd:attributeGroup name="svg-position-attributes">
+    <xsd:attribute name="x" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Position of this element on the x-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Position dieses Elements auch der x-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Position of this element on the y-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Position dieses Elements auch der y-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="row" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Row this element is placed in.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeile in der dieses Element platziert wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="column" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Column this element is placed in.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Spalte in der dieses Element platziert wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="rowspan" type="xsd:decimal" default="1">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Number of rows this element spans</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzahl der Zeilen die dieses Element belegt</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="colspan" type="xsd:decimal" default="1">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Number of columns this element spans</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzahl der Spalten die dieses Element belegt</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+
   <xsd:attribute name="visible-on">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Controls this element's visibility by screen size.</xsd:documentation>
@@ -2545,13 +2965,6 @@
         <xsd:enumeration value="bar" />
       </xsd:restriction>
     </xsd:simpleType>
-  </xsd:attribute>
-
-  <xsd:attribute name="zero-based" type="xsd:boolean" default="true">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Always start the x-axis at 0.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Die y-Achse immer bei 0 beginnen lassen.</xsd:documentation>
-    </xsd:annotation>
   </xsd:attribute>
 
   <xsd:attribute name="hide-on-scroll" type="xsd:boolean" default="false">

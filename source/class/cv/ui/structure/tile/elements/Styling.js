@@ -38,6 +38,10 @@ qx.Class.define('cv.ui.structure.tile.elements.Styling', {
       } else {
         cv.Application.structureController.removeStyling(this._element.getAttribute('name'));
       }
+    },
+
+    mapValue(val, store, params) {
+      return super.mapValue(val, store, params, true);
     }
   },
 

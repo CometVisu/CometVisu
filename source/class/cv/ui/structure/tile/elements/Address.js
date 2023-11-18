@@ -34,10 +34,17 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   members: {
     __lastValue: null,
     __transformedValue: null,
+    _stateUpdateTarget: null,
+
+    getAddress() {
+      return this._element.textContent.trim();
+    },
+
 
     _init() {
       const element = this._element;
-      const address = element.textContent.trim();
+      this._stateUpdateTarget = element;
+      const address = this.getAddress();
       if (address) {
         const model = cv.data.Model.getInstance();
         const backendName = element.getAttribute('backend');
@@ -156,7 +163,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
           bubbles: true,
           cancelable: true,
           detail: {
-            address: this._element.textContent.trim(),
+            address: this.getAddress(),
             state: transformedState,
             target: target,
             targetConfig: targetConfig,
@@ -170,7 +177,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
 
         this.__transformedValue = transformedState;
         //console.log(ev.detail);
-        this._element.dispatchEvent(ev);
+        this._stateUpdateTarget.dispatchEvent(ev);
         this.__lastValue = state;
         // reset lastSentValue
         if (state !== this._element.lastSentValue) {

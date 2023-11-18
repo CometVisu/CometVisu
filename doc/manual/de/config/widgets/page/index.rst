@@ -80,7 +80,7 @@ zur korrekten Positionierung befüllt werden. Bei diesen Widgets wird ein Wert
 mit einer CSS-Einheit benötigt. Typisch sind daher relative Angaben wie ``12%``
 oder absolute Angaben in Pixeln wie ``123px``.
 
-.. spelling::
+.. spelling:word-list::
 
     Tree
     Styles
