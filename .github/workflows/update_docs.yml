@@ -61,6 +61,7 @@ jobs:
           target: build
       - name: Install grunt
         run: npm install -g grunt-cli
+      - run: sudo rm /usr/bin/chromedriver
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         env:
@@ -68,10 +69,15 @@ jobs:
           CV_BROWSER: "Chrome_ci"
       - name: Prepare screenshots
         uses: ./.github/actions/update-webdriver
+      - id: dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          path: .protractor-env
       - name: Run deploy script
         run: ./utils/ci/deploy.sh
         env:
-          CHROME_BIN: ./chrome/google-chrome
+          CHROME_BIN: ${{ steps.dotenv.outputs.BROWSER_PATH }}
+          WEBDRIVER_PATH: ${{ steps.dotenv.outputs.WEBDRIVER_PATH }}
           COMMIT_AUTHOR_NAME: CometVisu-CI
           COMMIT_AUTHOR_EMAIL: generator@cometvisu.org
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
