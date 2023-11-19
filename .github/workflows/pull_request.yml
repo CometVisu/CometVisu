@@ -85,6 +85,7 @@ jobs:
       CV_VERSION: ${{ matrix.target }}
       CV_BROWSER: ${{ matrix.browser }}
     steps:
+      - run: sudo rm /usr/bin/chromedriver
       - uses: actions/checkout@v3
       - uses: nanasess/setup-chromedriver@v2
       - name: Use Node.js
@@ -106,12 +107,8 @@ jobs:
           target: source
       - name: Install grunt
         run: npm install -g grunt-cli
-      - id: dotenv
-        uses: falti/dotenv-action@v1.0.4
-        with:
-          path: .protractor-env
       - name: Run tests
         run: grunt e2e-chrome
         env:
-          CHROME_BIN: ${{ steps.dotenv.outputs.BROWSER_PATH }}
-          WEBDRIVER_PATH: ${{ steps.dotenv.outputs.WEBDRIVER_PATH }}
+          CHROME_BIN: /usr/bin/google-chrome
+          WEBDRIVER_PATH: /usr/local/bin/chromedriver
