@@ -25,6 +25,7 @@
  *
  * @ignore(d3.select)
  * @ignore(screen)
+ * @ignore(SVGElement)
  */
 qx.Class.define('cv.ui.structure.tile.components.Flow', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -86,6 +87,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     _startPoint: null,
     _expiredTouchStart: null,
     _viewBoxBinding: null,
+    _lastBBox: null,
+    _additionalViewBoxUpdate: null,
+    _ready: null,
 
     getSvg() {
       if (!this.SVG) {
@@ -100,6 +104,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       this.getSvg();
 
       this.setResizeTarget(this._element);
+      this._observer.observe(this.SVG);
       this.addListener('resized', this._updateDimensions, this);
       for (const layoutEvent of ['changeRows', 'changeColumns', 'changeOuterPadding', 'changeSpacing']) {
         this.addListener(layoutEvent, this._updateCellSize, this);
@@ -139,7 +144,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       }
 
       this.addListener('changeViewBox', this._updateViewBox, this);
-      this._updateViewBox();
+      window.requestAnimationFrame(() => this._updateViewBox());
       if (this.getPan()) {
         this._applyPan(true);
       }
@@ -152,6 +157,12 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
           house.remove();
         }
       }
+
+      // make sure that the initial setup viewBox changes are not animated
+      setTimeout(() => {
+        this._ready = true;
+        this._center();
+      }, 2000);
     },
 
     _applyCenterX(value) {
@@ -437,7 +448,16 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       this._element.setAttribute('view-box', `${column} ${row} ${width} ${height}`);
     },
 
-    _updateDimensions() {
+    _updateDimensions(ev) {
+      if (ev) {
+        const entry = ev.getData();
+        if (entry.contentBoxSize) {
+          if (entry.target instanceof SVGElement) {
+            this._center(entry.contentRect.width, entry.contentRect.height);
+            return;
+          }
+        }
+      }
       const isFullscreen = this.isFullscreen();
       if (isFullscreen) {
         const minSize = Math.min(screen.availHeight, screen.availWidth);
@@ -474,7 +494,6 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
           this.resetSpacing();
         }
       }
-
       window.requestAnimationFrame(() => this._updateCellSize());
     },
 
@@ -490,26 +509,59 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
           const width = totalOuterPadding + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2]-1) * this.getSpacing() : 0);
           const height = totalOuterPadding + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3]-1) * this.getSpacing() : 0);
 
-          // center only vertically because width is always fully used
-          const bbox = this.SVG.getBBox();
-          const heightDiff = height - totalOuterPadding - bbox.y - bbox.height;
-          if (heightDiff > 0) {
-            this.SVG.setAttribute('transform', `translate(0, ${heightDiff/2})`);
-          } else {
-            this.SVG.removeAttribute('transform');
-          }
-
-          if (typeof window.d3 === 'object') {
+          if (this._ready && typeof window.d3 === 'object') {
             const svg = d3.select(this._element).select('svg');
             svg.transition()
               .duration(500)
               .attr('viewBox', `${x} ${y} ${width} ${height}`);
+            setTimeout(() => this._center(), 510);
           } else {
             this.SVG.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
+            setTimeout(() => this._center(), 10);
           }
         }
       } else {
         this.SVG.removeAttribute('viewBox');
+      }
+    },
+
+    _center(width, height) {
+      if (this.SVG && this._ready) {
+        const bbox = this.SVG.getBBox();
+        if (this._lastBBox && (this._lastBBox.width === bbox.width && this._lastBBox.height === bbox.height)) {
+          // no change
+          return;
+        }
+        if (!width || !height) {
+          const parts = this.SVG.hasAttribute('viewBox') ? this.SVG.getAttribute('viewBox').split(' ').map(v => parseInt(v)) : [];
+          if (parts.length === 4) {
+            width = parts[2];
+            height = parts[3];
+          } else {
+            return;
+          }
+        }
+
+        const totalOuterPadding = this.getOuterPadding() * 2;
+        let visibleColumns = this.getColumns();
+        let visibleRows = this.getRows();
+        const gridViewBox = this.getViewBox();
+        if (gridViewBox) {
+          const gridParts = gridViewBox.split(' ').map(s => parseInt(s));
+          visibleColumns = gridParts[2];
+          visibleRows = gridParts[3];
+        }
+        const visibleWidth = visibleColumns / this.getColumns();
+        const visibleHeight = visibleRows / this.getRows();
+        const heightDiff = height - totalOuterPadding - bbox.height * visibleHeight;
+        const widthDiff = width - totalOuterPadding - bbox.width * visibleWidth;
+        if (heightDiff > 0 || widthDiff > 0) {
+          this.SVG.setAttribute('transform', `translate(${Math.max(0, widthDiff / 2)}, ${Math.max(0, heightDiff / 2)})`);
+        } else {
+          this.SVG.removeAttribute('transform');
+        }
+        this._lastBBox = bbox;
+        window.requestAnimationFrame(() => this._center());
       }
     },
 
@@ -534,7 +586,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       this.setCellWidth(cellWidth);
       this.setCellHeight(cellHeight);
       if (changed) {
-        this._updateViewBox();
+        window.requestAnimationFrame(() => {
+          this._updateViewBox();
+        });
       }
     },
 
