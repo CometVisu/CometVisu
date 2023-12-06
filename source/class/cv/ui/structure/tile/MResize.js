@@ -29,14 +29,9 @@ qx.Mixin.define('cv.ui.structure.tile.MResize', {
   */
   construct() {
     this._observer = new ResizeObserver((entries, observer) => {
-      const element = this.getResizeTarget();
-      entries.some(entry => {
-        if (entry.target === element) {
-          this.fireDataEvent('resized', entry);
-          return true;
-        }
-        return false;
-      });
+      for (const entry of entries) {
+        this.fireDataEvent('resized', entry);
+      }
     });
   },
 

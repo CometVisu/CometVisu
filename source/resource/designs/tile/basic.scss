@@ -2170,6 +2170,7 @@ body {
 
         > .pagination {
             position: absolute;
+            z-index: 2;
 
             &.left {
                 width: 32px;
