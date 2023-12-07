@@ -116,6 +116,7 @@
                 <tr key="Kid">Kind</tr>
                 <tr key="Calls">Anrufe</tr>
                 <tr key="Outside">Außen</tr>
+                <tr key="Energy">Energie</tr>
             </language>
         </cv-translations>
     </cv-meta>
@@ -233,7 +234,7 @@
     <main>
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
             <cv-group open="true">
-                <cv-energy size="1x1" columns="3" view-box="0 0 3 3">
+                <cv-energy size="1x1" columns="3" view-box="0 0 3 3" mobile-size="2x1" title="tr('Energy')" allow-fullscreen="true" header="auto-hide" >
                     <cv-address slot="pv-power" transform="DPT:12.001" mode="read">1/4/27</cv-address>
                     <cv-address slot="battery-power" transform="DPT:13.001" mode="read">1/4/42</cv-address>
                     <cv-address slot="battery-other" transform="DPT:5.001" mode="read" target="progress">1/4/43</cv-address>
@@ -242,7 +243,7 @@
                     <cv-address slot="charger-power" transform="DPT:12.001" mode="read">1/4/46</cv-address>
                     <cv-address slot="heatpump-power" transform="DPT:12.001" mode="read">1/4/45</cv-address>
                 </cv-energy>
-                <cv-widget-pair allow-column-layout="true">
+                <cv-widget-pair>
                     <cv-status-chart format="%d" style="color: #f2495c" y-format="%d W" series="hour" x-format="%H:%M"  >
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
                         <cv-address slot="liveUpdateAddress" transform="DPT:12.001" mode="read" target="demo://generator@grid-current-import">1/4/25</cv-address>
@@ -257,11 +258,6 @@
                         <span slot="unit">kWh</span>
                     </cv-info>
                 </cv-widget-pair>
-                <cv-info format="%.1f W">
-                    <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/27</cv-address>
-                    <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="3000"/>
-                    <span slot="label" tr="true">PV production</span>
-                </cv-info>
                 <cv-info format="%.1f kWh">
                     <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/28</cv-address>
                     <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="25"/>
