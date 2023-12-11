@@ -34,6 +34,9 @@ qx.Class.define('cv.io.iobroker.Client', {
     this.initialAddresses = [];
     this._type = type;
     this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
+    this.__subscribedAddresses = [];
+    this.__pendingRequests = [];
+    this.__credentials = { username: null, password: null };
   },
 
   /*
@@ -62,11 +65,11 @@ qx.Class.define('cv.io.iobroker.Client', {
   */
   members: {
     _type: null,
-    __subscribedAddresses: [],
+    __subscribedAddresses: null,
     __nextMessageId: 1,
     __connection: null,
-    __pendingRequests: [],
-    __credentials: { username: null, password: null },
+    __pendingRequests: null,
+    __credentials: null,
 
     /**
      * Returns the current backend configuration
@@ -133,8 +136,9 @@ qx.Class.define('cv.io.iobroker.Client', {
     },
 
     async __subscribeStates() {
-      if ((!this.isConnected()) || (!this.__subscribedAddresses.length))
-        return;
+      if ((!this.isConnected()) || (!this.__subscribedAddresses.length)) {
+        return; 
+      }
 
       await this.__serverSubscribeStates(this.__subscribedAddresses);
 
@@ -142,8 +146,9 @@ qx.Class.define('cv.io.iobroker.Client', {
       let newStates = {};
 
       for (let id in states[1]) {
-        if (states[1][id])
-          newStates[id] = states[1][id].val;
+        if (states[1][id]) {
+          newStates[id] = states[1][id].val; 
+        }
       }
 
       this.update(newStates);
@@ -152,8 +157,8 @@ qx.Class.define('cv.io.iobroker.Client', {
     __send_message(name, ...args) {
       let request = {
         id: this.__nextMessageId++,
-        resolve: null,
-      }
+        resolve: null
+      };
 
       const promise = new Promise((resolve, reject) => {
         request.resolve = resolve;
@@ -170,7 +175,7 @@ qx.Class.define('cv.io.iobroker.Client', {
       /**
        * @param param
        */
-      onFailure = (param) => {
+      const onFailure = param => {
         this.setConnected(false);
         let n = cv.core.notifications.Router.getInstance();
         n.dispatchMessage(
@@ -185,52 +190,56 @@ qx.Class.define('cv.io.iobroker.Client', {
 
           'popup'
         );
-      }
+      };
 
       try {
         let queryString = `sid=${Date.now()}`;
 
-        if (this.__credentials.username)
-          queryString += `&user=${this.__credentials.username}`;
+        if (this.__credentials.username) {
+          queryString += `&user=${this.__credentials.username}`; 
+        }
 
-        if (this.__credentials.password)
-          queryString += `&pass=${this.__credentials.password}`;
+        if (this.__credentials.password) {
+          queryString += `&pass=${this.__credentials.password}`; 
+        }
 
         // FIXME: Implement proper query param patching of user/pass
         this.__connection = new window.WebSocket(`${this._backendUrl.protocol}//${this._backendUrl.host}${this._backendUrl.pathname}?${queryString}`);
 
-        this.__connection.onerror = (event) => {  
-          this.debug("SOCK ERROR", event);
+        this.__connection.onerror = event => {  
+          this.debug('SOCK ERROR', event);
         };
-        this.__connection.onclose = (event) => {
-          this.debug("SOCK CLOSE", event);
+        this.__connection.onclose = event => {
+          this.debug('SOCK CLOSE', event);
           this.setConnected(false);
           this.__connection = null;
         };
-        this.__connection.onmessage = async (event) => {
+        this.__connection.onmessage = async event => {
           const [type, id, name, args] = JSON.parse(event.data);
 
           switch (type) {
             case 0: /* MESSAGE */
               switch (name) {
-                case "___ready___":
+                case '___ready___':
                   this.setConnected(true);
 
-                  if (callback)
-                    callback.call(context);
+                  if (callback) {
+                    callback.call(context); 
+                  }
                   break;
-                case "reauthenticate":
+                case 'reauthenticate':
                   onFailure({
-                    errorMessage: "Authentication failed!",
+                    errorMessage: 'Authentication failed!',
                     errorCode: 'login -> WebSocket(' + this._backendUrl + ')'
                   });          
                   break;
-                case "stateChange":
-                  if (args[1].ts === args[1].lc)
-                    this.update({ [args[0]]: args[1].val });
+                case 'stateChange':
+                  if (args[1].ts === args[1].lc) {
+                    this.update({ [args[0]]: args[1].val }); 
+                  }
                   break;
                 default:
-                  this.debug("Unknown message name:", name);
+                  this.debug('Unknown message name:', name);
                   break;
               }
               break;
@@ -238,22 +247,25 @@ qx.Class.define('cv.io.iobroker.Client', {
               this.__connection.send(JSON.stringify([2]));
               break;
             case 3: /* CALLBACK */
+            {
               const requestIdx = this.__pendingRequests.findIndex(entry => entry.id === id);
 
-              if (requestIdx < 0)
-                break;
+              if (requestIdx < 0) {
+                break; 
+              }
 
               const request = this.__pendingRequests[requestIdx];
 
               this.__pendingRequests.splice(requestIdx, 1);
               request.resolve(args);
               break;
+            }
             default:
-              this.debug("UNKNOWN SOCK MSG", event, type, id, name, args);
+              this.debug('UNKNOWN SOCK MSG', event, type, id, name, args);
               break;
           }
         };
-      } catch(error) {
+      } catch (error) {
         onFailure({
           errorMessage: error.toString(),
           errorCode: 'login -> WebSocket(' + this._backendUrl + ')'
@@ -333,8 +345,9 @@ qx.Class.define('cv.io.iobroker.Client', {
      *
      */
     write(address, value, options) {
-      if (!this.isConnected())
-        return;
+      if (!this.isConnected()) {
+        return; 
+      }
   
       this.__serverSetState(address, { val: value, ack: false });
     },
@@ -351,7 +364,7 @@ qx.Class.define('cv.io.iobroker.Client', {
      * @param full
      */
     restart(full) {
-      this.debug("FIXME: RESTART", full); // This needs proper retry logic
+      this.debug('FIXME: RESTART', full); // This needs proper retry logic
       this.__initiateConnection();
     },
 
