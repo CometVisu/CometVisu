@@ -106,7 +106,9 @@ qx.Class.define('cv.io.BackendConnections', {
           break;
 
         case 'iobroker':
-          return this.addBackendClient('main', 'iobroker', backendIoBrokerUrl, 'server');
+          defaultType = 'iobroker';
+          defaultClient = this.addBackendClient(defaultName, defaultType, backendIoBrokerUrl, 'server');
+          break;
 
         case 'openhab':
         case 'openhab2':
@@ -130,6 +132,12 @@ qx.Class.define('cv.io.BackendConnections', {
           case 'mqtt':
             if (defaultType !== 'mqtt') {
               this.addBackendClient('mqtt', 'mqtt', backendMQTTUrl, 'server');
+            }
+            break;
+
+          case 'iobroker':
+            if (defaultType !== 'iobroker') {
+              this.addBackendClient('iobroker', 'iobroker', backendIoBrokerUrl, 'server');
             }
             break;
 
