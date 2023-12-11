@@ -92,10 +92,10 @@ Verbindung zu ioBroker
 
 .. code:: xml
 
-    <cv-backend type="iobroker" uri="ws://iobroker-host:8081"/>
+    <cv-backend type="iobroker" uri="ws://iobroker-host:8084"/>
 
-Die ioBroker Instanz muss Websocket Verbindungen unterstützen, damit die CometVisu damit kommunizieren kann.
-Sofern die ioBroker Instanz Zugangsdaten benötigt können diese über die ``username`` und ``password`` Attribute angegeben werden.
+Die ioBroker Instanz muss Websocket Verbindungen (Web socket Adapter) unterstützen, damit die CometVisu damit kommunizieren kann.
+Sofern die ioBroker Instanz Zugangsdaten benötigt, können diese über die ``username`` und ``password`` Attribute angegeben werden.
 
 
 .. _tile-backend-system:

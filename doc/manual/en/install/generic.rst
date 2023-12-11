@@ -64,8 +64,8 @@ that can be contacted with WebSockets.
 ioBroker
 ~~~~~~~~
 
-No dedicated adapter has to be installed in ioBroker. The websocket port of
-the Admin adapter will be used for data exchange.
+The installation of the "Web socket" adapter is required. This adapter will
+be used for data exchange.
 
 Backend configuration
 ~~~~~~~~~~~~~~~~~~~~~

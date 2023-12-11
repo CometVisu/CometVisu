@@ -65,8 +65,8 @@ der über WebSocket ansprechbar ist.
 ioBroker
 ~~~~~~~~
 
-Es ist kein spezieller Adapter in ioBroker nötig. Für den Datenaustausch wird der 
-Websocket Port des Admin Adapters verwendet.
+Die Installation des "Web socket" Adapters in ioBroker ist nötig. Dieser Adapter
+wird der für den Datenaustausch verwendet.
 
 Backend konfigurieren
 ~~~~~~~~~~~~~~~~~~~~~
