@@ -251,7 +251,9 @@ qx.Class.define('cv.data.Model', {
       }
       const list = this.__addressList[backendName];
       if (address in list) {
-        list[address].push(id);
+        if (!list[address].includes(id)) {
+          list[address].push(id);
+        }
       } else {
         list[address] = [id];
       }

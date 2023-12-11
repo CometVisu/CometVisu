@@ -170,7 +170,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         // initialize internal class instance that implements cv.io.listmodel.IListModel
         const Clazz = cv.io.listmodel.Registry.get(model.getAttribute('class'));
         if (Clazz) {
-          const modelInstance = new Clazz();
+          const modelInstance = this._modelInstance = new Clazz();
+          modelInstance.addListener('refresh', () => this.refresh());
           if (model.hasAttribute('parameters')) {
             const props = {};
             for (let entry of model.getAttribute('parameters').split(',')) {
@@ -230,6 +231,43 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           this.setRefresh(parseInt(element.getAttribute('refresh')));
         }
       }
+
+      this._element.addEventListener('click', ev => {
+        let templateRoot = ev.target;
+        let data = {};
+        const collectData = elem => {
+          if (elem) {
+            for (let i = 0; i < elem.attributes.length; i++) {
+              let attrib = elem.attributes[i];
+              if (attrib.name.startsWith('data-')) {
+                data[attrib.name.substring(5)] = attrib.value;
+              }
+            }
+          }
+        };
+        collectData(templateRoot);
+        let level = 0;
+        let model = templateRoot.$$model;
+        while (templateRoot && (!model || !data.action) && level <= 5) {
+          templateRoot = templateRoot.parentElement;
+          if (templateRoot === this._element) {
+            break;
+          }
+          if (templateRoot) {
+            if (!model && templateRoot.$$model) {
+              model = templateRoot.$$model;
+            }
+            if (!data.action && templateRoot.hasAttribute('data-action')) {
+              collectData(templateRoot);
+            }
+          }
+          level++;
+        }
+
+        if (data.action && this._modelInstance && this._modelInstance.handleEvent(ev, data, model)) {
+          ev.stopPropagation();
+        }
+      });
     },
 
     onStateUpdate(ev) {
@@ -300,10 +338,12 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
 
+          // remove old entries
+          while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
+            target.removeChild(target.firstElementChild);
+          }
+
           if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
-            while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
-              target.removeChild(target.firstElementChild);
-            }
             const emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);
             emptyModel.classList.add('empty-model');
             target.appendChild(emptyModel);
@@ -313,6 +353,14 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           const emptyElem = target.querySelector(':scope > .empty-model');
           if (emptyElem) {
             emptyElem.remove();
+          }
+
+          let child;
+          for (let i = target.children.length-1; i >=0; i--) {
+            child = target.children[i];
+            if (child.hasAttribute('data-row') && parseInt(child.getAttribute('data-row')) >= newModel.length) {
+              target.removeChild(child);
+            }
           }
         }
         const itemTemplate = document.createElement('template');
@@ -348,7 +396,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           return '';
         };
         newModel.forEach((entry, i) => {
-          const elem = target.querySelector(`:scope > [data-row="${i}"]`);
+          let elem = target.querySelector(`:scope > [data-row="${i}"]`);
           const html = template.innerHTML.replaceAll(/\${([^}]+)}/g, (match, content) => {
             if (content === 'index') {
               return '' + i;
@@ -384,17 +432,23 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             // update existing
             elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;
             elem.setAttribute('data-row', '' + i);
+            this._initElement(elem, entry);
           } else {
             // append new child
             itemTemplate.content.firstElementChild.setAttribute('data-row', '' + i);
-
-            target.appendChild(itemTemplate.content.cloneNode(true));
+            elem = itemTemplate.content.cloneNode(true);
+            this._initElement(elem.firstElementChild, entry);
+            target.appendChild(elem);
           }
         });
         this._model = newModel;
       } else {
         this.error('model must be an array', newModel);
       }
+    },
+
+    _initElement(elem, entry) {
+      elem.$$model = entry;
     }
   },
 

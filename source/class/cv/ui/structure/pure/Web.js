@@ -73,6 +73,9 @@ qx.Class.define('cv.ui.structure.pure.Web', {
     // overridden
     _getInnerDomString() {
       let webStyle = this.getStyle();
+      if (webStyle !== '' && webStyle.startsWith('style="')) {
+        webStyle = webStyle.substring(7, webStyle.length-1);
+      }
       if (this.getWidth()) {
         webStyle += 'width:' + this.getWidth() + ';';
       } else {
@@ -83,7 +86,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
         webStyle += 'height:' + this.getHeight() + ';';
       }
       if (this.getFrameborder() === false) {
-        webStyle += 'border: 0px ;';
+        webStyle += 'border: 0px;';
       }
       if (this.getBackground()) {
         webStyle += 'background-color:' + this.getBackground() + ';';
@@ -114,7 +117,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
         const iframe = this.getDomElement().querySelector('iframe');
         this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
-        cv.io.BackendConnections.getClient().write(address, cv.Transform.encode(addr, 0));
+        cv.io.BackendConnections.getClient(addr.backendType).write(address, cv.Transform.encode(addr, 0));
       }
     }
   }

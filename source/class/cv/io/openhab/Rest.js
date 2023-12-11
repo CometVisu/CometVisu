@@ -77,6 +77,10 @@ qx.Class.define('cv.io.openhab.Rest', {
       return {};
     },
 
+    getBackendUrl() {
+      return this._backendUrl;
+    },
+
     getType() {
       return this._type;
     },
@@ -154,16 +158,18 @@ qx.Class.define('cv.io.openhab.Rest', {
       return true;
     },
 
-    processChartsData(response) {
+    processChartsData(response, config) {
       if (response && response.data) {
         const data = response.data;
         const newRrd = [];
+        const scaling = config && Object.prototype.hasOwnProperty.call(config, 'scaling') ? config.scaling : 1.0;
+        const offset = config && Object.prototype.hasOwnProperty.call(config, 'offset') && Number.isFinite(config.offset) ? config.offset * 1000 : 0;
         let lastValue;
         let value;
         for (let j = 0, l = data.length; j < l; j++) {
-          value = parseFloat(data[j].state);
+          value = parseFloat(data[j].state) * scaling;
           if (value !== lastValue) {
-            newRrd.push([data[j].time, value]);
+            newRrd.push([data[j].time + offset, value]);
           }
           lastValue = value;
         }
@@ -225,12 +231,13 @@ qx.Class.define('cv.io.openhab.Rest', {
     subscribe(addresses, filters) {
       // send first request to get all states once
       const req = this.createAuthorizedRequest('items?fields=name,state,stateDescription,members,type,label&recursive=true');
-
+      this.setDataReceived(false);
       req.addListener('success', e => {
         const req = e.getTarget();
 
         const res = req.getResponse();
         const update = {};
+        const model = cv.data.Model.getInstance();
         res.forEach(entry => {
           if (entry.members && Array.isArray(entry.members)) {
             // this is a group
@@ -245,6 +252,8 @@ qx.Class.define('cv.io.openhab.Rest', {
                 name: obj.name,
                 active: false
               };
+              // register member addresses in model
+              model.addAddress(obj.name, null, this.getName());
 
               if (this.__isActive(obj.type, obj.state)) {
                 active++;
@@ -272,6 +281,7 @@ qx.Class.define('cv.io.openhab.Rest', {
         }, this);
         this.update(update);
         this.__subscribedAddresses = addresses;
+        this.setDataReceived(true);
       });
       // Send request
       req.send();
@@ -391,6 +401,7 @@ qx.Class.define('cv.io.openhab.Rest', {
         // just saving the credentials for later use as we are using basic authentication
         this.__token = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
       }
+      this.setDataReceived(false);
       // no login needed we just do a request to the if the backend is reachable
       const req = this.createAuthorizedRequest();
       req.addListener('success', e => {

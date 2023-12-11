@@ -28,6 +28,16 @@ qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
   type: 'abstract',
 
   /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct(type) {
+    super();
+    this._type = type;
+  },
+
+  /*
   ******************************************************
     PROPERTIES
   ******************************************************
@@ -56,5 +66,14 @@ qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
   */
   events: {
     close: 'qx.event.type.Event'
+  },
+
+  /*
+  ***********************************************
+    MEMBERS
+  ***********************************************
+  */
+  members: {
+    _type: null
   }
 });

@@ -413,49 +413,115 @@ paths:
         '406':
           description: wrong measurement parameter
   /proxy:
+    summary: Can be used as a proxy to avoid CORS errors e.g. when loading images that need authorization requests
+    x-exegesis-controller: ProxyController
     get:
       tags:
         - requestproxy
-      parameters:
-        - name: url
-          in: query
-          schema:
-            type: string
-        - name: auth-type
-          in: query
-          schema:
-            type: string
-            enum: ['basic', 'bearer']
-        - name: config-section
-          in: query
-          schema:
-            type: string
-        - name: self-signed
-          in: query
-          schema:
-            type: boolean
-      summary: Can be used as a proxy to avoid CORS errors e.g. when loading images that need authorization requests
       operationId: getProxied
-      x-exegesis-controller: ProxyController
+      parameters:
+        - $ref: '#/components/parameters/url'
+        - $ref: '#/components/parameters/auth-type'
+        - $ref: '#/components/parameters/config-section'
+        - $ref: '#/components/parameters/self-signed'
       responses:
         200:
-          description: successful operation
-          content:
-            application/*:
-              schema:
-                type: string
-                format: binary
-            image/*:
-              schema:
-                type: string
-                format: binary
-        '401':
+          $ref: '#/components/responses/proxy'
+        401:
           description: Unauthorized
-        '403':
+        403:
           description: Forbidden
-        '404':
+        404:
+          description: Not found
+    post:
+      tags:
+        - requestproxy
+      operationId: postProxied
+      parameters:
+        - $ref: '#/components/parameters/url'
+        - $ref: '#/components/parameters/auth-type'
+        - $ref: '#/components/parameters/config-section'
+        - $ref: '#/components/parameters/self-signed'
+      responses:
+        200:
+          $ref: '#/components/responses/proxy'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not found
+    put:
+      tags:
+        - requestproxy
+      operationId: putProxied
+      parameters:
+        - $ref: '#/components/parameters/url'
+        - $ref: '#/components/parameters/auth-type'
+        - $ref: '#/components/parameters/config-section'
+        - $ref: '#/components/parameters/self-signed'
+      responses:
+        200:
+          $ref: '#/components/responses/proxy'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
+          description: Not found
+    delete:
+      tags:
+        - requestproxy
+      operationId: deleteProxied
+      parameters:
+        - $ref: '#/components/parameters/url'
+        - $ref: '#/components/parameters/auth-type'
+        - $ref: '#/components/parameters/config-section'
+        - $ref: '#/components/parameters/self-signed'
+      responses:
+        200:
+          $ref: '#/components/responses/proxy'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        404:
           description: Not found
 components:
+  parameters:
+    url:
+      name: url
+      in: query
+      schema:
+        type: string
+    auth-type:
+      name: auth-type
+      in: query
+      schema:
+        type: string
+        enum: [ 'basic', 'bearer' ]
+    config-section:
+      name: config-section
+      in: query
+      schema:
+        type: string
+    self-signed:
+      name: self-signed
+      in: query
+      schema:
+        type: boolean
+  responses:
+    proxy:
+      description: successful operation
+      content:
+        application/*:
+          schema:
+            type: string
+            format: binary
+        image/*:
+          schema:
+            type: string
+            format: binary
   schemas:
     DataProviderResponse:
       type: array

@@ -232,9 +232,9 @@ qx.Class.define('cv.ui.Popup', {
 
             if (actionButton) {
               actionButton.$$handler &&
-                actionButton.$$handler.addListener('close', () => {
-                  this.close();
-                });
+              actionButton.$$handler.addListener('close', () => {
+                this.close();
+              });
               target.appendChild(actionButton);
             }
           }, this);

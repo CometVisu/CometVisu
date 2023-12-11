@@ -28,7 +28,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   include: [
     cv.ui.structure.tile.MVisibility,
     cv.ui.structure.tile.MRefresh,
-    cv.ui.structure.tile.MResize
+    cv.ui.structure.tile.MResize,
+    cv.ui.structure.tile.MFullscreen
   ],
 
   /*
@@ -94,13 +95,23 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     currentSeries: {
       check: ['hour', 'day', 'week', 'month', 'year'],
       init: 'day',
-      apply: '_refreshData'
+      apply: '_applyCurrentSeries'
     },
 
     currentPeriod: {
       check: 'Number',
       init: 0,
-      apply: '_refreshData'
+      apply: '__updateTimeRange'
+    },
+
+    startTime: {
+      check: 'Number',
+      init: 0
+    },
+
+    endTime: {
+      check: 'Number',
+      init: 0
     }
   },
 
@@ -125,6 +136,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __showTooltip: false,
     __debouncedOnResize: null,
     __resizeTimeout: null,
+    __startTs: null,
+    __endTs: null,
 
     /**
     * @type {d3.Selection}
@@ -149,16 +162,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _chartConf: null,
 
     async _init() {
-      this._checkIfWidget();
+      this._checkEnvironment();
 
       this._initializing = true;
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
-      if (this.isVisible()) {
-        this._loadData();
-      }
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
-      const chartId = 'chart-' + this._id;
+
       element.setAttribute('data-chart-id', this._id.toString());
       const inBackground = this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true';
 
@@ -258,52 +268,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this.appendToHeader(button);
       }
       if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
-        // add fullscreen button + address
-        const button = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
-        button.setAttribute('data-value', '0');
-
-        const popupAddress = `state:${chartId}-popup`;
-
-        button.addEventListener('click', () => {
-          cv.data.Model.getInstance().onUpdate(popupAddress, button.getAttribute('data-value') === '0' ? '1' : '0', 'system');
-        });
-
-        this.appendToHeader(button, 'right');
-
-        // address
-        const tileAddress = document.createElement('cv-address');
-        tileAddress.setAttribute('mode', 'read');
-        tileAddress.setAttribute('target', 'fullscreen-popup');
-        tileAddress.setAttribute('backend', 'system');
-        tileAddress.setAttribute('send-mode', 'always');
-        tileAddress.textContent = popupAddress;
-        element.parentElement.appendChild(tileAddress);
-
-        // listen to parent tile of popup is opened or not
-        let parent = element;
-        while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
-          parent = parent.parentElement;
-        }
-        if (parent) {
-          const tileWidget = parent.getInstance();
-          tileWidget.addListener('closed', () => cv.data.Model.getInstance().onUpdate(popupAddress, '0', 'system'));
-
-          // because we added a read address to the tile after is has been initialized we need to init the listener here manually
-          parent.addEventListener('stateUpdate', ev => {
-            tileWidget.onStateUpdate(ev);
-            // cancel event here
-            ev.stopPropagation();
-          });
+        this._initFullscreenSwitch();
 
         // only on mobile we need this, because of height: auto
-          if (document.body.classList.contains('mobile')) {
-            tileWidget.addListener('fullscreenChanged', () => {
-              this._onRendered();
-            });
-          }
+        if (document.body.classList.contains('mobile')) {
+          this.addListener('changeFullscreen', () => this._onRendered());
         }
       }
-
 
       if (element.hasAttribute('refresh')) {
         this.setRefresh(parseInt(element.getAttribute('refresh')));
@@ -406,7 +377,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this.__config = {
         x: d => d.time, // given d in data, returns the (temporal) x-value
         y: d => +d.value, // given d in data, returns the (quantitative) y-value
-        z: d => d.src, // given d in data, returns the (categorical) z-value
+        z: d => d.key, // given d in data, returns the (categorical) z-value
         color: d => d && this._dataSetConfigs[d].color, // stroke color of line, as a constant or a function of *z*
         title: d => cv.util.String.sprintf(format, d.value), // given d in data, returns the title text
         curve: d3.curveLinear, // method of interpolation between points
@@ -488,6 +459,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     refresh() {
       this._loaded = false;
+      this.__updateTimeRange();
       this._loadData();
     },
 
@@ -502,11 +474,90 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
       }
 
-      if (!this._initializing) {
+      if (!this._initializing && this.getStartTime() > 0 && this.getEndTime() > 0) {
         this._loaded = false;
         this._loadData();
       }
       this.__updateTitle();
+    },
+
+    _applyCurrentSeries(series) {
+      const currentSelection = this.getHeader('.popup.series > cv-option[selected="selected"]');
+      let alreadySelected = false;
+      if (currentSelection) {
+        if (currentSelection.getAttribute('key') !== series) {
+          currentSelection.removeAttribute('selected');
+        } else {
+          alreadySelected = true;
+        }
+      }
+      if (!alreadySelected) {
+        const newSelection = this.getHeader(`.popup.series > cv-option[key="${series}"]`);
+        if (newSelection) {
+          newSelection.setAttribute('selected', 'selected');
+        }
+      }
+      this.__updateTimeRange();
+    },
+
+    __updateTimeRange() {
+      const series = this.getCurrentSeries();
+
+      const currentPeriod = this.getCurrentPeriod();
+      let end = new Date();
+      let periodStart = new Date();
+      let interval = 0;
+      switch (series) {
+        case 'hour':
+          interval = 60 * 60;
+          periodStart.setHours(periodStart.getHours() - currentPeriod, 0, 0, 0);
+          end.setHours(periodStart.getHours() + 1, 0, 0, 0);
+          break;
+
+        case 'day':
+          interval = 24 * 60 * 60;
+          periodStart.setDate(periodStart.getDate() - currentPeriod);
+          periodStart.setHours(0, 0, 0, 0);
+          end.setDate(periodStart.getDate() + 1);
+          end.setHours(0, 0, 0, 0);
+          break;
+
+        case 'week':
+          interval = 7 * 24 * 60 * 60;
+          periodStart.setDate(periodStart.getDate() - (periodStart.getDay() || 7) + 1 - 7 * currentPeriod);
+          periodStart.setHours(0, 0, 0, 0);
+          end.setDate(periodStart.getDate() + 7);
+          end.setHours(0, 0, 0, 0);
+          break;
+
+        case 'month':
+          interval = 30 * 24 * 60 * 60;
+          periodStart.setMonth(periodStart.getMonth() - currentPeriod);
+          periodStart.setDate(1);
+          periodStart.setHours(0, 0, 0, 0);
+          end.setMonth(periodStart.getMonth() + 1, 1);
+          end.setHours(0, 0, 0, 0);
+          break;
+
+        case 'year':
+          interval = 365 * 24 * 60 * 60;
+          periodStart.setFullYear(periodStart.getFullYear() - currentPeriod);
+          periodStart.setMonth(0, 1);
+          periodStart.setHours(0, 0, 0, 0);
+          end.setFullYear(periodStart.getFullYear() + 1);
+          end.setMonth(periodStart.getMonth() + 1, 1);
+          end.setHours(0, 0, 0, 0);
+          break;
+      }
+      let startTs = Math.round(periodStart.getTime()/1000);
+      let endTs = Math.round(end.getTime()/1000);
+      if (this._element.getAttribute('background') === 'true' || !this._element.hasAttribute('selection')) {
+        // when have no navigation, we can just use the old relative time range now - interval
+        startTs = endTs -  interval;
+      }
+      this.setStartTime(startTs);
+      this.setEndTime(endTs);
+      this._refreshData();
     },
 
     _loadData() {
@@ -526,37 +577,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       let url;
       const dataSets = this._element.querySelectorAll(':scope > dataset');
-      const series = this.getCurrentSeries();
-
-      const currentPeriod = this.getCurrentPeriod();
-      let start = 'end-1' + series;
-      let end = 'now';
-
-      let interval = 0;
-      switch (series) {
-        case 'hour':
-          interval = 60 * 60 * 1000;
-          break;
-
-        case 'day':
-          interval = 24 * 60 * 60 * 1000;
-          break;
-
-        case 'week':
-          interval = 7 * 24 * 60 * 60 * 1000;
-          break;
-
-        case 'month':
-          interval = 30 * 24 * 60 * 60 * 1000;
-          break;
-
-        case 'year':
-          interval = 365 * 24 * 60 * 60 * 1000;
-          break;
-      }
-      if (currentPeriod > 0 && interval > 0) {
-        end = Math.round((Date.now() - currentPeriod * interval) / 1000);
-      }
 
       const promises = [];
       if (!this._dataSetConfigs) {
@@ -596,18 +616,55 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             }
             ts[name] = value;
           }
-          this._dataSetConfigs[ts.src] = ts;
+          const type = ts.src.split('://')[0].toLowerCase();
+          ts.type = type;
+          let key = ts.src;
+          switch (type) {
+            case 'flux':
+              ts.source = new cv.io.timeseries.FluxSource(ts.src);
+              if (ts.source.isInline()) {
+                const fluxQuery = dataSet.textContent.trim();
+                key = cv.ConfigCache.hashCode(fluxQuery).toString();
+                ts.source.setQueryTemplate(fluxQuery);
+              }
+              break;
+
+            case 'openhab':
+              ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src);
+              break;
+
+            case 'rrd':
+              ts.source = new cv.io.timeseries.RRDSource(ts.src);
+              break;
+
+            case 'demo':
+              ts.source = new cv.io.timeseries.DemoSource(ts.src);
+              break;
+
+            default:
+              this.error('unknown chart data source type ' + type);
+              break;
+          }
+          ts.key = key;
+          this._dataSetConfigs[key] = ts;
         }
       }
 
       for (const src in this._dataSetConfigs) {
-        url = client.getResourcePath('charts', {
-          src: src,
-          start: start,
-          end: end
-        });
-
         const ts = this._dataSetConfigs[src];
+        let proxy = false;
+        let options = {ttl: this.getRefresh()};
+        if (ts.source) {
+          const config = ts.source.getRequestConfig(
+            this.getStartTime(),
+            this.getEndTime(),
+            this.getCurrentSeries(),
+            this.getCurrentPeriod()
+          );
+          url = config.url;
+          proxy = config.proxy;
+          options = Object.assign(options, config.options);
+        }
 
         if (!url) {
           continue;
@@ -615,11 +672,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
         this.debug('loading', url);
         promises.push(
-          cv.io.Fetch.cachedFetch(url, {ttl: this.getRefresh()}, false, client)
+          cv.io.Fetch.cachedFetch(url, options, proxy, client)
             .then(data => {
               this.debug('successfully loaded', url);
-              if (client.hasCustomChartsDataProcessor(data)) {
-                data = client.processChartsData(data, ts);
+              if (ts.source) {
+                data = ts.source.processResponse(data);
               }
               if (!this._lastRefresh) {
                 this._lastRefresh = Date.now();
@@ -653,6 +710,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           const mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
           for (let [time, value] of tsdata) {
             chartData.push({
+              key: entry.ts.key,
               src: entry.ts.src,
               time: mins > 0
                 ? Math.round(time / mins) * mins : time,
@@ -775,7 +833,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this.error('Chart _onStatusError', ts, key, err);
     },
 
-
     /**
      * Get svg element selection (create if not exists)
      * @param parent d3.selection of the parent this element should be a child of
@@ -831,7 +888,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         } else {
           X.push(data.time);
           Y.push(data.value);
-          Z.push(data.src);
+          Z.push(data.key);
           O.push(data);
           T.push(config.title === undefined ? data.src : config.title === null ? null : config.title(data));
 
@@ -854,18 +911,31 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Compute default domains, and unique the z-domain.
       let xDomain = d3.extent(X);
       let minVal = 0;
-      if (this._element.hasAttribute('zero-based') && this._element.getAttribute('zero-based') === 'false') {
+      let maxVal = 0;
+      if (this._element.hasAttribute('min')) {
+        const min = parseFloat(this._element.getAttribute('min'));
+        if (!isNaN(min)) {
+          minVal = min;
+        }
+      } else {
         minVal = d3.min(Y);
         if (minVal > 1.0) {
           minVal -= 1;
         }
       }
-      let maxVal = d3.max(Y);
-      if (maxVal > 1.0) {
-        // add some inner chart padding
-        maxVal += 1;
+      if (this._element.hasAttribute('max')) {
+        const max = parseFloat(this._element.getAttribute('max'));
+        if (!isNaN(max)) {
+          maxVal = max;
+        }
       } else {
-        maxVal += 0.1;
+        maxVal = d3.max(Y);
+        if (maxVal > 1.0) {
+          // add some inner chart padding
+          maxVal += 1;
+        } else {
+          maxVal += 0.1;
+        }
       }
       const yDomain = [minVal, maxVal];
       const zDomain = new d3.InternSet(Z);
@@ -961,7 +1031,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         let xBar;
         let xzScale;
 
-        for (const key of zDomain) {
+        for (const key in this._dataSetConfigs) {
           switch (this._dataSetConfigs[key].chartType) {
             case 'line': {
               const idx = I.filter(i => Z[i] === key);
@@ -1103,6 +1173,30 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this.__config = config;
       this._dot = svg.select('g.dot');
 
+      // show zero line in grid for non-zero based charts
+      if (minVal !== 0) {
+        let targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
+        let yValue = 0.0;
+        let data = [0, X.length-1];
+        let lineElem = targetContainer.select('.zero-line');
+        if (lineElem.empty()) {
+          lineElem = targetContainer.append('line')
+            .attr('class', 'zero-line')
+            .attr('stroke', 'currentColor')
+            .attr('stroke-opacity', '15%');
+        }
+        if (X.length > 0) {
+          const x1 = this._chartConf.x(X[data[0]]);
+          const x2 = this._chartConf.x(X[X.length - 1]); // always draw until end of chart (not until end of src dataset)
+          const y = this._chartConf.y(yValue);
+          lineElem
+            .attr('x1', x1)
+            .attr('x2', x2)
+            .attr('y1', y)
+            .attr('y2', y);
+        }
+      }
+
       const t = d3.transition()
         .duration(single ? 0 : 500)
         .ease(d3.easeLinear);
@@ -1169,6 +1263,101 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .attr('width', this._chartConf.xz.bandwidth())
           .transition(t)
           .attr('height', d => yMin - this._chartConf.y(Y[d.value]));
+      }
+
+      // add fixed/calculated lines
+      for (const [i, line] of this._element.querySelectorAll(':scope > h-line').entries()) {
+        const src = line.getAttribute('src');
+        let targetContainer = null;
+        let data = null;
+        let yValue = NaN;
+        if (src) {
+          if (this._chartConf.lineGroups.get(src)) {
+            targetContainer = this._chartConf.lineContainer;
+            data = this._chartConf.lineGroups.get(src);
+          } else if (this._chartConf.areaGroups.get(src)) {
+            targetContainer = this._chartConf.areaContainer;
+            data = this._chartConf.areaGroups.get(src);
+          } else if (this._chartConf.barGroups.get(src)) {
+            targetContainer = this._chartConf.barContainer;
+            data = this._chartConf.barGroups.get(src);
+          }
+          if (!data) {
+            this.error('no data found for src ' + src);
+            continue;
+          }
+          switch (line.getAttribute('value')) {
+            case 'avg': {
+              let sum = 0.0;
+              for (const di of data) {
+                sum += Y[di];
+              }
+              yValue = sum / data.length;
+              break;
+            }
+
+            case 'max':
+              yValue = d3.max(Y.filter((v, i) => data.includes(i), d => d));
+              break;
+
+            case 'min':
+              yValue = d3.min(Y.filter((v, i) => data.includes(i), d => d));
+              break;
+
+            default:
+              this.error('unknown value calculation: ' + line.getAttribute('value'));
+              break;
+          }
+        } else {
+          targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
+          yValue = parseFloat(line.getAttribute('value'));
+          data = [0, X.length-1];
+        }
+        if (!targetContainer) {
+          continue;
+        }
+
+        let lineElem = targetContainer.select('.line-' + i);
+        if (isNaN(yValue) && !lineElem.empty()) {
+          // remove line
+          lineElem.remove();
+          if (line.getAttribute('show-value') === 'true') {
+            targetContainer.select('.line-value-' + i).remove();
+          }
+        } else if (!isNaN(yValue)) {
+          const color = line.getAttribute('color') || 'currentColor';
+          if (lineElem.empty()) {
+            lineElem = targetContainer.append('line')
+              .attr('class', 'line-' + i)
+              .attr('stroke', color);
+          }
+          const x1 = this._chartConf.x(X[data[0]]);
+          const x2 = this._chartConf.x(X[X.length -1]); // always draw until end of chart (not until end of src dataset)
+          const y = this._chartConf.y(yValue);
+          lineElem
+            .attr('x1', x1)
+            .attr('x2', x2)
+            .attr('y1', y)
+            .attr('y2', y);
+
+          if (line.getAttribute('show-value') === 'true') {
+            const format = line.hasAttribute('format') ? line.getAttribute('format')
+              : (this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s');
+            let valueElem = targetContainer.select('.line-value-' + i);
+            if (valueElem.empty()) {
+              valueElem = targetContainer.append('text')
+                .attr('class', 'line-value-' + i)
+                .attr('fill', line.getAttribute('value-color') || color)
+                .attr('font-size', '10')
+                .attr('text-anchor', 'start');
+            }
+            // show value on right side of the chart
+            valueElem
+              .attr('x', x2 + 2)
+              .attr('y', y + 5)
+              .text(cv.util.String.sprintf(format, yValue));
+          }
+        }
       }
 
       // dot must be added last
@@ -1272,17 +1461,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
     },
 
-    _buttonFactory(icon, classes) {
-      const button = document.createElement('button');
-      button.classList.add(...classes);
-      if (icon) {
-        const i = document.createElement('i');
-        i.classList.add(icon);
-        button.appendChild(i);
-      }
-      return button;
-    },
-
     __updateTitle() {
       if (this._navigationEnabled) {
         let title = this.getHeader('label.title span');
@@ -1381,6 +1559,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
      * @private
      */
     __opacifyColor(color, opacity) {
+      if (color.startsWith('var(')) {
+        color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length-1));
+      }
       if (color.startsWith('rgb(')) {
         return 'rgba(' + color.substring(4, color.length-1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
       } else if (color.startsWith('#') && color.length === 7) {

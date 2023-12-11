@@ -21,6 +21,22 @@ qx.Interface.define('cv.io.IClient', {
       check: 'String',
       nullable: true,
       event: 'changedServer'
+    },
+
+    /**
+     * needed to be able to check if the incoming update is the initial answer or a successing update
+     */
+    dataReceived: {
+      check: 'Boolean',
+      init: false
+    },
+
+    /**
+     * The name this client is registered for
+     */
+    name: {
+      check: 'String',
+      nullable: true
     }
   },
 
@@ -133,8 +149,9 @@ qx.Interface.define('cv.io.IClient', {
     /**
      * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
      * @param data {var}
+     * @param config {{scaling: number, offset: number}}
      */
-    processChartsData(data) {},
+    processChartsData(data, config) {},
 
     /**
      * This function sends a value

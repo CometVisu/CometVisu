@@ -12,5 +12,6 @@
     "mapping-sensor-alarm-ok": "7c354925d5b6298f4628d224a335d254",
     "mapping-sensor-alarm-notok": "f4b589ad7489b2159f2dd8d233c2df0d",
     "mapping-oh-datetime": "2480fc1bf2cd1e3803e03a95a3b8185d",
-    "mapping_oh_time": "84732cf132a0d706aed6ce53b00eab10"
+    "mapping_oh_time": "84732cf132a0d706aed6ce53b00eab10",
+    "cv-info-outdated": "064477c93d26f6968ed59c468c617562"
 }

@@ -34,3 +34,4 @@ settings/keys/deploy_key
 **/.vscode/**
 qx_packages/
 source/REV
+cv-compile.json

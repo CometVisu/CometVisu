@@ -1910,6 +1910,7 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="image">
@@ -3238,6 +3239,7 @@
     <xsd:choice>
       <xsd:element name="text" type="text" />
       <xsd:element name="info" type="info" />
+      <xsd:element name="wgplugin_info" type="wgplugin_info" />
     </xsd:choice>
   </xsd:group>
   

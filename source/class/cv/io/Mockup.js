@@ -76,11 +76,6 @@ qx.Class.define('cv.io.Mockup', {
   ******************************************************
   */
   properties: {
-    dataReceived: {
-      check: 'Boolean',
-      init: true
-    },
-
     server: {
       check: 'String',
       init: 'Mockup'
@@ -218,7 +213,11 @@ qx.Class.define('cv.io.Mockup', {
       if (name === 'charts' && map && map.src) {
         if (map.src.startsWith('generator:')) {
           // the generator also might need the start/end values
-          return basePath + map.src + '?start=' + map.start + '&end=' + map.end;
+          let path = basePath + map.src + '?';
+          for (const key in map) {
+            path += `&${key}=${map[key]}`;
+          }
+          return path;
         }
         return basePath + map.src;
       }

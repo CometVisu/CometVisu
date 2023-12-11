@@ -141,6 +141,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
       raw: 'ON',
       mapping: '',
       target: '',
+      targetConfig: [],
       source: addr,
       addressValue: null,
       variant: null
@@ -175,6 +176,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
       raw: 'ON',
       mapping: 'testMapping',
       target: '',
+      targetConfig: [],
       source: addr,
       addressValue: null,
       variant: null
@@ -343,6 +345,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
       raw: 'ON',
       mapping: '',
       target: '',
+      targetConfig: [],
       source: addr,
       addressValue: null,
       variant: null

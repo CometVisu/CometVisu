@@ -92,7 +92,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
       };
 
       const service = (this.__service = new qx.io.rest.Resource(serviceDesc));
-      const client = cv.io.BackendConnections.getClient();
+      const client = cv.io.BackendConnections.getClientByType('openhab');
 
       this._store = new qx.data.store.Rest(service, 'get', {
         configureRequest(req) {
@@ -136,7 +136,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
       };
 
       const config = (this.__configDescriptionResource = new qx.io.rest.Resource(description));
-      const client = cv.io.BackendConnections.getClient();
+      const client = cv.io.BackendConnections.getClientByType('openhab');
 
       config.addListener('getSuccess', ev => {
         this._createForm(ev.getRequest().getResponse());

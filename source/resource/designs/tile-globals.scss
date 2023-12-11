@@ -8,6 +8,39 @@ html {
     position: relative;
     margin: 0;
     overflow: hidden;
+
+    .pull-to-refresh  {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      vertical-align: middle;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.2);
+
+      &.visible {
+        display: block;
+      }
+
+      i {
+        position: absolute;
+        left: calc(50% - 20px);
+        top: 40px;
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        vertical-align: middle;
+        line-height: 40px;
+        background-color: var(--appBackground);
+        text-align: center;
+        font-size: 32px;
+        transform-origin: center center;
+        animation: spinner 2s linear infinite;
+      }
+    }
   }
 }
 
@@ -174,12 +207,26 @@ html {
 }
 
 .popup.notification,
-.popup_background.notification {
+.popup_background.notification,
+.popup.confirmation,
+.popup_background.confirmation {
   position: absolute;
   padding: 30px;
   width: auto;
   height: auto;
   max-width: calc(100vw - 60px);
+}
+
+.popup.confirmation {
+  .actions {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+
+    > div {
+      margin-bottom: 0 !important;
+    }
+  }
 }
 
 .popup {
@@ -204,11 +251,13 @@ html {
 .popup_background {
   z-index: 100000;
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-  background: #000;
+  background: #1e1e1e;
   border: 1px solid #fff;
 }
-
 .popup div {
+  margin: 0;
+}
+.popup > div {
   margin: 4px;
   max-height: 80vh;
 }

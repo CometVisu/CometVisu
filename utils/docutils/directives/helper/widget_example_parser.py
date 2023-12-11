@@ -82,7 +82,8 @@ class WidgetExampleParser:
             self.counters[name] += 1
         try:
             # we need one surrounding element to prevent parse errors
-            xml = etree.fromstring("<root>%s</root>" % source)
+            parser = etree.XMLParser(strip_cdata=False)
+            xml = etree.fromstring("<root>%s</root>" % source, parser)
             single_widget = True
             for child in xml:
                 if etree.iselement(child):
@@ -278,7 +279,7 @@ class WidgetExampleParser:
         try:
             etree.fromstring(visu_config, tile_parser if parsed['settings']['structure'] == "tile" else parser)
         except etree.XMLSyntaxError as e:
-            print(visu_config)
+            print("'%s'" % visu_config)
             print("ERROR: %s" % str(e))
             raise e
         parsed["settings"]["config"] = visu_config

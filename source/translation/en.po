@@ -1248,10 +1248,6 @@ msgstr ""
 msgid "Folder \"%1\" has been renamed to \"%2\""
 msgstr ""
 
-#: cv/Application.js
-msgid "Your server does not support PHP"
-msgstr ""
-
 #: cv/ui/manager/Main.js
 msgid "Server"
 msgstr ""
@@ -1319,4 +1315,60 @@ msgstr ""
 #. CW = calendar week
 #: cv/ui/structure/tile/components/Chart.js
 msgid "CW %1"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Hour"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Day"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Week"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Month"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Year"
+msgstr ""
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: %1"
+msgstr ""
+
+#: cv/Application.js
+msgid "Disabling manager due to missing PHP support."
+msgstr ""
+
+#: cv/Application.js
+msgid "Your server does not support PHP."
+msgstr ""
+
+#: cv/Application.js
+msgid "Disabling manager due to failed PHP request querying the environment."
+msgstr ""
+
+#: cv/Application.js
+msgid "Failed PHP request querying the environment."
+msgstr ""
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: unknown"
+msgstr ""
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "yes"
+msgstr ""
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "no"
+msgstr ""
+
+#: cv/io/listmodel/RssLog.js
+msgid "Do you really want to delete this entry?"
 msgstr ""

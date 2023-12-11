@@ -92,6 +92,12 @@ qx.Class.define('cv.io.Fetch', {
               delete options[proxyParam];
             }
           }
+          if (options.searchParams) {
+            for (const name in options.searchParams) {
+              url.searchParams.set(name, options.searchParams[name]);
+            }
+            delete options.searchParams;
+          }
         }
         resource = url;
       } else if (options) {

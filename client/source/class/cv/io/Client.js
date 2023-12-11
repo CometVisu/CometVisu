@@ -59,6 +59,15 @@ qx.Class.define('cv.io.Client', {
       backendName = cv.io.Client.backendNameAliases[backendName];
     }
     this.backendName = backendName;
+    switch (this.backendName) {
+      case 'default':
+        this._type = 'knxd';
+        break;
+
+      case 'openhab':
+        this._type = 'openhab';
+        break;
+    }
 
     if (backendName && backendName !== 'default') {
       if (typeof backendName === 'object') {
@@ -192,6 +201,11 @@ qx.Class.define('cv.io.Client', {
       check: 'String',
       nullable: true,
       event: 'changedServer'
+    },
+
+    name: {
+      check: 'String',
+      nullable: true
     }
   },
 
@@ -203,6 +217,7 @@ qx.Class.define('cv.io.Client', {
   members: {
     backend: null,
     backendName: null,
+    _type: null,
     backendLoginUrl: null,
     addresses: null, // the subscribed addresses
     initialAddresses: null, // the addresses which should be loaded before the subscribed addresses
@@ -217,7 +232,7 @@ qx.Class.define('cv.io.Client', {
     __lastError: null,
 
     getType() {
-      return this.backendName;
+      return this._type;
     },
 
     // property apply

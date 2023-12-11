@@ -26,19 +26,32 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct(element) {
+    super(element);
+    this._preMappingHooks = [];
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
   properties: {
     value: {
       apply: '_applyValue',
-      init: null
+      init: null,
+      nullable: true,
+      event: 'changeValue'
     },
 
     styleClass: {
       check: 'String',
       nullable: true,
-      apply: '_applyStyleClass'
+      apply: '_applyStyleClass',
+      event: 'changeStyleClass'
     },
 
     enabled: {
@@ -59,7 +72,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      */
     widget: {
       check: 'Boolean',
-      init: 'false'
+      init: false
     },
 
     /**
@@ -67,7 +80,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      */
     inPopup: {
       check: 'Boolean',
-      init: 'false'
+      init: false
     }
   },
 
@@ -79,18 +92,33 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   members: {
     _writeAddresses: null,
     _headerFooterParent: null,
+    _preMappingHooks: null,
+    _tileElement: null,
+    __mobileReplacements: null,
 
-    _checkIfWidget() {
-      let isWidget = false;
-      let isPopup = false;
+    _checkEnvironment() {
+      let inPopup = false;
       if (this._element.parentElement.localName === 'cv-popup') {
         this._headerFooterParent = this._element.parentElement;
-        isPopup = true;
+        inPopup = true;
       } else {
+        let tile = this._getTileParent();
+        if (tile) {
+          let parent = tile.parentElement;
+          this._headerFooterParent = parent;
+          if (parent.localName === 'cv-popup') {
+            inPopup = true;
+          }
+        }
+      }
+      this.setInPopup(inPopup);
+    },
+
+    _getTileParent() {
+      if (!this._tileElement) {
         let tile = this._element;
         let i = 0;
-        // we are looking for cv-tile parent which is the direct child of a widget
-        while (tile.localName !== 'cv-tile') {
+        while (tile && tile.localName !== 'cv-tile') {
           tile = tile.parentElement;
           i++;
           if (i > 2) {
@@ -98,22 +126,15 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
             break;
           }
         }
-        if (tile) {
-          let parent = tile.parentElement;
-          this._headerFooterParent = parent;
-          if (parent.localName === 'cv-popup') {
-            isPopup = true;
-          } else if (parent.localName.startsWith('cv-')) {
-            isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
-          }
+        if (tile && tile.localName === 'cv-tile') {
+          this._tileElement = tile;
         }
       }
-      this.setInPopup(isPopup);
-      this.setWidget(isWidget);
+      return this._tileElement;
     },
 
     _init() {
-      this._checkIfWidget();
+      this._checkEnvironment();
 
       const element = this._element;
       let hasReadAddress = false;
@@ -133,6 +154,10 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
             break;
         }
       });
+      if (!hasReadAddress) {
+        // address groups are read-only
+        hasReadAddress = element.querySelectorAll(':scope > cv-address-group').length > 0;
+      }
 
       this._writeAddresses = writeAddresses;
 
@@ -143,6 +168,39 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           ev.stopPropagation();
         });
       }
+
+      // has mobile attributes
+      this.__mobileReplacements = [];
+
+      for (const name of element.getAttributeNames()) {
+        if (name.startsWith('mobile-')) {
+          const targetName = name.substring(7);
+          this.__mobileReplacements.push({
+            name: targetName,
+            mobile: element.getAttribute(name),
+            desktop: element.getAttribute(targetName)
+          });
+        }
+      }
+
+      if (this.__mobileReplacements.length > 0) {
+        qx.core.Init.getApplication().addListener('changeMobile', this.__updateAttributes, this);
+      }
+
+      if (document.body.classList.contains('mobile')) {
+        this.__updateAttributes();
+      }
+    },
+
+    __updateAttributes() {
+      const isMobile = document.body.classList.contains('mobile');
+      for (const entry of this.__mobileReplacements) {
+        this._element.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
+      }
+    },
+
+    getElement() {
+      return this._element;
     },
 
     /**
@@ -152,7 +210,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * @param element {HTMLElement}
      * @param align {String} center (default), left or right
      */
-    appendToHeader(element, align) {
+    appendToHeader(element, align = undefined) {
       if (this._headerFooterParent) {
         let header = this._headerFooterParent.querySelector(':scope > header');
         if (!header) {
@@ -225,24 +283,49 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       return null;
     },
 
+    /**
+     * Register hook function {Function(value: number) : number} that is called before the mapping gets applied.
+     * It must return a number that is used as a new value for mapping.
+     * @param callback {{(value: number) : number}}
+     * @param context {object}
+     */
+    registerPreMappingHook(callback, context) {
+      const exists = this._preMappingHooks.some(e => e[0] === callback);
+      if (!exists) {
+        this._preMappingHooks.push([callback, context || this]);
+      }
+    },
+
+    /**
+     * Unregister pre-mapping hook
+     * @param callback {{(value: number) : number}}
+     */
+    unregisterPreMappingHook(callback) {
+      this._preMappingHooks = this._preMappingHooks.filter(e => e[0] !== callback);
+    },
+
     // property apply
     _applyValue(value) {
       if (this.isConnected()) {
         this._element.setAttribute('value', value || '');
         let mappedValue = value;
-        if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
+        for (const hookEntry of this._preMappingHooks) {
+          mappedValue = hookEntry[0].call(hookEntry[1], mappedValue);
         }
-        if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
-          mappedValue = cv.util.String.sprintf(
-            this._element.getAttribute('format'),
-            mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
-          );
+        if (mappedValue !== null) {
+          if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
+            mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
+          }
+          if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
+            mappedValue = cv.util.String.sprintf(
+              this._element.getAttribute('format'),
+              mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
+            );
+          }
         }
         this._updateValue(mappedValue, value);
         if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
           let styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
-
           this.setStyleClass(styleClass);
         }
       }
@@ -254,14 +337,10 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     // property apply
     _applyStyleClass(value, oldValue) {
       const classes = this._element.classList;
-      if (oldValue) {
-        if (classes.contains(oldValue)) {
-          classes.replace(oldValue, value);
-        } else {
-          classes.add(value);
-          classes.remove(oldValue);
-        }
-      } else if (value) {
+      if (oldValue && classes.contains(oldValue)) {
+        classes.remove(oldValue);
+      }
+      if (value) {
         classes.add(value);
       }
     },
@@ -313,13 +392,13 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
+     * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
      * @return {Boolean} true of the update has been handled
      */
     onStateUpdate(ev) {
       switch (ev.detail.target) {
         case 'enabled':
-          this.setEnabled(ev.detail.state);
+          this.setEnabled(ev.detail.state === 1);
           ev.stopPropagation();
           return true;
         case 'show-exclude':
@@ -348,5 +427,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   destruct() {
     this._writeAddresses = null;
     this._headerFooterParent = null;
+    qx.core.Init.getApplication().removeListener('changeMobile', this.__updateAttributes, this);
   }
 });

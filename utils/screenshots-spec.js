@@ -136,7 +136,7 @@ describe('generation screenshots from jsdoc examples', function () {
     runResult = {};
     browser.executeAsyncScript(function (callback) {
       if (typeof window._receive !== 'function') {
-        cv.io.BackendConnections.initBackendClient();
+        cv.io.BackendConnections.initBackendClients();
       }
       callback();
     });

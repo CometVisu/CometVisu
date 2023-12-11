@@ -228,30 +228,75 @@ qx.Class.define('cv.data.Simulation', {
       const data = [];
       if (generator) {
         if (options) {
-          // currently only end=now and start=end-??? is implemented
           let end = Date.now();
           let start = Date.now();
+          let resolution = 60 * 1000;
+          const dynamicResolution = !Object.prototype.hasOwnProperty.call(generator, 'resolution');
+          if (dynamicResolution) {
+            switch (options.series) {
+              case 'hour':
+                // every minute
+                resolution = 60 * 1000;
+                break;
+
+              case 'day':
+                // every hour
+                resolution = 60 * 60 * 1000;
+                break;
+
+              case 'week':
+                // every 6hs
+                resolution = 6 * 60 * 60 * 1000;
+                break;
+              case 'month':
+                // daily
+                resolution = 24 * 60 * 60 * 1000;
+                break;
+              case 'year':
+                // monthly
+                resolution = 30 * 24 * 60 * 60 * 1000;
+                break;
+            }
+          } else {
+            resolution = generator.resolution;
+          }
           if (options.start) {
-            const match = /end-(\d+)(hour|day|month)/.exec(options.start);
-            if (match) {
-              let interval = 0;
-              switch (match[2]) {
-                case 'hour':
-                  interval = 60 * 60 * 1000;
-                  break;
-                case 'day':
-                  interval = 24 * 60 * 60 * 1000;
-                  break;
-                case 'month':
-                  // this is not really precise, but good enough to fake some data
-                  interval = 30 * 24 * 60 * 60 * 1000;
-                  break;
+            if (/^\d{10}$/.test(options.start)) {
+              // timestamp without millis
+              start = new Date(parseInt(options.start) * 1000).getTime();
+              end = new Date(parseInt(options.end) * 1000).getTime();
+            } else if (/^\d{13}$/.test(options.start)) {
+              // timestamp with millis
+              start = new Date(parseInt(options.start)).getTime();
+              end = new Date(parseInt(options.end)).getTime();
+            } else {
+              const match = /end-(\d+)(hour|day|week|month|year)/.exec(options.start);
+              if (match) {
+                let interval = 0;
+                switch (match[2]) {
+                  case 'hour':
+                    interval = 60 * 60 * 1000;
+                    break;
+                  case 'day':
+                    interval = 24 * 60 * 60 * 1000;
+                    break;
+                  case 'week':
+                    interval = 6 + 24 * 60 * 60 * 1000;
+                    break;
+                  case 'month':
+                    // this is not really precise, but good enough to fake some data
+                    interval = 30 * 24 * 60 * 60 * 1000;
+                    break;
+                  case 'year':
+                    interval = 365 * 24 * 60 * 60 * 1000;
+                    break;
+                }
+                start -= parseInt(match[1]) * interval;
               }
-              start -= parseInt(match[1]) * interval;
             }
           }
           let val = 0;
-          for (let i = start; i <= end; i += generator.resolution) {
+          for (let i = start; i <= end; i += resolution) {
             val = generator.targetValue + (Math.random() - 0.5) * generator.deviation * 2;
             data.push([i, val]);
           }

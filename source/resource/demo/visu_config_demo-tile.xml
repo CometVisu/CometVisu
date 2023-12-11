@@ -116,6 +116,7 @@
                 <tr key="Kid">Kind</tr>
                 <tr key="Calls">Anrufe</tr>
                 <tr key="Outside">Außen</tr>
+                <tr key="Energy">Energie</tr>
             </language>
         </cv-translations>
     </cv-meta>
@@ -159,7 +160,7 @@
                 <label slot="label" class="secondary" tr="true">Outside</label>
                 <cv-popup slot="popup" modal="true">
                     <cv-plugin>
-                        <openweathermap detailItems="1" forecast24hItems="8" forecastDailyItems="4" showSunrise="true" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
+                        <openweathermap detailItems="1" forecast24hItems="6" forecastDailyItems="3" showSunrise="false" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
                     </cv-plugin>
                 </cv-popup>
             </cv-small-status>
@@ -233,13 +234,22 @@
     <main>
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
             <cv-group open="true">
-                <cv-widget-pair allow-column-layout="true">
-                    <cv-status-chart format="%d" style="color: #f2495c" y-format="%d W" series="hour" x-format="%H:%M" zero-based="false" >
+                <cv-energy size="1x1" columns="3" view-box="0 0 3 3" mobile-size="2x1" title="tr('Energy')" allow-fullscreen="true" header="auto-hide" >
+                    <cv-address slot="pv-power" transform="DPT:12.001" mode="read">1/4/27</cv-address>
+                    <cv-address slot="battery-power" transform="DPT:13.001" mode="read">1/4/42</cv-address>
+                    <cv-address slot="battery-other" transform="DPT:5.001" mode="read" target="progress">1/4/43</cv-address>
+                    <cv-address slot="grid-power" transform="DPT:13.001" mode="read">1/4/25</cv-address>
+                    <cv-address slot="charger-power" transform="DPT:12.001" mode="read">1/4/44</cv-address>
+                    <cv-address slot="charger-power" transform="DPT:12.001" mode="read">1/4/46</cv-address>
+                    <cv-address slot="heatpump-power" transform="DPT:12.001" mode="read">1/4/45</cv-address>
+                </cv-energy>
+                <cv-widget-pair>
+                    <cv-status-chart format="%d" style="color: #f2495c" y-format="%d W" series="hour" x-format="%H:%M"  >
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
-                        <cv-address slot="live-update-address" transform="DPT:12.001" mode="read" target="generator:grid-current-import">1/4/25</cv-address>
+                        <cv-address slot="liveUpdateAddress" transform="DPT:12.001" mode="read" target="demo://generator@grid-current-import">1/4/25</cv-address>
                         <span slot="title" tr="true">Power consumption</span>
                         <span slot="unit">W</span>
-                        <dataset slot="dataset" src="generator:grid-current-import" color="#f2495c"
+                        <dataset slot="dataset" src="demo://generator@grid-current-import" color="#f2495c"
                                  show-area="true" curve="natural" title="tr('Power consumption')" />
                     </cv-status-chart>
                     <cv-info format="%d" style="color: #f2495c">
@@ -248,11 +258,6 @@
                         <span slot="unit">kWh</span>
                     </cv-info>
                 </cv-widget-pair>
-                <cv-info format="%.1f W">
-                    <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/27</cv-address>
-                    <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="3000"/>
-                    <span slot="label" tr="true">PV production</span>
-                </cv-info>
                 <cv-info format="%.1f kWh">
                     <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/28</cv-address>
                     <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="25"/>
@@ -261,25 +266,25 @@
                 <cv-widget size="2x1">
                     <cv-tile>
                         <cv-chart title="tr('Power')" allow-fullscreen="true" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
-                            <dataset src="pv-chart.json" color="#FF9900" title="tr('Production')" />
+                            <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                            <dataset src="demo://pv-chart.json" color="#FF9900" title="tr('Production')" />
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>
                 <cv-widget-pair allow-column-layout="true">
-                    <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" zero-based="false">
+                    <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" >
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
                         <span slot="title" tr="true">Gas meter reading</span>
                         <span slot="popup-title" tr="true">Gas consumption</span>
                         <span slot="unit">m³</span>
-                        <dataset slot="dataset" src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
+                        <dataset slot="dataset" src="demo://grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
                     </cv-status-chart>
                     <cv-status-chart format="%d" style="color: #719aff" y-format="%.1f m³" series="month" refresh="300">
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/30</cv-address>
                         <span slot="title" tr="true">Water meter reading</span>
                         <span slot="popup-title" tr="true">Water consumption</span>
                         <span slot="unit">m³</span>
-                        <dataset slot="dataset" src="pv-chart.json" color="#719aff" show-area="true" curve="step"/>
+                        <dataset slot="dataset" src="demo://pv-chart.json" color="#719aff" show-area="true" curve="step"/>
                     </cv-status-chart>
                 </cv-widget-pair>
             </cv-group>
@@ -663,12 +668,12 @@
                     <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/15</cv-address>
                     <span slot="label" tr="true">Windows</span>
                 </cv-status>
-                <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" zero-based="false">
+                <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" >
                     <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
                     <span slot="title" tr="true">Status with chart</span>
                     <span slot="popup-title" tr="true">Gas consumption</span>
                     <span slot="unit">m³</span>
-                    <dataset slot="dataset" src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
+                    <dataset slot="dataset" src="demo://grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
                 </cv-status-chart>
                 <cv-small-status format="tr('%d on')">
                     <cv-icon slot="icon">ri-lightbulb-line</cv-icon>
@@ -769,7 +774,7 @@
                     </header>
                     <cv-tile>
                         <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                            <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>
@@ -779,7 +784,7 @@
                     </header>
                     <cv-tile>
                         <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="true"/>
+                            <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="true"/>
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>
@@ -789,7 +794,7 @@
                     </header>
                     <cv-tile>
                         <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
+                            <dataset src="demo://grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>
@@ -807,8 +812,8 @@
                     </header>
                     <cv-tile>
                         <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
-                            <dataset src="pv-chart.json" title="tr('PV production')" color="#719aff" show-area="false" />
+                            <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                            <dataset src="demo://pv-chart.json" title="tr('PV production')" color="#719aff" show-area="false" />
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>
@@ -818,8 +823,8 @@
                     </header>
                     <cv-tile>
                         <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
-                            <dataset src="pv-chart.json" chart-type="bar" title="tr('PV production')" color="#719aff" />
+                            <dataset src="demo://grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
+                            <dataset src="demo://pv-chart.json" chart-type="bar" title="tr('PV production')" color="#719aff" />
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>

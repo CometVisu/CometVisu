@@ -36,13 +36,15 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     super(props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
 
-    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener(
-      'changePageSizeInvalid',
-      () => {
-        this.__invalidateScreensize();
-      }
-    );
-
+    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
+      // Quick fix for issue https://github.com/CometVisu/CometVisu/issues/1369
+      // make sure that the `__invalidateScreensize` is delayed so that
+      // reading the available spaces is valid.
+      // Just to be sure, wait for two frames
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(this.__invalidateScreensize.bind(this));
+      });
+    });
     this.__lastBusValue = {};
   },
   /*
@@ -151,6 +153,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
      * @param instant {Boolean} Animate or instant change
      * @param relaxDisplay {Boolean} Let the handle move to an unstable position
      *   to give visual feedback that something does happen during interaction
+     * @returns realValue - the real value that is respecting the configured restraints
      * @private
      */
     __setSliderTo(value, instant, relaxDisplay = false) {
@@ -203,6 +206,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       }
 
       this.__animator.setTo(ratio, instant);
+      return realValue;
     },
 
     __updateHandlePosition(ratio) {
@@ -217,16 +221,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         this._disposeObjects('__animator');
         return;
       }
-      if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
-        let actor = this.getDomElement().querySelector('.actor');
-        let actorStyles = window.getComputedStyle(actor);
-        this.__actorWidth = parseFloat(actorStyles.getPropertyValue('width'));
-        this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
-
-        this.__range.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
-        this.__range.style.borderRadius = actorStyles.getPropertyValue('border-radius');
-      }
-      let length = ratio * this.__actorWidth;
+      const actorWidth = this.__getActorWidth();
+      let length = actorWidth >= 1e10 ? 0 : ratio * actorWidth;
       this.__button.style.transform = 'translate3d(' + (length - this.__buttonWidth / 2) + 'px, 0px, 0px)';
       this.__range.style.width = length + 'px';
     },
@@ -249,7 +245,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
           let boundingRect = event.currentTarget.getBoundingClientRect();
           let computedStyle = window.getComputedStyle(event.currentTarget);
           this.__coordMin = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-          newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
+          newRatio = (event.clientX - this.__coordMin) / this.__getActorWidth();
           break;
         }
 
@@ -257,27 +253,43 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
           if (!this.__inDrag) {
             return;
           }
-          newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
+          newRatio = (event.clientX - this.__coordMin) / this.__getActorWidth();
           break;
 
         case 'pointerup':
           this.__inDrag = false;
           document.removeEventListener('pointermove', this);
           document.removeEventListener('pointerup', this);
-          newRatio = (event.clientX - this.__coordMin) / this.__actorWidth;
+          newRatio = (event.clientX - this.__coordMin) / this.__getActorWidth();
           break;
       }
 
       newRatio = Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
       let newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
-      this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
+      const realValue = this.__setSliderTo(newValue, this.__inDrag, this.__inDrag);
       if (!this.getSendOnFinish() || event.type === 'pointerup') {
-        this.__throttled.call(newValue);
+        this.__throttled.call(realValue);
       }
     },
 
     __onChangeValue(value) {
       this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue);
+    },
+
+    __getActorWidth() {
+      if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
+        if (cv.ui.structure.pure.layout.ResizeHandler.states.isPageSizeInvalid()) {
+          return 1e10; // a no valid value that doesn't break other calculations
+        }
+        let actor = this.getDomElement().querySelector('.actor');
+        let actorStyles = window.getComputedStyle(actor);
+        this.__actorWidth = parseFloat(actorStyles.getPropertyValue('width'));
+        this.__buttonWidth = parseFloat(window.getComputedStyle(this.__button).getPropertyValue('width'));
+
+        this.__range.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+        this.__range.style.borderRadius = actorStyles.getPropertyValue('border-radius');
+      }
+      return this.__actorWidth;
     }
   },
 

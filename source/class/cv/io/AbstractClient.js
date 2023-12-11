@@ -26,6 +26,22 @@ qx.Class.define('cv.io.AbstractClient', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    dataReceived: {
+      check: 'Boolean',
+      init: false
+    },
+    name: {
+      check: 'String',
+      nullable: true
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */

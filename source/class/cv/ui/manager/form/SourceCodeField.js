@@ -41,6 +41,8 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
     if (value) {
       this.setValue(value);
     }
+
+    this.getContentElement().setAttribute('contenteditable', 'true');
   },
 
   /*
@@ -185,6 +187,7 @@ qx.Class.define('cv.ui.manager.form.SourceCodeField', {
               });
 
               this._editor.setModel(newModel);
+              this._autoSize();
             }
           }
           if (this.__delayedValue) {

@@ -474,7 +474,7 @@ msgstr "Das Speichern der versteckten Konfiguration ist fehlgeschlagen: %1 (%2)"
 
 #: cv/ui/manager/editor/Source.js
 msgid "Hidden config has been saved"
-msgstr "Die Verstackte Konfiguration wurde gespeichert"
+msgstr "Die versteckte Konfiguration wurde gespeichert"
 
 #: cv/ui/manager/editor/Config.js
 msgid "Section is invalid and has not been saved."
@@ -1156,10 +1156,6 @@ msgstr "Datei \"%1\" wurde umbenannt in \"%2\""
 msgid "Folder \"%1\" has been renamed to \"%2\""
 msgstr "Ordner \"%1\" wurde umbenannt in \"%2\""
 
-#: cv/Application.js
-msgid "Your server does not support PHP"
-msgstr "Ihr Server unterstützt kein PHP"
-
 #: cv/ui/manager/Main.js
 msgid "Server"
 msgstr "Server"
@@ -1200,3 +1196,59 @@ msgstr "gestern"
 #: cv/ui/structure/tile/components/Chart.js
 msgid "CW %1"
 msgstr "KW %1"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Hour"
+msgstr "Stunde"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Day"
+msgstr "Tag"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Week"
+msgstr "Woche"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Month"
+msgstr "Monat"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Year"
+msgstr "Jahr"
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: %1"
+msgstr "Letzte Aktualisierung: %1"
+
+#: cv/Application.js
+msgid "Disabling manager due to missing PHP support."
+msgstr "Manager ist deaktiviert aufgrund von fehlender Unterstützung von PHP."
+
+#: cv/Application.js
+msgid "Your server does not support PHP."
+msgstr "Ihr Server unterstützt kein PHP."
+
+#: cv/Application.js
+msgid "Disabling manager due to failed PHP request querying the environment."
+msgstr "Manager ist deaktiviert aufgrund eines fehlerhaften PHP Aufrufs während der 'environment'-Abfrage."
+
+#: cv/Application.js
+msgid "Failed PHP request querying the environment."
+msgstr "PHP Abfrage des 'environment' fehlgeschlagen."
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: unknown"
+msgstr "Letzte Aktualisierung: unbekannt"
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "yes"
+msgstr "ja"
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "no"
+msgstr "nein"
+
+#: cv/io/listmodel/RssLog.js
+msgid "Do you really want to delete this entry?"
+msgstr "Möchten Sie diesen Eintrag wirklich löschen?"

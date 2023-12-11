@@ -41,7 +41,8 @@
       "libs/paho-mqtt.js",
       "libs/sprintf.js",
       "libs/strftime.js",
-      "libs/svg4everybody.js"
+      "libs/svg4everybody.js",
+      "libs/CvClientBaseClass.js"
     ]
   }
 }

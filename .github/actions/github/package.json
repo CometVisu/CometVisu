@@ -10,13 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.10.0",
     "@actions/github": "^4.0.0",
-    "@octokit/action": "^3.4.0",
-    "@octokit/rest": "^18.2.0",
-    "adm-zip": "^0.5.3",
-    "camelcase": "^6.2.0",
-    "follow-redirects": "^1.13.2",
-    "simple-git": "^3.3.0"
+    "@octokit/action": "^3.18.1",
+    "@octokit/rest": "^18.12.0",
+    "adm-zip": "^0.5.10",
+    "camelcase": "^6.3.0",
+    "follow-redirects": "^1.15.2",
+    "simple-git": "^3.19.1"
   }
 }

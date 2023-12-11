@@ -257,6 +257,7 @@
     "customElements",
     "QxConnector",
     "RSSParser",
-    "Response"
+    "Response",
+    "observedAttributes"
   ]
 }

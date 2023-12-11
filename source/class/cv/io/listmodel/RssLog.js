@@ -68,7 +68,9 @@ qx.Class.define('cv.io.listmodel.RssLog', {
   ***********************************************
   */
   events: {
-    finished: 'qx.event.type.Data'
+    finished: 'qx.event.type.Data',
+    // this event is sent when the model itself wants to trigger a list refresh.
+    refresh: 'qx.event.type.Event'
   },
 
   /*
@@ -97,8 +99,7 @@ qx.Class.define('cv.io.listmodel.RssLog', {
       }
     },
 
-    _initRequest() {
-      this.__request = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/rsslog/rsslog.php'));
+    getRequestData() {
       const requestData = {};
       if (this.getDatabase()) {
         requestData.database = this.getDatabase();
@@ -113,9 +114,15 @@ qx.Class.define('cv.io.listmodel.RssLog', {
         requestData.future = this.getFuture();
       }
       requestData.j = 1;
+      return requestData;
+    },
+
+    _initRequest() {
+      this.__request = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/rsslog/rsslog.php'));
+
       this.__request.set({
         accept: 'application/json',
-        requestData: requestData,
+        requestData: this.getRequestData(),
         method: 'GET'
       });
 
@@ -125,6 +132,14 @@ qx.Class.define('cv.io.listmodel.RssLog', {
           'C: #rss_%s, Error: %s, Feed: %s',
           this.getPath(),
           ev.getTarget().getResponse(),
+          this.__request.getUrl()
+        );
+        this.fireDataEvent('finished', false);
+      });
+      this.__request.addListener('timeout', ev => {
+        this.error(
+          'C: #rss_%s, timeout, Feed: %s',
+          this.getPath(),
           this.__request.getUrl()
         );
         this.fireDataEvent('finished', false);
@@ -140,6 +155,11 @@ qx.Class.define('cv.io.listmodel.RssLog', {
         this.fireDataEvent('finished', false);
       } else {
         const model = this.getModel();
+        for (const entry of response.responseData.feed.entries) {
+          if (entry.mapping) {
+            entry.mappedState = cv.Application.structureController.mapValue(entry.mapping, entry.state);
+          }
+        }
         model.replace(response.responseData.feed.entries);
         this.fireDataEvent('finished', true);
       }
@@ -153,6 +173,59 @@ qx.Class.define('cv.io.listmodel.RssLog', {
           this.error(e.message);
         }
       }
+    },
+
+    handleEvent(ev, data, model) {
+      let handled = false;
+      const requestData = {};
+      if (this.getDatabase()) {
+        requestData.database = this.getDatabase();
+      }
+      let needsConfirmation = false;
+      let confirmTitle = '';
+      let confirmMessage = '';
+      switch (data.action) {
+        case 'toggle-state':
+          requestData.u = model.id;
+          requestData.state = model.state === '0' ? '1' : '0';
+          handled = true;
+          break;
+
+        case 'delete':
+          requestData.d = model.id;
+          needsConfirmation = data['no-confirm'] !== 'true';
+          confirmTitle = qx.locale.Manager.tr('Confirm deletion');
+          confirmMessage = qx.locale.Manager.tr('Do you really want to delete this entry?');
+          handled = true;
+          break;
+
+        default:
+          this.error('unhandled event ', data.action);
+          break;
+      }
+      if (handled) {
+        const req = new qx.io.request.Xhr(this.__request.getUrl());
+        req.set({
+          method: 'GET',
+          accept: 'application/json',
+          requestData: requestData
+        });
+        req.addListener('success', async () => {
+          this.fireEvent('refresh');
+        });
+        if (needsConfirmation) {
+          cv.ui.PopupHandler.confirm(confirmTitle, confirmMessage, confirmed => {
+              if (confirmed) {
+                req.send();
+              }
+            }
+          );
+        } else {
+          req.send();
+        }
+      }
+
+      return handled;
     },
 
     async _sendWithPromise() {
