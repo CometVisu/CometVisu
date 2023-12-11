@@ -83,7 +83,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     },
 
     /**
-     * Returns true, when the backend provides a special data provider for this kins of data
+     * Returns true, when the backend provides a special data provider for this kind of data
      * @param name {String}
      * @return {Boolean}
      */
@@ -101,7 +101,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     },
 
     /**
-     * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
+     * Mapping function to convert the data from the backend to a format the CometVisu data provider consumer can process.
      * @param name {String}
      */
     getProviderConvertFunction(name) {

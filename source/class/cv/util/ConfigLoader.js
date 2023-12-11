@@ -156,6 +156,13 @@ qx.Class.define('cv.util.ConfigLoader', {
                 backendName = 'mqtt';
               }
             }
+            if (req.getResponseHeader('X-CometVisu-Backend-ioBroker-Url')) {
+              cv.Config.server.backendIoBrokerUrl = req.getResponseHeader('X-CometVisu-Backend-ioBroker-Url');
+
+              if (backendName === '') {
+                backendName = 'iobroker';
+              }
+            }
             if (req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url')) {
               cv.Config.server.backendOpenHABUrl = req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url');
 

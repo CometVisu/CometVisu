@@ -104,7 +104,7 @@ also a ``backend`` parameter in the config to fix this.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), mqtt
+    Options: cgi-bin (backend=cgi-bin), openhab, mqtt, iobroker
 
 The default value "cgi-bin" (attention, inconsistent with xml
 element, default = "cgi"!) is usually correct and does not need to be

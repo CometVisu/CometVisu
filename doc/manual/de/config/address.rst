@@ -5,9 +5,9 @@ Adressen - die Kommunikation mit dem Backend
 
 Die meisten Widgets verwenden ein oder mehrere ``address`` Elemente für die
 Kommunikation mit dem Backend, welches darüber die entsprechenden Informationen
-vom KNX-Bus, OpenHAB oder MQTT bereitstellt. Der Inhalt ist die Adresse selbst,
-über die Attribute lässt sich das Verhalten des Widgets im Bezug auf die
-Adresse einstellen:
+vom KNX-Bus, OpenHAB, ioBroker oder MQTT bereitstellt. Der Inhalt ist die
+Adresse selbst, über die Attribute lässt sich das Verhalten des Widgets im Bezug
+auf die Adresse einstellen:
 
 ============= ==================================================================
 ``transform`` Legt den Datentyp im Backend fest, z.B. ``DPT:1.001`` für den KNX
@@ -35,6 +35,11 @@ OpenHab
 .......
 
 .. backend-transform:: OH
+
+ioBroker
+........
+
+.. backend-transform:: IOB
 
 MQTT
 ....

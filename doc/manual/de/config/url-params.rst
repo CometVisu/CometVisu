@@ -109,7 +109,7 @@ um dies fest einzustellen.
 .. code::
 
     Default: cgi-bin (backend=cgi-bin)
-    Options: cgi-bin (backend=cgi-bin), openhab (backend=openhab), mqtt
+    Options: cgi-bin (backend=cgi-bin), openhab, mqtt, iobroker
 
 Der Default-Wert "cgi-bin" (Achtung, inkonsistent mit xml Element,
 default="cgi"!) ist normalerweise richtig und braucht nicht geändert

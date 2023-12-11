@@ -209,14 +209,15 @@
     </xsd:choice>
     <xsd:attribute name="type" use="required">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Type of backend: ``knxd`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simulated backend for testing</xsd:documentation>
-        <xsd:documentation xml:lang="de">Typ des Backends: ``knxd`` = KNXD, ``openhab`` = openHAB Server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simuliertes Backend zu Testzwecken. </xsd:documentation>
+        <xsd:documentation xml:lang="en">Type of backend: ``knxd`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``iobroker`` = ioBroker, ``simulated`` = Simulated backend for testing</xsd:documentation>
+        <xsd:documentation xml:lang="de">Typ des Backends: ``knxd`` = KNXD, ``openhab`` = openHAB Server, ``mqtt`` = MQTT-Broker ``iobroker`` = ioBroker, ``simulated`` = Simuliertes Backend zu Testzwecken. </xsd:documentation>
       </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="knxd" />
           <xsd:enumeration value="openhab" />
           <xsd:enumeration value="mqtt" />
+          <xsd:enumeration value="iobroker" />
           <xsd:enumeration value="simulated" />
         </xsd:restriction>
       </xsd:simpleType>
@@ -1817,8 +1818,8 @@
   # -->
   <xsd:simpleType name="addr">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</xsd:documentation>
-      <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
+      <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends, the item name for openHAB / ioBroker backend or the MQTT topic</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB / ioBroker Backend oder das Topic bei MQTT.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
       <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+" />
