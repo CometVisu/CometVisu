@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation on the Timberwolf server with the app &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=d0aeeef9" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/install/timberwolf.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -194,8 +196,7 @@ used directly on the Timberwolf (64 bit architecture) [1].</p>
 <ul>
 <li><p>Name: <code class="docutils literal notranslate"><span class="pre">CometVisu</span></code></p></li>
 <li><p>Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code> for the big servers
-(TWS2xxx) or <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> for the rail mounted smaller
-servers</p></li>
+(TWS2xxx) and for the rail mounted smaller servers</p></li>
 <li><p>Port mapping: host <code class="docutils literal notranslate"><span class="pre">18080</span></code>, container <code class="docutils literal notranslate"><span class="pre">80</span></code></p></li>
 <li><p>Advanced container settings:</p>
 <ul>
@@ -365,17 +366,19 @@ the same configuration volume can be used as for the productive
 version, a separate volume (for example <code class="docutils literal notranslate"><span class="pre">CometVisuTestConfig</span></code>)
 should be created, as the format of the config files may change
 incompatibly due to future updates.</p>
-<p>As described under <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> has the newest
-Development version the day <code class="docutils literal notranslate"><span class="pre">testing</span></code>. Thus, under
-<em>Creating the container</em> as <code class="docutils literal notranslate"><span class="pre">name</span></code> <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code>
-or <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing-arm</span></code> to use.</p>
+<p>As described under <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> the newest
+Development version the tag <code class="docutils literal notranslate"><span class="pre">testing</span></code>. Thus, under
+<em>Creating the container</em> as <code class="docutils literal notranslate"><span class="pre">name</span></code> <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code></p>
+<blockquote>
+<div><p>must be used.</p>
+</div></blockquote>
 <p>In order to have a uniform environment for error reporting, etc.
 the testing version should be installed with these parameters:</p>
 <ul class="simple">
 <li><p>Container:</p>
 <ul>
 <li><p>Name: <code class="docutils literal notranslate"><span class="pre">CometVisuTest</span></code></p></li>
-<li><p>Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code> or <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing-arm</span></code></p></li>
+<li><p>Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code></p></li>
 <li><p>Port mapping: host <code class="docutils literal notranslate"><span class="pre">28080</span></code>, container <code class="docutils literal notranslate"><span class="pre">80</span></code></p></li>
 <li><p>Advanced container settings:</p>
 <ul>
@@ -398,7 +401,7 @@ the testing version should be installed with these parameters:</p>
 </ul>
 <hr class="docutils" />
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id1" role="note">
+<aside class="footnote brackets" id="id1" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
 <p>In order to transfer the contents of an RRD file <code class="docutils literal notranslate"><span class="pre">RRD_Name</span></code>
 from one architecture to another, the command has to be

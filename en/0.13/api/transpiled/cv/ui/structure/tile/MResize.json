@@ -14,9 +14,9 @@
         "index": 882
       },
       "end": {
-        "line": 95,
+        "line": 90,
         "column": 3,
-        "index": 2423
+        "index": 2285
       }
     },
     "jsdoc": {
@@ -43,9 +43,9 @@
         "index": 1060
       },
       "end": {
-        "line": 41,
+        "line": 36,
         "column": 3,
-        "index": 1379
+        "index": 1241
       }
     },
     "jsdoc": {}
@@ -54,14 +54,14 @@
     "resized": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 44,
           "column": 4,
-          "index": 1519
+          "index": 1381
         },
         "end": {
-          "line": 49,
+          "line": 44,
           "column": 33,
-          "index": 1548
+          "index": 1410
         }
       },
       "name": "resized",
@@ -72,14 +72,14 @@
     "resizeTarget": {
       "location": {
         "start": {
-          "line": 58,
+          "line": 53,
           "column": 4,
-          "index": 1700
+          "index": 1562
         },
         "end": {
-          "line": 62,
+          "line": 57,
           "column": 5,
-          "index": 1801
+          "index": 1663
         }
       },
       "name": "resizeTarget",
@@ -94,14 +94,14 @@
     "_observer": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 69,
           "column": 4,
-          "index": 1992
+          "index": 1854
         },
         "end": {
-          "line": 74,
+          "line": 69,
           "column": 19,
-          "index": 2007
+          "index": 1869
         }
       },
       "jsdoc": {
@@ -124,14 +124,14 @@
     "_applyResizeTarget": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 71,
           "column": 4,
-          "index": 2014
+          "index": 1876
         },
         "end": {
-          "line": 83,
+          "line": 78,
           "column": 5,
-          "index": 2209
+          "index": 2071
         }
       },
       "type": "function",
@@ -210,14 +210,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 91,
+        "line": 86,
         "column": 2,
-        "index": 2343
+        "index": 2205
       },
       "end": {
-        "line": 94,
+        "line": 89,
         "column": 3,
-        "index": 2419
+        "index": 2281
       }
     },
     "jsdoc": {}

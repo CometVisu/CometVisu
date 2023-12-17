@@ -74,6 +74,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
    *
    * @ignore(d3.select)
    * @ignore(screen)
+   * @ignore(SVGElement)
    */
   qx.Class.define('cv.ui.structure.tile.components.Flow', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
@@ -124,6 +125,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       _startPoint: null,
       _expiredTouchStart: null,
       _viewBoxBinding: null,
+      _lastBBox: null,
+      _additionalViewBoxUpdate: null,
+      _ready: null,
       getSvg: function getSvg() {
         if (!this.SVG) {
           this.SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -136,6 +140,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         cv.ui.structure.tile.components.Flow.superclass.prototype._init.call(this);
         this.getSvg();
         this.setResizeTarget(this._element);
+        this._observer.observe(this.SVG);
         this.addListener('resized', this._updateDimensions, this);
         for (var _i = 0, _arr = ['changeRows', 'changeColumns', 'changeOuterPadding', 'changeSpacing']; _i < _arr.length; _i++) {
           var layoutEvent = _arr[_i];
@@ -173,7 +178,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           });
         }
         this.addListener('changeViewBox', this._updateViewBox, this);
-        this._updateViewBox();
+        window.requestAnimationFrame(function () {
+          return _this._updateViewBox();
+        });
         if (this.getPan()) {
           this._applyPan(true);
         }
@@ -185,6 +192,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             house.remove();
           }
         }
+
+        // make sure that the initial setup viewBox changes are not animated
+        setTimeout(function () {
+          _this._ready = true;
+          _this._center();
+        }, 2000);
       },
       _applyCenterX: function _applyCenterX(value) {
         if (value) {
@@ -457,8 +470,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
         this._element.setAttribute('view-box', "".concat(column, " ").concat(row, " ").concat(width, " ").concat(height));
       },
-      _updateDimensions: function _updateDimensions() {
+      _updateDimensions: function _updateDimensions(ev) {
         var _this2 = this;
+        if (ev) {
+          var entry = ev.getData();
+          if (entry.contentBoxSize) {
+            if (entry.target instanceof SVGElement) {
+              this._center(entry.contentRect.width, entry.contentRect.height);
+              return;
+            }
+          }
+        }
         var isFullscreen = this.isFullscreen();
         if (isFullscreen) {
           var minSize = Math.min(screen.availHeight, screen.availWidth);
@@ -500,6 +522,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         });
       },
       _updateViewBox: function _updateViewBox() {
+        var _this3 = this;
         var viewBox = this.getViewBox();
         if (viewBox) {
           var parts = viewBox.split(' ').map(function (v) {
@@ -512,27 +535,70 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             var y = this.getCellHeight() * parts[1] + (parts[1] > 1 ? (parts[1] - 1) * this.getSpacing() : 0);
             var width = totalOuterPadding + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2] - 1) * this.getSpacing() : 0);
             var height = totalOuterPadding + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3] - 1) * this.getSpacing() : 0);
-
-            // center only vertically because width is always fully used
-            var bbox = this.SVG.getBBox();
-            var heightDiff = height - totalOuterPadding - bbox.y - bbox.height;
-            if (heightDiff > 0) {
-              this.SVG.setAttribute('transform', "translate(0, ".concat(heightDiff / 2, ")"));
-            } else {
-              this.SVG.removeAttribute('transform');
-            }
-            if (_typeof(window.d3) === 'object') {
+            if (this._ready && _typeof(window.d3) === 'object') {
               var svg = d3.select(this._element).select('svg');
               svg.transition().duration(500).attr('viewBox', "".concat(x, " ").concat(y, " ").concat(width, " ").concat(height));
+              setTimeout(function () {
+                return _this3._center();
+              }, 510);
             } else {
               this.SVG.setAttribute('viewBox', "".concat(x, " ").concat(y, " ").concat(width, " ").concat(height));
+              setTimeout(function () {
+                return _this3._center();
+              }, 10);
             }
           }
         } else {
           this.SVG.removeAttribute('viewBox');
         }
       },
+      _center: function _center(width, height) {
+        var _this4 = this;
+        if (this.SVG && this._ready) {
+          var bbox = this.SVG.getBBox();
+          if (this._lastBBox && this._lastBBox.width === bbox.width && this._lastBBox.height === bbox.height) {
+            // no change
+            return;
+          }
+          if (!width || !height) {
+            var parts = this.SVG.hasAttribute('viewBox') ? this.SVG.getAttribute('viewBox').split(' ').map(function (v) {
+              return parseInt(v);
+            }) : [];
+            if (parts.length === 4) {
+              width = parts[2];
+              height = parts[3];
+            } else {
+              return;
+            }
+          }
+          var totalOuterPadding = this.getOuterPadding() * 2;
+          var visibleColumns = this.getColumns();
+          var visibleRows = this.getRows();
+          var gridViewBox = this.getViewBox();
+          if (gridViewBox) {
+            var gridParts = gridViewBox.split(' ').map(function (s) {
+              return parseInt(s);
+            });
+            visibleColumns = gridParts[2];
+            visibleRows = gridParts[3];
+          }
+          var visibleWidth = visibleColumns / this.getColumns();
+          var visibleHeight = visibleRows / this.getRows();
+          var heightDiff = height - totalOuterPadding - bbox.height * visibleHeight;
+          var widthDiff = width - totalOuterPadding - bbox.width * visibleWidth;
+          if (heightDiff > 0 || widthDiff > 0) {
+            this.SVG.setAttribute('transform', "translate(".concat(Math.max(0, widthDiff / 2), ", ").concat(Math.max(0, heightDiff / 2), ")"));
+          } else {
+            this.SVG.removeAttribute('transform');
+          }
+          this._lastBBox = bbox;
+          window.requestAnimationFrame(function () {
+            return _this4._center();
+          });
+        }
+      },
       _updateCellSize: function _updateCellSize() {
+        var _this5 = this;
         if (this._element.clientWidth === 0 || this._element.clientHeight === 0) {
           return;
         }
@@ -555,7 +621,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         this.setCellWidth(cellWidth);
         this.setCellHeight(cellHeight);
         if (changed) {
-          this._updateViewBox();
+          window.requestAnimationFrame(function () {
+            _this5._updateViewBox();
+          });
         }
       },
       _stringToBool: function _stringToBool(value) {
@@ -585,4 +653,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.structure.tile.components.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1700345584262
+//# sourceMappingURL=Flow.js.map?dt=1702815211321

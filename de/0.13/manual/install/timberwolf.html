@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation auf dem Timberwolf über die App &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/install/timberwolf.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -200,7 +202,7 @@ dem Timberwolf (64 Bit Architektur) verwendet werden <a class="footnote-referenc
 <ul>
 <li><p>Name: <code class="docutils literal notranslate"><span class="pre">CometVisu</span></code></p></li>
 <li><p>Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code> für die „großen“ Server
-(TSW2xxx) oder <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> für die Hutschienen-Server.</p></li>
+(TSW2xxx), aber auch für die Hutschienen-Server.</p></li>
 <li><p>Port mapping: host <code class="docutils literal notranslate"><span class="pre">18080</span></code>, container <code class="docutils literal notranslate"><span class="pre">80</span></code></p></li>
 <li><p>Advanced container settings:</p>
 <ul>
@@ -374,15 +376,14 @@ sich durch zukünftige Updates das Format der Config-Dateien inkompatibel änder
 kann.</p>
 <p>Wie unter <a class="reference internal" href="docker.html#docker"><span class="std std-ref">Docker</span></a> beschrieben hat die neueste
 Entwicklungsversion den Tag <code class="docutils literal notranslate"><span class="pre">testing</span></code>. Somit ist unter <em>Anlegen des
-Containers</em> als <code class="docutils literal notranslate"><span class="pre">name</span></code> <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw.
-<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing-arm</span></code> zu verwenden.</p>
+Containers</em> als <code class="docutils literal notranslate"><span class="pre">name</span></code> <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code> zu verwenden.</p>
 <p>Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
 Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 <ul class="simple">
 <li><p>Container:</p>
 <ul>
 <li><p>Name: <code class="docutils literal notranslate"><span class="pre">CometVisuTest</span></code></p></li>
-<li><p>Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing-arm</span></code></p></li>
+<li><p>Image configuration: Name: <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:testing</span></code></p></li>
 <li><p>Port mapping: host <code class="docutils literal notranslate"><span class="pre">28080</span></code>, container <code class="docutils literal notranslate"><span class="pre">80</span></code></p></li>
 <li><p>Advanced container settings:</p>
 <ul>
@@ -405,7 +406,7 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 </ul>
 <hr class="docutils" />
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id2" role="note">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>Um den Inhalt einer RRD Datei <code class="docutils literal notranslate"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
 andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
