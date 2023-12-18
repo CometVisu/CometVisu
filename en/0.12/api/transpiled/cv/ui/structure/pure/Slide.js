@@ -30,10 +30,10 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* Slide.js 
-   * 
+  /* Slide.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -70,7 +70,13 @@
       cv.ui.structure.AbstractWidget.constructor.call(this, props);
       this.__P_61_0 = new cv.util.LimitedRateUpdateAnimator(this.__P_61_1, this);
       this.__P_61_2 = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
-        _this.__P_61_3();
+        // Quick fix for issue https://github.com/CometVisu/CometVisu/issues/1369
+        // make sure that the `__invalidateScreensize` is delayed so that
+        // reading the available spaces is valid.
+        // Just to be sure, wait for two frames
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(_this.__P_61_3.bind(_this));
+        });
       });
       this.__P_61_4 = {};
     },
@@ -170,6 +176,7 @@
        * @param instant {Boolean} Animate or instant change
        * @param relaxDisplay {Boolean} Let the handle move to an unstable position
        *   to give visual feedback that something does happen during interaction
+       * @returns realValue - the real value that is respecting the configured restraints
        * @private
        */
       __P_61_13: function __P_61_13(value, instant) {
@@ -223,6 +230,8 @@
         }
 
         this.__P_61_0.setTo(ratio, instant);
+
+        return realValue;
       },
       __P_61_1: function __P_61_1(ratio) {
         if (this.__P_61_5 === undefined) {
@@ -239,16 +248,9 @@
           return;
         }
 
-        if (this.__P_61_7 === undefined || this.__P_61_8 === undefined) {
-          var actor = this.getDomElement().querySelector('.actor');
-          var actorStyles = window.getComputedStyle(actor);
-          this.__P_61_7 = parseFloat(actorStyles.getPropertyValue('width'));
-          this.__P_61_8 = parseFloat(window.getComputedStyle(this.__P_61_5).getPropertyValue('width'));
-          this.__P_61_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
-          this.__P_61_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
-        }
+        var actorWidth = this.__P_61_14();
 
-        var length = ratio * this.__P_61_7;
+        var length = actorWidth >= 1e10 ? 0 : ratio * actorWidth;
         this.__P_61_5.style.transform = 'translate3d(' + (length - this.__P_61_8 / 2) + 'px, 0px, 0px)';
         this.__P_61_6.style.width = length + 'px';
       },
@@ -271,7 +273,7 @@
               var boundingRect = event.currentTarget.getBoundingClientRect();
               var computedStyle = window.getComputedStyle(event.currentTarget);
               this.__P_61_10 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-              newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
+              newRatio = (event.clientX - this.__P_61_10) / this.__P_61_14();
               break;
             }
 
@@ -280,14 +282,14 @@
               return;
             }
 
-            newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
+            newRatio = (event.clientX - this.__P_61_10) / this.__P_61_14();
             break;
 
           case 'pointerup':
             this.__P_61_9 = false;
             document.removeEventListener('pointermove', this);
             document.removeEventListener('pointerup', this);
-            newRatio = (event.clientX - this.__P_61_10) / this.__P_61_7;
+            newRatio = (event.clientX - this.__P_61_10) / this.__P_61_14();
             break;
         }
 
@@ -295,14 +297,30 @@
 
         var newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
 
-        this.__P_61_13(newValue, this.__P_61_9, this.__P_61_9);
+        var realValue = this.__P_61_13(newValue, this.__P_61_9, this.__P_61_9);
 
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_61_11.call(newValue);
+          this.__P_61_11.call(realValue);
         }
       },
       __P_61_12: function __P_61_12(value) {
         this.__P_61_4 = this.sendToBackend(value, false, this.__P_61_4);
+      },
+      __P_61_14: function __P_61_14() {
+        if (this.__P_61_7 === undefined || this.__P_61_8 === undefined) {
+          if (cv.ui.layout.ResizeHandler.states.isPageSizeInvalid()) {
+            return 1e10; // a no valid value that doesn't break other calculations
+          }
+
+          var actor = this.getDomElement().querySelector('.actor');
+          var actorStyles = window.getComputedStyle(actor);
+          this.__P_61_7 = parseFloat(actorStyles.getPropertyValue('width'));
+          this.__P_61_8 = parseFloat(window.getComputedStyle(this.__P_61_5).getPropertyValue('width'));
+          this.__P_61_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+          this.__P_61_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
+        }
+
+        return this.__P_61_7;
       }
     },
     defer: function defer(statics) {
@@ -312,4 +330,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1674150458604
+//# sourceMappingURL=Slide.js.map?dt=1702895799583

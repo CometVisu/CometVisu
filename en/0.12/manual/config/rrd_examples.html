@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RRD introduction &amp; examples &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=2a0c1fdd" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/rrd_examples.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -95,9 +101,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>RRD introduction &amp; examples</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">RRD introduction &amp; examples</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -107,7 +113,7 @@
            <div itemprop="articleBody">
              
   <section id="rrd-introduction-examples">
-<span id="rrd-introduction"></span><h1>RRD introduction &amp; examples<a class="headerlink" href="#rrd-introduction-examples" title="Permalink to this headline">¶</a></h1>
+<span id="rrd-introduction"></span><h1>RRD introduction &amp; examples<a class="headerlink" href="#rrd-introduction-examples" title="Link to this heading"></a></h1>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>This section can be ignored if an openHAB backend is used. Help
@@ -115,7 +121,7 @@ with displaying diagrams with the openHAB backend can be found
 in the documentation of the <a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagram plugin</span></a>.</p>
 </div>
 <section id="general-information-about-rrd">
-<h2>General information about RRD<a class="headerlink" href="#general-information-about-rrd" title="Permalink to this headline">¶</a></h2>
+<h2>General information about RRD<a class="headerlink" href="#general-information-about-rrd" title="Link to this heading"></a></h2>
 <p>The CometVisu diagrams are generated via RRD. These are usually
 stored in the directory <code class="docutils literal notranslate"><span class="pre">/var/www/rrd</span></code>.</p>
 <p>General information about RRD can be found in English
@@ -128,7 +134,7 @@ and of course at
 <a class="reference external" href="http://oss.oetiker.ch/rrdtool/doc/rrdupdate.en.html">here</a></p>
 </section>
 <section id="rrd-and-the-cometvisu">
-<h2>RRD and the CometVisu<a class="headerlink" href="#rrd-and-the-cometvisu" title="Permalink to this headline">¶</a></h2>
+<h2>RRD and the CometVisu<a class="headerlink" href="#rrd-and-the-cometvisu" title="Link to this heading"></a></h2>
 <p>To view a chart in the CometVisu you need:</p>
 <ul class="simple">
 <li><p>CometVisu Chart Plugin</p></li>
@@ -164,7 +170,7 @@ is realizable is <code class="docutils literal notranslate"><span class="pre">*/
 <p>The update distance should match the RRD database!</p>
 </section>
 <section id="create-the-rrd-database">
-<h2>Create the RRD database<a class="headerlink" href="#create-the-rrd-database" title="Permalink to this headline">¶</a></h2>
+<h2>Create the RRD database<a class="headerlink" href="#create-the-rrd-database" title="Link to this heading"></a></h2>
 <p>The RRD file/database must first be created.</p>
 <p>For this you have to consider when creating the database how many
 records should be stored. The database is then created and populated
@@ -179,7 +185,7 @@ for the last 7 days, hourly values for the last 4 weeks, daily
 values for the last 2 years etc …)</p>
 </section>
 <section id="filling-the-rrd-database">
-<h2>“Filling” the RRD database<a class="headerlink" href="#filling-the-rrd-database" title="Permalink to this headline">¶</a></h2>
+<h2>“Filling” the RRD database<a class="headerlink" href="#filling-the-rrd-database" title="Link to this heading"></a></h2>
 <p>The RRD file / database must be regularly filled with data - if this
 does not happen RRD recognizes this and enters automatic NaN - so
 that the summaries remain correct.</p>
@@ -190,7 +196,7 @@ included in the database.</p>
 then be executed regularly via cron.</p>
 </section>
 <section id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
 <p>If RRD-based data is not displayed as intended, you can look directly
 into the database to see if any (meaningful) values exist. There
 is this for that</p>
@@ -205,7 +211,7 @@ This can be done e.g. with the grep command:</p>
 </div>
 </section>
 <section id="examples-of-rrds">
-<h2>Examples of RRDs<a class="headerlink" href="#examples-of-rrds" title="Permalink to this headline">¶</a></h2>
+<h2>Examples of RRDs<a class="headerlink" href="#examples-of-rrds" title="Link to this heading"></a></h2>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>These examples do not work with openHAB</p>
@@ -250,34 +256,34 @@ temperature of an RTR) in an RRD database.</p></li>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.0|0.12/manual">0.12.0|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

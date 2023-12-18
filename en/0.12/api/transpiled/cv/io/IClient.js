@@ -32,6 +32,14 @@
         check: 'String',
         nullable: true,
         event: 'changedServer'
+      },
+
+      /**
+       * needed to be able to check if the incoming update is the initial answer or a successing update
+       */
+      dataReceived: {
+        check: 'Boolean',
+        init: false
       }
     },
 
@@ -123,8 +131,9 @@
       /**
        * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
        * @param data {var}
+       * @param config {{scaling: number, offset: number}}
        */
-      processChartsData: function processChartsData(data) {},
+      processChartsData: function processChartsData(data, config) {},
 
       /**
        * This function sends a value
@@ -179,4 +188,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1674150496255
+//# sourceMappingURL=IClient.js.map?dt=1702895825592

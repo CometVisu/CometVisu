@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notifications &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=2a0c1fdd" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/notifications.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -91,9 +97,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Configuration of the CometVisu</a> &raquo;</li>
-      <li>Notifications</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Notifications</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -103,15 +109,15 @@
            <div itemprop="articleBody">
              
   <section id="notifications">
-<span id="id1"></span><h1>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Notifications<a class="headerlink" href="#notifications" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Tobias Bräutigam</div>
-<div class="line"><strong>Available since version</strong>: 0.11.0</div>
+<div class="line"><strong>Available since</strong>: 0.11.0</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">state-notification</span></code> element in the meta-area of the
 configuration allows to create notifications when a new value
 for a widget is uploaded from the backend. These notifications
@@ -123,7 +129,7 @@ window and in the favicon (in the browser tab). If messages of
 higher priority are underneath, this is indicated by a colored
 background.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">A simple example shows a message in the message center when the living room lamp is on</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">A simple example shows a message in the message center when the living room lamp is on</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;meta&gt;</span>
 <span class="w">    </span><span class="nt">&lt;notifications&gt;</span>
 <span class="w">        </span><span class="nt">&lt;state-notification</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span><span class="w"> </span><span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
@@ -156,10 +162,6 @@ content of the two message parts. The templates are
 specific placeholders can be placed anywhere in the text. The following
 placeholders are available:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 82%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
 <th class="head"><p>Content</p></th>
@@ -194,14 +196,8 @@ once, and only if the value of the status update equals <code class="docutils li
 set <code class="docutils literal notranslate"><span class="pre">ON</span></code>, it means the message is displayed when the lamp is
 turned on, when it is turned off, the message is automatically deleted.</p>
 <section id="explanation-of-the-attributes-in-the-state-notification-element">
-<h3>Explanation of the attributes in the state-notification element<a class="headerlink" href="#explanation-of-the-attributes-in-the-state-notification-element" title="Permalink to this headline">¶</a></h3>
+<h3>Explanation of the attributes in the state-notification element<a class="headerlink" href="#explanation-of-the-attributes-in-the-state-notification-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -256,11 +252,11 @@ turned on, when it is turned off, the message is automatically deleted.</p>
 </section>
 </section>
 <section id="further-examples">
-<h2>Further examples<a class="headerlink" href="#further-examples" title="Permalink to this headline">¶</a></h2>
+<h2>Further examples<a class="headerlink" href="#further-examples" title="Link to this heading"></a></h2>
 <section id="complex-example-with-mapping">
-<h3>Complex example with mapping<a class="headerlink" href="#complex-example-with-mapping" title="Permalink to this headline">¶</a></h3>
+<h3>Complex example with mapping<a class="headerlink" href="#complex-example-with-mapping" title="Link to this heading"></a></h3>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Complex example with notifications for movements incl. Mapping</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Complex example with notifications for movements incl. Mapping</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
 <span class="w">    </span><span class="nt">&lt;mappings&gt;</span>
 <span class="w">        </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
@@ -297,14 +293,14 @@ the message would have the following content:</p>
 <figure class="align-center" id="id4">
 <img alt="../_images/nachrichten_zentrale.png" src="../_images/nachrichten_zentrale.png" />
 <figcaption>
-<p><span class="caption-text">Example of a message in the message center</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Example of a message in the message center</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="speech">
-<h3>Speech<a class="headerlink" href="#speech" title="Permalink to this headline">¶</a></h3>
+<h3>Speech<a class="headerlink" href="#speech" title="Link to this heading"></a></h3>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">Output of the message via the text-to-speech engine of the browser</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Output of the message via the text-to-speech engine of the browser</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;meta&gt;</span>
 <span class="w">        </span><span class="nt">&lt;mappings&gt;</span>
 <span class="w">            </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
@@ -362,34 +358,34 @@ the following message is output.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.0|0.12/manual">0.12.0|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

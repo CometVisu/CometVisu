@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>URL-Parameter &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/url-params.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -101,9 +107,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
-      <li>URL-Parameter</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Konfiguration der CometVisu</a></li>
+      <li class="breadcrumb-item active">URL-Parameter</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -113,22 +119,18 @@
            <div itemprop="articleBody">
              
   <section id="url-parameter">
-<h1>URL-Parameter<a class="headerlink" href="#url-parameter" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>URL-Parameter<a class="headerlink" href="#url-parameter" title="Link to this heading"></a></h1>
 <p>Das Verhalten der CometVisu lässt sich teilweise durch URL-Parameter
 anpassen. Da sich diese Parameter mit in den Favoriten des Browsers
 abspeichern lassen, kann so effektiv und schnell auf die entsprechenden
 Varianten zugegriffen werden.</p>
 <section id="verwendung">
-<h2>Verwendung<a class="headerlink" href="#verwendung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Verwendung<a class="headerlink" href="#verwendung" title="Link to this heading"></a></h2>
 <p>Diese Parameter werden einfach hinten an die URL gehängt, durch ein „?“
 (erster URL Parameter), bzw. durch ein „&amp;“ (alle weiteren URL Parameter)
 getrennt.</p>
 <p>Beispiele:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 48%" />
-<col style="width: 52%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Beschreibung</p></th>
 <th class="head"><p>URL</p></th>
@@ -151,27 +153,27 @@ getrennt.</p>
 </table>
 </section>
 <section id="parameter">
-<h2>Parameter<a class="headerlink" href="#parameter" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Parameter<a class="headerlink" href="#parameter" title="Link to this heading"></a></h2>
 <section id="config-config-datei">
-<h3><em>config</em> - Config-Datei<a class="headerlink" href="#config-config-datei" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>config</em> - Config-Datei<a class="headerlink" href="#config-config-datei" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">config</span></code> wird eine andere Config-Datei ausgewählt.</p>
 <p>Also z.B. <code class="docutils literal notranslate"><span class="pre">config=NAME</span></code> - Diese Config-Datei muss dann unter dem Namen
 <code class="docutils literal notranslate"><span class="pre">visu_config_NAME.xml</span></code> entweder im config-Verzeichnis der Visu oder im
 <code class="docutils literal notranslate"><span class="pre">config/demo</span></code> Verzeichnis der Visu liegen.</p>
 </section>
 <section id="design-design">
-<h3><em>design</em> - Design<a class="headerlink" href="#design-design" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>design</em> - Design<a class="headerlink" href="#design-design" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">design</span></code> wird das Design in der Config-Datei
 übersteuert.</p>
 </section>
 <section id="forcereload-cache-ubersteuern">
-<h3><em>forceReload</em> - Cache übersteuern<a class="headerlink" href="#forcereload-cache-ubersteuern" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>forceReload</em> - Cache übersteuern<a class="headerlink" href="#forcereload-cache-ubersteuern" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">forceReload</span></code> mit dem Wert <em>true</em> (also zusammen
 <code class="docutils literal notranslate"><span class="pre">forceReload=true</span></code>) werden alle Dateien sicher neu geladen.</p>
 <p>Dies kann nach einem Anpassen der Config-Datei wichtig sein.</p>
 </section>
 <section id="startpage-startseite">
-<h3><em>startpage</em> - Startseite<a class="headerlink" href="#startpage-startseite" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>startpage</em> - Startseite<a class="headerlink" href="#startpage-startseite" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">startpage</span></code> kann die Unter-Seite festgelegt werden,
 die nach dem Laden der Visu als erstes angezeigt wird.</p>
 <p>Die einfachste Weise direkt eine bestimmte Startseite zu laden, ist es
@@ -188,7 +190,7 @@ Sinn machen bei einer gesamten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.</p>
 </section>
 <section id="forcedevice-ausgabegerat-ubersteuern">
-<h3><em>forceDevice</em> - Ausgabegerät übersteuern<a class="headerlink" href="#forcedevice-ausgabegerat-ubersteuern" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>forceDevice</em> - Ausgabegerät übersteuern<a class="headerlink" href="#forcedevice-ausgabegerat-ubersteuern" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">forceDevice</span></code> kann durch den Wert <code class="docutils literal notranslate"><span class="pre">mobile</span></code> auch
 an „großen“ Geräten die Seite so wie auf einem kleinen, mobilen Gerät
 (z.B. Smartphone) dargestellt werden. Bei jedem anderen Wert wird die
@@ -196,7 +198,7 @@ Seite (auch auf Mobilgeräten) wie am PC dargestellt.</p>
 <p>Dies wird eigentlich nur für Entwickler benötigt.</p>
 </section>
 <section id="maturity-ausgereiftheit">
-<h3><em>maturity</em> - Ausgereiftheit<a class="headerlink" href="#maturity-ausgereiftheit" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>maturity</em> - Ausgereiftheit<a class="headerlink" href="#maturity-ausgereiftheit" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">maturity</span></code> kann man Features freischalten, die
 noch in Entwicklung sind und somit unbeabsichtigte Querwirkungen haben.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">release</span> <span class="p">(</span><span class="n">maturity</span><span class="o">=</span><span class="n">release</span><span class="p">)</span>
@@ -206,7 +208,7 @@ noch in Entwicklung sind und somit unbeabsichtigte Querwirkungen haben.</p>
 <p>Dies sollte nur von Entwicklern benutzt werden!</p>
 </section>
 <section id="backend-backend">
-<h3><em>backend</em> - Backend<a class="headerlink" href="#backend-backend" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>backend</em> - Backend<a class="headerlink" href="#backend-backend" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> wird das verwendete Backend zur Laufzeit
 konfiguriert. Es existiert auch ein <code class="docutils literal notranslate"><span class="pre">backend</span></code> Parameter in der Config
 um dies fest einzustellen.</p>
@@ -220,7 +222,7 @@ werden. „r“, „w“ und „l“ liegen dabei in /cgi-bin/.</p>
 <p>Bei der Option „openhab“ wird der für OpenHAB notwendige Pfad verwendet.</p>
 </section>
 <section id="enablequeue-queue">
-<h3><em>enableQueue</em> - Queue<a class="headerlink" href="#enablequeue-queue" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>enableQueue</em> - Queue<a class="headerlink" href="#enablequeue-queue" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">enableQueue</span></code> wird beeinflusst ob von der CV alle
 oder nur die auf der aktuellen Seite benötigten Gruppenadressen
 abgefragt werden. Dies kann unter Umständen zu Performanceverbesserungen
@@ -234,7 +236,7 @@ gedacht funktioniert, deswegen ist es derzeit standardmäßig
 abgeschaltet.</p>
 </section>
 <section id="testmode-testmodus-ohne-echtes-backend">
-<h3><em>testMode</em> - Testmodus ohne echtes Backend<a class="headerlink" href="#testmode-testmodus-ohne-echtes-backend" title="Link zu dieser Überschrift">¶</a></h3>
+<h3><em>testMode</em> - Testmodus ohne echtes Backend<a class="headerlink" href="#testmode-testmodus-ohne-echtes-backend" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">testMode</span></code> kann man die CometVisu rudimentär testen ohne
 ein laufendes Backend im Hintergrund zu haben. Normalerweise sendet die CometVisu
 bei der Betätigung eines Switches den Einschaltwert auf der definierten Adresse zum
@@ -252,7 +254,7 @@ funktionieren.</p>
 </div>
 </section>
 <section id="enablecache-caching-aktivieren">
-<span id="enablecache"></span><h3><em>enableCache</em> - Caching aktivieren<a class="headerlink" href="#enablecache-caching-aktivieren" title="Link zu dieser Überschrift">¶</a></h3>
+<span id="enablecache"></span><h3><em>enableCache</em> - Caching aktivieren<a class="headerlink" href="#enablecache-caching-aktivieren" title="Link to this heading"></a></h3>
 <p>Durch den Parameter <code class="docutils literal notranslate"><span class="pre">enableCache</span></code> kann das Caching konfiguriert werden. Dieses bewirkt, dass eine Config
 nicht bei jeden Laden komplett neu eingelesen wird und daraus eine HTML-Seite generiert wird, sondern dass
 die gerenderte HTML-Struktur inkl. aller weiterer benötigter Daten lokal im Browser gespeichert werden
@@ -266,7 +268,7 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
 </div>
 </section>
 <section id="reporting-session-aufzeichnen">
-<span id="reporting"></span><h3><em>reporting</em> - Session aufzeichnen<a class="headerlink" href="#reporting-session-aufzeichnen" title="Link zu dieser Überschrift">¶</a></h3>
+<span id="reporting"></span><h3><em>reporting</em> - Session aufzeichnen<a class="headerlink" href="#reporting-session-aufzeichnen" title="Link to this heading"></a></h3>
 <p>Zur Unterstützung einer Fehlermeldung, kann die Interaktion mit der CometVisu aufgezeichnet und
 den Entwicklern als Replay-Datei zu Verfügung gestellt werden. Diese können damit genau sehen, welche Daten
 zwischen der CometVisu und dem Backend geflossen sind und welche Aktionen der Benutzer vorgenommen hat.
@@ -296,7 +298,7 @@ erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fe
 </div>
 </section>
 <section id="reporterrors-fehlermeldungen-automatisch-an-sentry-io-senden">
-<span id="reporterrors"></span><h3><em>reportErrors</em> - Fehlermeldungen automatisch an sentry.io senden<a class="headerlink" href="#reporterrors-fehlermeldungen-automatisch-an-sentry-io-senden" title="Link zu dieser Überschrift">¶</a></h3>
+<span id="reporterrors"></span><h3><em>reportErrors</em> - Fehlermeldungen automatisch an sentry.io senden<a class="headerlink" href="#reporterrors-fehlermeldungen-automatisch-an-sentry-io-senden" title="Link to this heading"></a></h3>
 <p>Eine weitere Möglichkeit die Entwickler bei der Verbesserung der CometVisu zu unterstützen, ist das Aktivieren
 der automatischen Fehlerberichte. Diese Berichte werden bei Auftreten eines Fehlers teilweise komplett automatisch
 an einen Webdienst geschickt (sentry.io), welcher diese sammelt, aufbereitet und die CometVisu-Entwickler benachrichtigt.</p>
@@ -312,7 +314,7 @@ Dann kann der Benutzer versuchen, den Fehler erneut zu reproduzieren und dann ei
 Erklärungen an sentry.io schicken.</p>
 </section>
 <section id="log-debug-meldungen-in-der-browserconsole-an-abschalten">
-<span id="log"></span><h3><em>log</em> - Debug-Meldungen in der Browserconsole an-/abschalten<a class="headerlink" href="#log-debug-meldungen-in-der-browserconsole-an-abschalten" title="Link zu dieser Überschrift">¶</a></h3>
+<span id="log"></span><h3><em>log</em> - Debug-Meldungen in der Browserconsole an-/abschalten<a class="headerlink" href="#log-debug-meldungen-in-der-browserconsole-an-abschalten" title="Link to this heading"></a></h3>
 <p>Mit diesem Parameter können die Debug-Meldungen auf der Browserkonsole ein- und ausgeschaltet werden.
 In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="n">im</span> <span class="n">Release</span><span class="p">,</span> <span class="n">true</span> <span class="ow">in</span> <span class="n">Entwicklerversion</span>
@@ -335,8 +337,8 @@ trotzdem eingeschaltet werden</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hidden-config.html" class="btn btn-neutral float-left" title="Versteckte Konfigurationen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="xml-format.html" class="btn btn-neutral float-right" title="XML-Struktur" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hidden-config.html" class="btn btn-neutral float-left" title="Versteckte Konfigurationen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="xml-format.html" class="btn btn-neutral float-right" title="XML-Struktur" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -352,34 +354,34 @@ trotzdem eingeschaltet werden</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

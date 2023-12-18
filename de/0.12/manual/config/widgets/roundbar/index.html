@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Roundbar Widget &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/roundbar/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/versions.js"></script>
-        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -100,10 +106,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../index.html">Bedienbare Widgets</a> &raquo;</li>
-      <li>Das Roundbar Widget</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Bedienbare Widgets</a></li>
+      <li class="breadcrumb-item active">Das Roundbar Widget</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -113,15 +119,15 @@
            <div itemprop="articleBody">
              
   <section id="das-roundbar-widget">
-<span id="roundbar"></span><h1>Das Roundbar Widget<a class="headerlink" href="#das-roundbar-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="roundbar"></span><h1>Das Roundbar Widget<a class="headerlink" href="#das-roundbar-widget" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Christian Mayer</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 0.12.0 (2020)</div>
+<div class="line"><strong>Available since</strong>: 0.12.0 (2020)</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das Roundbar Widget fügt der Visualisierung einen oder mehrere dynamische Indikatoren hinzu, in Form eines runden
 Balkens und/oder Zeigers. Dies ermöglicht die grafische Anzeige von Werten von Gruppenadressen.</p>
 <p>Das Roundbar Widget ist sowohl mit sehr einfacher Parametrierung nutzbar, als auch sehr flexibel an die jeweiligen
@@ -129,19 +135,19 @@ Anforderungen anpassbar.</p>
 <figure class="align-default" id="id2">
 <img alt="Beispiel Roundbar Widget" src="../../../_images/roundbar_simple.png" />
 <figcaption>
-<p><span class="caption-text">Beispiel Roundbar Widget</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Beispiel Roundbar Widget</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Die Darstellung kann jedoch auch vielen Details angepasst werden:</p>
 <figure class="align-default" id="id3">
 <img alt="Beispiel für komplexes Roundbar Widgets" src="../../../_images/roundbar_complex.png" />
 <figcaption>
-<p><span class="caption-text">Beispiel für komplexes Roundbar Widgets</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Beispiel für komplexes Roundbar Widgets</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="einstellungen">
-<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link to this heading"></a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
 <p>Das Verhalten und Aussehen des Roundbar-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
@@ -150,14 +156,8 @@ beides über den <a class="reference internal" href="../../editor.html#editor"><
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <section id="erlaubte-attribute-im-roundbar-element">
-<h3>Erlaubte Attribute im Roundbar-Element<a class="headerlink" href="#erlaubte-attribute-im-roundbar-element" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute im Roundbar-Element<a class="headerlink" href="#erlaubte-attribute-im-roundbar-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -307,19 +307,13 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id4">
 <img alt="../../../_images/de_config_widgets_roundbar_index_editor_attributes.png" src="../../../_images/de_config_widgets_roundbar_index_editor_attributes.png" />
 <figcaption>
-<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -409,12 +403,6 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -476,12 +464,6 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -564,13 +546,13 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id5">
 <img alt="../../../_images/de_config_widgets_roundbar_index_editor_elements.png" src="../../../_images/de_config_widgets_roundbar_index_editor_elements.png" />
 <figcaption>
-<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="xml-syntax-minimal">
-<h2>XML Syntax minimal<a class="headerlink" href="#xml-syntax-minimal" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>XML Syntax minimal<a class="headerlink" href="#xml-syntax-minimal" title="Link to this heading"></a></h2>
 <p>Alternativ kann man für das Roundbar Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
@@ -582,7 +564,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <figure class="align-default" id="id6">
 <img alt="Roundbar, einfaches Beispiel" src="../../../_images/roundbar_minimal.png" />
 <figcaption>
-<p><span class="caption-text">Roundbar, einfaches Beispiel</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Roundbar, einfaches Beispiel</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar&gt;</span>
@@ -593,19 +575,19 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 </section>
 <section id="bestandteile">
-<h2>Bestandteile<a class="headerlink" href="#bestandteile" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Bestandteile<a class="headerlink" href="#bestandteile" title="Link to this heading"></a></h2>
 <p>Das Roundbar-Widget besteht aus vielen verschiedenen Bestandteilen, die teilweise optional sind und auf
 verschiedene Arten konfiguriert werden können. Grundsätzlich wird für die Realisierung in die Visu-Seite
 ein SVG-Block eingebunden, dessen Darstellung über CSS-Regeln angepasst werden kann (siehe auch
 <a class="reference internal" href="../../customizing.html#custom-cssrules"><span class="std std-ref">„Vorhandenes Design verändern“</span></a>).</p>
 <section id="indikatoren">
-<h3>Indikatoren<a class="headerlink" href="#indikatoren" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Indikatoren<a class="headerlink" href="#indikatoren" title="Link to this heading"></a></h3>
 <p>Der offensichtlichste Bestandteil ist der Indikator, der als gebogener Balken oder als Zeiger ausgeführt sein kann.
 Ein Roundbar Widget kann auch mehrere Indikatoren gleichzeitig enthalten.</p>
 <figure class="align-default" id="id7">
 <img alt="Balken und Zeiger" src="../../../_images/roundbar_indicators.png" />
 <figcaption>
-<p><span class="caption-text">Balken und Zeiger</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Balken und Zeiger</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
@@ -623,13 +605,13 @@ Ein Roundbar Widget kann auch mehrere Indikatoren gleichzeitig enthalten.</p>
 </div>
 </section>
 <section id="markierungen">
-<h3>Markierungen<a class="headerlink" href="#markierungen" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Markierungen<a class="headerlink" href="#markierungen" title="Link to this heading"></a></h3>
 <p>Um die Skala einzuteilen können Markierungen gesetzt werden. Die „großen“ (major) Markierungen können frei auf die
 relevanten Werte gesetzt werden, die „kleinen“ (minor) werden gleichmäßig verteilt.</p>
 <figure class="align-default" id="id8">
 <img alt="Große und kleine Markierungen" src="../../../_images/roundbar_marking.png" />
 <figcaption>
-<p><span class="caption-text">Große und kleine Markierungen</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Große und kleine Markierungen</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span><span class="w"> </span><span class="na">majorradius=</span><span class="s">&quot;35&quot;</span><span class="w"> </span><span class="na">majorwidth=</span><span class="s">&quot;15&quot;</span><span class="w"> </span><span class="na">majorposition=</span><span class="s">&quot;0;20;40;60;80;100&quot;</span><span class="w"> </span><span class="na">minorradius=</span><span class="s">&quot;45&quot;</span><span class="w"> </span><span class="na">minorwidth=</span><span class="s">&quot;5&quot;</span><span class="w"> </span><span class="na">minorspacing=</span><span class="s">&quot;5&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
@@ -640,7 +622,7 @@ relevanten Werte gesetzt werden, die „kleinen“ (minor) werden gleichmäßig 
 </div>
 </section>
 <section id="beschriftungen">
-<h3>Beschriftungen<a class="headerlink" href="#beschriftungen" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Beschriftungen<a class="headerlink" href="#beschriftungen" title="Link to this heading"></a></h3>
 <p>Die Achse kann auf verschiedene Arten beschriftet werden. Hierzu werden im Attribut <code class="docutils literal notranslate"><span class="pre">labels</span></code> durch ein Semikolon
 getrennt die Werte aufgeführt:</p>
 <blockquote>
@@ -665,7 +647,7 @@ gewechselt werden.</p>
 <figure class="align-default" id="id9">
 <img alt="Beschriftungen" src="../../../_images/roundbar_labels.png" />
 <figcaption>
-<p><span class="caption-text">Beschriftungen</span><a class="headerlink" href="#id9" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Beschriftungen</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span><span class="w"> </span><span class="na">labels=</span><span class="s">&quot;inside:0,44;25;50;75;100&quot;</span><span class="w"> </span><span class="na">majorradius=</span><span class="s">&quot;45&quot;</span><span class="w"> </span><span class="na">majorwidth=</span><span class="s">&quot;5&quot;</span><span class="w"> </span><span class="na">majorposition=</span><span class="s">&quot;0;25;50;75;100&quot;</span><span class="w"> </span><span class="na">minorradius=</span><span class="s">&quot;48&quot;</span><span class="w"> </span><span class="na">minorwidth=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">minorspacing=</span><span class="s">&quot;5&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
@@ -676,7 +658,7 @@ gewechselt werden.</p>
 </div>
 </section>
 <section id="wertebereiche">
-<h3>Wertebereiche<a class="headerlink" href="#wertebereiche" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Wertebereiche<a class="headerlink" href="#wertebereiche" title="Link to this heading"></a></h3>
 <p>Um schnell einen Überblick über den aktuellen Wert zu bekommen können Wertebereiche farbig hinterlegt werden. Hierzu
 muss dem <code class="docutils literal notranslate"><span class="pre">ranges</span></code> Attribut eine durch ein Semikolon getrennte Liste der Wertebereich-Definitionen übergeben werden.</p>
 <p>Jeder Wertebereich selbst besteht aus einer durch ein Komma getrennten Liste:</p>
@@ -695,7 +677,7 @@ sattes Gelb, besitzt.</p>
 <figure class="align-default" id="id10">
 <img alt="Wertebereiche" src="../../../_images/roundbar_ranges.png" />
 <figcaption>
-<p><span class="caption-text">Wertebereiche</span><a class="headerlink" href="#id10" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Wertebereiche</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span><span class="w"> </span><span class="na">ranges=</span><span class="s">&quot;0...70,63,3,green;70...100,63,3,red;70,60,9,#ff0&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">&gt;</span>
@@ -707,15 +689,15 @@ sattes Gelb, besitzt.</p>
 </section>
 </section>
 <section id="tipps">
-<h2>Tipps<a class="headerlink" href="#tipps" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Tipps<a class="headerlink" href="#tipps" title="Link to this heading"></a></h2>
 <section id="presets">
-<h3>Presets<a class="headerlink" href="#presets" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Presets<a class="headerlink" href="#presets" title="Link to this heading"></a></h3>
 <p>Um die Konfiguration zu erleichtern gibt es vorgefertigte Designs die verwendet werden können. Alle Eigenschaften
 eines Presets können durch die Werte aus der Konfiguration übersteuert werden.</p>
 <figure class="align-default" id="id11">
 <img alt="Preset &quot;A&quot;, &quot;B&quot; und &quot;bridge&quot;" src="../../../_images/roundbar_presets.png" />
 <figcaption>
-<p><span class="caption-text">Preset „A“, „B“ und „bridge“</span><a class="headerlink" href="#id11" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Preset „A“, „B“ und „bridge“</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
@@ -736,7 +718,7 @@ eines Presets können durch die Werte aus der Konfiguration übersteuert werden.
 </div>
 </section>
 <section id="debug-modus">
-<h3>Debug-Modus<a class="headerlink" href="#debug-modus" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Debug-Modus<a class="headerlink" href="#debug-modus" title="Link to this heading"></a></h3>
 <p>Das Roundbar-Widget versucht den verfügbaren Platz maximal auszufüllen. Hierzu muss aber bereits während der
 Erzeugung der Visu-Seite bekannt sein wie groß der Inhalt des Widget werden kann. Gerade bei den Text-Bestandteilen,
 wie den Labeln, ist dies jedoch nicht automatisiert möglich.</p>
@@ -750,7 +732,7 @@ einen grünen Rahmen bei der finalen Größe zu sehen.</p>
 <figure class="align-default" id="id12">
 <img alt="Aktivierter Debug Modus" src="../../../_images/roundbar_debug.png" />
 <figcaption>
-<p><span class="caption-text">Aktivierter Debug Modus</span><a class="headerlink" href="#id12" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Aktivierter Debug Modus</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;roundbar</span><span class="w"> </span><span class="na">debug=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">bboxgrow=</span><span class="s">&quot;50;0&quot;</span><span class="nt">&gt;</span>
@@ -760,11 +742,12 @@ einen grünen Rahmen bei der finalen Größe zu sehen.</p>
 </pre></div>
 </div>
 <p class="rubric">Fußnoten</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
+</aside>
+</aside>
 </section>
 </section>
 </section>
@@ -773,8 +756,8 @@ einen grünen Rahmen bei der finalen Größe zu sehen.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../rgb/index.html" class="btn btn-neutral float-left" title="Das RGB Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../text/index.html" class="btn btn-neutral float-right" title="Das Text Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../rgb/index.html" class="btn btn-neutral float-left" title="Das RGB Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../text/index.html" class="btn btn-neutral float-right" title="Das Text Widget" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -790,34 +773,34 @@ einen grünen Rahmen bei der finalen Größe zu sehen.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

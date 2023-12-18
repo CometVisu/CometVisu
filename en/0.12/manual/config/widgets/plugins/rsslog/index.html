@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The RSSLog plugin &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=2a0c1fdd" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/config/widgets/plugins/rsslog/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/versions.js"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -102,10 +108,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Configuration of the CometVisu</a> &raquo;</li>
-          <li><a href="../../index.html">Operable widgets</a> &raquo;</li>
-      <li>The RSSLog plugin</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Configuration of the CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Operable widgets</a></li>
+      <li class="breadcrumb-item active">The RSSLog plugin</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -115,15 +121,15 @@
            <div itemprop="articleBody">
              
   <section id="the-rsslog-plugin">
-<span id="rsslog"></span><h1>The RSSLog plugin<a class="headerlink" href="#the-rsslog-plugin" title="Permalink to this headline">¶</a></h1>
+<span id="rsslog"></span><h1>The RSSLog plugin<a class="headerlink" href="#the-rsslog-plugin" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Author</strong>: Michael Markstaller</div>
-<div class="line"><strong>Available since version</strong>: 2011</div>
+<div class="line"><strong>Available since</strong>: 2011</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>The RSSLog plugin adds interactive log messages to the visu page which are
 based on the RSS feed technology.</p>
 <p>These log messaged can be used for both, a static event log (e.g. when the
@@ -138,7 +144,7 @@ entries.</p>
 </figure>
 </section>
 <section id="settings">
-<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<h2>Settings<a class="headerlink" href="#settings" title="Link to this heading"></a></h2>
 <p>For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Pages and structure of CometVisu</span></a>.</p>
 <p>The behaviour and appearance of the RSSLog plugin can be influenced by using certain attributes and elements.
@@ -146,14 +152,8 @@ The following tables show the allowed attributes and elements and their possible
 The screenshots show, how both can be edited in the <a class="reference internal" href="../../../editor.html#editor"><span class="std std-ref">editor</span></a>.</p>
 <p>Attributes underlined by ….. are mandatory, all the others are optional and be omitted.</p>
 <section id="allowed-attributes-in-the-rsslog-element">
-<h3>Allowed attributes in the rsslog-element<a class="headerlink" href="#allowed-attributes-in-the-rsslog-element" title="Permalink to this headline">¶</a></h3>
+<h3>Allowed attributes in the rsslog-element<a class="headerlink" href="#allowed-attributes-in-the-rsslog-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -215,19 +215,13 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <figure class="align-center" id="id2">
 <img alt="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_attributes.png" src="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_attributes.png" />
 <figcaption>
-<p><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Attributes in the editor (simple view) <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="allowed-child-elements-and-their-attributes">
-<h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Permalink to this headline">¶</a></h3>
+<h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -317,12 +311,6 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -384,12 +372,6 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribute</p></th>
@@ -460,7 +442,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 <figure class="align-center" id="id3">
 <img alt="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_elements.png" src="../../../../_images/en_config_widgets_plugins_rsslog_index_editor_elements.png" />
 <figcaption>
-<p><span class="caption-text">Element in the editor</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Element in the editor</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition note">
@@ -480,7 +462,7 @@ store it first.</p>
 </section>
 </section>
 <section id="xml-syntax">
-<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Permalink to this headline">¶</a></h2>
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link to this heading"></a></h2>
 <p>Alternatively it is possible to manually add the rsslog plugin entry to the
 <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a>.</p>
 <div class="admonition caution">
@@ -489,7 +471,7 @@ store it first.</p>
 set to UTF-8 mode must be used.</p>
 </div>
 <section id="simple-example-static-list">
-<h3>Simple example: static list<a class="headerlink" href="#simple-example-static-list" title="Permalink to this headline">¶</a></h3>
+<h3>Simple example: static list<a class="headerlink" href="#simple-example-static-list" title="Link to this heading"></a></h3>
 <p>The entries of this example can be created by these URLs:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Door%20bell
 http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Mailbox
@@ -500,7 +482,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Smoke%20alarm
 <figure class="align-default" id="id4">
 <img alt="RSSLog, simple example" src="../../../../_images/rsslog_simple.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, simple example</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">RSSLog, simple example</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -518,7 +500,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Smoke%20alarm
 </div>
 </section>
 <section id="simple-example-static-list-with-mapping">
-<h3>Simple example: static list with mapping<a class="headerlink" href="#simple-example-static-list-with-mapping" title="Permalink to this headline">¶</a></h3>
+<h3>Simple example: static list with mapping<a class="headerlink" href="#simple-example-static-list-with-mapping" title="Link to this heading"></a></h3>
 <p>The entries of this example can be created by these URLs:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Door%20bell&amp;mapping=StateDoorBell
 http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Mailbox&amp;mapping=StateMail
@@ -529,7 +511,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Smoke%20alarm&amp;mappin
 <figure class="align-default" id="id5">
 <img alt="RSSLog, simple example with mapping" src="../../../../_images/rsslog_simple_mapping.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, simple example with mapping</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">RSSLog, simple example with mapping</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -561,7 +543,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Smoke%20alarm&amp;mappin
 </div>
 </section>
 <section id="simple-example-interactive-list">
-<h3>Simple example: interactive list<a class="headerlink" href="#simple-example-interactive-list" title="Permalink to this headline">¶</a></h3>
+<h3>Simple example: interactive list<a class="headerlink" href="#simple-example-interactive-list" title="Link to this heading"></a></h3>
 <p>The entries of this example can be created by these URLs:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Change%20fish%20tank%201%20water&amp;t[]=fish&amp;mapping=StateConfirm&amp;state=0
 http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Change%20fish%20tank%202%20water&amp;t[]=fish&amp;mapping=StateConfirm&amp;state=0
@@ -571,7 +553,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Replace%20ventilation%20
 <figure class="align-default" id="id6">
 <img alt="RSSLog, interactive list" src="../../../../_images/rsslog_interactive.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, interactive list</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">RSSLog, interactive list</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -595,7 +577,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Replace%20ventilation%20
 </div>
 </section>
 <section id="complex-example-with-multiple-categories">
-<h3>Complex example with multiple categories<a class="headerlink" href="#complex-example-with-multiple-categories" title="Permalink to this headline">¶</a></h3>
+<h3>Complex example with multiple categories<a class="headerlink" href="#complex-example-with-multiple-categories" title="Link to this heading"></a></h3>
 <p>Using tags it is possible have multiple categories. In the display each tag
 will be added to the HTML <code class="docutils literal notranslate"><span class="pre">class</span></code> attribute so that it can be formatted
 by CSS rules. This example uses this feature for the colors of the different
@@ -611,7 +593,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Refuel&amp;t[]=car&amp;m
 <figure class="align-default" id="id7">
 <img alt="RSSLog, complex example" src="../../../../_images/rsslog_complex.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, complex example</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">RSSLog, complex example</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -640,19 +622,19 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Refuel&amp;t[]=car&amp;m
 </section>
 </section>
 <section id="external-interaction-with-the-data">
-<h2>External interaction with the data<a class="headerlink" href="#external-interaction-with-the-data" title="Permalink to this headline">¶</a></h2>
+<h2>External interaction with the data<a class="headerlink" href="#external-interaction-with-the-data" title="Link to this heading"></a></h2>
 <p>The RSSLog plugin of the CometVisu is just for the display of the data of the
 database. It must be filled by an external logic engine. For that it is highly
 recommended to not access the database directly but use the same HTTP API that
 the RSSLog plugin is using.</p>
 <p>All calls are simple HTTP GET requests that a logic engine can generate easily.</p>
 <section id="api-documentation">
-<h3>API documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+<h3>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h3>
 <p>Parameter for all calls:</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -667,10 +649,10 @@ information about the database connection is stored.</p></td>
 </tbody>
 </table>
 <p>Relevant entries in the hidden config are:</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -708,11 +690,11 @@ information about the database connection is stored.</p></td>
 </tbody>
 </table>
 <section id="new-entry">
-<h4>New entry<a class="headerlink" href="#new-entry" title="Permalink to this headline">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>New entry<a class="headerlink" href="#new-entry" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -760,11 +742,11 @@ can be used with a URL following this schema.</p>
 </div>
 </section>
 <section id="return-log-as-rss-feed">
-<h4>Return log as RSS feed<a class="headerlink" href="#return-log-as-rss-feed" title="Permalink to this headline">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Return log as RSS feed<a class="headerlink" href="#return-log-as-rss-feed" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -790,11 +772,11 @@ information</p></td>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?f=yellow&amp;state=0&amp;limit=5</span></code></p>
 </section>
 <section id="show-log-on-a-html-page">
-<h4>Show log on a HTML page<a class="headerlink" href="#show-log-on-a-html-page" title="Permalink to this headline">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Show log on a HTML page<a class="headerlink" href="#show-log-on-a-html-page" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -810,11 +792,11 @@ information</p></td>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?dump</span></code></p>
 </section>
 <section id="delete-old-entries">
-<h4>Delete old entries<a class="headerlink" href="#delete-old-entries" title="Permalink to this headline">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Delete old entries<a class="headerlink" href="#delete-old-entries" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -844,11 +826,11 @@ delete all entries older than a year this terminal command could be used:</p>
 </div>
 </section>
 <section id="delete-one-entry">
-<h4>Delete one entry<a class="headerlink" href="#delete-one-entry" title="Permalink to this headline">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Delete one entry<a class="headerlink" href="#delete-one-entry" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -864,11 +846,11 @@ delete all entries older than a year this terminal command could be used:</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?d=123</span></code></p>
 </section>
 <section id="return-content-in-json-format">
-<h4>Return content in JSON format<a class="headerlink" href="#return-content-in-json-format" title="Permalink to this headline">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Return content in JSON format<a class="headerlink" href="#return-content-in-json-format" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -884,11 +866,11 @@ delete all entries older than a year this terminal command could be used:</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?j</span></code></p>
 </section>
 <section id="update-the-status">
-<h4>Update the status<a class="headerlink" href="#update-the-status" title="Permalink to this headline">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Update the status<a class="headerlink" href="#update-the-status" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -907,13 +889,13 @@ delete all entries older than a year this terminal command could be used:</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">rsslog.php?u=123&amp;state=1</span></code></p>
 </section>
 <section id="show-info-page">
-<span id="info-page"></span><h4>Show info page<a class="headerlink" href="#show-info-page" title="Permalink to this headline">¶</a></h4>
+<span id="info-page"></span><h4>Show info page<a class="headerlink" href="#show-info-page" title="Link to this heading"></a></h4>
 <p>The info page shows information about the configuration and the database like
 the number of stored entries. It also shows links to delete older entries.</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>
@@ -930,7 +912,7 @@ the number of stored entries. It also shows links to delete older entries.</p>
 </section>
 </section>
 <section id="example-api-access-from-the-linux-shell">
-<h3>Example: API access from the Linux shell<a class="headerlink" href="#example-api-access-from-the-linux-shell" title="Permalink to this headline">¶</a></h3>
+<h3>Example: API access from the Linux shell<a class="headerlink" href="#example-api-access-from-the-linux-shell" title="Link to this heading"></a></h3>
 <p>The well known tools <code class="docutils literal notranslate"><span class="pre">wget</span></code> and <code class="docutils literal notranslate"><span class="pre">curl</span></code> can be used to send a HTTP GET
 request from the shell.</p>
 <p>With these commands it is possible to create a new entry, in this example
@@ -941,7 +923,7 @@ entry <code class="docutils literal notranslate"><span class="pre">rsslog_db</sp
 </div>
 </section>
 <section id="example-api-access-with-node-red">
-<h3>Example: API access with Node-RED<a class="headerlink" href="#example-api-access-with-node-red" title="Permalink to this headline">¶</a></h3>
+<h3>Example: API access with Node-RED<a class="headerlink" href="#example-api-access-with-node-red" title="Link to this heading"></a></h3>
 <p>At Node-RED the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> can be used to create a new entry.</p>
 <p>In this example each ring of the door bell shall be used to create a new entry.
 For this it is listened on the KNX and when a <code class="docutils literal notranslate"><span class="pre">true</span></code> is sent on the right GA
@@ -949,35 +931,35 @@ the URL to create a new entry is called:</p>
 <figure class="align-default" id="id8">
 <img alt="../../../../_images/node-RED_simple.png" src="../../../../_images/node-RED_simple.png" />
 <figcaption>
-<p><span class="caption-text">Simple Node-RED flow.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Simple Node-RED flow.</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
 <img alt="../../../../_images/node-RED_simple_config.png" src="../../../../_images/node-RED_simple_config.png" />
 <figcaption>
-<p><span class="caption-text">Configuration of the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> for the simple Node-RED flow.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Configuration of the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> for the simple Node-RED flow.</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>It is also possible to define the text for the entry dynamically:</p>
 <figure class="align-default" id="id10">
 <img alt="../../../../_images/node-RED_dynamic.png" src="../../../../_images/node-RED_dynamic.png" />
 <figcaption>
-<p><span class="caption-text">Node-RED flow with dynamic setting of the RSSLog text.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Node-RED flow with dynamic setting of the RSSLog text.</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id11">
 <img alt="../../../../_images/node-RED_dynamic_config.png" src="../../../../_images/node-RED_dynamic_config.png" />
 <figcaption>
-<p><span class="caption-text">Configuration of the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> for the dynamic Node-RED flow.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Configuration of the <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> for the dynamic Node-RED flow.</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="example-api-access-with-the-timberwolf-server">
-<h3>Example: API access with the Timberwolf server<a class="headerlink" href="#example-api-access-with-the-timberwolf-server" title="Permalink to this headline">¶</a></h3>
+<h3>Example: API access with the Timberwolf server<a class="headerlink" href="#example-api-access-with-the-timberwolf-server" title="Link to this heading"></a></h3>
 <p>The <a class="reference external" href="https://timberwolf.io/">Timberwolf server</a> provides a HTTP-API to
 be able to send HTTP GET requests and interact with the RSSLog API.</p>
 <section id="static-api-call">
-<h4>Static API call<a class="headerlink" href="#static-api-call" title="Permalink to this headline">¶</a></h4>
+<h4>Static API call<a class="headerlink" href="#static-api-call" title="Link to this heading"></a></h4>
 <p>Most simple is a mechanism where each KNX message to a GA will create an API
 call.</p>
 <p>This example assumes that the GA 4/3/200 will send a <code class="docutils literal notranslate"><span class="pre">On</span></code> with each door
@@ -1012,7 +994,7 @@ to the RSSLog api (“Follow HTTP Redirects” must be activated):</p>
 </figure>
 </section>
 <section id="dynamic-api-call">
-<h4>Dynamic API call<a class="headerlink" href="#dynamic-api-call" title="Permalink to this headline">¶</a></h4>
+<h4>Dynamic API call<a class="headerlink" href="#dynamic-api-call" title="Link to this heading"></a></h4>
 <p>The example will be more complex when the door bell sends a “On” for each
 ring but all the time a “Off” otherwise so that the data must be filtered first.
 In this example also the text should not be hard coded in the URL anymore but
@@ -1047,12 +1029,13 @@ text must follow the rules of an URL and thus be “escaped”. For example
 space characters must be replaced by <code class="docutils literal notranslate"><span class="pre">%20</span></code>.</p>
 </div>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In the simple view some things might be not visible. The expert view
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In the simple view some things might be not visible. The expert view
 will show all entries.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 </section>
 </section>
 </section>
@@ -1079,34 +1062,34 @@ will show all entries.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.0|0.12/manual">0.12.0|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

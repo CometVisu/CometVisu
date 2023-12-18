@@ -23,6 +23,6 @@
   ],
   "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,YAAhB,EAA8B;AAC5BC,IAAAA,IAAI,EAAE,QADsB;AAG5BC,IAAAA,OAAO,EAAE;AACPC,MAAAA,GAAG,EAAE,0CADE;AAEPC,MAAAA,MAAM,EAAE,QAFD;AAGPC,MAAAA,OAAO,EAAE,QAHF;AAIPC,MAAAA,eAAe,EAAE,CAJV;AAKPC,MAAAA,IAAI,EAAE,0BALC;AAMPC,MAAAA,IAAI,EAAE;AANC;AAHmB,GAA9B;AADAC,EAAAA,EAAE,CAACC,OAAH,CAAWZ,aAAX,GAA2BA,aAA3B",
   "sourcesContent": [
-    "\nqx.Class.define('cv.Version', {\n  type: 'static',\n\n  statics: {\n    REV: '0c8ba8f2fa5cffcb0a9ebff028987f16c33a6807',\n    BRANCH: 'master',\n    VERSION: '0.12.2',\n    LIBRARY_VERSION: 9,\n    DATE: '2023-01-19T17:44:57.642Z',\n    TAGS: { \n    }\n  }\n});    \n"
+    "\nqx.Class.define('cv.Version', {\n  type: 'static',\n\n  statics: {\n    REV: '32d551c4f5dfb782078b2cb5632653156562c576',\n    BRANCH: 'master',\n    VERSION: '0.12.6',\n    LIBRARY_VERSION: 9,\n    DATE: '2023-12-18T10:34:43.104Z',\n    TAGS: { \n    }\n  }\n});    \n"
   ]
 }

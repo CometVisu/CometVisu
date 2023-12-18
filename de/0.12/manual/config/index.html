@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Konfiguration der CometVisu &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/index.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -117,8 +123,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Konfiguration der CometVisu</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Konfiguration der CometVisu</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -128,7 +134,7 @@
            <div itemprop="articleBody">
              
   <section id="konfiguration-der-cometvisu">
-<h1>Konfiguration der CometVisu<a class="headerlink" href="#konfiguration-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Konfiguration der CometVisu<a class="headerlink" href="#konfiguration-der-cometvisu" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <p>Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
@@ -173,9 +179,9 @@ durch Anhängen von check_config.php an den URL erzwingen.</p>
 </div>
 <p>Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter <a class="reference internal" href="url-params.html"><span class="doc">URL-Parameter</span></a> zu finden.</p>
 <section id="seiten-und-struktur-der-cometvisu">
-<span id="visu-config-details"></span><h2>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="visu-config-details"></span><h2>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link to this heading"></a></h2>
 <section id="grundsatzliches">
-<h3>Grundsätzliches<a class="headerlink" href="#grundsatzliches" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Grundsätzliches<a class="headerlink" href="#grundsatzliches" title="Link to this heading"></a></h3>
 <p>Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
 Jalousien verfahren bedient sich CometVisu sogenannter Widgets.
 Widgets können als grafische Bausteine verstanden werden, die auf einer
@@ -194,7 +200,7 @@ Funktionsweise des Widget detaillierter festgelegt werden.</p>
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.</p>
 </section>
 <section id="arbeiten-mit-der-konfigurationsdatei">
-<h3>Arbeiten mit der Konfigurationsdatei<a class="headerlink" href="#arbeiten-mit-der-konfigurationsdatei" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Arbeiten mit der Konfigurationsdatei<a class="headerlink" href="#arbeiten-mit-der-konfigurationsdatei" title="Link to this heading"></a></h3>
 <p>Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
 Tags umschlossen aufgenommen werden:</p>
@@ -212,7 +218,7 @@ Tags umschlossen aufgenommen werden:</p>
 </section>
 </section>
 <section id="navigationselemente-in-der-cometvisu">
-<h2>Navigationselemente in der CometVisu<a class="headerlink" href="#navigationselemente-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Navigationselemente in der CometVisu<a class="headerlink" href="#navigationselemente-in-der-cometvisu" title="Link to this heading"></a></h2>
 <p>Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Navigation durch den Benutzer zur Verfügung:</p>
 <ul class="simple">
 <li><p>Das <a class="reference internal" href="widgets/page/index.html#page"><span class="std std-ref">Page-Widget</span></a> ruft die zugehörige Unterseite auf.</p></li>
@@ -227,7 +233,7 @@ zurück zu navigieren .</p></li>
 <figure class="align-default" id="id1">
 <img alt="../_images/Navigation_withDescription.png" src="../_images/Navigation_withDescription.png" />
 <figcaption>
-<p><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Übersicht der wichtigsten Navigationselemente.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Ebenso sind verschiedene Funktionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:</p>
@@ -241,7 +247,7 @@ per GA aufgerufen wurde.</p></li>
 </ul>
 </section>
 <section id="die-verfugbaren-designs">
-<h2>Die verfügbaren Designs<a class="headerlink" href="#die-verfugbaren-designs" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Die verfügbaren Designs<a class="headerlink" href="#die-verfugbaren-designs" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="examples/swiss.html"><span class="doc">Metal</span></a> - das wohl beliebteste Design</p></li>
 <li><p>Pure - Standard-Design</p></li>
@@ -253,7 +259,7 @@ per GA aufgerufen wurde.</p></li>
 </ul>
 </section>
 <section id="anderung-der-metal-designs">
-<h2>Änderung der Metal-Designs<a class="headerlink" href="#anderung-der-metal-designs" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Änderung der Metal-Designs<a class="headerlink" href="#anderung-der-metal-designs" title="Link to this heading"></a></h2>
 <p>In der Version 0.12 wurde das Metal-Design überarbeitet. Die Änderungen bestanden im Wesentlichen darin
 Farbverläufe, Text-Schatten und die Schriftart zu verändern um eine moderate Modernisierung zu erreichen.</p>
 <p>Die Änderungen können jedoch wieder zurückgesetzt werden indem eine zusätzliche CSS-Datei geladen wird.
@@ -268,7 +274,7 @@ Dies wird erreicht durch Hinzufügen des folgenden Texts in den Meta-Bereich der
 </div>
 </section>
 <section id="grundlegende-elemente-zum-gestalten-des-layouts">
-<h2>Grundlegende Elemente zum Gestalten des Layouts<a class="headerlink" href="#grundlegende-elemente-zum-gestalten-des-layouts" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Grundlegende Elemente zum Gestalten des Layouts<a class="headerlink" href="#grundlegende-elemente-zum-gestalten-des-layouts" title="Link to this heading"></a></h2>
 <p>In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element <code class="docutils literal notranslate"><span class="pre">Layout</span></code> gesteuert werden.
 Damit kann ein „Responsive Design“ realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem
 aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-Aufrufes, sondern dynamisch
@@ -284,7 +290,7 @@ die Größe des Widgetinhalts (zB. Bild- und Diagrammgröße, etc.) gesteuert we
 </ul>
 </section>
 <section id="elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">
-<h2>Elemente für Konvertierung und Formatierung in der CometVisu<a class="headerlink" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Elemente für Konvertierung und Formatierung in der CometVisu<a class="headerlink" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu" title="Link to this heading"></a></h2>
 <p>In der CometVisu können Werte auf verschiedenste Art und Weisen
 dargestellt werden. Hierfür können genutzt werden:</p>
 <div class="toctree-wrapper compound">
@@ -302,7 +308,7 @@ für einige Widgets noch zusätzliche Optionen.</p></li>
 </ul>
 </section>
 <section id="widgets-in-der-cometvisu">
-<h2>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link to this heading"></a></h2>
 <p>Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
 eingebaut sein oder per Plugin-Schnittstelle integriert.</p>
@@ -322,7 +328,7 @@ beschrieben werden.</p>
 </div>
 </section>
 <section id="cometvisu-beispiele">
-<h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link to this heading"></a></h2>
 <p>Hier befindet sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -333,7 +339,7 @@ beschrieben werden.</p>
 </div>
 </section>
 <section id="sonstiges">
-<h2>sonstiges<a class="headerlink" href="#sonstiges" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>sonstiges<a class="headerlink" href="#sonstiges" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notifications.html">Benachrichtigungen</a></li>
@@ -349,8 +355,8 @@ beschrieben werden.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../install/app.html" class="btn btn-neutral float-left" title="Die CometVisu als App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="manager.html" class="btn btn-neutral float-right" title="Der CometVisu Manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../install/app.html" class="btn btn-neutral float-left" title="Die CometVisu als App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="manager.html" class="btn btn-neutral float-right" title="Der CometVisu Manager" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -366,34 +372,34 @@ beschrieben werden.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -102,8 +102,9 @@
       parseIcons: function parseIcons(elem) {
         var icon = this.__P_6_0(elem);
 
-        cv.Config.configSettings.iconsFromConfig.push(icon);
-        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+        if (cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source)) {
+          cv.Config.configSettings.iconsFromConfig.push(icon);
+        }
       },
       parseMappings: function parseMappings(elem) {
         var name = elem.getAttribute('name');
@@ -509,4 +510,4 @@
   cv.parser.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1674150450294
+//# sourceMappingURL=MetaParser.js.map?dt=1702895794346

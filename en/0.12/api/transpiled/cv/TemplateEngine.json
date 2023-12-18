@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 1020,
+        "line": 1039,
         "column": 3
       }
     },
@@ -805,7 +805,7 @@
           "column": 4
         },
         "end": {
-          "line": 658,
+          "line": 651,
           "column": 5
         }
       },
@@ -820,14 +820,28 @@
       "type": "function",
       "access": "public"
     },
-    "startScreensaver": {
+    "_runTrickOMatic": {
       "location": {
         "start": {
-          "line": 663,
+          "line": 653,
           "column": 4
         },
         "end": {
-          "line": 672,
+          "line": 677,
+          "column": 5
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "startScreensaver": {
+      "location": {
+        "start": {
+          "line": 682,
+          "column": 4
+        },
+        "end": {
+          "line": 691,
           "column": 5
         }
       },
@@ -845,11 +859,11 @@
     "startInitialRequest": {
       "location": {
         "start": {
-          "line": 677,
+          "line": 696,
           "column": 4
         },
         "end": {
-          "line": 699,
+          "line": 718,
           "column": 5
         }
       },
@@ -867,11 +881,11 @@
     "createPages": {
       "location": {
         "start": {
-          "line": 708,
+          "line": 727,
           "column": 4
         },
         "end": {
-          "line": 725,
+          "line": 744,
           "column": 5
         }
       },
@@ -919,11 +933,11 @@
     "getPageIdByPath": {
       "location": {
         "start": {
-          "line": 733,
+          "line": 752,
           "column": 4
         },
         "end": {
-          "line": 751,
+          "line": 770,
           "column": 5
         }
       },
@@ -959,11 +973,11 @@
     "traversePath": {
       "location": {
         "start": {
-          "line": 753,
+          "line": 772,
           "column": 4
         },
         "end": {
-          "line": 778,
+          "line": 797,
           "column": 5
         }
       },
@@ -973,11 +987,11 @@
     "getPageIdByName": {
       "location": {
         "start": {
-          "line": 780,
+          "line": 799,
           "column": 4
         },
         "end": {
-          "line": 852,
+          "line": 871,
           "column": 5
         }
       },
@@ -987,11 +1001,11 @@
     "scrollToPage": {
       "location": {
         "start": {
-          "line": 854,
+          "line": 873,
           "column": 4
         },
         "end": {
-          "line": 890,
+          "line": 909,
           "column": 5
         }
       },
@@ -1001,11 +1015,11 @@
     "_maintainNavbars": {
       "location": {
         "start": {
-          "line": 892,
+          "line": 911,
           "column": 4
         },
         "end": {
-          "line": 906,
+          "line": 925,
           "column": 5
         }
       },
@@ -1015,11 +1029,11 @@
     "_applyHighlightedWidget": {
       "location": {
         "start": {
-          "line": 908,
+          "line": 927,
           "column": 4
         },
         "end": {
-          "line": 921,
+          "line": 940,
           "column": 5
         }
       },
@@ -1032,11 +1046,11 @@
     "selectDesign": {
       "location": {
         "start": {
-          "line": 923,
+          "line": 942,
           "column": 4
         },
         "end": {
-          "line": 1008,
+          "line": 1027,
           "column": 5
         }
       },
@@ -1831,11 +1845,11 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1016,
+        "line": 1035,
         "column": 12
       },
       "end": {
-        "line": 1019,
+        "line": 1038,
         "column": 3
       }
     },

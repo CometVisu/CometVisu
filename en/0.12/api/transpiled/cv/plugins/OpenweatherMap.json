@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 207,
+        "line": 209,
         "column": 3
       }
     },
@@ -78,7 +78,7 @@
         "column": 13
       },
       "end": {
-        "line": 60,
+        "line": 62,
         "column": 3
       }
     },
@@ -88,11 +88,11 @@
     "parse": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 82,
+          "line": 84,
           "column": 5
         }
       },
@@ -148,11 +148,11 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 5
         }
       },
@@ -164,11 +164,11 @@
     "cssClass": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 112,
           "column": 4
         },
         "end": {
-          "line": 113,
+          "line": 115,
           "column": 5
         }
       },
@@ -181,11 +181,11 @@
     "lang": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 116,
           "column": 4
         },
         "end": {
-          "line": 117,
+          "line": 119,
           "column": 5
         }
       },
@@ -198,11 +198,11 @@
     "owID": {
       "location": {
         "start": {
-          "line": 118,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 123,
           "column": 5
         }
       },
@@ -215,11 +215,11 @@
     "q": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 124,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 127,
           "column": 5
         }
       },
@@ -232,11 +232,11 @@
     "lat": {
       "location": {
         "start": {
-          "line": 126,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 129,
+          "line": 131,
           "column": 5
         }
       },
@@ -249,11 +249,11 @@
     "lon": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 132,
           "column": 4
         },
         "end": {
-          "line": 133,
+          "line": 135,
           "column": 5
         }
       },
@@ -266,11 +266,11 @@
     "units": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 136,
           "column": 4
         },
         "end": {
-          "line": 137,
+          "line": 139,
           "column": 5
         }
       },
@@ -283,11 +283,11 @@
     "type": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 140,
           "column": 4
         },
         "end": {
-          "line": 141,
+          "line": 143,
           "column": 5
         }
       },
@@ -300,11 +300,11 @@
     "forecast24hItems": {
       "location": {
         "start": {
-          "line": 142,
+          "line": 144,
           "column": 4
         },
         "end": {
-          "line": 145,
+          "line": 147,
           "column": 5
         }
       },
@@ -317,11 +317,11 @@
     "forecastDailyhItems": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 148,
           "column": 4
         },
         "end": {
-          "line": 149,
+          "line": 151,
           "column": 5
         }
       },
@@ -334,11 +334,11 @@
     "showSunrise": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 152,
           "column": 4
         },
         "end": {
-          "line": 153,
+          "line": 155,
           "column": 5
         }
       },
@@ -351,11 +351,11 @@
     "detailItems": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 156,
           "column": 4
         },
         "end": {
-          "line": 157,
+          "line": 159,
           "column": 5
         }
       },
@@ -368,11 +368,11 @@
     "appid": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 160,
           "column": 4
         },
         "end": {
-          "line": 161,
+          "line": 163,
           "column": 5
         }
       },
@@ -385,11 +385,11 @@
     "description": {
       "location": {
         "start": {
-          "line": 162,
+          "line": 164,
           "column": 4
         },
         "end": {
-          "line": 165,
+          "line": 167,
           "column": 5
         }
       },
@@ -468,11 +468,11 @@
     "__options": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 176,
           "column": 4
         },
         "end": {
-          "line": 174,
+          "line": 176,
           "column": 19
         }
       },
@@ -482,11 +482,11 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 178,
           "column": 4
         },
         "end": {
-          "line": 182,
+          "line": 184,
           "column": 5
         }
       },
@@ -510,11 +510,11 @@
     "_setupRefreshAction": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 186,
           "column": 4
         },
         "end": {
-          "line": 190,
+          "line": 192,
           "column": 5
         }
       },
@@ -524,11 +524,11 @@
     "_refreshAction": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 194,
           "column": 4
         },
         "end": {
-          "line": 195,
+          "line": 197,
           "column": 5
         }
       },
@@ -6372,11 +6372,11 @@
   "defer": {
     "location": {
       "start": {
-        "line": 198,
+        "line": 200,
         "column": 9
       },
       "end": {
-        "line": 206,
+        "line": 208,
         "column": 3
       }
     },

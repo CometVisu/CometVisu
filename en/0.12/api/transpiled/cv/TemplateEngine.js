@@ -41,8 +41,8 @@
       "cv.ui.layout.ResizeHandler": {},
       "cv.ui.PageHandler": {},
       "qx.util.DeferredCall": {},
-      "cv.ui.TrickOMatic": {},
       "cv.util.IconTools": {},
+      "cv.ui.TrickOMatic": {},
       "qx.event.Registration": {},
       "cv.parser.WidgetParser": {},
       "cv.util.String": {},
@@ -666,6 +666,8 @@
         this.debug('setup'); // login to backend as it might change some settings needed for further processing
 
         this.visu.login(true, cv.Config.configSettings.credentials, function () {
+          var _this = this;
+
           this.debug('logged in');
           this.setLoggedIn(true);
 
@@ -716,15 +718,7 @@
           }, this).schedule(); // run the Trick-O-Matic scripts for great SVG backdrops
 
           document.querySelectorAll('embed').forEach(function (elem) {
-            if (typeof elem.getSVGDocument === 'function') {
-              var svg = elem.getSVGDocument();
-
-              if (svg === null || svg.readyState !== 'complete') {
-                elem.onload = cv.ui.TrickOMatic.run;
-              } else {
-                cv.ui.TrickOMatic.run.call(elem);
-              }
-            }
+            _this._runTrickOMatic(elem, 0);
           });
           this.startInitialRequest();
           this.xml = null; // not needed anymore - free the space
@@ -735,6 +729,34 @@
           }, this);
           this.startScreensaver();
         }, this);
+      },
+      _runTrickOMatic: function _runTrickOMatic(elem, retries) {
+        var _this2 = this;
+
+        if (elem && typeof elem.getSVGDocument === 'function') {
+          try {
+            var svg = elem.getSVGDocument();
+
+            if (svg === null || svg.readyState !== 'complete') {
+              elem.onload = cv.ui.TrickOMatic.run;
+            } else {
+              cv.ui.TrickOMatic.run.call(elem);
+            }
+          } catch (e) {
+            if (e.name === 'NotSupportedError') {
+              if (retries <= 5) {
+                retries++;
+                window.requestAnimationFrame(function () {
+                  _this2._runTrickOMatic(elem, retries);
+                });
+              } else {
+                this.error(e);
+              }
+            } else {
+              this.error(e);
+            }
+          }
+        }
       },
 
       /**
@@ -1115,4 +1137,4 @@
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1674150493253
+//# sourceMappingURL=TemplateEngine.js.map?dt=1702895823600

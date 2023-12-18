@@ -15,7 +15,7 @@
         "column": 0
       },
       "end": {
-        "line": 403,
+        "line": 425,
         "column": 3
       }
     },
@@ -79,6 +79,23 @@
       "allowNull": true,
       "check": "String"
     },
+    "dataReceived": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4
+        },
+        "end": {
+          "line": 65,
+          "column": 5
+        }
+      },
+      "name": "dataReceived",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
     "qxOwner": {
       "type": "property",
       "name": "qxOwner",
@@ -116,11 +133,11 @@
     "__lastError": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 73,
           "column": 4
         },
         "end": {
-          "line": 68,
+          "line": 73,
           "column": 21
         }
       },
@@ -130,11 +147,11 @@
     "_backendName": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 74,
           "column": 4
         },
         "end": {
-          "line": 69,
+          "line": 74,
           "column": 22
         }
       },
@@ -144,11 +161,11 @@
     "_backendUrl": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 75,
           "column": 4
         },
         "end": {
-          "line": 70,
+          "line": 75,
           "column": 21
         }
       },
@@ -158,11 +175,11 @@
     "__token": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 76,
           "column": 4
         },
         "end": {
-          "line": 71,
+          "line": 76,
           "column": 17
         }
       },
@@ -172,11 +189,11 @@
     "__groups": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 77,
           "column": 4
         },
         "end": {
-          "line": 72,
+          "line": 77,
           "column": 18
         }
       },
@@ -186,11 +203,11 @@
     "__memberLookup": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 78,
           "column": 4
         },
         "end": {
-          "line": 73,
+          "line": 78,
           "column": 24
         }
       },
@@ -200,11 +217,11 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 80,
           "column": 4
         },
         "end": {
-          "line": 77,
+          "line": 82,
           "column": 5
         }
       },
@@ -228,11 +245,11 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 85,
           "column": 4
         },
         "end": {
-          "line": 81,
+          "line": 86,
           "column": 5
         }
       },
@@ -247,11 +264,11 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 88,
           "column": 4
         },
         "end": {
-          "line": 132,
+          "line": 137,
           "column": 5
         }
       },
@@ -292,11 +309,11 @@
     "__convertTimes": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 139,
           "column": 4
         },
         "end": {
-          "line": 143,
+          "line": 148,
           "column": 5
         }
       },
@@ -306,11 +323,11 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 145,
+          "line": 150,
           "column": 4
         },
         "end": {
-          "line": 147,
+          "line": 152,
           "column": 5
         }
       },
@@ -334,11 +351,11 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 154,
           "column": 4
         },
         "end": {
-          "line": 160,
+          "line": 173,
           "column": 5
         }
       },
@@ -353,6 +370,13 @@
           {
             "name": "@param",
             "body": "data {var}"
+          },
+          {
+            "name": "@param",
+            "body": "config {{scaling: number, offset: number}}",
+            "paramName": "config",
+            "description": "}",
+            "type": "{scaling: number, offset: number"
           }
         ]
       }
@@ -360,11 +384,11 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 167,
+          "line": 180,
           "column": 4
         },
         "end": {
-          "line": 171,
+          "line": 184,
           "column": 5
         }
       },
@@ -398,11 +422,11 @@
     "createAuthorizedRequest": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 192,
           "column": 4
         },
         "end": {
-          "line": 183,
+          "line": 196,
           "column": 5
         }
       },
@@ -444,11 +468,11 @@
     "__isActive": {
       "location": {
         "start": {
-          "line": 185,
+          "line": 198,
           "column": 4
         },
         "end": {
-          "line": 206,
+          "line": 219,
           "column": 5
         }
       },
@@ -458,11 +482,11 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 221,
           "column": 4
         },
         "end": {
-          "line": 265,
+          "line": 280,
           "column": 5
         }
       },
@@ -496,11 +520,11 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 267,
+          "line": 282,
           "column": 4
         },
         "end": {
-          "line": 272,
+          "line": 287,
           "column": 5
         }
       },
@@ -514,11 +538,11 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 274,
+          "line": 289,
           "column": 4
         },
         "end": {
-          "line": 304,
+          "line": 319,
           "column": 5
         }
       },
@@ -528,11 +552,11 @@
     "write": {
       "location": {
         "start": {
-          "line": 306,
+          "line": 321,
           "column": 4
         },
         "end": {
-          "line": 311,
+          "line": 326,
           "column": 5
         }
       },
@@ -571,11 +595,11 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 313,
+          "line": 328,
           "column": 4
         },
         "end": {
-          "line": 315,
+          "line": 330,
           "column": 5
         }
       },
@@ -585,11 +609,11 @@
     "login": {
       "location": {
         "start": {
-          "line": 317,
+          "line": 332,
           "column": 4
         },
         "end": {
-          "line": 333,
+          "line": 348,
           "column": 5
         }
       },
@@ -635,11 +659,11 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 350,
           "column": 4
         },
         "end": {
-          "line": 337,
+          "line": 352,
           "column": 5
         }
       },
@@ -663,11 +687,11 @@
     "restart": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 353,
           "column": 4
         },
         "end": {
-          "line": 340,
+          "line": 355,
           "column": 5
         }
       },
@@ -691,11 +715,11 @@
     "update": {
       "location": {
         "start": {
-          "line": 342,
+          "line": 357,
           "column": 4
         },
         "end": {
-          "line": 342,
+          "line": 357,
           "column": 29
         }
       },
@@ -719,11 +743,11 @@
     "record": {
       "location": {
         "start": {
-          "line": 343,
+          "line": 358,
           "column": 4
         },
         "end": {
-          "line": 343,
+          "line": 358,
           "column": 35
         }
       },
@@ -738,11 +762,11 @@
     "showError": {
       "location": {
         "start": {
-          "line": 344,
+          "line": 359,
           "column": 4
         },
         "end": {
-          "line": 344,
+          "line": 359,
           "column": 47
         }
       },
@@ -780,11 +804,11 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 346,
+          "line": 361,
           "column": 4
         },
         "end": {
-          "line": 348,
+          "line": 363,
           "column": 5
         }
       },
@@ -814,11 +838,11 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 349,
+          "line": 364,
           "column": 4
         },
         "end": {
-          "line": 358,
+          "line": 373,
           "column": 5
         }
       },
@@ -850,11 +874,11 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 359,
+          "line": 374,
           "column": 4
         },
         "end": {
-          "line": 401,
+          "line": 423,
           "column": 5
         }
       },
@@ -1032,6 +1056,96 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>server</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #server}."
+          }
+        ]
+      }
+    },
+    "getDataReceived": {
+      "type": "function",
+      "name": "getDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for dataReceived"
+          }
+        ]
+      }
+    },
+    "isDataReceived": {
+      "type": "function",
+      "name": "isDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for dataReceived"
+          }
+        ]
+      }
+    },
+    "setDataReceived": {
+      "type": "function",
+      "name": "setDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for dataReceived"
+          }
+        ]
+      }
+    },
+    "resetDataReceived": {
+      "type": "function",
+      "name": "resetDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>dataReceived</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
           }
         ]
       }

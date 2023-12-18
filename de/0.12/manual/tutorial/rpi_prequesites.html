@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raspberry Pi: Vorbereitung &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/tutorial/rpi_prequesites.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,9 +102,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Tutorials</a> &raquo;</li>
-      <li>Raspberry Pi: Vorbereitung</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Raspberry Pi: Vorbereitung</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -108,7 +114,7 @@
            <div itemprop="articleBody">
              
   <section id="raspberry-pi-vorbereitung">
-<h1>Raspberry Pi: Vorbereitung<a class="headerlink" href="#raspberry-pi-vorbereitung" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Raspberry Pi: Vorbereitung<a class="headerlink" href="#raspberry-pi-vorbereitung" title="Link to this heading"></a></h1>
 <p>Im ersten Teil des Tutorials wird der Raspberry Pi (RPi) so vorbereitet, dass
 dieser mit minimalem Betriebssystem läuft und von einem Arbeitsrechner über
 das Netzwerk erreichbar ist. Wer eine andere Plattform als einen Raspberry Pi
@@ -125,7 +131,7 @@ Themen noch etwas Hintergrundinformationen zu suchen. Dies dazu notwendigen
 Stichworte sind jedoch in diesen Tutorial bereits enthalten.</p>
 </div>
 <section id="warum-raspberry-pi">
-<h2>Warum Raspberry Pi?<a class="headerlink" href="#warum-raspberry-pi" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Warum Raspberry Pi?<a class="headerlink" href="#warum-raspberry-pi" title="Link to this heading"></a></h2>
 <p>Der Raspberry Pi ist ein kleiner, sparsamer Einplatinen-Computer, bei dem alles
 wichtige für den Betrieb bereits auf der Platine enthalten ist. Ursprünglich
 für Bastel- und Ausbildungsprojekte gedacht hat sich der Raspberry Pi in den
@@ -137,14 +143,14 @@ Stromverbrauchs prädestiniert. Ein weiter Vorteil sind die geringen Kosten
 für die Hardware und dessen frei verfügbares Betriebssystem.</p>
 </section>
 <section id="was-wird-benotigt">
-<h2>Was wird benötigt?<a class="headerlink" href="#was-wird-benotigt" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Was wird benötigt?<a class="headerlink" href="#was-wird-benotigt" title="Link to this heading"></a></h2>
 <p>Neben dem Raspberry Pi selbst, in diesem Tutorial wird die 2021 aktuelle
 Version <strong>Raspberry Pi 4 Model B</strong> verwendet. Zusätzlich wird nur noch eine
 Stromversorgung und ein Speichermedium benötigt.</p>
 <p>Weitere Ausstattung wie Netzwerkkabel, HDMI-Kabel, Displays, … sind jeweils
 spezifisch für den Anwendungsfall und werden hier als vorhanden vorausgesetzt.</p>
 <section id="minimale-ausstattung">
-<h3>Minimale Ausstattung<a class="headerlink" href="#minimale-ausstattung" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Minimale Ausstattung<a class="headerlink" href="#minimale-ausstattung" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Raspberry Pi 4 Model B, 2 GB</p></li>
 <li><p>USB-C Spannungsversorgung</p></li>
@@ -155,7 +161,7 @@ spezifisch für den Anwendungsfall und werden hier als vorhanden vorausgesetzt.<
 </figure>
 </section>
 <section id="empfohlene-ausstattung">
-<h3>Empfohlene Ausstattung<a class="headerlink" href="#empfohlene-ausstattung" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Empfohlene Ausstattung<a class="headerlink" href="#empfohlene-ausstattung" title="Link to this heading"></a></h3>
 <p>Die größte Schwachstelle bei dauerhaften Betrieb eines Raspberry Pi ist die
 Lebensdauer der SD-Karte, da diese nicht auf die dabei auftretende hohe Anzahl
 an Schreibzyklen ausgelegt ist. Hier empfiehlt es sich statt der microSD Karte
@@ -180,7 +186,7 @@ empfohlen, dass auch die CPU kühlen kann.</p>
 </figure>
 </section>
 <section id="ausstattungsbeispiel">
-<h3>Ausstattungsbeispiel<a class="headerlink" href="#ausstattungsbeispiel" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Ausstattungsbeispiel<a class="headerlink" href="#ausstattungsbeispiel" title="Link to this heading"></a></h3>
 <p>Dieses Tutorial wurde anhand dieser Ausstattung erstellt:</p>
 <ul class="simple">
 <li><p>Raspberry Pi 4 Model B, 4 GB</p></li>
@@ -196,13 +202,13 @@ empfohlen, dass auch die CPU kühlen kann.</p>
 </section>
 </section>
 <section id="setup-der-hardware">
-<h2>Setup der Hardware<a class="headerlink" href="#setup-der-hardware" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Setup der Hardware<a class="headerlink" href="#setup-der-hardware" title="Link to this heading"></a></h2>
 <p>Der Zusammenbau der Hardware erfolgt nach den jeweiligen Bedienungsanleitungen.</p>
 </section>
 <section id="setup-der-software">
-<h2>Setup der Software<a class="headerlink" href="#setup-der-software" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Setup der Software<a class="headerlink" href="#setup-der-software" title="Link to this heading"></a></h2>
 <section id="betriebssystem">
-<h3>Betriebssystem<a class="headerlink" href="#betriebssystem" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Betriebssystem<a class="headerlink" href="#betriebssystem" title="Link to this heading"></a></h3>
 <p>Als Betriebssystem wird <strong>Raspberry Pi OS Lite</strong> der <a class="reference external" href="https://www.raspberrypi.org/">Raspberry Pi Foundation</a>
 verwendet. Angeboten wird dieses unter: <a class="reference external" href="https://www.raspberrypi.org/software/">https://www.raspberrypi.org/software/</a></p>
 <p>Dieses Betriebssystem ist nun auf die SD-Karte und, wenn vorhanden, auf den
@@ -218,9 +224,9 @@ Raspberry Pi darauf vorzubereiten später von dem USB-Speicher zu starten.</p>
 </div>
 </section>
 <section id="netzwerkzugriff-teil-1">
-<h3>Netzwerkzugriff - Teil 1<a class="headerlink" href="#netzwerkzugriff-teil-1" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Netzwerkzugriff - Teil 1<a class="headerlink" href="#netzwerkzugriff-teil-1" title="Link to this heading"></a></h3>
 <section id="clients">
-<h4>Clients<a class="headerlink" href="#clients" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Clients<a class="headerlink" href="#clients" title="Link to this heading"></a></h4>
 <p>Um den Raspberry Pi warten zu können ist es wichtig über das Netzwerk auf diesen
 zugreifen zu können. Dies geschieht, wie üblich, über die <a class="reference external" href="https://de.wikipedia.org/wiki/Secure_Shell">Secure Shell (SSH)</a>.
 Linux-Anwender können dann normal über das Terminal zugreifen, Windows-Anwender
@@ -228,13 +234,13 @@ nutzen hierfür am einfachsten <a class="reference external" href="https://de.wi
 Aber auch für Mac OS, Android, … sind kostenlose SSH Clients verfügbar.</p>
 </section>
 <section id="ssh-aktivieren">
-<h4>SSH aktivieren<a class="headerlink" href="#ssh-aktivieren" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>SSH aktivieren<a class="headerlink" href="#ssh-aktivieren" title="Link to this heading"></a></h4>
 <p>Um direkt per SSH auf den Raspberry Pi zugreifen zu können muss noch <strong>vor</strong>
 dem ersten Start in der ersten Partition der SD-Card (und des USB Speichers)
 eine (leere) Datei mit dem Namen <code class="docutils literal notranslate"><span class="pre">ssh</span></code> angelegt werden.</p>
 </section>
 <section id="erster-start">
-<h4>Erster Start<a class="headerlink" href="#erster-start" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Erster Start<a class="headerlink" href="#erster-start" title="Link to this heading"></a></h4>
 <p>Nun ist der Raspberry Pi bereit für den ersten Start, es müssen nur die Speicher,
 das Netzwerk-Kabel und anschließend die Spannungsversorgung verbunden werden.</p>
 <p>Wurde auch ein Monitor verbunden, so ist auf diesem die Boot-Sequenz sichtbar.
@@ -244,13 +250,13 @@ unter der der Raspberry Pi zu erreichen ist. Alternativ kann in der Regel auch
 in Erfahrung gebracht werden.</p>
 </section>
 <section id="erster-zugriff">
-<h4>Erster Zugriff<a class="headerlink" href="#erster-zugriff" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Erster Zugriff<a class="headerlink" href="#erster-zugriff" title="Link to this heading"></a></h4>
 <p>Über den SSH-Client kann nun auf den Raspberry Pi zugegriffen werden. Der initial
 angelegte Benutzer für das Login ist <code class="docutils literal notranslate"><span class="pre">pi</span></code> mit dem Passwort <code class="docutils literal notranslate"><span class="pre">raspberry</span></code>.</p>
 </section>
 </section>
 <section id="usb-boot-einrichten-optional">
-<h3>USB Boot einrichten (optional)<a class="headerlink" href="#usb-boot-einrichten-optional" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>USB Boot einrichten (optional)<a class="headerlink" href="#usb-boot-einrichten-optional" title="Link to this heading"></a></h3>
 <p>Für das empfohlene Setup für langfristigen Betrieb ohne SD-Karte müssen
 nach dem Einloggen auf den <cite>root</cite>-User gewechselt, die Pakete (auf der SD-Karte)
 aktualisiert und ggf. die Firmware aktualisiert werden. Im Anschluss wird das
@@ -288,9 +294,9 @@ Spannungsversorgung getrennt, die SD-Karte entfernt und anschließend über das
 Wiedereinstecken der Spannungsversorgung wieder gestartet werden.</p>
 </section>
 <section id="basisadministration">
-<h3>Basisadministration<a class="headerlink" href="#basisadministration" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Basisadministration<a class="headerlink" href="#basisadministration" title="Link to this heading"></a></h3>
 <section id="passwort-andern">
-<h4>Passwort ändern<a class="headerlink" href="#passwort-andern" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Passwort ändern<a class="headerlink" href="#passwort-andern" title="Link to this heading"></a></h4>
 <p>Als erster Schritt in der finalen Umgebung sollte das Passwort des Users <code class="docutils literal notranslate"><span class="pre">pi</span></code>
 geändert werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">passwd</span>
@@ -306,7 +312,7 @@ umgehen.</p>
 </div>
 </section>
 <section id="system-aktuell-halten">
-<h4>System aktuell halten<a class="headerlink" href="#system-aktuell-halten" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>System aktuell halten<a class="headerlink" href="#system-aktuell-halten" title="Link to this heading"></a></h4>
 <p>Seit dem Erstellen des Betriebssystem-Paketes gab es bereits Aktualisierungen
 von einzelnen Software-Bestandteilen. Alle Updates werden installiert über:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
@@ -317,11 +323,11 @@ von einzelnen Software-Bestandteilen. Alle Updates werden installiert über:</p>
 regelmäßig wiederholen um alle Bug-Fixes und Sicherheits-Patches zu bekommen.</p>
 </section>
 <section id="komfort-optional">
-<h4>Komfort (optional)<a class="headerlink" href="#komfort-optional" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Komfort (optional)<a class="headerlink" href="#komfort-optional" title="Link to this heading"></a></h4>
 <p>Um sich das Leben etwas leichter zu machen können nun ein paar grundlegende
 Einstellungen vorgenommen werden.</p>
 <section id="editor">
-<h5>Editor<a class="headerlink" href="#editor" title="Link zu dieser Überschrift">¶</a></h5>
+<h5>Editor<a class="headerlink" href="#editor" title="Link to this heading"></a></h5>
 <p>Standardmäßig ist bereits der Editor <code class="docutils literal notranslate"><span class="pre">nano</span></code> installiert, eine gerade auch
 für Einsteiger gute Wahl. Editieren von (Text-)Dateien geht sehr einfach, in
 dem <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">&lt;Dateiname&gt;</span></code> aufgerufen wird. Änderungen werden dann mit „^O“
@@ -340,7 +346,7 @@ installiert werden, z.B. für <a class="reference external" href="https://de.wik
 </div>
 </section>
 <section id="dateianzeige">
-<span id="bashrc"></span><h5>Dateianzeige<a class="headerlink" href="#dateianzeige" title="Link zu dieser Überschrift">¶</a></h5>
+<span id="bashrc"></span><h5>Dateianzeige<a class="headerlink" href="#dateianzeige" title="Link to this heading"></a></h5>
 <p>Für die schnelle und komfortable Anzeige der Dateien im Terminal haben sich
 Abkürzungen etabliert, die noch in der Datei <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> aktiviert werden
 müssen. Hierzu öffnet man diese Datei im Editor (z.B. mit <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">~/.bashrc</span></code>)
@@ -357,16 +363,16 @@ für den User <code class="docutils literal notranslate"><span class="pre">pi</s
 </section>
 </section>
 <section id="basiseinstellungen">
-<h4>Basiseinstellungen<a class="headerlink" href="#basiseinstellungen" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Basiseinstellungen<a class="headerlink" href="#basiseinstellungen" title="Link to this heading"></a></h4>
 <p>Über <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">raspi-config</span></code> lassen sich nun grundlegende Einstellungen des
 Raspberry Pi vornehmen, z.B. nicht benötigte Hardware-Treiber ausschalten
 oder, wenn wider Erwarten notwendig, die HDMI Ausgänge konfigurieren.</p>
 </section>
 </section>
 <section id="netzwerkzugriff-teil-2">
-<h3>Netzwerkzugriff - Teil 2<a class="headerlink" href="#netzwerkzugriff-teil-2" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Netzwerkzugriff - Teil 2<a class="headerlink" href="#netzwerkzugriff-teil-2" title="Link to this heading"></a></h3>
 <section id="netzwerkadresse-andern">
-<h4>Netzwerkadresse ändern<a class="headerlink" href="#netzwerkadresse-andern" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Netzwerkadresse ändern<a class="headerlink" href="#netzwerkadresse-andern" title="Link to this heading"></a></h4>
 <p>Bis jetzt hat sich der Raspberry Pi selbst eine Netzwerkadresse besorgt. Damit
 dieser aber als Server immer unter der gleichen Adresse zu erreichen ist muss
 entweder im DCHP-Server (in der Regel im Internet-Router integriert) für den
@@ -386,7 +392,7 @@ dem Router und DNS-Server <code class="docutils literal notranslate"><span class
 Neustart, z.B. mit <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">shutdown</span> <span class="pre">-r</span> <span class="pre">now</span></code>.</p>
 </section>
 <section id="wlan-und-bluetooth-entfernen-optional">
-<h4>WLAN (und Bluetooth) entfernen (optional)<a class="headerlink" href="#wlan-und-bluetooth-entfernen-optional" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>WLAN (und Bluetooth) entfernen (optional)<a class="headerlink" href="#wlan-und-bluetooth-entfernen-optional" title="Link to this heading"></a></h4>
 <p>Wenn der Raspberry Pi über Ethernet und nicht über WLAN mit dem Netzwerk
 verbunden ist (sehr empfohlen!), so kann dies komplett abgeschaltet werden.</p>
 <p>Hierzu muss die Datei <code class="docutils literal notranslate"><span class="pre">/boot/config.txt</span></code> am Ende um die Zeile</p>
@@ -403,7 +409,7 @@ noch die Zeile</p>
 der <code class="docutils literal notranslate"><span class="pre">wpasupplicant</span></code> Service entfernt werden.</p>
 </section>
 <section id="ssh-key-exchange">
-<h4>SSH Key Exchange<a class="headerlink" href="#ssh-key-exchange" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>SSH Key Exchange<a class="headerlink" href="#ssh-key-exchange" title="Link to this heading"></a></h4>
 <p>Für einen komfortablem Zugriff über SSH wird ein <cite>SSH Key Exchange</cite> durchgeführt.
 Nach einem Key Exchange wird kein Passwort mehr benötigt, sondern es wird
 direkt ein lokal vorliegender kryptographischer Schlüssel verwendet. Dieser
@@ -443,7 +449,7 @@ eingegeben werden.</p>
 </section>
 </section>
 <section id="weiteres-optional">
-<h3>Weiteres (optional)<a class="headerlink" href="#weiteres-optional" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Weiteres (optional)<a class="headerlink" href="#weiteres-optional" title="Link to this heading"></a></h3>
 <p>Anschließend können noch finale Konfigurationen durchgeführt werden, wie
 beispielsweise die Treiber für das Argon Gehäuse. In diesem konkreten Fall
 würde über</p>
@@ -454,7 +460,7 @@ würde über</p>
 </section>
 </section>
 <section id="ausblick">
-<h2>Ausblick<a class="headerlink" href="#ausblick" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Ausblick<a class="headerlink" href="#ausblick" title="Link to this heading"></a></h2>
 <p>Der erste Teil des Tutorials zur grundsätzlichen Vorbereitung des Raspberry Pi
 für eine professionelle, langfristige Nutzung ist nun abgeschlossen. Als
 nächstes muss nun die Software installiert werden, durch die der Pi produktiv
@@ -472,7 +478,7 @@ leicht mehrere dieser Aufgaben gleichzeitig übernehmen, da dieser ja sowieso
 rund um die Uhr Durchläuft.</p>
 </section>
 <section id="cheat-sheet">
-<h2>Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading"></a></h2>
 <p>Für die Einrichtung und grundlegende Administration des Raspberry Pi über die
 Kommandozeile werden nicht viele Befehle benötigt. In dieser Liste sind die
 wichtigsten zusammengefasst.</p>
@@ -518,8 +524,8 @@ konfiguriert worden sein, so kann diese temporär mit
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="rpi_kiosk.html" class="btn btn-neutral float-right" title="Raspberry Pi: Client einrichten (Kiosk Modus)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="rpi_kiosk.html" class="btn btn-neutral float-right" title="Raspberry Pi: Client einrichten (Kiosk Modus)" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -535,34 +541,34 @@ konfiguriert worden sein, so kann diese temporär mit
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

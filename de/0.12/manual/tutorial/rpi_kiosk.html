@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raspberry Pi: Client einrichten (Kiosk Modus) &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/tutorial/rpi_kiosk.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -85,9 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Tutorials</a> &raquo;</li>
-      <li>Raspberry Pi: Client einrichten (Kiosk Modus)</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Raspberry Pi: Client einrichten (Kiosk Modus)</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -97,7 +103,7 @@
            <div itemprop="articleBody">
              
   <section id="raspberry-pi-client-einrichten-kiosk-modus">
-<h1>Raspberry Pi: Client einrichten (Kiosk Modus)<a class="headerlink" href="#raspberry-pi-client-einrichten-kiosk-modus" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Raspberry Pi: Client einrichten (Kiosk Modus)<a class="headerlink" href="#raspberry-pi-client-einrichten-kiosk-modus" title="Link to this heading"></a></h1>
 <p>Der CometVisu Client läuft in einem üblichen Web-Browser. Soll dieser jedoch
 nicht auf einem „normalen“ Gerät wie PC, Tablet oder Smartphone laufen, sondern
 auf einem Touch-Panel wie einem in die Wand eingelassenem Display, so wünscht
@@ -125,7 +131,7 @@ andere Anwendungen genutzt werden bei denen ein Browser im Vollbild laufen
 soll.</p>
 </div>
 <section id="einrichten-des-kiosk-modus">
-<h2>Einrichten des Kiosk-Modus<a class="headerlink" href="#einrichten-des-kiosk-modus" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Einrichten des Kiosk-Modus<a class="headerlink" href="#einrichten-des-kiosk-modus" title="Link to this heading"></a></h2>
 <p>Ergebnis dieses Tutorials ist ein Kiosk Modus mit Chrome als Browser und nur
 der minimal notwendigen Umgebung. Daher wird bewusst auf einen Windowmanager
 verzichtet und eine reine X11 Umgebung verwendet.</p>
@@ -135,12 +141,12 @@ verzichtet und eine reine X11 Umgebung verwendet.</p>
 </pre></div>
 </div>
 <section id="hardware-einrichten">
-<h3>Hardware einrichten<a class="headerlink" href="#hardware-einrichten" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Hardware einrichten<a class="headerlink" href="#hardware-einrichten" title="Link to this heading"></a></h3>
 <p>Auch wenn die Hardware (das Display und das Touch Interface) in der Regel sehr
 gut automatisch erkannt werden, so gibt es manchmal Kleinigkeiten die
 angepasst werden müssen.</p>
 <section id="beispiel-egalax-touchscreen">
-<h4>Beispiel: eGalax TouchScreen<a class="headerlink" href="#beispiel-egalax-touchscreen" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Beispiel: eGalax TouchScreen<a class="headerlink" href="#beispiel-egalax-touchscreen" title="Link to this heading"></a></h4>
 <p>Der eGalax TouchScreen eines HomeCockpit Minor von 2009 wird leicht falsch erkannt, was
 sich durch eine <code class="docutils literal notranslate"><span class="pre">udev</span></code> Regel schnell lösen lässt. Hierzu wird die neue
 Datei <code class="docutils literal notranslate"><span class="pre">/etc/udev/rules.d/91-libinput-egalax-local.rules</span></code> angelegt und befüllt
@@ -153,7 +159,7 @@ Hardware verwendet werden und dort Probleme auftreten, so lässt sich meist
 über eine Internet-Recherche eine ähnliche Lösung finden.</p>
 </section>
 <section id="touchscreen-kalibrieren">
-<h4>Touchscreen kalibrieren<a class="headerlink" href="#touchscreen-kalibrieren" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Touchscreen kalibrieren<a class="headerlink" href="#touchscreen-kalibrieren" title="Link to this heading"></a></h4>
 <p>Sollte der Touchscreen die Berührungen nicht richtig an die Bildschirm-Koordinaten
 übertragen, so muss dieser kalibriert werden. Hierzu muss <code class="docutils literal notranslate"><span class="pre">xinput_calibrator</span></code>
 installiert werden:</p>
@@ -200,9 +206,9 @@ dem konkreten Touch-Display die Datei <code class="docutils literal notranslate"
 </section>
 </section>
 <section id="software-einrichten">
-<h3>Software einrichten<a class="headerlink" href="#software-einrichten" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Software einrichten<a class="headerlink" href="#software-einrichten" title="Link to this heading"></a></h3>
 <section id="erster-test">
-<h4>Erster Test<a class="headerlink" href="#erster-test" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Erster Test<a class="headerlink" href="#erster-test" title="Link to this heading"></a></h4>
 <p>Für einen ersten Test kann nun bereits zum ersten mal der Web-Browser gestartet
 werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xinit</span> <span class="n">chromium</span><span class="o">-</span><span class="n">browser</span>
@@ -216,7 +222,7 @@ zu korrigieren. Erst wenn der Browser sich erfolgreich bedienen lässt kann in
 diesem Tutorial zum nächsten Punkt weiter gegangen werden.</p>
 </section>
 <section id="browser-einrichten">
-<h4>Browser einrichten<a class="headerlink" href="#browser-einrichten" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Browser einrichten<a class="headerlink" href="#browser-einrichten" title="Link to this heading"></a></h4>
 <p>Als <code class="docutils literal notranslate"><span class="pre">root</span></code> wird nun die Datei <code class="docutils literal notranslate"><span class="pre">/root/start_browser.sh</span></code> mit diesem Inhalt
 angelegt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
@@ -271,7 +277,7 @@ ausführbar markiert.</p>
 <p>testen.</p>
 </section>
 <section id="zertifikate-installieren-optional">
-<h4>Zertifikate installieren (optional)<a class="headerlink" href="#zertifikate-installieren-optional" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Zertifikate installieren (optional)<a class="headerlink" href="#zertifikate-installieren-optional" title="Link to this heading"></a></h4>
 <p>Wenn die CometVisu über eine TLS verschlüsselte Verbindung (also mit dem
 HTTPS-Protokoll) ausgeliefert wird, was dringend empfohlen wird um die
 erweiterten Browser-Features frei zu schalten, so muss der Browser das
@@ -297,7 +303,7 @@ Server</a> läuft, so kann das notwendige Zertifikat
 <p>lässt sich dieses nun für den User <code class="docutils literal notranslate"><span class="pre">pi</span></code> installieren.</p>
 </section>
 <section id="automatischer-start-einrichten">
-<h4>Automatischer Start einrichten<a class="headerlink" href="#automatischer-start-einrichten" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Automatischer Start einrichten<a class="headerlink" href="#automatischer-start-einrichten" title="Link to this heading"></a></h4>
 <p>Wenn der Browser sich manuell erfolgreich starten lässt, so kann nun eingerichtet
 werden, dass dieser nach einem Boot-Vorgang automatisch gestartet wird. Hierzu
 muss der <code class="docutils literal notranslate"><span class="pre">systemd</span></code> ein entsprechendes Ziel bekommen.</p>
@@ -333,7 +339,7 @@ abgeschlossen.</p>
 </section>
 </section>
 <section id="powermanagement">
-<h3>Powermanagement<a class="headerlink" href="#powermanagement" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Powermanagement<a class="headerlink" href="#powermanagement" title="Link to this heading"></a></h3>
 <p>Neben allgemeinen Einstellungen, die je nach System bisschen Energie sparen
 können (bei dem Raspberry Pi aber nur sehr geringe Auswirkung haben), ist
 das wichtigste Thema das Powermanagement des Displays. Neben dem Stromverbrauch
@@ -348,7 +354,7 @@ Gebäudeautomatisierung, wie eben auch im Smart Home, bietet es sich an die
 Bildschirmaktivierung mit einem Bewegungsmelder oder Präsenzmelder zu
 verknüpfen.</p>
 <section id="automatisches-bildschirmabschalten-verhindern">
-<h4>Automatisches Bildschirmabschalten verhindern<a class="headerlink" href="#automatisches-bildschirmabschalten-verhindern" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Automatisches Bildschirmabschalten verhindern<a class="headerlink" href="#automatisches-bildschirmabschalten-verhindern" title="Link to this heading"></a></h4>
 <p>Wenn nur über externe Quellen der Bildschirm geschaltet werden soll, so muss
 verhindert werden, dass sich dieser über einen Bildschirmschoner selber
 ausschaltet.</p>
@@ -362,12 +368,12 @@ ausschaltet.</p>
 </div>
 </section>
 <section id="bildschirm-aktivieren-und-deaktivieren">
-<h4>Bildschirm aktivieren und deaktivieren<a class="headerlink" href="#bildschirm-aktivieren-und-deaktivieren" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Bildschirm aktivieren und deaktivieren<a class="headerlink" href="#bildschirm-aktivieren-und-deaktivieren" title="Link to this heading"></a></h4>
 <p>Da ein Raspberry Pi selbst keinen Schlafzustand kennt und aus einem Halt
 nicht über ein Wake on LAN aufgeweckt werden kann bietet sich nur ein
 Powermanagement der Bildschirme über DPMS an.</p>
 <section id="alternative-1-manuelle-steuerung">
-<h5>Alternative 1: Manuelle Steuerung<a class="headerlink" href="#alternative-1-manuelle-steuerung" title="Link zu dieser Überschrift">¶</a></h5>
+<h5>Alternative 1: Manuelle Steuerung<a class="headerlink" href="#alternative-1-manuelle-steuerung" title="Link to this heading"></a></h5>
 <p>Grundsätzlich kann der Bildschirm mit dem Befehl</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xset</span> <span class="o">-</span><span class="n">display</span> <span class="p">:</span><span class="mi">0</span> <span class="n">dpms</span> <span class="n">force</span> <span class="n">off</span>
 </pre></div>
@@ -381,7 +387,7 @@ sollten dabei noch die vier Zeilen aus dem Abschnitt „Automatisches
 Bildschirmabschalten verhindern“ eingefügt werden.</p>
 </section>
 <section id="alternative-2-halbautomatische-steuerung">
-<h5>Alternative 2: Halbautomatische Steuerung<a class="headerlink" href="#alternative-2-halbautomatische-steuerung" title="Link zu dieser Überschrift">¶</a></h5>
+<h5>Alternative 2: Halbautomatische Steuerung<a class="headerlink" href="#alternative-2-halbautomatische-steuerung" title="Link to this heading"></a></h5>
 <p>Gerade im Bereich der Heimautomatisierung bietet sich jedoch die halbautomatische
 Variante an. Hier wird der Bildschirm nach einem Timeout ausgeschaltet.
 Eingeschaltet wird er von einem extern gesendetem Kommando (das z.B. von einem
@@ -413,7 +419,7 @@ SSH als <code class="docutils literal notranslate"><span class="pre">root</span>
 </section>
 </section>
 <section id="rechner-schlafen-legen-und-aufwecken">
-<h4>Rechner schlafen legen und aufwecken<a class="headerlink" href="#rechner-schlafen-legen-und-aufwecken" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Rechner schlafen legen und aufwecken<a class="headerlink" href="#rechner-schlafen-legen-und-aufwecken" title="Link to this heading"></a></h4>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Dieser Abschnitt eignet sich nicht für einen Raspberry Pi (zumindest nicht
@@ -437,7 +443,7 @@ Bildschirm zu deaktivieren.</p>
 </section>
 </section>
 <section id="start-animation">
-<h3>Start-Animation<a class="headerlink" href="#start-animation" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Start-Animation<a class="headerlink" href="#start-animation" title="Link to this heading"></a></h3>
 <p>Damit bei einem Start des Raspberry Pi die für Nicht-Techniker unschönen
 Boot-Meldungen hinter einen schönen Animation versteckt werden kann der
 <code class="docutils literal notranslate"><span class="pre">plymouth</span></code> Service eingerichtet werden. Hier gibt es auch eine <a class="reference external" href="https://github.com/CometVisu/Misc/tree/master/plymouth">Animation
@@ -475,7 +481,7 @@ möglich, dass der Plymouth Splash Screen nur kurz sichtbar ist.</p>
 </section>
 </section>
 <section id="erweiterung-auf-zwei-unabhangige-touch-panels">
-<h2>Erweiterung auf zwei unabhängige Touch Panels<a class="headerlink" href="#erweiterung-auf-zwei-unabhangige-touch-panels" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Erweiterung auf zwei unabhängige Touch Panels<a class="headerlink" href="#erweiterung-auf-zwei-unabhangige-touch-panels" title="Link to this heading"></a></h2>
 <p>Durch die bei dem Raspberry Pi vorhandenen doppelten HDMI Ausgänge bietet es
 sich an zwei Touch Screens mit nur einem Raspberry Pi zu betreiben. Hierdurch
 kann Strom, aber auch Administrationsaufwand und Anschaffungskosten eingespart
@@ -578,8 +584,8 @@ Browserfenster auf den zweiten Bildschirm verschoben wird.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="rpi_prequesites.html" class="btn btn-neutral float-left" title="Raspberry Pi: Vorbereitung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="rpi_docker.html" class="btn btn-neutral float-right" title="Raspberry Pi: Docker installieren" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rpi_prequesites.html" class="btn btn-neutral float-left" title="Raspberry Pi: Vorbereitung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="rpi_docker.html" class="btn btn-neutral float-right" title="Raspberry Pi: Docker installieren" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -595,34 +601,34 @@ Browserfenster auf den zweiten Bildschirm verschoben wird.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

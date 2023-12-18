@@ -91,6 +91,10 @@
       _getInnerDomString: function _getInnerDomString() {
         var webStyle = this.getStyle();
 
+        if (webStyle !== '' && webStyle.startsWith('style="')) {
+          webStyle = webStyle.substring(7, webStyle.length - 1);
+        }
+
         if (this.getWidth()) {
           webStyle += 'width:' + this.getWidth() + ';';
         } else {
@@ -103,7 +107,7 @@
         }
 
         if (this.getFrameborder() === false) {
-          webStyle += 'border: 0px ;';
+          webStyle += 'border: 0px;';
         }
 
         if (this.getBackground()) {
@@ -149,4 +153,4 @@
   cv.ui.structure.pure.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1674150458760
+//# sourceMappingURL=Web.js.map?dt=1702895799746

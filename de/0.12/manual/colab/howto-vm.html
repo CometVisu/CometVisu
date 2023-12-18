@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Einrichten einer VM mit Visual Studio Code &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/colab/howto-vm.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=245627df"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=70a09b52"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -85,9 +91,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Hilf dem CometVisu Projekt</a> &raquo;</li>
-      <li>Einrichten einer VM mit Visual Studio Code</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Hilf dem CometVisu Projekt</a></li>
+      <li class="breadcrumb-item active">Einrichten einer VM mit Visual Studio Code</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -97,14 +103,14 @@
            <div itemprop="articleBody">
              
   <section id="einrichten-einer-vm-mit-visual-studio-code">
-<h1>Einrichten einer VM mit Visual Studio Code<a class="headerlink" href="#einrichten-einer-vm-mit-visual-studio-code" title="Link zu dieser Überschrift">¶</a></h1>
+<h1>Einrichten einer VM mit Visual Studio Code<a class="headerlink" href="#einrichten-einer-vm-mit-visual-studio-code" title="Link to this heading"></a></h1>
 <p>Einige der verwendeten Tools zur Generierung der Dokumentation stehen nur unter Linux zur Verfügung.
 Die Live Preview funktioniert daher in Visual Studio Code unter Windows derzeit nicht.</p>
 <p>Nachstehend wird für Windows Anwender Schritt für Schritt erklärt, wie man eine Virtual Machine mit Ubuntu erstellt und
 darin Visual Studio Code inkl. lauffähigem Live-Preview für rst-files einrichtet. Schwerpunkt ist die Konfiguration
 der Linux Umgebung und nicht die Einrichtung der VM, dafür gibt es zahlreiche gute Beschreibungen im Internet.</p>
 <section id="vorbereitung-der-virtual-machine">
-<h2>Vorbereitung der Virtual Machine<a class="headerlink" href="#vorbereitung-der-virtual-machine" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Vorbereitung der Virtual Machine<a class="headerlink" href="#vorbereitung-der-virtual-machine" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Den kostenlosen VMware Player von vmware.com herunterladen und installieren. Natürlich sind auch
 alle anderen Player für Virtual Machines möglich, die nachfolgende Beschreibung bezieht sich aber teilweise auf den
@@ -125,7 +131,7 @@ Die vm-tools werden später als Paket installiert.</p></li>
 <a class="reference external" href="https://www.pcwelt.de/ratgeber/Tutorial_-_Mit_Vmware_Player_virtuelle_PCs_einrichten-Schritt_fuer_Schritt-8915132.html">https://www.pcwelt.de/ratgeber/Tutorial_-_Mit_Vmware_Player_virtuelle_PCs_einrichten-Schritt_fuer_Schritt-8915132.html</a></p>
 </section>
 <section id="grundkonfiguration-von-ubuntu">
-<h2>Grundkonfiguration von Ubuntu<a class="headerlink" href="#grundkonfiguration-von-ubuntu" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Grundkonfiguration von Ubuntu<a class="headerlink" href="#grundkonfiguration-von-ubuntu" title="Link to this heading"></a></h2>
 <p>Die nächsten Schritte werden im Terminal-Fenster ausgeführt. Dieses kann mit Ctrl-Alt-T geöffnet werden.
 Mittels Rechtsklick kann das Terminal mit „Lock to Launcher“ am linken Toolbar fix angeheftet werden.</p>
 <ol class="arabic">
@@ -160,7 +166,7 @@ Zusätzlich wird noch eine Spell checking Extension empfohlen.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/visual_studio_install_ext.png" src="../_images/visual_studio_install_ext.png" />
 <figcaption>
-<p><span class="caption-text">Install extensions</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Install extensions</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
@@ -200,7 +206,7 @@ Danach die Datei speichern und Visual Studio Code neu starten.</p>
 <figure class="align-default" id="id2">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
 <figcaption>
-<p><span class="caption-text">Ansicht des Editors mit Live-Preview</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Ansicht des Editors mit Live-Preview</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -210,8 +216,8 @@ Danach die Datei speichern und Visual Studio Code neu starten.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="todos.html" class="btn btn-neutral float-left" title="TODO’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dev/test.html" class="btn btn-neutral float-right" title="Automatisierte Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="todos.html" class="btn btn-neutral float-left" title="TODO’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="dev/test.html" class="btn btn-neutral float-right" title="Automatisierte Tests" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -227,34 +233,34 @@ Danach die Datei speichern und Visual Studio Code neu starten.</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Developer version on the Wiregate &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=2a0c1fdd" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.12/manual/install/install-dev.html"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/versions.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,15 +32,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> CometVisu
-            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,9 +100,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Installation of the CometVisu</a> &raquo;</li>
-      <li>Developer version on the Wiregate</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Installation of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Developer version on the Wiregate</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -106,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="developer-version-on-the-wiregate">
-<h1>Developer version on the Wiregate<a class="headerlink" href="#developer-version-on-the-wiregate" title="Permalink to this headline">¶</a></h1>
+<h1>Developer version on the Wiregate<a class="headerlink" href="#developer-version-on-the-wiregate" title="Link to this heading"></a></h1>
 <p>This page explains how to use the developer version of CometVisu
 on the WireGate. For other devices, this manual is
 also suitable in principle - however, as there may be differences
@@ -117,7 +123,7 @@ read intelligently and adapted in the implementation suitably.</p>
 available to the <a class="reference external" href="https://github.com/CometVisu/CometVisu/wiki">GitHub CometVisu Wiki</a>
 refer to.</p>
 <section id="without-version-control">
-<h2>Without version control<a class="headerlink" href="#without-version-control" title="Permalink to this headline">¶</a></h2>
+<h2>Without version control<a class="headerlink" href="#without-version-control" title="Link to this heading"></a></h2>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Here the installation of the developer version is explained!
@@ -134,18 +140,18 @@ and install them as described under: doc: <cite>update-other</cite>.</p>
 to restore changes, the following points apply.</p>
 </section>
 <section id="with-version-control">
-<h2>With version control<a class="headerlink" href="#with-version-control" title="Permalink to this headline">¶</a></h2>
+<h2>With version control<a class="headerlink" href="#with-version-control" title="Link to this heading"></a></h2>
 <section id="preparation">
-<h3>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h3>
+<h3>Preparation<a class="headerlink" href="#preparation" title="Link to this heading"></a></h3>
 <section id="requirement">
-<h4>Requirement<a class="headerlink" href="#requirement" title="Permalink to this headline">¶</a></h4>
+<h4>Requirement<a class="headerlink" href="#requirement" title="Link to this heading"></a></h4>
 <p>The code of the CometVisu can be found on
 <a class="reference external" href="https://github.com/CometVisu/CometVisu">GitHub</a>.
 Since the WireGate brings the git client not pre-installed,
 you have to install this first.</p>
 </section>
 <section id="installation-with-packages">
-<h4>Installation with packages<a class="headerlink" href="#installation-with-packages" title="Permalink to this headline">¶</a></h4>
+<h4>Installation with packages<a class="headerlink" href="#installation-with-packages" title="Link to this heading"></a></h4>
 <p>On newer Debian based systems git can easily be installed
 via the command line (eg remote SSH connection) as root
 with this command:</p>
@@ -154,7 +160,7 @@ with this command:</p>
 </div>
 </section>
 <section id="installation-without-packages">
-<span id="install-no-pakets"></span><h4>Installation without packages<a class="headerlink" href="#installation-without-packages" title="Permalink to this headline">¶</a></h4>
+<span id="install-no-pakets"></span><h4>Installation without packages<a class="headerlink" href="#installation-without-packages" title="Link to this heading"></a></h4>
 <p>Since the current (as of: 12.04.2015) available Git version
 for the Wiregate is too old (this is incompatible with GitHub),
 you have to install Git “by hand”. There are two ways to do this.
@@ -162,7 +168,7 @@ You can install and compile the current Git version
 yourself - recommended variant - or you can use the master.zip file.</p>
 </section>
 <section id="install-the-latest-git-version-yourself-and-compile">
-<h4>Install the latest Git version yourself and compile<a class="headerlink" href="#install-the-latest-git-version-yourself-and-compile" title="Permalink to this headline">¶</a></h4>
+<h4>Install the latest Git version yourself and compile<a class="headerlink" href="#install-the-latest-git-version-yourself-and-compile" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>install<span class="w"> </span>tcl
 apt-get<span class="w"> </span>install<span class="w"> </span>tk
 apt-get<span class="w"> </span>install<span class="w"> </span>python-apt
@@ -201,7 +207,7 @@ dpkg<span class="w"> </span>--configure<span class="w"> </span>-a
 </div>
 </section>
 <section id="use-master-zip-file">
-<h4>Use master.zip file<a class="headerlink" href="#use-master-zip-file" title="Permalink to this headline">¶</a></h4>
+<h4>Use master.zip file<a class="headerlink" href="#use-master-zip-file" title="Link to this heading"></a></h4>
 <p>To do this, take the file from</p>
 <p><a class="reference external" href="https://github.com/git/git/archive/master.zip">https://github.com/git/git/archive/master.zip</a></p>
 <p>This zip file contains a readme with the make command that you must execute.</p>
@@ -212,7 +218,7 @@ be reinstalled:</p>
 </div>
 </section>
 <section id="at-github">
-<h4>At GitHub<a class="headerlink" href="#at-github" title="Permalink to this headline">¶</a></h4>
+<h4>At GitHub<a class="headerlink" href="#at-github" title="Link to this heading"></a></h4>
 <p>If the version control is installed on your own, you have to create an
 account on <cite>GitHub &lt;https://github.com/&gt;</cite> __, if you do not have one yet.</p>
 <p>On GitHub go to the CometVisu repository under
@@ -224,11 +230,11 @@ clipboard). This URL is in the form <code class="docutils literal notranslate"><
 </section>
 </section>
 <section id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h3>
 <p>It is recommended to install with Git. As fallback stands
 however, SVN (or Subversion) remains available.</p>
 <section id="git">
-<h4>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h4>
+<h4>Git<a class="headerlink" href="#git" title="Link to this heading"></a></h4>
 <p>The own fork of the CometVisu is now installed by a simple command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;Accountname&gt;/CometVisu.git<span class="w"> </span>CometVisuGit
@@ -258,7 +264,7 @@ Then you can add the main repository as <em>upstream</em>:</p>
 </div>
 </section>
 <section id="subversion">
-<h4>Subversion<a class="headerlink" href="#subversion" title="Permalink to this headline">¶</a></h4>
+<h4>Subversion<a class="headerlink" href="#subversion" title="Link to this heading"></a></h4>
 <p>If the git clone did not work and an error message like</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>error:<span class="w"> </span>The<span class="w"> </span>requested<span class="w"> </span>URL<span class="w"> </span>returned<span class="w"> </span>error:<span class="w"> </span><span class="m">403</span>
 warning:<span class="w"> </span>remote<span class="w"> </span>HEAD<span class="w"> </span>refers<span class="w"> </span>to<span class="w"> </span>nonexistent<span class="w"> </span>ref,<span class="w"> </span>unable<span class="w"> </span>to<span class="w"> </span>checkout.
@@ -300,7 +306,7 @@ ln<span class="w"> </span>-s<span class="w"> </span>CometVisuGitSVN/trunk/src<
 <p>Congratulations! Under <code class="docutils literal notranslate"><span class="pre">http://wiregate/visu_git/</span></code> should now run the CometVisu!</p>
 </section>
 <section id="next-steps">
-<h4>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h4>
+<h4>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h4>
 <p>Regardless of whether you have installed Git or SVN, you should
 follow these steps.</p>
 <p>In order to be able to save the Visu Config via the editor,
@@ -331,7 +337,7 @@ Otherwise your own configs will be deleted!</p>
 </section>
 </section>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
 <p>When everything has been prepared, the version control system was
 installed and the CometVisu checked out, then you can go into the use.</p>
 <p>It should be noted that there are now several repositories due to the
@@ -359,13 +365,13 @@ which is closed again after completion and a pull to
 </div>
 <p>To keep these locations in sync, several steps must be taken.</p>
 <section id="generic">
-<h3>Generic<a class="headerlink" href="#generic" title="Permalink to this headline">¶</a></h3>
+<h3>Generic<a class="headerlink" href="#generic" title="Link to this heading"></a></h3>
 <p>This chapter will describe the synchronization of</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu<span class="w"> </span><span class="o">(</span>upstream<span class="o">)</span><span class="w"> </span>&lt;-&gt;<span class="w"> </span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <section id="update-des-github-forks">
-<h4>Update des GitHub Forks<a class="headerlink" href="#update-des-github-forks" title="Permalink to this headline">¶</a></h4>
+<h4>Update des GitHub Forks<a class="headerlink" href="#update-des-github-forks" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu<span class="w"> </span><span class="o">(</span>upstream<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
@@ -396,7 +402,7 @@ can be merged automatically.*</strong> - click here again <em>Merge pull request
 </figure>
 </section>
 <section id="update-of-the-main-repository-on-github">
-<h4>Update of the main repository on GitHub<a class="headerlink" href="#update-of-the-main-repository-on-github" title="Permalink to this headline">¶</a></h4>
+<h4>Update of the main repository on GitHub<a class="headerlink" href="#update-of-the-main-repository-on-github" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu<span class="w"> </span><span class="o">(</span>upstream<span class="o">)</span><span class="w"> </span>&lt;-<span class="w"> </span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
@@ -410,7 +416,7 @@ and under <em>head fork</em> the <code class="docutils literal notranslate"><spa
 </section>
 </section>
 <section id="id1">
-<h3>Git<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Git<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>If the installation was done as above, then all branches under
 <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code> are known as upstream and under
 <code class="docutils literal notranslate"><span class="pre">&lt;Accountname/CometVisu</span></code> as origin.</p>
@@ -424,7 +430,7 @@ upstream<span class="w"> </span>https://github.com/CometVisu/CometVisu.git<span
 </pre></div>
 </div>
 <section id="update-on-wiregate">
-<h4>Update on WireGate<a class="headerlink" href="#update-on-wiregate" title="Permalink to this headline">¶</a></h4>
+<h4>Update on WireGate<a class="headerlink" href="#update-on-wiregate" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
@@ -436,7 +442,7 @@ manual. Please look up here in suitable sources!</p>
 </div>
 </section>
 <section id="update-on-github">
-<h4>Update on GitHub<a class="headerlink" href="#update-on-github" title="Permalink to this headline">¶</a></h4>
+<h4>Update on GitHub<a class="headerlink" href="#update-on-github" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt;<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>&lt;-<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
@@ -460,9 +466,9 @@ git<span class="w"> </span>push
 </section>
 </section>
 <section id="id2">
-<h3>Subversion<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>Subversion<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <section id="id3">
-<h4>Update on WireGate<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<h4>Update on WireGate<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt;<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
@@ -473,7 +479,7 @@ svn<span class="w"> </span>update<span class="w"> </span>.
 </div>
 </section>
 <section id="update-to-github">
-<h4>Update to GitHub<a class="headerlink" href="#update-to-github" title="Permalink to this headline">¶</a></h4>
+<h4>Update to GitHub<a class="headerlink" href="#update-to-github" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt;<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>&lt;-<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
@@ -513,34 +519,34 @@ choose in which branch should be integrated there.</p>
       </div>
     </section>
   </div>
-  
-
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
         <dt>Versions</dt>
         
-          <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
+        <dd><a href="../../0.10.2|0.10/manual">0.10.2|0.10</a></dd>
         
-          <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
+        <dd><a href="../../0.11.2|0.11/manual">0.11.2|0.11</a></dd>
         
-          <dd><a href="../../0.12.0|0.12/manual">0.12.0|0.12</a></dd>
+        <dd><a href="../../0.12.2|0.12/manual">0.12.2|0.12</a></dd>
         
-          <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
+        <dd><a href="../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

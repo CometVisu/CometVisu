@@ -106,9 +106,11 @@
         var styling = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : undefined;
         var dynamic = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '';
         var source = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : undefined;
+        var added = false;
 
         if (!this.__P_501_0[name]) {
           this.__P_501_0[name] = {};
+          added = true;
         }
 
         if (source) {
@@ -133,6 +135,8 @@
             styling: styling
           };
         }
+
+        return added;
       },
 
       /**
@@ -357,4 +361,4 @@
   cv.IconHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconHandler.js.map?dt=1674150493938
+//# sourceMappingURL=IconHandler.js.map?dt=1702895823975

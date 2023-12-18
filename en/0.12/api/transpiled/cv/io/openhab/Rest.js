@@ -74,6 +74,10 @@
         check: 'String',
         nullable: true,
         event: 'changedServer'
+      },
+      dataReceived: {
+        check: 'Boolean',
+        init: false
       }
     },
 
@@ -169,13 +173,23 @@
       hasCustomChartsDataProcessor: function hasCustomChartsDataProcessor() {
         return true;
       },
-      processChartsData: function processChartsData(response) {
+      processChartsData: function processChartsData(response, config) {
         if (response && response.data) {
           var data = response.data;
-          var newRrd = new Array(data.length);
+          var newRrd = [];
+          var scaling = config && Object.prototype.hasOwnProperty.call(config, 'scaling') ? config.scaling : 1.0;
+          var offset = config && Object.prototype.hasOwnProperty.call(config, 'offset') && Number.isFinite(config.offset) ? config.offset * 1000 : 0;
+          var lastValue;
+          var value;
 
           for (var j = 0, l = data.length; j < l; j++) {
-            newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+            value = parseFloat(data[j].state) * scaling;
+
+            if (value !== lastValue) {
+              newRrd.push([data[j].time + offset, value]);
+            }
+
+            lastValue = value;
           }
 
           return newRrd;
@@ -232,6 +246,7 @@
       subscribe: function subscribe(addresses, filters) {
         // send first request to get all states once
         var req = this.createAuthorizedRequest('items?fields=name,state,members,type&recursive=true');
+        this.setDataReceived(false);
         req.addListener('success', function (e) {
           var req = e.getTarget();
           var res = req.getResponse();
@@ -271,6 +286,7 @@
             update[entry.name] = entry.state;
           }, this);
           this.update(update);
+          this.setDataReceived(true);
         }, this); // Send request
 
         req.send(); // create sse session
@@ -464,4 +480,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1674150492811
+//# sourceMappingURL=Rest.js.map?dt=1702895823306

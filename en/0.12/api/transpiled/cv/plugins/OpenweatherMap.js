@@ -83,13 +83,15 @@
         }
       }, this);
 
-      if (cv.TemplateEngine.getInstance().isDomFinished()) {
-        this._refreshAction();
-      } else {
-        qx.event.message.Bus.subscribe('setup.dom.finished', function () {
-          // init once
+      if (props.refresh === 0) {
+        if (cv.TemplateEngine.getInstance().isDomFinished()) {
           this._refreshAction();
-        }, this);
+        } else {
+          qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+            // init once
+            this._refreshAction();
+          }, this);
+        }
       }
     },
 
@@ -244,4 +246,4 @@
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1674150451857
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1702895795167

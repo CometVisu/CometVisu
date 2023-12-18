@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Diagram Plugin &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/plugins/diagram/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/versions.js"></script>
-        <script src="../../../../_static/translations.js"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -104,10 +110,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../../index.html">Bedienbare Widgets</a> &raquo;</li>
-      <li>Das Diagram Plugin</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Bedienbare Widgets</a></li>
+      <li class="breadcrumb-item active">Das Diagram Plugin</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -117,10 +123,10 @@
            <div itemprop="articleBody">
              
   <section id="das-diagram-plugin">
-<span id="diagram"></span><h1>Das Diagram Plugin<a class="headerlink" href="#das-diagram-plugin" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="diagram"></span><h1>Das Diagram Plugin<a class="headerlink" href="#das-diagram-plugin" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Michael Hausl [michael at hausl dot com]</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 0.6.0</div>
+<div class="line"><strong>Available since</strong>: 0.6.0</div>
 <div class="line"><br /></div>
 </div>
 </div>
@@ -129,7 +135,7 @@
 <p>openHAB Ergänzungen</p>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das Diagram-Plugin bietet die Möglichkeit den zeitlichen Verlauf von Messwerten etc. zu visualisieren. Die Datenquelle
 muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt <a class="reference internal" href="../../../rrd_examples.html#rrd-introduction"><span class="std std-ref">RRD-Einführung &amp; Beispiele</span></a>.</p>
 <p>Das Diagramm wird standardmäßig im Inline-Modus als Widget dargestellt. Zusätzlich kann die Option Popup
@@ -138,32 +144,26 @@ für die Inline Ansicht festgelegt werden ob Legende bzw. Achsenbeschriftungen a
 <figure class="align-default" id="id43">
 <img alt="../../../../_images/Diagram_simple_inline2.png" src="../../../../_images/Diagram_simple_inline2.png" />
 <figcaption>
-<p><span class="caption-text">Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen und rechts unten als kleine Voransicht</span><a class="headerlink" href="#id43" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen und rechts unten als kleine Voransicht</span><a class="headerlink" href="#id43" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id44">
 <img alt="../../../../_images/Diagram_simple_popup.png" src="../../../../_images/Diagram_simple_popup.png" />
 <figcaption>
-<p><span class="caption-text">Diagramm Popup das nach dem Anklicken des Diagramms angezeigt wird.</span><a class="headerlink" href="#id44" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Diagramm Popup das nach dem Anklicken des Diagramms angezeigt wird.</span><a class="headerlink" href="#id44" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Wenn ein Anzeigewert als Aufruf für das Popup dienen soll, muss das <code class="docutils literal notranslate"><span class="pre">diagram_info</span></code>-Plugin verwendet werden.
 Genauere Informationen dazu unter <a class="reference internal" href="../diagram_info/index.html#diagram-info"><span class="std std-ref">Das Diagramm_Info Plugin</span></a>.</p>
 </section>
 <section id="detaillierte-einstellungen">
-<h2>Detaillierte Einstellungen<a class="headerlink" href="#detaillierte-einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Detaillierte Einstellungen<a class="headerlink" href="#detaillierte-einstellungen" title="Link to this heading"></a></h2>
 <p>Das Diagram-Plugin ist eines der Widgets mit den umfangreichsten Konfigurationsmöglichkeiten. Viele der Attribute-
 bzw. Elemente sind aber optional für verschiedene Sonderanwendungen, so dass bereits mit wenigen Einstellungen
 sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 <section id="erlaubte-attribute-im-diagramm-element">
-<h3>Erlaubte Attribute im Diagramm-Element<a class="headerlink" href="#erlaubte-attribute-im-diagramm-element" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute im Diagramm-Element<a class="headerlink" href="#erlaubte-attribute-im-diagramm-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -252,14 +252,8 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </table>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -349,12 +343,6 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -416,12 +404,6 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -482,12 +464,6 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -576,12 +552,6 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -729,16 +699,11 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </tbody>
 </table>
 <section id="authentication-attribut">
-<span id="diagram-influx"></span><h4><code class="docutils literal notranslate"><span class="pre">authentication</span></code> Attribut<a class="headerlink" href="#authentication-attribut" title="Link zu dieser Überschrift">¶</a></h4>
+<span id="diagram-influx"></span><h4><code class="docutils literal notranslate"><span class="pre">authentication</span></code> Attribut<a class="headerlink" href="#authentication-attribut" title="Link to this heading"></a></h4>
 <p>Im <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code> Element kann über das <code class="docutils literal notranslate"><span class="pre">authentication</span></code> Attribut auf einen entsprechenden Eintrag aus der
 <a class="reference internal" href="../../../hidden-config.html#hidden-config"><span class="std std-ref">versteckten Konfiguration</span></a> verwiesen werden (als Default wird als Name <cite>influx</cite> angenommen).</p>
 <p>Die in der versteckte Konfiguration verwendeten Schlüssel/Wert-Paare sind:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 66%" />
-<col style="width: 24%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
 <th class="head"><p>Wert</p></th>
@@ -773,136 +738,132 @@ nicht aufgebaut werden kann, so kann dies ein Hinweis darauf sein, dass
 </div>
 </section>
 <section id="consolidationfunction-attribut">
-<h4><code class="docutils literal notranslate"><span class="pre">consolidationFunction</span></code> Attribut<a class="headerlink" href="#consolidationfunction-attribut" title="Link zu dieser Überschrift">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">consolidationFunction</span></code> Attribut<a class="headerlink" href="#consolidationfunction-attribut" title="Link to this heading"></a></h4>
 <p>Wenn für einen Zeitraum nur ein Wert angezeigt werden soll, so wird dieser über
 eine <code class="docutils literal notranslate"><span class="pre">consolidationFunction</span></code> gebildet. Möglich ist:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 32%" />
-<col style="width: 68%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">COUNT</span></code></p></td>
 <td><p>Anzahl der Werte</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE</span></code> <a class="footnote-reference brackets" href="#id42" id="id2">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE</span></code> <a class="footnote-reference brackets" href="#id42" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_COUNT</span></code> <a class="footnote-reference brackets" href="#id42" id="id3">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_COUNT</span></code> <a class="footnote-reference brackets" href="#id42" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der Messwertanzahlen im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id4">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der Mittelwerte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEDIAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id5">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MEDIAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der Mediane des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MODE</span></code> <a class="footnote-reference brackets" href="#id42" id="id6">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MODE</span></code> <a class="footnote-reference brackets" href="#id42" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der häufigsten Werte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_SUM</span></code> <a class="footnote-reference brackets" href="#id42" id="id7">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_SUM</span></code> <a class="footnote-reference brackets" href="#id42" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der Summen des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_FIRST</span></code> <a class="footnote-reference brackets" href="#id42" id="id8">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_FIRST</span></code> <a class="footnote-reference brackets" href="#id42" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der ersten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_LAST</span></code> <a class="footnote-reference brackets" href="#id42" id="id9">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_LAST</span></code> <a class="footnote-reference brackets" href="#id42" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der letzten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MIN</span></code> <a class="footnote-reference brackets" href="#id42" id="id10">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MIN</span></code> <a class="footnote-reference brackets" href="#id42" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der kleinsten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MAX</span></code> <a class="footnote-reference brackets" href="#id42" id="id11">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_MAX</span></code> <a class="footnote-reference brackets" href="#id42" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde der größten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_1</span></code> <a class="footnote-reference brackets" href="#id42" id="id12">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_1</span></code> <a class="footnote-reference brackets" href="#id42" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 1% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_5</span></code> <a class="footnote-reference brackets" href="#id42" id="id13">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_5</span></code> <a class="footnote-reference brackets" href="#id42" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 5% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_10</span></code> <a class="footnote-reference brackets" href="#id42" id="id14">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_10</span></code> <a class="footnote-reference brackets" href="#id42" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 10% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_20</span></code> <a class="footnote-reference brackets" href="#id42" id="id15">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_20</span></code> <a class="footnote-reference brackets" href="#id42" id="id15" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 20% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_25</span></code> <a class="footnote-reference brackets" href="#id42" id="id16">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_25</span></code> <a class="footnote-reference brackets" href="#id42" id="id16" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 25% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_75</span></code> <a class="footnote-reference brackets" href="#id42" id="id17">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_75</span></code> <a class="footnote-reference brackets" href="#id42" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 75% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_80</span></code> <a class="footnote-reference brackets" href="#id42" id="id18">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_80</span></code> <a class="footnote-reference brackets" href="#id42" id="id18" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 80% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_90</span></code> <a class="footnote-reference brackets" href="#id42" id="id19">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_90</span></code> <a class="footnote-reference brackets" href="#id42" id="id19" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 90% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_95</span></code> <a class="footnote-reference brackets" href="#id42" id="id20">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_95</span></code> <a class="footnote-reference brackets" href="#id42" id="id20" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 95% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_99</span></code> <a class="footnote-reference brackets" href="#id42" id="id21">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DERIVATIVE_PERCENTILE_99</span></code> <a class="footnote-reference brackets" href="#id42" id="id21" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Änderung pro Sekunde des 99% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE</span></code> <a class="footnote-reference brackets" href="#id42" id="id22">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE</span></code> <a class="footnote-reference brackets" href="#id42" id="id22" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_COUNT</span></code> <a class="footnote-reference brackets" href="#id42" id="id23">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_COUNT</span></code> <a class="footnote-reference brackets" href="#id42" id="id23" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der Messwertanzahlen im jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id24">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id24" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der Mittelwerte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEDIAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id25">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MEDIAN</span></code> <a class="footnote-reference brackets" href="#id42" id="id25" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der Mediane des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MODE</span></code> <a class="footnote-reference brackets" href="#id42" id="id26">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MODE</span></code> <a class="footnote-reference brackets" href="#id42" id="id26" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der häufigsten Werte des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_SUM</span></code> <a class="footnote-reference brackets" href="#id42" id="id27">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_SUM</span></code> <a class="footnote-reference brackets" href="#id42" id="id27" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der Summen des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_FIRST</span></code> <a class="footnote-reference brackets" href="#id42" id="id28">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_FIRST</span></code> <a class="footnote-reference brackets" href="#id42" id="id28" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der ersten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_LAST</span></code> <a class="footnote-reference brackets" href="#id42" id="id29">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_LAST</span></code> <a class="footnote-reference brackets" href="#id42" id="id29" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der letzten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MIN</span></code> <a class="footnote-reference brackets" href="#id42" id="id30">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MIN</span></code> <a class="footnote-reference brackets" href="#id42" id="id30" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der kleinsten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MAX</span></code> <a class="footnote-reference brackets" href="#id42" id="id31">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_MAX</span></code> <a class="footnote-reference brackets" href="#id42" id="id31" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz der größten Messwerte im jeweiligen Zeitbereich</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_1</span></code> <a class="footnote-reference brackets" href="#id42" id="id32">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_1</span></code> <a class="footnote-reference brackets" href="#id42" id="id32" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 1% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_5</span></code> <a class="footnote-reference brackets" href="#id42" id="id33">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_5</span></code> <a class="footnote-reference brackets" href="#id42" id="id33" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 5% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_10</span></code> <a class="footnote-reference brackets" href="#id42" id="id34">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_10</span></code> <a class="footnote-reference brackets" href="#id42" id="id34" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 10% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_20</span></code> <a class="footnote-reference brackets" href="#id42" id="id35">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_20</span></code> <a class="footnote-reference brackets" href="#id42" id="id35" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 20% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_25</span></code> <a class="footnote-reference brackets" href="#id42" id="id36">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_25</span></code> <a class="footnote-reference brackets" href="#id42" id="id36" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 25% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_75</span></code> <a class="footnote-reference brackets" href="#id42" id="id37">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_75</span></code> <a class="footnote-reference brackets" href="#id42" id="id37" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 75% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_80</span></code> <a class="footnote-reference brackets" href="#id42" id="id38">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_80</span></code> <a class="footnote-reference brackets" href="#id42" id="id38" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 80% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_90</span></code> <a class="footnote-reference brackets" href="#id42" id="id39">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_90</span></code> <a class="footnote-reference brackets" href="#id42" id="id39" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 90% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_95</span></code> <a class="footnote-reference brackets" href="#id42" id="id40">1</a></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_95</span></code> <a class="footnote-reference brackets" href="#id42" id="id40" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 95% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_99</span></code> <a class="footnote-reference brackets" href="#id42" id="id41">1</a></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DIFFERENCE_PERCENTILE_99</span></code> <a class="footnote-reference brackets" href="#id42" id="id41" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
 <td><p>Differenz des 99% Percentils des jeweiligen Zeitbereichs</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ELAPSED</span></code></p></td>
@@ -937,22 +898,20 @@ eine <code class="docutils literal notranslate"><span class="pre">consolidationF
 </tr>
 </tbody>
 </table>
-<dl class="footnote brackets">
-<dt class="label" id="id42"><span class="brackets">1</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>,<a href="#id5">4</a>,<a href="#id6">5</a>,<a href="#id7">6</a>,<a href="#id8">7</a>,<a href="#id9">8</a>,<a href="#id10">9</a>,<a href="#id11">10</a>,<a href="#id12">11</a>,<a href="#id13">12</a>,<a href="#id14">13</a>,<a href="#id15">14</a>,<a href="#id16">15</a>,<a href="#id17">16</a>,<a href="#id18">17</a>,<a href="#id19">18</a>,<a href="#id20">19</a>,<a href="#id21">20</a>,<a href="#id22">21</a>,<a href="#id23">22</a>,<a href="#id24">23</a>,<a href="#id25">24</a>,<a href="#id26">25</a>,<a href="#id27">26</a>,<a href="#id28">27</a>,<a href="#id29">28</a>,<a href="#id30">29</a>,<a href="#id31">30</a>,<a href="#id32">31</a>,<a href="#id33">32</a>,<a href="#id34">33</a>,<a href="#id35">34</a>,<a href="#id36">35</a>,<a href="#id37">36</a>,<a href="#id38">37</a>,<a href="#id39">38</a>,<a href="#id40">39</a>,<a href="#id41">40</a>)</span></dt>
-<dd><p>Hinweis: In zukünftigen Versionen der CometVisu kann sich die Syntax für
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id42" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>,<a role="doc-backlink" href="#id4">3</a>,<a role="doc-backlink" href="#id5">4</a>,<a role="doc-backlink" href="#id6">5</a>,<a role="doc-backlink" href="#id7">6</a>,<a role="doc-backlink" href="#id8">7</a>,<a role="doc-backlink" href="#id9">8</a>,<a role="doc-backlink" href="#id10">9</a>,<a role="doc-backlink" href="#id11">10</a>,<a role="doc-backlink" href="#id12">11</a>,<a role="doc-backlink" href="#id13">12</a>,<a role="doc-backlink" href="#id14">13</a>,<a role="doc-backlink" href="#id15">14</a>,<a role="doc-backlink" href="#id16">15</a>,<a role="doc-backlink" href="#id17">16</a>,<a role="doc-backlink" href="#id18">17</a>,<a role="doc-backlink" href="#id19">18</a>,<a role="doc-backlink" href="#id20">19</a>,<a role="doc-backlink" href="#id21">20</a>,<a role="doc-backlink" href="#id22">21</a>,<a role="doc-backlink" href="#id23">22</a>,<a role="doc-backlink" href="#id24">23</a>,<a role="doc-backlink" href="#id25">24</a>,<a role="doc-backlink" href="#id26">25</a>,<a role="doc-backlink" href="#id27">26</a>,<a role="doc-backlink" href="#id28">27</a>,<a role="doc-backlink" href="#id29">28</a>,<a role="doc-backlink" href="#id30">29</a>,<a role="doc-backlink" href="#id31">30</a>,<a role="doc-backlink" href="#id32">31</a>,<a role="doc-backlink" href="#id33">32</a>,<a role="doc-backlink" href="#id34">33</a>,<a role="doc-backlink" href="#id35">34</a>,<a role="doc-backlink" href="#id36">35</a>,<a role="doc-backlink" href="#id37">36</a>,<a role="doc-backlink" href="#id38">37</a>,<a role="doc-backlink" href="#id39">38</a>,<a role="doc-backlink" href="#id40">39</a>,<a role="doc-backlink" href="#id41">40</a>)</span>
+<p>Hinweis: In zukünftigen Versionen der CometVisu kann sich die Syntax für
 diese Transformations ändern. Bei einem Update bitte im Handbuch auf
 Änderungen diesbezüglich achten.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 </section>
 <section id="fillmissing-attribut">
-<h4><code class="docutils literal notranslate"><span class="pre">fillMissing</span></code> Attribut<a class="headerlink" href="#fillmissing-attribut" title="Link zu dieser Überschrift">¶</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">fillMissing</span></code> Attribut<a class="headerlink" href="#fillmissing-attribut" title="Link to this heading"></a></h4>
 <p>Über <code class="docutils literal notranslate"><span class="pre">fillMissing</span></code> lassen sich Lücken in den Daten schließen. Möglich ist:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 31%" />
-<col style="width: 69%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">linear</span></code></p></td>
 <td><p>Lineare Interpolation</p></td>
@@ -970,7 +929,7 @@ diese Transformations ändern. Bei einem Update bitte im Handbuch auf
 </table>
 </section>
 <section id="elemente-innerhalb-influx">
-<h4>Elemente innerhalb <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code><a class="headerlink" href="#elemente-innerhalb-influx" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Elemente innerhalb <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code><a class="headerlink" href="#elemente-innerhalb-influx" title="Link to this heading"></a></h4>
 <p>Im <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code> Element können über <code class="docutils literal notranslate"><span class="pre">&lt;add&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;or&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&lt;tag&gt;</span></code> Elemente
 die anzuzeigenden Daten gefiltert werden. Über <code class="docutils literal notranslate"><span class="pre">&lt;add&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&lt;or&gt;</span></code> werden
 die (auch verschachtelten) Kind-Elemente UND bzw. ODER verknüpft. Im <code class="docutils literal notranslate"><span class="pre">&lt;tag&gt;</span></code>
@@ -978,10 +937,6 @@ wird nach dem in der InfluxDB abgelegten Tags gefiltert in dem der Schlüssel
 <code class="docutils literal notranslate"><span class="pre">key</span></code> mit dem Wert <code class="docutils literal notranslate"><span class="pre">value</span></code> über den Operator <code class="docutils literal notranslate"><span class="pre">operator</span></code> verglichen wird.
 Mögliche Operatoren sind:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
 <td><p>Gleich</p></td>
@@ -1027,14 +982,14 @@ Mögliche Operatoren sind:</p>
 <figure class="align-default" id="id45">
 <img alt="../../../../_images/Diagram_influx_editor.png" src="../../../../_images/Diagram_influx_editor.png" />
 <figcaption>
-<p><span class="caption-text">Beispiel Influx-Datenquelle mit Filtern</span><a class="headerlink" href="#id45" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Beispiel Influx-Datenquelle mit Filtern</span><a class="headerlink" href="#id45" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 </section>
 <section id="xml-syntax-minimal">
-<h2>XML Syntax minimal<a class="headerlink" href="#xml-syntax-minimal" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>XML Syntax minimal<a class="headerlink" href="#xml-syntax-minimal" title="Link to this heading"></a></h2>
 <p>Alternativ kann man für das Diagram-Widget auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
@@ -1064,8 +1019,8 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../clock/index.html" class="btn btn-neutral float-left" title="Das Clock Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../diagram_info/index.html" class="btn btn-neutral float-right" title="Das Diagramm_Info Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../clock/index.html" class="btn btn-neutral float-left" title="Das Clock Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../diagram_info/index.html" class="btn btn-neutral float-right" title="Das Diagramm_Info Plugin" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -1081,34 +1036,34 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

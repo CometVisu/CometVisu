@@ -33,6 +33,7 @@
         "require": true
       },
       "qx.bom.Viewport": {},
+      "cv.ui.manager.model.FileItem": {},
       "cv.ui.manager.model.ElementChange": {},
       "cv.ui.manager.editor.Worker": {},
       "qx.ui.container.Composite": {},
@@ -67,7 +68,6 @@
       "cv.ui.manager.dialog.ValidationError": {},
       "cv.ui.manager.Main": {},
       "qx.event.message.Bus": {},
-      "cv.ui.manager.model.FileItem": {},
       "qx.xml.Document": {},
       "qx.xml.String": {},
       "qx.ui.core.FocusHandler": {},
@@ -267,7 +267,21 @@
       },
       _maintainPreviewVisibility: function _maintainPreviewVisibility() {
         var handlerOptions = this.getHandlerOptions();
-        this.setShowPreview(qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview));
+        var enablePreview = qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview);
+
+        if (enablePreview) {
+          var previewFile = this.__P_33_6();
+
+          if (!previewFile.isTemporary() && !previewFile.isWriteable()) {
+            // preview file already exists, but it is not writable
+            enablePreview = false;
+          } else if (previewFile.isTemporary() && !cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
+            // parent folder is not writable and preview file does not exist
+            enablePreview = false;
+          }
+        }
+
+        this.setShowPreview(enablePreview);
       },
       _applyShowPreview: function _applyShowPreview(value) {
         this.getChildControl('right').setVisibility(value ? 'visible' : 'excluded');
@@ -2335,7 +2349,7 @@
         });
 
         if (!file) {
-          file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+          file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', cv.ui.manager.model.FileItem.ROOT);
           file.setTemporary(true);
         }
 
@@ -2459,35 +2473,48 @@
             this._client.createSync({
               path: previewFile.getFullPath(),
               hash: 'ignore'
-            }, content, function () {
-              qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-                type: 'contentChanged',
-                file: previewFile,
-                data: content,
-                source: _this11
-              });
+            }, content, function (err) {
+              if (err) {
+                // disable preview, because the file could not be created
+                _this11.setShowPreview(false);
 
-              _this11.__P_33_1.removeAll();
+                _this11.error(err);
 
-              _this11.resetPreviewState();
+                cv.ui.manager.snackbar.Controller.error(_this11.tr('Disabling preview because the preview file could not be created.'));
+              } else {
+                qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+                  type: 'contentChanged',
+                  file: previewFile,
+                  data: content,
+                  source: _this11
+                });
 
-              previewFile.resetTemporary();
+                _this11.__P_33_1.removeAll();
+
+                _this11.resetPreviewState();
+
+                previewFile.resetTemporary();
+              }
             }, this);
           } else {
             this._client.updateSync({
               path: previewFile.getFullPath(),
               hash: 'ignore'
-            }, content, function () {
-              qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-                type: 'contentChanged',
-                file: previewFile,
-                data: content,
-                source: _this11
-              });
+            }, content, function (err) {
+              if (err) {
+                cv.ui.manager.snackbar.Controller.error(err);
+              } else {
+                qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+                  type: 'contentChanged',
+                  file: previewFile,
+                  data: content,
+                  source: _this11
+                });
 
-              _this11.__P_33_1.removeAll();
+                _this11.__P_33_1.removeAll();
 
-              _this11.resetPreviewState();
+                _this11.resetPreviewState();
+              }
             }, this);
           }
         }
@@ -2632,4 +2659,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1674150455101
+//# sourceMappingURL=Tree.js.map?dt=1702895797156

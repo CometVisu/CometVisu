@@ -13,7 +13,7 @@
         "column": 0
       },
       "end": {
-        "line": 1106,
+        "line": 1113,
         "column": 3
       }
     },
@@ -788,7 +788,7 @@
           "column": 4
         },
         "end": {
-          "line": 818,
+          "line": 825,
           "column": 5
         }
       },
@@ -815,11 +815,11 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 824,
+          "line": 831,
           "column": 4
         },
         "end": {
-          "line": 831,
+          "line": 838,
           "column": 5
         }
       },
@@ -843,11 +843,11 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 837,
+          "line": 844,
           "column": 4
         },
         "end": {
-          "line": 844,
+          "line": 851,
           "column": 5
         }
       },
@@ -871,11 +871,11 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 849,
+          "line": 856,
           "column": 4
         },
         "end": {
-          "line": 914,
+          "line": 921,
           "column": 5
         }
       },
@@ -893,11 +893,11 @@
     "__detectInitialPage": {
       "location": {
         "start": {
-          "line": 916,
+          "line": 923,
           "column": 4
         },
         "end": {
-          "line": 947,
+          "line": 954,
           "column": 5
         }
       },
@@ -907,11 +907,11 @@
     "_checkBackend": {
       "location": {
         "start": {
-          "line": 949,
+          "line": 956,
           "column": 4
         },
         "end": {
-          "line": 1058,
+          "line": 1065,
           "column": 5
         }
       },
@@ -921,11 +921,11 @@
     "close": {
       "location": {
         "start": {
-          "line": 1060,
+          "line": 1067,
           "column": 4
         },
         "end": {
-          "line": 1066,
+          "line": 1073,
           "column": 5
         }
       },
@@ -940,11 +940,11 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 1071,
+          "line": 1078,
           "column": 4
         },
         "end": {
-          "line": 1104,
+          "line": 1111,
           "column": 5
         }
       },

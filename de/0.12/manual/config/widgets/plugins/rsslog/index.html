@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das RSSLog Plugin &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/plugins/rsslog/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/versions.js"></script>
-        <script src="../../../../_static/translations.js"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -104,10 +110,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../../index.html">Bedienbare Widgets</a> &raquo;</li>
-      <li>Das RSSLog Plugin</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Bedienbare Widgets</a></li>
+      <li class="breadcrumb-item active">Das RSSLog Plugin</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -117,15 +123,15 @@
            <div itemprop="articleBody">
              
   <section id="das-rsslog-plugin">
-<span id="rsslog"></span><h1>Das RSSLog Plugin<a class="headerlink" href="#das-rsslog-plugin" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="rsslog"></span><h1>Das RSSLog Plugin<a class="headerlink" href="#das-rsslog-plugin" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Michael Markstaller</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 2011</div>
+<div class="line"><strong>Available since</strong>: 2011</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das RSSLog-Plugin fügt der Visu-Seite interaktive Log-Meldungen hinzu, die auf
 der RSS-Feed Technologie basieren.</p>
 <p>Diese Log-Meldungen können sowohl für ein statisches Ereignisprotokoll, z.B. wann
@@ -140,7 +146,7 @@ Variante - möglich die einzelnen Zeilen zu bestätigen.</p>
 </figure>
 </section>
 <section id="einstellungen">
-<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link to this heading"></a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
 <p>Das Verhalten und Aussehen des RSSLog-Plugins kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
@@ -149,14 +155,8 @@ beides über den <a class="reference internal" href="../../../editor.html#editor
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <section id="erlaubte-attribute-im-rsslog-element">
-<h3>Erlaubte Attribute im rsslog-Element<a class="headerlink" href="#erlaubte-attribute-im-rsslog-element" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute im rsslog-Element<a class="headerlink" href="#erlaubte-attribute-im-rsslog-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -218,19 +218,13 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id2">
 <img alt="../../../../_images/de_config_widgets_plugins_rsslog_index_editor_attributes.png" src="../../../../_images/de_config_widgets_plugins_rsslog_index_editor_attributes.png" />
 <figcaption>
-<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -320,12 +314,6 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -387,12 +375,6 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -463,7 +445,7 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id3">
 <img alt="../../../../_images/de_config_widgets_plugins_rsslog_index_editor_elements.png" src="../../../../_images/de_config_widgets_plugins_rsslog_index_editor_elements.png" />
 <figcaption>
-<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition note">
@@ -483,7 +465,7 @@ Durchlaufzeiten kompensiert werden können.</p>
 </section>
 </section>
 <section id="xml-syntax">
-<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link to this heading"></a></h2>
 <p>Alternativ kann man für das rsslog Plugin auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
@@ -492,7 +474,7 @@ der <a class="reference internal" href="../../../xml-format.html#xml-format"><sp
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <section id="einfaches-beispiel-statische-liste">
-<h3>Einfaches Beispiel: statische Liste<a class="headerlink" href="#einfaches-beispiel-statische-liste" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Einfaches Beispiel: statische Liste<a class="headerlink" href="#einfaches-beispiel-statische-liste" title="Link to this heading"></a></h3>
 <p>Die Einträge in diesem Beispiel könnten durch diese URLs erzeugt werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Klingel
 http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Briefkasten
@@ -503,7 +485,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Rauchmelder
 <figure class="align-default" id="id4">
 <img alt="RSSLog, einfaches Beispiel" src="../../../../_images/rsslog_simple.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">RSSLog, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -521,7 +503,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Rauchmelder
 </div>
 </section>
 <section id="einfaches-beispiel-statische-liste-mit-mapping">
-<h3>Einfaches Beispiel: statische Liste, mit Mapping<a class="headerlink" href="#einfaches-beispiel-statische-liste-mit-mapping" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Einfaches Beispiel: statische Liste, mit Mapping<a class="headerlink" href="#einfaches-beispiel-statische-liste-mit-mapping" title="Link to this heading"></a></h3>
 <p>Die Einträge in diesem Beispiel könnten durch diese URLs erzeugt werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Klingel&amp;mapping=StateDoorBell
 http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Briefkasten&amp;mapping=StateMail
@@ -532,7 +514,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Rauchmelder&amp;mapping=
 <figure class="align-default" id="id5">
 <img alt="RSSLog, einfaches Beispiel mit Mapping" src="../../../../_images/rsslog_simple_mapping.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, einfaches Beispiel mit Mapping</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">RSSLog, einfaches Beispiel mit Mapping</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -564,7 +546,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Rauchmelder&amp;mapping=
 </div>
 </section>
 <section id="einfaches-beispiel-interaktive-liste">
-<h3>Einfaches Beispiel: interaktive Liste<a class="headerlink" href="#einfaches-beispiel-interaktive-liste" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Einfaches Beispiel: interaktive Liste<a class="headerlink" href="#einfaches-beispiel-interaktive-liste" title="Link to this heading"></a></h3>
 <p>Die Einträge in diesem Beispiel könnten durch diese URLs erzeugt werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Aquarium%201%20Wasser%20wechseln&amp;t[]=fish&amp;mapping=StateConfirm&amp;state=0
 http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Aquarium%202%20Wasser%20wechseln&amp;t[]=fish&amp;mapping=StateConfirm&amp;state=0
@@ -574,7 +556,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Lüftung%20Filter%20taus
 <figure class="align-default" id="id6">
 <img alt="RSSLog, einfaches interaktives Beispiel" src="../../../../_images/rsslog_interactive.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, einfaches interaktives Beispiel</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">RSSLog, einfaches interaktives Beispiel</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -598,7 +580,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Lüftung%20Filter%20taus
 </div>
 </section>
 <section id="komplexes-beispiel-mit-mehreren-kategorien">
-<h3>Komplexes Beispiel mit mehreren Kategorien<a class="headerlink" href="#komplexes-beispiel-mit-mehreren-kategorien" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Komplexes Beispiel mit mehreren Kategorien<a class="headerlink" href="#komplexes-beispiel-mit-mehreren-kategorien" title="Link to this heading"></a></h3>
 <p>Durch die Verwendung von Tags können Kategorien gebildet werden. In der Anzeige
 wird der Tag zu dem HTML <code class="docutils literal notranslate"><span class="pre">class</span></code> Attribut hinzugefügt, so dass über CSS eine
 Formatierung möglich ist. In diesem Beispiel wurde dies genutzt um die verschiedenen
@@ -614,7 +596,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Tanken&amp;t[]=car&amp;m
 <figure class="align-default" id="id7">
 <img alt="RSSLog, komplexes Beispiel" src="../../../../_images/rsslog_complex.png" />
 <figcaption>
-<p><span class="caption-text">RSSLog, komplexes Beispiel</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">RSSLog, komplexes Beispiel</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -643,7 +625,7 @@ http://server/resource/plugins/rsslog/rsslog.php?&amp;c=Tanken&amp;t[]=car&amp;m
 </section>
 </section>
 <section id="externe-interaktion-mit-den-daten">
-<h2>Externe Interaktion mit den Daten<a class="headerlink" href="#externe-interaktion-mit-den-daten" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Externe Interaktion mit den Daten<a class="headerlink" href="#externe-interaktion-mit-den-daten" title="Link to this heading"></a></h2>
 <p>Das RSSLog-Plugin der CometVisu dient nur der Anzeige der Daten aus der Datenbank,
 die Befüllung muss durch eine Logik-Engine von außen passieren. Empfohlen wird
 hierfür nicht direkt auf die Datenbank zuzugreifen, sondern die gleiche HTTP-API
@@ -651,12 +633,12 @@ zu nutzen, die auch das RSSLog-Plugin nutzt.</p>
 <p>Alle Aufrufe sind normale HTTP GET Requests, die eine Logik-Engine leicht
 erzeugen kann.</p>
 <section id="api-dokumentation">
-<h3>API Dokumentation<a class="headerlink" href="#api-dokumentation" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>API Dokumentation<a class="headerlink" href="#api-dokumentation" title="Link to this heading"></a></h3>
 <p>Parameter für alle Aufrufe:</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -671,10 +653,10 @@ Informationen über den Datenbank-Zugriff hinterlegt sind.</p></td>
 </tbody>
 </table>
 <p>Relevante Einträge in der versteckte Konfiguration (Hidden Config) sind:</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -712,11 +694,11 @@ Informationen über den Datenbank-Zugriff hinterlegt sind.</p></td>
 </tbody>
 </table>
 <section id="neuer-eintrag">
-<h4>Neuer Eintrag<a class="headerlink" href="#neuer-eintrag" title="Link zu dieser Überschrift">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Neuer Eintrag<a class="headerlink" href="#neuer-eintrag" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -765,11 +747,11 @@ mit einer URL nach diesem Schema verwendet werden.</p>
 </div>
 </section>
 <section id="log-als-rss-feed-ausgeben">
-<h4>Log als RSS-Feed ausgeben<a class="headerlink" href="#log-als-rss-feed-ausgeben" title="Link zu dieser Überschrift">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Log als RSS-Feed ausgeben<a class="headerlink" href="#log-als-rss-feed-ausgeben" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -796,11 +778,11 @@ erweitert</p></td>
 <p>Beispiel: <code class="docutils literal notranslate"><span class="pre">rsslog.php?f=gelb&amp;state=0&amp;limit=5</span></code></p>
 </section>
 <section id="log-auf-einer-html-seite-anzeigen">
-<h4>Log auf einer HTML-Seite anzeigen<a class="headerlink" href="#log-auf-einer-html-seite-anzeigen" title="Link zu dieser Überschrift">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Log auf einer HTML-Seite anzeigen<a class="headerlink" href="#log-auf-einer-html-seite-anzeigen" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -816,11 +798,11 @@ erweitert</p></td>
 <p>Beispiel: <code class="docutils literal notranslate"><span class="pre">rsslog.php?dump</span></code></p>
 </section>
 <section id="alte-eintrage-loschen">
-<h4>Alte Einträge löschen<a class="headerlink" href="#alte-eintrage-loschen" title="Link zu dieser Überschrift">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Alte Einträge löschen<a class="headerlink" href="#alte-eintrage-loschen" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -855,11 +837,11 @@ Terminal-Befehl erledigen lassen:</p>
 </div>
 </section>
 <section id="einen-eintrag-loschen">
-<h4>Einen Eintrag löschen<a class="headerlink" href="#einen-eintrag-loschen" title="Link zu dieser Überschrift">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Einen Eintrag löschen<a class="headerlink" href="#einen-eintrag-loschen" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -875,11 +857,11 @@ Terminal-Befehl erledigen lassen:</p>
 <p>Beispiel: <code class="docutils literal notranslate"><span class="pre">rsslog.php?d=123</span></code></p>
 </section>
 <section id="inhalt-im-json-format-ausgeben">
-<h4>Inhalt im JSON Format ausgeben<a class="headerlink" href="#inhalt-im-json-format-ausgeben" title="Link zu dieser Überschrift">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Inhalt im JSON Format ausgeben<a class="headerlink" href="#inhalt-im-json-format-ausgeben" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -895,11 +877,11 @@ Terminal-Befehl erledigen lassen:</p>
 <p>Beispiel: <code class="docutils literal notranslate"><span class="pre">rsslog.php?j</span></code></p>
 </section>
 <section id="status-aktualisieren">
-<h4>Status aktualisieren<a class="headerlink" href="#status-aktualisieren" title="Link zu dieser Überschrift">¶</a></h4>
-<table class="colwidths-given docutils align-default">
+<h4>Status aktualisieren<a class="headerlink" href="#status-aktualisieren" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -918,14 +900,14 @@ Terminal-Befehl erledigen lassen:</p>
 <p>Beispiel: <code class="docutils literal notranslate"><span class="pre">rsslog.php?u=123&amp;state=1</span></code></p>
 </section>
 <section id="info-seite-anzeigen">
-<span id="info-seite"></span><h4>Info-Seite anzeigen<a class="headerlink" href="#info-seite-anzeigen" title="Link zu dieser Überschrift">¶</a></h4>
+<span id="info-seite"></span><h4>Info-Seite anzeigen<a class="headerlink" href="#info-seite-anzeigen" title="Link to this heading"></a></h4>
 <p>Die Info-Seite zeigt Informationen über die Konfiguration und die Datenbank
 an, beispielsweise die Zahl der gespeicherten Einträge. Außerdem gibt es Links
 mit denen ältere Einträge gelöscht werden können.</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Schlüssel</p></th>
@@ -942,7 +924,7 @@ mit denen ältere Einträge gelöscht werden können.</p>
 </section>
 </section>
 <section id="beispiel-api-zugriff-aus-der-linux-shell">
-<h3>Beispiel: API Zugriff aus der Linux Shell<a class="headerlink" href="#beispiel-api-zugriff-aus-der-linux-shell" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Beispiel: API Zugriff aus der Linux Shell<a class="headerlink" href="#beispiel-api-zugriff-aus-der-linux-shell" title="Link to this heading"></a></h3>
 <p>In einer Shell lässt sich über die bekannten Tools <code class="docutils literal notranslate"><span class="pre">wget</span></code> oder <code class="docutils literal notranslate"><span class="pre">curl</span></code> auch
 ein HTTP GET Request absetzen.</p>
 <p>Mit diesem Befehl lässt sich beispielsweise ein neuer Eintrag anlegen, in diesem
@@ -953,7 +935,7 @@ Datenbank <code class="docutils literal notranslate"><span class="pre">rsslog_db
 </div>
 </section>
 <section id="beispiel-api-zugriff-mit-node-red">
-<h3>Beispiel: API Zugriff mit Node-RED<a class="headerlink" href="#beispiel-api-zugriff-mit-node-red" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Beispiel: API Zugriff mit Node-RED<a class="headerlink" href="#beispiel-api-zugriff-mit-node-red" title="Link to this heading"></a></h3>
 <p>Bei Node-RED kann <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> genutzt werden um einen Eintrag zu erzeugen.</p>
 <p>Bei diesem Beispiel soll bei jedem Klingeln ein Eintrag erzeugt werden. Hierzu
 wird auf den KNX gehört und wenn dort <code class="docutils literal notranslate"><span class="pre">true</span></code> gesendet wurde,
@@ -961,31 +943,31 @@ so wird die entsprechende URL aufgerufen:</p>
 <figure class="align-default" id="id8">
 <img alt="../../../../_images/node-RED_simple.png" src="../../../../_images/node-RED_simple.png" />
 <figcaption>
-<p><span class="caption-text">Einfacher Node-RED flow.</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Einfacher Node-RED flow.</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
 <img alt="../../../../_images/node-RED_simple_config.png" src="../../../../_images/node-RED_simple_config.png" />
 <figcaption>
-<p><span class="caption-text">Konfiguration des <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> für den einfachen Node-RED flow.</span><a class="headerlink" href="#id9" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Konfiguration des <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> für den einfachen Node-RED flow.</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Es ist auch möglich dynamisch den Text für den Eintrag festzulegen:</p>
 <figure class="align-default" id="id10">
 <img alt="../../../../_images/node-RED_dynamic.png" src="../../../../_images/node-RED_dynamic.png" />
 <figcaption>
-<p><span class="caption-text">Node-RED flow bei dem dynamisch der RSSLog-Text gesetzt werden kann.</span><a class="headerlink" href="#id10" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Node-RED flow bei dem dynamisch der RSSLog-Text gesetzt werden kann.</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id11">
 <img alt="../../../../_images/node-RED_dynamic_config.png" src="../../../../_images/node-RED_dynamic_config.png" />
 <figcaption>
-<p><span class="caption-text">Konfiguration des <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> für den dynamischen Node-RED flow.</span><a class="headerlink" href="#id11" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Konfiguration des <code class="docutils literal notranslate"><span class="pre">http</span> <span class="pre">request</span></code> für den dynamischen Node-RED flow.</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="beispiel-api-zugriff-mit-dem-timberwolf-server">
-<h3>Beispiel: API Zugriff mit dem Timberwolf Server<a class="headerlink" href="#beispiel-api-zugriff-mit-dem-timberwolf-server" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Beispiel: API Zugriff mit dem Timberwolf Server<a class="headerlink" href="#beispiel-api-zugriff-mit-dem-timberwolf-server" title="Link to this heading"></a></h3>
 <p>Der <a class="reference external" href="https://timberwolf.io/">Timberwolf Server</a> bietet über das HTTP-API die
 Möglichkeit HTTP GET Requests zu erzeugen und damit mit der RSSLog API zu
 interagieren.</p>
@@ -994,7 +976,7 @@ interagieren.</p>
 <p>Die Beschreibung basiert auf der Timberwolf Software Version 3.0.</p>
 </div>
 <section id="statischer-api-aufruf">
-<h4>Statischer API Aufruf<a class="headerlink" href="#statischer-api-aufruf" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Statischer API Aufruf<a class="headerlink" href="#statischer-api-aufruf" title="Link to this heading"></a></h4>
 <p>Am einfachsten lässt sich ein Mechanismus realisieren, bei dem mit jedem
 Eintreffen einer über KNX gesendeten Botschaft ein fester API Aufruf
 getätigt werden soll.</p>
@@ -1031,7 +1013,7 @@ RSSLog API hergestellt werden („HTTP Weiterleitungen folgen“ muss aktiv sein
 </figure>
 </section>
 <section id="dynamischer-api-aufruf">
-<h4>Dynamischer API Aufruf<a class="headerlink" href="#dynamischer-api-aufruf" title="Link zu dieser Überschrift">¶</a></h4>
+<h4>Dynamischer API Aufruf<a class="headerlink" href="#dynamischer-api-aufruf" title="Link to this heading"></a></h4>
 <p>Etwas komplexer wird das Beispiel, wenn die Klingel beim Klingeln „Ein“ sendet,
 sonst aber regelmäßig ein „Aus“, so dass hier über eine Logik diese Werte
 ausgefiltert werden müssen. In diesem Beispiel soll außerdem der Text für den
@@ -1068,11 +1050,12 @@ muss die Eigenheiten einer URL berücksichtigen und daher „escaped“ sein.
 So müssen beispielsweise die Leerzeichen durch <code class="docutils literal notranslate"><span class="pre">%20</span></code> ersetzt werden.</p>
 </div>
 <p class="rubric">Fußnoten</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
+</aside>
+</aside>
 </section>
 </section>
 </section>
@@ -1082,8 +1065,8 @@ So müssen beispielsweise die Leerzeichen durch <code class="docutils literal no
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../powerspectrum/index.html" class="btn btn-neutral float-left" title="Das PowerSpectrum Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../speech/index.html" class="btn btn-neutral float-right" title="Das Speech Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../powerspectrum/index.html" class="btn btn-neutral float-left" title="Das PowerSpectrum Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../speech/index.html" class="btn btn-neutral float-right" title="Das Speech Plugin" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -1099,34 +1082,34 @@ So müssen beispielsweise die Leerzeichen durch <code class="docutils literal no
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>

@@ -73,6 +73,10 @@
         check: 'String',
         nullable: true,
         event: 'changedServer'
+      },
+      dataReceived: {
+        check: 'Boolean',
+        init: false
       }
     },
 
@@ -337,4 +341,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1674150492849
+//# sourceMappingURL=Client.js.map?dt=1702895823331

@@ -333,12 +333,15 @@
 
         if (parameters.length === 2) {
           var cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]];
-          var coloredIcon = cacheEntry.colors['#' + parameters[1]];
 
-          if (undefined === coloredIcon) {
-            cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
-          } else {
-            cv.util.IconTools.fillCanvas(icon, coloredIcon);
+          if (cacheEntry) {
+            var coloredIcon = cacheEntry.colors['#' + parameters[1]];
+
+            if (undefined === coloredIcon) {
+              cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
+            } else {
+              cv.util.IconTools.fillCanvas(icon, coloredIcon);
+            }
           }
         }
       },
@@ -423,4 +426,4 @@
   cv.util.IconTools.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconTools.js.map?dt=1674150494546
+//# sourceMappingURL=IconTools.js.map?dt=1702895824383

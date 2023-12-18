@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="de" >
+<html class="writer-html5" lang="de" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Gauge Plugin &mdash; CometVisu</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=ed8ab9dc" />
+
+  
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.12/manual/config/widgets/plugins/gauge/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/versions.js"></script>
-        <script src="../../../../_static/translations.js"></script>
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=245627df"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../../search.html" />
@@ -31,15 +33,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> CometVisu
-            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.2
+                0.12.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -104,10 +110,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-          <li><a href="../../index.html">Bedienbare Widgets</a> &raquo;</li>
-      <li>Das Gauge Plugin</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Bedienbare Widgets</a></li>
+      <li class="breadcrumb-item active">Das Gauge Plugin</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -117,15 +123,15 @@
            <div itemprop="articleBody">
              
   <section id="das-gauge-plugin">
-<span id="gauge"></span><h1>Das Gauge Plugin<a class="headerlink" href="#das-gauge-plugin" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="gauge"></span><h1>Das Gauge Plugin<a class="headerlink" href="#das-gauge-plugin" title="Link to this heading"></a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: NetFritz [NetFritz at gmx dot de]</div>
-<div class="line"><strong>Verfügbar seit Version</strong>: 0.8.1</div>
+<div class="line"><strong>Available since</strong>: 0.8.1</div>
 <div class="line"><br /></div>
 </div>
 </div>
 <section id="beschreibung">
-<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das Gauge Plugin fügt der Visualisierung ein Anzeigeinstrument hinzu.
 Es stehen verschiedene Instrumente zur Auswahl.
 Die CometVisu beinhaltet eine Demo-Config für das Gauge-Plugin, welche eine Übersicht über
@@ -135,12 +141,12 @@ die verschiedenen Elemente liefert. Geladen werden kann sie über folgenden Link
 <figure class="align-default" id="id2">
 <img alt="../../../../_images/DisplayElements_GaugePlugin.png" src="../../../../_images/DisplayElements_GaugePlugin.png" />
 <figcaption>
-<p><span class="caption-text">Beispiele für Anzeigeelemente des Gauge-Plugins</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Beispiele für Anzeigeelemente des Gauge-Plugins</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="einstellungen">
-<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link to this heading"></a></h2>
 <p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
 <p>Das Verhalten und Aussehen des Gauge-Plugins kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
@@ -149,14 +155,8 @@ beides über den <a class="reference internal" href="../../../editor.html#editor
 <p>Nur die mit ….. unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <section id="erlaubte-attribute-im-gauge-element">
-<h3>Erlaubte Attribute im Gauge-Element<a class="headerlink" href="#erlaubte-attribute-im-gauge-element" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Attribute im Gauge-Element<a class="headerlink" href="#erlaubte-attribute-im-gauge-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 15%" />
-<col style="width: 20%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -266,19 +266,13 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id3">
 <img alt="../../../../_images/de_config_widgets_plugins_gauge_index_editor_attributes.png" src="../../../../_images/de_config_widgets_plugins_gauge_index_editor_attributes.png" />
 <figcaption>
-<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1">1</a></span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link to this heading"></a></h3>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -368,12 +362,6 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -435,12 +423,6 @@ daher weg gelassen werden.</p>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 55%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
 <th class="head" colspan="4"><p>Attribut</p></th>
@@ -511,13 +493,13 @@ daher weg gelassen werden.</p>
 <figure class="align-center" id="id4">
 <img alt="../../../../_images/de_config_widgets_plugins_gauge_index_editor_elements.png" src="../../../../_images/de_config_widgets_plugins_gauge_index_editor_elements.png" />
 <figcaption>
-<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Elemente im Editor</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 </section>
 <section id="xml-syntax">
-<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link to this heading"></a></h2>
 <p>Alternativ kann man für das Gauge Plugin auch von Hand einen Eintrag in
 der <a class="reference internal" href="../../../xml-format.html#xml-format"><span class="std std-ref">visu_config.xml</span></a> hinzufügen.</p>
 <div class="admonition caution">
@@ -529,7 +511,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <figure class="align-default" id="id5">
 <img alt="Gauge-Plugin" src="../../../../_images/gauge_complex.png" />
 <figcaption>
-<p><span class="caption-text">Gauge-Plugin</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Gauge-Plugin</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -550,7 +532,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <figure class="align-default" id="id6">
 <img alt="Gauge-Plugin, einfach" src="../../../../_images/gauge_simple.png" />
 <figcaption>
-<p><span class="caption-text">Gauge-Plugin, einfach</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Gauge-Plugin, einfach</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -567,11 +549,12 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </pre></div>
 </div>
 <p class="rubric">Fußnoten</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</p>
+</aside>
+</aside>
 </section>
 </section>
 
@@ -579,8 +562,8 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../diagram_info/index.html" class="btn btn-neutral float-left" title="Das Diagramm_Info Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../link/index.html" class="btn btn-neutral float-right" title="Das Link Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../diagram_info/index.html" class="btn btn-neutral float-left" title="Das Diagramm_Info Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../link/index.html" class="btn btn-neutral float-right" title="Das Link Plugin" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -596,34 +579,34 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
       </div>
     </section>
   </div>
-  
-
-  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.2
+      v: 0.12.6
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
-        <dt>Versions</dt>
+        <dt>Versionen</dt>
         
-          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        <dd><a href="../../0.10/manual">0.10.2</a></dd>
         
-          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+        <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
-          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         
       </dl>
     </div>
   </div>
-<script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+
 
 </body>
 </html>
