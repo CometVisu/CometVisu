@@ -49,7 +49,7 @@ if os.path.exists(versions_file):
     with open(versions_file) as f:
         data = json.load(f)
         for ver in data['versions']:
-            versions.append((ver, '../../%s/manual' % ver))
+            versions.append((ver, '../%s/manual' % ver))
 
 releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''

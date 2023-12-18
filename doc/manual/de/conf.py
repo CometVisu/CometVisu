@@ -56,7 +56,7 @@ if os.path.exists(versions_file):
                 v = ver
                 path = ver
 
-            versions.append((v, '../../%s/manual' % path))
+            versions.append((v, '../%s/manual' % path))
 
 releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''
