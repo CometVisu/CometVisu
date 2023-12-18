@@ -1,9 +1,0 @@
-name: 'Prepare Webdriver'
-runs:
-  using: "composite"
-  steps:
-    - name: Install Webdriver version
-      run: |
-        ./node_modules/.bin/webdriver-manager update --gecko=false
-        ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update --gecko=false
-      shell: bash

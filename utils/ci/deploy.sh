@@ -60,6 +60,7 @@ if [ ! -d "out/de/$VERSION_PATH" ]; then
 fi;
 
 if [[ "$GENERATE_DOCS" -eq 1 ]]; then
+
   # Run our creation script
   echo "generating german manual to extract screenshot examples"
   ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
@@ -86,7 +87,10 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
       # we need a source-build to generate screenshots
       qx compile -t=source -f=false
       echo "generate API screenshots"
-      ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=source
+      if test -f .protractor-env; then
+        source .protractor-env
+      fi
+      grunt screenshots --subDir=build --browserName=chrome --target=source
       BUILD_CV=0
 
       # move generated screenshots to the api viewer
@@ -105,7 +109,7 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
   fi
 
   echo "generating english manual, including screenshot generation for all languages"
-  ${DOCKER_RUN} ${CV} doc --doc-type manual -c -f -l en -t source --target-version=${VERSION_PATH}
+  ${CV} doc --doc-type manual -c -f -l en -t source --target-version=${VERSION_PATH}
   echo "generating german manual again with existing screenshots"
   ${CV} doc --doc-type manual -f -l de --target-version=${VERSION_PATH}
 
@@ -135,8 +139,8 @@ cp source/resource/hidden-schema.json out/schemas/$VERSION_PATH/
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
-git config user.name "$COMMIT_AUTHOR_NAME"
-git config user.email "$COMMIT_AUTHOR_EMAIL"
+git config --local user.name "$COMMIT_AUTHOR_NAME"
+git config --local user.email "$COMMIT_AUTHOR_EMAIL"
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail out.
 # as the changesets on new versions are too big we skip this check to prevent timeouts
@@ -163,3 +167,17 @@ git commit -q -m "Deploy to GitHub Pages: ${SHA}"
 # Now that we're all set up, we can push.
 echo "pushing changes to remote repository"
 git push "$PUSH_REPO" $TARGET_BRANCH
+
+# Commit generated screenshots and shot-index files into this repo
+echo "committing changed screenshots and shot-index files"
+cd ..
+git config --local user.name "$COMMIT_AUTHOR_NAME"
+git config --local user.email "$COMMIT_AUTHOR_EMAIL"
+
+git add doc/**/*.json
+git add doc/**/*.png
+# only commit when there are changes
+if [ `git diff-index --cached HEAD | wc -l` -gt 0 ]; then
+  git commit -q -m "[skip ci] Add generated files: ${SHA}"
+  git push
+fi
