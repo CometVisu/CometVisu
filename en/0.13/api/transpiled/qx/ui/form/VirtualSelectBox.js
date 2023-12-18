@@ -665,4 +665,4 @@
   qx.ui.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1702815232450
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1702901323934

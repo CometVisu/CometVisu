@@ -339,4 +339,4 @@
   qx.util.Serializer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Serializer.js.map?dt=1702815241010
+//# sourceMappingURL=Serializer.js.map?dt=1702901337656
