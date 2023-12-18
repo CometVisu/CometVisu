@@ -25,14 +25,10 @@
  */
 const BasePage = require('../pages/BasePage.js');
 const request = require('request');
-const fs = require('fs');
-const path = require('path');
-const rootDir = path.join(__dirname, '..', '..', '..', '..');
 
 class CometVisuMockup extends BasePage {
   constructor(target) {
-    super();
-    this.target = target || 'source';
+    super(null, target);
     this.url = 'http://localhost:8000/' + this.target + '/index.html?config=mockup&testMode=true&enableCache=false';
     this.mockupReady = false;
 
@@ -54,51 +50,6 @@ class CometVisuMockup extends BasePage {
         console.log(response);
         console.log(body);
       }
-    });
-  }
-
-  mockupFixture(fixture) {
-    this.mockupReady = false;
-    let sourceFile = path.join(rootDir, fixture.sourceFile);
-    let targetPath = fixture.targetPath;
-    if (!targetPath.startsWith('/')) {
-      // adding target only to relative paths
-      targetPath = '/' + this.target + '/' + targetPath;
-    }
-    if (fs.existsSync(sourceFile)) {
-      let content = fs.readFileSync(sourceFile);
-
-      let queryString = '';
-      if (fixture.mimeType) {
-        queryString = '?mimeType='+encodeURIComponent(fixture.mimeType);
-      }
-
-      request({
-        method: 'POST',
-        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath) + queryString,
-        body: content
-      }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-          this.mockupReady = true;
-        } else {
-          console.log(error);
-          console.log(response);
-          console.log(body);
-        }
-      });
-    } else {
-      console.error('fixture file', sourceFile, 'not found');
-    }
-  }
-
-  resetMockupFixture(fixture) {
-    let targetPath = fixture.targetPath;
-    if (!targetPath.startsWith('/')) {
-      targetPath = '/' + this.target + '/' + targetPath;
-    }
-    request({
-      method: 'DELETE',
-      uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
     });
   }
 }

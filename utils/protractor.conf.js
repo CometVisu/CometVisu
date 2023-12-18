@@ -26,7 +26,7 @@ exports.config = {
     }
   },
 
-  onPrepare: function(){
+  onPrepare: function() {
     browser.waitForAngularEnabled(false);
 
     // set implicit wait times in ms...
@@ -41,7 +41,7 @@ exports.config = {
         if (config.params.subDir) {
           browser.onlySubDir = config.params.subDir;
         }
-        if (config.params.hasOwnProperty("forced")) {
+        if (config.params.hasOwnProperty('forced')) {
           browser.forced = true;
         }
         if (config.params.hasOwnProperty("verbose")) {

@@ -14,17 +14,17 @@ on:
     tags-ignore:
       - '*'
 env:
-  NODE_VERSION: '14.15'
+  NODE_VERSION: '18.14'
 jobs:
   spellcheck-docs:
     name: "Spellcheck documentation"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python 3.8
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.9'
       - name: Install python dependencies
         run: |
           python -m pip install -r utils/requirements.txt

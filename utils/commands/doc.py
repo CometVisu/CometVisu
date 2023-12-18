@@ -41,6 +41,7 @@ from distutils.version import LooseVersion
 from argparse import ArgumentParser
 from . import Command
 from utils.commands.scaffolding import Scaffolder
+from dotenv import dotenv_values
 
 try:
     # Python 2.6-2.7
@@ -181,6 +182,7 @@ class DocGenerator(Command):
              ):
 
         sphinx_build = sh.Command("sphinx-build")
+        build_env = os.environ.copy()
 
         # check if sources exist for this language
         section = "manual-%s" % language
@@ -204,7 +206,7 @@ class DocGenerator(Command):
             args = ["-N", "-b", "spelling", source_dir, target_dir]
             total_fails = {}
             total_count = 0
-            sphinx_build(*args, _out=lambda l: self._handle_spellcheck(l, total_fails))
+            sphinx_build(*args, _out=lambda l: self._handle_spellcheck(l, total_fails), _env=build_env)
             for file, fails in total_fails.items():
                 rel_file = file[len(self.root_dir)+1:]
                 total_count += len(fails)
@@ -239,19 +241,27 @@ class DocGenerator(Command):
         print ('================================================================================')
         print ('sphinx_build: first run')
         print ('================================================================================')
-        sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
+        sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output, _env=build_env)
 
         if not skip_screenshots:
             grunt = sh.Command("grunt")
+            new_env = os.environ.copy()
+            if os.path.isfile(".protractor-env"):
+                config = dotenv_values(".protractor-env")
+                new_env.update(config)
+
             # generate the screenshots
             grunt("--force", "screenshots", "--subDir=manual", "--browserName=%s" % browser,
-                  "--target=%s" % screenshot_build, _out=self.process_output, _err=self.process_output)
+                  "--target=%s" % screenshot_build,
+                  _out=self.process_output,
+                  _err=self.process_output,
+                  _env=new_env)
 
             # 2dn run with access to the generated screenshots
             print ('================================================================================')
             print ('sphinx_build: second run')
             print ('================================================================================')
-            sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
+            sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output, _env=build_env)
 
         with open(os.path.join(target_dir, "..", "version"), "w+") as f:
             f.write(self._get_source_version())

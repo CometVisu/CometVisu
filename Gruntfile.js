@@ -400,20 +400,11 @@ module.exports = function(grunt) {
 
     // protractor end-to-end tests
     protractor: {
-      options: {
-        configFile: "source/test/protractor/conf.js", // Default config file
-        args: {
-          chromeDriver: process.env.WEBDRIVER_PATH
-        }
-      },
-      all: {},
-      ci: {
+      all: {
         options: {
+          configFile: "source/test/protractor/conf.js", // Default config file,
           args: {
-            capabilities: {
-              // phantomjs is not recommended by the protractor team, and chrome seems not to work in ci
-              browserName: 'firefox'
-            }
+            chromeDriver: process.env.WEBDRIVER_PATH
           }
         }
       },
@@ -434,44 +425,6 @@ module.exports = function(grunt) {
             capabilities: grunt.option('verbose') ? {loggingPrefs:{browser: 'ALL'}} : {}
           }
         }
-      },
-      screenshotsSource: {
-        options: {
-          configFile: "utils/protractor.conf.js",
-          args: {
-            params: {
-              subDir: "source"
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
-            }
-          }
-        }
-      },
-      screenshotsManual: {
-        options: {
-          configFile: "utils/protractor.conf.js",
-          args: {
-            params: {
-              subDir: "manual"
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
-            }
-          }
-        }
-      }
-    },
-
-    coveralls: {
-      options: {
-        debug: true,
-        coverageDir: 'coverage',
-        dryRun: false,
-        force: true,
-        recursive: true
       }
     },
 
