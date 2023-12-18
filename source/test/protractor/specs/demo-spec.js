@@ -23,10 +23,12 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-var cvDemo = require('../pages/Demo');
+const CometVisuDemo = require('../pages/Demo');
 
 describe('cometvisu demo config test:', function () {
   'use strict';
+
+  const cvDemo = new CometVisuDemo();
 
   beforeEach(function() {
     cvDemo.to();
@@ -62,14 +64,14 @@ describe('cometvisu demo config test:', function () {
 
         expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function(lastWrite) {
-          expect(lastWrite.value).toEqual('0');
+          expect(lastWrite.value).toEqual('80');
         });
 
         browser.actions().click(widget).perform();
 
         expect(widget.element(by.css('.value')).getText()).toEqual('An');
         cvDemo.getLastWrite().then(function(lastWrite) {
-          expect(lastWrite.value).toEqual('1');
+          expect(lastWrite.value).toEqual('81');
         });
 
         // send update via backend
@@ -92,13 +94,13 @@ describe('cometvisu demo config test:', function () {
 
         expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function (lastWrite) {
-          expect(lastWrite.value).toEqual(sendValue);
+          expect(lastWrite.value).toEqual('8' + sendValue);
         });
         widget.click();
 
         expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function (lastWrite) {
-          expect(lastWrite.value).toEqual(sendValue);
+          expect(lastWrite.value).toEqual('8' + sendValue);
         });
       });
     });
@@ -114,14 +116,14 @@ describe('cometvisu demo config test:', function () {
 
         expect(widget.element(by.css('.value')).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function (lastWrite) {
-          expect(lastWrite.value).toEqual(data.downValue);
+          expect(lastWrite.value).toEqual('8'+data.downValue);
         });
 
         browser.actions().mouseUp(widget).perform();
 
         expect(widget.element(by.css('.value')).getText()).toEqual('An');
         cvDemo.getLastWrite().then(function (lastWrite) {
-          expect(lastWrite.value).toEqual(data.upValue);
+          expect(lastWrite.value).toEqual('8'+data.upValue);
         });
       });
     });
@@ -133,33 +135,40 @@ describe('cometvisu demo config test:', function () {
     // get widget data from parent
     widget.element(by.xpath('parent::div/parent::div')).getAttribute('id').then(function(id) {
       cvDemo.getWidgetData(id).then(function (data) {
-        var address;
+        let address;
+        let transform;
         for (var addr in data.address) {
           address = addr;
+          transform = data.address[addr].transform;
           break;
         }
 
         // find the slider knob
         var knob = widget.element(by.css('.ui-slider-handle'));
         browser.actions().mouseMove(knob, {x: 10, y:10}).mouseDown().perform();
+
         cvDemo.getLastWrite().then(function (lastWrite1) {
           browser.actions().mouseMove(knob, {x: 30, y:10}).mouseUp().perform();
           browser.sleep(500);
-          cvDemo.getLastWrite().then(function (lastWrite2) {
-            expect(lastWrite2.value).toBeGreaterThan(lastWrite1.value);
+          cvDemo.getLastWrite().then(async function (lastWrite2) {
+            const firstWrittenValue = await cvDemo.decode({transform: transform}, lastWrite1.transformedValue);
+            const secondWrittenValue = await cvDemo.decode({transform: transform}, lastWrite2.transformedValue);
+            expect(secondWrittenValue).toBeGreaterThan(firstWrittenValue);
           });
         });
-        var borderWidth = 1; // depending from design, but as the demo is in pure design, we use a hardcoded value here
+        var borderWidth = 1; // depending on design, but as the demo is in pure design, we use a hardcoded value here
 
         widget.getLocation().then(function(rangePosition) {
           widget.getSize().then(function(rangeSize) {
             // move the slider by updates from backend
             knob.getLocation().then(function (pos) {
-              knob.getSize().then(function(knobSize) {
+              knob.getSize().then(async function(knobSize) {
                 // slider min
-                cvDemo.sendUpdate(address, data.min || 0);
+                const minValue = await cvDemo.encode({transform: transform}, data.min || 0);
+                const maxValue = await cvDemo.encode({transform: transform}, data.max || 100);
+                await cvDemo.sendUpdate(address, minValue);
                 // give the slider some time to reach its position
-                browser.sleep(1500);
+                browser.sleep(500);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
                   expect(Math.abs(newPos.x-(rangePosition.x + borderWidth - Math.round(knobSize.width/2)))).toBeLessThan(25);
@@ -167,9 +176,9 @@ describe('cometvisu demo config test:', function () {
                 });
 
                 // slider max
-                cvDemo.sendUpdate(address, data.max || 100);
+                await cvDemo.sendUpdate(address, maxValue);
                 // give the slider some time to reach its position
-                browser.sleep(1500);
+                browser.sleep(500);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
                   expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(25);

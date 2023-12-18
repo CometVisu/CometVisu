@@ -18,6 +18,11 @@
  */
 
 
+const path = require('path');
+const fs = require('fs');
+const request = require('request');
+const rootDir = path.join(__dirname, '..', '..', '..', '..');
+
 /**
  * Wrappers for expected conditions
  *
@@ -34,7 +39,9 @@ const EC = protractor.ExpectedConditions;
  * @since 2016
  */
 class BasePage {
-  constructor() {
+  constructor(structure, target) {
+    this.structure = structure || 'pure';
+    this.target = target || 'source';
     /**
      * wrap this.timeout. (ms) in t-shirt sizes
      */
@@ -117,8 +124,8 @@ class BasePage {
     // Note: as some designs (like "metal") are hiding the h1 the page name
     // must be extracted by this little detour
     return browser.executeAsyncScript(function (callback) {
- callback(document.querySelectorAll('.activePage h1')[0].textContent); 
-});
+      callback(document.querySelectorAll('.activePage h1')[0].textContent);
+    });
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -182,7 +189,7 @@ class BasePage {
   }
 
   /**
-   * Get the last message that has been send to the backend (aka write message)
+   * Get the last message that has been sent to the backend (aka write message)
    * @return {Map}
    */
   // eslint-disable-next-line class-methods-use-this
@@ -193,7 +200,7 @@ class BasePage {
   }
 
   /**
-   * Get the complete list of write messages, which have been send to the backend
+   * Get the complete list of write messages, which have been sent to the backend
    * @return {Promise<Array>}
    */
   // eslint-disable-next-line class-methods-use-this
@@ -211,7 +218,7 @@ class BasePage {
   // eslint-disable-next-line class-methods-use-this
   sendUpdate(address, value) {
     let data = {
-      i: new Date().getTime(),
+      i: Date.now(),
       d: {}
     };
     data.d[address] = value;
@@ -227,6 +234,25 @@ class BasePage {
       qx.locale.Manager.getInstance().setLocale(locale);
       callback();
     }, locale);
+  }
+
+  decode(address, value) {
+    return browser.executeAsyncScript(function (address, value, callback) {
+      const transformedValue = cv.Transform.decode(address, value);
+      callback(transformedValue);
+    }, address, value);
+  }
+
+  encode(address, value) {
+    const isDate = value instanceof Date;
+    // executeAsyncScript convers Date into string representation, so we need to undo that inside the browser
+    return browser.executeAsyncScript(function (address, value, isDate, callback) {
+      if (isDate) {
+        value = new Date(value);
+      }
+      const transformedValue = cv.Transform.encodeBusAndRaw(address, value);
+      callback(transformedValue.raw);
+    }, address, value, isDate);
   }
 
   /**
@@ -255,6 +281,73 @@ class BasePage {
       }
       return null;
     });
+  }
+
+  mockupFixture(fixture) {
+    this.mockupReady = false;
+    let content;
+    if (fixture.hasOwnProperty('sourceFile')) {
+      let sourceFile = path.join(rootDir, fixture.sourceFile);
+      if (fs.existsSync(sourceFile)) {
+        content = fs.readFileSync(sourceFile);
+      } else {
+        console.error('fixture file', sourceFile, 'not found');
+      }
+    } else if (fixture.hasOwnProperty('data')) {
+      if (typeof fixture.data === 'object') {
+        content = JSON.stringify(fixture.data);
+      } else {
+        content = fixture.data;
+      }
+    }
+
+    let queryString = '';
+    if (fixture.mimeType) {
+      queryString = '?mimeType='+encodeURIComponent(fixture.mimeType);
+    }
+
+    if (content !== undefined) {
+      let targetPaths = fixture.targetPath;
+      if (!Array.isArray(targetPaths)) {
+        targetPaths = [targetPaths];
+      }
+      for (let targetPath of targetPaths) {
+        if (!targetPath.startsWith('/')) {
+          // adding target only to relative paths
+          targetPath = '/' + this.target + '/' + targetPath;
+        }
+        request({
+          method: 'POST',
+          uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath) + queryString,
+          body: content
+        }, function (error, response, body) {
+          if (!error && response.statusCode === 200) {
+            this.mockupReady = true;
+          } else {
+            console.log(error);
+            console.log(response);
+            console.log(body);
+          }
+        });
+      }
+    }
+  }
+
+  resetMockupFixture(fixture) {
+    let targetPaths = fixture.targetPath;
+    if (!Array.isArray(targetPaths)) {
+      targetPaths = [targetPaths];
+    }
+    for (let targetPath of targetPaths) {
+      if (!targetPath.startsWith('/')) {
+        // adding target only to relative paths
+        targetPath = '/' + this.target + '/' + targetPath;
+      }
+      request({
+        method: 'DELETE',
+        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
+      });
+    }
   }
 }
 module.exports = BasePage;
