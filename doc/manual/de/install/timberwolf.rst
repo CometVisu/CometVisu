@@ -97,7 +97,7 @@ Unter *Containers* → *Add Container*
 
 - Name: ``CometVisu``
 - Image configuration: Name: ``cometvisu/cometvisu:latest`` für die "großen" Server
-  (TSW2xxx) oder ``cometvisu/cometvisu:latest-arm`` für die Hutschienen-Server.
+  (TSW2xxx), aber auch für die Hutschienen-Server.
 - Port mapping: host ``18080``, container ``80``
 - Advanced container settings:
 
@@ -268,8 +268,7 @@ kann.
 
 Wie unter :ref:`Docker <docker>` beschrieben hat die neueste
 Entwicklungsversion den Tag ``testing``. Somit ist unter *Anlegen des
-Containers* als ``name`` ``cometvisu/cometvisu:testing`` bzw.
-``cometvisu/cometvisu:testing-arm`` zu verwenden.
+Containers* als ``name`` ``cometvisu/cometvisu:testing`` zu verwenden.
 
 Um für Fehlerberichte u.ä. eine einheitliche Umgebung zu haben, ist die
 Empfehlung die Testing Version mit diesen Parametern zu installieren:
@@ -277,7 +276,7 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:
 - Container:
 
   - Name: ``CometVisuTest``
-  - Image configuration: Name: ``cometvisu/cometvisu:testing`` bzw. ``cometvisu/cometvisu:testing-arm``
+  - Image configuration: Name: ``cometvisu/cometvisu:testing``
   - Port mapping: host ``28080``, container ``80``
   - Advanced container settings:
 

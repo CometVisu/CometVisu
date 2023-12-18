@@ -72,6 +72,8 @@ jobs:
         env:
           CV_VERSION: "stable"
           CV_BROWSER: "Chrome_ci"
+      - name: Prepare screenshots
+        uses: ./.github/actions/update-webdriver
       - id: dotenv
         uses: falti/dotenv-action@v1.0.4
         with:
