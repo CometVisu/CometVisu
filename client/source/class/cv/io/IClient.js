@@ -120,8 +120,9 @@ qx.Interface.define('cv.io.IClient', {
     /**
      * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
      * @param data {var}
+     * @param config {{scaling: number, offset: number}}
      */
-    processChartsData : function (data) {},
+    processChartsData : function (data, config) {},
 
     /**
      * This function sends a value
