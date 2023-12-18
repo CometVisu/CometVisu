@@ -102,4 +102,4 @@
   cv.ui.structure.pure.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1702895799450
+//# sourceMappingURL=Rgb.js.map?dt=1702898794599

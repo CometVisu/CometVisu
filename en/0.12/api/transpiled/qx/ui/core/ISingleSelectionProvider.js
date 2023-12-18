@@ -58,4 +58,4 @@
   qx.ui.core.ISingleSelectionProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ISingleSelectionProvider.js.map?dt=1702895812498
+//# sourceMappingURL=ISingleSelectionProvider.js.map?dt=1702898806995

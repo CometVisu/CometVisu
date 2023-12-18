@@ -101,7 +101,7 @@
       <div style="flex: auto;"><span style="color: #FF8000;">Bitte beachten: Im Testmodus steht nicht die volle Funktionalität der CometVisu zur Verfügung!</span></div>
 ]]></status>
       <status type="html"><![CDATA[
-      <div style="padding-right:0.5em">Version: 0.12.2</div>
+      <div style="padding-right:0.5em">Version: 0.12.6</div>
       </div>
 ]]></status>
     </statusbar>

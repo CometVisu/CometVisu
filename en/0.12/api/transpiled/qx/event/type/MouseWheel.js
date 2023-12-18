@@ -60,4 +60,4 @@
   qx.event.type.MouseWheel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MouseWheel.js.map?dt=1702895807614
+//# sourceMappingURL=MouseWheel.js.map?dt=1702898802427

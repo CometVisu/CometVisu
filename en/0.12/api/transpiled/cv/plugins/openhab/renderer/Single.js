@@ -251,4 +251,4 @@
   cv.plugins.openhab.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1702895795699
+//# sourceMappingURL=Single.js.map?dt=1702898791072

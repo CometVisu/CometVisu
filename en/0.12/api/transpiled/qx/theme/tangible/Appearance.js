@@ -2223,4 +2223,4 @@
   qx.theme.tangible.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1702895811639
+//# sourceMappingURL=Appearance.js.map?dt=1702898806172
