@@ -33,12 +33,6 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       apply: '_applyIconColor'
     },
 
-    title: {
-      check: 'String',
-      init: '',
-      apply: '_applyTitle'
-    },
-
     scale: {
       check: 'Number',
       init: 1,
@@ -122,7 +116,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       this._updateWidth();
 
       this._applyPosition();
-      this._applyTitle(this.getTitle());
+      this._applyTitleOverride(this.getTitle());
     },
 
     _updateSize() {
@@ -178,7 +172,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     _applyOffsetX() {
     },
 
-    _applyTitle(title) {
+    _applyTitleOverride(title) {
       if (this._target) {
         if (title) {
           let text = this._target.querySelector('text.title');

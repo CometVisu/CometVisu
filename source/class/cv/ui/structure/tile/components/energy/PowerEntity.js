@@ -114,7 +114,7 @@ qx.Class.define('cv.ui.structure.tile.components.energy.PowerEntity', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'power-entity',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'type', 'stroke', 'radius', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'foreground-color', 'connect-to', 'connect-from', 'connection-points'];
+        static observedAttributes = ['icon', 'type', 'stroke', 'radius', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'foreground-color', 'connect-to', 'connect-from', 'connection-points', 'title'];
         constructor() {
           super(QxClass);
         }

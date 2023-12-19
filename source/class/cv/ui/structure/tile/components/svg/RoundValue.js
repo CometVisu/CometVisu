@@ -182,6 +182,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       }
 
       this._applyPosition();
+      this._applyTitle(this.getTitle());
     },
 
     _updateRadius() {
@@ -412,7 +413,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'svg-round-value',
       class extends QxConnector {
-        static observedAttributes = ['icon', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'radius', 'stroke'];
+        static observedAttributes = ['icon', 'x', 'y', 'row', 'column', 'rowspan', 'colspan', 'radius', 'stroke', 'title'];
         constructor() {
           super(QxClass);
         }
