@@ -526,6 +526,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           interval = 7 * 24 * 60 * 60;
           periodStart.setDate(periodStart.getDate() - (periodStart.getDay() || 7) + 1 - 7 * currentPeriod);
           periodStart.setHours(0, 0, 0, 0);
+          end.setTime(periodStart.getTime());
           end.setDate(periodStart.getDate() + 7);
           end.setHours(0, 0, 0, 0);
           break;
