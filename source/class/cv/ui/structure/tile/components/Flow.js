@@ -546,13 +546,39 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         let visibleColumns = this.getColumns();
         let visibleRows = this.getRows();
         const gridViewBox = this.getViewBox();
+        let firstColumn = 0;
+        let lastColumn = 2;
+        let firstRow = 0;
+        let lastRow = 2;
         if (gridViewBox) {
           const gridParts = gridViewBox.split(' ').map(s => parseInt(s));
-          visibleColumns = gridParts[2];
-          visibleRows = gridParts[3];
+          visibleColumns = gridParts[2] - gridParts[0];
+          visibleRows = gridParts[3] - gridParts[1];
+          firstColumn = gridParts[0];
+          lastColumn = firstColumn + gridParts[2] - 1;
+          firstRow = gridParts[1];
+          lastRow = firstRow + gridParts[3] - 1;
         }
-        const visibleWidth = visibleColumns / this.getColumns();
-        const visibleHeight = visibleRows / this.getRows();
+        let usedColumns = 3;
+        let usedRows = 3;
+        let col;
+        let row;
+        for (const elem of this._element.querySelectorAll('*[column]')) {
+          col = parseInt(elem.getAttribute('column')) + 1;
+          if (firstColumn <= col && lastColumn > col && col > usedColumns) {
+            usedColumns = col;
+          }
+        }
+        for (const elem of this._element.querySelectorAll('*[row]')) {
+          row = parseInt(elem.getAttribute('row')) + 1;
+          if (firstRow <= col && lastRow > row && row > usedRows) {
+            usedRows = row;
+          }
+        }
+
+        const visibleWidth = usedColumns > visibleColumns ? visibleColumns / this.getColumns() : 1.0;
+        const visibleHeight = usedRows > visibleRows ? visibleRows / this.getRows() : 1.0;
+
         const heightDiff = height - totalOuterPadding - bbox.height * visibleHeight;
         const widthDiff = width - totalOuterPadding - bbox.width * visibleWidth;
         if (heightDiff > 0 || widthDiff > 0) {
