@@ -160,7 +160,7 @@ qx.Class.define('cv.io.iobroker.Client', {
       if (this.__pureWebsocket) {
         this.__connection.send(JSON.stringify([3, this.__nextMessageId++, name, [...args]]));
       } else {
-        this.__connection.send('4' + '2' + JSON.stringify([name, ...args, null]));
+        this.__connection.send('42' + JSON.stringify([name, ...args, null]));
       }
     },
 
@@ -176,7 +176,7 @@ qx.Class.define('cv.io.iobroker.Client', {
         if (this.__pureWebsocket) {
           this.__connection.send(JSON.stringify([3, request.id, name, [...args]]));
         } else {
-          this.__connection.send('4' + '2' + request.id + JSON.stringify([name, ...args]));
+          this.__connection.send('42' + request.id + JSON.stringify([name, ...args]));
         }
       });
     },
@@ -184,32 +184,34 @@ qx.Class.define('cv.io.iobroker.Client', {
     __decodeMessage(msg) {
       if (this.__pureWebsocket) {
         return JSON.parse(msg);
-      } else {
-        const result = msg.match(/^(?<etype>\d)(?<stype>\d)?(?<id>\d+)?(?<payload>.*)/);
+      }
 
-        switch (result.groups.etype) {
-          case "0": /* OPEN */
-            return [0, null, "___setup___", JSON.parse(result.groups.payload)];
-          case "3": /* PONG */
-            return [undefined];
-          case "4": /* MESSAGE */
-            switch (result.groups.stype) {
-              case "0":
-                return [0, 0, "___ready___"];
-              case "2":
-                const [name, ...payload] = JSON.parse(result.groups.payload);
+      const result = msg.match(/^(?<etype>\d)(?<stype>\d)?(?<id>\d+)?(?<payload>.*)/);
 
-                return [0, null, name, payload];
-              case "3":
-                return [3, Number(result.groups.id), null, JSON.parse(result.groups.payload)];
-              default:
-                this.debug('Unknown socket.io type:', result.groups.stype);
-                return [undefined];
+      switch (result.groups.etype) {
+        case '0': /* OPEN */
+          return [0, null, '___setup___', JSON.parse(result.groups.payload)];
+        case '3': /* PONG */
+          return [undefined];
+        case '4': /* MESSAGE */
+          switch (result.groups.stype) {
+            case '0':
+              return [0, 0, '___ready___'];
+            case '2':
+            {
+              const [name, ...payload] = JSON.parse(result.groups.payload);
+
+              return [0, null, name, payload];
             }
-          default:
-            this.debug('Unknown engine.io type:', result.groups.etype);
-            return [undefined];
+            case '3':
+              return [3, Number(result.groups.id), null, JSON.parse(result.groups.payload)];
+            default:
+              this.debug('Unknown socket.io type:', result.groups.stype);
+              return [undefined];
           }
+        default:
+          this.debug('Unknown engine.io type:', result.groups.etype);
+          return [undefined];
       }
     },
 
@@ -242,7 +244,7 @@ qx.Class.define('cv.io.iobroker.Client', {
           queryString += `sid=${Date.now()}`;
           path += '/';
         } else {
-          queryString += `transport=websocket`;
+          queryString += 'transport=websocket';
           path += '/socket.io/';
         }
 
