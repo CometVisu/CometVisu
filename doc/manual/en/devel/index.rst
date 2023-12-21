@@ -61,7 +61,7 @@ protocol in the following steps:
     * ``X-CometVisu-Backend-Name``: The name of the backend to use.
     * ``X-CometVisu-Backend-KNXD-Url``: URL of the knxd login resource
     * ``X-CometVisu-Backend-MQTT-Url``: URL of the MQTT login resource
-    * ``X-CometVisu-Backend-ioBroker-Url``: URL of the ioBroker login resource
+    * ``X-CometVisu-Backend-ioBroker-Url``: URL of the ioBroker websocket API
     * ``X-CometVisu-Backend-OpenHAB-Url``: Only openHAB: path to the REST-API      
     * ``X-CometVisu-Backend-LoginUrl``: Deprecated: Path under which the client can log in.
 

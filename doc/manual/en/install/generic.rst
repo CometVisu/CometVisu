@@ -96,10 +96,10 @@ be achieved by setting the corresponding ``ENVIRONMENT`` parameters.
 ================================ ================ ===========
 HTTP header                      ``ENVIRONMENT``  use
 -------------------------------- ---------------- -----------
-X-CometVisu-Backend-Name         BACKEND_NAME     Name like ``knxd``, ``openhab`` or ``mqtt``
+X-CometVisu-Backend-Name         BACKEND_NAME     Name like ``knxd``, ``openhab``, ``iobroker`` or ``mqtt``
 X-CometVisu-Backend-KNXD-Url     BACKEND_KNXD     URL of the knxd login resource
 X-CometVisu-Backend-MQTT-Url     BACKEND_MQTT     URL of the MQTT login resource
-X-CometVisu-Backend-ioBroker-Url BACKEND_IOBROKER URL of the ioBroker login resource
+X-CometVisu-Backend-ioBroker-Url BACKEND_IOBROKER URL of the ioBroker websocket API
 X-CometVisu-Backend-OpenHAB-Url  BACKEND_OPENHAB  Only openHAB: path to the REST-API
 X-CometVisu-Backend-LoginUrl     CGI_URL_PATH     Deprecated: URL of the knxd or openHAB login resource
 X-CometVisu-Backend-User         BACKEND_USERNAME Deprecated: user name, when needed for the MQTT broker or openHAB
@@ -108,7 +108,7 @@ X-CometVisu-Backend-Pass         BACKEND_PASSWORD Deprecated: password, when nee
 
 .. warning::
 
-    The user name and password for the MQTT broker are stored in pain text
+    The user name and password for the MQTT broker are stored in plain text
     and are transported like that over the network!
 
 Config file
@@ -123,7 +123,7 @@ attribute            use
 backend              Name like ``knxd``, ``openhab`` or ``mqtt``
 backend-knxd-url     URL of the knxd login resource
 backend-mqtt-url     URL of the MQTT login resource
-backend-iobroker-url URL of the ioBroker login resource
+backend-iobroker-url URL of the ioBroker websocket API
 backend-openhab-url  Only openHAB: path to the REST-API
 backend-url          Deprecated: URL of the MQTT WebSocket
 username             Deprecated: User name, when needed for openHAB

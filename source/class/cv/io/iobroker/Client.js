@@ -66,10 +66,12 @@ qx.Class.define('cv.io.iobroker.Client', {
   members: {
     _type: null,
     __subscribedAddresses: null,
-    __nextMessageId: 1,
+    __nextMessageId: 0,
     __connection: null,
     __pendingRequests: null,
     __credentials: null,
+    __pingTimer: null,
+    __pureWebsocket: true,
 
     /**
      * Returns the current backend configuration
@@ -124,15 +126,15 @@ qx.Class.define('cv.io.iobroker.Client', {
     },
 
     __serverGetStates(addresses) {
-      return this.__send_message('getStates', addresses);
+      return this.__sendMessageResponse('getStates', addresses);
     },
 
     __serverSetState(address, value) {
-      return this.__send_message('setState', address, value);
+      this.__sendMessage('setState', address, value);
     },
 
     __serverSubscribeStates(addresses) {
-      return this.__send_message('subscribeStates', addresses);
+      this.__sendMessage('subscribeStates', addresses);
     },
 
     async __subscribeStates() {
@@ -140,7 +142,7 @@ qx.Class.define('cv.io.iobroker.Client', {
         return; 
       }
 
-      await this.__serverSubscribeStates(this.__subscribedAddresses);
+      this.__serverSubscribeStates(this.__subscribedAddresses);
 
       const states = await this.__serverGetStates(this.__subscribedAddresses);
       let newStates = {};
@@ -154,21 +156,61 @@ qx.Class.define('cv.io.iobroker.Client', {
       this.update(newStates);
     },
 
-    __send_message(name, ...args) {
-      let request = {
-        id: this.__nextMessageId++,
-        resolve: null
-      };
+    __sendMessage(name, ...args) {
+      if (this.__pureWebsocket) {
+        this.__connection.send(JSON.stringify([3, this.__nextMessageId++, name, [...args]]));
+      } else {
+        this.__connection.send('4' + '2' + JSON.stringify([name, ...args, null]));
+      }
+    },
 
-      const promise = new Promise((resolve, reject) => {
-        request.resolve = resolve;
-
+    __sendMessageResponse(name, ...args) {
+      return new Promise((resolve, reject) => {
+        let request = {
+          id: this.__nextMessageId++,
+          resolve: resolve
+        };
+  
         this.__pendingRequests.push(request);
+
+        if (this.__pureWebsocket) {
+          this.__connection.send(JSON.stringify([3, request.id, name, [...args]]));
+        } else {
+          this.__connection.send('4' + '2' + request.id + JSON.stringify([name, ...args]));
+        }
       });
+    },
 
-      this.__connection.send(JSON.stringify([3, request.id, name, [...args]]));
+    __decodeMessage(msg) {
+      if (this.__pureWebsocket) {
+        return JSON.parse(msg);
+      } else {
+        const result = msg.match(/^(?<etype>\d)(?<stype>\d)?(?<id>\d+)?(?<payload>.*)/);
 
-      return promise;
+        switch (result.groups.etype) {
+          case "0": /* OPEN */
+            return [0, null, "___setup___", JSON.parse(result.groups.payload)];
+          case "3": /* PONG */
+            return [undefined];
+          case "4": /* MESSAGE */
+            switch (result.groups.stype) {
+              case "0":
+                return [0, 0, "___ready___"];
+              case "2":
+                const [name, ...payload] = JSON.parse(result.groups.payload);
+
+                return [0, null, name, payload];
+              case "3":
+                return [3, Number(result.groups.id), null, JSON.parse(result.groups.payload)];
+              default:
+                this.debug('Unknown socket.io type:', result.groups.stype);
+                return [undefined];
+            }
+          default:
+            this.debug('Unknown engine.io type:', result.groups.etype);
+            return [undefined];
+          }
+      }
     },
 
     __initiateConnection(callback = null, context = null) {
@@ -193,7 +235,16 @@ qx.Class.define('cv.io.iobroker.Client', {
       };
 
       try {
-        let queryString = `sid=${Date.now()}`;
+        let queryString = '';
+        let path = '';
+        
+        if (this.__pureWebsocket) {
+          queryString += `sid=${Date.now()}`;
+          path += '/';
+        } else {
+          queryString += `transport=websocket`;
+          path += '/socket.io/';
+        }
 
         if (this.__credentials.username) {
           queryString += `&user=${this.__credentials.username}`; 
@@ -204,18 +255,21 @@ qx.Class.define('cv.io.iobroker.Client', {
         }
 
         // FIXME: Implement proper query param patching of user/pass
-        this.__connection = new window.WebSocket(`${this._backendUrl.protocol}//${this._backendUrl.host}${this._backendUrl.pathname}?${queryString}`);
+        this.__connection = new window.WebSocket(`${this._backendUrl.protocol}//${this._backendUrl.host}${path}?${queryString}`);
 
         this.__connection.onerror = event => {  
           this.debug('SOCK ERROR', event);
         };
         this.__connection.onclose = event => {
           this.debug('SOCK CLOSE', event);
-          this.setConnected(false);
-          this.__connection = null;
+          this.__closeConnection(false);
         };
         this.__connection.onmessage = async event => {
-          const [type, id, name, args] = JSON.parse(event.data);
+          const [type, id, name, args] = this.__decodeMessage(event.data);
+
+          if (type === undefined) {
+            return;
+          }
 
           switch (type) {
             case 0: /* MESSAGE */
@@ -226,6 +280,11 @@ qx.Class.define('cv.io.iobroker.Client', {
                   if (callback) {
                     callback.call(context); 
                   }
+                  break;
+                case '___setup___': /* Fake for socket.io compatibility */
+                  this.__pingTimer = setInterval(() => {
+                    this.__connection.send('2');
+                  }, args.pingInterval);
                   break;
                 case 'reauthenticate':
                   onFailure({
@@ -273,9 +332,17 @@ qx.Class.define('cv.io.iobroker.Client', {
       }
     },
 
-    __closeConnection() {
+    __closeConnection(closeConnection = true) {
       if (this.isConnected()) {
-        this.__connection.close();
+        if (this.__pingTimer) {
+          clearInterval(this.__pingTimer);
+          this.__pingTimer = null;
+        }
+
+        if (closeConnection) {
+          this.__connection.close();
+        }
+
         this.setConnected(false);
         this.__connection = null;
       }

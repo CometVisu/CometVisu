@@ -156,8 +156,8 @@ qx.Class.define('cv.util.ConfigLoader', {
                 backendName = 'mqtt';
               }
             }
-            if (req.getResponseHeader('X-CometVisu-Backend-ioBroker-Url')) {
-              cv.Config.server.backendIoBrokerUrl = req.getResponseHeader('X-CometVisu-Backend-ioBroker-Url');
+            if (req.getResponseHeader('X-CometVisu-Backend-IoBroker-Url')) {
+              cv.Config.server.backendIoBrokerUrl = req.getResponseHeader('X-CometVisu-Backend-IoBroker-Url');
 
               if (backendName === '') {
                 backendName = 'iobroker';

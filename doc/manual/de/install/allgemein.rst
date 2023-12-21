@@ -98,10 +98,10 @@ Docker-Images der CometVisu leicht durch das Setzen entsprechender
 ================================ ================ ===========
 HTTP Header                      ``ENVIRONMENT``  Bedeutung
 -------------------------------- ---------------- -----------
-X-CometVisu-Backend-Name         BACKEND_NAME     Name wie ``knxd``, ``openhab`` oder ``mqtt``
+X-CometVisu-Backend-Name         BACKEND_NAME     Name wie ``knxd``, ``openhab``, ``iobroker`` oder ``mqtt``
 X-CometVisu-Backend-KNXD-Url     BACKEND_KNXD     URL für die knxd Login-Ressource
 X-CometVisu-Backend-MQTT-Url     BACKEND_MQTT     URL für die MQTT Login-Ressource
-X-CometVisu-Backend-ioBroker-Url BACKEND_IOBROKER URL für die ioBroker Login-Ressource
+X-CometVisu-Backend-ioBroker-Url BACKEND_IOBROKER URL für die ioBroker websocket API
 X-CometVisu-Backend-OpenHAB-Url  BACKEND_OPENHAB  openHAB: Pfad zur REST-API
 X-CometVisu-Backend-LoginUrl     CGI_URL_PATH     Veraltet: URL für die knxd oder openHAB Login-Ressource
 X-CometVisu-Backend-User         BACKEND_USERNAME Veraltet: Benutzername, wenn für openHAB benötigt
