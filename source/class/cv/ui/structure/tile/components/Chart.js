@@ -575,10 +575,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         });
         return;
       }
-      let url;
-      const dataSets = this._element.querySelectorAll(':scope > dataset');
 
+      const dataSets = this._element.querySelectorAll(':scope > dataset');
       const promises = [];
+
       if (!this._dataSetConfigs) {
         this._dataSetConfigs = {};
         for (let dataSet of dataSets) {
