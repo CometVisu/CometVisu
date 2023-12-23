@@ -321,13 +321,6 @@ qx.Class.define('cv.io.Client', {
       this.backend.resources[name] = path;
     },
 
-    hasCustomChartsDataProcessor() {
-      return false;
-    },
-    processChartsData(data) {
-      return data;
-    },
-
     /**
      * Subscribe to the addresses in the parameter. The second parameter
      * (filter) is optional

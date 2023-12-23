@@ -271,6 +271,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * @param ts
      * @param start
      * @param end
+     * @param series
+     * @param period
      * @param res
      * @param forceNowDatapoint
      * @param refresh {Number} time is seconds to refresh the data
@@ -278,139 +280,78 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
      * @param callback {Function} call when the data has arrived
      * @param callbackParameter
      */
-    lookupTsCache(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
-      const client = cv.io.BackendConnections.getClient();
-      let key;
-      let url;
-      const chartsResource = client.getResourcePath('charts', {
-        src: ts.src,
-        start: start,
-        end: end
-      });
-
-      if (ts.tsType !== 'influx' && chartsResource !== null) {
-        // the backend provides an charts resource that must be processed differently (e.g. openHABs persistence data
-        url = chartsResource;
-        key = url;
-      } else {
-        url =
-          (ts.tsType === 'influx'
-            ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src
-            : client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd') +
-          '&ds=' +
-          encodeURIComponent(ts.cFunc) +
-          // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
-          //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
-          '&start=' +
-          (ts.tsType === 'rrd' ? start : encodeURIComponent(start)) +
-          '&end=' +
-          (ts.tsType === 'rrd' ? end : encodeURIComponent(end)) +
-          '&res=' +
-          encodeURIComponent(res) +
-          (ts.fillTs ? '&fill=' + encodeURIComponent(ts.fillTs) : '') +
-          (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '') +
-          (ts.field ? '&field=' + encodeURIComponent(ts.field) : '') +
-          (ts.authentication ? '&auth=' + encodeURIComponent(ts.authentication) : '');
-        key = url + (ts.tsType === 'rrd' ? '|' + ts.dsIndex : '');
-      }
-      let urlNotInCache = !(key in this.cache);
-      let doLoad =
-        force ||
-        urlNotInCache ||
-        !('data' in this.cache[key]) ||
-        (refresh !== undefined && Date.now() - this.cache[key].timestamp > refresh * 1000);
-
-      if (doLoad) {
-        if (urlNotInCache) {
-          this.cache[key] = { waitingCallbacks: [] };
-        }
-        this.cache[key].waitingCallbacks.push([callback, callbackParameter]);
-
-        if (this.cache[key].waitingCallbacks.length === 1) {
-          if (this.cache[key].xhr) {
-            this.cache[key].xhr.dispose();
+    lookupTsCache(ts, start, end, series, period, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
+      switch (ts.tsType) {
+        case 'influx':
+          ts.source = new cv.io.timeseries.FluxSource('influx://' + ts.src);
+          if (ts.source.isInline()) {
+            const fluxQuery = dataSet.textContent.trim();
+            ts.source.setQueryTemplate(fluxQuery);
           }
-          const xhr = new qx.io.request.Xhr(url);
-          client.authorize(xhr);
-          xhr.set({
-            accept: 'application/json'
-          });
+          break;
 
-          xhr.addListener('success', ev => {
-            this._onSuccess(ts, key, ev, forceNowDatapoint);
-          });
-          xhr.addListener('statusError', ev => {
-            this._onStatusError(ts, key, ev);
-          });
-          this.cache[key].xhr = xhr;
-          xhr.send();
-        }
-      } else {
-        callback(this.cache[key].data, callbackParameter);
+        case 'openhab':
+          ts.source = new cv.io.timeseries.OpenhabPersistenceSource('openhab://' + ts.src);
+          break;
+
+        case 'rrd':
+          ts.source = new cv.io.timeseries.RRDSource('rrd://' + ts.src);
+          break;
+
+        case 'demo':
+          ts.source = new cv.io.timeseries.DemoSource('demo://' + ts.src);
+          break;
+
+        default:
+          this.error('unknown chart data source type ' + ts.tsType);
+          break;
+      }
+
+      const options = { ttl: force ? 0 : refresh };
+
+      try {
+        ts.source.fetch(start, end, series, period, options).then(tsdata => {
+          this._onSuccess(ts, tsdata || [], forceNowDatapoint, callback, callbackParameter);
+        });
+      } catch (error) {
+        this._onStatusError(ts, error.toString(), callback, callbackParameter);
       }
     },
 
-    _onSuccess(ts, key, ev, forceNowDatapoint) {
-      let tsdata = ev.getTarget().getResponse();
-      if (tsdata !== null) {
-        const client = cv.io.BackendConnections.getClient();
-        // never convert influx data
-        if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
-          tsdata = client.processChartsData(tsdata, ts);
-        } else {
-          // calculate timestamp offset and scaling
-          const millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
-          const newRrd = new Array(tsdata.length);
-          let j = 0;
-          const l = tsdata.length;
-          for (; j < l; j++) {
-            if (ts.tsType === 'rrd') {
-              newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling];
-            } else {
-              newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1]) * ts.scaling];
-            }
-          }
-          tsdata = newRrd;
-        }
-        let now = Date.now();
+    _onSuccess(ts, tsdata, forceNowDatapoint, callback, callbackParameter) {
+      // calculate timestamp offset and scaling
+      const millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
+      const newRrd = new Array(tsdata.length);
+      const l = tsdata.length;
 
-        if (forceNowDatapoint && tsdata.length > 0) {
-          let last = Array.from(tsdata[tsdata.length - 1]); // force copy
-          last[0] = now;
-          tsdata.push(last);
-        }
-
-        this.cache[key].data = tsdata;
-        this.cache[key].timestamp = now;
-
-        this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-          waitingCallback[0](tsdata, waitingCallback[1]);
-        }, this);
-        this.cache[key].waitingCallbacks.length = 0; // empty array)
+      for (let j = 0; j < l; j++) {
+        newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1]) * ts.scaling];
       }
+
+      tsdata = newRrd;
+
+      if (forceNowDatapoint && tsdata.length > 0) {
+        let last = Array.from(tsdata[tsdata.length - 1]); // force copy
+        last[0] = Date.now();
+        tsdata.push(last);
+      }
+
+      callback(tsdata, callbackParameter);
     },
 
-    _onStatusError(ts, key, ev) {
+    _onStatusError(ts, text, callback, callbackParameter) {
       cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
         title: qx.locale.Manager.tr('Diagram communication error'),
         severity: 'urgent',
         message: qx.locale.Manager.tr(
-          'URL: %1<br/><br/>Response:</br>%2',
-          JSON.stringify(key),
-          ev._target._transport.responseText
+          'ERROR: %1',
+          text
         )
       });
 
-      window.console.error('Diagram _onStatusError', ts, key, ev);
-      const tsdata = [];
+      window.console.error('Diagram _onStatusError', ts, text);
 
-      this.cache[key].data = tsdata;
-      this.cache[key].timestamp = Date.now();
-
-      this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-        waitingCallback[0](tsdata, waitingCallback[1]);
-      }, this);
-      this.cache[key].waitingCallbacks.length = 0; // empty array)
+      callback([], callbackParameter);
     }
   },
 
@@ -852,6 +793,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           ts,
           series.start,
           series.end,
+          this.getSeries(),
+          this.getPeriod(),
           res,
           forceNowDatapoint,
           refresh,

@@ -652,32 +652,23 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       for (const src in this._dataSetConfigs) {
         const ts = this._dataSetConfigs[src];
-        let proxy = false;
-        let options = {ttl: this.getRefresh()};
-        if (ts.source) {
-          const config = ts.source.getRequestConfig(
-            this.getStartTime(),
-            this.getEndTime(),
-            this.getCurrentSeries(),
-            this.getCurrentPeriod()
-          );
-          url = config.url;
-          proxy = config.proxy;
-          options = Object.assign(options, config.options);
-        }
 
-        if (!url) {
+        if (!ts.source) {
           continue;
         }
 
-        this.debug('loading', url);
+        let options = {ttl: this.getRefresh()};
+
+        this.debug('loading');
         promises.push(
-          cv.io.Fetch.cachedFetch(url, options, proxy, client)
-            .then(data => {
-              this.debug('successfully loaded', url);
-              if (ts.source) {
-                data = ts.source.processResponse(data);
-              }
+          ts.source.fetch(
+            this.getStartTime(),
+            this.getEndTime(),
+            this.getCurrentSeries(),
+            this.getCurrentPeriod(),
+            options
+          ).then(data => {
+              this.debug('successfully loaded');
               if (!this._lastRefresh) {
                 this._lastRefresh = Date.now();
               }
@@ -687,7 +678,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               };
             })
             .catch(err => {
-              this._onStatusError(ts, url, err);
+              this._onStatusError(ts, err);
               return {
                 data: [],
                 ts: ts
@@ -823,14 +814,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       return date => d3.timeFormat(multiFormat(date))(date);
     },
 
-    _onStatusError(ts, key, err) {
+    _onStatusError(ts, err) {
       cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
         title: qx.locale.Manager.tr('Communication error'),
         severity: 'urgent',
-        message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), JSON.stringify(err))
+        message: qx.locale.Manager.tr('ERROR:</br>%1', JSON.stringify(err))
       });
 
-      this.error('Chart _onStatusError', ts, key, err);
+      this.error('Chart _onStatusError', ts, err);
     },
 
     /**

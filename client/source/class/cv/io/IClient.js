@@ -141,19 +141,6 @@ qx.Interface.define('cv.io.IClient', {
     setResourcePath(name, path) {},
 
     /**
-     * This client provides an own processor for charts data
-     * @return {Boolean}
-     */
-    hasCustomChartsDataProcessor() {},
-
-    /**
-     * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
-     * @param data {var}
-     * @param config {{scaling: number, offset: number}}
-     */
-    processChartsData(data, config) {},
-
-    /**
      * This function sends a value
      * @param address {String} address to send the value to
      * @param value {String} value to send

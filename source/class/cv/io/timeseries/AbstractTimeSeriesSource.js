@@ -113,6 +113,20 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
       };
     },
 
+    async fetch(start, end, series, offset, options) {
+      const config = this.getRequestConfig(
+        start,
+        end,
+        series,
+        offset,
+        options
+      );
+      const fetchOptions = Object.assign(options, config.options);
+      const data = await cv.io.Fetch.cachedFetch(config.url, fetchOptions, config.proxy, this.getClient());
+
+      return this.processResponse(data);
+    },
+
     processResponse(data) {
       return data;
     },
@@ -161,6 +175,14 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
         res.end = endTime;
       }
       return res;
+    },
+
+    /**
+     * 
+     * @returns {cv.io.IClient?} Client that can authorize the request if needed
+     */
+    getClient() {
+      return undefined;
     },
 
     _convertTimes(time) {

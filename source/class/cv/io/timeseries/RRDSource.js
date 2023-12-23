@@ -74,10 +74,6 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
       }
       config.url += `&start=${rrdStart}&end=${rrdEnd}`;
       return config;
-    },
-
-    processResponse(response) {
-      return response;
     }
   }
 });
