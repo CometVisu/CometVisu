@@ -179,12 +179,15 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         axesNameIndex[elem.textContent] = retVal.axesnum;
       }, this);
 
+      const clientType = cv.io.BackendConnections.getClient().getType();
+
       xmlElement.querySelectorAll('influx,rrd').forEach(function (elem) {
         const src = elem.tagName === 'rrd' ? elem.textContent : elem.getAttribute('measurement');
         const steps = (elem.getAttribute('steps') || 'false') === 'true';
         const fillMissing = elem.getAttribute('fillMissing');
         retVal.ts[retVal.tsnum] = {
-          tsType: elem.tagName,
+          // Old configs were using <rrd> also for OpenHAB based timeseries
+          tsType: ((elem.tagName === 'rrd') && (clientType === 'openhab')) ? 'openhab' : elem.tagName,
           src: src,
           color: elem.getAttribute('color'),
           label: elem.getAttribute('label') || src,
