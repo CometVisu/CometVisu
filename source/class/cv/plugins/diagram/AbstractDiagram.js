@@ -288,8 +288,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         case 'influx':
           ts.source = new cv.io.timeseries.FluxSource('influx://' + ts.src);
           if (ts.source.isInline()) {
-            const fluxQuery = dataSet.textContent.trim();
-            ts.source.setQueryTemplate(fluxQuery);
+            ts.source.setQueryTemplate(ts.filter);
           }
           break;
 
