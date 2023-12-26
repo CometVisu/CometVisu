@@ -39,6 +39,12 @@ qx.Class.define('cv.io.listmodel.Registry', {
                   return null;
                 }
                 break;
+
+              case 'openhab':
+                if (!cv.io.BackendConnections.getClientByType('openhab')) {
+                  return null;
+                }
+                break;
             }
           }
         }
