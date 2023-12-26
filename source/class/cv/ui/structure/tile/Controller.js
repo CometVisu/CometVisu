@@ -750,14 +750,7 @@ class TemplatedElement extends QxConnector {
         const slotAttributeName = `slot-${name}`;
         const targets = content.querySelectorAll(`[${slotAttributeName}]`);
         let targetName = name;
-        // allow names like percent-mapping that should also be mapped to a certain elements 'mapping' attribute
-        if (name.endsWith('-mapping')) {
-          targetName = 'mapping';
-        } else if (name.endsWith('-styling')) {
-          targetName = 'styling';
-        } else if (name.endsWith('-format')) {
-          targetName = 'format';
-        }
+
         for (const target of targets) {
           if (target.hasAttribute(slotAttributeName)) {
             const targetValue = target.getAttribute(slotAttributeName);
