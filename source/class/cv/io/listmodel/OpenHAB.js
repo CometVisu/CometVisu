@@ -66,13 +66,11 @@ qx.Class.define('cv.io.listmodel.OpenHAB', {
 
     _convertResponse(data) {
       const tags = [data.name];
-      return data.data.map(entry => {
-        return {
+      return data.data.map(entry => ({
           content: entry.state,
           tags: tags,
           publishedDate: entry.time
-        }
-      });
+        }));
     },
 
     handleEvent(ev, data, model) {
