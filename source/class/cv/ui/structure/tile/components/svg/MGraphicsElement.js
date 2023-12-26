@@ -87,6 +87,12 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
       init: 0,
       apply: '_applySize',
       event: 'widthChanged'
+    },
+
+    title: {
+      check: 'String',
+      init: '',
+      apply: '_applyTitle'
     }
   },
 
@@ -143,6 +149,23 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
     _applySize(value, oldValue, name) {
       if (this._svg) {
         this._svg.setAttribute(name, `${value}`);
+      }
+    },
+
+    _applyTitle(value, oldValue) {
+      if (typeof this._applyTitleOverride === 'function') {
+        this._applyTitleOverride(value, oldValue);
+      } else if (this._target) {
+        let title = this._target.querySelector(':scope > title');
+        if (value) {
+          if (!title) {
+            title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+            this._target.appendChild(title);
+          }
+          title.textContent = value;
+        } else if (title) {
+          title.remove();
+        }
       }
     }
   }
