@@ -418,6 +418,29 @@ deaktivieren durch folgendes Attribut ``data-no-confirm="true"``.
 
 Sofern der Eintrag mit einem Mapping angelegt wurde, kann dieser mit ``${mappedState}`` im Template benutzt werden.
 
+openHAB persistence service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Es besteht die Möglichkeit die Historie eines openHAB-Items als Listen-Modell zu nutzen. Ein einfaches Beispiel dazu
+zeigt die Historie des Items ``MyItem``:
+
+.. code-block:: xml
+
+    <cv-widget>
+        <cv-tile>
+            <cv-list rowspan="3" colspan="3" refresh="120">
+                <model class="OpenHAB" parameters="item=MyItem"/>
+                <template>
+                  <li style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <div style="color: #999">${content}</div>
+                  </li>
+                </template>
+            </cv-list>
+        </cv-tile>
+    </cv-widget>
+
+
+
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^
 
