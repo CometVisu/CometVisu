@@ -491,7 +491,6 @@
           // Map
           events: "object" // Map
         },
-
         "default": null
       }),
       /**
@@ -510,4 +509,4 @@
   qx.Interface.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Interface.js.map?dt=1702901295084
+//# sourceMappingURL=Interface.js.map?dt=1703705664226

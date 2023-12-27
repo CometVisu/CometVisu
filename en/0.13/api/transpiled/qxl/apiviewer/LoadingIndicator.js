@@ -53,7 +53,6 @@
       this.__blocker.getBlockerElement().add(loadingImage);
       */
     },
-
     members: {
       __P_582_0: null,
       show: function show() {
@@ -67,4 +66,4 @@
   qxl.apiviewer.LoadingIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadingIndicator.js.map?dt=1702901345258
+//# sourceMappingURL=LoadingIndicator.js.map?dt=1703705698888

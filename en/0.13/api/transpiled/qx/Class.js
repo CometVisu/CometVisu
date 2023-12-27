@@ -1,4 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -731,7 +731,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // Function
           destruct: "function" // Function
         },
-
         "default": null
       }),
       /** @type {Map} allowed keys in static class definition */
@@ -746,7 +745,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // Map
           defer: "function" // Function
         },
-
         "default": null
       }),
       /**
@@ -1329,4 +1327,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1702901295026
+//# sourceMappingURL=Class.js.map?dt=1703705664173

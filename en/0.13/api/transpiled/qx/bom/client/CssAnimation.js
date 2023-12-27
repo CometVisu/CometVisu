@@ -198,7 +198,6 @@
       getRequestAnimationFrame: function getRequestAnimationFrame() {
         var choices = ["requestAnimationFrame", "msRequestAnimationFrame", "webkitRequestAnimationFrame", "mozRequestAnimationFrame", "oRequestAnimationFrame" // currently unspecified, so we guess the name!
         ];
-
         for (var i = 0; i < choices.length; i++) {
           if (window[choices[i]] != undefined) {
             return choices[i];
@@ -215,4 +214,4 @@
   qx.bom.client.CssAnimation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CssAnimation.js.map?dt=1702901298446
+//# sourceMappingURL=CssAnimation.js.map?dt=1703705666742

@@ -34,6 +34,15 @@
    * attach the listener yourself.
    */
   qx.Mixin.define("qx.ui.core.scroll.MRoll", {
+    /**
+     * Allow scrolling by dragging the area. CAUTION: Enabling this property disallows the capability of drag&drop.
+     */
+    properties: {
+      scrollByDrag: {
+        init: false,
+        check: "Boolean"
+      }
+    },
     members: {
       _cancelRoll: null,
       /**
@@ -65,7 +74,7 @@
        */
       _onRoll: function _onRoll(e) {
         // only wheel and touch
-        if (e.getPointerType() == "mouse") {
+        if (e.getPointerType() == "mouse" && !this.getScrollByDrag()) {
           return;
         }
         if (this._cancelRoll && e.getMomentum()) {
@@ -124,4 +133,4 @@
   qx.ui.core.scroll.MRoll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRoll.js.map?dt=1702901320802
+//# sourceMappingURL=MRoll.js.map?dt=1703705682213

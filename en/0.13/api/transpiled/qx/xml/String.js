@@ -44,7 +44,6 @@
         // >
         apos: 39 // XML apostrophe
       },
-
       /** Mapping of char codes to XML entity names */
       FROM_CHARCODE: {
         34: "quot",
@@ -92,4 +91,4 @@
   qx.xml.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1702901338640
+//# sourceMappingURL=String.js.map?dt=1703705694533

@@ -288,13 +288,14 @@
         var element = this.getContentElement();
         if (this.__P_306_5) {
           element.getChild(0).setStyles({
-            top: this.getPaddingTop() || 0,
-            left: this.getPaddingLeft() || 0
+            top: (this.getPaddingTop() || 0) + "px",
+            left: (this.getPaddingLeft() || 0) + "px"
           });
         } else if (this.__P_306_9() === "font") {
+          var bounds = this.getBounds() || {};
           element.setStyles({
-            top: this.getPaddingTop() || 0,
-            left: this.getPaddingLeft() || 0
+            top: (bounds.top || 0) + (this.getPaddingTop() || 0) + "px",
+            left: (bounds.left || 0) + (this.getPaddingLeft() || 0) + "px"
           });
         } else {
           element.setPadding(this.getPaddingLeft() || 0, this.getPaddingTop() || 0);
@@ -994,4 +995,4 @@
   qx.ui.basic.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1702901318481
+//# sourceMappingURL=Image.js.map?dt=1703705680605

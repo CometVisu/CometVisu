@@ -196,13 +196,11 @@
         if (thisIconColors[color]) {
           return; // done, already recolored
         }
-
         var width = cv.util.IconTools.tmpCanvas.width = thisIcon.width;
         var height = cv.util.IconTools.tmpCanvas.height = thisIcon.height;
         if (width === 0 || height === 0) {
           return; // most likely: the image didn't exist - anyway nothing to do here
         }
-
         cv.util.IconTools.tmpCtx.drawImage(thisIcon, 0, 0);
         var imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
         if (color !== undefined) {
@@ -260,7 +258,6 @@
               // cache all the transformed ImageDatas
               toFill: [] // all the icon colors to fill once the image was loaded
             };
-
             cv.util.IconTools.iconCacheMap.push(url);
           }
           if (!color) {
@@ -366,4 +363,4 @@
   cv.util.IconTools.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconTools.js.map?dt=1702901340922
+//# sourceMappingURL=IconTools.js.map?dt=1703705696054

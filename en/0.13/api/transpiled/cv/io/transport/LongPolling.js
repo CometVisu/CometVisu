@@ -322,7 +322,6 @@
         if (doFullReload) {
           this.lastIndex = -1; // reload all data
         }
-
         this.doRestart = true;
         this.abort();
         this.handleRead(); // restart
@@ -347,4 +346,4 @@
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1702901343550
+//# sourceMappingURL=LongPolling.js.map?dt=1703705697803

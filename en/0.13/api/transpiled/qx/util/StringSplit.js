@@ -124,7 +124,6 @@
             separator.lastIndex++; // avoid an infinite loop
           }
         }
-
         if (lastLastIndex === str.length) {
           if (lastLength || !separator.test("")) {
             output.push("");
@@ -139,4 +138,4 @@
   qx.util.StringSplit.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StringSplit.js.map?dt=1702901337723
+//# sourceMappingURL=StringSplit.js.map?dt=1703705693920

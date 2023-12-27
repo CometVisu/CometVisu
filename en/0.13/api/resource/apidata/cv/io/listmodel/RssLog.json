@@ -16,9 +16,9 @@
         "index": 47
       },
       "end": {
-        "line": 248,
+        "line": 262,
         "column": 3,
-        "index": 6239
+        "index": 6468
       }
     },
     "jsdoc": {
@@ -39,9 +39,9 @@
         "index": 287
       },
       "end": {
-        "line": 17,
+        "line": 16,
         "column": 3,
-        "index": 383
+        "index": 358
       }
     },
     "jsdoc": {}
@@ -50,14 +50,14 @@
     "REQUIRES": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 24,
           "column": 4,
-          "index": 525
+          "index": 500
         },
         "end": {
-          "line": 25,
+          "line": 24,
           "column": 21,
-          "index": 542
+          "index": 517
         }
       },
       "type": "variable",
@@ -68,14 +68,14 @@
     "model": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 33,
           "column": 4,
-          "index": 694
+          "index": 669
         },
         "end": {
-          "line": 37,
+          "line": 36,
           "column": 5,
-          "index": 763
+          "index": 738
         }
       },
       "name": "model",
@@ -85,14 +85,14 @@
     "database": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 38,
           "column": 4,
-          "index": 770
+          "index": 745
         },
         "end": {
-          "line": 43,
+          "line": 42,
           "column": 5,
-          "index": 865
+          "index": 840
         }
       },
       "name": "database",
@@ -105,14 +105,14 @@
     "filter": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 44,
           "column": 4,
-          "index": 872
+          "index": 847
         },
         "end": {
-          "line": 49,
+          "line": 48,
           "column": 5,
-          "index": 965
+          "index": 940
         }
       },
       "name": "filter",
@@ -125,14 +125,14 @@
     "future": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 50,
           "column": 4,
-          "index": 972
+          "index": 947
         },
         "end": {
-          "line": 55,
+          "line": 54,
           "column": 5,
-          "index": 1065
+          "index": 1040
         }
       },
       "name": "future",
@@ -145,14 +145,14 @@
     "limit": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 56,
           "column": 4,
-          "index": 1072
+          "index": 1047
         },
         "end": {
-          "line": 62,
+          "line": 61,
           "column": 5,
-          "index": 1187
+          "index": 1162
         }
       },
       "name": "limit",
@@ -200,14 +200,14 @@
     "finished": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 70,
           "column": 4,
-          "index": 1331
+          "index": 1306
         },
         "end": {
-          "line": 71,
+          "line": 70,
           "column": 34,
-          "index": 1361
+          "index": 1336
         }
       },
       "name": "finished",
@@ -216,14 +216,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 72,
           "column": 4,
-          "index": 1448
+          "index": 1423
         },
         "end": {
-          "line": 73,
+          "line": 72,
           "column": 34,
-          "index": 1478
+          "index": 1453
         }
       },
       "jsdoc": {},
@@ -235,14 +235,14 @@
     "__request": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 81,
           "column": 4,
-          "index": 1624
+          "index": 1599
         },
         "end": {
-          "line": 82,
+          "line": 81,
           "column": 19,
-          "index": 1639
+          "index": 1614
         }
       },
       "type": "variable",
@@ -251,14 +251,14 @@
     "_parseInt": {
       "location": {
         "start": {
-          "line": 84,
+          "line": 83,
           "column": 4,
-          "index": 1646
+          "index": 1621
         },
         "end": {
-          "line": 89,
+          "line": 88,
           "column": 5,
-          "index": 1769
+          "index": 1744
         }
       },
       "type": "function",
@@ -267,14 +267,14 @@
     "_applyRequestData": {
       "location": {
         "start": {
-          "line": 91,
+          "line": 90,
           "column": 4,
-          "index": 1776
+          "index": 1751
         },
         "end": {
-          "line": 100,
+          "line": 99,
           "column": 5,
-          "index": 2070
+          "index": 2045
         }
       },
       "type": "function",
@@ -289,30 +289,62 @@
     "getRequestData": {
       "location": {
         "start": {
-          "line": 102,
+          "line": 101,
           "column": 4,
-          "index": 2077
+          "index": 2052
         },
         "end": {
-          "line": 118,
+          "line": 117,
           "column": 5,
-          "index": 2520
+          "index": 2495
         }
       },
       "type": "function",
       "access": "public"
     },
+    "_getUrl": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 2502
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 2606
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
     "_initRequest": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 123,
           "column": 4,
-          "index": 2527
+          "index": 2613
         },
         "end": {
-          "line": 147,
+          "line": 155,
           "column": 5,
-          "index": 3407
+          "index": 3540
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_convertResponse": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 3547
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 3622
         }
       },
       "type": "function",
@@ -321,14 +353,14 @@
     "__updateModel": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 161,
           "column": 4,
-          "index": 3414
+          "index": 3629
         },
         "end": {
-          "line": 166,
+          "line": 179,
           "column": 5,
-          "index": 4132
+          "index": 4341
         }
       },
       "type": "function",
@@ -337,14 +369,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 181,
           "column": 4,
-          "index": 4139
+          "index": 4348
         },
         "end": {
-          "line": 176,
+          "line": 190,
           "column": 5,
-          "index": 4318
+          "index": 4547
         }
       },
       "type": "function",
@@ -358,14 +390,14 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 192,
           "column": 4,
-          "index": 4325
+          "index": 4554
         },
         "end": {
-          "line": 229,
+          "line": 243,
           "column": 5,
-          "index": 5840
+          "index": 6069
         }
       },
       "type": "function",
@@ -408,14 +440,14 @@
     "_sendWithPromise": {
       "location": {
         "start": {
-          "line": 231,
+          "line": 245,
           "column": 4,
-          "index": 5847
+          "index": 6076
         },
         "end": {
-          "line": 242,
+          "line": 256,
           "column": 5,
-          "index": 6162
+          "index": 6391
         }
       },
       "type": "function",
@@ -4066,16 +4098,18 @@
   "defer": {
     "location": {
       "start": {
-        "line": 245,
+        "line": 259,
         "column": 2,
-        "index": 6171
+        "index": 6400
       },
       "end": {
-        "line": 247,
+        "line": 261,
         "column": 3,
-        "index": 6235
+        "index": 6464
       }
     }
   },
-  "descendants": []
+  "descendants": [
+    "cv.io.listmodel.OpenHAB"
+  ]
 }

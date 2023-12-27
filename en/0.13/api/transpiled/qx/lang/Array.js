@@ -283,6 +283,7 @@
 
         // this check is important because opera throws an uncatchable error if apply is called without
         // an arr as second argument.
+
         Array.prototype.push.apply(arr1, arr2);
         return arr1;
       },
@@ -302,6 +303,7 @@
 
         // this check is important because opera throws an uncatchable error if apply is called without
         // an arr as second argument.
+
         arr2.forEach(function (item) {
           var index = arr1.indexOf(item);
           if (index != -1) {
@@ -603,4 +605,4 @@
   qx.lang.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1702901313768
+//# sourceMappingURL=Array.js.map?dt=1703705677285

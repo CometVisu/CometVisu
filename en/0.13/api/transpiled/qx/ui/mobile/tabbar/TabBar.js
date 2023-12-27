@@ -180,4 +180,4 @@
   qx.ui.mobile.tabbar.TabBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabBar.js.map?dt=1702901328944
+//# sourceMappingURL=TabBar.js.map?dt=1703705687971

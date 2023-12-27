@@ -188,7 +188,6 @@
     events: {
       tr064ListRefreshed: 'qx.event.type.Event' // event to support unit test
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -423,7 +422,6 @@
         if (this.__P_24_1 === '<fail>') {
           return; // this problem won't fix anymore during this instance
         }
-
         if (this.__P_24_1 === '') {
           this._getCallListURI();
           return;
@@ -518,4 +516,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1702901283132
+//# sourceMappingURL=CallList.js.map?dt=1703705655883

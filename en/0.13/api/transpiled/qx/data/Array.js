@@ -103,7 +103,6 @@
 
       // work against the console printout of the array
     },
-
     /*
     *****************************************************************************
        PROPERTIES
@@ -757,6 +756,7 @@
 
         // this check is important because opera throws an uncatchable error if
         // apply is called without an array as argument.
+
         var oldLength = this.__P_178_0.length;
         Array.prototype.push.apply(this.__P_178_0, array);
 
@@ -1049,4 +1049,4 @@
   qx.data.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1702901302649
+//# sourceMappingURL=Array.js.map?dt=1703705669564

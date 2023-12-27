@@ -385,6 +385,7 @@
           return null;
         }
         // Detect size changes
+
         // Dynamically create data structure for computed layout
         var computed = this.__P_317_1;
         if (!computed) {
@@ -853,4 +854,4 @@
   qx.ui.core.LayoutItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LayoutItem.js.map?dt=1702901319539
+//# sourceMappingURL=LayoutItem.js.map?dt=1703705681318

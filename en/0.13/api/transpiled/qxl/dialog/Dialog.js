@@ -1,4 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -366,7 +366,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           } catch (e) {}
           //this.__previousFocus.setFocusable(false);
         }
-
         return this;
       },
       /**
@@ -402,4 +401,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qxl.dialog.Dialog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dialog.js.map?dt=1702901341188
+//# sourceMappingURL=Dialog.js.map?dt=1703705696241

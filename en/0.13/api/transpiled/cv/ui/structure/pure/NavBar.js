@@ -149,7 +149,6 @@
           if (self._touchX === null) {
             return; // early exit as this touch isn't relevant for us
           }
-
           var touches = evt.touches[0];
           var x = touches.clientX - self._touchX;
           var y = touches.clientY - self._touchY;
@@ -228,4 +227,4 @@
   cv.ui.structure.pure.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1702901289666
+//# sourceMappingURL=NavBar.js.map?dt=1703705660239

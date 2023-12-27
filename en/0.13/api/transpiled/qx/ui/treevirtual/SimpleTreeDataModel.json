@@ -16,9 +16,9 @@
         "index": 3471
       },
       "end": {
-        "line": 1135,
+        "line": 1143,
         "column": 3,
-        "index": 37122
+        "index": 37630
       }
     },
     "jsdoc": {
@@ -1207,14 +1207,14 @@
     "setData": {
       "location": {
         "start": {
-          "line": 815,
+          "line": 818,
           "column": 4,
-          "index": 26710
+          "index": 26919
         },
         "end": {
-          "line": 845,
+          "line": 850,
           "column": 5,
-          "index": 27677
+          "index": 27956
         }
       },
       "jsdoc": {
@@ -1233,6 +1233,15 @@
             "optional": true,
             "defaultValue": "null",
             "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "bRerender {Boolean?true}\n  Rerender the tree data after setting the data. If set false it becomes the caller's responsibility to\n    call setData() subsequently to cause a redraw.",
+            "paramName": "bRerender",
+            "description": "\n  Rerender the tree data after setting the data. If set false it becomes the caller's responsibility to\n    call setData() subsequently to cause a redraw.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
           }
         ],
         "@throws": [
@@ -1250,14 +1259,14 @@
     "getData": {
       "location": {
         "start": {
-          "line": 855,
+          "line": 860,
           "column": 4,
-          "index": 27914
+          "index": 28193
         },
         "end": {
-          "line": 857,
+          "line": 862,
           "column": 5,
-          "index": 27961
+          "index": 28240
         }
       },
       "jsdoc": {
@@ -1282,14 +1291,14 @@
     "clearData": {
       "location": {
         "start": {
-          "line": 863,
+          "line": 871,
           "column": 4,
-          "index": 28033
+          "index": 28514
         },
         "end": {
-          "line": 867,
+          "line": 875,
           "column": 5,
-          "index": 28187
+          "index": 28695
         }
       },
       "jsdoc": {
@@ -1297,6 +1306,17 @@
           {
             "name": "@description",
             "body": "<p>Clears the tree of all nodes</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "bRerender {Boolean?true}\n   Rerender the tree data after clearing. If set false it becomes the caller's responsibility to\n    call setData() subsequently to cause a redraw.",
+            "paramName": "bRerender",
+            "description": "\n   Rerender the tree data after clearing. If set false it becomes the caller's responsibility to\n    call setData() subsequently to cause a redraw.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
           }
         ]
       },
@@ -1306,14 +1326,14 @@
     "setColumnData": {
       "location": {
         "start": {
-          "line": 884,
+          "line": 892,
           "column": 4,
-          "index": 28658
+          "index": 29166
         },
         "end": {
-          "line": 886,
+          "line": 894,
           "column": 5,
-          "index": 28768
+          "index": 29276
         }
       },
       "jsdoc": {
@@ -1353,14 +1373,14 @@
     "getColumnData": {
       "location": {
         "start": {
-          "line": 901,
+          "line": 909,
           "column": 4,
-          "index": 29228
+          "index": 29736
         },
         "end": {
-          "line": 903,
+          "line": 911,
           "column": 5,
-          "index": 29332
+          "index": 29840
         }
       },
       "jsdoc": {
@@ -1401,14 +1421,14 @@
     "setState": {
       "location": {
         "start": {
-          "line": 925,
+          "line": 933,
           "column": 4,
-          "index": 30261
+          "index": 30769
         },
         "end": {
-          "line": 1032,
+          "line": 1040,
           "column": 5,
-          "index": 34137
+          "index": 34645
         }
       },
       "jsdoc": {
@@ -1459,14 +1479,14 @@
     "getNodeRowMap": {
       "location": {
         "start": {
-          "line": 1042,
+          "line": 1050,
           "column": 4,
-          "index": 34454
+          "index": 34962
         },
         "end": {
-          "line": 1044,
+          "line": 1052,
           "column": 5,
-          "index": 34510
+          "index": 35018
         }
       },
       "jsdoc": {
@@ -1491,14 +1511,14 @@
     "getRowFromNodeId": {
       "location": {
         "start": {
-          "line": 1054,
+          "line": 1062,
           "column": 4,
-          "index": 34865
+          "index": 35373
         },
         "end": {
-          "line": 1056,
+          "line": 1064,
           "column": 5,
-          "index": 34938
+          "index": 35446
         }
       },
       "jsdoc": {
@@ -1532,14 +1552,14 @@
     "getNodeFromRow": {
       "location": {
         "start": {
-          "line": 1065,
+          "line": 1073,
           "column": 4,
-          "index": 35268
+          "index": 35776
         },
         "end": {
-          "line": 1067,
+          "line": 1075,
           "column": 5,
-          "index": 35379
+          "index": 35887
         }
       },
       "jsdoc": {
@@ -1573,14 +1593,14 @@
     "_clearSelections": {
       "location": {
         "start": {
-          "line": 1075,
+          "line": 1083,
           "column": 4,
-          "index": 35604
+          "index": 36112
         },
         "end": {
-          "line": 1083,
+          "line": 1091,
           "column": 5,
-          "index": 35870
+          "index": 36378
         }
       },
       "jsdoc": {
@@ -1597,14 +1617,14 @@
     "getSelectedNodes": {
       "location": {
         "start": {
-          "line": 1091,
+          "line": 1099,
           "column": 4,
-          "index": 36052
+          "index": 36560
         },
         "end": {
-          "line": 1099,
+          "line": 1107,
           "column": 5,
-          "index": 36226
+          "index": 36734
         }
       },
       "jsdoc": {
@@ -1629,14 +1649,14 @@
     "_applyFilter": {
       "location": {
         "start": {
-          "line": 1102,
+          "line": 1110,
           "column": 4,
-          "index": 36258
+          "index": 36766
         },
         "end": {
-          "line": 1104,
+          "line": 1112,
           "column": 5,
-          "index": 36314
+          "index": 36822
         }
       },
       "jsdoc": {},
@@ -1649,14 +1669,14 @@
     "isNodeEditable": {
       "location": {
         "start": {
-          "line": 1113,
+          "line": 1121,
           "column": 4,
-          "index": 36576
+          "index": 37084
         },
         "end": {
-          "line": 1117,
+          "line": 1125,
           "column": 5,
-          "index": 36717
+          "index": 37225
         }
       },
       "jsdoc": {
@@ -1895,28 +1915,28 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1120,
+        "line": 1128,
         "column": 2,
-        "index": 36729
+        "index": 37237
       },
       "end": {
-        "line": 1128,
+        "line": 1136,
         "column": 3,
-        "index": 36906
+        "index": 37414
       }
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 1130,
+        "line": 1138,
         "column": 2,
-        "index": 36913
+        "index": 37421
       },
       "end": {
-        "line": 1134,
+        "line": 1142,
         "column": 3,
-        "index": 37117
+        "index": 37625
       }
     }
   },

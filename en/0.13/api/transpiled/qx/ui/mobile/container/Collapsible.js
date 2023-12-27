@@ -190,4 +190,4 @@
   qx.ui.mobile.container.Collapsible.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Collapsible.js.map?dt=1702901326287
+//# sourceMappingURL=Collapsible.js.map?dt=1703705686199

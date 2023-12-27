@@ -146,6 +146,8 @@
           }
           url += '?' + params.join('&');
           return url;
+        } else if (name === 'rsslog') {
+          return this._backendUrl + 'persistence/items/' + map.item;
         }
         return null;
       },
@@ -501,4 +503,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1702901338998
+//# sourceMappingURL=Rest.js.map?dt=1703705694770

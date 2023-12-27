@@ -145,7 +145,6 @@
         if (!this.__P_546_0[name][type]) {
           type = '*'; // undefined -> use default
         }
-
         var all;
         if (typeof this.__P_546_0[name][type] === 'string') {
           type = this.__P_546_0[name][type]; // redirect link
@@ -160,7 +159,6 @@
         if (!this.__P_546_0[name][type][flavour]) {
           flavour = '*'; // undefined -> use default
         }
-
         if (typeof this.__P_546_0[name][type][flavour] === 'string') {
           flavour = this.__P_546_0[name][type][flavour]; // redirect link
           if (flavour.split('/').length > 1) {
@@ -309,4 +307,4 @@
   cv.IconHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconHandler.js.map?dt=1702901340415
+//# sourceMappingURL=IconHandler.js.map?dt=1703705695690

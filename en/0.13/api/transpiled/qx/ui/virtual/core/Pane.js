@@ -682,7 +682,6 @@
         if (!bounds) {
           return; // the pane has not yet been rendered -> wait for the appear event
         }
-
         this._setLayerWindow(layers, this.__P_485_3, this.__P_485_2, bounds.width, bounds.height, true);
         this.__P_485_15();
       },
@@ -734,4 +733,4 @@
   qx.ui.virtual.core.Pane.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pane.js.map?dt=1702901334942
+//# sourceMappingURL=Pane.js.map?dt=1703705692063

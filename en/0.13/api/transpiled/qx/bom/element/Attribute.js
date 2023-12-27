@@ -267,7 +267,6 @@
             return qx.Bootstrap.isString(value); // also respect empty strings as true
           }
         }
-
         if (hints.bools[name]) {
           return !!value;
         }
@@ -374,4 +373,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1702901299622
+//# sourceMappingURL=Attribute.js.map?dt=1703705667560

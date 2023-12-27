@@ -56,7 +56,6 @@
           data.classes += ' clickable';
           data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
         }
-
         if (data.noWidget === true) {
           data.classes = data.classes.replace('widget ', '');
         }
@@ -88,4 +87,4 @@
   cv.parser.pure.widgets.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1702901281160
+//# sourceMappingURL=Group.js.map?dt=1703705654417

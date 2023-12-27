@@ -2,7 +2,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 (function () {
   var $$dbClassInfo = {
@@ -173,8 +173,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
 
         // remove old positions
-        for (var _i2 = 0, _Object$keys = Object.keys(this._cells); _i2 < _Object$keys.length; _i2++) {
-          var id = _Object$keys[_i2];
+        for (var _i = 0, _Object$keys = Object.keys(this._cells); _i < _Object$keys.length; _i++) {
+          var id = _Object$keys[_i];
           if (id !== cellId && this._cells[id] === element) {
             delete this._cells[id];
           }
@@ -197,10 +197,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             }
           }
         } else if (row === -1) {
-          for (var _r2 = 0; _r2 < this.getRows(); _r2++) {
-            cellId = _r2 + '-' + column;
+          for (var _r = 0; _r < this.getRows(); _r++) {
+            cellId = _r + '-' + column;
             if (!this._cells[cellId]) {
-              return [_r2, column];
+              return [_r, column];
             }
           }
         } else if (column === -1) {
@@ -212,14 +212,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           }
         } else {
           var startCell = row * this.getColumns() + column;
-          var _r3;
+          var _r2;
           var _c2;
           for (var i = startCell; i < this.getCells(); i++) {
-            _r3 = Math.floor(i / this.getColumns());
+            _r2 = Math.floor(i / this.getColumns());
             _c2 = i % this.getColumns();
-            cellId = _r3 + '-' + _c2;
+            cellId = _r2 + '-' + _c2;
             if (!this._cells[cellId]) {
-              return [_r3, _c2];
+              return [_r2, _c2];
             }
           }
         }
@@ -230,4 +230,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.structure.tile.components.svg.MSvgGrid.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSvgGrid.js.map?dt=1702901293736
+//# sourceMappingURL=MSvgGrid.js.map?dt=1703705663223

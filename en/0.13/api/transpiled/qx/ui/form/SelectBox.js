@@ -27,6 +27,8 @@
       "qx.ui.core.Spacer": {},
       "qx.ui.basic.Atom": {},
       "qx.ui.basic.Image": {},
+      "qx.ui.layout.HBox": {},
+      "qx.ui.container.Composite": {},
       "qx.bom.Viewport": {}
     }
   };
@@ -104,7 +106,7 @@
     */
 
     properties: {
-      // overridden
+      /**@override*/
       appearance: {
         refine: true,
         init: "selectbox"
@@ -132,8 +134,7 @@
       _applyRich: function _applyRich(value, oldValue) {
         this.getChildControl("atom").setRich(value);
       },
-      // overridden
-      _defaultFormat: function _defaultFormat(item) {
+      /**@override*/_defaultFormat: function _defaultFormat(item) {
         if (item) {
           if (typeof item.isRich == "function" && item.isRich()) {
             this.setRich(true);
@@ -142,8 +143,7 @@
         }
         return null;
       },
-      // overridden
-      _createChildControlImpl: function _createChildControlImpl(id, hash) {
+      /**@override*/_createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
         switch (id) {
           case "spacer":
@@ -163,12 +163,26 @@
           case "arrow":
             control = new qx.ui.basic.Image();
             control.setAnonymous(true);
-            this._add(control);
+            this.getQxObject("arrowButton")._add(control);
+            this._add(this.getQxObject("arrowButton"));
             break;
         }
         return control || qx.ui.form.SelectBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
-      // overridden
+      /**@overload */_createQxObjectImpl: function _createQxObjectImpl(id) {
+        switch (id) {
+          case "arrowButton":
+            var layout = new qx.ui.layout.HBox().set({
+              alignY: "middle"
+            });
+            return new qx.ui.container.Composite(layout).set({
+              allowGrowY: true,
+              appearance: "selectbox-arrow-button"
+            });
+        }
+        return qx.ui.form.SelectBox.superclass.prototype._createQxObjectImpl.call(this, id);
+      },
+      /**@override*/
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -303,8 +317,7 @@
       _onTap: function _onTap(e) {
         this.toggle();
       },
-      // overridden
-      _onKeyPress: function _onKeyPress(e) {
+      /**@override*/_onKeyPress: function _onKeyPress(e) {
         var iden = e.getKeyIdentifier();
         if ((iden == "Down" || iden == "Up") && e.isAltPressed()) {
           this.toggle();
@@ -335,16 +348,14 @@
         // forward it to the list
         this.getChildControl("list").dispatchEvent(clone);
       },
-      // overridden
-      _onListPointerDown: function _onListPointerDown(e) {
+      /**@override*/_onListPointerDown: function _onListPointerDown(e) {
         // Apply pre-selected item (translate quick selection to real selection)
         if (this.__P_365_1) {
           this.setSelection([this.__P_365_1]);
           this.__P_365_1 = null;
         }
       },
-      // overridden
-      _onListChangeSelection: function _onListChangeSelection(e) {
+      /**@override*/_onListChangeSelection: function _onListChangeSelection(e) {
         var current = e.getData();
         var old = e.getOldData();
 
@@ -385,8 +396,7 @@
           contentEl.removeAttribute("aria-activedescendant");
         }
       },
-      // overridden
-      _onPopupChangeVisibility: function _onPopupChangeVisibility(e) {
+      /**@override*/_onPopupChangeVisibility: function _onPopupChangeVisibility(e) {
         qx.ui.form.SelectBox.superclass.prototype._onPopupChangeVisibility.call(this, e);
 
         // Synchronize the current selection to the list selection
@@ -432,4 +442,4 @@
   qx.ui.form.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1702901323363
+//# sourceMappingURL=SelectBox.js.map?dt=1703705684051

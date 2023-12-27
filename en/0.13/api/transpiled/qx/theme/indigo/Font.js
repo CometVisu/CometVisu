@@ -75,4 +75,4 @@
   qx.theme.indigo.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1702901317010
+//# sourceMappingURL=Font.js.map?dt=1703705679570

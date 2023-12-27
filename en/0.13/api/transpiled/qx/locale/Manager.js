@@ -261,7 +261,6 @@
             if (this.__P_279_1[locale] === null && !includeNonloaded) {
               continue; // skip not yet loaded locales
             }
-
             locales.push(locale);
           }
         }
@@ -432,4 +431,4 @@
   qx.locale.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1702901314657
+//# sourceMappingURL=Manager.js.map?dt=1703705677833

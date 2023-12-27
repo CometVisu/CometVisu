@@ -96,7 +96,6 @@
     } else if (typeof window !== "undefined" && typeof window.msCrypto !== "undefined") {
       crypt0 = window.msCrypto; // IE11
     }
-
     if (typeof module !== "undefined" && typeof require === "function") {
       crypt0 = crypt0 || require("crypto");
     }
@@ -153,4 +152,4 @@
   qx.util.Uuid.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Uuid.js.map?dt=1702901337817
+//# sourceMappingURL=Uuid.js.map?dt=1703705693982

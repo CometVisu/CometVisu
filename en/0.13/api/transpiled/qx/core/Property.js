@@ -329,7 +329,6 @@
         // String, Function
         isEqual: null // String, Function
       },
-
       /**
        * Supported keys for property group definitions
        *
@@ -346,7 +345,6 @@
         // String
         themeable: "boolean" // Boolean
       },
-
       /** Contains names of inheritable properties, filled by {@link qx.Class.define} */
       $$inheritable: {},
       /**
@@ -1389,4 +1387,4 @@
   qx.core.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1702901302460
+//# sourceMappingURL=Property.js.map?dt=1703705669428

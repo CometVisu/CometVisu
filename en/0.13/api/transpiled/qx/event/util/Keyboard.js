@@ -75,7 +75,6 @@
         // The Escape (Esc) key.
         32: "Space" // The Space (Spacebar) key.
       },
-
       /**
        * @type {Map} maps the keycodes of the numpad keys to the right charcodes
        *
@@ -314,4 +313,4 @@
   qx.event.util.Keyboard.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Keyboard.js.map?dt=1702901310702
+//# sourceMappingURL=Keyboard.js.map?dt=1703705675243

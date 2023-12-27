@@ -1,4 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -325,4 +325,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.lang.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1702901314021
+//# sourceMappingURL=Object.js.map?dt=1703705677465

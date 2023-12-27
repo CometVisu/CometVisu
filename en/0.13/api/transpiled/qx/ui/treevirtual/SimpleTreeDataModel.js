@@ -1,4 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -725,10 +725,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *   has completed building or modifying a tree by issuing a series of
        *   calls to {@link #addBranch} and/or {@link #addLeaf}.
        *
+       * @param bRerender {Boolean?true}
+       *  Rerender the tree data after setting the data. If set false it becomes the caller's responsibility to
+       *    call setData() subsequently to cause a redraw.
        *
        * @throws {Error} If the parameter has the wrong type.
        */
       setData: function setData(nodeArr) {
+        var bRerender = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
         this._checkEditing();
         if (nodeArr instanceof Array) {
           // Save the user-supplied data.
@@ -737,8 +741,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           throw new Error("Expected array of node objects or null/undefined; got " + _typeof(nodeArr));
         }
 
-        // Re-render the row array
-        this.__P_477_7();
+        // Re-render the row array, if so requested
+        if (bRerender) {
+          this.__P_477_7();
+        }
 
         // Set selections in the selection model now
         var selectionModel = this.getTree().getSelectionModel();
@@ -768,11 +774,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /**
        * Clears the tree of all nodes
        *
+       * @param bRerender {Boolean?true}
+       *   Rerender the tree data after clearing. If set false it becomes the caller's responsibility to
+       *    call setData() subsequently to cause a redraw.
        */
       clearData: function clearData() {
+        var bRerender = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
         this._checkEditing();
         this._clearSelections();
-        this.setData([qx.ui.treevirtual.MTreePrimitive._getEmptyTree()]);
+        this.setData([qx.ui.treevirtual.MTreePrimitive._getEmptyTree()], bRerender);
       },
       /**
        * Add data to an additional column (a column other than the tree column)
@@ -1011,4 +1021,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.ui.treevirtual.SimpleTreeDataModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1702901334088
+//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1703705691488

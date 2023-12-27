@@ -93,6 +93,11 @@
         init: 0,
         apply: '_applySize',
         event: 'widthChanged'
+      },
+      title: {
+        check: 'String',
+        init: '',
+        apply: '_applyTitle'
       }
     },
     /*
@@ -143,10 +148,26 @@
         if (this._svg) {
           this._svg.setAttribute(name, "".concat(value));
         }
+      },
+      _applyTitle: function _applyTitle(value, oldValue) {
+        if (typeof this._applyTitleOverride === 'function') {
+          this._applyTitleOverride(value, oldValue);
+        } else if (this._target) {
+          var title = this._target.querySelector(':scope > title');
+          if (value) {
+            if (!title) {
+              title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+              this._target.appendChild(title);
+            }
+            title.textContent = value;
+          } else if (title) {
+            title.remove();
+          }
+        }
       }
     }
   });
   cv.ui.structure.tile.components.svg.MGraphicsElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MGraphicsElement.js.map?dt=1702901293680
+//# sourceMappingURL=MGraphicsElement.js.map?dt=1703705663183

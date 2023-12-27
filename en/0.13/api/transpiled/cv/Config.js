@@ -359,7 +359,6 @@
       if (req.queryKey.libraryCheck) {
         cv.Config.libraryCheck = req.queryKey.libraryCheck !== 'false'; // true unless set to false
       }
-
       if (req.queryKey.backend) {
         cv.Config.URL = {
           backend: req.queryKey.backend
@@ -405,7 +404,6 @@
       if (req.queryKey.forceReload) {
         cv.Config.forceReload = req.queryKey.forceReload !== 'false'; // true unless set to false
       }
-
       if (req.queryKey.reporting) {
         cv.Config.reporting = req.queryKey.reporting === 'true';
       }
@@ -461,11 +459,9 @@
           cv.Config.use_maturity = statics.Maturity[cv.Config.url_maturity]; // or as the ENUM name
         }
       }
-
       if (isNaN(cv.Config.use_maturity)) {
         cv.Config.use_maturity = statics.Maturity.release; // default to release
       }
-
       cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === 'https' || req.host === 'localhost');
       if (cv.Config.useServiceWorker) {}
     }
@@ -473,4 +469,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1702901338836
+//# sourceMappingURL=Config.js.map?dt=1703705694680

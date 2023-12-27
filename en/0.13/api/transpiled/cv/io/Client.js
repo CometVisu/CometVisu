@@ -1,4 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -544,7 +544,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (req.serverErrorHandled) {
           return; // ignore error when already handled
         }
-
         this.__P_529_0 = {
           code: req.getStatus(),
           text: req.getStatusText(),
@@ -711,4 +710,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1702901338775
+//# sourceMappingURL=Client.js.map?dt=1703705694641

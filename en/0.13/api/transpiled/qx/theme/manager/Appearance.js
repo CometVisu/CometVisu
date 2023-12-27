@@ -138,6 +138,7 @@
 
           // it's safe to output this message here since we can be sure that the return
           // value is 'null' and something went wrong with the id lookup.
+
           return null;
         } else if (typeof entry === "string") {
           return this.__P_298_3(entry, theme, defaultId, chainCopy);
@@ -290,4 +291,4 @@
   qx.theme.manager.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1702901317077
+//# sourceMappingURL=Appearance.js.map?dt=1703705679614

@@ -186,7 +186,8 @@
       if (value != null) {
         this.setValue(value);
       }
-      this.getContentElement().addListener("change", this._onChangeContent, this);
+      var el = this.getContentElement();
+      el.addListener("change", this._onChangeContent, this);
 
       // use qooxdoo placeholder if no native placeholder is supported
       if (this.__P_350_3) {
@@ -993,4 +994,4 @@
   qx.ui.form.AbstractField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractField.js.map?dt=1702901322036
+//# sourceMappingURL=AbstractField.js.map?dt=1703705683124

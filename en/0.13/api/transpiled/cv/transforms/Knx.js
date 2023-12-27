@@ -147,14 +147,12 @@
                 raw: '00'
               }; // down: stop
             }
-
             if (phy > 100 || phy > 0 && phy < 1) {
               return {
                 bus: '88',
                 raw: '08'
               }; // up: stop
             }
-
             var up = phy > 0;
             var stepCode = 7 - Math.floor(Math.log2(Math.abs(phy)));
             var val = (stepCode | up * 8).toString(16);
@@ -1015,4 +1013,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1702901283301
+//# sourceMappingURL=Knx.js.map?dt=1703705656012

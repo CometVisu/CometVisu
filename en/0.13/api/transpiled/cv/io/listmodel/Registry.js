@@ -9,7 +9,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         "require": true
       },
       "cv.io.listmodel.IListModel": {},
-      "qx.core.Init": {}
+      "qx.core.Init": {},
+      "cv.io.BackendConnections": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -55,6 +56,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       return null;
                     }
                     break;
+                  case 'openhab':
+                    if (!cv.io.BackendConnections.getClientByType('openhab')) {
+                      return null;
+                    }
+                    break;
                 }
               }
             } catch (err) {
@@ -72,4 +78,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.io.listmodel.Registry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registry.js.map?dt=1702901280551
+//# sourceMappingURL=Registry.js.map?dt=1703705653958

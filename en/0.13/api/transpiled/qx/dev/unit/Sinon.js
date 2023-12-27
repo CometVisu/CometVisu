@@ -1,7 +1,7 @@
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof2(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof2(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof2(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof2(obj); }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof2(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof2(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -2237,7 +2237,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
                 break;
               /*eslint-enable*/
             }
-
             var nameDescriptor = Object.getOwnPropertyDescriptor(originalFunc, "name");
             if (nameDescriptor && nameDescriptor.configurable) {
               // IE 11 functions don't have a name.
@@ -2677,7 +2676,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
               if (diff.length === 2) {
                 text += " "; // format simple diffs
               }
-
               return text;
             });
             return join(objects, "");
@@ -5089,13 +5087,11 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
                   return BigInt(parts[0]) * BigInt(1e9) + BigInt(parts[1]); // eslint-disable-line
                 };
               }
-
               clock.requestIdleCallback = function requestIdleCallback(func, timeout) {
                 var timeToNextIdlePeriod = 0;
                 if (clock.countTimers() > 0) {
                   timeToNextIdlePeriod = 50; // const for now
                 }
-
                 var result = addTimer(clock, {
                   func: func,
                   args: Array.prototype.slice.call(arguments, 2),
@@ -5138,7 +5134,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
               clock.queueMicrotask = function queueMicrotask(func) {
                 return clock.nextTick(func); // explicitly drop additional arguments
               };
-
               clock.setInterval = function setInterval(func, timeout) {
                 // eslint-disable-next-line no-param-reassign
                 timeout = parseInt(timeout, 10);
@@ -6130,7 +6125,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
                   return expectation == actual; // eslint-disable-line eqeqeq
                 };
               },
-
               object: function object(m, expectation) {
                 var array = [];
                 if (typeof expectation.test === "function") {
@@ -10942,7 +10936,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
                 // hunk can't fit on the text. Return undefined
               };
             }
-
             function applyPatch(source, uniDiff) {
               var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
               if (typeof uniDiff === 'string') {
@@ -13429,7 +13422,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
                   });
                   /*eslint-enable no-loop-func*/
                 });
-
                 xhr.addEventListener("readystatechange", stateChangeEnd);
               } else {
                 xhr.onreadystatechange = stateChange;
@@ -14249,7 +14241,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
 
               // As timer ids are unique, no fallback `0` is necessary
             }
-
             function firstTimerInRange(clock, from, to) {
               var timers = clock.timers;
               var timer = null;
@@ -14511,13 +14502,11 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
                   return BigInt(parts[0]) * BigInt(1e9) + BigInt(parts[1]); // eslint-disable-line
                 };
               }
-
               clock.requestIdleCallback = function requestIdleCallback(func, timeout) {
                 var timeToNextIdlePeriod = 0;
                 if (clock.countTimers() > 0) {
                   timeToNextIdlePeriod = 50; // const for now
                 }
-
                 var result = addTimer(clock, {
                   func: func,
                   args: Array.prototype.slice.call(arguments, 2),
@@ -14558,7 +14547,6 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
               clock.queueMicrotask = function queueMicrotask(func) {
                 return clock.nextTick(func); // explicitly drop additional arguments
               };
-
               clock.setInterval = function setInterval(func, timeout) {
                 // eslint-disable-next-line no-param-reassign
                 timeout = parseInt(timeout, 10);
@@ -15797,4 +15785,4 @@ function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function"
   qx.dev.unit.Sinon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sinon.js.map?dt=1702901307346
+//# sourceMappingURL=Sinon.js.map?dt=1703705672856

@@ -190,7 +190,6 @@
             codePoint % 0x400 + 0xdc00 // lowSurrogate
             );
           }
-
           if (codeLen >= 0x3fff) {
             result += String.fromCharCode.apply(null, codeUnits);
             codeUnits.length = 0;
@@ -225,4 +224,4 @@
   qx.lang.normalize.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1702901314367
+//# sourceMappingURL=String.js.map?dt=1703705677704

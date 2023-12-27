@@ -170,7 +170,6 @@
         if (this.currentPageUnavailableHeight > 0) {
           this.currentPageUnavailableHeight += 1; // remove an additional pixel for Firefox
         }
-
         return windowHeight - this.currentPageUnavailableHeight;
       },
       rowspanClass: function rowspanClass(rowspan) {
@@ -265,7 +264,6 @@
               }
               w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
             }
-
             this.__P_69_0(e, w);
           }, this);
         }, this);
@@ -295,4 +293,4 @@
   cv.ui.structure.pure.layout.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1702901290479
+//# sourceMappingURL=Manager.js.map?dt=1703705660776

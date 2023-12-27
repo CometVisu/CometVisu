@@ -172,7 +172,6 @@
 
             // continue otherwise
           }
-
           result = {};
           var properties = qx.util.PropertyUtil.getAllProperties(object.constructor);
           for (var name in properties) {
@@ -273,7 +272,6 @@
             }
             // continue otherwise
           }
-
           result += "{";
           var properties = qx.util.PropertyUtil.getAllProperties(object.constructor);
           for (var name in properties) {
@@ -339,4 +337,4 @@
   qx.util.Serializer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Serializer.js.map?dt=1702901337656
+//# sourceMappingURL=Serializer.js.map?dt=1703705693869

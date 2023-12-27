@@ -155,7 +155,6 @@
             target: 'limitColor',
             "default": '#edc240' // default directly from flot code
           },
-
           color1: {
             "default": '#afd8f8'
           },
@@ -171,7 +170,6 @@
         if (!variant) {
           variant = 'spectrum'; // the default
         }
-
         return [true, variant];
       }
     },
@@ -489,4 +487,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1702901282301
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1703705655249

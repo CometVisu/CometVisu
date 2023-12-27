@@ -16,9 +16,9 @@
         "index": 212
       },
       "end": {
-        "line": 422,
+        "line": 423,
         "column": 3,
-        "index": 12898
+        "index": 12948
       }
     },
     "jsdoc": {
@@ -268,6 +268,14 @@
       "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
       "event": "widthChanged"
     },
+    "title": {
+      "type": "property",
+      "name": "title",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+    },
     "visible": {
       "type": "property",
       "name": "visible",
@@ -439,9 +447,9 @@
           "index": 1681
         },
         "end": {
-          "line": 185,
+          "line": 186,
           "column": 5,
-          "index": 5219
+          "index": 5260
         }
       },
       "type": "function",
@@ -456,14 +464,14 @@
     "_updateRadius": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 188,
           "column": 4,
-          "index": 5226
+          "index": 5267
         },
         "end": {
-          "line": 194,
+          "line": 195,
           "column": 5,
-          "index": 5546
+          "index": 5587
         }
       },
       "type": "function",
@@ -472,14 +480,14 @@
     "_applyAmount": {
       "location": {
         "start": {
-          "line": 196,
+          "line": 197,
           "column": 4,
-          "index": 5553
+          "index": 5594
         },
         "end": {
-          "line": 226,
+          "line": 227,
           "column": 5,
-          "index": 6619
+          "index": 6660
         }
       },
       "type": "function",
@@ -491,14 +499,14 @@
     "__updateAmountPosition": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 229,
           "column": 4,
-          "index": 6626
+          "index": 6667
         },
         "end": {
-          "line": 238,
+          "line": 239,
           "column": 5,
-          "index": 7005
+          "index": 7046
         }
       },
       "type": "function",
@@ -507,14 +515,14 @@
     "__updateIconPosition": {
       "location": {
         "start": {
-          "line": 240,
+          "line": 241,
           "column": 4,
-          "index": 7012
+          "index": 7053
         },
         "end": {
-          "line": 256,
+          "line": 257,
           "column": 5,
-          "index": 7718
+          "index": 7759
         }
       },
       "type": "function",
@@ -523,14 +531,14 @@
     "_applyRadius": {
       "location": {
         "start": {
-          "line": 258,
+          "line": 259,
           "column": 4,
-          "index": 7725
+          "index": 7766
         },
         "end": {
-          "line": 273,
+          "line": 274,
           "column": 5,
-          "index": 8201
+          "index": 8242
         }
       },
       "type": "function",
@@ -542,14 +550,14 @@
     "_applyStroke": {
       "location": {
         "start": {
-          "line": 275,
+          "line": 276,
           "column": 4,
-          "index": 8208
+          "index": 8249
         },
         "end": {
-          "line": 280,
+          "line": 281,
           "column": 5,
-          "index": 8367
+          "index": 8408
         }
       },
       "type": "function",
@@ -561,14 +569,14 @@
     "_updateNormalizedRadius": {
       "location": {
         "start": {
-          "line": 282,
+          "line": 283,
           "column": 4,
-          "index": 8374
+          "index": 8415
         },
         "end": {
-          "line": 298,
+          "line": 299,
           "column": 5,
-          "index": 8936
+          "index": 8977
         }
       },
       "type": "function",
@@ -577,14 +585,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 301,
           "column": 4,
-          "index": 8943
+          "index": 8984
         },
         "end": {
-          "line": 308,
+          "line": 309,
           "column": 5,
-          "index": 9197
+          "index": 9238
         }
       },
       "type": "function",
@@ -598,14 +606,14 @@
     "_applyShowProgress": {
       "location": {
         "start": {
-          "line": 310,
+          "line": 311,
           "column": 4,
-          "index": 9204
+          "index": 9245
         },
         "end": {
-          "line": 335,
+          "line": 336,
           "column": 5,
-          "index": 10230
+          "index": 10271
         }
       },
       "type": "function",
@@ -617,14 +625,14 @@
     "_applyIcon": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 338,
           "column": 4,
-          "index": 10237
+          "index": 10278
         },
         "end": {
-          "line": 358,
+          "line": 359,
           "column": 5,
-          "index": 10941
+          "index": 10982
         }
       },
       "type": "function",
@@ -636,14 +644,14 @@
     "_applyProgress": {
       "location": {
         "start": {
-          "line": 360,
+          "line": 361,
           "column": 4,
-          "index": 10948
+          "index": 10989
         },
         "end": {
-          "line": 374,
+          "line": 375,
           "column": 5,
-          "index": 11598
+          "index": 11639
         }
       },
       "type": "function",
@@ -655,14 +663,14 @@
     "_applyStyleClass": {
       "location": {
         "start": {
-          "line": 376,
+          "line": 377,
           "column": 4,
-          "index": 11605
+          "index": 11646
         },
         "end": {
-          "line": 384,
+          "line": 385,
           "column": 5,
-          "index": 11841
+          "index": 11882
         }
       },
       "type": "function",
@@ -675,14 +683,14 @@
     "_detectOverflow": {
       "location": {
         "start": {
-          "line": 386,
+          "line": 387,
           "column": 4,
-          "index": 11848
+          "index": 11889
         },
         "end": {
-          "line": 399,
+          "line": 400,
           "column": 5,
-          "index": 12331
+          "index": 12372
         }
       },
       "type": "function",
@@ -695,14 +703,14 @@
     "onStateUpdate": {
       "location": {
         "start": {
-          "line": 401,
+          "line": 402,
           "column": 4,
-          "index": 12338
+          "index": 12379
         },
         "end": {
-          "line": 408,
+          "line": 409,
           "column": 5,
-          "index": 12548
+          "index": 12589
         }
       },
       "type": "function",
@@ -779,6 +787,15 @@
     "_applySize": {
       "type": "function",
       "name": "_applySize",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+    },
+    "_applyTitle": {
+      "type": "function",
+      "name": "_applyTitle",
       "abstract": false,
       "mixin": true,
       "inherited": true,
@@ -1360,6 +1377,75 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ]
+      }
+    },
+    "getTitle": {
+      "type": "function",
+      "name": "getTitle",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for title"
+          }
+        ]
+      }
+    },
+    "setTitle": {
+      "type": "function",
+      "name": "setTitle",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for title"
+          }
+        ]
+      }
+    },
+    "resetTitle": {
+      "type": "function",
+      "name": "resetTitle",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>title</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #title}."
           }
         ]
       }
@@ -2804,14 +2890,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 411,
+        "line": 412,
         "column": 2,
-        "index": 12557
+        "index": 12598
       },
       "end": {
-        "line": 421,
+        "line": 422,
         "column": 3,
-        "index": 12894
+        "index": 12944
       }
     }
   },

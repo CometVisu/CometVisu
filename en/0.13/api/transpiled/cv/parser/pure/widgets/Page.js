@@ -97,7 +97,6 @@
         if (page.getAttribute('flavour')) {
           flavour = page.getAttribute('flavour'); // sub design choice
         }
-
         var wstyle = ''; // widget style
         if (page.getAttribute('align')) {
           wstyle += 'text-align:' + page.getAttribute('align') + ';';
@@ -159,4 +158,4 @@
   cv.parser.pure.widgets.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1702901281433
+//# sourceMappingURL=Page.js.map?dt=1703705654620

@@ -2,7 +2,7 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 (function () {
   var $$dbClassInfo = {
@@ -521,7 +521,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1) / (-A1 * B2 * C3 + A1 * B3 * C2 + A2 * B1 * C3 - A2 * B3 * C1 - A3 * B1 * C2 + A3 * B2 * C1) // eslint-disable-line
           ];
         }
-
         if (this.__P_547_4 === undefined || force) {
           if (this.__P_547_8 < 1e-4) {
             this.__P_547_4 = {
@@ -695,7 +694,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             // map to 0...1
             h: (Math.atan2(this.__P_547_14.b, this.__P_547_14.a) / (2 * Math.PI) + 1) % 1 // map angle to 0...1
           };
-
           if (this.__P_547_15.C < 1e-5) {
             this.__P_547_15.h = this.__P_547_10;
           } else {
@@ -1128,4 +1126,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.util.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1702901340664
+//# sourceMappingURL=Color.js.map?dt=1703705695865

@@ -1,4 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -116,13 +116,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           control: "QuickTimeCheckObject.QuickTimeCheck.1"
           // call returns boolean: instance.IsQuickTimeAvailable(0)
         },
-
         wmv: {
           plugin: ["Windows Media"],
           control: "WMPlayer.OCX.7"
           // version string in: instance.versionInfo
         },
-
         divx: {
           plugin: ["DivX Web Player"],
           control: "npdivx.DivXBrowserPlugin.1"
@@ -134,7 +132,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // version string in: instance.settings.version (Silverlight 1.1)
           // version check possible using instance.IsVersionSupported
         },
-
         pdf: {
           plugin: ["Chrome PDF Viewer", "Adobe Acrobat"],
           control: "AcroPDF.PDF"
@@ -394,4 +391,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.client.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1702901299204
+//# sourceMappingURL=Plugin.js.map?dt=1703705667252

@@ -183,4 +183,4 @@
   qx.theme.indigo.AppearanceDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AppearanceDark.js.map?dt=1702901316918
+//# sourceMappingURL=AppearanceDark.js.map?dt=1703705679509

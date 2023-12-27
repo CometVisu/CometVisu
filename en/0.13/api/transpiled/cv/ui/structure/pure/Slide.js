@@ -280,7 +280,6 @@
           if (cv.ui.structure.pure.layout.ResizeHandler.states.isPageSizeInvalid()) {
             return 1e10; // a no valid value that doesn't break other calculations
           }
-
           var actor = this.getDomElement().querySelector('.actor');
           var actorStyles = window.getComputedStyle(actor);
           this.__P_66_7 = parseFloat(actorStyles.getPropertyValue('width'));
@@ -298,4 +297,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1702901290131
+//# sourceMappingURL=Slide.js.map?dt=1703705660565

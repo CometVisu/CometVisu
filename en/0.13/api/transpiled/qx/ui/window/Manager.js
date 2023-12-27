@@ -91,6 +91,9 @@
        * {@link qx.ui.core.queue.Widget widget queue}.
        */
       syncWidget: function syncWidget() {
+        if (this.isDisposed()) {
+          return;
+        }
         this.__P_504_0.forceUnblock();
         var windows = this.__P_504_0.getWindows();
         // z-index for all three window kinds
@@ -166,4 +169,4 @@
   qx.ui.window.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1702901336595
+//# sourceMappingURL=Manager.js.map?dt=1703705693209

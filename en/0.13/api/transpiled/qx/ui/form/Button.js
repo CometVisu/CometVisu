@@ -84,6 +84,7 @@
      * @param command {qx.ui.command.Command?null} Command instance to connect with
      */
     construct: function construct(label, icon, command) {
+      var _this = this;
       qx.ui.basic.Atom.constructor.call(this, label, icon);
       if (command != null) {
         this.setCommand(command);
@@ -97,10 +98,24 @@
       this.addListener("pointerout", this._onPointerOut);
       this.addListener("pointerdown", this._onPointerDown);
       this.addListener("pointerup", this._onPointerUp);
+
+      // it seems that touching a button (at least on ios and android)
+      // does not immediately focus it before triggering the tap event
+      // this causes problem with change events for any input field that
+      // previously held focus, as their change event will arrive AFTER
+      // the execute event on the button ... 
+      // we have to call focus on the dom element itself, to make
+      // sure we are in time. Otherwhise the virtual dom in qooxdoo will
+      // delay the effect and the fix will only work when tapping 'slowly' ... 
+      this.addListenerOnce('appear', function () {
+        var el = _this.getContentElement().getDomElement();
+        _this.addListener('touchstart', function () {
+          el.focus();
+        });
+      });
       this.addListener("tap", this._onTap);
       this.addListener("keydown", this._onKeyDown);
       this.addListener("keyup", this._onKeyUp);
-
       // Stop events
       this.addListener("dblclick", function (e) {
         e.stopPropagation();
@@ -312,4 +327,4 @@
   qx.ui.form.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1702901322144
+//# sourceMappingURL=Button.js.map?dt=1703705683188

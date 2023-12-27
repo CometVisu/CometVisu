@@ -365,7 +365,6 @@
             style.width = dimension.width == null ? null : dimension.width + "px";
             // note: height is given by the user
           }
-
           uri = ResourceManager.toUri(sourceid);
           return {
             src: uri,
@@ -554,4 +553,4 @@
   qx.bom.element.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1702901299959
+//# sourceMappingURL=Decoration.js.map?dt=1703705667760

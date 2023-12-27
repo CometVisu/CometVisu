@@ -189,7 +189,6 @@
           if (!Number.isFinite(bvalue)) {
             bvalue = 0; // anything is better than NaN...
           }
-
           value = bvalue + value;
           value = Math.max(value, this.getMin());
           value = Math.min(value, this.getMax());
@@ -215,4 +214,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1702901289576
+//# sourceMappingURL=InfoTrigger.js.map?dt=1703705660172

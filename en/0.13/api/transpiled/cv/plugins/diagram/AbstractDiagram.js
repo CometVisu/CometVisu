@@ -287,7 +287,6 @@
             // ignore unknown
           }
         }
-
         if (type) {
           return '(' + retval + ')';
         }
@@ -409,7 +408,6 @@
         this.cache[key].waitingCallbacks.length = 0; // empty array)
       }
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -667,7 +665,6 @@
             tapPrecision: 30 // tap events boundaries ( 60px square by default )
           }
         };
-
         options.yaxes.forEach(function (val) {
           Object.assign(val, {
             axisLabelColour: this.getGridcolor(),
@@ -907,4 +904,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1702901282827
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1703705655675

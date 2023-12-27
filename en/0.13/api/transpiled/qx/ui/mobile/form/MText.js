@@ -146,4 +146,4 @@
   qx.ui.mobile.form.MText.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MText.js.map?dt=1702901327700
+//# sourceMappingURL=MText.js.map?dt=1703705687124

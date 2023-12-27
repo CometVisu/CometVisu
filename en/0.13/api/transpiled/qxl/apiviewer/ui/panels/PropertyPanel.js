@@ -211,4 +211,4 @@
   qxl.apiviewer.ui.panels.PropertyPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PropertyPanel.js.map?dt=1702901346870
+//# sourceMappingURL=PropertyPanel.js.map?dt=1703705699867

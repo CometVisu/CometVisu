@@ -16,9 +16,9 @@
         "index": 798
       },
       "end": {
-        "line": 149,
+        "line": 172,
         "column": 3,
-        "index": 3830
+        "index": 4466
       }
     },
     "jsdoc": {
@@ -215,20 +215,40 @@
       "init": 0,
       "check": "Number",
       "defaultValue": 0
+    },
+    "title": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2122
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2202
+        }
+      },
+      "name": "title",
+      "propertyType": "new",
+      "apply": "_applyTitle",
+      "init": "",
+      "check": "String",
+      "defaultValue": ""
     }
   },
   "members": {
     "_parentGridLayout": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 105,
           "column": 4,
-          "index": 2261
+          "index": 2348
         },
         "end": {
-          "line": 99,
+          "line": 105,
           "column": 27,
-          "index": 2284
+          "index": 2371
         }
       },
       "type": "variable",
@@ -237,14 +257,14 @@
     "_findParentGridLayout": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 107,
           "column": 4,
-          "index": 2291
+          "index": 2378
         },
         "end": {
-          "line": 115,
+          "line": 121,
           "column": 5,
-          "index": 2876
+          "index": 2963
         }
       },
       "type": "function",
@@ -253,14 +273,14 @@
     "_applyToSvg": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 123,
           "column": 4,
-          "index": 2883
+          "index": 2970
         },
         "end": {
-          "line": 121,
+          "line": 127,
           "column": 5,
-          "index": 2995
+          "index": 3082
         }
       },
       "type": "function",
@@ -273,14 +293,14 @@
     "_updateWidth": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 129,
           "column": 4,
-          "index": 3002
+          "index": 3089
         },
         "end": {
-          "line": 128,
+          "line": 134,
           "column": 5,
-          "index": 3256
+          "index": 3343
         }
       },
       "type": "function",
@@ -292,14 +312,14 @@
     "_updateHeight": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 136,
           "column": 4,
-          "index": 3263
+          "index": 3350
         },
         "end": {
-          "line": 135,
+          "line": 141,
           "column": 5,
-          "index": 3522
+          "index": 3609
         }
       },
       "type": "function",
@@ -311,14 +331,14 @@
     "_applyPosition": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 143,
           "column": 4,
-          "index": 3529
+          "index": 3616
         },
         "end": {
-          "line": 141,
+          "line": 147,
           "column": 5,
-          "index": 3693
+          "index": 3780
         }
       },
       "type": "function",
@@ -331,14 +351,14 @@
     "_applySize": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 149,
           "column": 4,
-          "index": 3700
+          "index": 3787
         },
         "end": {
-          "line": 147,
+          "line": 153,
           "column": 5,
-          "index": 3822
+          "index": 3909
         }
       },
       "type": "function",
@@ -346,6 +366,25 @@
       "applyFor": [
         "height",
         "width"
+      ]
+    },
+    "_applyTitle": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3916
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4458
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "title"
       ]
     },
     "_parseInt": {
@@ -899,6 +938,72 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
+          }
+        ]
+      }
+    },
+    "getTitle": {
+      "type": "function",
+      "name": "getTitle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for title"
+          }
+        ]
+      }
+    },
+    "setTitle": {
+      "type": "function",
+      "name": "setTitle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for title"
+          }
+        ]
+      }
+    },
+    "resetTitle": {
+      "type": "function",
+      "name": "resetTitle",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>title</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #title}."
           }
         ]
       }

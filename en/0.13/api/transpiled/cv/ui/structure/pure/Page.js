@@ -255,7 +255,6 @@
               break;
             default: // default: assume scaled
           }
-
           var backdrop = this.getBackdrop();
           if (backdrop) {
             container += '<' + this.getBackdropType() + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
@@ -355,4 +354,4 @@
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1702901289758
+//# sourceMappingURL=Page.js.map?dt=1703705660301

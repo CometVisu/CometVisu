@@ -94,7 +94,6 @@
         // Form Elements
         submit: true // Form Elements
       },
-
       /** @type {MAP} Whether the event is cancelable */
       CANCELABLE: {
         selectstart: true
@@ -202,4 +201,4 @@
   qx.event.handler.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1702901308713
+//# sourceMappingURL=Element.js.map?dt=1703705673821
