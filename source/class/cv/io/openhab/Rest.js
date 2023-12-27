@@ -139,6 +139,8 @@ qx.Class.define('cv.io.openhab.Rest', {
 
         url += '?' + params.join('&');
         return url;
+      } else if (name === 'rsslog') {
+        return this._backendUrl + 'persistence/items/' + map.item;
       }
       return null;
     },

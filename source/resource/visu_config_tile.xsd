@@ -883,6 +883,7 @@
                 <xsd:restriction base="xsd:string">
                   <xsd:enumeration value="FritzCallList"/>
                   <xsd:enumeration value="RssLog"/>
+                  <xsd:enumeration value="OpenHAB"/>
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>

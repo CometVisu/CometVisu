@@ -13,7 +13,6 @@ qx.Class.define('cv.io.listmodel.RssLog', {
   construct() {
     super();
     this.initModel(new qx.data.Array());
-    this._initRequest();
   },
 
   /*
@@ -117,8 +116,17 @@ qx.Class.define('cv.io.listmodel.RssLog', {
       return requestData;
     },
 
+    _getUrl() {
+      return qx.util.ResourceManager.getInstance().toUri('plugins/rsslog/rsslog.php');
+    },
+
     _initRequest() {
-      this.__request = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/rsslog/rsslog.php'));
+      const url = this._getUrl();
+      if (!url) {
+        this.error('no url to query!');
+        return;
+      }
+      this.__request = new qx.io.request.Xhr(url);
 
       this.__request.set({
         accept: 'application/json',
@@ -146,6 +154,10 @@ qx.Class.define('cv.io.listmodel.RssLog', {
       });
     },
 
+    _convertResponse(data) {
+      return data.responseData.feed.entries;
+    },
+
     __updateModel(ev) {
       const response = ev.getTarget().getResponse();
       if (typeof response === 'string') {
@@ -155,23 +167,25 @@ qx.Class.define('cv.io.listmodel.RssLog', {
         this.fireDataEvent('finished', false);
       } else {
         const model = this.getModel();
-        for (const entry of response.responseData.feed.entries) {
+        const data = this._convertResponse(response);
+        for (const entry of data) {
           if (entry.mapping) {
             entry.mappedState = cv.Application.structureController.mapValue(entry.mapping, entry.state);
           }
         }
-        model.replace(response.responseData.feed.entries);
+        model.replace(data);
         this.fireDataEvent('finished', true);
       }
     },
 
     async refresh() {
-      if (this.__request) {
-        try {
-          await this._sendWithPromise();
-        } catch (e) {
-          this.error(e.message);
-        }
+      if (!this.__request) {
+        this._initRequest();
+      }
+      try {
+        await this._sendWithPromise();
+      } catch (e) {
+        this.error(e.message);
       }
     },
 
