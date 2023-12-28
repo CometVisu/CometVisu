@@ -239,18 +239,6 @@ qx.Class.define('cv.io.mqtt.Client', {
     getResourcePath(name, params) {},
 
     /**
-     * This client provides an own processor for charts data
-     * @return {Boolean}
-     */
-    hasCustomChartsDataProcessor() {},
-
-    /**
-     * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
-     * @param data {var}
-     */
-    processChartsData(data) {},
-
-    /**
      * This function sends a value
      * @param address {String} address to send the value to
      * @param value {String} value to send

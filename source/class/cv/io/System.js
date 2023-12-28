@@ -212,12 +212,6 @@ qx.Class.define('cv.io.System', {
     // not used / needed in this client
     setInitialAddresses(addresses) {},
 
-    hasCustomChartsDataProcessor() {
-      return false;
-    },
-    processChartsData(data) {
-      return data;
-    },
     hasProvider(name) {
       return false;
     },
