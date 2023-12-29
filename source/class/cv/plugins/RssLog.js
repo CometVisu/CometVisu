@@ -505,12 +505,12 @@ qx.Class.define('cv.plugins.RssLog', {
         if (item.tags) {
           const tmp = rowElem.querySelector('span');
           if (Array.isArray(item.tags)) {
-            const tags = item.tags.filter(x => x !== '');
+            const tags = item.tags.filter(x => x !== '').map(x => x.trim());
             if (tags.length > 0) {
               tmp.classList.add.apply(tmp.classList, item.tags);
             }
           } else {
-            tmp.classList.add(item.tags);
+            tmp.classList.add(item.tags.trim());
           }
         }
         if (item.state === '1' && itemack !== 'disable') {

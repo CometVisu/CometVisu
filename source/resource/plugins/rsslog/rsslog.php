@@ -107,7 +107,8 @@ if( isset($_GET['info']) )
   $log_tags    = $_GET['t'] ?? array();
   if(! is_array($log_tags))
     die("wrong format - use one or more t[]= for tags");
-  insert( $database, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
+  $trimmed_tags = array_map('trim', $log_tags);
+  insert( $database, $log_content, $log_title, $trimmed_tags, $log_mapping, $log_state );
 } else if( isset($_GET['dump']) )
 {
   $result = retrieve( $database, NULL, NULL, NULL, true );
