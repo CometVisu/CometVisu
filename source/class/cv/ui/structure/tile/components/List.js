@@ -54,7 +54,11 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.List', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
+  include: [
+    cv.ui.structure.tile.MVisibility,
+    cv.ui.structure.tile.MRefresh,
+    cv.ui.structure.tile.MFullscreen
+  ],
 
   /*
   ***********************************************
@@ -84,6 +88,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _modelInstance: null,
 
     _init() {
+      this._checkEnvironment();
       const element = this._element;
       this._model = [];
       let refreshOnUpdate = false;
@@ -268,6 +273,10 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           ev.stopPropagation();
         }
       });
+
+      if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+        this._initFullscreenSwitch();
+      }
     },
 
     onStateUpdate(ev) {
@@ -409,6 +418,27 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
                 if (val) {
                   return val;
                 }
+              }
+            } else if (content.includes('|')) {
+              // formatting rules
+              const [name, format] = content.split('|');
+              const val = getValue(name, entry);
+              if (val instanceof Date) {
+                const df = new qx.util.format.DateFormat(format);
+                return df.format(val);
+              } else if (val) {
+                return val;
+              }
+            } else if (content.includes('.')) {
+              // first part is an object value, the latter part is JS code then
+              const [name] = content.split('.', 1);
+              const code = content.substring(name.length+1);
+              const val = getValue(name, entry);
+              if (val instanceof Object) {
+                try {
+                  const func = new Function('obj', `return obj.${code};`);
+                  return func(val);
+                } catch (e) {}
               }
             }
             return getValue(content, entry);

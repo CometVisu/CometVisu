@@ -79,6 +79,17 @@ Modell-Eintrag gefüllt. Für den ersten Eintrag aus dem Modell wird also folgen
         <label class="secondary">Sublabel number 0</label>
     </li>
 
+
+.. _tile-component-List-date-format:
+
+Datum formatieren
+^^^^^^^^^^^^^^^^^
+
+Sofern in dem Modell ein Datumswert vorhanden ist, kann dieser entsprechend formatiert ausgegeben werden.
+Angenommen der Datumswert ist im Modell unter dem Namen ``published`` vorhanden, so kann dann im Template folgendes
+benutzt werden ``<div>${published|dd.MM.yyyy HH:mm}</div>``. Das Datumsformat wird durch ein ``|`` vom Variablennamen getrennt.
+Eine Liste der möglichen Format-Einträge gibt es hier: `DateFormat <https://www.cometvisu.org/CometVisu/en/latest/api/#qx.util.format.DateFormat>`_
+
 Daten senden bei Selektion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -373,6 +384,11 @@ Beispiel zur Anzeige der Eintrage aus dem RssLog-Plugin:
             </cv-list>
         </cv-tile>
     </cv-widget>
+
+.. NOTE::
+
+    Der Wert ``publishedDate`` ist als Javascript Date-Object unter dem Namen ``pushlished`` abfragbar. Dadurch wird es möglich
+    das Datum in dem gewünschten Format auszugeben: :ref:`tile-component-List-date-format`
 
 Dieses Modell unterstützt auch einige weitere Features des RssLog-Plugins: Mapping und das Bestätigen oder Löschen eines
 Eintrags.
