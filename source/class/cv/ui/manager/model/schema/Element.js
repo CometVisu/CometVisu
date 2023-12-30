@@ -275,7 +275,6 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // as per the W3C, only one of these may appear per element/type
         let complexType = this._type.localName === 'complexType' ? this._type : this._type.querySelector('complexType');
         allowedContent._grouping = this._parseGrouping(complexType, schema);
-
       } else if (this._type.hasAttribute('type') && this._type.getAttribute('type').match(/^xsd:/)) {
         // this is a really simple node that defines its own baseType
         allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
