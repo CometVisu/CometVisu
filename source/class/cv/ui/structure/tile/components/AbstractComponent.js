@@ -172,7 +172,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       // has mobile attributes
       this.__mobileReplacements = [];
 
-      const check = (element) => {
+      const check = element => {
         for (const name of element.getAttributeNames()) {
           if (name.startsWith('mobile-')) {
             const targetName = name.substring(7);
@@ -184,7 +184,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
             });
           }
         }
-      }
+      };
       check(element);
       if (this._headerFooterParent && this._headerFooterParent.localName === 'cv-widget') {
         check(this._headerFooterParent);
