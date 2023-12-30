@@ -387,7 +387,7 @@ Beispiel zur Anzeige der Eintrage aus dem RssLog-Plugin:
 
 .. NOTE::
 
-    Der Wert ``publishedDate`` ist als Javascript Date-Object unter dem Namen ``pushlished`` abfragbar. Dadurch wird es möglich
+    Der Wert ``publishedDate`` ist als Javascript Date-Object unter dem Namen ``published`` abfragbar. Dadurch wird es möglich
     das Datum in dem gewünschten Format auszugeben: :ref:`tile-component-List-date-format`
 
 Dieses Modell unterstützt auch einige weitere Features des RssLog-Plugins: Mapping und das Bestätigen oder Löschen eines
