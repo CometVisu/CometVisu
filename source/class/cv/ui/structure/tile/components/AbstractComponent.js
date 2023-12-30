@@ -172,15 +172,22 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       // has mobile attributes
       this.__mobileReplacements = [];
 
-      for (const name of element.getAttributeNames()) {
-        if (name.startsWith('mobile-')) {
-          const targetName = name.substring(7);
-          this.__mobileReplacements.push({
-            name: targetName,
-            mobile: element.getAttribute(name),
-            desktop: element.getAttribute(targetName)
-          });
+      const check = (element) => {
+        for (const name of element.getAttributeNames()) {
+          if (name.startsWith('mobile-')) {
+            const targetName = name.substring(7);
+            this.__mobileReplacements.push({
+              name: targetName,
+              mobile: element.getAttribute(name),
+              desktop: element.getAttribute(targetName),
+              target: element
+            });
+          }
         }
+      }
+      check(element);
+      if (this._headerFooterParent && this._headerFooterParent.localName === 'cv-widget') {
+        check(this._headerFooterParent);
       }
 
       if (this.__mobileReplacements.length > 0) {
@@ -195,7 +202,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     __updateAttributes() {
       const isMobile = document.body.classList.contains('mobile');
       for (const entry of this.__mobileReplacements) {
-        this._element.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
+        entry.target.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
       }
     },
 

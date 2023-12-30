@@ -548,6 +548,7 @@
     </xsd:sequence>
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attributeGroup ref="widget-header-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="widget-header-footer">
@@ -1925,8 +1926,7 @@
             <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Widgets auf volle Bildschirmgröße.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
-        <xsd:attribute name="header" type="header"/>
-        <xsd:attribute name="mobile-header" type="header"/>
+        <xsd:attributeGroup ref="widget-header-attributes" />
         <xsd:attribute name="center-x" type="xsd:boolean" default="true"/>
         <xsd:attribute name="center-y" type="xsd:boolean" default="false"/>
       </xsd:extension>
@@ -2778,6 +2778,11 @@
     <xsd:attribute ref="visible-on"/>
     <xsd:attribute ref="class"/>
     <xsd:attribute ref="style"/>
+  </xsd:attributeGroup>
+
+  <xsd:attributeGroup name="widget-header-attributes">
+    <xsd:attribute name="header" type="header"/>
+    <xsd:attribute name="mobile-header" type="header"/>
   </xsd:attributeGroup>
 
   <xsd:attributeGroup name="svg-position-attributes">
