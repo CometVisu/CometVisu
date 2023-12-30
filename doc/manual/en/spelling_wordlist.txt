@@ -366,3 +366,7 @@ Wien
 netsrac
 xy
 MQTT
+br
+anyURI
+playPause
+customizable

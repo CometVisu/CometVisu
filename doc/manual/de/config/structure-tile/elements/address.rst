@@ -121,7 +121,7 @@ Das ``target="last-update:120"`` gibt an, dass die Zeit nicht länger als 120 Se
 wird das Widget als veraltet markiert.
 
 Dieses Feature steht in allen vordefinierten Widgets zur Verfügung. In eigenen Widgets kann man es ebenfalls nutzen,
-mann muss lediglich das slot-Attribut aus dem Beispiel weglassen.
+man muss lediglich das slot-Attribut aus dem Beispiel weglassen.
 
 .. code:: xml
 

@@ -2017,7 +2017,7 @@
       <xsd:attribute name="connection-points">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Define where the connection line should start and end.</xsd:documentation>
-          <xsd:documentation xml:lang="de">Legt fest wo die Verbindungslinie starten und enden sill</xsd:documentation>
+          <xsd:documentation xml:lang="de">Legt fest wo die Verbindungslinie starten und enden soll</xsd:documentation>
         </xsd:annotation>
         <xsd:simpleType>
           <xsd:restriction base="xsd:token">

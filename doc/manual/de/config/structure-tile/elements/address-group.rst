@@ -24,7 +24,7 @@ Wert kann dann in einem Widget angezeigt werden.
     </cv-address-group>
 
 Neben der Addition ``operator="+"`` sind auch Subtraktion ``operator="-"``, Multiplikation ``operator="*"``
-und Division ``operator="/"`` möglich. Zusätzlich kann das Ergbnis auf eine Ganzzahl gerundet werden
+und Division ``operator="/"`` möglich. Zusätzlich kann das Ergebnis auf eine Ganzzahl gerundet werden
 ``round="true"`` und/oder mit einem Faktor multipliziert werden ``factor="100"``.
 
 Durch Verschachtelung können auch komplexere Berechnungen vorgenommen werden. So kann z.B.

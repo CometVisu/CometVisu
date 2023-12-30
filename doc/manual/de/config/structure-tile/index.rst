@@ -258,7 +258,7 @@ oder die Bedienung einer Rolllade (Shutter).
     +----------------------------------------------------------+-----------------------------------------------------------+
     | .. image:: widgets/_static/cv-media-player.png           | :ref:`tile-media-player`                                  |
     |     :width: 150                                          | Steuerung eines Medien-Abspielers mit Start/Stop          |
-    |                                                          | vor & zurück und einer Lautstärkeregelsung                |
+    |                                                          | vor & zurück und einer Lautstärkeregelung                 |
     +----------------------------------------------------------+-----------------------------------------------------------+
     | .. image:: widgets/_static/cv-widget-pair.png            | :ref:`tile-widget-pair`                                   |
     |    :width: 150                                           | Ermöglicht es zwei Kacheln in halber Höhe darzustellen    |

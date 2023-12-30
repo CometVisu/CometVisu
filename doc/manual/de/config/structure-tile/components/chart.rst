@@ -102,7 +102,7 @@ die Kommunikation korrekt funktionieren kann.
 
 **Konfiguration einer RRD-Quelle**
 
-``rrd://<dateiname-ohne-rrd>`` Für die RRD-Datenquelle muss der Dateiname ohne das ".rrd" am Ende angebene werden.
+``rrd://<dateiname-ohne-rrd>`` Für die RRD-Datenquelle muss der Dateiname ohne das ".rrd" am Ende angegeben werden.
 Zusätzlich können als Query-Parameter hinzugefügt werden:
 
 * ``ds``: Auswählen einer der verfügbaren Consolidation Functions des RRDTools (http://rrdtool.org).
