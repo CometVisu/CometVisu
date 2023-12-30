@@ -1,7 +1,9 @@
 docutils
 sh
 sphinx==7.2.6
-lxml
+# 5.0.0 throws "complex type 'cv-energy': The content model is not determinist" which is correct, but the libxml used inside
+# the webworker (the CometVisu's editor schema validation) does not support that correctly so we need to stick to < 5.0
+lxml==4.9.4
 sphinxcontrib-plantuml
 sphinxcontrib-spelling
 sphinx_rtd_theme
