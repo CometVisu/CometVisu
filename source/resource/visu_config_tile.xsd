@@ -902,6 +902,12 @@
     <xsd:attribute ref="refresh" />
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the list in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung der Liste auf volle Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-select">
