@@ -463,4 +463,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   qx.bom.webfonts.WebFontLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFontLoader.js.map?dt=1703705668732
+//# sourceMappingURL=WebFontLoader.js.map?dt=1704036758819

@@ -1695,4 +1695,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1703705661854
+//# sourceMappingURL=Chart.js.map?dt=1704036752870

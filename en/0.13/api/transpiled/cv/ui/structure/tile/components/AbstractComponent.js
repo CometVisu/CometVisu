@@ -178,24 +178,31 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         // has mobile attributes
         this.__P_75_0 = [];
-        var _iterator = _createForOfIteratorHelper(element.getAttributeNames()),
-          _step;
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var name = _step.value;
-            if (name.startsWith('mobile-')) {
-              var targetName = name.substring(7);
-              this.__P_75_0.push({
-                name: targetName,
-                mobile: element.getAttribute(name),
-                desktop: element.getAttribute(targetName)
-              });
+        var check = function check(element) {
+          var _iterator = _createForOfIteratorHelper(element.getAttributeNames()),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var name = _step.value;
+              if (name.startsWith('mobile-')) {
+                var targetName = name.substring(7);
+                _this.__P_75_0.push({
+                  name: targetName,
+                  mobile: element.getAttribute(name),
+                  desktop: element.getAttribute(targetName),
+                  target: element
+                });
+              }
             }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
           }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
+        };
+        check(element);
+        if (this._headerFooterParent && this._headerFooterParent.localName === 'cv-widget') {
+          check(this._headerFooterParent);
         }
         if (this.__P_75_0.length > 0) {
           qx.core.Init.getApplication().addListener('changeMobile', this.__P_75_1, this);
@@ -211,7 +218,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
             var entry = _step2.value;
-            this._element.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
+            entry.target.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
           }
         } catch (err) {
           _iterator2.e(err);
@@ -447,4 +454,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1703705661349
+//# sourceMappingURL=AbstractComponent.js.map?dt=1704036752375

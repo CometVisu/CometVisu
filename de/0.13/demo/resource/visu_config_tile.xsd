@@ -548,6 +548,7 @@
     </xsd:sequence>
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attributeGroup ref="widget-header-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="widget-header-footer">
@@ -582,6 +583,7 @@
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="3">
         <xsd:group ref="Components"/>
+        <xsd:group ref="ComponentTextElements"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="layout-attributes" />
@@ -619,12 +621,16 @@
       <xsd:element name="cv-color" type="cv-color" />
       <xsd:element name="cv-icon" type="cv-icon" />
       <xsd:element name="cv-flow" type="cv-flow" />
-      <xsd:element name="label" type="label"/>
-      <xsd:element name="p" type="p"/>
       <xsd:element name="cv-plugin" type="cv-plugin"/>
       <xsd:element name="cv-menu" type="cv-menu"/>
       <xsd:element name="cv-svg-round-value" type="cv-svg-round-value"/>
-      <xsd:element name="custom" type="custom"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:group name="ComponentTextElements">
+    <xsd:choice>
+      <xsd:element name="label" type="label"/>
+      <xsd:element name="p" type="p"/>
     </xsd:choice>
   </xsd:group>
 
@@ -902,6 +908,12 @@
     <xsd:attribute ref="refresh" />
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the list in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung der Liste auf volle Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-select">
@@ -1892,6 +1904,11 @@
           </xsd:element>
           <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded"/>
           <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
+          <!--
+          we have to repeat these two elements here because the libxml schema validator used in the worker
+          cannot handle complexContent->extension correctly and would mark this as an error.
+          The python lxml library >= 5.0.0 marks this as not deterministic, so we need to use a version < 5.0 there
+          /-->
           <xsd:element name="cv-svg-round-value" type="cv-svg-round-value" minOccurs="0" maxOccurs="unbounded" />
           <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />    
         </xsd:choice>
@@ -1919,8 +1936,7 @@
             <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Widgets auf volle Bildschirmgröße.</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
-        <xsd:attribute name="header" type="header"/>
-        <xsd:attribute name="mobile-header" type="header"/>
+        <xsd:attributeGroup ref="widget-header-attributes" />
         <xsd:attribute name="center-x" type="xsd:boolean" default="true"/>
         <xsd:attribute name="center-y" type="xsd:boolean" default="false"/>
       </xsd:extension>
@@ -2011,7 +2027,7 @@
       <xsd:attribute name="connection-points">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Define where the connection line should start and end.</xsd:documentation>
-          <xsd:documentation xml:lang="de">Legt fest wo die Verbindungslinie starten und enden sill</xsd:documentation>
+          <xsd:documentation xml:lang="de">Legt fest wo die Verbindungslinie starten und enden soll</xsd:documentation>
         </xsd:annotation>
         <xsd:simpleType>
           <xsd:restriction base="xsd:token">
@@ -2774,6 +2790,11 @@
     <xsd:attribute ref="style"/>
   </xsd:attributeGroup>
 
+  <xsd:attributeGroup name="widget-header-attributes">
+    <xsd:attribute name="header" type="header"/>
+    <xsd:attribute name="mobile-header" type="header"/>
+  </xsd:attributeGroup>
+
   <xsd:attributeGroup name="svg-position-attributes">
     <xsd:attribute name="x" type="xsd:integer">
       <xsd:annotation>
@@ -3033,6 +3054,7 @@
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:group ref="Components"/>
+        <xsd:group ref="ComponentTextElements"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />

@@ -180,4 +180,4 @@
   qx.event.handler.ElementResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementResize.js.map?dt=1703705673842
+//# sourceMappingURL=ElementResize.js.map?dt=1704036763754

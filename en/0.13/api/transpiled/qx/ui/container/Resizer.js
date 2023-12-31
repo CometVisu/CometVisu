@@ -84,4 +84,4 @@
   qx.ui.container.Resizer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resizer.js.map?dt=1703705680739
+//# sourceMappingURL=Resizer.js.map?dt=1704036770454

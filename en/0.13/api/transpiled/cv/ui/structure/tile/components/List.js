@@ -37,9 +37,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       "cv.ui.structure.tile.MRefresh": {
         "require": true
       },
+      "cv.ui.structure.tile.MFullscreen": {
+        "require": true
+      },
       "cv.io.Fetch": {},
       "cv.io.listmodel.Registry": {},
       "qx.data.Array": {},
+      "qx.util.format.DateFormat": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
       }
@@ -102,7 +106,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
    */
   qx.Class.define('cv.ui.structure.tile.components.List', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
-    include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
+    include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh, cv.ui.structure.tile.MFullscreen],
     /*
     ***********************************************
       PROPERTIES
@@ -130,6 +134,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _modelInstance: null,
       _init: function _init() {
         var _this = this;
+        this._checkEnvironment();
         var element = this._element;
         this._model = [];
         var refreshOnUpdate = false;
@@ -373,6 +378,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             ev.stopPropagation();
           }
         });
+        if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+          this._initFullscreenSwitch();
+        }
       },
       onStateUpdate: function onStateUpdate(ev) {
         if (ev.detail.target === 'refresh') {
@@ -554,6 +562,32 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                       } finally {
                         _iterator5.f();
                       }
+                    } else if (content.includes('|')) {
+                      // formatting rules
+                      var _content$split = content.split('|'),
+                        _content$split2 = _slicedToArray(_content$split, 2),
+                        _name = _content$split2[0],
+                        format = _content$split2[1];
+                      var _val = getValue(_name, entry);
+                      if (_val instanceof Date) {
+                        var df = new qx.util.format.DateFormat(format);
+                        return df.format(_val);
+                      } else if (_val) {
+                        return _val;
+                      }
+                    } else if (content.includes('.')) {
+                      // first part is an object value, the latter part is JS code then
+                      var _content$split3 = content.split('.', 1),
+                        _content$split4 = _slicedToArray(_content$split3, 1),
+                        _name2 = _content$split4[0];
+                      var code = content.substring(_name2.length + 1);
+                      var _val2 = getValue(_name2, entry);
+                      if (_val2 instanceof Object) {
+                        try {
+                          var func = new Function('obj', "return obj.".concat(code, ";"));
+                          return func(_val2);
+                        } catch (e) {}
+                      }
                     }
                     return getValue(content, entry);
                   });
@@ -631,4 +665,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1703705662349
+//# sourceMappingURL=List.js.map?dt=1704036753253

@@ -1,3 +1,6 @@
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -104,6 +107,9 @@
           // the link is a reference to another element, which means it does not even have it's own name.
           // this one is most certainly deprecated, as we do not have many root-level-elements, and only those can
           // be ref'ed
+        } else if (node.localName === 'complexType') {
+          // the element is a type
+          type = node;
         } else {
           // the element is it's own type
           type = node.querySelector(':scope > complexType');
@@ -193,6 +199,7 @@
       __P_48_1: null,
       __P_48_2: null,
       __P_48_3: null,
+      __P_48_4: undefined,
       /**
        * get and set the type-node for the element
        * @var object  Type-Node (most certainly a complexType)
@@ -208,6 +215,24 @@
           this.setDefaultValue(node.getAttribute('default'));
         }
         this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute('mixed') === 'true');
+      },
+      getExtendedElement: function getExtendedElement() {
+        if (this.__P_48_4 === undefined) {
+          this.__P_48_4 = null;
+          if (this._type.querySelectorAll(':scope > complexContent').length > 0) {
+            var complex = this._type.querySelector(':scope > complexContent');
+            var extension = complex.querySelector(':scope > extension');
+            if (extension) {
+              var schema = this.getSchema();
+              var baseType = extension.getAttribute('base');
+              var extendedNode = schema.getReferencedNode('complexType', baseType);
+              if (extendedNode) {
+                this.__P_48_4 = new cv.ui.manager.model.schema.Element(extendedNode, schema);
+              }
+            }
+          }
+        }
+        return this.__P_48_4;
       },
       /**
        * get a list of allowed elements for this element
@@ -231,33 +256,19 @@
 
         if (this._type.querySelectorAll(':scope > simpleContent').length > 0) {
           // it's simpleContent? Then it's either extension or restriction
-          // anyways, we will handle it, as if it were a simpleType
+          // anyway, we will handle it, as if it were a simpleType
           allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type.querySelector(':scope > simpleContent'), schema);
-        } else if (this._type.querySelectorAll('complexType > choice, complexType> sequence, complexType > group').length > 0) {
+        } else if (this._type.querySelectorAll(':scope > complexContent').length > 0) {
+          var complex = this._type.querySelector(':scope > complexContent');
+          var extension = complex.querySelector(':scope > extension');
+          if (extension) {
+            allowedContent._grouping = this._parseGrouping(extension, schema);
+          }
+        } else if (this._type.querySelectorAll('complexType > choice, complexType > sequence, complexType > group').length > 0) {
           // we have a choice, group or sequence. great
           // as per the W3C, only one of these may appear per element/type
-
-          var tmpDOMGrouping = this._type.querySelector('complexType > choice, complexType > sequence, complexType > group');
-
-          // create the appropriate Schema*-object and append it to this very element
-          switch (tmpDOMGrouping.nodeName) {
-            case 'xsd:choice':
-            case 'choice':
-              allowedContent._grouping = new cv.ui.manager.model.schema.Choice(tmpDOMGrouping, schema);
-              break;
-            case 'xsd:sequence':
-            case 'sequence':
-              allowedContent._grouping = new cv.ui.manager.model.schema.Sequence(tmpDOMGrouping, schema);
-              break;
-            case 'xsd:group':
-            case 'group':
-              allowedContent._grouping = new cv.ui.manager.model.schema.Group(tmpDOMGrouping, schema);
-              break;
-            case 'xsd:any':
-            case 'any':
-              allowedContent._grouping = new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema);
-              break;
-          }
+          var complexType = this._type.localName === 'complexType' ? this._type : this._type.querySelector('complexType');
+          allowedContent._grouping = this._parseGrouping(complexType, schema);
         } else if (this._type.hasAttribute('type') && this._type.getAttribute('type').match(/^xsd:/)) {
           // this is a really simple node that defines its own baseType
           allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
@@ -276,6 +287,29 @@
         this.__P_48_1 = allowedContent;
         return allowedContent;
       },
+      _parseGrouping: function _parseGrouping(node, schema) {
+        var tmpDOMGrouping = node.querySelector(':scope > choice, :scope > sequence, :scope > group');
+        if (!tmpDOMGrouping) {
+          return null;
+        }
+
+        // create the appropriate Schema*-object and append it to this very element
+        switch (tmpDOMGrouping.nodeName) {
+          case 'xsd:choice':
+          case 'choice':
+            return new cv.ui.manager.model.schema.Choice(tmpDOMGrouping, schema);
+          case 'xsd:sequence':
+          case 'sequence':
+            return new cv.ui.manager.model.schema.Sequence(tmpDOMGrouping, schema);
+          case 'xsd:group':
+          case 'group':
+            return new cv.ui.manager.model.schema.Group(tmpDOMGrouping, schema);
+          case 'xsd:any':
+          case 'any':
+            return new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema);
+        }
+        return null;
+      },
       /**
        * get and set the list of allowed attributes
        * @var array   List of SchemaAttribute-objects
@@ -284,14 +318,42 @@
         var _this = this;
         if (this.__P_48_2 === null) {
           var allowedAttributes = {};
+          var attributes = [];
+          var attributeGroups = [];
+          var extendedElement = this.getExtendedElement();
+          if (extendedElement) {
+            Object.assign(allowedAttributes, extendedElement.getAllowedAttributes());
+          }
 
           // allowed attributes
-          var attributes = Array.from(this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute'));
+          var _iterator = _createForOfIteratorHelper(this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute, :scope > complexContent > extension > attribute')),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var attr = _step.value;
+              attributes.push(attr);
+            }
 
-          // now add any attribute that comes from an attribute-group
-          var attributeGroups = Array.from(this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup'));
+            // now add any attribute that comes from an attribute-group
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+          var _iterator2 = _createForOfIteratorHelper(this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup, :scope > complexContent > extension > attributeGroup')),
+            _step2;
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var aGroup = _step2.value;
+              attributeGroups.push(aGroup);
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
           attributeGroups.forEach(function (aGroup) {
-            // get get group itself, by reference if necessary
+            // get group itself, by reference if necessary
             // then extract all attributes, and add them to the list of already know attributes
 
             var attributeGroup = {};
@@ -316,13 +378,13 @@
         return this.__P_48_2;
       },
       /**
-       * are this elements children sortable? this is not the case if a sequence is used, e.g.
+       * are these elements children sortable? this is not the case if a sequence is used, e.g.
        *
        * @return  boolean     are children sortable?
        */
       areChildrenSortable: function areChildrenSortable() {
         var allowedContent = this.getAllowedContent();
-        if (allowedContent._grouping === undefined) {
+        if (!allowedContent._grouping) {
           return true;
         }
 
@@ -337,13 +399,40 @@
        */
       getRequiredElements: function getRequiredElements() {
         var allowedContent = this.getAllowedContent();
-        if (allowedContent._grouping !== undefined) {
+        var required = [];
+        var extendedElement = this.getExtendedElement();
+        if (extendedElement) {
+          var _iterator3 = _createForOfIteratorHelper(extendedElement.getRequiredElements()),
+            _step3;
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var r = _step3.value;
+              required.push(r);
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+        }
+        if (allowedContent._grouping) {
           // we do have a grouping as a child
-          return allowedContent._grouping.getRequiredElements();
+          var _iterator4 = _createForOfIteratorHelper(allowedContent._grouping.getRequiredElements()),
+            _step4;
+          try {
+            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+              var _r = _step4.value;
+              required.push(_r);
+            }
+          } catch (err) {
+            _iterator4.e(err);
+          } finally {
+            _iterator4.f();
+          }
         }
 
         // there is no grouping, hence no elements defined as children
-        return [];
+        return required;
       },
       /**
        * get a list of all allowed elements for this element
@@ -353,14 +442,18 @@
       getAllowedElements: function getAllowedElements(excludeComment) {
         var allowedContent = this.getAllowedContent();
         var allowedElements = {};
-        if (allowedContent._grouping !== undefined) {
+        var extendedElement = this.getExtendedElement();
+        if (extendedElement) {
+          Object.assign(allowedElements, extendedElement.getAllowedElements(excludeComment));
+        }
+        if (allowedContent._grouping) {
           Object.assign(allowedElements, allowedContent._grouping.getAllowedElements());
         }
         var textOnly = false;
         if (this.isMixed()) {
           // mixed elements are allowed to have #text-nodes
           allowedElements['#text'] = this.getSchema().getTextNodeSchemaElement();
-        } else if (allowedContent._text && allowedContent._grouping === undefined) {
+        } else if (allowedContent._text && !allowedContent._grouping) {
           // text only
           allowedElements['#text'] = allowedContent._text;
           textOnly = true;
@@ -378,7 +471,7 @@
        */
       getAllowedElementsSorting: function getAllowedElementsSorting() {
         var allowedContent = this.getAllowedContent();
-        if (allowedContent._grouping !== undefined) {
+        if (allowedContent._grouping) {
           return allowedContent._grouping.getAllowedElementsSorting();
         }
         return undefined;
@@ -404,7 +497,7 @@
        */
       getChildBounds: function getChildBounds() {
         var allowedContent = this.getAllowedContent();
-        if (allowedContent._grouping === undefined) {
+        if (!allowedContent._grouping) {
           // no choice = no idea about bounds
           return undefined;
         }
@@ -469,7 +562,11 @@
 
         // first, get a list of allowed content (don't worry, it's cached)
         var allowedContent = this.getAllowedContent();
-        if (allowedContent._grouping === undefined) {
+        var extendedElement = this.getExtendedElement();
+        if (extendedElement && extendedElement.isChildElementAllowed(child)) {
+          return true;
+        }
+        if (!allowedContent._grouping) {
           // when there is no choice, then there is no allowed element
           return false;
         }
@@ -508,7 +605,11 @@
           // comments are always allowed
           return this.getSchema().getCommentNodeSchemaElement();
         }
-        if (allowedContent._grouping === undefined) {
+        var extendedElement = this.getExtendedElement();
+        if (extendedElement && extendedElement.isElementAllowed(elementName)) {
+          return extendedElement.getSchemaElementForElementName(elementName);
+        }
+        if (!allowedContent._grouping) {
           // when there is no choice, then there is no allowed element
           return undefined;
         }
@@ -598,7 +699,7 @@
           separator = '';
         }
         var allowedContent = this.getAllowedContent();
-        if (allowedContent._grouping === undefined) {
+        if (!allowedContent._grouping) {
           // not really something to match
           return '^';
         }
@@ -613,10 +714,10 @@
     destruct: function destruct() {
       this._disposeMap("__P_48_2");
       this._disposeMap("__P_48_1");
-      this._disposeObjects("__P_48_3");
+      this._disposeObjects("__P_48_3", "__P_48_4");
     }
   });
   cv.ui.manager.model.schema.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1703705659118
+//# sourceMappingURL=Element.js.map?dt=1704036750392

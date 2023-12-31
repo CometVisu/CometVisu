@@ -16,9 +16,9 @@
         "index": 47
       },
       "end": {
-        "line": 262,
+        "line": 267,
         "column": 3,
-        "index": 6468
+        "index": 6625
       }
     },
     "jsdoc": {
@@ -358,9 +358,9 @@
           "index": 3629
         },
         "end": {
-          "line": 179,
+          "line": 184,
           "column": 5,
-          "index": 4341
+          "index": 4498
         }
       },
       "type": "function",
@@ -369,14 +369,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 186,
           "column": 4,
-          "index": 4348
+          "index": 4505
         },
         "end": {
-          "line": 190,
+          "line": 195,
           "column": 5,
-          "index": 4547
+          "index": 4704
         }
       },
       "type": "function",
@@ -390,14 +390,14 @@
     "handleEvent": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 197,
           "column": 4,
-          "index": 4554
+          "index": 4711
         },
         "end": {
-          "line": 243,
+          "line": 248,
           "column": 5,
-          "index": 6069
+          "index": 6226
         }
       },
       "type": "function",
@@ -440,14 +440,14 @@
     "_sendWithPromise": {
       "location": {
         "start": {
-          "line": 245,
+          "line": 250,
           "column": 4,
-          "index": 6076
+          "index": 6233
         },
         "end": {
-          "line": 256,
+          "line": 261,
           "column": 5,
-          "index": 6391
+          "index": 6548
         }
       },
       "type": "function",
@@ -4098,14 +4098,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 259,
+        "line": 264,
         "column": 2,
-        "index": 6400
+        "index": 6557
       },
       "end": {
-        "line": 261,
+        "line": 266,
         "column": 3,
-        "index": 6464
+        "index": 6621
       }
     }
   },

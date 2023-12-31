@@ -153,4 +153,4 @@
   qx.bom.element.AnimationHandle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationHandle.js.map?dt=1703705667464
+//# sourceMappingURL=AnimationHandle.js.map?dt=1704036757641

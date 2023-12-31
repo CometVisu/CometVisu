@@ -61,4 +61,4 @@
   qx.ui.mobile.form.Title.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Title.js.map?dt=1703705687354
+//# sourceMappingURL=Title.js.map?dt=1704036776736

@@ -14,9 +14,9 @@
         "index": 866
       },
       "end": {
-        "line": 432,
+        "line": 439,
         "column": 3,
-        "index": 13111
+        "index": 13366
       }
     },
     "jsdoc": {
@@ -342,9 +342,9 @@
           "index": 3411
         },
         "end": {
-          "line": 193,
+          "line": 200,
           "column": 5,
-          "index": 5183
+          "index": 5439
         }
       },
       "type": "function",
@@ -357,14 +357,14 @@
     "__updateAttributes": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 202,
           "column": 4,
-          "index": 5190
+          "index": 5446
         },
         "end": {
-          "line": 200,
+          "line": 207,
           "column": 5,
-          "index": 5437
+          "index": 5692
         }
       },
       "type": "function",
@@ -373,14 +373,14 @@
     "getElement": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 209,
           "column": 4,
-          "index": 5444
+          "index": 5699
         },
         "end": {
-          "line": 204,
+          "line": 211,
           "column": 5,
-          "index": 5492
+          "index": 5747
         }
       },
       "type": "function",
@@ -393,14 +393,14 @@
     "appendToHeader": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 220,
           "column": 4,
-          "index": 5844
+          "index": 6099
         },
         "end": {
-          "line": 231,
+          "line": 238,
           "column": 5,
-          "index": 6568
+          "index": 6823
         }
       },
       "jsdoc": {
@@ -430,14 +430,14 @@
     "getHeader": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 245,
           "column": 4,
-          "index": 6743
+          "index": 6998
         },
         "end": {
-          "line": 249,
+          "line": 256,
           "column": 5,
-          "index": 7118
+          "index": 7373
         }
       },
       "jsdoc": {
@@ -471,14 +471,14 @@
     "appendToFooter": {
       "location": {
         "start": {
-          "line": 257,
+          "line": 264,
           "column": 4,
-          "index": 7409
+          "index": 7664
         },
         "end": {
-          "line": 266,
+          "line": 273,
           "column": 5,
-          "index": 7745
+          "index": 8000
         }
       },
       "jsdoc": {
@@ -501,14 +501,14 @@
     "getFooter": {
       "location": {
         "start": {
-          "line": 273,
+          "line": 280,
           "column": 4,
-          "index": 7920
+          "index": 8175
         },
         "end": {
-          "line": 284,
+          "line": 291,
           "column": 5,
-          "index": 8295
+          "index": 8550
         }
       },
       "jsdoc": {
@@ -542,14 +542,14 @@
     "registerPreMappingHook": {
       "location": {
         "start": {
-          "line": 292,
+          "line": 299,
           "column": 4,
-          "index": 8586
+          "index": 8841
         },
         "end": {
-          "line": 297,
+          "line": 304,
           "column": 5,
-          "index": 8802
+          "index": 9057
         }
       },
       "jsdoc": {
@@ -579,14 +579,14 @@
     "unregisterPreMappingHook": {
       "location": {
         "start": {
-          "line": 303,
+          "line": 310,
           "column": 4,
-          "index": 8912
+          "index": 9167
         },
         "end": {
-          "line": 305,
+          "line": 312,
           "column": 5,
-          "index": 9038
+          "index": 9293
         }
       },
       "jsdoc": {
@@ -612,14 +612,14 @@
     "_applyValue": {
       "location": {
         "start": {
-          "line": 308,
+          "line": 315,
           "column": 4,
-          "index": 9067
+          "index": 9322
         },
         "end": {
-          "line": 332,
+          "line": 339,
           "column": 5,
-          "index": 10261
+          "index": 10516
         }
       },
       "jsdoc": {},
@@ -632,14 +632,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 342,
           "column": 4,
-          "index": 10321
+          "index": 10576
         },
         "end": {
-          "line": 335,
+          "line": 342,
           "column": 39,
-          "index": 10356
+          "index": 10611
         }
       },
       "jsdoc": {},
@@ -649,14 +649,14 @@
     "_applyStyleClass": {
       "location": {
         "start": {
-          "line": 338,
+          "line": 345,
           "column": 4,
-          "index": 10385
+          "index": 10640
         },
         "end": {
-          "line": 346,
+          "line": 353,
           "column": 5,
-          "index": 10622
+          "index": 10877
         }
       },
       "jsdoc": {},
@@ -669,14 +669,14 @@
     "_applyEnabled": {
       "location": {
         "start": {
-          "line": 348,
+          "line": 355,
           "column": 4,
-          "index": 10629
+          "index": 10884
         },
         "end": {
-          "line": 370,
+          "line": 377,
           "column": 5,
-          "index": 11425
+          "index": 11680
         }
       },
       "type": "function",
@@ -688,14 +688,14 @@
     "_applyVisibility": {
       "location": {
         "start": {
-          "line": 372,
+          "line": 379,
           "column": 4,
-          "index": 11432
+          "index": 11687
         },
         "end": {
-          "line": 390,
+          "line": 397,
           "column": 5,
-          "index": 11912
+          "index": 12167
         }
       },
       "type": "function",
@@ -707,14 +707,14 @@
     "onStateUpdate": {
       "location": {
         "start": {
-          "line": 398,
+          "line": 405,
           "column": 4,
-          "index": 12152
+          "index": 12407
         },
         "end": {
-          "line": 419,
+          "line": 426,
           "column": 5,
-          "index": 12790
+          "index": 13045
         }
       },
       "jsdoc": {
@@ -4617,14 +4617,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 427,
+        "line": 434,
         "column": 2,
-        "index": 12924
+        "index": 13179
       },
       "end": {
-        "line": 431,
+        "line": 438,
         "column": 3,
-        "index": 13107
+        "index": 13362
       }
     },
     "jsdoc": {}

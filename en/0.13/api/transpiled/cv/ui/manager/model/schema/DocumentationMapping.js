@@ -118,6 +118,7 @@
         'tile-component-icon': '/develop/manual/config/structure-tile/components/icon.html#tile-component-icon',
         'tile-component-image': '/develop/manual/config/structure-tile/components/image.html#tile-component-image',
         'tile-component-list': '/develop/manual/config/structure-tile/components/list.html#tile-component-list',
+        'tile-component-list-date-format': '/develop/manual/config/structure-tile/components/list.html#tile-component-list-date-format',
         'tile-component-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-component-menu',
         'tile-component-page': '/develop/manual/config/structure-tile/components/page.html#tile-component-page',
         'tile-component-popup': '/develop/manual/config/structure-tile/components/popup.html#tile-component-popup',
@@ -183,4 +184,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1703705659059
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1704036750321

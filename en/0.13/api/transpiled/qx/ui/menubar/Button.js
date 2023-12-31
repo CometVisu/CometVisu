@@ -161,4 +161,4 @@
   qx.ui.menubar.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1703705685914
+//# sourceMappingURL=Button.js.map?dt=1704036775546

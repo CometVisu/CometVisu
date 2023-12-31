@@ -185,6 +185,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               if (entry.mapping) {
                 entry.mappedState = cv.Application.structureController.mapValue(entry.mapping, entry.state);
               }
+              if (entry.publishedDate) {
+                try {
+                  entry.published = new Date(entry.publishedDate);
+                } catch (e) {}
+              }
             }
           } catch (err) {
             _iterator.e(err);
@@ -309,4 +314,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.io.listmodel.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1703705654054
+//# sourceMappingURL=RssLog.js.map?dt=1704036745901

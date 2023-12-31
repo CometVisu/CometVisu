@@ -86,4 +86,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.ui.treevirtual.celleditor.NodeEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NodeEditor.js.map?dt=1703705691588
+//# sourceMappingURL=NodeEditor.js.map?dt=1704036780535

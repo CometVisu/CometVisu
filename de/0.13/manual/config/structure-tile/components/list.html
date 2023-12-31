@@ -177,6 +177,13 @@ Modell-Eintrag gefüllt. Für den ersten Eintrag aus dem Modell wird also folgen
 <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<section id="datum-formatieren">
+<span id="tile-component-list-date-format"></span><h3>Datum formatieren<a class="headerlink" href="#datum-formatieren" title="Link to this heading"></a></h3>
+<p>Sofern in dem Modell ein Datumswert vorhanden ist, kann dieser entsprechend formatiert ausgegeben werden.
+Angenommen der Datumswert ist im Modell unter dem Namen <code class="docutils literal notranslate"><span class="pre">published</span></code> vorhanden, so kann dann im Template folgendes
+benutzt werden <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;${published|dd.MM.yyyy</span> <span class="pre">HH:mm}&lt;/div&gt;</span></code>. Das Datumsformat wird durch ein <code class="docutils literal notranslate"><span class="pre">|</span></code> vom Variablennamen getrennt.
+Eine Liste der möglichen Format-Einträge gibt es hier: <a class="reference external" href="https://www.cometvisu.org/CometVisu/en/latest/api/#qx.util.format.DateFormat">DateFormat</a></p>
+</section>
 <section id="daten-senden-bei-selektion">
 <h3>Daten senden bei Selektion<a class="headerlink" href="#daten-senden-bei-selektion" title="Link to this heading"></a></h3>
 <p>Sofern als Listen-Elemente <code class="docutils literal notranslate"><span class="pre">&lt;cv-listitem&gt;</span></code> benutzt werden besteht die Möglichkeit beim Klick auf ein solches
@@ -423,6 +430,11 @@ nicht benutzt werden.</p>
 <span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Der Wert <code class="docutils literal notranslate"><span class="pre">publishedDate</span></code> ist als Javascript Date-Object unter dem Namen <code class="docutils literal notranslate"><span class="pre">published</span></code> abfragbar. Dadurch wird es möglich
+das Datum in dem gewünschten Format auszugeben: <a class="reference internal" href="#tile-component-list-date-format"><span class="std std-ref">Datum formatieren</span></a></p>
+</div>
 <p>Dieses Modell unterstützt auch einige weitere Features des RssLog-Plugins: Mapping und das Bestätigen oder Löschen eines
 Eintrags.</p>
 <figure class="align-default">
@@ -495,7 +507,7 @@ zeigt die Historie des Items <code class="docutils literal notranslate"><span cl
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="6"><p>cv-list</p></td>
+<tr class="row-odd"><td rowspan="7"><p>cv-list</p></td>
 <td><p>refresh</p></td>
 <td><p>Zahl</p></td>
 <td><p>Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</p></td>
@@ -508,15 +520,19 @@ zeigt die Historie des Items <code class="docutils literal notranslate"><span cl
 <td><p>integer</p></td>
 <td><p>Anzahl der Spalten die dieses Element belegt</p></td>
 </tr>
-<tr class="row-even"><td><p>visible-on</p></td>
+<tr class="row-even"><td><p>allow-fullscreen</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Erlaubt die Vergrößerung der Liste auf volle Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
 <td><p><em>mobile</em> oder <em>desktop</em></p></td>
 <td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
 </tr>
-<tr class="row-odd"><td><p>class</p></td>
+<tr class="row-even"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-even"><td><p>style</p></td>
+<tr class="row-odd"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>

@@ -60,4 +60,4 @@
   qx.bom.client.Idle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Idle.js.map?dt=1703705666984
+//# sourceMappingURL=Idle.js.map?dt=1704036757192

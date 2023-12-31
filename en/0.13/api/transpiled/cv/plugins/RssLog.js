@@ -472,12 +472,14 @@
             if (Array.isArray(item.tags)) {
               var tags = item.tags.filter(function (x) {
                 return x !== '';
+              }).map(function (x) {
+                return x.trim();
               });
               if (tags.length > 0) {
                 tmp.classList.add.apply(tmp.classList, item.tags);
               }
             } else {
-              tmp.classList.add(item.tags);
+              tmp.classList.add(item.tags.trim());
             }
           }
           if (item.state === '1' && itemack !== 'disable') {
@@ -549,4 +551,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1703705655394
+//# sourceMappingURL=RssLog.js.map?dt=1704036747064

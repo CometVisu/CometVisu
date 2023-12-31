@@ -48,4 +48,4 @@
   qx.ui.mobile.container.IScrollDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IScrollDelegate.js.map?dt=1703705686290
+//# sourceMappingURL=IScrollDelegate.js.map?dt=1704036775794

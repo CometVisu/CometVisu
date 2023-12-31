@@ -101,4 +101,4 @@
   qx.ui.mobile.form.renderer.SinglePlaceholder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SinglePlaceholder.js.map?dt=1703705687459
+//# sourceMappingURL=SinglePlaceholder.js.map?dt=1704036776828

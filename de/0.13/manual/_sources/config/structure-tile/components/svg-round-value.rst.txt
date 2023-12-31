@@ -38,7 +38,7 @@ Optional kann der äußere Kreis als Fortschrittsbalken genutzt werden.
         <cv-address transform="DPT:5.001" mode="read" target="progress">1/4/2</cv-address>
     </cv-svg-round-value>
 
-Ebenso kann die Farbe des Kreises und auch die Farbe des Fortschittsbalken verändert werden.
+Ebenso kann die Farbe des Kreises und auch die Farbe des Fortschrittsbalken verändert werden.
 
 .. widget-example::
 
