@@ -172,6 +172,11 @@ qx.Class.define('cv.io.listmodel.RssLog', {
           if (entry.mapping) {
             entry.mappedState = cv.Application.structureController.mapValue(entry.mapping, entry.state);
           }
+          if (entry.publishedDate) {
+            try {
+              entry.published = new Date(entry.publishedDate);
+            } catch (e) {}
+          }
         }
         model.replace(data);
         this.fireDataEvent('finished', true);

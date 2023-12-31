@@ -134,7 +134,7 @@ class DocParser:
 class DocGenerator(Command):
     _source_version = None
     _doc_version = None
-    _check_line = re.compile(r'^(.+):([\d]+):\sSpell\scheck:\s([\w]+):\s(.*)$')
+    _check_line = re.compile(r'^(.+):([\d]+):\s?:?\sSpell\scheck:\s([\w]+):\s(.*)$')
 
     def __init__(self):
         super(DocGenerator, self).__init__()

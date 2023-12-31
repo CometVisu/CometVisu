@@ -89,6 +89,9 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         // the link is a reference to another element, which means it does not even have it's own name.
         // this one is most certainly deprecated, as we do not have many root-level-elements, and only those can
         // be ref'ed
+      } else if (node.localName === 'complexType') {
+        // the element is a type
+        type = node;
       } else {
         // the element is it's own type
         type = node.querySelector(':scope > complexType');
@@ -190,6 +193,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     __allowedContent: null,
     __allowedAttributes: null,
     __textNodeSchemaElement: null,
+    __extendedElement: undefined,
 
     /**
      * get and set the type-node for the element
@@ -209,6 +213,25 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         this.setDefaultValue(node.getAttribute('default'));
       }
       this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute('mixed') === 'true');
+    },
+
+    getExtendedElement() {
+      if (this.__extendedElement === undefined) {
+        this.__extendedElement = null;
+        if (this._type.querySelectorAll(':scope > complexContent').length > 0) {
+          const complex = this._type.querySelector(':scope > complexContent');
+          const extension = complex.querySelector(':scope > extension');
+          if (extension) {
+            const schema = this.getSchema();
+            const baseType = extension.getAttribute('base');
+            const extendedNode = schema.getReferencedNode('complexType', baseType);
+            if (extendedNode) {
+              this.__extendedElement = new cv.ui.manager.model.schema.Element(extendedNode, schema);
+            }
+          }
+        }
+      }
+      return this.__extendedElement;
     },
 
     /**
@@ -234,44 +257,24 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
       if (this._type.querySelectorAll(':scope > simpleContent').length > 0) {
         // it's simpleContent? Then it's either extension or restriction
-        // anyways, we will handle it, as if it were a simpleType
+        // anyway, we will handle it, as if it were a simpleType
         allowedContent._text = new cv.ui.manager.model.schema.SimpleType(
           this._type.querySelector(':scope > simpleContent'),
           schema
         );
+      } else if (this._type.querySelectorAll(':scope > complexContent').length > 0) {
+        const complex = this._type.querySelector(':scope > complexContent');
+        const extension = complex.querySelector(':scope > extension');
+        if (extension) {
+          allowedContent._grouping = this._parseGrouping(extension, schema);
+        }
       } else if (
-        this._type.querySelectorAll('complexType > choice, complexType> sequence, complexType > group').length > 0
+        this._type.querySelectorAll('complexType > choice, complexType > sequence, complexType > group').length > 0
       ) {
         // we have a choice, group or sequence. great
         // as per the W3C, only one of these may appear per element/type
-
-        let tmpDOMGrouping = this._type.querySelector(
-          'complexType > choice, complexType > sequence, complexType > group'
-        );
-
-        // create the appropriate Schema*-object and append it to this very element
-        switch (tmpDOMGrouping.nodeName) {
-          case 'xsd:choice':
-          case 'choice':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Choice(tmpDOMGrouping, schema);
-
-            break;
-          case 'xsd:sequence':
-          case 'sequence':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Sequence(tmpDOMGrouping, schema);
-
-            break;
-          case 'xsd:group':
-          case 'group':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Group(tmpDOMGrouping, schema);
-
-            break;
-          case 'xsd:any':
-          case 'any':
-            allowedContent._grouping = new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema);
-
-            break;
-        }
+        let complexType = this._type.localName === 'complexType' ? this._type : this._type.querySelector('complexType');
+        allowedContent._grouping = this._parseGrouping(complexType, schema);
       } else if (this._type.hasAttribute('type') && this._type.getAttribute('type').match(/^xsd:/)) {
         // this is a really simple node that defines its own baseType
         allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
@@ -294,6 +297,36 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       return allowedContent;
     },
 
+    _parseGrouping(node, schema) {
+      let tmpDOMGrouping = node.querySelector(
+        ':scope > choice, :scope > sequence, :scope > group'
+      );
+      if (!tmpDOMGrouping) {
+        return null;
+      }
+
+      // create the appropriate Schema*-object and append it to this very element
+      switch (tmpDOMGrouping.nodeName) {
+        case 'xsd:choice':
+        case 'choice':
+          return new cv.ui.manager.model.schema.Choice(tmpDOMGrouping, schema);
+
+        case 'xsd:sequence':
+        case 'sequence':
+          return new cv.ui.manager.model.schema.Sequence(tmpDOMGrouping, schema);
+
+        case 'xsd:group':
+        case 'group':
+          return new cv.ui.manager.model.schema.Group(tmpDOMGrouping, schema);
+
+        case 'xsd:any':
+        case 'any':
+          return new cv.ui.manager.model.schema.Any(tmpDOMGrouping, schema);
+      }
+
+      return null;
+    },
+
     /**
      * get and set the list of allowed attributes
      * @var array   List of SchemaAttribute-objects
@@ -302,18 +335,25 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (this.__allowedAttributes === null) {
         const allowedAttributes = {};
 
+        const attributes = [];
+        const attributeGroups = [];
+        const extendedElement = this.getExtendedElement();
+        if (extendedElement) {
+          Object.assign(allowedAttributes, extendedElement.getAllowedAttributes());
+        }
+
         // allowed attributes
-        const attributes = Array.from(
-          this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute')
-        );
+        for (const attr of this._type.querySelectorAll(':scope > attribute, :scope > simpleContent > extension > attribute, :scope > complexContent > extension > attribute')) {
+          attributes.push(attr);
+        }
 
         // now add any attribute that comes from an attribute-group
-        const attributeGroups = Array.from(
-          this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup')
-        );
+        for (const aGroup of this._type.querySelectorAll(':scope > attributeGroup, :scope > simpleContent > extension > attributeGroup, :scope > complexContent > extension > attributeGroup')) {
+          attributeGroups.push(aGroup);
+        }
 
         attributeGroups.forEach(aGroup => {
-          // get get group itself, by reference if necessary
+          // get group itself, by reference if necessary
           // then extract all attributes, and add them to the list of already know attributes
 
           let attributeGroup = {};
@@ -342,14 +382,14 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     },
 
     /**
-     * are this elements children sortable? this is not the case if a sequence is used, e.g.
+     * are these elements children sortable? this is not the case if a sequence is used, e.g.
      *
      * @return  boolean     are children sortable?
      */
     areChildrenSortable() {
       const allowedContent = this.getAllowedContent();
 
-      if (allowedContent._grouping === undefined) {
+      if (!allowedContent._grouping) {
         return true;
       }
 
@@ -366,13 +406,24 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     getRequiredElements() {
       const allowedContent = this.getAllowedContent();
 
-      if (allowedContent._grouping !== undefined) {
+      const required = [];
+
+      const extendedElement = this.getExtendedElement();
+      if (extendedElement) {
+        for (const r of extendedElement.getRequiredElements()) {
+          required.push(r);
+        }
+      }
+
+      if (allowedContent._grouping) {
         // we do have a grouping as a child
-        return allowedContent._grouping.getRequiredElements();
+        for (const r of allowedContent._grouping.getRequiredElements()) {
+          required.push(r);
+        }
       }
 
       // there is no grouping, hence no elements defined as children
-      return [];
+      return required;
     },
 
     /**
@@ -383,8 +434,12 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     getAllowedElements(excludeComment) {
       const allowedContent = this.getAllowedContent();
 
-      const allowedElements = {};
-      if (allowedContent._grouping !== undefined) {
+      let allowedElements = {};
+      const extendedElement = this.getExtendedElement();
+      if (extendedElement) {
+        Object.assign(allowedElements, extendedElement.getAllowedElements(excludeComment));
+      }
+      if (allowedContent._grouping) {
         Object.assign(allowedElements, allowedContent._grouping.getAllowedElements());
       }
 
@@ -392,7 +447,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       if (this.isMixed()) {
         // mixed elements are allowed to have #text-nodes
         allowedElements['#text'] = this.getSchema().getTextNodeSchemaElement();
-      } else if (allowedContent._text && allowedContent._grouping === undefined) {
+      } else if (allowedContent._text && !allowedContent._grouping) {
         // text only
         allowedElements['#text'] = allowedContent._text;
         textOnly = true;
@@ -414,7 +469,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     getAllowedElementsSorting() {
       const allowedContent = this.getAllowedContent();
 
-      if (allowedContent._grouping !== undefined) {
+      if (allowedContent._grouping) {
         return allowedContent._grouping.getAllowedElementsSorting();
       }
 
@@ -444,7 +499,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
     getChildBounds() {
       const allowedContent = this.getAllowedContent();
 
-      if (allowedContent._grouping === undefined) {
+      if (!allowedContent._grouping) {
         // no choice = no idea about bounds
         return undefined;
       }
@@ -518,7 +573,12 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
       // first, get a list of allowed content (don't worry, it's cached)
       const allowedContent = this.getAllowedContent();
 
-      if (allowedContent._grouping === undefined) {
+      const extendedElement = this.getExtendedElement();
+      if (extendedElement && extendedElement.isChildElementAllowed(child)) {
+        return true;
+      }
+
+      if (!allowedContent._grouping) {
         // when there is no choice, then there is no allowed element
         return false;
       }
@@ -562,7 +622,12 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
         return this.getSchema().getCommentNodeSchemaElement();
       }
 
-      if (allowedContent._grouping === undefined) {
+      const extendedElement = this.getExtendedElement();
+      if (extendedElement && extendedElement.isElementAllowed(elementName)) {
+        return extendedElement.getSchemaElementForElementName(elementName);
+      }
+
+      if (!allowedContent._grouping) {
         // when there is no choice, then there is no allowed element
         return undefined;
       }
@@ -665,7 +730,7 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
 
       const allowedContent = this.getAllowedContent();
 
-      if (allowedContent._grouping === undefined) {
+      if (!allowedContent._grouping) {
         // not really something to match
         return '^';
       }
@@ -682,6 +747,6 @@ qx.Class.define('cv.ui.manager.model.schema.Element', {
   destruct() {
     this._disposeMap('__allowedAttributes');
     this._disposeMap('__allowedContent');
-    this._disposeObjects('__textNodeSchemaElement');
+    this._disposeObjects('__textNodeSchemaElement', '__extendedElement');
   }
 });
