@@ -32,9 +32,10 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     oldController = cv.Application.structureController;
     cv.Application.structureController = cv.ui.structure.tile.Controller.getInstance();
 
-    clientMock = jasmine.createSpyObj('client', ['login', 'subscribe', 'terminate', 'dispose'], {update: null});
+    clientMock = jasmine.createSpyObj('client', ['login', 'subscribe', 'terminate', 'dispose'], {update: null, configuredIn: 'config'});
 
     spyOn(cv.io.BackendConnections, 'addBackendClient').and.returnValue(clientMock);
+    spyOn(cv.io.BackendConnections, 'getClient').and.returnValue(clientMock);
     const model = cv.data.Model.getInstance();
     spyOn(model, 'getAddresses').and.returnValue(['addr1']);
     spyOn(model, 'setDefaultBackendName');
@@ -128,7 +129,6 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     const second = document.createElement('cv-backend');
     second.setAttribute('type', 'knxd');
     cv.io.BackendConnections.hasClient.and.callThrough();
-    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => ({ configuredIn: 'config'}));
 
     spyOn(qx.log.Logger, 'warn').and.callFake(() => null);
     document.body.appendChild(second);
