@@ -259,6 +259,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
           cv.TemplateEngine.getInstance().setDomFinished(true);
 
+          if (qx.core.Environment.get('qx.debug')) {
+            cv.report.Replay.start();
+          }
+
           const main = document.body.querySelector(':scope > main');
           if (main) {
             let shrinkHeight = -1;

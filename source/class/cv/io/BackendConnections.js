@@ -290,9 +290,6 @@ qx.Class.define('cv.io.BackendConnections', {
     },
 
     startInitialRequest(name) {
-      if (qx.core.Environment.get('qx.debug')) {
-        cv.report.Replay.start();
-      }
       const client = this.getClient(name);
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
