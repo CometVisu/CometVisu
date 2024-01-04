@@ -143,12 +143,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
               this.debug(name, 'apply update', address, value);
               model.onUpdate(address, value, name);
             }
-            const addressesToSubscribe = model.getAddresses(name);
-            this.debug(name, 'subscribing to', addressesToSubscribe.length, 'addresses');
-
-            if (addressesToSubscribe.length !== 0) {
-              client.subscribe(addressesToSubscribe);
-            }
+            cv.io.BackendConnections.startInitialRequest(name);
           };
           if (cv.TemplateEngine.getInstance().isDomFinished()) {
             doSubscribe();
