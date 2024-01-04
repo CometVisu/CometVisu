@@ -146,13 +146,18 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     login() {
       const clients = cv.io.BackendConnections.getClients();
       let client;
+      const promises = [];
       for (const name in clients) {
         client = clients[name];
-        client.login(true, cv.Config.configSettings.credentials, () => {
-          this.debug(name + ' logged in');
-          cv.io.BackendConnections.startInitialRequest(name);
-        });
+        promises.push(new Promise((res, rej) => {
+          client.login(true, cv.Config.configSettings.credentials, () => {
+            this.debug(name + ' logged in');
+            cv.io.BackendConnections.startInitialRequest(name);
+            res();
+          });
+        }));
       }
+      return Promise.all(promises);
     },
 
     parseSettings(xml, done) {
@@ -223,7 +228,11 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
       cv.TemplateEngine.getInstance().setDomFinished(true);
 
-      this.login();
+      this.login().then(() => {
+        if (qx.core.Environment.get('qx.debug')) {
+          cv.report.Replay.start();
+        }
+      });
 
       this.initLayout();
     },

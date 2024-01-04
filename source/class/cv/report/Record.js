@@ -293,6 +293,9 @@ qx.Class.define('cv.report.Record', {
             data.body = '{}';
             data.error = 'Invalid JSON content: ' + e.toString();
           }
+        } else if (data.url.includes('/config/visu_config') && data.url.endsWith('.xml') && data.body) {
+          data.body = data.body.replaceAll(/username="[^"]+"/gi, 'username="replay"');
+          data.body = data.body.replaceAll(/password="[^"]+"/gi, 'password="***"');
         }
       }
     },
