@@ -375,7 +375,7 @@ qx.Class.define('cv.report.Record', {
     },
 
     recordNativeEvent(ev) {
-      if (!cv.report.Record.USER_EVENTS.test(ev.type) || ev.$$RID) {
+      if (!cv.report.Record.USER_EVENTS.test(ev.type) || ev.$$RID || ev.constructor.name === 'CustomEvent') {
         return;
       }
       ev.$$RID = this.__ID;
