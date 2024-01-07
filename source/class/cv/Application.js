@@ -333,7 +333,7 @@ qx.Class.define('cv.Application', {
         '-----------------------------------------------------------\n' +
         ' ©2010-' +
         new Date().getFullYear() +
-        ' Christian Mayer and the CometVisu contributers.\n' +
+        ' Christian Mayer and the CometVisu contributors.\n' +
         ' Version: ' +
         cv.Version.VERSION +
         '\n';
@@ -360,9 +360,6 @@ qx.Class.define('cv.Application', {
       // Call super class
       super.main();
       this.block(true);
-
-      // run svg4everybody to support SVG sprites in older browsers
-      svg4everybody();
 
       // support native logging capabilities, e.g. Firebug for Firefox
       //noinspection BadExpressionStatementJS,JSHint

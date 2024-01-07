@@ -33,10 +33,12 @@ qx.Class.define('cv.parser.pure.widgets.Page', {
       const storagePath = cv.parser.pure.WidgetParser.getStoragePath(page, path);
 
       const addresses = {};
-      if (page.getAttribute('ga')) {
-        const src = page.getAttribute('ga');
+      const src = page.getAttribute('ga');
+      if (src) {
         cv.data.Model.getInstance().addAddress(src, storagePath);
-        addresses[src] = ['DPT:1.001', cv.data.Model.READ];
+        const transform = page.getAttribute('ga_transform') ?? 'DPT:1.001';
+        const clients = page.getAttribute('clients') ?? '';
+        addresses[src] = { transform, mode: cv.data.Model.READ, clients };
       }
 
       const name = page.getAttribute('name');
