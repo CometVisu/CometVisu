@@ -257,8 +257,8 @@
             <cv-button class="round-button" row="2" column="2" slot-mapping="tile-play-stop"
                        slot-progress-mapping="tile-play-progress">
                 <slot name="playPauseAddress">NEEDS ADDRESS</slot>
-                <slot name="playTimeAddress">NEEDS ADDRESS</slot>
-                <slot name="durationAddress">NEEDS ADDRESS</slot>
+                <slot name="playTimeAddress" target="progress">NEEDS ADDRESS</slot>
+                <slot name="durationAddress" target="store:duration">NEEDS ADDRESS</slot>
                 <cv-icon class="value">ri-stop-fill</cv-icon>
             </cv-button>
             <cv-button class="round-button" row="2" column="3" size="small">
