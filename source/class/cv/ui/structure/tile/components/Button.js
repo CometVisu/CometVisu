@@ -378,8 +378,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       } else if (target.startsWith('store:')) {
         this.__store.set(target.substring(6), ev.detail.state);
       } else if (target === 'store') {
-        // use address as store key
-        this.__store.set(ev.detail.address, ev.detail.state);
+        // use targetConfig as store key if available, address as fallback
+        this.__store.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
       }
     },
 
