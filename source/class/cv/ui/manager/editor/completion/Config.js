@@ -283,13 +283,15 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
             const templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
             templatesString.split('</template>').forEach(function (rawTemplate) {
               const nameMatch = /<template name="([^"]+)"/.exec(rawTemplate);
-              // search for variables
-              const variables = [];
-              const vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
-              while ((vmap = vregex.exec(rawTemplate)) !== null) {
-                variables.push(vmap[1]);
+              if (nameMatch) {
+                // search for variables
+                const variables = [];
+                const vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
+                while ((vmap = vregex.exec(rawTemplate)) !== null) {
+                  variables.push(vmap[1]);
+                }
+                templates[nameMatch[1]] = variables;
               }
-              templates[nameMatch[1]] = variables;
             }, this);
           }
 
