@@ -518,6 +518,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           interval = 24 * 60 * 60;
           periodStart.setDate(periodStart.getDate() - currentPeriod);
           periodStart.setHours(0, 0, 0, 0);
+          end.setTime(periodStart.getTime());
           end.setDate(periodStart.getDate() + 1);
           end.setHours(0, 0, 0, 0);
           break;
@@ -536,6 +537,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           periodStart.setMonth(periodStart.getMonth() - currentPeriod);
           periodStart.setDate(1);
           periodStart.setHours(0, 0, 0, 0);
+          end.setTime(periodStart.getTime());
           end.setMonth(periodStart.getMonth() + 1, 1);
           end.setHours(0, 0, 0, 0);
           break;
