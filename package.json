@@ -80,6 +80,7 @@
     "mustache": "^4.0.1",
     "protractor": "^7.0.0",
     "request": "^2.88.2",
+    "selenium-webdriver": "^4.16.0",
     "svgmin": "^0.1.0",
     "uglify-es": "^3.3.9",
     "xml-js": "^1.6.11"
