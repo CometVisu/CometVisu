@@ -45,7 +45,7 @@ The parameter ``design`` overrides the design in the config file.
 *forceReload* - Cache settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The parameter ``forceReload`` with the value *true* 
+The parameter ``forceReload`` with the value *true*
 (``forceReload=true``) safely reloads all files.
 
 This may be important after customizing the config file.
@@ -65,12 +65,24 @@ parameter is not needed at all.
 
 In addition, it is still possible to specify the name of the start page
 via the *startpage* parameter. So if you want to use a subpage with
-the name *Bad* as the start page, the URL is 
+the name *Bad* as the start page, the URL is
 ``http://<server>/cometvisu/?Config=home&startpage=Bad``
 
 Especially if you have distributed visual acuity in several places
 in the house, it can make sense to display the subpage that corresponds
 to the room first, depending on the Visu location, for a complete config file.
+
+.. _urlClientID:
+
+*clientID* - Client ID
+~~~~~~~~~~~~~~~~~~~~~~
+
+The optional parameter ``clientID`` can give this visu instance an
+identification.
+
+Some widgets can behave differently depending on the set client ID, e.g.
+the :ref:`page widget <pageClientSelection>` can select which visus should
+switch the displayed page on a bus event.
 
 *forceDevice* - Override output device
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

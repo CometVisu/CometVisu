@@ -122,6 +122,64 @@ Erklärung zu den Menübezeichnungen
     :alt: Menübezeichnungen
     :target: ../../../_images/menu_expl_page.png
 
+Bus initiierter Seitenwechsel
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Kommunikation
+.............
+
+Wenn das Attribut ``ga`` auf eine Bus-Adresse gesetzt wird, so kann über eine
+Bus-Botschaft daran die Visu-Anzeige auf diese Seite gewechselt werden.
+
+Wird nur das Attribut ``ga`` gesetzt, so wird immer bei einem Wert von 1 (bei KNX:
+DPT:1 oder DPT:5) die Seite gewechselt.
+
+Wird das Attribut ``transform`` gesetzt, so wird die Adresse bei ``ga`` mit
+diesem Transform als Datentyp interpretiert.
+
+.. warning::
+
+    Die Verwendung von ``ga`` ohne ``transform`` ist veraltet und wird in
+    zukünftigen Versionen nicht mehr unterstützt werden.
+
+.. _pageClientAuswahl:
+
+Client-Auswahl
+..............
+
+Um den für den Seitenwechsel notwendigen Wert zu definieren oder aber auch um
+den Seitenwechsel nur auf einem Teil der Visus zu aktivieren wird das Attribut
+``clients`` verwendet. Inhalt ist eine (über Komma getrennte) Liste aus
+:ref:`Client-ID <urlClientID>`
+mit Doppelpunkt und dem Trigger-Wert. Über die Wildcard ``*`` können mehrere
+Clients gleichzeitig angesprochen werden, denen Client-ID mit dem gleichen
+Text beginnt.
+
+**Beispiele:**
+
+* ``clients="*:1"``
+    Jede Visu reagiert wenn eine ``1`` gesendet wird.
+* ``clients="Diele_EG"``
+    Nur die Visu ``Diele_EG`` reagiert, es muss eine ``1`` gesendet werden.
+* ``clients="Diele_EG:0"``
+    Nur die Visu ``Diele_EG`` reagiert, es muss eine ``0`` gesendet werden.
+* ``clients="Diele_UG:0, Diele_EG:1"``
+    Die Visu ``Diele_UG`` reagiert wenn eine ``0`` gesendet wird, die
+    ``Diele_EG`` reagiert, wenn auf die gleiche ``ga`` eine ``1`` gesendet wird.
+* ``clients="Diele_*"`` oder ``clients="Diele_*:1"``
+    Jeder Client der mit ``Diele_`` anfängt (wie z.B. ``Diele_UG`` und
+    ``Diele_EG``) reagiert, es muss eine ``1`` gesendet werden.
+
+Ein möglicher Anwendungsfall wären in der Wand verbaute Touch-Panel PCs die
+alle bei Betätigung der Klingel auf die Visu-Seite mit dem Außenkamera-Bild
+umschalten sollen (dann würde die Kamera-Seite mit ``clients="Diele_*:1"``
+alle Touch-Panels adressieren, die Visu auf dem Handy aber nicht reagieren.
+Wenn nun auf die Adresse in ``ga`` eine ``1`` gesendet wird, schalten die
+Clients die Seite um).
+Auch üblich ist der Anwendungsfall, bei dem beim Öffnen der Haustüre die Visu
+in der Diele im Erdgeschoss auf die Seite mit dem Verschluss-Status aller
+Fenster gewechselt werden soll (also ``clients="Diele_EG:1"``), damit man beim
+Verlassen des Hauses weiß, ob alles sicher abgeschlossen ist.
 
 XML Syntax
 ----------

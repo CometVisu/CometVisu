@@ -43,7 +43,6 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     // prevent listening to the first message to the GA in the first second
     // as it might be of the trigger type and still be in the knxd cache
     this.__inhibitGA4Startup = setTimeout(() => {
-      console.error('Cleaning inhibit!', this.__inhibitGA4Startup);
       this.__inhibitGA4Startup = null;
     }, 1000);
 
@@ -342,7 +341,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
       const value = this.applyTransform(address, data);
       const filters = this.getAddress()[address]?.clients ?? '';
-      let filterMatch = true;
+      let filterMatch = parseInt(data) === 1; // fallback for old behavior
       if (cv.Config.clientID !== null && filters !== '') {
         // apply filter
         filterMatch = false;
