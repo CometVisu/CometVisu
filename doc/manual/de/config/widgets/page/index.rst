@@ -147,6 +147,10 @@ diesem Transform als Datentyp interpretiert.
 Client-Auswahl
 ..............
 
+.. spelling:word-list::
+
+    clients
+
 Um den für den Seitenwechsel notwendigen Wert zu definieren oder aber auch um
 den Seitenwechsel nur auf einem Teil der Visus zu aktivieren wird das Attribut
 ``clients`` verwendet. Inhalt ist eine (über Komma getrennte) Liste aus

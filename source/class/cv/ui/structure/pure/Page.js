@@ -346,7 +346,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         // apply filter
         filterMatch = false;
         for (const filter of filters.split(',')) {
-          const [dummy1, id, dummy2, triggerValue] = filter.match(/ *([^: ]+) *(: *([^ ]+))? */);
+          const [, id, , triggerValue] = filter.match(/ *([^: ]+) *(: *([^ ]+))? */);
           if (id === cv.Config.clientID || (id.at(-1) === '*' && id.substring(0, id.length-1) === cv.Config.clientID.substring(0, id.length-1))) {
             // the clientID matches the filter
             if (triggerValue === undefined || triggerValue === `${value}`) {

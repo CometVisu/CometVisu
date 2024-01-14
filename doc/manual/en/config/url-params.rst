@@ -81,7 +81,7 @@ The optional parameter ``clientID`` can give this visu instance an
 identification.
 
 Some widgets can behave differently depending on the set client ID, e.g.
-the :ref:`page widget <pageClientSelection>` can select which visus should
+the :ref:`page widget <pageClientSelection>` can select which visu should
 switch the displayed page on a bus event.
 
 *forceDevice* - Override output device

@@ -101,6 +101,10 @@ Bus initiated page switch
 Communication
 .............
 
+.. spelling:word-list::
+
+    clientIDs
+
 When the attribute ``ga`` is set to a bus address, a bus message to that
 address can switch the displayed page to this page.
 

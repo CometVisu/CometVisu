@@ -153,7 +153,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
      * @param instant {Boolean} Animate or instant change
      * @param relaxDisplay {Boolean} Let the handle move to an unstable position
      *   to give visual feedback that something does happen during interaction
-     * @returns realValue - the real value that is respecting the configured restraints
+     * @returns {Number} The real value that is respecting the configured restraints
      * @private
      */
     __setSliderTo(value, instant, relaxDisplay = false) {
