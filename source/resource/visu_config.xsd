@@ -933,7 +933,7 @@
         <xsd:documentation xml:lang="de">Adresse um über den Bus auf diese Seite zu wechseln.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="ga_transform" ref="transform" use="optional">
+    <xsd:attribute ref="transform" use="optional">
       <xsd:annotation>
         <xsd:appinfo>level:expert</xsd:appinfo>
         <xsd:documentation xml:lang="en">Transformation of the bus system value to be shown.</xsd:documentation>
