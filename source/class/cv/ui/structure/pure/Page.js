@@ -358,7 +358,13 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       }
       if (filterMatch) {
         cv.Application.structureController.scrollToPage(this.getPath());
-        this.sendToBackend('0');
+        // TODO: the page used to send a '0' when the page was switched.
+        // But as that was completely hard coded it is now disabled to prevent
+        // any side effects. It is also not documented.
+        // When the infrastructure for bus initiated page switches is moved
+        // from using the attribute `ga` to a full blown `address` element
+        // it can be activated again by respecting the `write` mode.
+        //this.sendToBackend('0');
       }
       // }
     },

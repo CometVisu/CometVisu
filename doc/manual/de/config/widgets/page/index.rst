@@ -128,8 +128,9 @@ Bus initiierter Seitenwechsel
 Kommunikation
 .............
 
-Wenn das Attribut ``ga`` auf eine Bus-Adresse gesetzt wird, so kann über eine
-Bus-Botschaft daran die Visu-Anzeige auf diese Seite gewechselt werden.
+Um über eine Bus-Botschaft die in der Visu angezeigte Seite zu wechseln, kann
+bei dem anzuzeigenden ``<page>`` Element das Attribut ``ga`` mit der
+Ziel-Bus-Adresse gesetzt werden.
 
 Wird nur das Attribut ``ga`` gesetzt, so wird immer bei einem Wert von 1 (bei KNX:
 DPT:1 oder DPT:5) die Seite gewechselt.
