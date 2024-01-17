@@ -1,7 +1,7 @@
-/* Page-spec.js 
- * 
+/* Page-spec.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -136,6 +136,11 @@ describe('testing a page widget', function () {
     page.update('1/0/0', 1);
 
     //expect(page.sendToBackend).toHaveBeenCalledWith('0'); // currently not implemented
+    // first call should be hihibited (assuming it's within 1 second)
+    expect(controller.scrollToPage).not.toHaveBeenCalledWith('id_0_');
+
+    // second call should work now
+    page.update('1/0/0', 1);
     expect(controller.scrollToPage).toHaveBeenCalledWith('id_0_');
   });
 
