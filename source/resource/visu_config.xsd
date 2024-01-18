@@ -30,7 +30,7 @@
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
-  
+
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional">
       <xsd:annotation>
@@ -275,7 +275,7 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Change the color of the displayed value depending on its value. See also :ref:`styling`</xsd:documentation>
       <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;styling&gt;`</xsd:documentation>
-    </xsd:annotation> 
+    </xsd:annotation>
   </xsd:attribute>
   <xsd:attribute name="value" type="xsd:string" />
 
@@ -286,7 +286,7 @@
       <xsd:documentation xml:lang="de">Auswahl der Darstellungsvariante. Siehe auch :ref:`Flavour &lt;flavour&gt;`.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
-  
+
   <xsd:attribute name="target" type="xsd:string">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The name of the page, that should be called.</xsd:documentation>
@@ -394,7 +394,7 @@
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
-  
+
   <xsd:attribute name="backend">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
@@ -423,7 +423,7 @@
       <xsd:enumeration value="bottom" />
     </xsd:restriction>
   </xsd:simpleType>
-  
+
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
@@ -437,7 +437,7 @@
       <xsd:documentation xml:lang="de">Sendet den Wert für den langen Tastendruck erst nachdem der Button losgelassen wurde (=true), oder sofort nachdem der Schwellwert für den kurzen Tastendruck überschritten wurde (=false).</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
-  
+
 
   <xsd:attribute name="lang">
     <xsd:simpleType>
@@ -929,6 +929,22 @@
     <xsd:attribute name="ga" type="addr" use="optional">
       <xsd:annotation>
         <xsd:appinfo>level:expert</xsd:appinfo>
+        <xsd:documentation xml:lang="en">Address to switch to this page by sending a bus message.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Adresse um über den Bus auf diese Seite zu wechseln.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="transform" use="optional">
+      <xsd:annotation>
+        <xsd:appinfo>level:expert</xsd:appinfo>
+        <xsd:documentation xml:lang="en">Transformation of the bus system value to be shown.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Umwandlung des Bus-System Wertes um angezeigt werden zu können.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="clients" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:appinfo>level:expert</xsd:appinfo>
+        <xsd:documentation xml:lang="en">Filter with all clientIDs where this GA applies. Comma separated list.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Filter mit allen ClientIDs für die die GA gültig ist. Komma separierte Liste.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="visible" type="xsd:boolean">
@@ -1073,9 +1089,9 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="address" type="address" minOccurs="1"  maxOccurs="unbounded"/> 
+      <xsd:element name="address" type="address" minOccurs="1"  maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="type" use="optional" >              
+    <xsd:attribute name="type" use="optional" >
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="Radial" />
@@ -1100,7 +1116,7 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-    <xsd:attribute name="subtype" use="optional" >              
+    <xsd:attribute name="subtype" use="optional" >
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="type1" />
@@ -1125,7 +1141,7 @@
     <xsd:attribute name="autoScroll" type="xsd:boolean" use="optional" />
     <xsd:attribute name="valuesNumeric" type="xsd:boolean" use="optional" />
     <xsd:attribute name="lcdDecimals" type="xsd:nonNegativeInteger" use="optional" />
-    <xsd:attribute name="background" use="optional" >              
+    <xsd:attribute name="background" use="optional" >
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="DARK_GRAY" />
@@ -1149,7 +1165,7 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-    <xsd:attribute name="framedesign" use="optional" >              
+    <xsd:attribute name="framedesign" use="optional" >
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="BLACK_METAL" />
@@ -1168,7 +1184,7 @@
     </xsd:attribute>
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
-    <xsd:attribute name="valueColor" use="optional" >              
+    <xsd:attribute name="valueColor" use="optional" >
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="RED" />
@@ -1203,7 +1219,7 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
-  
+
   <xsd:complexType name="calendarlist">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -1870,13 +1886,13 @@
   <xsd:complexType name="include">
     <xsd:attribute name="src" type="uri" use="required" />
   </xsd:complexType>
-  
+
   <xsd:complexType name="reload">
     <xsd:sequence>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
-  
+
   <xsd:complexType name="info">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -2201,7 +2217,7 @@
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
-  
+
   <xsd:complexType name="colorchooser">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -2391,7 +2407,7 @@
         <xsd:documentation xml:lang="en">Show labels on inline-diagram in widget</xsd:documentation>
         <xsd:documentation xml:lang="de">Zeigt die Achsenbeschriftung im Inline-diagramm an</xsd:documentation>
       </xsd:annotation>
-    </xsd:attribute>  
+    </xsd:attribute>
     <xsd:attribute ref="series" use="optional" >
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the base unit for the period attribute</xsd:documentation>
@@ -2462,7 +2478,7 @@
     <xsd:attribute ref="seriesEnd" use="optional" />
     <xsd:attribute ref="seriesResolution" use="optional" />
   </xsd:complexType>
-  
+
   <xsd:complexType name="diagram_info">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -2886,19 +2902,19 @@
 
   <xsd:complexType name="line">
     <xsd:sequence>
-      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />  
-    </xsd:sequence>   
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
   </xsd:complexType>
 
-  <xsd:complexType name="toggle">  
+  <xsd:complexType name="toggle">
     <xsd:sequence>
-      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />  
-      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1" />       
-      <xsd:element name="address" type="address" minOccurs="1"  maxOccurs="unbounded"/>   
-    </xsd:sequence>   
-    <xsd:attribute ref="styling" use="optional" />  
-    <xsd:attribute ref="mapping" />  
-    <xsd:attribute ref="align" use="optional" />  
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="address" type="address" minOccurs="1"  maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="class" use="optional" />
     <xsd:attribute ref="format" use="optional" />
@@ -2931,7 +2947,7 @@
               <xsd:enumeration value="left" />
               <xsd:enumeration value="right" />
             </xsd:restriction>
-          </xsd:simpleType>         
+          </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute name="unit" type="xsd:string" use="optional" >
           <xsd:annotation>
@@ -3212,22 +3228,22 @@
       <xsd:element name="widgetaction" type="widgetaction" />
     </xsd:sequence>
   </xsd:complexType>
-  
+
   <xsd:complexType name="widgetinfo">
     <xsd:sequence>
       <xsd:choice minOccurs="1" maxOccurs="1">
         <xsd:group ref="Infoaction_WidgetInfos"/>
-      </xsd:choice>     
+      </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="widgetaction">
     <xsd:sequence>
       <xsd:choice minOccurs="1" maxOccurs="1">
         <xsd:group ref="Infoaction_WidgetActions"/>
-      </xsd:choice>     
+      </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
-  
+
   <xsd:group name="Infoaction_WidgetInfos">
     <xsd:choice>
       <xsd:element name="text" type="text" />
@@ -3235,7 +3251,7 @@
       <xsd:element name="wgplugin_info" type="wgplugin_info" />
     </xsd:choice>
   </xsd:group>
-  
+
   <xsd:group name="Infoaction_WidgetActions">
     <xsd:choice>
       <xsd:element name="switch" type="switch" />
@@ -3250,7 +3266,7 @@
       <xsd:element name="info" type="info" />
     </xsd:choice>
   </xsd:group>
-  
+
   <xsd:complexType name="mobilemenu">
     <xsd:choice>
       <xsd:element name="switch" type="switch" />
@@ -3300,8 +3316,8 @@
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
-  
-  
+
+
   <!-- OWM PlugIn -->
   <xsd:complexType name="openweathermap">
     <xsd:attribute name="lang" use="optional">

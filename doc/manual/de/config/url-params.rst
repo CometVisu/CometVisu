@@ -76,6 +76,19 @@ Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
 Sinn machen bei einer gesamten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.
 
+.. _urlClientID:
+
+*clientID* - Client ID
+~~~~~~~~~~~~~~~~~~~~~~
+
+Über den optionalen Parameter ``clientID`` bekommt diese Visu-Instanz die
+entsprechende Client-ID zugewiesen.
+
+Gewisse Widgets können sich in Abhängigkeit der Client-ID unterschiedlich
+verhalten, z.B. ist es bei dem :ref:`page-Widget <pageClientAuswahl>`
+möglich auszuwählen welche Clients auf eine Aufforderung über den Bus
+mit einem Seitenwechsel reagieren sollen.
+
 *forceDevice* - Ausgabegerät übersteuern
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

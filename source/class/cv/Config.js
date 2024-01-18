@@ -108,6 +108,11 @@ qx.Class.define('cv.Config', {
      */
     clientDesign: '',
     /**
+     * The (optional) ID of this client instance
+     * @type {String|null}
+     */
+    clientID: null,
+    /**
      * Maturity level
      * @type {var}
      */
@@ -369,6 +374,10 @@ qx.Class.define('cv.Config', {
       cv.Config.URL = { backend: req.queryKey.backend };
     } else {
       cv.Config.URL = { backend: undefined };
+    }
+
+    if (req.queryKey.clientID) {
+      cv.Config.clientID = req.queryKey.clientID;
     }
 
     if (req.queryKey.design) {

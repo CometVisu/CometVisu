@@ -40,6 +40,12 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
     this.addListener('changeVisible', this._onChangeVisible, this);
 
+    // prevent listening to the first message to the GA in the first second
+    // as it might be of the trigger type and still be in the knxd cache
+    this.__inhibitGA4Startup = setTimeout(() => {
+      this.__inhibitGA4Startup = null;
+    }, 1000);
+
     // break out of the constructor
     new qx.util.DeferredCall(function () {
       const parentPage = this.getParentPage();
@@ -58,13 +64,13 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       ].forEach(function (tuple) {
         const property = tuple[0];
         const defaultValue = tuple[1];
-        if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
+        if (this['get' + property.charAt(0).toUpperCase() + property.slice(1)]() === null) {
           // inherit from parent
           if (parentPage) {
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value
-            this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
+            this['set' + property.charAt(0).toUpperCase() + property.slice(1)](defaultValue);
           }
         }
         if (!parentPage) {
@@ -180,6 +186,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     __waitForProperties: null,
     __colspanClass: null,
     __normalizedDomId: null,
+    __inhibitGA4Startup: null,
 
     _applyNavbarVisibility(value, old, name) {
       if (value !== null) {
@@ -301,7 +308,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       return undefined;
     },
 
-    _update(ga, data) {
+    _update(address, data) {
       // widgetData  = cv.data.Model.getInstance().getWidgetDataByElement( element );
       // var value = this.defaultValueHandling( ga, data, widgetData );
       // var type = widgetData.address[ ga ][2];
@@ -324,10 +331,40 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       //     break;
       //
       //   default:
-      // TODO: data comparision has to be refactored to use DPT and a value
-      if (parseInt(data) === 1) {
+
+      if (this.__inhibitGA4Startup !== null) {
+        // ignore first bus message during this timeout
+        clearTimeout(this.__inhibitGA4Startup);
+        this.__inhibitGA4Startup = null;
+        return;
+      }
+
+      const value = this.applyTransform(address, data);
+      const filters = this.getAddress()[address]?.clients ?? '';
+      let filterMatch = parseInt(data) === 1; // fallback for old behavior
+      if (cv.Config.clientID !== null && filters !== '') {
+        // apply filter
+        filterMatch = false;
+        for (const filter of filters.split(',')) {
+          const [, id, , triggerValue] = filter.match(/ *([^: ]+) *(: *([^ ]+))? */);
+          if (id === cv.Config.clientID || (id.at(-1) === '*' && id.substring(0, id.length-1) === cv.Config.clientID.substring(0, id.length-1))) {
+            // the clientID matches the filter
+            if (triggerValue === undefined || triggerValue === `${value}`) {
+              // the value matches the filter as well
+              filterMatch = true;
+            }
+          }
+        }
+      }
+      if (filterMatch) {
         cv.Application.structureController.scrollToPage(this.getPath());
-        this.sendToBackend('0');
+        // TODO: the page used to send a '0' when the page was switched.
+        // But as that was completely hard coded it is now disabled to prevent
+        // any side effects. It is also not documented.
+        // When the infrastructure for bus initiated page switches is moved
+        // from using the attribute `ga` to a full blown `address` element
+        // it can be activated again by respecting the `write` mode.
+        //this.sendToBackend('0');
       }
       // }
     },
