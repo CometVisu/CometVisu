@@ -14,9 +14,9 @@
         "index": 876
       },
       "end": {
-        "line": 472,
+        "line": 469,
         "column": 3,
-        "index": 15863
+        "index": 15772
       }
     },
     "jsdoc": {
@@ -404,9 +404,9 @@
           "index": 9519
         },
         "end": {
-          "line": 305,
+          "line": 302,
           "column": 5,
-          "index": 10063
+          "index": 9972
         }
       },
       "type": "function",
@@ -415,14 +415,14 @@
     "_onActiveChanged": {
       "location": {
         "start": {
-          "line": 307,
+          "line": 304,
           "column": 4,
-          "index": 10070
+          "index": 9979
         },
         "end": {
-          "line": 357,
+          "line": 354,
           "column": 5,
-          "index": 11989
+          "index": 11898
         }
       },
       "type": "function",
@@ -431,14 +431,14 @@
     "_checkBackendConnection": {
       "location": {
         "start": {
-          "line": 359,
+          "line": 356,
           "column": 4,
-          "index": 11996
+          "index": 11905
         },
         "end": {
-          "line": 397,
+          "line": 394,
           "column": 5,
-          "index": 13258
+          "index": 13167
         }
       },
       "type": "function",
@@ -447,14 +447,14 @@
     "_updateClientScope": {
       "location": {
         "start": {
-          "line": 399,
+          "line": 396,
           "column": 4,
-          "index": 13265
+          "index": 13174
         },
         "end": {
-          "line": 407,
+          "line": 404,
           "column": 5,
-          "index": 13539
+          "index": 13448
         }
       },
       "type": "function",
@@ -463,14 +463,14 @@
     "_handleClientError": {
       "location": {
         "start": {
-          "line": 409,
+          "line": 406,
           "column": 4,
-          "index": 13546
+          "index": 13455
         },
         "end": {
-          "line": 470,
+          "line": 467,
           "column": 5,
-          "index": 15855
+          "index": 15764
         }
       },
       "type": "function",

@@ -154,7 +154,7 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="16"><p>page</p></td>
+<tr class="row-odd"><td rowspan="18"><p>page</p></td>
 <td><p><abbr title="mandatory">name</abbr></p></td>
 <td><p>string</p></td>
 <td><p>title of this page</p></td>
@@ -169,7 +169,15 @@ The screenshots show, how both can be edited in the <a class="reference internal
 </tr>
 <tr class="row-even"><td><p>ga</p></td>
 <td><p>string</p></td>
-<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
+<td><p>Address to switch to this page by sending a bus message.</p></td>
+</tr>
+<tr class="row-odd"><td><p>transform</p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
+</tr>
+<tr class="row-even"><td><p>clients</p></td>
+<td><p>string</p></td>
+<td><p>Filter with all clientIDs where this GA applies. Comma separated list.</p></td>
 </tr>
 <tr class="row-odd"><td><p>visible</p></td>
 <td><p><em>true</em> or <em>false</em></p></td>
@@ -275,6 +283,69 @@ file to make them persistent.</p>
 </div>
 </section>
 </section>
+<section id="bus-initiated-page-switch">
+<h3>Bus initiated page switch<a class="headerlink" href="#bus-initiated-page-switch" title="Link to this heading"></a></h3>
+<section id="communication">
+<h4>Communication<a class="headerlink" href="#communication" title="Link to this heading"></a></h4>
+<p>When the attribute <code class="docutils literal notranslate"><span class="pre">ga</span></code> is set to a bus address, a bus message to that
+address can switch the displayed page to this page.</p>
+<p>When only <code class="docutils literal notranslate"><span class="pre">ga</span></code> is set, the change will happen when a <code class="docutils literal notranslate"><span class="pre">1</span></code> (KNX: with DPT:1
+or DPT:5) is sent.</p>
+<p>When the attribute <code class="docutils literal notranslate"><span class="pre">transform</span></code> is set, the address in the <code class="docutils literal notranslate"><span class="pre">ga</span></code> attribute
+is interpreted accordingly.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The use of <code class="docutils literal notranslate"><span class="pre">ga</span></code> without <code class="docutils literal notranslate"><span class="pre">transform</span></code> is deprecated and will not work in
+future versions.</p>
+</div>
+</section>
+<section id="client-selection">
+<span id="pageclientselection"></span><h4>Client selection<a class="headerlink" href="#client-selection" title="Link to this heading"></a></h4>
+<p>To define the value for the page switch or to limit the switching to select
+clients the attribute <code class="docutils literal notranslate"><span class="pre">clients</span></code> is used. It’s content is a (comma separated)
+list of <a class="reference internal" href="../../url-params.html#urlclientid"><span class="std std-ref">client ID</span></a> with colon and the trigger value.
+The wildcard <code class="docutils literal notranslate"><span class="pre">*</span></code> can be used for multiple client IDs that start with the
+same text.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;*:1&quot;</span></code></dt><dd><p>Every client (also those without a client ID) will switch when a <code class="docutils literal notranslate"><span class="pre">1</span></code> is sent.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;floor_ground&quot;</span></code></dt><dd><p>Only visu <code class="docutils literal notranslate"><span class="pre">floor_ground</span></code> is reacting, a <code class="docutils literal notranslate"><span class="pre">1</span></code> must be sent.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;floor_1st:0&quot;</span></code></dt><dd><p>Only visu <code class="docutils literal notranslate"><span class="pre">floor_ground</span></code> is reacting, a <code class="docutils literal notranslate"><span class="pre">0</span></code> must be sent.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;floor_basement:0,</span> <span class="pre">floor_ground:1&quot;</span></code></dt><dd><p>Visu <code class="docutils literal notranslate"><span class="pre">floor_basement</span></code> reacts when a <code class="docutils literal notranslate"><span class="pre">0</span></code> is sent,
+<code class="docutils literal notranslate"><span class="pre">floor_ground</span></code> reacts when to the same address a <code class="docutils literal notranslate"><span class="pre">1</span></code> is sent.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;floor_*&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">clients=&quot;floor_*:1&quot;</span></code></dt><dd><p>Every client starting with <code class="docutils literal notranslate"><span class="pre">floor_</span></code> (like e.g. <code class="docutils literal notranslate"><span class="pre">floor_basement</span></code> and
+<code class="docutils literal notranslate"><span class="pre">floor_ground</span></code>) is reacting when <code class="docutils literal notranslate"><span class="pre">1</span></code> is sent.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>A possible use case would be wall mounted touch panel PCs that should switch
+to the page with the external camera view when the door bell gets rung (the
+page with the camera view would then use <code class="docutils literal notranslate"><span class="pre">clients=floor_*:1&quot;</span></code> to make all
+visu clients in the floors switch to this page when to the address in <code class="docutils literal notranslate"><span class="pre">ga</span></code>
+a <code class="docutils literal notranslate"><span class="pre">1</span></code> is sent, but others, like smart phones, are not).
+Also common is a use case where by opening the front door the visu next to
+it (selected by <code class="docutils literal notranslate"><span class="pre">clients=&quot;floor_ground:1&quot;</span></code>) should show the locking state of
+all windows so that when you leave the house you can see that everything is safe.</p>
+</section>
+</section>
 <section id="allowed-child-elements-and-their-attributes">
 <h3>Allowed child-elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Link to this heading"></a></h3>
 <p>All widgets are allowed in the page widget.</p>
@@ -310,7 +381,7 @@ XML-editor to UTF-8 mode!</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

@@ -452,13 +452,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
           templatesString.split('</template>').forEach(function (rawTemplate) {
             var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate);
-            // search for variables
-            var variables = [];
-            var vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
-            while ((vmap = vregex.exec(rawTemplate)) !== null) {
-              variables.push(vmap[1]);
+            if (nameMatch) {
+              // search for variables
+              var variables = [];
+              var vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
+              while ((vmap = vregex.exec(rawTemplate)) !== null) {
+                variables.push(vmap[1]);
+              }
+              templates[nameMatch[1]] = variables;
             }
-            templates[nameMatch[1]] = variables;
           }, this);
         }
 
@@ -929,4 +931,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1704036749253
+//# sourceMappingURL=Config.js.map?dt=1705596654665

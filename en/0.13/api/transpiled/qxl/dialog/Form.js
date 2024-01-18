@@ -54,4 +54,4 @@
   qxl.dialog.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1704036785453
+//# sourceMappingURL=Form.js.map?dt=1705596690293

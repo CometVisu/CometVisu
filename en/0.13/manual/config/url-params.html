@@ -64,6 +64,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#design-design"><em>design</em> - Design</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#forcereload-cache-settings"><em>forceReload</em> - Cache settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#startpage-start-page"><em>startpage</em> - Start page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clientid-client-id"><em>clientID</em> - Client ID</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#forcedevice-override-output-device"><em>forceDevice</em> - Override output device</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#maturity-maturity"><em>maturity</em> - Maturity</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#backend-backend"><em>backend</em> - Backend</a></li>
@@ -192,6 +193,14 @@ the name <em>Bad</em> as the start page, the URL is
 <p>Especially if you have distributed visual acuity in several places
 in the house, it can make sense to display the subpage that corresponds
 to the room first, depending on the Visu location, for a complete config file.</p>
+</section>
+<section id="clientid-client-id">
+<span id="urlclientid"></span><h3><em>clientID</em> - Client ID<a class="headerlink" href="#clientid-client-id" title="Link to this heading"></a></h3>
+<p>The optional parameter <code class="docutils literal notranslate"><span class="pre">clientID</span></code> can give this visu instance an
+identification.</p>
+<p>Some widgets can behave differently depending on the set client ID, e.g.
+the <a class="reference internal" href="widgets/page/index.html#pageclientselection"><span class="std std-ref">page widget</span></a> can select which visu should
+switch the displayed page on a bus event.</p>
 </section>
 <section id="forcedevice-override-output-device">
 <h3><em>forceDevice</em> - Override output device<a class="headerlink" href="#forcedevice-override-output-device" title="Link to this heading"></a></h3>
@@ -346,7 +355,7 @@ console. In the developer version, these are turned on by default.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

@@ -1,3 +1,10 @@
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -25,6 +32,7 @@
       "cv.ui.structure.pure.layout.Manager": {},
       "cv.ui.structure.pure.layout.ResizeHandler": {},
       "qx.util.ResourceManager": {},
+      "cv.Config": {},
       "cv.data.Model": {},
       "cv.io.BackendConnections": {},
       "cv.Transform": {}
@@ -65,9 +73,16 @@
     ******************************************************
     */
     construct: function construct(props) {
+      var _this = this;
       this.__P_64_0 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this.addListener('changeVisible', this._onChangeVisible, this);
+
+      // prevent listening to the first message to the GA in the first second
+      // as it might be of the trigger type and still be in the knxd cache
+      this.__P_64_1 = setTimeout(function () {
+        _this.__P_64_1 = null;
+      }, 1000);
 
       // break out of the constructor
       new qx.util.DeferredCall(function () {
@@ -80,13 +95,13 @@
         [['showTopNavigation', true], ['showFooter', true], ['showNavbarTop', false], ['showNavbarBottom', false], ['showNavbarLeft', false], ['showNavbarRight', false]].forEach(function (tuple) {
           var property = tuple[0];
           var defaultValue = tuple[1];
-          if (this['get' + property.charAt(0).toUpperCase() + property.substr(1)]() === null) {
+          if (this['get' + property.charAt(0).toUpperCase() + property.slice(1)]() === null) {
             // inherit from parent
             if (parentPage) {
               parentPage.bind(property, this, property);
             } else {
               // we have not parent page, because we are the root page, use the default value
-              this['set' + property.charAt(0).toUpperCase() + property.substr(1)](defaultValue);
+              this['set' + property.charAt(0).toUpperCase() + property.slice(1)](defaultValue);
             }
           }
           if (!parentPage) {
@@ -198,8 +213,9 @@
      */
     members: {
       __P_64_0: null,
-      __P_64_1: null,
       __P_64_2: null,
+      __P_64_3: null,
+      __P_64_1: null,
       _applyNavbarVisibility: function _applyNavbarVisibility(value, old, name) {
         if (value !== null) {
           var i_name = this.__P_64_0.indexOf(name);
@@ -217,7 +233,7 @@
        */
       _onChangeVisible: function _onChangeVisible(ev) {
         if (ev.getData()) {
-          if (this.__P_64_1 !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
+          if (this.__P_64_2 !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
             this.applyColumnWidths();
           }
           if (this.getBackdrop()) {
@@ -230,7 +246,7 @@
        */
       applyColumnWidths: function applyColumnWidths() {
         cv.ui.structure.pure.layout.Manager.applyColumnWidths('#' + this.getPath(), false);
-        this.__P_64_1 = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
+        this.__P_64_2 = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
       },
       // overridden
       getDomString: function getDomString() {
@@ -303,7 +319,8 @@
         cv.ui.structure.pure.Page.allPages = subpage + cv.ui.structure.pure.Page.allPages;
         return undefined;
       },
-      _update: function _update(ga, data) {
+      _update: function _update(address, data) {
+        var _this$getAddress$addr, _this$getAddress$addr2;
         // widgetData  = cv.data.Model.getInstance().getWidgetDataByElement( element );
         // var value = this.defaultValueHandling( ga, data, widgetData );
         // var type = widgetData.address[ ga ][2];
@@ -326,10 +343,51 @@
         //     break;
         //
         //   default:
-        // TODO: data comparision has to be refactored to use DPT and a value
-        if (parseInt(data) === 1) {
+
+        if (this.__P_64_1 !== null) {
+          // ignore first bus message during this timeout
+          clearTimeout(this.__P_64_1);
+          this.__P_64_1 = null;
+          return;
+        }
+        var value = this.applyTransform(address, data);
+        var filters = (_this$getAddress$addr = (_this$getAddress$addr2 = this.getAddress()[address]) === null || _this$getAddress$addr2 === void 0 ? void 0 : _this$getAddress$addr2.clients) !== null && _this$getAddress$addr !== void 0 ? _this$getAddress$addr : '';
+        var filterMatch = parseInt(data) === 1; // fallback for old behavior
+        if (cv.Config.clientID !== null && filters !== '') {
+          // apply filter
+          filterMatch = false;
+          var _iterator = _createForOfIteratorHelper(filters.split(',')),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var filter = _step.value;
+              var _filter$match = filter.match(/ *([^: ]+) *(: *([^ ]+))? */),
+                _filter$match2 = _slicedToArray(_filter$match, 4),
+                id = _filter$match2[1],
+                triggerValue = _filter$match2[3];
+              if (id === cv.Config.clientID || id.at(-1) === '*' && id.substring(0, id.length - 1) === cv.Config.clientID.substring(0, id.length - 1)) {
+                // the clientID matches the filter
+                if (triggerValue === undefined || triggerValue === "".concat(value)) {
+                  // the value matches the filter as well
+                  filterMatch = true;
+                }
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+        }
+        if (filterMatch) {
           cv.Application.structureController.scrollToPage(this.getPath());
-          this.sendToBackend('0');
+          // TODO: the page used to send a '0' when the page was switched.
+          // But as that was completely hard coded it is now disabled to prevent
+          // any side effects. It is also not documented.
+          // When the infrastructure for bus initiated page switches is moved
+          // from using the attribute `ga` to a full blown `address` element
+          // it can be activated again by respecting the `write` mode.
+          //this.sendToBackend('0');
         }
         // }
       },
@@ -354,4 +412,4 @@
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1704036751436
+//# sourceMappingURL=Page.js.map?dt=1705596656900

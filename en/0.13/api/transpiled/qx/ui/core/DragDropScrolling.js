@@ -62,4 +62,4 @@
   qx.ui.core.DragDropScrolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DragDropScrolling.js.map?dt=1704036770847
+//# sourceMappingURL=DragDropScrolling.js.map?dt=1705596675991

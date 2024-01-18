@@ -370,8 +370,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         } else if (target.startsWith('store:')) {
           this.__P_76_0.set(target.substring(6), ev.detail.state);
         } else if (target === 'store') {
-          // use address as store key
-          this.__P_76_0.set(ev.detail.address, ev.detail.state);
+          // use targetConfig as store key if available, address as fallback
+          this.__P_76_0.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
         }
       },
       onClicked: function onClicked(event) {
@@ -486,4 +486,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1704036752524
+//# sourceMappingURL=Button.js.map?dt=1705596657935

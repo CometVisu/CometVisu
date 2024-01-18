@@ -313,4 +313,4 @@
   qx.ui.table.model.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1704036778872
+//# sourceMappingURL=Abstract.js.map?dt=1705596683691

@@ -19,7 +19,7 @@
       "end": {
         "line": 299,
         "column": 3,
-        "index": 10776
+        "index": 10773
       }
     },
     "jsdoc": {
@@ -459,12 +459,12 @@
         "start": {
           "line": 159,
           "column": 4,
-          "index": 5178
+          "index": 5175
         },
         "end": {
           "line": 210,
           "column": 5,
-          "index": 7265
+          "index": 7262
         }
       },
       "jsdoc": {
@@ -500,7 +500,9 @@
         "@return": [
           {
             "name": "@return",
-            "body": "realValue - the real value that is respecting the configured restraints"
+            "body": "{Number} The real value that is respecting the configured restraints",
+            "type": "Number",
+            "description": " The real value that is respecting the configured restraints"
           }
         ],
         "@private": [
@@ -518,12 +520,12 @@
         "start": {
           "line": 212,
           "column": 4,
-          "index": 7272
+          "index": 7269
         },
         "end": {
           "line": 228,
           "column": 5,
-          "index": 8032
+          "index": 8029
         }
       },
       "type": "function",
@@ -534,12 +536,12 @@
         "start": {
           "line": 230,
           "column": 4,
-          "index": 8039
+          "index": 8036
         },
         "end": {
           "line": 235,
           "column": 5,
-          "index": 8295
+          "index": 8292
         }
       },
       "type": "function",
@@ -550,12 +552,12 @@
         "start": {
           "line": 237,
           "column": 4,
-          "index": 8302
+          "index": 8299
         },
         "end": {
           "line": 273,
           "column": 5,
-          "index": 9736
+          "index": 9733
         }
       },
       "type": "function",
@@ -566,12 +568,12 @@
         "start": {
           "line": 275,
           "column": 4,
-          "index": 9743
+          "index": 9740
         },
         "end": {
           "line": 277,
           "column": 5,
-          "index": 9856
+          "index": 9853
         }
       },
       "type": "function",
@@ -582,12 +584,12 @@
         "start": {
           "line": 279,
           "column": 4,
-          "index": 9863
+          "index": 9860
         },
         "end": {
           "line": 293,
           "column": 5,
-          "index": 10676
+          "index": 10673
         }
       },
       "type": "function",
@@ -3386,12 +3388,12 @@
       "start": {
         "line": 296,
         "column": 2,
-        "index": 10685
+        "index": 10682
       },
       "end": {
         "line": 298,
         "column": 3,
-        "index": 10772
+        "index": 10769
       }
     }
   },

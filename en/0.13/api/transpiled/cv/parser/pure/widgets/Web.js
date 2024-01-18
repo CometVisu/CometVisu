@@ -112,4 +112,4 @@
   cv.parser.pure.widgets.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1704036746662
+//# sourceMappingURL=Web.js.map?dt=1705596652094

@@ -375,7 +375,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
         qx.event.GlobalError.setErrorHandler(this.__P_2_2, this);
         document.body.classList.add('loading');
         cv.report.Record.prepare();
-        var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributers.\n' + ' Version: ' + cv.Version.VERSION + '\n';
+        var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributors.\n' + ' Version: ' + cv.Version.VERSION + '\n';
         if (cv.Application.consoleCommands.length) {
           info += '\n Available commands:\n    ' + cv.Application.consoleCommands.join('\n    ') + '\n';
         }
@@ -394,9 +394,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
         // Call super class
         cv.Application.superclass.prototype.main.call(this);
         this.block(true);
-
-        // run svg4everybody to support SVG sprites in older browsers
-        svg4everybody();
 
         // support native logging capabilities, e.g. Firebug for Firefox
         //noinspection BadExpressionStatementJS,JSHint
@@ -1179,4 +1176,4 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Objec
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1704036745132
+//# sourceMappingURL=Application.js.map?dt=1705596650530

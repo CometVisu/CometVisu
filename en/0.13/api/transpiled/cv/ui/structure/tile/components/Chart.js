@@ -600,6 +600,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             interval = 86400;
             periodStart.setDate(periodStart.getDate() - currentPeriod);
             periodStart.setHours(0, 0, 0, 0);
+            end.setTime(periodStart.getTime());
             end.setDate(periodStart.getDate() + 1);
             end.setHours(0, 0, 0, 0);
             break;
@@ -616,6 +617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             periodStart.setMonth(periodStart.getMonth() - currentPeriod);
             periodStart.setDate(1);
             periodStart.setHours(0, 0, 0, 0);
+            end.setTime(periodStart.getTime());
             end.setMonth(periodStart.getMonth() + 1, 1);
             end.setHours(0, 0, 0, 0);
             break;
@@ -1695,4 +1697,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1704036752870
+//# sourceMappingURL=Chart.js.map?dt=1705596658292

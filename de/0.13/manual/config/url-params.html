@@ -64,6 +64,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#design-design"><em>design</em> - Design</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#forcereload-cache-ubersteuern"><em>forceReload</em> - Cache übersteuern</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#startpage-startseite"><em>startpage</em> - Startseite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clientid-client-id"><em>clientID</em> - Client ID</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#forcedevice-ausgabegerat-ubersteuern"><em>forceDevice</em> - Ausgabegerät übersteuern</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#maturity-ausgereiftheit"><em>maturity</em> - Ausgereiftheit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#backend-backend"><em>backend</em> - Backend</a></li>
@@ -188,6 +189,15 @@ als Startseite nutzen möchte so lautet die URL <code class="docutils literal no
 <p>Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
 Sinn machen bei einer gesamten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.</p>
+</section>
+<section id="clientid-client-id">
+<span id="urlclientid"></span><h3><em>clientID</em> - Client ID<a class="headerlink" href="#clientid-client-id" title="Link to this heading"></a></h3>
+<p>Über den optionalen Parameter <code class="docutils literal notranslate"><span class="pre">clientID</span></code> bekommt diese Visu-Instanz die
+entsprechende Client-ID zugewiesen.</p>
+<p>Gewisse Widgets können sich in Abhängigkeit der Client-ID unterschiedlich
+verhalten, z.B. ist es bei dem <a class="reference internal" href="widgets/page/index.html#pageclientauswahl"><span class="std std-ref">page-Widget</span></a>
+möglich auszuwählen welche Clients auf eine Aufforderung über den Bus
+mit einem Seitenwechsel reagieren sollen.</p>
 </section>
 <section id="forcedevice-ausgabegerat-ubersteuern">
 <h3><em>forceDevice</em> - Ausgabegerät übersteuern<a class="headerlink" href="#forcedevice-ausgabegerat-ubersteuern" title="Link to this heading"></a></h3>
@@ -344,7 +354,7 @@ trotzdem eingeschaltet werden</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

@@ -81,4 +81,4 @@
   cv.parser.pure.widgets.UrlTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UrlTrigger.js.map?dt=1704036746631
+//# sourceMappingURL=UrlTrigger.js.map?dt=1705596652063

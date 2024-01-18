@@ -112,4 +112,4 @@
   qx.module.event.GestureHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GestureHandler.js.map?dt=1704036768461
+//# sourceMappingURL=GestureHandler.js.map?dt=1705596673824

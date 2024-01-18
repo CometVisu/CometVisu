@@ -148,6 +148,11 @@
        */
       clientDesign: '',
       /**
+       * The (optional) ID of this client instance
+       * @type {String|null}
+       */
+      clientID: null,
+      /**
        * Maturity level
        * @type {var}
        */
@@ -368,6 +373,9 @@
           backend: undefined
         };
       }
+      if (req.queryKey.clientID) {
+        cv.Config.clientID = req.queryKey.clientID;
+      }
       if (req.queryKey.design) {
         cv.Config.clientDesign = req.queryKey.design;
       }
@@ -469,4 +477,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1704036783398
+//# sourceMappingURL=Config.js.map?dt=1705596688200

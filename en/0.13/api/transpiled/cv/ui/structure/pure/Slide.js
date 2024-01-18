@@ -166,7 +166,7 @@
        * @param instant {Boolean} Animate or instant change
        * @param relaxDisplay {Boolean} Let the handle move to an unstable position
        *   to give visual feedback that something does happen during interaction
-       * @returns realValue - the real value that is respecting the configured restraints
+       * @returns {Number} The real value that is respecting the configured restraints
        * @private
        */
       __P_66_13: function __P_66_13(value, instant) {
@@ -297,4 +297,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1704036751656
+//# sourceMappingURL=Slide.js.map?dt=1705596657130

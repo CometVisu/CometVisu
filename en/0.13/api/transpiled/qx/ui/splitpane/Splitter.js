@@ -129,4 +129,4 @@
   qx.ui.splitpane.Splitter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Splitter.js.map?dt=1704036777997
+//# sourceMappingURL=Splitter.js.map?dt=1705596682827

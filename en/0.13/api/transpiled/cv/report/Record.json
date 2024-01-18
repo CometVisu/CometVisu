@@ -14,9 +14,9 @@
         "index": 962
       },
       "end": {
-        "line": 508,
+        "line": 511,
         "column": 3,
-        "index": 15819
+        "index": 16136
       }
     },
     "jsdoc": {
@@ -575,9 +575,9 @@
           "index": 7812
         },
         "end": {
-          "line": 298,
+          "line": 301,
           "column": 5,
-          "index": 8989
+          "index": 9265
         }
       },
       "jsdoc": {
@@ -616,14 +616,14 @@
     "__extractDataFromEvent": {
       "location": {
         "start": {
-          "line": 304,
+          "line": 307,
           "column": 4,
-          "index": 9098
+          "index": 9374
         },
         "end": {
-          "line": 375,
+          "line": 378,
           "column": 5,
-          "index": 11931
+          "index": 12207
         }
       },
       "jsdoc": {
@@ -646,14 +646,14 @@
     "recordNativeEvent": {
       "location": {
         "start": {
-          "line": 377,
+          "line": 380,
           "column": 4,
-          "index": 11938
+          "index": 12214
         },
         "end": {
-          "line": 410,
+          "line": 413,
           "column": 5,
-          "index": 13134
+          "index": 13451
         }
       },
       "type": "function",
@@ -662,14 +662,14 @@
     "recordScroll": {
       "location": {
         "start": {
-          "line": 412,
+          "line": 415,
           "column": 4,
-          "index": 13141
+          "index": 13458
         },
         "end": {
-          "line": 423,
+          "line": 426,
           "column": 5,
-          "index": 13494
+          "index": 13811
         }
       },
       "type": "function",
@@ -678,14 +678,14 @@
     "__getDomPath": {
       "location": {
         "start": {
-          "line": 425,
+          "line": 428,
           "column": 4,
-          "index": 13501
+          "index": 13818
         },
         "end": {
-          "line": 456,
+          "line": 459,
           "column": 5,
-          "index": 14515
+          "index": 14832
         }
       },
       "type": "function",
@@ -694,14 +694,14 @@
     "getData": {
       "location": {
         "start": {
-          "line": 458,
+          "line": 461,
           "column": 4,
-          "index": 14522
+          "index": 14839
         },
         "end": {
-          "line": 470,
+          "line": 473,
           "column": 5,
-          "index": 14815
+          "index": 15132
         }
       },
       "type": "function",
@@ -710,14 +710,14 @@
     "getFileName": {
       "location": {
         "start": {
-          "line": 472,
+          "line": 475,
           "column": 4,
-          "index": 14822
+          "index": 15139
         },
         "end": {
-          "line": 483,
+          "line": 486,
           "column": 5,
-          "index": 15220
+          "index": 15537
         }
       },
       "type": "function",
@@ -726,14 +726,14 @@
     "download": {
       "location": {
         "start": {
-          "line": 488,
+          "line": 491,
           "column": 4,
-          "index": 15271
+          "index": 15588
         },
         "end": {
-          "line": 506,
+          "line": 509,
           "column": 5,
-          "index": 15811
+          "index": 16128
         }
       },
       "jsdoc": {

@@ -119,20 +119,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       _updateValue: function _updateValue(mappedValue, value) {
+        var _this = this;
         var styleClass = '';
         var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll('.value')),
           _step;
         try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var _loop = function _loop() {
             var target = _step.value;
             var tagName = target.tagName.toLowerCase();
             switch (tagName) {
               case 'cv-icon':
-                target._instance.setId(mappedValue);
-                if (this._element.hasAttribute('styling')) {
-                  styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_87_0);
+                if (_this._element.hasAttribute('styling')) {
+                  styleClass = cv.Application.structureController.styleValue(_this._element.getAttribute('styling'), value, _this.__P_87_0);
                 }
-                target._instance.setStyleClass(styleClass);
+                if (target._instance) {
+                  target._instance.setId('' + mappedValue);
+                  target._instance.setStyleClass(styleClass);
+                } else {
+                  // try again in next frame
+                  window.requestAnimationFrame(function () {
+                    if (target._instance) {
+                      target._instance.setId('' + mappedValue);
+                      target._instance.setStyleClass(styleClass);
+                    } else {
+                      _this.error('id and styleClass could not be applied, custom element not initialized yet!');
+                    }
+                  });
+                }
                 break;
               case 'meter':
                 target.setAttribute('value', value);
@@ -146,9 +159,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 break;
               case 'label':
                 target.innerHTML = mappedValue;
-                this._debouncedDetectOverflow();
+                _this._debouncedDetectOverflow();
                 break;
             }
+          };
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            _loop();
           }
         } catch (err) {
           _iterator.e(err);
@@ -174,4 +190,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Value.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Value.js.map?dt=1704036753684
+//# sourceMappingURL=Value.js.map?dt=1705596659220

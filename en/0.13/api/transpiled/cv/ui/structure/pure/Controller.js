@@ -198,16 +198,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var _this = this;
         var clients = cv.io.BackendConnections.getClients();
         var client;
+        var promises = [];
         var _loop = function _loop(name) {
           client = clients[name];
-          client.login(true, cv.Config.configSettings.credentials, function () {
-            _this.debug(name + ' logged in');
-            cv.io.BackendConnections.startInitialRequest(name);
-          });
+          promises.push(new Promise(function (res, rej) {
+            client.login(true, cv.Config.configSettings.credentials, function () {
+              _this.debug(name + ' logged in');
+              cv.io.BackendConnections.startInitialRequest(name);
+              res();
+            });
+          }));
         };
         for (var name in clients) {
           _loop(name);
         }
+        return Promise.all(promises);
       },
       parseSettings: function parseSettings(xml, done) {
         var settings = cv.Config.configSettings;
@@ -283,7 +288,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.debug('setup.dom.finished');
         qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
         cv.TemplateEngine.getInstance().setDomFinished(true);
-        this.login();
+        this.login().then(function () {});
         this.initLayout();
       },
       /**
@@ -702,4 +707,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.pure.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1704036751197
+//# sourceMappingURL=Controller.js.map?dt=1705596656636

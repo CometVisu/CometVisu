@@ -737,8 +737,8 @@
                     <cv-address slot="titleAddress" transform="DPT:24.001" mode="read">1/4/19</cv-address>
                     <cv-address slot="previousAddress" transform="DPT:1.001" value="0" mode="write">1/4/20</cv-address>
                     <cv-address slot="playPauseAddress" transform="DPT:1.001">1/4/21</cv-address>
-                    <cv-address slot="playTimeAddress" transform="DPT:7.001" mode="read" target="progress">1/4/22</cv-address>
-                    <cv-address slot="durationAddress" transform="DPT:7.001" mode="read" target="store:duration">1/4/23</cv-address>
+                    <cv-address slot="playTimeAddress" transform="DPT:7.001" mode="read">1/4/22</cv-address>
+                    <cv-address slot="durationAddress" transform="DPT:7.001" mode="read">1/4/23</cv-address>
                     <cv-address slot="nextAddress" transform="DPT:1.001" value="1" mode="write">1/4/20</cv-address>
                     <cv-address slot="volumeAddress" transform="DPT:5.001">1/4/24</cv-address>
                     <cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/5/25</cv-address>

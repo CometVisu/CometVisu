@@ -88,6 +88,7 @@
         'openhab-plugin': '/develop/manual/config/widgets/plugins/openhab/index.html#openhab-plugin',
         'openweathermap': '/develop/manual/config/widgets/plugins/openweathermap/index.html#openweathermap',
         'page': '/develop/manual/config/widgets/page/index.html#page',
+        'pageclientauswahl': '/develop/manual/config/widgets/page/index.html#pageclientauswahl',
         'pagejump': '/develop/manual/config/widgets/pagejump/index.html#pagejump',
         'powerspectrum': '/develop/manual/config/widgets/plugins/powerspectrum/index.html#powerspectrum',
         'pushbutton': '/develop/manual/config/widgets/pushbutton/index.html#pushbutton',
@@ -161,6 +162,7 @@
         'tr064': '/develop/manual/config/widgets/plugins/tr064/index.html#tr064',
         'trigger': '/develop/manual/config/widgets/trigger/index.html#trigger',
         'tutorials': '/develop/manual/tutorial/index.html#tutorials',
+        'urlclientid': '/develop/manual/config/url-params.html#urlclientid',
         'urltrigger': '/develop/manual/config/widgets/urltrigger/index.html#urltrigger',
         'video': '/develop/manual/config/widgets/video/index.html#video',
         'visu-config-details': '/develop/manual/config/index.html#visu-config-details',
@@ -184,4 +186,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1704036750321
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1705596655747

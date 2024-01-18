@@ -46,10 +46,17 @@
       parse: function parse(page, path, flavour, pageType) {
         var storagePath = cv.parser.pure.WidgetParser.getStoragePath(page, path);
         var addresses = {};
-        if (page.getAttribute('ga')) {
-          var src = page.getAttribute('ga');
+        var src = page.getAttribute('ga');
+        if (src) {
+          var _page$getAttribute, _page$getAttribute2;
           cv.data.Model.getInstance().addAddress(src, storagePath);
-          addresses[src] = ['DPT:1.001', cv.data.Model.READ];
+          var transform = (_page$getAttribute = page.getAttribute('transform')) !== null && _page$getAttribute !== void 0 ? _page$getAttribute : 'DPT:1.001';
+          var clients = (_page$getAttribute2 = page.getAttribute('clients')) !== null && _page$getAttribute2 !== void 0 ? _page$getAttribute2 : '';
+          addresses[src] = {
+            transform: transform,
+            mode: cv.data.Model.READ,
+            clients: clients
+          };
         }
         var name = page.getAttribute('name');
         pageType = page.getAttribute('type') || 'text'; //text, 2d or 3d
@@ -158,4 +165,4 @@
   cv.parser.pure.widgets.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1704036746396
+//# sourceMappingURL=Page.js.map?dt=1705596651823

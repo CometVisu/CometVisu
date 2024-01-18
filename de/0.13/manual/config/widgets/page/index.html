@@ -159,7 +159,7 @@ daher weg gelassen werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="16"><p>page</p></td>
+<tr class="row-odd"><td rowspan="18"><p>page</p></td>
 <td><p><abbr title="Pflichtangabe">name</abbr></p></td>
 <td><p>Text</p></td>
 <td><p>Titel der Seite</p></td>
@@ -174,7 +174,15 @@ daher weg gelassen werden.</p>
 </tr>
 <tr class="row-even"><td><p>ga</p></td>
 <td><p>Text</p></td>
-<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+<td><p>Adresse um über den Bus auf diese Seite zu wechseln.</p></td>
+</tr>
+<tr class="row-odd"><td><p>transform</p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
+</tr>
+<tr class="row-even"><td><p>clients</p></td>
+<td><p>Text</p></td>
+<td><p>Filter mit allen ClientIDs für die die GA gültig ist. Komma separierte Liste.</p></td>
 </tr>
 <tr class="row-odd"><td><p>visible</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
@@ -293,6 +301,74 @@ Config-Datei übernommen werden.</p>
 <a class="reference external image-reference" href="../../../_images/menu_expl_page.png"><img alt="Menübezeichnungen" src="../../../_images/menu_expl_page.png" /></a>
 </figure>
 </section>
+<section id="bus-initiierter-seitenwechsel">
+<h3>Bus initiierter Seitenwechsel<a class="headerlink" href="#bus-initiierter-seitenwechsel" title="Link to this heading"></a></h3>
+<section id="kommunikation">
+<h4>Kommunikation<a class="headerlink" href="#kommunikation" title="Link to this heading"></a></h4>
+<p>Um über eine Bus-Botschaft die in der Visu angezeigte Seite zu wechseln, kann
+bei dem anzuzeigenden <code class="docutils literal notranslate"><span class="pre">&lt;page&gt;</span></code> Element das Attribut <code class="docutils literal notranslate"><span class="pre">ga</span></code> mit der
+Ziel-Bus-Adresse gesetzt werden.</p>
+<p>Wird nur das Attribut <code class="docutils literal notranslate"><span class="pre">ga</span></code> gesetzt, so wird immer bei einem Wert von 1 (bei KNX:
+DPT:1 oder DPT:5) die Seite gewechselt.</p>
+<p>Wird das Attribut <code class="docutils literal notranslate"><span class="pre">transform</span></code> gesetzt, so wird die Adresse bei <code class="docutils literal notranslate"><span class="pre">ga</span></code> mit
+diesem Transform als Datentyp interpretiert.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Die Verwendung von <code class="docutils literal notranslate"><span class="pre">ga</span></code> ohne <code class="docutils literal notranslate"><span class="pre">transform</span></code> ist veraltet und wird in
+zukünftigen Versionen nicht mehr unterstützt werden.</p>
+</div>
+</section>
+<section id="client-auswahl">
+<span id="pageclientauswahl"></span><h4>Client-Auswahl<a class="headerlink" href="#client-auswahl" title="Link to this heading"></a></h4>
+<p>Um den für den Seitenwechsel notwendigen Wert zu definieren oder aber auch um
+den Seitenwechsel nur auf einem Teil der Visus zu aktivieren wird das Attribut
+<code class="docutils literal notranslate"><span class="pre">clients</span></code> verwendet. Inhalt ist eine (über Komma getrennte) Liste aus
+<a class="reference internal" href="../../url-params.html#urlclientid"><span class="std std-ref">Client-ID</span></a>
+mit Doppelpunkt und dem Trigger-Wert. Über die Wildcard <code class="docutils literal notranslate"><span class="pre">*</span></code> können mehrere
+Clients gleichzeitig angesprochen werden, denen Client-ID mit dem gleichen
+Text beginnt.</p>
+<p><strong>Beispiele:</strong></p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;*:1&quot;</span></code></dt><dd><p>Jede Visu reagiert wenn eine <code class="docutils literal notranslate"><span class="pre">1</span></code> gesendet wird.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;Diele_EG&quot;</span></code></dt><dd><p>Nur die Visu <code class="docutils literal notranslate"><span class="pre">Diele_EG</span></code> reagiert, es muss eine <code class="docutils literal notranslate"><span class="pre">1</span></code> gesendet werden.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;Diele_EG:0&quot;</span></code></dt><dd><p>Nur die Visu <code class="docutils literal notranslate"><span class="pre">Diele_EG</span></code> reagiert, es muss eine <code class="docutils literal notranslate"><span class="pre">0</span></code> gesendet werden.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;Diele_UG:0,</span> <span class="pre">Diele_EG:1&quot;</span></code></dt><dd><p>Die Visu <code class="docutils literal notranslate"><span class="pre">Diele_UG</span></code> reagiert wenn eine <code class="docutils literal notranslate"><span class="pre">0</span></code> gesendet wird, die
+<code class="docutils literal notranslate"><span class="pre">Diele_EG</span></code> reagiert, wenn auf die gleiche <code class="docutils literal notranslate"><span class="pre">ga</span></code> eine <code class="docutils literal notranslate"><span class="pre">1</span></code> gesendet wird.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">clients=&quot;Diele_*&quot;</span></code> oder <code class="docutils literal notranslate"><span class="pre">clients=&quot;Diele_*:1&quot;</span></code></dt><dd><p>Jeder Client der mit <code class="docutils literal notranslate"><span class="pre">Diele_</span></code> anfängt (wie z.B. <code class="docutils literal notranslate"><span class="pre">Diele_UG</span></code> und
+<code class="docutils literal notranslate"><span class="pre">Diele_EG</span></code>) reagiert, es muss eine <code class="docutils literal notranslate"><span class="pre">1</span></code> gesendet werden.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Ein möglicher Anwendungsfall wären in der Wand verbaute Touch-Panel PCs die
+alle bei Betätigung der Klingel auf die Visu-Seite mit dem Außenkamera-Bild
+umschalten sollen (dann würde die Kamera-Seite mit <code class="docutils literal notranslate"><span class="pre">clients=&quot;Diele_*:1&quot;</span></code>
+alle Touch-Panels adressieren, die Visu auf dem Handy aber nicht reagieren.
+Wenn nun auf die Adresse in <code class="docutils literal notranslate"><span class="pre">ga</span></code> eine <code class="docutils literal notranslate"><span class="pre">1</span></code> gesendet wird, schalten die
+Clients die Seite um).
+Auch üblich ist der Anwendungsfall, bei dem beim Öffnen der Haustüre die Visu
+in der Diele im Erdgeschoss auf die Seite mit dem Verschluss-Status aller
+Fenster gewechselt werden soll (also <code class="docutils literal notranslate"><span class="pre">clients=&quot;Diele_EG:1&quot;</span></code>), damit man beim
+Verlassen des Hauses weiß, ob alles sicher abgeschlossen ist.</p>
+</section>
+</section>
 </section>
 <section id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link to this heading"></a></h2>
@@ -325,7 +401,7 @@ Config-Datei übernommen werden.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

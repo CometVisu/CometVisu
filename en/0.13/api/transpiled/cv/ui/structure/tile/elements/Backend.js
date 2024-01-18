@@ -196,11 +196,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               } finally {
                 _iterator2.f();
               }
-              var addressesToSubscribe = model.getAddresses(name);
-              _this.debug(name, 'subscribing to', addressesToSubscribe.length, 'addresses');
-              if (addressesToSubscribe.length !== 0) {
-                client.subscribe(addressesToSubscribe);
-              }
+              cv.io.BackendConnections.startInitialRequest(name);
             };
             if (cv.TemplateEngine.getInstance().isDomFinished()) {
               doSubscribe();
@@ -244,4 +240,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.elements.Backend.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Backend.js.map?dt=1704036754205
+//# sourceMappingURL=Backend.js.map?dt=1705596659808

@@ -34,4 +34,4 @@
   qx.ui.form.IListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListItem.js.map?dt=1704036773233
+//# sourceMappingURL=IListItem.js.map?dt=1705596678224

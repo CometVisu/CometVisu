@@ -294,6 +294,9 @@
               data.body = '{}';
               data.error = 'Invalid JSON content: ' + e.toString();
             }
+          } else if (data.url.includes('/config/visu_config') && data.url.endsWith('.xml') && data.body) {
+            data.body = data.body.replaceAll(/username="[^"]+"/gi, 'username="replay"');
+            data.body = data.body.replaceAll(/password="[^"]+"/gi, 'password="***"');
           }
         }
       },
@@ -373,7 +376,7 @@
         return data;
       },
       recordNativeEvent: function recordNativeEvent(ev) {
-        if (!cv.report.Record.USER_EVENTS.test(ev.type) || ev.$$RID) {
+        if (!cv.report.Record.USER_EVENTS.test(ev.type) || ev.$$RID || ev.constructor.name === 'CustomEvent') {
           return;
         }
         ev.$$RID = this.__P_534_9;
@@ -496,4 +499,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1704036783646
+//# sourceMappingURL=Record.js.map?dt=1705596688448
