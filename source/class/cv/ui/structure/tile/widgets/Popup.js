@@ -122,7 +122,13 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       if (!super.onStateUpdate(ev)) {
         switch (ev.detail.target) {
           case 'open':
-            if (ev.detail.state) {
+            if (ev.detail.addressValue) {
+              // only open when the sent value equals the fixed value
+              // noinspection EqualityComparisonWithCoercionJS
+              if (ev.detail.addressValue == ev.detail.state) {
+                this.open();
+              }
+            } else if (ev.detail.state) {
               this.open();
             }
             break;
