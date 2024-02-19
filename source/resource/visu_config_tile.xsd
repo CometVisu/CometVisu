@@ -2264,7 +2264,7 @@
       <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+" />
+      <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+|^[a-zA-Z0-9_\-\/]{1,}$" />
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -2279,6 +2279,92 @@
   <xsd:complexType name="address">
     <xsd:simpleContent>
       <xsd:extension base="addr">
+        <xsd:attribute ref="transform" />
+        <xsd:attribute ref="mode" />
+        <xsd:attribute name="value" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Fixed value sent to this address.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Fixer Wert welcher an diese Adresse gesendet wird.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="on">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Event on which a ``value`` should be sent to this address (only useful in mode=``write or ``readwrite`), also needs ``value``.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit ``value`` und mode=``read`` oder ``readwrite``).</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="click" />
+              <xsd:enumeration value="down" />
+              <xsd:enumeration value="up" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="target" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Target in the parent widget the value if this address should be use for. The possible values depend on the parent widget.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Ziel innerhalb der Eltern-Widgets für das die Werte dieser Adresse benutzt werden sollen. Die möglichen Werte hängen vom Eltern-Widget ab.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="format-pos" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Position for format string when multiple addresses are used.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="qos" type="xsd:decimal">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: QoS</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: QoS</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="retain" type="xsd:boolean">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: retain flag</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: retain Flag</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="selector" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: JSON selector</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: JSON Selektor</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="backend" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Optional name of the backend this address belongs to.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Optionaler Name des Backends zu dem diese Adresse gehört.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ref="mapping"/>
+        <xsd:attribute ref="format"/>
+        <xsd:attribute name="delay" type="xsd:positiveInteger">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Optional delay in milliseconds that a write-request to this address is delayed.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</xsd:documentation>
+            <xsd:appinfo>level:expert</xsd:appinfo>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="send-mode" default="on-change">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Usually the elements that are using this address receive an update-event only when that value hast changed (``on-change``). This check can be disabled ``always`` to send the update-event every time when a new value has been received from the backend.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (``on-change``). Mit ``always`` wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</xsd:documentation>
+            <xsd:appinfo>level:expert</xsd:appinfo>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="on-change" />
+              <xsd:enumeration value="always" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="mqtt-address">
+    <xsd:simpleContent>
+      <xsd:extension base="mqtt-addr">
         <xsd:attribute ref="transform" />
         <xsd:attribute ref="mode" />
         <xsd:attribute name="value" type="xsd:string">
