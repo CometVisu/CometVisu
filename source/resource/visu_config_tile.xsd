@@ -1319,7 +1319,7 @@
         </xsd:element>
         <xsd:element name="cv-address-group" maxOccurs="unbounded">
           <xsd:complexType>
-            <xsd:simpleContent>
+            <xsd:complexContent>
               <xsd:extension base="cv-address-group">
                 <xsd:attribute name="slot" use="required">
                   <xsd:simpleType>
@@ -1329,7 +1329,7 @@
                   </xsd:simpleType>
                 </xsd:attribute>
               </xsd:extension>
-            </xsd:simpleContent>
+            </xsd:complexContent>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
