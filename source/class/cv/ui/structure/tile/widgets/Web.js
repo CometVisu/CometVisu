@@ -1,6 +1,5 @@
-/* Image.js
- *
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributors.
+/*
+ * Copyright (c) 2010-2024, Christian Mayer and the CometVisu contributors.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -15,13 +14,15 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
  */
 
 /**
  * Shows HTML content in an iframe
  *
+ * HINT: Proxy mode needs an PHP environment with php-curl installed.
  */
-qx.Class.define('cv.ui.structure.tile.components.Web', {
+qx.Class.define('cv.ui.structure.tile.widgets.Web', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
 
