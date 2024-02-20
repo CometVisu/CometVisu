@@ -33,7 +33,7 @@ Beispiel mit exakter URL:
         "server": "https://www.google.de"
     }
 
-Beispiel mit regulärem Ausdruck (beginnt und endet mit "/"), welcher alle URLs erlaubt, die "webcam" enthalten:
+Beispiel mit regulärem Ausdruck (beginnt und endet mit "/"), welcher alle URLs erlaubt, die "google" enthalten:
 
 .. code-block:: json
 
