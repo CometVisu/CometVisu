@@ -282,6 +282,7 @@ oder die Bedienung einer Rolllade (Shutter).
     Media Player <widgets/media-player>
     Widget-pair <widgets/widget-pair>
     Energy <widgets/energy>
+    Web <widgets/web>
 
 Eigene Widgets definieren
 =========================
