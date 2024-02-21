@@ -198,8 +198,16 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
     onStateUpdate(ev) {
       const index = Array.prototype.indexOf.call(this._element.children, ev.detail.source.getElement());
       if (index >= 0) {
-        this._values[index] = ev.detail.state;
-        this.debouncedCalc();
+        let val = ev.detail.state;
+        if (typeof val === 'string') {
+          val = parseFloat(val);
+        }
+        if (typeof val === 'number') {
+          this._values[index] = val;
+          this.debouncedCalc();
+        } else {
+          this.error('update value is not a number', typeof val, 'calculation not possible');
+        }
       }
     }
   },
