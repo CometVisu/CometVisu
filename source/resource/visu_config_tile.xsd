@@ -568,6 +568,7 @@
         <xsd:element name="cv-row" type="cv-row" maxOccurs="3"/>
         <xsd:element name="cv-address" type="address" minOccurs="0"/>
         <xsd:element name="cv-popup" type="cv-popup" minOccurs="0"/>
+        <xsd:element name="p" type="p"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />
@@ -605,6 +606,7 @@
       <xsd:element name="cv-widget-pair" type="cv-widget-pair"/>
       <xsd:element name="cv-media-player" type="cv-media-player"/>
       <xsd:element name="cv-energy" type="cv-energy"/>
+      <xsd:element name="cv-web" type="cv-web" />
     </xsd:choice>
   </xsd:group>
 
@@ -649,6 +651,7 @@
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+        <xsd:element name="cv-address-group" type="cv-address-group" maxOccurs="unbounded"/>
         <xsd:element name="p" type="p" maxOccurs="3" minOccurs="0" />
         <xsd:element name="label" type="label" minOccurs="0" />
         <xsd:element name="meter" type="meter" minOccurs="0" />
@@ -755,6 +758,23 @@
     <xsd:attributeGroup ref="proxy-attributes"/>
   </xsd:complexType>
 
+  <xsd:complexType name="cv-web">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="src" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the page to be shown.</xsd:documentation>
+        <xsd:documentation xml:lang="de">URL der anzuzeigenden Seite.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="refresh" />
+    <xsd:attributeGroup ref="proxy-attributes"/>
+  </xsd:complexType>
+
   <xsd:complexType name="cv-chart">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
@@ -849,7 +869,7 @@
         <xsd:element name="model">
           <xsd:complexType>
             <xsd:choice maxOccurs="unbounded">
-              <xsd:element name="script" minOccurs="0"/>
+              <xsd:element name="script" type="xsd:string" minOccurs="0"/>
               <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
               <xsd:element name="cv-data" minOccurs="0" maxOccurs="unbounded">
                 <xsd:complexType>
@@ -1280,22 +1300,39 @@
 
   <xsd:complexType name="cv-info">
     <xsd:sequence>
-      <xsd:element name="cv-address" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:simpleContent>
-            <xsd:extension base="address">
-              <xsd:attribute name="slot" use="required">
-                <xsd:simpleType>
-                  <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="address" />
-                    <xsd:enumeration value="tileAddress" />
-                  </xsd:restriction>
-                </xsd:simpleType>
-              </xsd:attribute>
-            </xsd:extension>
-          </xsd:simpleContent>
-        </xsd:complexType>
-      </xsd:element>
+      <xsd:choice>
+        <xsd:element name="cv-address" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="address">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="address" />
+                      <xsd:enumeration value="tileAddress" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="cv-address-group" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="cv-address-group">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="address" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
       <xsd:choice>
         <xsd:element name="cv-round-progress" minOccurs="0">
           <xsd:complexType>
@@ -2227,7 +2264,7 @@
       <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+" />
+      <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+|^[a-zA-Z0-9_\-\/]{1,}$" />
     </xsd:restriction>
   </xsd:simpleType>
 

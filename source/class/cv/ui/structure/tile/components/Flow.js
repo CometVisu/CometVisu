@@ -125,7 +125,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         this._initFullscreenSwitch();
         this.addListener('changeFullscreen', ev => {
           if (ev.getData()) {
-            if (!this._viewBoxBinding) {
+            if (!this._viewBoxBinding && this.getFullscreenViewBox()) {
               this._viewBoxBinding = this.bind('fullscreenViewBox', this, 'viewBox');
             }
           } else if (this._viewBoxBinding) {

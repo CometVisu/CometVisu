@@ -167,6 +167,9 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
         lineEntries = line.split(',');
         if (lineEntries[valueIndex]) {
           value = parseFloat(lineEntries[valueIndex]);
+          if (isNaN(value)) {
+            value = 0;
+          }
           date = new Date(lineEntries[timeIndex]);
           res.push([date.getTime(), value]);
         }
