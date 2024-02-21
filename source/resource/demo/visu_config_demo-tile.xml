@@ -148,9 +148,6 @@
                                 </div>
                             </cv-listitem>
                         </template>
-                        <template when="empty">
-                            <li><label class="primary" tr="true">Currently no lights are switched on</label></li>
-                        </template>
                     </cv-list>
                 </cv-popup>
             </cv-small-status>
@@ -189,9 +186,6 @@
                                 </div>
                             </cv-listitem>
                         </template>
-                        <template when="empty">
-                            <li><label class="primary" tr="true">Currently no windows are open</label></li>
-                        </template>
                     </cv-list>
                 </cv-popup>
             </cv-small-status>
@@ -220,9 +214,6 @@
                                     <label class="primary">${label}</label>
                                 </div>
                             </cv-listitem>
-                        </template>
-                        <template when="empty">
-                            <li><label class="primary" tr="true">Currently there are no speakers switched on.</label></li>
                         </template>
                     </cv-list>
                 </cv-popup>
