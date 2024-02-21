@@ -211,7 +211,7 @@ qx.Class.define('cv.io.mqtt.Client', {
         let update = {};
         update[message.topic] = message.payloadString;
 
-        this.record('update', update);
+        self.record('update', update);
         self.update(update);
       };
 
