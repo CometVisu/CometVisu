@@ -210,11 +210,15 @@ qx.Class.define('cv.io.mqtt.Client', {
       this._client.onMessageArrived = function (message) {
         let update = {};
         update[message.topic] = message.payloadString;
+
+        this.record('update', update);
         self.update(update);
       };
 
       try {
-        this._client.connect(options);
+        if (!cv.report.Record.REPLAYING) {
+          this._client.connect(options);
+        }
       } catch (e) {
         onFailure({
           errorMessage: e.toString(),
