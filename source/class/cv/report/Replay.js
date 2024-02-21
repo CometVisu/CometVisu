@@ -306,7 +306,7 @@ qx.Class.define('cv.report.Replay', {
           break;
         default:
           if (typeof client[record.i] === 'function') {
-            client[record.i].call(client, record.d);
+            client[record.i](record.d);
           } else if (client instanceof cv.io.openhab.Rest) {
             this.error('unhandled rest backend record of type ' + record.i);
           } else if (client instanceof cv.io.mqtt.Client) {
