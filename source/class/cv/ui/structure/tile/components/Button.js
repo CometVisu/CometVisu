@@ -105,6 +105,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
      * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
      */
     __store: null,
+    _triggerOnValue: null,
 
     _parseInt(val) {
       const intVal = parseInt(val);
@@ -189,6 +190,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           this.onClicked(ev);
         });
       }
+      let triggerAddresses = [];
       if (hasReadAddress) {
         element.addEventListener('stateUpdate', ev => {
           this.onStateUpdate(ev);
@@ -197,29 +199,37 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         });
       } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
         // apply the trigger state
-        const triggerAddresses = writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
-
-        if (triggerAddresses.length === 1) {
-          const value = triggerAddresses[0].getAttribute('value');
-          qx.event.Timer.once(
-            () => {
-              // using == comparisons to make sure that e.g. 1 equals "1"
-              // noinspection EqualityComparisonWithCoercionJS
-              this.setOn(value == this.getOnValue());
-            },
-            this,
-            1000
-          );
-        }
+        triggerAddresses = writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
       }
 
       // detect button type
       if (
         !hasReadAddress &&
-        writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on')).length === 1
+        triggerAddresses.length === 1
       ) {
         // only one write address with a fixed value and no special event => simple trigger
         this.setType('trigger');
+        console.log(this._element);
+
+        if (!element.hasAttribute('on-value')) {
+          // we consider the trigger address value as on-value when no one is given
+          this._triggerOnValue = triggerAddresses[0].getAttribute('value');
+        } else {
+          this._triggerOnValue = this.getOnValue();
+        }
+
+        const value = triggerAddresses[0].getAttribute('value');
+        qx.event.Timer.once(
+          () => {
+            // set it to the opposite of what is being sent when clicked to make the feedback simulation work
+            // e.g. value="1", trigger is off and when clicked for a short amount of time in on state,
+            // using == comparisons to make sure that e.g. 1 equals "1"
+            // noinspection EqualityComparisonWithCoercionJS
+            this.setOn(value != this._triggerOnValue);
+          },
+          this,
+          1000
+        );
       } else {
         let hasDown = false;
         let hasUp = false;
@@ -411,19 +421,25 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         });
 
         if (this.getType() === 'trigger') {
+          const wa = this._writeAddresses
+            .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click');
+
           // simulate feedback
-          this.setOn(true);
+          // using == comparisons to make sure that e.g. 1 equals "1"
+          // noinspection EqualityComparisonWithCoercionJS
+          const simulatedValue = wa[0].getAttribute('value') == this._triggerOnValue;
+          this.setOn(simulatedValue);
           qx.event.Timer.once(
             () => {
-              this.setOn(false);
+              this.setOn(!simulatedValue);
             },
             null,
-            250
+            500
           );
+
+          wa.forEach(address => address.dispatchEvent(ev));
         }
-        this._writeAddresses
-          .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click')
-          .forEach(address => address.dispatchEvent(ev));
+
         event.stopPropagation();
       }
     },
