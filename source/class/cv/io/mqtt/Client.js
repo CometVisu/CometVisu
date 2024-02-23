@@ -69,6 +69,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      */
     _client: null,
     _type: null,
+    addresses: null,
 
     /**
      * Returns the current backend configuration
@@ -129,7 +130,15 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      */
     subscribe(addresses, filters) {
+      this.addresses = addresses ? addresses : [];
       addresses.forEach(value => this._client.subscribe(value));
+    },
+
+    addSubscription(address) {
+      if (!this.addresses.includes(address)) {
+        this.addresses.push(address);
+        this._client.subscribe(address)
+      }
     },
 
     /**
