@@ -209,7 +209,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       ) {
         // only one write address with a fixed value and no special event => simple trigger
         this.setType('trigger');
-        console.log(this._element);
 
         if (!element.hasAttribute('on-value')) {
           // we consider the trigger address value as on-value when no one is given

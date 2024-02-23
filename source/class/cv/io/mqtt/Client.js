@@ -137,7 +137,7 @@ qx.Class.define('cv.io.mqtt.Client', {
     addSubscription(address) {
       if (!this.addresses.includes(address)) {
         this.addresses.push(address);
-        this._client.subscribe(address)
+        this._client.subscribe(address);
       }
     },
 

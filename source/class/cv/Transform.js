@@ -133,7 +133,7 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value and raw value
      *
-     * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
+     * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} object with both encoded values
      */
@@ -175,7 +175,7 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value
      *
-     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+     * @param {{transform: string, selector?: string, ignoreError?: string}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} the encoded value
      */
@@ -185,7 +185,7 @@ qx.Class.define('cv.Transform', {
 
     /**
      * transform bus to JavaScript value
-     * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
+     * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} the decoded value
      */

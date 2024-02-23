@@ -43,7 +43,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Web', {
   */
   members: {
     /**
-     * @type URL
+     * @type {URL}
      */
     _url: null,
 
