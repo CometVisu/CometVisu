@@ -714,25 +714,25 @@ body {
             }
         }
         &[size="2x1"] {
-            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
         }
         &[size="2x1.5"] {
-            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 1.5 + var(--spacing));
         }
         &[size="2x2"] {
-            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
         }
         &[size="1x2"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
         }
         &[size="2x4"] {
-            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
         }
         &[size="4x2"] {
-            width: min(100vw, calc(var(--tileCellWidth) * #{$tileColumns} * 4 + var(--spacing)));
+            width: min(calc(100vw - var(--spacing)*3), min(100vw, calc(var(--tileCellWidth) * #{$tileColumns} * 4 + var(--spacing))));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing) * 3);
         }
     }
