@@ -207,7 +207,7 @@
                     </label>
                 </p>
             </cv-value>
-            <cv-select row="2" colspan="3">
+            <cv-select row="2" colspan="3" show="icon">
                 <slot name="hvacAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto
                 </cv-option>

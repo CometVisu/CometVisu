@@ -11,9 +11,12 @@ Beschreibung
 
 Die Select-Komponente ermöglicht es einen Wert aus einer vorgegebenen Liste auszuwählen.
 Ein möglicher Anwendungsfall ist zum Beispiel die Auswahl des Betriebsmodus eines Raumtemperaturreglers.
-Es wird der aktuell ausgewählte Wert angezeigt (sofern Icons benutzt werden, wird nur dieses angezeigt
-ohne den zugehörigen Text) und bei Klick auf die Komponente öffnet sich die Liste
+Es wird der aktuell ausgewählte Wert angezeigt und bei Klick auf die Komponente öffnet sich die Liste
 mit möglichen Werten aus der dann einer ausgewählt werden kann.
+
+Über das ``show``-Attribut kann man festlegen ob von dem aktuell ausgewählten Wert nur das Icon (``show="icon"``), nur
+den Text (``show="label"``) oder beides (``show="both"``) angezeigt wird. Wenn das Attribut nicht angegeben wird,
+wird beides angezeigt.
 
 .. widget-example::
 
@@ -29,19 +32,19 @@ mit möglichen Werten aus der dann einer ausgewählt werden kann.
     </settings>
     <cv-select>
         <cv-address transform="DPT:20.102">1/4/2</cv-address>
-        <cv-option key="0">
+        <cv-option key="auto">
             <cv-icon>ri-character-recognition-line</cv-icon>Auto
         </cv-option>
-        <cv-option key="1">
+        <cv-option key="comfort">
             <cv-icon>ri-temp-cold-line</cv-icon>Komfort
         </cv-option>
-        <cv-option key="2">
+        <cv-option key="standby">
             <cv-icon>ri-shut-down-line</cv-icon>Aus
         </cv-option>
-        <cv-option key="3">
+        <cv-option key="economy">
             <cv-icon>ri-leaf-line</cv-icon>Eco
         </cv-option>
-        <cv-option key="4">
+        <cv-option key="building_protection">
             <cv-icon>ri-shield-line</cv-icon>Frostschutz
         </cv-option>
     </cv-select>
