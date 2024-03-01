@@ -77,7 +77,6 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     _toggleOptions(close) {
       // open popup
       const style = getComputedStyle(this.__popup);
-      console.log('_toggleOptions', close, style.getPropertyValue('display'))
       if (style.getPropertyValue('display') === 'none' && !close) {
         this.__popup.style.display = 'block';
         window.requestAnimationFrame(() => {
