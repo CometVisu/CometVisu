@@ -435,7 +435,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
             null,
             500
           );
-
         }
         wa.forEach(address => address.dispatchEvent(ev));
         event.stopPropagation();

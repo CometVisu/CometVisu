@@ -127,7 +127,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     },
 
     _updateValue(mappedValue, value) {
-      const key = typeof mappedValue !== 'undefined' ? "" + mappedValue : "";
+      const key = typeof mappedValue !== 'undefined' ? '' + mappedValue : '';
       if (this.__options.has(key)) {
         this.__value.innerHTML = '';
         const current = this.__options.get(key);
