@@ -99,11 +99,17 @@ qx.Interface.define('cv.io.IClient', {
      * Subscribe to the addresses in the parameter. The second parameter
      * (filter) is optional
      *
-     * @param addresses {Array?} addresses to subscribe to
+     * @param addresses {Array<String>} addresses to subscribe to
      * @param filters {Array?} Filters
      *
      */
     subscribe(addresses, filters) {},
+
+    /**
+     * Add a single subscription
+     * @param address {String}
+     */
+    addSubscription(address) {},
 
     /**
      * This function starts the communication by a login and then runs the

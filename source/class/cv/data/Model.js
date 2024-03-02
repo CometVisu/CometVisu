@@ -202,6 +202,11 @@ qx.Class.define('cv.data.Model', {
         this.__stateListeners[backendName][address] = [];
       }
       this.__stateListeners[backendName][address].push([callback, context]);
+
+      const backend = cv.io.BackendConnections.getClient(backendName);
+      if (backend && backend.isConnected()) {
+        backend.addSubscription(address);
+      }
     },
 
     /**

@@ -25,6 +25,19 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    show: {
+      check: ['icon', 'label', 'both'],
+      init: 'both',
+      apply: '_applyShow'
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -61,8 +74,30 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
       }
     },
 
-    onClicked(ev) {
+    _toggleOptions(close) {
+      // open popup
       const style = getComputedStyle(this.__popup);
+      if (style.getPropertyValue('display') === 'none' && !close) {
+        this.__popup.style.display = 'block';
+        window.requestAnimationFrame(() => {
+          // delay adding this listener, otherwise it would fire immediately
+          // also the native addEventListener does not allow the listener to be re-added once removed, so we use the qx way here
+          // which works fine
+          qx.event.Registration.addListener(document.body, 'click', this.handleEvent, this, true);
+        });
+      } else {
+        this.__popup.style.display = 'none';
+        qx.event.Registration.removeListener(document.body, 'click', this.handleEvent, this, true);
+      }
+    },
+
+    handleEvent(ev) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      this._toggleOptions(true);
+    },
+
+    onClicked(ev) {
       let target = ev.target;
       // find out event target (either the cv-select of cv-option
       while (target !== ev.currentTarget && target.tagName.toLowerCase() !== 'cv-option') {
@@ -72,12 +107,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
         // select this option
         this._sendSelection(target.getAttribute('key'), true);
       }
-      // open popup
-      if (style.getPropertyValue('display') === 'none') {
-        this.__popup.style.display = 'block';
-      } else {
-        this.__popup.style.display = 'none';
-      }
+      this._toggleOptions();
     },
 
     _sendSelection(key, predictive) {
@@ -97,17 +127,38 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     },
 
     _updateValue(mappedValue, value) {
-      if (this.__options.has(mappedValue)) {
+      const key = typeof mappedValue !== 'undefined' ? '' + mappedValue : '';
+      if (this.__options.has(key)) {
         this.__value.innerHTML = '';
-        const current = this.__options.get(mappedValue);
-        if (current.children.length > 0) {
-          // if we have non text children, we only use them (only icons no text)
-          for (const child of current.children) {
-            this.__value.appendChild(child.cloneNode());
-          }
-        } else {
-          this.__value.innerHTML = current.innerHTML;
+        const current = this.__options.get(key);
+        switch (this.getShow()) {
+          case 'icon':
+            // if we have non text children, we only use them (only icons no text)
+            for (const child of current.children) {
+              if (child.nodeName.toLowerCase() === 'cv-icon') {
+                this.__value.appendChild(child.cloneNode());
+              }
+            }
+            break;
+
+          case 'label':
+            for (const child of current.childNodes) {
+              if (child.nodeType === Node.TEXT_NODE || (child.nodeType === Node.ELEMENT_NODE && child.nodeName.toLowerCase() === 'label')) {
+                this.__value.appendChild(child.cloneNode());
+              }
+            }
+            break;
+
+          case 'both':
+            this.__value.innerHTML = current.innerHTML;
+            break;
         }
+      }
+    },
+
+    _applyShow(show) {
+      if (this.getValue()) {
+        this._updateValue(this.getValue());
       }
     }
   },
@@ -116,6 +167,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'select',
       class extends QxConnector {
+        static observedAttributes = ['show'];
         constructor() {
           super(QxClass);
         }

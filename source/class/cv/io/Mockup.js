@@ -143,6 +143,12 @@ qx.Class.define('cv.io.Mockup', {
       }
     },
 
+    addSubscription(address) {
+      if (!this.addresses.includes(address)) {
+        this.addresses.push(address);
+      }
+    },
+
     __decode(address, value) {
       if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
         if (/^[\da-fA-F]+$/.test(value)) {

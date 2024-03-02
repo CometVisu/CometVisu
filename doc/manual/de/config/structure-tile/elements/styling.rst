@@ -127,9 +127,9 @@ Im folgenden Beispiel wie folgt:
 .. code-block:: xml
 
      <cv-styling name="BluePurpleRed">
-        <entry range_min="-100" range_max="0">blue</entry>
+        <entry range-min="-100" range-max="0">blue</entry>
         <entry value="0">purple</entry>
-        <entry range_min="0" range_max="100">red</entry>
+        <entry range-min="0" range-max="100">red</entry>
      </cv-styling>
 
 .. IMPORTANT::

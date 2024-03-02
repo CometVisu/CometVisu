@@ -114,6 +114,12 @@ qx.Class.define('cv.io.System', {
       }
     },
 
+    addSubscription(address) {
+      if (!this.addresses.includes(address)) {
+        this.addresses.push(address);
+      }
+    },
+
     write(address, value, options) {
       if (address) {
         const parts = address.split(':');

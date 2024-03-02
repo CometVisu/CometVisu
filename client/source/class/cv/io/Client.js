@@ -90,6 +90,8 @@ qx.Class.define('cv.io.Client', {
     this.pass = '';
     this.device = '';
     this.headers = {};
+
+    this.delayedRestart = qx.util.Function.debounce(this.restart.bind(this), 50);
   },
 
   /*
@@ -352,6 +354,15 @@ qx.Class.define('cv.io.Client', {
           this.loginSettings.loginOnly = false;
         } else {
           this.login(false);
+        }
+      }
+    },
+
+    addSubscription(address) {
+      if (!this.addresses.includes()) {
+        this.addresses.push(address);
+        if (this.isConnected()) {
+          this.delayedRestart();
         }
       }
     },

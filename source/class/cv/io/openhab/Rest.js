@@ -331,6 +331,14 @@ qx.Class.define('cv.io.openhab.Rest', {
       }
     },
 
+    addSubscription(address) {
+      if (!this.__subscribedAddresses) {
+        this.__subscribedAddresses = [address];
+      } else if (!this.__subscribedAddresses.includes(address)) {
+        this.__subscribedAddresses.push(address);
+      }
+    },
+
     terminate() {
       this.debug('terminating connection');
       if (this.eventSource) {

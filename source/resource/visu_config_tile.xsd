@@ -701,6 +701,18 @@
         <xsd:appinfo>level:expert</xsd:appinfo>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="on-value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den An-Zustand. Default ist "1".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="off-value" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "off" state. Defaults to "0".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den Aus-Zustand. Default ist "0".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-slider">
@@ -955,6 +967,19 @@
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="show">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines which content of the selection option should be shown ("both": icon and label, "icon": only the icon, "label": only the label).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Gibt an was von der selektierten Option angezeigt werden soll ("both": Icon und Text, "icon": nur das Icon, "text" nur der Text.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="both" />
+        <xsd:enumeration value="icon" />
+        <xsd:enumeration value="label" />
+      </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-color">
