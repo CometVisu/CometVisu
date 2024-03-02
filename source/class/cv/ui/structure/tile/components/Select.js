@@ -127,9 +127,10 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     },
 
     _updateValue(mappedValue, value) {
-      if (this.__options.has(mappedValue)) {
+      const key = typeof mappedValue !== 'undefined' ? "" + mappedValue : "";
+      if (this.__options.has(key)) {
         this.__value.innerHTML = '';
-        const current = this.__options.get(mappedValue);
+        const current = this.__options.get(key);
         switch (this.getShow()) {
           case 'icon':
             // if we have non text children, we only use them (only icons no text)
