@@ -204,4 +204,4 @@
   qx.ui.virtual.selection.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1705596686071
+//# sourceMappingURL=Abstract.js.map?dt=1709410167950

@@ -177,4 +177,4 @@
   qx.event.handler.Offline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Offline.js.map?dt=1705596669755
+//# sourceMappingURL=Offline.js.map?dt=1709410151761

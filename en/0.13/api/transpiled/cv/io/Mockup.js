@@ -162,6 +162,11 @@
           this.__P_530_0.prepareTestData(this.addresses);
         }
       },
+      addSubscription: function addSubscription(address) {
+        if (!this.addresses.includes(address)) {
+          this.addresses.push(address);
+        }
+      },
       __P_530_2: function __P_530_2(address, value) {
         if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
           if (/^[\da-fA-F]+$/.test(value)) {
@@ -272,4 +277,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1705596688231
+//# sourceMappingURL=Mockup.js.map?dt=1709410170061

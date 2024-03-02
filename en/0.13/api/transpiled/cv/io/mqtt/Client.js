@@ -13,7 +13,8 @@
         "require": true
       },
       "cv.core.notifications.Router": {},
-      "qx.locale.Manager": {}
+      "qx.locale.Manager": {},
+      "cv.report.Record": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -83,6 +84,7 @@
        */
       _client: null,
       _type: null,
+      addresses: null,
       /**
        * Returns the current backend configuration
        * @return {Map}
@@ -136,9 +138,16 @@
        */
       subscribe: function subscribe(addresses, filters) {
         var _this = this;
+        this.addresses = addresses ? addresses : [];
         addresses.forEach(function (value) {
           return _this._client.subscribe(value);
         });
+      },
+      addSubscription: function addSubscription(address) {
+        if (!this.addresses.includes(address)) {
+          this.addresses.push(address);
+          this._client.subscribe(address);
+        }
       },
       /**
        * This function starts the communication by a login and then runs the
@@ -204,10 +213,13 @@
         this._client.onMessageArrived = function (message) {
           var update = {};
           update[message.topic] = message.payloadString;
+          self.record('update', update);
           self.update(update);
         };
         try {
-          this._client.connect(options);
+          if (!cv.report.Record.REPLAYING) {
+            this._client.connect(options);
+          }
         } catch (e) {
           onFailure({
             errorMessage: e.toString(),
@@ -307,4 +319,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1705596688312
+//# sourceMappingURL=Client.js.map?dt=1709410170149

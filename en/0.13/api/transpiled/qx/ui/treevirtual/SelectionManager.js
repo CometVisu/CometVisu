@@ -198,4 +198,4 @@
   qx.ui.treevirtual.SelectionManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectionManager.js.map?dt=1705596685141
+//# sourceMappingURL=SelectionManager.js.map?dt=1709410166987

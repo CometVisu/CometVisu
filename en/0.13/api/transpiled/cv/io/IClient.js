@@ -98,11 +98,16 @@
        * Subscribe to the addresses in the parameter. The second parameter
        * (filter) is optional
        *
-       * @param addresses {Array?} addresses to subscribe to
+       * @param addresses {Array<String>} addresses to subscribe to
        * @param filters {Array?} Filters
        *
        */
       subscribe: function subscribe(addresses, filters) {},
+      /**
+       * Add a single subscription
+       * @param address {String}
+       */
+      addSubscription: function addSubscription(address) {},
       /**
        * This function starts the communication by a login and then runs the
        * ongoing communication task
@@ -192,4 +197,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1705596691098
+//# sourceMappingURL=IClient.js.map?dt=1709410172711

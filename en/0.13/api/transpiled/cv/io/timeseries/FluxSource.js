@@ -177,6 +177,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             lineEntries = line.split(',');
             if (lineEntries[valueIndex]) {
               value = parseFloat(lineEntries[valueIndex]);
+              if (isNaN(value)) {
+                value = 0;
+              }
               date = new Date(lineEntries[timeIndex]);
               res.push([date.getTime(), value]);
             }
@@ -193,4 +196,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.io.timeseries.FluxSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FluxSource.js.map?dt=1705596690583
+//# sourceMappingURL=FluxSource.js.map?dt=1709410172313

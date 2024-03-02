@@ -217,4 +217,4 @@
   qx.ui.window.MDesktop.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDesktop.js.map?dt=1705596686787
+//# sourceMappingURL=MDesktop.js.map?dt=1709410168651

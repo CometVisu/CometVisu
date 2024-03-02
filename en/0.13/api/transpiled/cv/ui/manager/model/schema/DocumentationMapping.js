@@ -153,6 +153,7 @@
         'tile-status': '/develop/manual/config/structure-tile/widgets/status.html#tile-status',
         'tile-status-chart': '/develop/manual/config/structure-tile/widgets/status-chart.html#tile-status-chart',
         'tile-switch': '/develop/manual/config/structure-tile/widgets/switch.html#tile-switch',
+        'tile-web': '/develop/manual/config/structure-tile/widgets/web.html#tile-web',
         'tile-widget-pair': '/develop/manual/config/structure-tile/widgets/widget-pair.html#tile-widget-pair',
         'tile-widgets': '/develop/manual/config/structure-tile/index.html#tile-widgets',
         'timberwolf': '/develop/manual/install/timberwolf.html#timberwolf',
@@ -186,4 +187,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1705596655747
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1709410137770

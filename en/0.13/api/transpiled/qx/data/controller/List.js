@@ -989,4 +989,4 @@
   qx.data.controller.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1705596665588
+//# sourceMappingURL=List.js.map?dt=1709410147599

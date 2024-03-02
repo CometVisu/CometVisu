@@ -565,4 +565,4 @@
   qx.ui.website.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1705596686495
+//# sourceMappingURL=Slider.js.map?dt=1709410168361

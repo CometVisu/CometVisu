@@ -262,4 +262,4 @@
   qx.ui.website.Rating.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rating.js.map?dt=1705596686435
+//# sourceMappingURL=Rating.js.map?dt=1709410168301

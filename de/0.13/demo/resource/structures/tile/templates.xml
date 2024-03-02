@@ -10,10 +10,10 @@
             <entry value="1">ri-stop-fill</entry>
         </cv-mapping>
         <cv-mapping name="tile-play-progress">
-            <formula>
+            <formula><![CDATA[
                 d = store.get(params[0] || 'duration');
-                y = d > 0 ? Math.round(100/d*x) : 0;
-            </formula>
+                y = d > 0 && x <= d ? Math.round(100/d*x) : 0;
+            ]]></formula>
         </cv-mapping>
         <cv-styling name="tile-button">
             <entry value="0">inactive</entry>
@@ -207,7 +207,7 @@
                     </label>
                 </p>
             </cv-value>
-            <cv-select row="2" colspan="3">
+            <cv-select row="2" colspan="3" show="icon">
                 <slot name="hvacAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <cv-option key="auto"><cv-icon>ri-character-recognition-line</cv-icon>Auto
                 </cv-option>

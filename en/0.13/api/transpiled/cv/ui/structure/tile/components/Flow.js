@@ -161,7 +161,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           this._initFullscreenSwitch();
           this.addListener('changeFullscreen', function (ev) {
             if (ev.getData()) {
-              if (!_this._viewBoxBinding) {
+              if (!_this._viewBoxBinding && _this.getFullscreenViewBox()) {
                 _this._viewBoxBinding = _this.bind('fullscreenViewBox', _this, 'viewBox');
               }
             } else if (_this._viewBoxBinding) {
@@ -696,4 +696,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.structure.tile.components.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1705596658480
+//# sourceMappingURL=Flow.js.map?dt=1709410140502

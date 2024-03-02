@@ -149,7 +149,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       /**
        * transform JavaScript to bus value and raw value
        *
-       * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
+       * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object
        * @param {*} value - value to transform
        * @return {*} object with both encoded values
        */
@@ -191,7 +191,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       /**
        * transform JavaScript to bus value
        *
-       * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
+       * @param {{transform: string, selector?: string, ignoreError?: string}} address - type of the transformation, as address object
        * @param {*} value - value to transform
        * @return {*} the encoded value
        */
@@ -200,7 +200,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       /**
        * transform bus to JavaScript value
-       * @param {{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object
+       * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object
        * @param {*} value - value to transform
        * @return {*} the decoded value
        */
@@ -289,4 +289,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1705596688973
+//# sourceMappingURL=Transform.js.map?dt=1709410170785

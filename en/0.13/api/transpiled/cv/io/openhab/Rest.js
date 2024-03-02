@@ -324,6 +324,13 @@
           }
         }
       },
+      addSubscription: function addSubscription(address) {
+        if (!this.__P_531_4) {
+          this.__P_531_4 = [address];
+        } else if (!this.__P_531_4.includes(address)) {
+          this.__P_531_4.push(address);
+        }
+      },
       terminate: function terminate() {
         this.debug('terminating connection');
         if (this.eventSource) {
@@ -337,6 +344,7 @@
         if (payload.type === 'message') {
           this.record('read', {
             type: payload.type,
+            name: this.getName(),
             data: payload.data
           });
           var data = JSON.parse(payload.data);
@@ -503,4 +511,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1705596688283
+//# sourceMappingURL=Rest.js.map?dt=1709410170116

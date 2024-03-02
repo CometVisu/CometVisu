@@ -4650,6 +4650,7 @@
     "cv.ui.structure.tile.widgets.Popup",
     "cv.ui.structure.tile.widgets.TemplateWidget",
     "cv.ui.structure.tile.widgets.Tile",
+    "cv.ui.structure.tile.widgets.Web",
     "cv.ui.structure.tile.widgets.WidgetPair"
   ]
 }

@@ -16,9 +16,9 @@
         "index": 1129
       },
       "end": {
-        "line": 252,
+        "line": 258,
         "column": 3,
-        "index": 6936
+        "index": 7068
       }
     },
     "jsdoc": {
@@ -298,11 +298,10 @@
         "@param": [
           {
             "name": "@param",
-            "body": "addresses {Array?} addresses to subscribe to",
+            "body": "addresses {Array<String>} addresses to subscribe to",
             "paramName": "addresses",
             "description": " addresses to subscribe to",
-            "optional": true,
-            "type": "Array"
+            "type": "Array<String>"
           },
           {
             "name": "@param",
@@ -315,7 +314,7 @@
         ]
       }
     },
-    "write": {
+    "addSubscription": {
       "location": {
         "start": {
           "line": 117,
@@ -323,9 +322,37 @@
           "index": 3202
         },
         "end": {
-          "line": 178,
+          "line": 121,
           "column": 5,
-          "index": 5443
+          "index": 3327
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.io.IClient",
+      "appearsIn": [
+        "cv.io.IClient"
+      ],
+      "jsdoc": {
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String}"
+          }
+        ]
+      }
+    },
+    "write": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3334
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 5575
         }
       },
       "type": "function",
@@ -363,14 +390,14 @@
     "_applyTheme": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 186,
           "column": 4,
-          "index": 5450
+          "index": 5582
         },
         "end": {
-          "line": 183,
+          "line": 189,
           "column": 5,
-          "index": 5612
+          "index": 5744
         }
       },
       "type": "function",
@@ -379,14 +406,14 @@
     "restart": {
       "location": {
         "start": {
-          "line": 185,
+          "line": 191,
           "column": 4,
-          "index": 5619
+          "index": 5751
         },
         "end": {
-          "line": 185,
+          "line": 191,
           "column": 16,
-          "index": 5631
+          "index": 5763
         }
       },
       "type": "function",
@@ -409,14 +436,14 @@
     "stop": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 193,
           "column": 4,
-          "index": 5638
+          "index": 5770
         },
         "end": {
-          "line": 187,
+          "line": 193,
           "column": 13,
-          "index": 5647
+          "index": 5779
         }
       },
       "type": "function",
@@ -425,14 +452,14 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 195,
           "column": 4,
-          "index": 5654
+          "index": 5786
         },
         "end": {
-          "line": 194,
+          "line": 200,
           "column": 5,
-          "index": 5770
+          "index": 5902
         }
       },
       "type": "function",
@@ -472,14 +499,14 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 196,
+          "line": 202,
           "column": 4,
-          "index": 5777
+          "index": 5909
         },
         "end": {
-          "line": 198,
+          "line": 204,
           "column": 5,
-          "index": 5818
+          "index": 5950
         }
       },
       "type": "function",
@@ -502,14 +529,14 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 200,
+          "line": 206,
           "column": 4,
-          "index": 5825
+          "index": 5957
         },
         "end": {
-          "line": 202,
+          "line": 208,
           "column": 5,
-          "index": 5869
+          "index": 6001
         }
       },
       "type": "function",
@@ -532,14 +559,14 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 210,
           "column": 4,
-          "index": 5876
+          "index": 6008
         },
         "end": {
-          "line": 204,
+          "line": 210,
           "column": 21,
-          "index": 5893
+          "index": 6025
         }
       },
       "type": "function",
@@ -560,14 +587,14 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 206,
+          "line": 212,
           "column": 4,
-          "index": 5900
+          "index": 6032
         },
         "end": {
-          "line": 206,
+          "line": 212,
           "column": 18,
-          "index": 5914
+          "index": 6046
         }
       },
       "type": "function",
@@ -580,14 +607,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 214,
           "column": 4,
-          "index": 5921
+          "index": 6053
         },
         "end": {
-          "line": 208,
+          "line": 214,
           "column": 19,
-          "index": 5936
+          "index": 6068
         }
       },
       "type": "function",
@@ -610,14 +637,14 @@
     "record": {
       "location": {
         "start": {
-          "line": 209,
+          "line": 215,
           "column": 4,
-          "index": 5942
+          "index": 6074
         },
         "end": {
-          "line": 209,
+          "line": 215,
           "column": 25,
-          "index": 5963
+          "index": 6095
         }
       },
       "type": "function",
@@ -648,14 +675,14 @@
     "showError": {
       "location": {
         "start": {
-          "line": 210,
+          "line": 216,
           "column": 4,
-          "index": 5969
+          "index": 6101
         },
         "end": {
-          "line": 210,
+          "line": 216,
           "column": 37,
-          "index": 6002
+          "index": 6134
         }
       },
       "type": "function",
@@ -692,14 +719,14 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 219,
           "column": 4,
-          "index": 6049
+          "index": 6181
         },
         "end": {
-          "line": 213,
+          "line": 219,
           "column": 37,
-          "index": 6082
+          "index": 6214
         }
       },
       "jsdoc": {},
@@ -713,14 +740,14 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 215,
+          "line": 221,
           "column": 4,
-          "index": 6089
+          "index": 6221
         },
         "end": {
-          "line": 217,
+          "line": 223,
           "column": 5,
-          "index": 6147
+          "index": 6279
         }
       },
       "type": "function",
@@ -743,14 +770,14 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 218,
+          "line": 224,
           "column": 4,
-          "index": 6153
+          "index": 6285
         },
         "end": {
-          "line": 220,
+          "line": 226,
           "column": 5,
-          "index": 6203
+          "index": 6335
         }
       },
       "type": "function",
@@ -778,14 +805,14 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 221,
+          "line": 227,
           "column": 4,
-          "index": 6209
+          "index": 6341
         },
         "end": {
-          "line": 223,
+          "line": 229,
           "column": 5,
-          "index": 6254
+          "index": 6386
         }
       },
       "type": "function",
@@ -814,14 +841,14 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 224,
+          "line": 230,
           "column": 4,
-          "index": 6260
+          "index": 6392
         },
         "end": {
-          "line": 226,
+          "line": 232,
           "column": 5,
-          "index": 6307
+          "index": 6439
         }
       },
       "type": "function",
@@ -852,14 +879,14 @@
     "getProviderData": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 234,
           "column": 4,
-          "index": 6314
+          "index": 6446
         },
         "end": {
-          "line": 246,
+          "line": 252,
           "column": 5,
-          "index": 6854
+          "index": 6986
         }
       },
       "type": "function",
@@ -895,14 +922,14 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 248,
+          "line": 254,
           "column": 4,
-          "index": 6861
+          "index": 6993
         },
         "end": {
-          "line": 250,
+          "line": 256,
           "column": 5,
-          "index": 6928
+          "index": 7060
         }
       },
       "type": "function",

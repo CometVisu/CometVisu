@@ -92,4 +92,4 @@
   qx.ui.mobile.toolbar.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1705596682190
+//# sourceMappingURL=ToolBar.js.map?dt=1709410164100

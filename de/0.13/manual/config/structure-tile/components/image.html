@@ -135,10 +135,10 @@ Ebenso kann das Aktualisieren des Bildes durch eingehende Daten vom Backend ausg
 So kann z.B. das Bild einer Kamera an der Eingangstür aktualisiert werden, wenn es geklingelt hat.</p>
 <p>Sollte eine Authentifizierung erforderlich sein um das Bild laden zu können, so kann diese über die Attribute
 <code class="docutils literal notranslate"><span class="pre">auth-type</span></code>, <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> definiert werden. Bisher wird nur die <a class="reference external" href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication">„Basic“-Authentifizierung</a>./
-unterstützt. Sofern es dabei Probleme gibt kann das Laden den Bildes über einen Proxy im Backend benutzt werden indem
+unterstützt. Sofern es dabei Probleme gibt kann das Laden den Bildes über einen Proxy im Backend benutzt werden in dem
 man das <code class="docutils literal notranslate"><span class="pre">proxy</span></code>-Attribut auf <code class="docutils literal notranslate"><span class="pre">true</span></code> setzt. Hierfür muss jedoch die URL in die „proxy.whitelist“ Sektion der
 <a class="reference internal" href="../../hidden-config.html#hidden-config"><span class="std std-ref">Versteckten-Konfiguration</span></a> hinzugefügt werden.
-Dafür muss ein neuer Eintrag in der Sektion angelegt werden, die Schlüssel kann beliebig gewählt werden
+Dafür muss ein neuer Eintrag in der Sektion angelegt werden, der Schlüssel kann beliebig gewählt werden
 und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck eingetragen der für diese URL gültig ist.</p>
 <p>Beispiel mit exakter URL:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;proxy.whitelist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

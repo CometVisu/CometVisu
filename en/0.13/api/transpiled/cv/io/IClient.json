@@ -14,9 +14,9 @@
         "index": 58
       },
       "end": {
-        "line": 204,
+        "line": 210,
         "column": 3,
-        "index": 5885
+        "index": 6006
       }
     },
     "jsdoc": {
@@ -393,12 +393,12 @@
         "start": {
           "line": 106,
           "column": 4,
-          "index": 2691
+          "index": 2698
         },
         "end": {
           "line": 106,
           "column": 36,
-          "index": 2723
+          "index": 2730
         }
       },
       "jsdoc": {
@@ -411,11 +411,10 @@
         "@param": [
           {
             "name": "@param",
-            "body": "addresses {Array?} addresses to subscribe to",
+            "body": "addresses {Array<String>} addresses to subscribe to",
             "paramName": "addresses",
             "description": " addresses to subscribe to",
-            "optional": true,
-            "type": "Array"
+            "type": "Array<String>"
           },
           {
             "name": "@param",
@@ -430,17 +429,47 @@
       "type": "function",
       "access": "public"
     },
+    "addSubscription": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2817
+        },
+        "end": {
+          "line": 112,
+          "column": 31,
+          "index": 2844
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a single subscription</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "login": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 125,
           "column": 4,
-          "index": 3242
+          "index": 3363
         },
         "end": {
-          "line": 119,
+          "line": 125,
           "column": 55,
-          "index": 3293
+          "index": 3414
         }
       },
       "jsdoc": {
@@ -487,14 +516,14 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 131,
           "column": 4,
-          "index": 3414
+          "index": 3535
         },
         "end": {
-          "line": 125,
+          "line": 131,
           "column": 21,
-          "index": 3431
+          "index": 3552
         }
       },
       "jsdoc": {
@@ -517,14 +546,14 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 134,
+          "line": 140,
           "column": 4,
-          "index": 3821
+          "index": 3942
         },
         "end": {
-          "line": 134,
+          "line": 140,
           "column": 36,
-          "index": 3853
+          "index": 3974
         }
       },
       "jsdoc": {
@@ -566,14 +595,14 @@
     "setResourcePath": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 147,
           "column": 4,
-          "index": 4089
+          "index": 4210
         },
         "end": {
-          "line": 141,
+          "line": 147,
           "column": 34,
-          "index": 4119
+          "index": 4240
         }
       },
       "jsdoc": {
@@ -606,14 +635,14 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 147,
+          "line": 153,
           "column": 4,
-          "index": 4228
+          "index": 4349
         },
         "end": {
-          "line": 147,
+          "line": 153,
           "column": 37,
-          "index": 4261
+          "index": 4382
         }
       },
       "jsdoc": {
@@ -638,14 +667,14 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 154,
+          "line": 160,
           "column": 4,
-          "index": 4485
+          "index": 4606
         },
         "end": {
-          "line": 154,
+          "line": 160,
           "column": 38,
-          "index": 4519
+          "index": 4640
         }
       },
       "jsdoc": {
@@ -675,14 +704,14 @@
     "write": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 169,
           "column": 4,
-          "index": 4757
+          "index": 4878
         },
         "end": {
-          "line": 163,
+          "line": 169,
           "column": 37,
-          "index": 4790
+          "index": 4911
         }
       },
       "jsdoc": {
@@ -722,14 +751,14 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 176,
           "column": 4,
-          "index": 4970
+          "index": 5091
         },
         "end": {
-          "line": 170,
+          "line": 176,
           "column": 21,
-          "index": 4987
+          "index": 5108
         }
       },
       "jsdoc": {
@@ -754,14 +783,14 @@
     "restart": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 182,
           "column": 4,
-          "index": 5059
+          "index": 5180
         },
         "end": {
-          "line": 176,
+          "line": 182,
           "column": 20,
-          "index": 5075
+          "index": 5196
         }
       },
       "jsdoc": {
@@ -786,14 +815,14 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 181,
+          "line": 187,
           "column": 4,
-          "index": 5189
+          "index": 5310
         },
         "end": {
-          "line": 181,
+          "line": 187,
           "column": 18,
-          "index": 5203
+          "index": 5324
         }
       },
       "jsdoc": {
@@ -810,14 +839,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 193,
           "column": 4,
-          "index": 5394
+          "index": 5515
         },
         "end": {
-          "line": 187,
+          "line": 193,
           "column": 19,
-          "index": 5409
+          "index": 5530
         }
       },
       "jsdoc": {
@@ -842,14 +871,14 @@
     "record": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 200,
           "column": 4,
-          "index": 5596
+          "index": 5717
         },
         "end": {
-          "line": 194,
+          "line": 200,
           "column": 25,
-          "index": 5617
+          "index": 5738
         }
       },
       "jsdoc": {
@@ -882,14 +911,14 @@
     "showError": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 208,
           "column": 4,
-          "index": 5844
+          "index": 5965
         },
         "end": {
-          "line": 202,
+          "line": 208,
           "column": 37,
-          "index": 5877
+          "index": 5998
         }
       },
       "jsdoc": {

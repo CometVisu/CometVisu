@@ -310,4 +310,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.model.schema.Base.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Base.js.map?dt=1705596655705
+//# sourceMappingURL=Base.js.map?dt=1709410137728

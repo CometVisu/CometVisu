@@ -18,6 +18,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       "cv.io.IClient": {
         "require": true
       },
+      "qx.util.Function": {
+        "construct": true
+      },
       "cv.io.transport.LongPolling": {},
       "cv.io.transport.Sse": {},
       "qx.util.ResponseParser": {},
@@ -123,6 +126,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       this.pass = '';
       this.device = '';
       this.headers = {};
+      this.delayedRestart = qx.util.Function.debounce(this.restart.bind(this), 50);
     },
     /*
      ******************************************************
@@ -367,6 +371,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             this.loginSettings.loginOnly = false;
           } else {
             this.login(false);
+          }
+        }
+      },
+      addSubscription: function addSubscription(address) {
+        if (!this.addresses.includes()) {
+          this.addresses.push(address);
+          if (this.isConnected()) {
+            this.delayedRestart();
           }
         }
       },
@@ -710,4 +722,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1705596688161
+//# sourceMappingURL=Client.js.map?dt=1709410169995

@@ -248,7 +248,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object"
+            "body": "{{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",
@@ -293,7 +293,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object"
+            "body": "{{transform: string, selector?: string, ignoreError?: string}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",
@@ -338,7 +338,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{{transform: string, selector: string?, ignoreError: string?, variantInfo: string?}} address - type of the transformation, as address object"
+            "body": "{{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object"
           },
           {
             "name": "@param",

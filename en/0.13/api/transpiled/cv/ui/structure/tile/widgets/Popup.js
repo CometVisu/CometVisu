@@ -151,7 +151,13 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         if (!cv.ui.structure.tile.widgets.Popup.superclass.prototype.onStateUpdate.call(this, ev)) {
           switch (ev.detail.target) {
             case 'open':
-              if (ev.detail.state) {
+              if (ev.detail.addressValue) {
+                // only open when the sent value equals the fixed value
+                // noinspection EqualityComparisonWithCoercionJS
+                if (ev.detail.addressValue == ev.detail.state) {
+                  this.open();
+                }
+              } else if (ev.detail.state) {
                 this.open();
               }
               break;
@@ -203,4 +209,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.widgets.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1705596660068
+//# sourceMappingURL=Popup.js.map?dt=1709410141962

@@ -14,9 +14,9 @@
         "index": 867
       },
       "end": {
-        "line": 498,
+        "line": 511,
         "column": 3,
-        "index": 15825
+        "index": 16488
       }
     },
     "jsdoc": {
@@ -349,17 +349,33 @@
       "type": "variable",
       "access": "private"
     },
+    "_triggerOnValue": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2427
+        },
+        "end": {
+          "line": 108,
+          "column": 25,
+          "index": 2448
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
     "_parseInt": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 110,
           "column": 4,
-          "index": 2428
+          "index": 2455
         },
         "end": {
-          "line": 112,
+          "line": 113,
           "column": 5,
-          "index": 2534
+          "index": 2561
         }
       },
       "type": "function",
@@ -368,14 +384,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 115,
           "column": 4,
-          "index": 2541
+          "index": 2568
         },
         "end": {
-          "line": 242,
+          "line": 251,
           "column": 5,
-          "index": 7025
+          "index": 7440
         }
       },
       "type": "function",
@@ -388,14 +404,14 @@
     "_initProgress": {
       "location": {
         "start": {
-          "line": 244,
+          "line": 253,
           "column": 4,
-          "index": 7032
+          "index": 7447
         },
         "end": {
-          "line": 264,
+          "line": 273,
           "column": 5,
-          "index": 7954
+          "index": 8369
         }
       },
       "type": "function",
@@ -404,14 +420,14 @@
     "_applyConnected": {
       "location": {
         "start": {
-          "line": 266,
+          "line": 275,
           "column": 4,
-          "index": 7961
+          "index": 8376
         },
         "end": {
-          "line": 274,
+          "line": 283,
           "column": 5,
-          "index": 8231
+          "index": 8646
         }
       },
       "type": "function",
@@ -424,14 +440,14 @@
     "_applyOn": {
       "location": {
         "start": {
-          "line": 275,
+          "line": 284,
           "column": 4,
-          "index": 8237
+          "index": 8652
         },
         "end": {
-          "line": 307,
+          "line": 316,
           "column": 5,
-          "index": 9418
+          "index": 9833
         }
       },
       "type": "function",
@@ -443,14 +459,14 @@
     "_applyProgress": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 318,
           "column": 4,
-          "index": 9425
+          "index": 9840
         },
         "end": {
-          "line": 329,
+          "line": 338,
           "column": 5,
-          "index": 10124
+          "index": 10539
         }
       },
       "type": "function",
@@ -462,14 +478,14 @@
     "_applyStyleClass": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 340,
           "column": 4,
-          "index": 10131
+          "index": 10546
         },
         "end": {
-          "line": 339,
+          "line": 348,
           "column": 5,
-          "index": 10368
+          "index": 10783
         }
       },
       "type": "function",
@@ -481,14 +497,14 @@
     "_applyName": {
       "location": {
         "start": {
-          "line": 341,
+          "line": 350,
           "column": 4,
-          "index": 10375
+          "index": 10790
         },
         "end": {
-          "line": 348,
+          "line": 357,
           "column": 5,
-          "index": 10652
+          "index": 11067
         }
       },
       "type": "function",
@@ -500,14 +516,14 @@
     "updateValue": {
       "location": {
         "start": {
-          "line": 350,
+          "line": 359,
           "column": 4,
-          "index": 10659
+          "index": 11074
         },
         "end": {
-          "line": 355,
+          "line": 364,
           "column": 5,
-          "index": 10805
+          "index": 11220
         }
       },
       "type": "function",
@@ -516,14 +532,14 @@
     "onStateUpdate": {
       "location": {
         "start": {
-          "line": 362,
+          "line": 371,
           "column": 4,
-          "index": 10984
+          "index": 11399
         },
         "end": {
-          "line": 384,
+          "line": 393,
           "column": 5,
-          "index": 12115
+          "index": 12530
         }
       },
       "jsdoc": {
@@ -549,14 +565,14 @@
     "onClicked": {
       "location": {
         "start": {
-          "line": 386,
+          "line": 395,
           "column": 4,
-          "index": 12122
+          "index": 12537
         },
         "end": {
-          "line": 429,
+          "line": 442,
           "column": 5,
-          "index": 13715
+          "index": 14378
         }
       },
       "type": "function",
@@ -565,14 +581,14 @@
     "onPointerDown": {
       "location": {
         "start": {
-          "line": 431,
+          "line": 444,
           "column": 4,
-          "index": 13722
+          "index": 14385
         },
         "end": {
-          "line": 444,
+          "line": 457,
           "column": 5,
-          "index": 14131
+          "index": 14794
         }
       },
       "type": "function",
@@ -581,14 +597,14 @@
     "onPointerUp": {
       "location": {
         "start": {
-          "line": 446,
+          "line": 459,
           "column": 4,
-          "index": 14138
+          "index": 14801
         },
         "end": {
-          "line": 459,
+          "line": 472,
           "column": 5,
-          "index": 14543
+          "index": 15206
         }
       },
       "type": "function",
@@ -597,14 +613,14 @@
     "createRipple": {
       "location": {
         "start": {
-          "line": 461,
+          "line": 474,
           "column": 4,
-          "index": 14550
+          "index": 15213
         },
         "end": {
-          "line": 485,
+          "line": 498,
           "column": 5,
-          "index": 15599
+          "index": 16262
         }
       },
       "type": "function",
@@ -4632,14 +4648,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 488,
+        "line": 501,
         "column": 2,
-        "index": 15608
+        "index": 16271
       },
       "end": {
-        "line": 497,
+        "line": 510,
         "column": 3,
-        "index": 15821
+        "index": 16484
       }
     }
   },

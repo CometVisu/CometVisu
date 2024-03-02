@@ -129,6 +129,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
        * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
        */
       __P_76_0: null,
+      _triggerOnValue: null,
       _parseInt: function _parseInt(val) {
         var intVal = parseInt(val);
         return Number.isNaN(intVal) ? 0 : intVal;
@@ -210,6 +211,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             _this.onClicked(ev);
           });
         }
+        var triggerAddresses = [];
         if (hasReadAddress) {
           element.addEventListener('stateUpdate', function (ev) {
             _this.onStateUpdate(ev);
@@ -218,25 +220,29 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           });
         } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
           // apply the trigger state
-          var triggerAddresses = writeAddresses.filter(function (addr) {
+          triggerAddresses = writeAddresses.filter(function (addr) {
             return addr.hasAttribute('value') && !addr.hasAttribute('on');
           });
-          if (triggerAddresses.length === 1) {
-            var value = triggerAddresses[0].getAttribute('value');
-            qx.event.Timer.once(function () {
-              // using == comparisons to make sure that e.g. 1 equals "1"
-              // noinspection EqualityComparisonWithCoercionJS
-              _this.setOn(value == _this.getOnValue());
-            }, this, 1000);
-          }
         }
 
         // detect button type
-        if (!hasReadAddress && writeAddresses.filter(function (addr) {
-          return addr.hasAttribute('value') && !addr.hasAttribute('on');
-        }).length === 1) {
+        if (!hasReadAddress && triggerAddresses.length === 1) {
           // only one write address with a fixed value and no special event => simple trigger
           this.setType('trigger');
+          if (!element.hasAttribute('on-value')) {
+            // we consider the trigger address value as on-value when no one is given
+            this._triggerOnValue = triggerAddresses[0].getAttribute('value');
+          } else {
+            this._triggerOnValue = this.getOnValue();
+          }
+          var value = triggerAddresses[0].getAttribute('value');
+          qx.event.Timer.once(function () {
+            // set it to the opposite of what is being sent when clicked to make the feedback simulation work
+            // e.g. value="1", trigger is off and when clicked for a short amount of time in on state,
+            // using == comparisons to make sure that e.g. 1 equals "1"
+            // noinspection EqualityComparisonWithCoercionJS
+            _this.setOn(value != _this._triggerOnValue);
+          }, this, 1000);
         } else {
           var hasDown = false;
           var hasUp = false;
@@ -400,16 +406,20 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               source: this
             }
           });
+          var wa = this._writeAddresses.filter(function (addr) {
+            return !addr.hasAttribute('on') || addr.getAttribute('on') === 'click';
+          });
           if (this.getType() === 'trigger') {
             // simulate feedback
-            this.setOn(true);
+            // using == comparisons to make sure that e.g. 1 equals "1"
+            // noinspection EqualityComparisonWithCoercionJS
+            var simulatedValue = wa[0].getAttribute('value') == this._triggerOnValue;
+            this.setOn(simulatedValue);
             qx.event.Timer.once(function () {
-              _this2.setOn(false);
-            }, null, 250);
+              _this2.setOn(!simulatedValue);
+            }, null, 500);
           }
-          this._writeAddresses.filter(function (addr) {
-            return !addr.hasAttribute('on') || addr.getAttribute('on') === 'click';
-          }).forEach(function (address) {
+          wa.forEach(function (address) {
             return address.dispatchEvent(ev);
           });
           event.stopPropagation();
@@ -486,4 +496,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1705596657935
+//# sourceMappingURL=Button.js.map?dt=1709410139996

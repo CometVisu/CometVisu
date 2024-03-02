@@ -74,6 +74,7 @@
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
 <li class="toctree-l4"><a class="reference internal" href="widget-pair.html">Widget-pair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="web.html">Web</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -928,6 +929,95 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 <tbody>
 <tr class="row-odd"><td rowspan="3"><dl class="simple">
 <dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address-group</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>operator</p></td>
+<td><p><em>+</em>, <em>-</em>, <em>*</em> oder <em>/</em></p></td>
+<td><p>Mathematischer Operator für Berechnung.</p></td>
+</tr>
+<tr class="row-even"><td><p>round</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Ergebnis runden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>factor</p></td>
+<td><p>float</p></td>
+<td><p>Ergebnis mit diesem Wert multiplizieren.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address-group</p></li>
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">transform</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</p></td>
+</tr>
+<tr class="row-even"><td><p>variant</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>ignore-error</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: ignoriere Dekodierfehler.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address-group</p></li>
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
 <li><p>p</p></li>
 </ul>
 </dd>
@@ -1669,6 +1759,95 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tr>
 <tr class="row-odd"><td><dl class="simple">
 <dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address-group</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>operator</p></td>
+<td><p><em>+</em>, <em>-</em>, <em>*</em> oder <em>/</em></p></td>
+<td><p>Mathematischer Operator für Berechnung.</p></td>
+</tr>
+<tr class="row-even"><td><p>round</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Ergebnis runden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>factor</p></td>
+<td><p>float</p></td>
+<td><p>Ergebnis mit diesem Wert multiplizieren.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address-group</p></li>
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">transform</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</p></td>
+</tr>
+<tr class="row-even"><td><p>variant</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>ignore-error</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: ignoriere Dekodierfehler.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-status</dt><dd><ul class="simple">
+<li><p>cv-address-group</p></li>
 <li><p>cv-address</p>
 <ul>
 <li><p>#text</p></li>

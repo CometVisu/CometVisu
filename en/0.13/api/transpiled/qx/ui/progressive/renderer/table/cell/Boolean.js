@@ -152,4 +152,4 @@
   qx.ui.progressive.renderer.table.cell.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1705596682478
+//# sourceMappingURL=Boolean.js.map?dt=1709410164391

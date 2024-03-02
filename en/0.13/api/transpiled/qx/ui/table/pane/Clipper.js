@@ -64,4 +64,4 @@
   qx.ui.table.pane.Clipper.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clipper.js.map?dt=1705596683873
+//# sourceMappingURL=Clipper.js.map?dt=1709410165745

@@ -181,4 +181,4 @@
   qx.module.TextSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextSelection.js.map?dt=1705596673688
+//# sourceMappingURL=TextSelection.js.map?dt=1709410155636

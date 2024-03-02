@@ -124,4 +124,4 @@
   qx.event.handler.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1705596670005
+//# sourceMappingURL=Video.js.map?dt=1709410152003

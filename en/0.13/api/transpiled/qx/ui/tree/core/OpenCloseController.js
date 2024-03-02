@@ -137,4 +137,4 @@
   qx.ui.tree.core.OpenCloseController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenCloseController.js.map?dt=1705596684959
+//# sourceMappingURL=OpenCloseController.js.map?dt=1709410166812

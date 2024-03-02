@@ -1,8 +1,6 @@
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -11,6 +9,9 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
@@ -24,6 +25,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       "cv.ui.structure.tile.components.AbstractComponent": {
         "require": true
       },
+      "qx.event.Registration": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
       }
@@ -54,6 +56,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
    */
   qx.Class.define('cv.ui.structure.tile.components.Select', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
+    /*
+    ***********************************************
+      PROPERTIES
+    ***********************************************
+    */
+    properties: {
+      show: {
+        check: ['icon', 'label', 'both'],
+        init: 'both',
+        apply: '_applyShow'
+      }
+    },
     /*
     ***********************************************
       MEMBERS
@@ -91,8 +105,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           });
         }
       },
-      onClicked: function onClicked(ev) {
+      _toggleOptions: function _toggleOptions(close) {
+        var _this2 = this;
+        // open popup
         var style = getComputedStyle(this.__P_84_2);
+        if (style.getPropertyValue('display') === 'none' && !close) {
+          this.__P_84_2.style.display = 'block';
+          window.requestAnimationFrame(function () {
+            // delay adding this listener, otherwise it would fire immediately
+            // also the native addEventListener does not allow the listener to be re-added once removed, so we use the qx way here
+            // which works fine
+            qx.event.Registration.addListener(document.body, 'click', _this2.handleEvent, _this2, true);
+          });
+        } else {
+          this.__P_84_2.style.display = 'none';
+          qx.event.Registration.removeListener(document.body, 'click', this.handleEvent, this, true);
+        }
+      },
+      handleEvent: function handleEvent(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this._toggleOptions(true);
+      },
+      onClicked: function onClicked(ev) {
         var target = ev.target;
         // find out event target (either the cv-select of cv-option
         while (target !== ev.currentTarget && target.tagName.toLowerCase() !== 'cv-option') {
@@ -102,12 +137,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           // select this option
           this._sendSelection(target.getAttribute('key'), true);
         }
-        // open popup
-        if (style.getPropertyValue('display') === 'none') {
-          this.__P_84_2.style.display = 'block';
-        } else {
-          this.__P_84_2.style.display = 'none';
-        }
+        this._toggleOptions();
       },
       _sendSelection: function _sendSelection(key, predictive) {
         var ev = new CustomEvent('sendState', {
@@ -126,31 +156,59 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       _updateValue: function _updateValue(mappedValue, value) {
-        if (this.__P_84_0.has(mappedValue)) {
+        var key = typeof mappedValue !== 'undefined' ? '' + mappedValue : '';
+        if (this.__P_84_0.has(key)) {
           this.__P_84_1.innerHTML = '';
-          var current = this.__P_84_0.get(mappedValue);
-          if (current.children.length > 0) {
-            // if we have non text children, we only use them (only icons no text)
-            var _iterator = _createForOfIteratorHelper(current.children),
-              _step;
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var child = _step.value;
-                this.__P_84_1.appendChild(child.cloneNode());
+          var current = this.__P_84_0.get(key);
+          switch (this.getShow()) {
+            case 'icon':
+              // if we have non text children, we only use them (only icons no text)
+              var _iterator = _createForOfIteratorHelper(current.children),
+                _step;
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var child = _step.value;
+                  if (child.nodeName.toLowerCase() === 'cv-icon') {
+                    this.__P_84_1.appendChild(child.cloneNode());
+                  }
+                }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
               }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-          } else {
-            this.__P_84_1.innerHTML = current.innerHTML;
+              break;
+            case 'label':
+              var _iterator2 = _createForOfIteratorHelper(current.childNodes),
+                _step2;
+              try {
+                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                  var _child = _step2.value;
+                  if (_child.nodeType === Node.TEXT_NODE || _child.nodeType === Node.ELEMENT_NODE && _child.nodeName.toLowerCase() === 'label') {
+                    this.__P_84_1.appendChild(_child.cloneNode());
+                  }
+                }
+              } catch (err) {
+                _iterator2.e(err);
+              } finally {
+                _iterator2.f();
+              }
+              break;
+            case 'both':
+              this.__P_84_1.innerHTML = current.innerHTML;
+              break;
           }
+        }
+      },
+      _applyShow: function _applyShow(show) {
+        if (this.getValue()) {
+          this._updateValue(this.getValue());
         }
       }
     },
     defer: function defer(QxClass) {
-      customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'select', /*#__PURE__*/function (_QxConnector) {
+      var _class;
+      customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'select', (_class = /*#__PURE__*/function (_QxConnector) {
         "use strict";
 
         _inherits(_class, _QxConnector);
@@ -160,10 +218,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           return _super.call(this, QxClass);
         }
         return _createClass(_class);
-      }(QxConnector));
+      }(QxConnector), _defineProperty(_class, "observedAttributes", ['show']), _class));
     }
   });
   cv.ui.structure.tile.components.Select.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Select.js.map?dt=1705596659084
+//# sourceMappingURL=Select.js.map?dt=1709410141092

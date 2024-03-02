@@ -7,7 +7,8 @@
       },
       "qx.core.Object": {
         "require": true
-      }
+      },
+      "cv.io.BackendConnections": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -195,6 +196,10 @@
           this.__P_540_1[backendName][address] = [];
         }
         this.__P_540_1[backendName][address].push([callback, context]);
+        var backend = cv.io.BackendConnections.getClient(backendName);
+        if (backend && backend.isConnected()) {
+          backend.addSubscription(address);
+        }
       },
       /**
        * Remove an address listener
@@ -355,4 +360,4 @@
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1705596688827
+//# sourceMappingURL=Model.js.map?dt=1709410170644

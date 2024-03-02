@@ -75,4 +75,4 @@
   qx.ui.tabview.ScrollingPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollingPage.js.map?dt=1705596684314
+//# sourceMappingURL=ScrollingPage.js.map?dt=1709410166179

@@ -186,9 +186,9 @@ werden:
 .. code-block:: xml
 
     <cv-mapping name="Vorzeichen">
-      <entry range_min="-1e99" range_max="0">Negativ</entry>
+      <entry range-min="-1e99" range-max="0">Negativ</entry>
       <entry value="0">Null</entry>
-      <entry range_min="0" range_max="1e99">Positiv</entry>
+      <entry range-min="0" range-max="1e99">Positiv</entry>
     </cv-mapping>
 
 Bei genauer Betrachtung sieht man, dass die "0" drei mal vorkommt. Hier
@@ -409,35 +409,35 @@ Für Wetterdaten in km/h:
 .. code-block:: xml
 
     <cv-mapping name="kmh2bft">
-        <entry range_min="0" range_max="2">0</entry>
-        <entry range_min="2" range_max="5">1</entry>
-        <entry range_min="5" range_max="11">2</entry>
-        <entry range_min="11" range_max="19">3</entry>
-        <entry range_min="19" range_max="28">4</entry>
-        <entry range_min="28" range_max="38">5</entry>
-        <entry range_min="38" range_max="49">6</entry>
-        <entry range_min="49" range_max="61">7</entry>
-        <entry range_min="61" range_max="74">8</entry>
-        <entry range_min="74" range_max="88">9</entry>
-        <entry range_min="88" range_max="102">10</entry>
-        <entry range_min="102" range_max="117">11</entry>
-        <entry range_min="117" range_max="1e99">12</entry>
+        <entry range-min="0" range-max="2">0</entry>
+        <entry range-min="2" range-max="5">1</entry>
+        <entry range-min="5" range-max="11">2</entry>
+        <entry range-min="11" range-max="19">3</entry>
+        <entry range-min="19" range-max="28">4</entry>
+        <entry range-min="28" range-max="38">5</entry>
+        <entry range-min="38" range-max="49">6</entry>
+        <entry range-min="49" range-max="61">7</entry>
+        <entry range-min="61" range-max="74">8</entry>
+        <entry range-min="74" range-max="88">9</entry>
+        <entry range-min="88" range-max="102">10</entry>
+        <entry range-min="102" range-max="117">11</entry>
+        <entry range-min="117" range-max="1e99">12</entry>
     </cv-mapping>
 
     <cv-mapping name="kmh2wind_text">
-        <entry range_min="0" range_max="2">Windstille</entry>
-        <entry range_min="2" range_max="5">leiser Zug</entry>
-        <entry range_min="5" range_max="11">leichte Brise</entry>
-        <entry range_min="11" range_max="19">schwache Brise</entry>
-        <entry range_min="19" range_max="28">maessige Brise</entry>
-        <entry range_min="28" range_max="38">frische Brise</entry>
-        <entry range_min="38" range_max="49">starker Wind</entry>
-        <entry range_min="49" range_max="61">steifer Wind</entry>
-        <entry range_min="61" range_max="74">stuermischer Wind</entry>
-        <entry range_min="74" range_max="88">Sturm</entry>
-        <entry range_min="88" range_max="102">schwerer Sturm</entry>
-        <entry range_min="102" range_max="117">orkanartiker Sturm</entry>
-        <entry range_min="117" range_max="1e99">Orkan</entry>
+        <entry range-min="0" range-max="2">Windstille</entry>
+        <entry range-min="2" range-max="5">leiser Zug</entry>
+        <entry range-min="5" range-max="11">leichte Brise</entry>
+        <entry range-min="11" range-max="19">schwache Brise</entry>
+        <entry range-min="19" range-max="28">maessige Brise</entry>
+        <entry range-min="28" range-max="38">frische Brise</entry>
+        <entry range-min="38" range-max="49">starker Wind</entry>
+        <entry range-min="49" range-max="61">steifer Wind</entry>
+        <entry range-min="61" range-max="74">stuermischer Wind</entry>
+        <entry range-min="74" range-max="88">Sturm</entry>
+        <entry range-min="88" range-max="102">schwerer Sturm</entry>
+        <entry range-min="102" range-max="117">orkanartiker Sturm</entry>
+        <entry range-min="117" range-max="1e99">Orkan</entry>
     </cv-mapping>
 
 Für Wetterdaten in m/s:
@@ -445,51 +445,51 @@ Für Wetterdaten in m/s:
 .. code-block:: xml
 
     <cv-mapping name="ms2bft">
-        <entry range_min="0" range_max="0.3">0</entry>
-        <entry range_min="0.3" range_max="1.6">1</entry>
-        <entry range_min="1.6" range_max="3.4">2</entry>
-        <entry range_min="3.4" range_max="5.5">3</entry>
-        <entry range_min="5.5" range_max="8.0">4</entry>
-        <entry range_min="8.0" range_max="10.8">5</entry>
-        <entry range_min="10.8" range_max="13.9">6</entry>
-        <entry range_min="13.9" range_max="17.2">7</entry>
-        <entry range_min="17.2" range_max="20.8">8</entry>
-        <entry range_min="20.8" range_max="24.5">9</entry>
-        <entry range_min="24.5" range_max="28.5">10</entry>
-        <entry range_min="28.5" range_max="32.7">11</entry>
-        <entry range_min="32.7" range_max="1e99">12</entry>
+        <entry range-min="0" range-max="0.3">0</entry>
+        <entry range-min="0.3" range-max="1.6">1</entry>
+        <entry range-min="1.6" range-max="3.4">2</entry>
+        <entry range-min="3.4" range-max="5.5">3</entry>
+        <entry range-min="5.5" range-max="8.0">4</entry>
+        <entry range-min="8.0" range-max="10.8">5</entry>
+        <entry range-min="10.8" range-max="13.9">6</entry>
+        <entry range-min="13.9" range-max="17.2">7</entry>
+        <entry range-min="17.2" range-max="20.8">8</entry>
+        <entry range-min="20.8" range-max="24.5">9</entry>
+        <entry range-min="24.5" range-max="28.5">10</entry>
+        <entry range-min="28.5" range-max="32.7">11</entry>
+        <entry range-min="32.7" range-max="1e99">12</entry>
     </cv-mapping>
 
     <cv-mapping name="ms2wind_text">
-        <entry range_min="0" range_max="0.3">Windstille</entry>
-        <entry range_min="0.3" range_max="1.6">leiser Zug</entry>
-        <entry range_min="1.6" range_max="3.4">leichte Brise</entry>
-        <entry range_min="3.4" range_max="5.5">schwache Brise</entry>
-        <entry range_min="5.5" range_max="8.0">maessige Brise</entry>
-        <entry range_min="8.0" range_max="10.8">frische Brise</entry>
-        <entry range_min="10.8" range_max="13.9">starker Wind</entry>
-        <entry range_min="13.9" range_max="17.2">steifer Wind</entry>
-        <entry range_min="17.2" range_max="20.8">stuermischer Wind</entry>
-        <entry range_min="20.8" range_max="24.5">Sturm</entry>
-        <entry range_min="24.5" range_max="28.5">schwerer Sturm</entry>
-        <entry range_min="28.5" range_max="32.7">orkanartiger Sturm</entry>
-        <entry range_min="32.7" range_max="1e99">Orkan</entry>
+        <entry range-min="0" range-max="0.3">Windstille</entry>
+        <entry range-min="0.3" range-max="1.6">leiser Zug</entry>
+        <entry range-min="1.6" range-max="3.4">leichte Brise</entry>
+        <entry range-min="3.4" range-max="5.5">schwache Brise</entry>
+        <entry range-min="5.5" range-max="8.0">maessige Brise</entry>
+        <entry range-min="8.0" range-max="10.8">frische Brise</entry>
+        <entry range-min="10.8" range-max="13.9">starker Wind</entry>
+        <entry range-min="13.9" range-max="17.2">steifer Wind</entry>
+        <entry range-min="17.2" range-max="20.8">stuermischer Wind</entry>
+        <entry range-min="20.8" range-max="24.5">Sturm</entry>
+        <entry range-min="24.5" range-max="28.5">schwerer Sturm</entry>
+        <entry range-min="28.5" range-max="32.7">orkanartiger Sturm</entry>
+        <entry range-min="32.7" range-max="1e99">Orkan</entry>
     </cv-mapping>
 
     <cv-mapping name="ms2wind_fulltext">
-        <entry range_min="0" range_max="0.2">Windstille - Keine Luftbewegung. Rauch steigt senkrecht empor</entry>
-        <entry range_min="0.2" range_max="1.5">Geringer Wind - Kaum merklich. Rauch treibt leicht ab</entry>
-        <entry range_min="1.5" range_max="3.3">Leichter Wind - Blätter rascheln. Wind im Gesicht spürbar</entry>
-        <entry range_min="3.3" range_max="5.4">Schwacher Wind - Blätter und dünne Zweige bewegen sich, Wimpel werden gestreckt </entry>
-        <entry range_min="5.4" range_max="7.9">Mäßiger Wind - Zweige bewegen sich, loses Papier wird vom Boden gehoben</entry>
-        <entry range_min="7.9" range_max="10.9">Frischer Wind - Größere Zweige und Bäume bewegen sich, Wind deutlich hörbar </entry>
-        <entry range_min="10.9" range_max="13.8">Starker Wind - Dicke Äste bewegen sich, hörbares Pfeifen an Drahtseilen, in Telefonleitungen</entry>
-        <entry range_min="13.8" range_max="17.1">Steifer Wind - Bäume schwanken, Widerstand beim Gehen gegen den Wind</entry>
-        <entry range_min="17.1" range_max="20.7">Stürmischer Wind - Große Bäume werden bewegt, Fensterläden werden geöffnet, Zweige brechen von Bäumen, beim Gehen erhebliche Behinderung</entry>
-        <entry range_min="20.7" range_max="24.4">Sturm - Äste brechen, kleiner Schäden an Häusern, Ziegel und Rauchhauben werden von Dächern gehoben, Gartenmöbel werden umgeworfen und verweht, beim Gehen erhebliche Behinderung</entry>
-        <entry range_min="24.4" range_max="28.4">schwerer Sturm - Bäume werden entwurzelt, Baumstämme brechen, Gartenmöbel werden weggeweht, größere Schäden an Häusern; selten im Landesinneren</entry>
-        <entry range_min="28.4" range_max="32.6">orkanartiker Sturm - heftige Böen, schwere Sturmschäden, schwere Schäden an Wäldern (Windbruch), Dächer werden abgedeckt, Autos werden aus der Spur geworfen, dicke Mauern werden beschädigt, Gehen ist unmöglich; sehr selten im Landesinneren</entry>
-        <entry range_min="32.6" range_max="1e99">Orkan - Schwerste Sturmschäden und Verwüstungen; sehr selten im Landesinneren</entry>
+        <entry range-min="0" range-max="0.2">Windstille - Keine Luftbewegung. Rauch steigt senkrecht empor</entry>
+        <entry range-min="0.2" range-max="1.5">Geringer Wind - Kaum merklich. Rauch treibt leicht ab</entry>
+        <entry range-min="1.5" range-max="3.3">Leichter Wind - Blätter rascheln. Wind im Gesicht spürbar</entry>
+        <entry range-min="3.3" range-max="5.4">Schwacher Wind - Blätter und dünne Zweige bewegen sich, Wimpel werden gestreckt </entry>
+        <entry range-min="5.4" range-max="7.9">Mäßiger Wind - Zweige bewegen sich, loses Papier wird vom Boden gehoben</entry>
+        <entry range-min="7.9" range-max="10.9">Frischer Wind - Größere Zweige und Bäume bewegen sich, Wind deutlich hörbar </entry>
+        <entry range-min="10.9" range-max="13.8">Starker Wind - Dicke Äste bewegen sich, hörbares Pfeifen an Drahtseilen, in Telefonleitungen</entry>
+        <entry range-min="13.8" range-max="17.1">Steifer Wind - Bäume schwanken, Widerstand beim Gehen gegen den Wind</entry>
+        <entry range-min="17.1" range-max="20.7">Stürmischer Wind - Große Bäume werden bewegt, Fensterläden werden geöffnet, Zweige brechen von Bäumen, beim Gehen erhebliche Behinderung</entry>
+        <entry range-min="20.7" range-max="24.4">Sturm - Äste brechen, kleiner Schäden an Häusern, Ziegel und Rauchhauben werden von Dächern gehoben, Gartenmöbel werden umgeworfen und verweht, beim Gehen erhebliche Behinderung</entry>
+        <entry range-min="24.4" range-max="28.4">schwerer Sturm - Bäume werden entwurzelt, Baumstämme brechen, Gartenmöbel werden weggeweht, größere Schäden an Häusern; selten im Landesinneren</entry>
+        <entry range-min="28.4" range-max="32.6">orkanartiker Sturm - heftige Böen, schwere Sturmschäden, schwere Schäden an Wäldern (Windbruch), Dächer werden abgedeckt, Autos werden aus der Spur geworfen, dicke Mauern werden beschädigt, Gehen ist unmöglich; sehr selten im Landesinneren</entry>
+        <entry range-min="32.6" range-max="1e99">Orkan - Schwerste Sturmschäden und Verwüstungen; sehr selten im Landesinneren</entry>
     </cv-mapping>
 
 Windrichtung
@@ -498,21 +498,21 @@ Windrichtung
 .. code-block:: xml
 
     <cv-mapping name="Windrichtung_°">
-        <entry range_min="0" range_max="11.25">Nord</entry>
-        <entry range_min="11.25" range_max="33.75">Nordnordost</entry>
-        <entry range_min="33.75" range_max="56.25">Nordost</entry>
-        <entry range_min="56.25" range_max="78.75">Ostnordost</entry>
-        <entry range_min="78.75" range_max="101.25">Ost</entry>
-        <entry range_min="101.25" range_max="123.75">Ostsüdost</entry>
-        <entry range_min="123.75" range_max="146.25">Südost</entry>
-        <entry range_min="146.25" range_max="168.75">Südsüdost</entry>
-        <entry range_min="168.75" range_max="191.25">Süd</entry>
-        <entry range_min="191.25" range_max="213.75">Südsüdwest</entry>
-        <entry range_min="213.75" range_max="236.25">Südwest</entry>
-        <entry range_min="236.25" range_max="258.75">Westsüdwest</entry>
-        <entry range_min="258.75" range_max="281.25">West</entry>
-        <entry range_min="281.25" range_max="303.75">Westnordwest</entry>
-        <entry range_min="303.75" range_max="326.25">Nordwest</entry>
-        <entry range_min="326.25" range_max="348.75">Nordnordwest</entry>
-        <entry range_min="348.75" range_max="360">Nord</entry>
+        <entry range-min="0" range-max="11.25">Nord</entry>
+        <entry range-min="11.25" range-max="33.75">Nordnordost</entry>
+        <entry range-min="33.75" range-max="56.25">Nordost</entry>
+        <entry range-min="56.25" range-max="78.75">Ostnordost</entry>
+        <entry range-min="78.75" range-max="101.25">Ost</entry>
+        <entry range-min="101.25" range-max="123.75">Ostsüdost</entry>
+        <entry range-min="123.75" range-max="146.25">Südost</entry>
+        <entry range-min="146.25" range-max="168.75">Südsüdost</entry>
+        <entry range-min="168.75" range-max="191.25">Süd</entry>
+        <entry range-min="191.25" range-max="213.75">Südsüdwest</entry>
+        <entry range-min="213.75" range-max="236.25">Südwest</entry>
+        <entry range-min="236.25" range-max="258.75">Westsüdwest</entry>
+        <entry range-min="258.75" range-max="281.25">West</entry>
+        <entry range-min="281.25" range-max="303.75">Westnordwest</entry>
+        <entry range-min="303.75" range-max="326.25">Nordwest</entry>
+        <entry range-min="326.25" range-max="348.75">Nordnordwest</entry>
+        <entry range-min="348.75" range-max="360">Nord</entry>
     </cv-mapping>

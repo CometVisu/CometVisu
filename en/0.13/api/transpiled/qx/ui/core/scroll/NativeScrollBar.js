@@ -361,4 +361,4 @@
   qx.ui.core.scroll.NativeScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeScrollBar.js.map?dt=1705596677057
+//# sourceMappingURL=NativeScrollBar.js.map?dt=1709410158964

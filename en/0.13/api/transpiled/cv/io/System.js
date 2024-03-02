@@ -144,6 +144,11 @@
           }
         }
       },
+      addSubscription: function addSubscription(address) {
+        if (!this.addresses.includes(address)) {
+          this.addresses.push(address);
+        }
+      },
       write: function write(address, value, options) {
         if (address) {
           var parts = address.split(':');
@@ -269,4 +274,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1705596691451
+//# sourceMappingURL=System.js.map?dt=1709410173057

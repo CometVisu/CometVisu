@@ -14,9 +14,9 @@
         "index": 898
       },
       "end": {
-        "line": 125,
+        "line": 177,
         "column": 3,
-        "index": 4025
+        "index": 5662
       }
     },
     "jsdoc": {
@@ -29,18 +29,44 @@
     }
   },
   "type": "class",
-  "members": {
-    "__options": {
+  "properties": {
+    "show": {
       "location": {
         "start": {
           "line": 32,
           "column": 4,
-          "index": 1159
+          "index": 1165
         },
         "end": {
-          "line": 32,
+          "line": 36,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "name": "show",
+      "propertyType": "new",
+      "apply": "_applyShow",
+      "init": "both",
+      "possibleValues": [
+        "icon",
+        "label",
+        "both"
+      ],
+      "defaultValue": "both"
+    }
+  },
+  "members": {
+    "__options": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1410
+        },
+        "end": {
+          "line": 45,
           "column": 19,
-          "index": 1174
+          "index": 1425
         }
       },
       "type": "variable",
@@ -49,14 +75,14 @@
     "__value": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 46,
           "column": 4,
-          "index": 1180
+          "index": 1431
         },
         "end": {
-          "line": 33,
+          "line": 46,
           "column": 17,
-          "index": 1193
+          "index": 1444
         }
       },
       "type": "variable",
@@ -65,14 +91,14 @@
     "__popup": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 47,
           "column": 4,
-          "index": 1199
+          "index": 1450
         },
         "end": {
-          "line": 34,
+          "line": 47,
           "column": 17,
-          "index": 1212
+          "index": 1463
         }
       },
       "type": "variable",
@@ -81,14 +107,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 49,
           "column": 4,
-          "index": 1219
+          "index": 1470
         },
         "end": {
-          "line": 62,
+          "line": 75,
           "column": 5,
-          "index": 2196
+          "index": 2447
         }
       },
       "type": "function",
@@ -99,17 +125,49 @@
         "cv.ui.structure.tile.elements.AbstractCustomElement"
       ]
     },
+    "_toggleOptions": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2454
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 3229
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "handleEvent": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 3236
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 3347
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
     "onClicked": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 100,
           "column": 4,
-          "index": 2203
+          "index": 3354
         },
         "end": {
-          "line": 81,
+          "line": 111,
           "column": 5,
-          "index": 2862
+          "index": 3798
         }
       },
       "type": "function",
@@ -118,14 +176,14 @@
     "_sendSelection": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 113,
           "column": 4,
-          "index": 2869
+          "index": 3805
         },
         "end": {
-          "line": 97,
+          "line": 127,
           "column": 5,
-          "index": 3281
+          "index": 4217
         }
       },
       "type": "function",
@@ -134,14 +192,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 129,
           "column": 4,
-          "index": 3288
+          "index": 4224
         },
         "end": {
-          "line": 112,
+          "line": 157,
           "column": 5,
-          "index": 3799
+          "index": 5278
         }
       },
       "type": "function",
@@ -149,6 +207,25 @@
       "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
       "appearsIn": [
         "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "_applyShow": {
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 5285
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 5390
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "show"
       ]
     },
     "getQxOwner": {
@@ -871,19 +948,85 @@
           }
         ]
       }
+    },
+    "getShow": {
+      "type": "function",
+      "name": "getShow",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>show</code>.\n\nFor further details take a look at the property definition: {@link #show}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for show"
+          }
+        ]
+      }
+    },
+    "setShow": {
+      "type": "function",
+      "name": "setShow",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>show</code>.\n\nFor further details take a look at the property definition: {@link #show}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for show"
+          }
+        ]
+      }
+    },
+    "resetShow": {
+      "type": "function",
+      "name": "resetShow",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>show</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #show}."
+          }
+        ]
+      }
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 115,
+        "line": 166,
         "column": 2,
-        "index": 3808
+        "index": 5399
       },
       "end": {
-        "line": 124,
+        "line": 176,
         "column": 3,
-        "index": 4021
+        "index": 5658
       }
     }
   },
