@@ -296,6 +296,8 @@ qx.Class.define('cv.report.Replay', {
         case 'read':
           if (client instanceof cv.io.openhab.Rest) {
             client.handleMessage(record.d);
+          } else if (client instanceof cv.io.mqtt.Client) {
+            client.update(record.d);
           } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
             client.getCurrentTransport().handleMessage({ data: record.d });
           } else {
@@ -303,10 +305,12 @@ qx.Class.define('cv.report.Replay', {
           }
           break;
         default:
-          if (client[record.i]) {
-            client[record.i].apply(client, record.d);
+          if (typeof client[record.i] === 'function') {
+            client[record.i](record.d);
           } else if (client instanceof cv.io.openhab.Rest) {
             this.error('unhandled rest backend record of type ' + record.i);
+          } else if (client instanceof cv.io.mqtt.Client) {
+            client.update(record.d);
           } else if (client.getCurrentTransport() instanceof cv.io.transport.Sse) {
             client.getCurrentTransport().dispatchTopicMessage(record.i, record.d);
           } else {

@@ -342,7 +342,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     handleMessage(payload) {
       if (payload.type === 'message') {
-        this.record('read', { type: payload.type, data: payload.data });
+        this.record('read', { type: payload.type, name: this.getName(), data: payload.data });
         const data = JSON.parse(payload.data);
         if (data.type === 'ItemStateChangedEvent' || data.type === 'GroupItemStateChangedEvent') {
           //extract item name from topic
