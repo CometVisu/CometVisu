@@ -419,10 +419,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           }
         });
 
-        if (this.getType() === 'trigger') {
-          const wa = this._writeAddresses
-            .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click');
+        const wa = this._writeAddresses
+          .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click');
 
+        if (this.getType() === 'trigger') {
           // simulate feedback
           // using == comparisons to make sure that e.g. 1 equals "1"
           // noinspection EqualityComparisonWithCoercionJS
@@ -436,9 +436,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
             500
           );
 
-          wa.forEach(address => address.dispatchEvent(ev));
         }
-
+        wa.forEach(address => address.dispatchEvent(ev));
         event.stopPropagation();
       }
     },
