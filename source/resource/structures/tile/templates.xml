@@ -10,10 +10,10 @@
             <entry value="1">ri-stop-fill</entry>
         </cv-mapping>
         <cv-mapping name="tile-play-progress">
-            <formula>
+            <formula><![CDATA[
                 d = store.get(params[0] || 'duration');
-                y = d > 0 ? Math.round(100/d*x) : 0;
-            </formula>
+                y = d > 0 && x <= d ? Math.round(100/d*x) : 0;
+            ]]></formula>
         </cv-mapping>
         <cv-styling name="tile-button">
             <entry value="0">inactive</entry>
