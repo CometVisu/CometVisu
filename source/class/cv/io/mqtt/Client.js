@@ -68,6 +68,7 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @var {Paho.MQTT.Client}
      */
     _client: null,
+    _clientOptions: null,
     _type: null,
     addresses: null,
 
@@ -195,8 +196,14 @@ qx.Class.define('cv.io.mqtt.Client', {
       if (this._backendUrl.username !== '') {
         options.userName = this._backendUrl.username;
       }
+      if (credentials.username !== '') {
+        options.userName = credentials.username;
+      }
       if (this._backendUrl.password !== '') {
         options.password = this._backendUrl.password;
+      }
+      if (credentials.password !== '') {
+        options.password = credentials.password;
       }
 
       try {
@@ -224,9 +231,17 @@ qx.Class.define('cv.io.mqtt.Client', {
         self.update(update);
       };
 
+      this._clientOptions = options;
+      this.__connect();
+    },
+
+    /**
+     * Connect to the MQTT server
+     */
+    __connect() {
       try {
         if (!cv.report.Record.REPLAYING) {
-          this._client.connect(options);
+          this._client.connect( this._clientOptions);
         }
       } catch (e) {
         onFailure({
@@ -295,7 +310,10 @@ qx.Class.define('cv.io.mqtt.Client', {
      * Restart the connection
      * @param full
      */
-    restart(full) {},
+    restart(full) {
+      this.terminate();
+      this.__connect();
+    },
 
     /**
      * Handle the incoming state updates. This method is not implemented by the client itself.
