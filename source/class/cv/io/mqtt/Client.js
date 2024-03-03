@@ -241,10 +241,10 @@ qx.Class.define('cv.io.mqtt.Client', {
     __connect() {
       try {
         if (!cv.report.Record.REPLAYING) {
-          this._client.connect( this._clientOptions);
+          this._client.connect(this._clientOptions);
         }
       } catch (e) {
-        onFailure({
+        this._clientOptions.onFailure({
           errorMessage: e.toString(),
           errorCode: 'login -> _client.connect(' + this._backendUrl + ')'
         });
