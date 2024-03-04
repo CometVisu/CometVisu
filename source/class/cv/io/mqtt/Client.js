@@ -196,13 +196,13 @@ qx.Class.define('cv.io.mqtt.Client', {
       if (this._backendUrl.username !== '') {
         options.userName = this._backendUrl.username;
       }
-      if (credentials.username !== '') {
+      if (credentials && credentials.username !== '') {
         options.userName = credentials.username;
       }
       if (this._backendUrl.password !== '') {
         options.password = this._backendUrl.password;
       }
-      if (credentials.password !== '') {
+      if (credentials && credentials.password !== '') {
         options.password = credentials.password;
       }
 

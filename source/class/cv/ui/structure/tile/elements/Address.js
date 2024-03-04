@@ -74,14 +74,17 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             if (Object.prototype.hasOwnProperty.call(ev.detail, 'value')) {
               value = ev.detail.value;
             }
-            if (element.hasAttribute('value')) {
-              // address has a fixed value that must be sent
-              value = element.getAttribute('value');
-            }
-            const allowDuplicates =
+            let allowDuplicates =
               ev.detail.source &&
               ev.detail.source instanceof cv.ui.structure.tile.components.Button &&
               (ev.detail.source.getType() === 'trigger' || ev.detail.source.getType() === 'push');
+
+            if (element.hasAttribute('value')) {
+              // address has a fixed value that must be sent
+              value = element.getAttribute('value');
+              allowDuplicates = true;
+            }
+
             if (value !== null) {
               const encoding = element.getAttribute('transform') || 'raw';
               const encodedValue = cv.Transform.encodeBusAndRaw({
