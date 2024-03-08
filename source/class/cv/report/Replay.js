@@ -293,6 +293,10 @@ qx.Class.define('cv.report.Replay', {
         client = cv.io.BackendConnections.getClient(record.o.name);
       }
       switch (record.i) {
+        case 'connected':
+          client.setConnected(record.d);
+          break;
+
         case 'read':
           if (client instanceof cv.io.openhab.Rest) {
             client.handleMessage(record.d);
@@ -304,6 +308,7 @@ qx.Class.define('cv.report.Replay', {
             this.error('long-polling transport should not record \'backend\' log events. Skip replaying');
           }
           break;
+
         default:
           if (typeof client[record.i] === 'function') {
             client[record.i](record.d);
