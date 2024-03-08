@@ -41,25 +41,6 @@ qx.Class.define('cv.io.mqtt.Client', {
 
   /*
   ***********************************************
-    PROPERTIES
-  ***********************************************
-  */
-  properties: {
-    connected: {
-      check: 'Boolean',
-      init: false,
-      event: 'changeConnected'
-    },
-
-    server: {
-      check: 'String',
-      nullable: true,
-      event: 'changedServer'
-    }
-  },
-
-  /*
-  ***********************************************
     MEMBERS
   ***********************************************
   */

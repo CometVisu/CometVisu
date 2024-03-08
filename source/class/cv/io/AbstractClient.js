@@ -30,6 +30,12 @@ qx.Class.define('cv.io.AbstractClient', {
   ***********************************************
   */
   properties: {
+    connected: {
+      check: 'Boolean',
+      init: false,
+      event: 'changeConnected',
+      apply: '_applyConnected'
+    },
     dataReceived: {
       check: 'Boolean',
       init: false
@@ -37,6 +43,11 @@ qx.Class.define('cv.io.AbstractClient', {
     name: {
       check: 'String',
       nullable: true
+    },
+    server: {
+      check: 'String',
+      nullable: true,
+      event: 'changedServer'
     }
   },
 
@@ -51,6 +62,10 @@ qx.Class.define('cv.io.AbstractClient', {
     setResourcePath(name, path) {
       this._resources[name] = path;
       this.fireDataEvent('resourcePathAdded', name);
+    },
+
+    _applyConnected(connected) {
+      this.record('connected', connected);
     }
   }
 });

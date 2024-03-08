@@ -46,28 +46,6 @@ qx.Class.define('cv.io.System', {
 
   /*
   ***********************************************
-   PROPERTIES
-  ***********************************************
-  */
-  properties: {
-    connected: {
-      check: 'Boolean',
-      init: true,
-      event: 'changeConnected'
-    },
-
-    /**
-     * The server the client is currently speaking to
-     */
-    server: {
-      check: 'String',
-      nullable: true,
-      event: 'changedServer'
-    }
-  },
-
-  /*
-  ***********************************************
     MEMBERS
   ***********************************************
   */
