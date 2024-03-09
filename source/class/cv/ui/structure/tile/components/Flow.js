@@ -251,7 +251,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _endDrag(ev) {
-      this._element.removeEventListener('pointermove', this.drag);
+      if (this.drag) {
+        this._element.removeEventListener('pointermove', this.drag);
+      }
       this._element.removeEventListener('touchmove', this._cancelEvent);
     },
 
