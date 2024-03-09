@@ -238,8 +238,9 @@ qx.Class.define('cv.report.Replay', {
               // workaround for mouse clicks on <a> elemente e.g. in the breadcrumb navigation
               // check for last pointerdown event, if id was on same element we have a click
               for (let i = this.__currentIndex - 1; i > 0; i--) {
-                if (this.__log[i].d.native.type === 'pointerdown') {
-                  if (this.__log[i].i === record.i) {
+                const entry = this.__log[i];
+                if (entry.c === 'user' && entry.d.native.type === 'pointerdown') {
+                  if (entry.i === record.i) {
                     // same element
                     target.click();
                   }
