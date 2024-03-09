@@ -21,6 +21,7 @@
 /**
  * Shows an chart.
  * @asset(libs/d3.min.js)
+ * @asset(libs/d3.min.js.map)
  * @ignore(d3)
  */
 qx.Class.define('cv.ui.structure.tile.components.Chart', {
@@ -297,9 +298,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this._tooltip.style.display = 'none';
         this._element.appendChild(this._tooltip);
 
-        svg.on('pointerenter', this._onPointerEntered.bind(this));
-        svg.on('pointermove', this._onPointerMoved.bind(this));
-        svg.on('pointerleave', this._onPointerLeft.bind(this));
+        svg.on('pointerenter', ev => this._onPointerEntered(ev));
+        svg.on('pointermove', ev => this._onPointerMoved(ev));
+        svg.on('pointerleave', ev => this._onPointerLeft(ev));
       }
       svg.on(
         'touchmove',

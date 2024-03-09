@@ -242,6 +242,7 @@ qx.Class.define('cv.io.Client', {
       if (value === true) {
         this.__lastError = null;
       }
+      this.record('connected', value);
     },
 
     setInitialAddresses(addresses) {

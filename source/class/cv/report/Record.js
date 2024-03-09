@@ -312,8 +312,8 @@ qx.Class.define('cv.report.Record', {
           button: nativeEvent.button,
           clientX: Math.round(nativeEvent.clientX),
           clientY: Math.round(nativeEvent.clientY),
-          currentTarget: nativeEvent.currentTarget ? this.__getDomPath(nativeEvent.currentTarget) : undefined,
-          relatedTarget: nativeEvent.relatedTarget ? this.__getDomPath(nativeEvent.relatedTarget) : undefined,
+          currentTarget: this.__getDomPath(nativeEvent.currentTarget) ?? undefined,
+          relatedTarget: this.__getDomPath(nativeEvent.relatedTarget) ?? undefined,
           pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
           pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
           returnValue: nativeEvent.returnValue,
@@ -405,6 +405,7 @@ qx.Class.define('cv.report.Record', {
       // get path
       const path = this.__getDomPath(ev.target);
       if (!path) {
+        this.debug('path to event target not found, skip recording ' + ev.type + ' event');
         return;
       }
       this.debug('recording ' + ev.type + ' on ' + path);
@@ -425,37 +426,49 @@ qx.Class.define('cv.report.Record', {
       this.record(cv.report.Record.USER, 'scroll', data);
     },
 
+    /**
+     * @param el {Element|Node|Window|undefined}
+     * @return {string} CSS selector to element
+     */
     __getDomPath(el) {
+      if (!el) {
+        return '';
+      }
       if (el === window) {
         return 'Window';
       } else if (el === document) {
         return 'document';
       }
       const stack = [];
-      while (el.parentNode !== null) {
-        let sibCount = 0;
+      const origEl = el;
+      while (el.parentElement !== null) {
         let sibIndex = 0;
-        for (let i = 0; i < el.parentNode.childNodes.length; i++) {
-          const sib = el.parentNode.childNodes[i];
-          if (sib.nodeName === el.nodeName) {
-            if (sib === el) {
-              sibIndex = sibCount;
-            }
-            sibCount++;
+        for (let i = 0; i < el.parentElement.children.length; i++) {
+          const sib = el.parentElement.children[i];
+          if (sib === el) {
+            sibIndex = i + 1;
+            break;
           }
         }
         if (el.hasAttribute('id') && el.id !== '') {
           stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
-          return stack.join('>');
-        } else if (sibCount > 1) {
-          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex + 1) + ')');
-        } else {
-          stack.unshift(el.nodeName.toLowerCase());
+          const sel = stack.join('>');
+          if (document.querySelector(sel) !== origEl) {
+            this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
+            return '';
+          }
+          return sel;
         }
-        el = el.parentNode;
+        stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + sibIndex + ')');
+        el = el.parentElement;
       }
 
-      return stack.slice(1).join('>'); // removes the html element
+      const sel = stack.slice(1).join('>'); // removes the html element
+      if (document.querySelector(sel) !== origEl) {
+        this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
+        return '';
+      }
+      return sel;
     },
 
     getData(dontStop) {
