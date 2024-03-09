@@ -405,6 +405,7 @@ qx.Class.define('cv.report.Record', {
       // get path
       const path = this.__getDomPath(ev.target);
       if (!path) {
+        this.debug('path to event target not found, skip recording ' + ev.type + ' event');
         return;
       }
       this.debug('recording ' + ev.type + ' on ' + path);
@@ -432,30 +433,36 @@ qx.Class.define('cv.report.Record', {
         return 'document';
       }
       const stack = [];
-      while (el.parentNode !== null) {
-        let sibCount = 0;
+      const origEl = el;
+      while (el.parentElement !== null) {
         let sibIndex = 0;
-        for (let i = 0; i < el.parentNode.childNodes.length; i++) {
-          const sib = el.parentNode.childNodes[i];
-          if (sib.nodeName === el.nodeName) {
-            if (sib === el) {
-              sibIndex = sibCount;
-            }
-            sibCount++;
+        for (let i = 0; i < el.parentElement.children.length; i++) {
+          const sib = el.parentElement.children[i];
+          if (sib === el) {
+            sibIndex = i + 1;
+            break;
           }
         }
         if (el.hasAttribute('id') && el.id !== '') {
           stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
-          return stack.join('>');
-        } else if (sibCount > 1) {
-          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex + 1) + ')');
+          const sel = stack.join('>');
+          if (document.querySelector(sel) !== origEl) {
+            this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
+            return;
+          }
+          return sel;
         } else {
-          stack.unshift(el.nodeName.toLowerCase());
+          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + sibIndex + ')');
         }
-        el = el.parentNode;
+        el = el.parentElement;
       }
 
-      return stack.slice(1).join('>'); // removes the html element
+      const sel = stack.slice(1).join('>'); // removes the html element
+      if (document.querySelector(sel) !== origEl) {
+        this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
+        return;
+      }
+      return sel;
     },
 
     getData(dontStop) {
