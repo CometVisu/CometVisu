@@ -312,8 +312,8 @@ qx.Class.define('cv.report.Record', {
           button: nativeEvent.button,
           clientX: Math.round(nativeEvent.clientX),
           clientY: Math.round(nativeEvent.clientY),
-          currentTarget: nativeEvent.currentTarget ? this.__getDomPath(nativeEvent.currentTarget) : undefined,
-          relatedTarget: nativeEvent.relatedTarget ? this.__getDomPath(nativeEvent.relatedTarget) : undefined,
+          currentTarget: this.__getDomPath(nativeEvent.currentTarget) ?? undefined,
+          relatedTarget: this.__getDomPath(nativeEvent.relatedTarget) ?? undefined,
           pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
           pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
           returnValue: nativeEvent.returnValue,
@@ -426,7 +426,14 @@ qx.Class.define('cv.report.Record', {
       this.record(cv.report.Record.USER, 'scroll', data);
     },
 
+    /**
+     * @param el {Element|Node|Window|undefined}
+     * @return {string} CSS selector to element
+     */
     __getDomPath(el) {
+      if (!el) {
+        return '';
+      }
       if (el === window) {
         return 'Window';
       } else if (el === document) {
@@ -448,19 +455,18 @@ qx.Class.define('cv.report.Record', {
           const sel = stack.join('>');
           if (document.querySelector(sel) !== origEl) {
             this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
-            return;
+            return '';
           }
           return sel;
-        } else {
-          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + sibIndex + ')');
         }
+        stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + sibIndex + ')');
         el = el.parentElement;
       }
 
       const sel = stack.slice(1).join('>'); // removes the html element
       if (document.querySelector(sel) !== origEl) {
         this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
-        return;
+        return '';
       }
       return sel;
     },
