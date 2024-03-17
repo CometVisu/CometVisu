@@ -142,6 +142,8 @@ qx.Class.define('cv.Application', {
         }
       } else if (args[0] === 'mqtt') {
         Client = cv.io.mqtt.Client;
+      } else if (args[0] === 'iobroker') {
+        Client = cv.io.iobroker.Client;
       }
       return new Client(...args);
     },

@@ -4,8 +4,8 @@
   <!-- basic types -->
   <xsd:simpleType name="addr">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</xsd:documentation>
-      <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</xsd:documentation>
+      <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends, the item name for openHAB / ioBroker backend or the MQTT topic</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB / ioBroker Backend oder das Topic bei MQTT.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:string">
       <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|\{{0,3}\s*[A-Za-z][A-Za-z0-9_\-\.:\{\}\s]*\s*\}{0,3}|$?([a-zA-Z0-9+#_\- ]+/)*[a-zA-Z0-9+#_\- ]+|.*" />
@@ -411,6 +411,7 @@
         <xsd:enumeration value="knxd" />
         <xsd:enumeration value="openhab" />
         <xsd:enumeration value="mqtt" />
+        <xsd:enumeration value="iobroker" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
@@ -517,6 +518,12 @@
         <xsd:annotation>
           <xsd:documentation xml:lang="en">URL to connect to the MQTT backend.</xsd:documentation>
           <xsd:documentation xml:lang="de">URL für die MQTT Backend-Verbindung. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="backend-iobroker-url" use="optional" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">URL to connect to the ioBroker backend.</xsd:documentation>
+          <xsd:documentation xml:lang="de">URL für die ioBroker Backend-Verbindung. </xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="backend-openhab-url" use="optional" type="xsd:string">
