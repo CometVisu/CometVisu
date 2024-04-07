@@ -286,6 +286,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
   members: {
     __animator: undefined,
     __indicatorDOMElement: null,
+    __postponedUpdates: undefined,
 
     // overridden
     _getInnerDomString() {
@@ -714,6 +715,16 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
       return html;
     },
 
+    // overridden
+    _onDomReady() {
+      super._onDomReady();
+      if (this.__postponedUpdates !== undefined) {
+        this.__postponedUpdates.forEach(({address, data}) => {
+          this._update(address, data);
+        });
+      }
+    },
+
     /**
      * Updates the roundbar widget
      *
@@ -725,9 +736,19 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
         return;
       }
       const self = this;
+      const domElement = this.getDomElement();
+      // only continue when the animators are already available, i.e. the
+      // DOM is set up - otherwise just store it for later
+      if (this.__animator === undefined || !domElement) {
+        if (this.__postponedUpdates === undefined) {
+          this.__postponedUpdates = [];
+        }
+        this.__postponedUpdates.push({address, data});
+        return;
+      }
       const value = cv.Transform.decode(this.getAddress()[address], data);
       const target = this.getTargetRatioValue();
-      const tspan = Array.from(this.getDomElement().getElementsByTagName('tspan'));
+      const tspan = Array.from(domElement.getElementsByTagName('tspan'));
 
       const valueFormat = this.applyFormat(address, value);
 
