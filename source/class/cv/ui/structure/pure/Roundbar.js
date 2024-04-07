@@ -718,10 +718,14 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     // overridden
     _onDomReady() {
       super._onDomReady();
+      if (this.__animator === undefined) {
+        throw new Error('roundbar initialization error');
+      }
       if (this.__postponedUpdates !== undefined) {
         this.__postponedUpdates.forEach(({address, data}) => {
           this._update(address, data);
         });
+        this.__postponedUpdates = undefined;
       }
     },
 
