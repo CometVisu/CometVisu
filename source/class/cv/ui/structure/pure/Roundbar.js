@@ -505,76 +505,19 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
 
           switch (label.orientation) {
             case 3: // roundstart
-              path = [
-                'M',
-                x,
-                y,
-                'A',
-                label.radius,
-                label.radius,
-                0,
-                0,
-                cw,
-                -x,
-                -y,
-                'A',
-                label.radius,
-                label.radius,
-                0,
-                0,
-                cw,
-                x,
-                y
-              ].join(' ');
+              path = [ 'M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y,
+                'A', label.radius, label.radius, 0, 0, cw, x, y ].join(' ');
               break;
 
             case 4: // roundmiddle
-              path = [
-                'M',
-                -x,
-                -y,
-                'A',
-                label.radius,
-                label.radius,
-                0,
-                0,
-                cw,
-                x,
-                y,
-                'A',
-                label.radius,
-                label.radius,
-                0,
-                0,
-                cw,
-                -x,
-                -y
-              ].join(' ');
+              path = [ 'M', -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y,
+                'A', label.radius, label.radius, 0, 0, cw, -x, -y ].join(' ');
               align = ' startOffset="50%" text-anchor="middle"';
               break;
 
             case 5: // roundend
-              path = [
-                'M',
-                x,
-                y,
-                'A',
-                label.radius,
-                label.radius,
-                0,
-                0,
-                cw,
-                -x,
-                -y,
-                'A',
-                label.radius,
-                label.radius,
-                0,
-                0,
-                cw,
-                x,
-                y
-              ].join(' ');
+              path = [ 'M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y,
+                'A', label.radius, label.radius, 0, 0, cw, x, y ].join(' ');
               align = ' startOffset="100%" text-anchor="end"';
               break;
           }
@@ -718,9 +661,6 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
     // overridden
     _onDomReady() {
       super._onDomReady();
-      if (this.__animator === undefined) {
-        throw new Error('roundbar initialization error');
-      }
       if (this.__postponedUpdates !== undefined) {
         this.__postponedUpdates.forEach(({address, data}) => {
           this._update(address, data);
@@ -733,7 +673,7 @@ qx.Class.define('cv.ui.structure.pure.Roundbar', {
      * Updates the roundbar widget
      *
      * @param address {String} KNX-GA or openHAB item name
-     * @param data {var} incoming data
+     * @param data {*} incoming data
      */
     _update(address, data) {
       if (data === undefined || address === undefined) {
