@@ -59,6 +59,10 @@ class ApiCompileHandler extends AbstractCompileHandler {
   }
 
   _onMade() {
+    if (this._compilerApi.getCommand() instanceof qx.tool.cli.commands.Deploy) {
+      return;
+    }
+
     // cleanup files we do not need (everything from the compiled cv application: resources, application)
     const targetDir = this._getTargetDir();
     if (targetDir) {
