@@ -72,6 +72,7 @@ qx.Class.define('cv.io.System', {
       if (callback) {
         callback.call(context);
       }
+      this.setConnected(true);
     },
 
     subscribe(addresses, filters) {
