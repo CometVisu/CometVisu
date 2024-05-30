@@ -1,6 +1,8 @@
 const { CvCompileHandler } = require('./cv/CompileHandler');
 const { ApiCompileHandler } = require('./apiviewer/CompileHandler');
 const packageConfig = require('../../package.json');
+const path = require('path');
+const fs = require('fs');
 
 qx.Class.define('cv.compile.LibraryApi', {
   extend: qx.tool.cli.api.LibraryApi,
@@ -8,10 +10,7 @@ qx.Class.define('cv.compile.LibraryApi', {
   members: {
     __compileHandler: null,
 
-    /**
-     * Called to load any library-specific configuration and update the compilerConfig
-     */
-    async afterLibrariesLoaded() {
+    async load() {
       const compilerApi = this.getCompilerApi();
       const command = compilerApi.getCommand();
       if (command instanceof qx.tool.cli.commands.Compile || command instanceof qx.tool.cli.commands.Deploy) {
@@ -27,7 +26,7 @@ qx.Class.define('cv.compile.LibraryApi', {
             }
           });
         }
-        const makeApi = customSettings.apiviewer === 'true';
+        const makeApi= this.__makeApi = customSettings.apiviewer === 'true';
         const outputPath = process.env.CV_OUTPUT_PATH || customSettings.outputPath;
         const targetType = command.getTargetType();
         config.targets.forEach(target => {
@@ -54,6 +53,7 @@ qx.Class.define('cv.compile.LibraryApi', {
           config.eslintConfig = packageConfig.eslintConfig;
         }
       }
+      return this.base(arguments);
     },
 
     readEnv (config, customSettings) {
