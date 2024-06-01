@@ -114,11 +114,15 @@ qx.Class.define('cv.Version', {
     this._config.targets.some(target => {
       if (target.type === type) {
         if (isDeploy) {
-          targetDir = command.argv.out || typeof target.getDeployDir == 'function' && target.getDeployDir();
+          if (command.argv.out) {
+            targetDir = command.argv.out;
+          } else if (typeof target.getDeployDir == 'function') {
+            targetDir = target.getDeployDir();
+          }
         } else {
           targetDir = target.outputPath;
         }
-        return true;
+        return targetDir !== null;
       }
       return false;
     });

@@ -144,7 +144,7 @@ if __name__ == '__main__':
         sys.exit(0)
 
     # compile cv
-    args = ['compile', '--', '-t', options.target]
+    args = ['compile', '--', '-t', options.target, '--set-env', 'qx.debug=true']
     if options.global_error_handling is True:
         args.extend(['--set-env', 'qx.globalErrorHandling=true'])
 

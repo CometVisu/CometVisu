@@ -159,34 +159,21 @@
       "environment": {
         "qx.icontheme": "Tango",
         "qxl.apiviewer.applicationName": "cv",
-        "qxl.apiviewer.exclude": [
-          "qxl.*",
-          "q",
-          "qxWeb"
-        ],
+        "qxl.apiviewer.exclude": ["qxl.apiviewer.*", "q.*", "qx.test.*", "q", "qxWeb"],
         "qxl.versionlabel.name": "CometVisu",
         "qxl.versionlabel.version": "dev"
       },
       "include": [
         "qx.*"
       ],
-      "exclude": [
-        "qx.tool.*",
-        "qx.test.*",
-        "qx.module.Blocker",
-        "qx.module.Placement"
-      ],
+      "exclude": ["qx.module.Blocker","qx.module.Placement"],
       "bootPath": "../../source/apiboot",
       "parts": {
-        "boot" : {
-          "include": [
-            "qx.*"
-          ]
+        "boot": {
+          "include": ["qx.*"]
         },
-        "tool" : {
-          "include": [
-            "qx.tool.*"
-          ]
+        "tool": {
+          "include": ["qx.tool.*"]
         }
       }
     }
@@ -202,10 +189,16 @@
       "application-types": [
         "browser"
       ],
+      "babelOptions": {
+        "targets": "edge >=18, chrome >= 73, firefox >= 66"
+      },
       "environment": {
         "cv.build": "source",
         "cv.sentry": false,
         "qx.globalErrorHandling": false
+      },
+      "bundle": {
+        "include": ["qx.*"]
       }
     },
     {

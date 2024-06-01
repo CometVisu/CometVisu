@@ -44,6 +44,7 @@
     "@prettier/plugin-php": "^0.22.1",
     "@qooxdoo/eslint-config-qx": "^2.0.1",
     "babel-eslint": "^10.1.0",
+    "babel-preset-es2015": "^6.24.1",
     "chmodr": "^1.2.0",
     "easyimage": "^3.1.1",
     "eslint": "^8.56.0",
@@ -85,7 +86,7 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.6.3",
+    "@qooxdoo/framework": "^7.7.1",
     "@sentry/browser": "^7.88.0",
     "@sentry/tracing": "^7.88.0",
     "crc-32": "^1.2.2",
